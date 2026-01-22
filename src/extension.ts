@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { generatePalette, getWorkspaceIdentifier } from './color';
+import { getWorkspaceIdentifierConfig } from './config';
 
 export function activate(context: vscode.ExtensionContext) {
   // Apply tint on activation
@@ -7,12 +8,18 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('patina.enable', applyTint),
-    vscode.commands.registerCommand('patina.disable', removeTint)
+    vscode.commands.registerCommand('patina.disable', removeTint),
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration('patina.workspaceIdentifier')) {
+        applyTint();
+      }
+    })
   );
 }
 
 async function applyTint(): Promise<void> {
-  const identifier = getWorkspaceIdentifier();
+  const identifierConfig = getWorkspaceIdentifierConfig();
+  const identifier = getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
     return;
   }

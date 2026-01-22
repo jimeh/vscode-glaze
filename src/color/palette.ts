@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
+import * as os from 'os';
+import * as path from 'path';
 import type { HSL } from './types';
+import type { WorkspaceIdentifierConfig } from '../config';
 import { hashString } from './hash';
 import { hslToHex } from './convert';
 
@@ -58,16 +61,80 @@ export function generatePalette(
 }
 
 /**
- * Extracts a suitable identifier from the current workspace.
- * Uses the first workspace folder's name, or undefined if no workspace is
- * open.
- *
- * @returns The workspace folder name, or undefined if no workspace is open
+ * Normalizes a path by converting backslashes to forward slashes.
+ * Ensures consistent hashing across platforms.
  */
-export function getWorkspaceIdentifier(): string | undefined {
+function normalizePath(p: string): string {
+  return p.replace(/\\/g, '/');
+}
+
+/**
+ * Expands ~ to the home directory in a path.
+ */
+function expandTilde(p: string): string {
+  if (p.startsWith('~')) {
+    return path.join(os.homedir(), p.slice(1));
+  }
+  return p;
+}
+
+/**
+ * Computes the relative path from a base to a target.
+ * Returns undefined if the target is not within the base path.
+ */
+function getRelativePath(basePath: string, targetPath: string): string | undefined {
+  const normalizedBase = normalizePath(path.resolve(basePath));
+  const normalizedTarget = normalizePath(path.resolve(targetPath));
+
+  if (!normalizedTarget.startsWith(normalizedBase + '/') &&
+      normalizedTarget !== normalizedBase) {
+    return undefined;
+  }
+
+  const relative = path.relative(basePath, targetPath);
+  return normalizePath(relative) || '.';
+}
+
+/**
+ * Extracts a suitable identifier from the current workspace based on config.
+ *
+ * @param config - Configuration specifying how to generate the identifier
+ * @returns The workspace identifier, or undefined if no workspace is open
+ */
+export function getWorkspaceIdentifier(
+  config: WorkspaceIdentifierConfig
+): string | undefined {
   const folders = vscode.workspace.workspaceFolders;
   if (!folders || folders.length === 0) {
     return undefined;
   }
-  return folders[0].name;
+
+  const folder = folders[0];
+  const folderPath = folder.uri.fsPath;
+
+  switch (config.source) {
+    case 'name':
+      return folder.name;
+
+    case 'pathRelativeToHome': {
+      const homedir = os.homedir();
+      const relative = getRelativePath(homedir, folderPath);
+      return relative ?? normalizePath(folderPath);
+    }
+
+    case 'pathAbsolute':
+      return normalizePath(folderPath);
+
+    case 'pathRelativeToCustom': {
+      if (!config.customBasePath) {
+        return normalizePath(folderPath);
+      }
+      const basePath = expandTilde(config.customBasePath);
+      const relative = getRelativePath(basePath, folderPath);
+      return relative ?? normalizePath(folderPath);
+    }
+
+    default:
+      return folder.name;
+  }
 }

@@ -23,7 +23,34 @@
         "command": "patina.disable",
         "title": "Patina: Disable Color Tint"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Patina",
+      "properties": {
+        "patina.workspaceIdentifier.source": {
+          "type": "string",
+          "enum": [
+            "name",
+            "pathRelativeToHome",
+            "pathAbsolute",
+            "pathRelativeToCustom"
+          ],
+          "enumDescriptions": [
+            "Workspace folder name only",
+            "Path relative to home directory",
+            "Absolute filesystem path",
+            "Path relative to a custom base path"
+          ],
+          "default": "name",
+          "description": "Determines what value is used to generate the workspace color."
+        },
+        "patina.workspaceIdentifier.customBasePath": {
+          "type": "string",
+          "default": "",
+          "description": "Base path for 'pathRelativeToCustom' source. Supports ~ for home. Falls back to absolute path if workspace is outside this path."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
