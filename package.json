@@ -4,18 +4,24 @@
   "description": "Applies subtle color tints to your editor windows based on the open project, so you can easly tell your workspaces apart.",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.108.1"
+    "vscode": "^1.105.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "patina.helloWorld",
-        "title": "Hello World"
+        "command": "patina.enable",
+        "title": "Patina: Enable Color Tint"
+      },
+      {
+        "command": "patina.disable",
+        "title": "Patina: Disable Color Tint"
       }
     ]
   },
@@ -34,7 +40,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.108.1",
+    "@types/vscode": "^1.105.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "typescript-eslint": "^8.52.0",
