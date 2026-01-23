@@ -52,13 +52,18 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
   const name = getThemeName(type);
   const themeInfo = name ? getThemeInfo(name) : undefined;
 
+  // Validate that stored theme type matches detected type.
+  // If mismatch, don't trust the colors - fall back to generic.
+  const validatedThemeInfo =
+    themeInfo && themeInfo.type === type ? themeInfo : undefined;
+
   // Build legacy backgrounds object for backwards compatibility
-  const backgrounds = themeInfo
+  const backgrounds = validatedThemeInfo
     ? {
-        editor: themeInfo.colors['editor.background'],
-        titleBar: themeInfo.colors['titleBar.activeBackground'],
-        statusBar: themeInfo.colors['statusBar.background'],
-        activityBar: themeInfo.colors['activityBar.background'],
+        editor: validatedThemeInfo.colors['editor.background'],
+        titleBar: validatedThemeInfo.colors['titleBar.activeBackground'],
+        statusBar: validatedThemeInfo.colors['statusBar.background'],
+        activityBar: validatedThemeInfo.colors['activityBar.background'],
       }
     : undefined;
 
@@ -67,8 +72,8 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
     kind: type, // Deprecated alias
     isAutoDetected,
     name,
-    background: themeInfo?.colors['editor.background'],
-    colors: themeInfo?.colors,
+    background: validatedThemeInfo?.colors['editor.background'],
+    colors: validatedThemeInfo?.colors,
     backgrounds,
   };
 }
