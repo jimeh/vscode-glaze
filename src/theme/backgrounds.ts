@@ -1,4 +1,10 @@
 import * as vscode from 'vscode';
+import type { PatinaColorPalette } from '../color/palette';
+
+/**
+ * Element identifier for background color lookup.
+ */
+export type ElementType = 'editor' | 'titleBar' | 'statusBar' | 'activityBar';
 
 /**
  * Theme kind for categorization.
@@ -6,11 +12,26 @@ import * as vscode from 'vscode';
 export type ThemeBackgroundKind = 'dark' | 'light';
 
 /**
- * Information about a theme's background color.
+ * Background colors for different UI elements.
+ * The `editor` color is required and serves as the fallback for all elements.
+ */
+export interface ElementBackgrounds {
+  /** Main editor background (required, fallback for all elements) */
+  editor: string;
+  /** Title bar background (titleBar.activeBackground) */
+  titleBar?: string;
+  /** Status bar background (statusBar.background) */
+  statusBar?: string;
+  /** Activity bar background (activityBar.background) */
+  activityBar?: string;
+}
+
+/**
+ * Information about a theme's background colors.
  */
 export interface ThemeBackground {
-  /** The theme's editor background color */
-  background: string;
+  /** Background colors for different UI elements */
+  backgrounds: ElementBackgrounds;
   /** Whether this is a dark or light theme */
   kind: ThemeBackgroundKind;
 }
@@ -23,92 +44,191 @@ export interface ThemeBackground {
  */
 export const THEME_BACKGROUNDS: Record<string, ThemeBackground> = {
   // VS Code built-in themes
-  'Default Dark Modern': { background: '#1F1F1F', kind: 'dark' },
-  'Default Dark+': { background: '#1E1E1E', kind: 'dark' },
-  'Visual Studio Dark': { background: '#1E1E1E', kind: 'dark' },
-  'Default Light Modern': { background: '#FFFFFF', kind: 'light' },
-  'Default Light+': { background: '#FFFFFF', kind: 'light' },
-  'Visual Studio Light': { background: '#FFFFFF', kind: 'light' },
-  'Default High Contrast': { background: '#000000', kind: 'dark' },
-  'Default High Contrast Light': { background: '#FFFFFF', kind: 'light' },
+  'Default Dark Modern': { backgrounds: { editor: '#1F1F1F' }, kind: 'dark' },
+  'Default Dark+': { backgrounds: { editor: '#1E1E1E' }, kind: 'dark' },
+  'Visual Studio Dark': { backgrounds: { editor: '#1E1E1E' }, kind: 'dark' },
+  'Default Light Modern': { backgrounds: { editor: '#FFFFFF' }, kind: 'light' },
+  'Default Light+': { backgrounds: { editor: '#FFFFFF' }, kind: 'light' },
+  'Visual Studio Light': { backgrounds: { editor: '#FFFFFF' }, kind: 'light' },
+  'Default High Contrast': { backgrounds: { editor: '#000000' }, kind: 'dark' },
+  'Default High Contrast Light': {
+    backgrounds: { editor: '#FFFFFF' },
+    kind: 'light',
+  },
 
   // Popular dark themes
-  'One Dark Pro': { background: '#282C34', kind: 'dark' },
-  'One Dark Pro Darker': { background: '#23272E', kind: 'dark' },
-  'One Dark Pro Flat': { background: '#282C34', kind: 'dark' },
-  'One Dark Pro Mix': { background: '#282C34', kind: 'dark' },
-  Dracula: { background: '#282A36', kind: 'dark' },
-  'Dracula Soft': { background: '#282A36', kind: 'dark' },
-  'GitHub Dark Default': { background: '#0D1117', kind: 'dark' },
-  'GitHub Dark Dimmed': { background: '#22272E', kind: 'dark' },
-  'GitHub Dark High Contrast': { background: '#0A0C10', kind: 'dark' },
-  'Night Owl': { background: '#011627', kind: 'dark' },
-  Monokai: { background: '#272822', kind: 'dark' },
-  'Monokai Dimmed': { background: '#1E1E1E', kind: 'dark' },
-  Nord: { background: '#2E3440', kind: 'dark' },
-  'Solarized Dark': { background: '#002B36', kind: 'dark' },
-  'Gruvbox Dark Medium': { background: '#282828', kind: 'dark' },
-  'Gruvbox Dark Hard': { background: '#1D2021', kind: 'dark' },
-  'Gruvbox Dark Soft': { background: '#32302F', kind: 'dark' },
-  'Tokyo Night': { background: '#1A1B26', kind: 'dark' },
-  'Tokyo Night Storm': { background: '#24283B', kind: 'dark' },
-  'Catppuccin Mocha': { background: '#1E1E2E', kind: 'dark' },
-  'Catppuccin Macchiato': { background: '#24273A', kind: 'dark' },
-  'Catppuccin Frappé': { background: '#303446', kind: 'dark' },
-  'Ayu Dark': { background: '#0A0E14', kind: 'dark' },
-  'Ayu Dark Bordered': { background: '#0A0E14', kind: 'dark' },
-  'Ayu Mirage': { background: '#1F2430', kind: 'dark' },
-  'Ayu Mirage Bordered': { background: '#1F2430', kind: 'dark' },
-  'Material Theme Palenight': { background: '#292D3E', kind: 'dark' },
-  'Material Theme Palenight High Contrast': {
-    background: '#292D3E',
+  'One Dark Pro': { backgrounds: { editor: '#282C34' }, kind: 'dark' },
+  'One Dark Pro Darker': { backgrounds: { editor: '#23272E' }, kind: 'dark' },
+  'One Dark Pro Flat': { backgrounds: { editor: '#282C34' }, kind: 'dark' },
+  'One Dark Pro Mix': { backgrounds: { editor: '#282C34' }, kind: 'dark' },
+  Dracula: { backgrounds: { editor: '#282A36' }, kind: 'dark' },
+  'Dracula Soft': { backgrounds: { editor: '#282A36' }, kind: 'dark' },
+  'GitHub Dark Default': { backgrounds: { editor: '#0D1117' }, kind: 'dark' },
+  'GitHub Dark Dimmed': { backgrounds: { editor: '#22272E' }, kind: 'dark' },
+  'GitHub Dark High Contrast': {
+    backgrounds: { editor: '#0A0C10' },
     kind: 'dark',
   },
-  'Material Theme Ocean': { background: '#0F111A', kind: 'dark' },
-  'Material Theme Darker': { background: '#212121', kind: 'dark' },
-  'Cobalt2': { background: '#193549', kind: 'dark' },
-  'Atom One Dark': { background: '#282C34', kind: 'dark' },
-  'Palenight Theme': { background: '#292D3E', kind: 'dark' },
-  'Shades of Purple': { background: '#2D2B55', kind: 'dark' },
-  'Synthwave 84': { background: '#262335', kind: 'dark' },
-  'Panda Theme': { background: '#292A2B', kind: 'dark' },
+  'Night Owl': { backgrounds: { editor: '#011627' }, kind: 'dark' },
+  Monokai: { backgrounds: { editor: '#272822' }, kind: 'dark' },
+  'Monokai Dimmed': { backgrounds: { editor: '#1E1E1E' }, kind: 'dark' },
+  Nord: { backgrounds: { editor: '#2E3440' }, kind: 'dark' },
+  'Solarized Dark': { backgrounds: { editor: '#002B36' }, kind: 'dark' },
+  'Gruvbox Dark Medium': { backgrounds: { editor: '#282828' }, kind: 'dark' },
+  'Gruvbox Dark Hard': { backgrounds: { editor: '#1D2021' }, kind: 'dark' },
+  'Gruvbox Dark Soft': { backgrounds: { editor: '#32302F' }, kind: 'dark' },
+  'Tokyo Night': { backgrounds: { editor: '#1A1B26' }, kind: 'dark' },
+  'Tokyo Night Storm': { backgrounds: { editor: '#24283B' }, kind: 'dark' },
+  'Catppuccin Mocha': { backgrounds: { editor: '#1E1E2E' }, kind: 'dark' },
+  'Catppuccin Macchiato': { backgrounds: { editor: '#24273A' }, kind: 'dark' },
+  'Catppuccin Frappé': { backgrounds: { editor: '#303446' }, kind: 'dark' },
+  'Ayu Dark': { backgrounds: { editor: '#0A0E14' }, kind: 'dark' },
+  'Ayu Dark Bordered': { backgrounds: { editor: '#0A0E14' }, kind: 'dark' },
+  'Ayu Mirage': { backgrounds: { editor: '#1F2430' }, kind: 'dark' },
+  'Ayu Mirage Bordered': { backgrounds: { editor: '#1F2430' }, kind: 'dark' },
+  'Material Theme Palenight': {
+    backgrounds: { editor: '#292D3E' },
+    kind: 'dark',
+  },
+  'Material Theme Palenight High Contrast': {
+    backgrounds: { editor: '#292D3E' },
+    kind: 'dark',
+  },
+  'Material Theme Ocean': { backgrounds: { editor: '#0F111A' }, kind: 'dark' },
+  'Material Theme Darker': { backgrounds: { editor: '#212121' }, kind: 'dark' },
+  Cobalt2: { backgrounds: { editor: '#193549' }, kind: 'dark' },
+  'Atom One Dark': { backgrounds: { editor: '#282C34' }, kind: 'dark' },
+  'Palenight Theme': { backgrounds: { editor: '#292D3E' }, kind: 'dark' },
+  'Shades of Purple': { backgrounds: { editor: '#2D2B55' }, kind: 'dark' },
+  'Synthwave 84': { backgrounds: { editor: '#262335' }, kind: 'dark' },
+  'Panda Theme': { backgrounds: { editor: '#292A2B' }, kind: 'dark' },
 
   // Popular light themes
-  'GitHub Light Default': { background: '#FFFFFF', kind: 'light' },
-  'GitHub Light High Contrast': { background: '#FFFFFF', kind: 'light' },
-  'Light Owl': { background: '#FBFBFB', kind: 'light' },
-  'Solarized Light': { background: '#FDF6E3', kind: 'light' },
-  'Gruvbox Light Medium': { background: '#FBF1C7', kind: 'light' },
-  'Gruvbox Light Hard': { background: '#F9F5D7', kind: 'light' },
-  'Gruvbox Light Soft': { background: '#F2E5BC', kind: 'light' },
-  'Catppuccin Latte': { background: '#EFF1F5', kind: 'light' },
-  'Ayu Light': { background: '#FAFAFA', kind: 'light' },
-  'Ayu Light Bordered': { background: '#FAFAFA', kind: 'light' },
-  'Atom One Light': { background: '#FAFAFA', kind: 'light' },
-  'Tokyo Night Light': { background: '#D5D6DB', kind: 'light' },
-  'Material Theme Lighter': { background: '#FAFAFA', kind: 'light' },
-  'Quiet Light': { background: '#F5F5F5', kind: 'light' },
+  'GitHub Light Default': { backgrounds: { editor: '#FFFFFF' }, kind: 'light' },
+  'GitHub Light High Contrast': {
+    backgrounds: { editor: '#FFFFFF' },
+    kind: 'light',
+  },
+  'Light Owl': { backgrounds: { editor: '#FBFBFB' }, kind: 'light' },
+  'Solarized Light': { backgrounds: { editor: '#FDF6E3' }, kind: 'light' },
+  'Gruvbox Light Medium': { backgrounds: { editor: '#FBF1C7' }, kind: 'light' },
+  'Gruvbox Light Hard': { backgrounds: { editor: '#F9F5D7' }, kind: 'light' },
+  'Gruvbox Light Soft': { backgrounds: { editor: '#F2E5BC' }, kind: 'light' },
+  'Catppuccin Latte': { backgrounds: { editor: '#EFF1F5' }, kind: 'light' },
+  'Ayu Light': { backgrounds: { editor: '#FAFAFA' }, kind: 'light' },
+  'Ayu Light Bordered': { backgrounds: { editor: '#FAFAFA' }, kind: 'light' },
+  'Atom One Light': { backgrounds: { editor: '#FAFAFA' }, kind: 'light' },
+  'Tokyo Night Light': { backgrounds: { editor: '#D5D6DB' }, kind: 'light' },
+  'Material Theme Lighter': { backgrounds: { editor: '#FAFAFA' }, kind: 'light' },
+  'Quiet Light': { backgrounds: { editor: '#F5F5F5' }, kind: 'light' },
 };
 
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 const VALID_KINDS: ThemeBackgroundKind[] = ['dark', 'light'];
 
+function isValidHexColor(value: unknown): value is string {
+  return typeof value === 'string' && HEX_COLOR_PATTERN.test(value);
+}
+
+/**
+ * Validates an ElementBackgrounds object.
+ * Requires `editor` key with valid hex color; other keys are optional.
+ */
+function isValidElementBackgrounds(
+  value: unknown
+): value is ElementBackgrounds {
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
+  const obj = value as Record<string, unknown>;
+  // editor is required
+  if (!isValidHexColor(obj.editor)) {
+    return false;
+  }
+  // Optional keys must be valid hex if present
+  for (const key of ['titleBar', 'statusBar', 'activityBar']) {
+    if (obj[key] !== undefined && !isValidHexColor(obj[key])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * Validates a ThemeBackground object (new format with `backgrounds`).
+ * Also accepts legacy format with `background` string for backwards
+ * compatibility with user settings.
+ */
 function isValidThemeBackground(value: unknown): value is ThemeBackground {
   if (typeof value !== 'object' || value === null) {
     return false;
   }
   const obj = value as Record<string, unknown>;
-  return (
-    typeof obj.background === 'string' &&
-    HEX_COLOR_PATTERN.test(obj.background) &&
-    typeof obj.kind === 'string' &&
-    VALID_KINDS.includes(obj.kind as ThemeBackgroundKind)
-  );
+
+  // Check for valid kind
+  if (
+    typeof obj.kind !== 'string' ||
+    !VALID_KINDS.includes(obj.kind as ThemeBackgroundKind)
+  ) {
+    return false;
+  }
+
+  // New format: { backgrounds: ElementBackgrounds, kind }
+  if (obj.backgrounds !== undefined) {
+    return isValidElementBackgrounds(obj.backgrounds);
+  }
+
+  // Legacy format: { background: string, kind } - for user config compat
+  if (isValidHexColor(obj.background)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Legacy format for user config backwards compatibility.
+ */
+interface LegacyThemeBackground {
+  background: string;
+  kind: ThemeBackgroundKind;
+}
+
+function isNewFormat(
+  value: ThemeBackground | LegacyThemeBackground
+): value is ThemeBackground {
+  return 'backgrounds' in value;
+}
+
+/**
+ * Normalizes a theme background entry, converting legacy format to new format.
+ */
+function normalizeThemeBackground(
+  value: ThemeBackground | LegacyThemeBackground
+): ThemeBackground {
+  if (isNewFormat(value)) {
+    return {
+      backgrounds: {
+        editor: value.backgrounds.editor.toUpperCase(),
+        titleBar: value.backgrounds.titleBar?.toUpperCase(),
+        statusBar: value.backgrounds.statusBar?.toUpperCase(),
+        activityBar: value.backgrounds.activityBar?.toUpperCase(),
+      },
+      kind: value.kind,
+    };
+  }
+  // Legacy format - convert to new format
+  return {
+    backgrounds: { editor: value.background.toUpperCase() },
+    kind: value.kind,
+  };
 }
 
 /**
  * Gets custom theme background colors from VSCode settings.
- * Invalid entries are silently skipped.
+ * Invalid entries are silently skipped. Supports both new format (with
+ * `backgrounds`) and legacy format (with `background`) for backwards
+ * compatibility.
  */
 function getCustomThemeBackgrounds(): Record<string, ThemeBackground> {
   const config = vscode.workspace.getConfiguration('patina');
@@ -120,10 +240,11 @@ function getCustomThemeBackgrounds(): Record<string, ThemeBackground> {
   const result: Record<string, ThemeBackground> = {};
   for (const [name, entry] of Object.entries(raw)) {
     if (isValidThemeBackground(entry)) {
-      result[name] = {
-        background: entry.background.toUpperCase(),
-        kind: entry.kind,
-      };
+      // Cast is safe after validation; normalizeThemeBackground handles both
+      // new and legacy formats
+      result[name] = normalizeThemeBackground(
+        entry as ThemeBackground | LegacyThemeBackground
+      );
     }
   }
   return result;
@@ -145,4 +266,33 @@ export function getThemeBackground(
     return custom[themeName];
   }
   return THEME_BACKGROUNDS[themeName];
+}
+
+/**
+ * Maps palette keys to their corresponding element type for background lookup.
+ */
+const PALETTE_KEY_TO_ELEMENT: Partial<Record<keyof PatinaColorPalette, ElementType>> = {
+  'titleBar.activeBackground': 'titleBar',
+  'titleBar.inactiveBackground': 'titleBar',
+  'statusBar.background': 'statusBar',
+  'activityBar.background': 'activityBar',
+};
+
+/**
+ * Gets the appropriate background color for a specific palette key.
+ * Falls back to editor background if the element-specific color is not defined.
+ *
+ * @param key - The palette key to get background for
+ * @param backgrounds - The element backgrounds from the theme
+ * @returns The hex color string for the appropriate background
+ */
+export function getBackgroundForKey(
+  key: keyof PatinaColorPalette,
+  backgrounds: ElementBackgrounds
+): string {
+  const element = PALETTE_KEY_TO_ELEMENT[key];
+  if (element && backgrounds[element]) {
+    return backgrounds[element];
+  }
+  return backgrounds.editor;
 }

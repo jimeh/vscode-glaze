@@ -102,18 +102,45 @@
         "patina.theme.backgroundColors": {
           "type": "object",
           "default": {},
-          "description": "Custom theme background colors for themes not in the built-in list or to override built-in values.",
+          "markdownDescription": "Custom theme background colors for themes not in the built-in list or to override built-in values.\n\n**New format** (recommended):\n```json\n{\n  \"My Theme\": {\n    \"backgrounds\": {\n      \"editor\": \"#282C34\",\n      \"titleBar\": \"#21252B\",\n      \"statusBar\": \"#21252B\",\n      \"activityBar\": \"#21252B\"\n    },\n    \"kind\": \"dark\"\n  }\n}\n```\n\n**Legacy format** (still supported):\n```json\n{\n  \"My Theme\": {\n    \"background\": \"#282C34\",\n    \"kind\": \"dark\"\n  }\n}\n```",
           "additionalProperties": {
             "type": "object",
             "required": [
-              "background",
               "kind"
             ],
             "properties": {
               "background": {
                 "type": "string",
                 "pattern": "^#[0-9A-Fa-f]{6}$",
-                "description": "Editor background color as 6-digit hex (e.g., #282C34)"
+                "description": "(Legacy) Editor background color as 6-digit hex (e.g., #282C34). Use 'backgrounds' object instead for per-element colors."
+              },
+              "backgrounds": {
+                "type": "object",
+                "description": "Background colors for different UI elements",
+                "required": ["editor"],
+                "properties": {
+                  "editor": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Main editor background (required, fallback for all elements)"
+                  },
+                  "titleBar": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Title bar background (titleBar.activeBackground)"
+                  },
+                  "statusBar": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Status bar background (statusBar.background)"
+                  },
+                  "activityBar": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Activity bar background (activityBar.background)"
+                  }
+                },
+                "additionalProperties": false
               },
               "kind": {
                 "type": "string",
@@ -142,7 +169,10 @@
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "extract-themes": "tsx scripts/extract-theme-colors/index.ts",
+    "extract-themes:dry-run": "tsx scripts/extract-theme-colors/index.ts --dry-run",
+    "extract-themes:verbose": "tsx scripts/extract-theme-colors/index.ts --verbose"
   },
   "devDependencies": {
     "@types/vscode": "^1.102.0",
@@ -154,6 +184,7 @@
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
     "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "tsx": "^4.7.0"
   }
 }

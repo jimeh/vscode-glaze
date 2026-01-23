@@ -43,7 +43,7 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
     isAutoDetected = false;
   }
 
-  // Get the theme name, then look up its background color
+  // Get the theme name, then look up its background colors
   const name = getThemeName(kind);
   const themeInfo = name ? getThemeBackground(name) : undefined;
 
@@ -51,6 +51,8 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
     kind,
     isAutoDetected,
     name,
-    background: themeInfo?.background,
+    // Deprecated: use backgrounds.editor instead
+    background: themeInfo?.backgrounds.editor,
+    backgrounds: themeInfo?.backgrounds,
   };
 }

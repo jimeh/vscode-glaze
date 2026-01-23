@@ -1,6 +1,7 @@
 import type { HSL } from './types';
 import type { TintTarget } from '../config';
 import type { ThemeContext, ThemeKind } from '../theme';
+import { getBackgroundForKey } from '../theme/backgrounds';
 import { hashString } from './hash';
 import { hslToHex } from './convert';
 import { blendWithTheme } from './blend';
@@ -173,8 +174,9 @@ export function generatePalette(
     };
 
     // Only blend background colors, not foreground colors
-    if (BACKGROUND_KEYS.has(key) && themeContext.background) {
-      hsl = blendWithTheme(hsl, themeContext.background, themeBlendFactor);
+    if (BACKGROUND_KEYS.has(key) && themeContext.backgrounds) {
+      const bgColor = getBackgroundForKey(key, themeContext.backgrounds);
+      hsl = blendWithTheme(hsl, bgColor, themeBlendFactor);
     }
 
     palette[key] = hslToHex(hsl);

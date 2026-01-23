@@ -8,6 +8,8 @@ export type ThemeKind = 'dark' | 'light' | 'highContrast' | 'highContrastLight';
  */
 export type ThemeMode = 'auto' | 'light' | 'dark';
 
+import type { ElementBackgrounds } from './backgrounds';
+
 /**
  * Context information about the current theme.
  */
@@ -29,8 +31,15 @@ export interface ThemeContext {
   name?: string;
 
   /**
-   * The theme's background color as a hex string (e.g., "#282C34").
+   * The theme's editor background color as a hex string (e.g., "#282C34").
    * Only populated for known themes in the lookup table.
+   * @deprecated Use `backgrounds.editor` instead
    */
   background?: string;
+
+  /**
+   * Background colors for different UI elements.
+   * Only populated for known themes in the lookup table.
+   */
+  backgrounds?: ElementBackgrounds;
 }

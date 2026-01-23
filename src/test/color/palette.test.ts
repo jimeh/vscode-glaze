@@ -2,6 +2,7 @@ import * as assert from 'assert';
 import { generatePalette } from '../../color/palette';
 import type { TintTarget } from '../../config';
 import type { ThemeKind, ThemeContext } from '../../theme';
+import type { ElementBackgrounds } from '../../theme/backgrounds';
 
 const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
 
@@ -10,12 +11,20 @@ const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
  */
 function makeThemeContext(
   kind: ThemeKind,
-  options?: { background?: string }
+  options?: { background?: string; backgrounds?: ElementBackgrounds }
 ): ThemeContext {
+  // Support both old style (background) and new style (backgrounds)
+  let backgrounds: ElementBackgrounds | undefined;
+  if (options?.backgrounds) {
+    backgrounds = options.backgrounds;
+  } else if (options?.background) {
+    backgrounds = { editor: options.background };
+  }
   return {
     kind,
     isAutoDetected: true,
-    background: options?.background,
+    background: backgrounds?.editor,
+    backgrounds,
   };
 }
 
