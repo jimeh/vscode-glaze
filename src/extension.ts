@@ -5,8 +5,9 @@ import {
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
-  getWorkspaceModify,
-  setWorkspaceModify,
+  getWorkspaceEnabled,
+  setWorkspaceEnabled,
+  migrateWorkspaceModifySetting,
   isEnabled,
 } from './config';
 import { getThemeContext } from './theme';
@@ -16,7 +17,10 @@ import {
   ColorCustomizations,
 } from './settings';
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
+  // Migrate old workspace.modify setting to workspace.enabled
+  await migrateWorkspaceModifySetting();
+
   // Apply tint on activation
   applyTint();
 
@@ -30,18 +34,18 @@ export function activate(context: vscode.ExtensionContext) {
       await config.update('enabled', false, vscode.ConfigurationTarget.Global);
     }),
     vscode.commands.registerCommand('patina.enableWorkspace', async () => {
-      await setWorkspaceModify(true);
+      await setWorkspaceEnabled(true);
     }),
     vscode.commands.registerCommand('patina.disableWorkspace', async () => {
-      await setWorkspaceModify(false);
+      await setWorkspaceEnabled(false);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration('patina.workspace.modify')) {
-        const workspaceModify = getWorkspaceModify();
-        if (workspaceModify === false) {
+      if (e.affectsConfiguration('patina.workspace.enabled')) {
+        const workspaceEnabled = getWorkspaceEnabled();
+        if (workspaceEnabled === false) {
           // User opted out - remove colors without clearing the flag
           removeTintPreservingFlag();
-        } else if (workspaceModify === true && isEnabled()) {
+        } else if (workspaceEnabled === true && isEnabled()) {
           applyTint();
         }
         return;
@@ -75,8 +79,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 async function applyTint(): Promise<void> {
   // Check for per-workspace opt-out first
-  const workspaceModify = getWorkspaceModify();
-  if (workspaceModify === false) {
+  const workspaceEnabled = getWorkspaceEnabled();
+  if (workspaceEnabled === false) {
     return;
   }
 
@@ -111,17 +115,17 @@ async function applyTint(): Promise<void> {
     vscode.ConfigurationTarget.Workspace
   );
 
-  // Mark workspace as modified by Patina (only if not already true)
-  if (workspaceModify !== true) {
-    await setWorkspaceModify(true);
+  // Mark workspace as enabled by Patina (only if not already true)
+  if (workspaceEnabled !== true) {
+    await setWorkspaceEnabled(true);
   }
 }
 
 async function removeTint(): Promise<void> {
-  const workspaceModify = getWorkspaceModify();
+  const workspaceEnabled = getWorkspaceEnabled();
 
   // Only remove if Patina has actually modified this workspace
-  if (workspaceModify !== true) {
+  if (workspaceEnabled !== true) {
     return;
   }
 
@@ -136,8 +140,8 @@ async function removeTint(): Promise<void> {
     vscode.ConfigurationTarget.Workspace
   );
 
-  // Clear the modification marker
-  await setWorkspaceModify(undefined);
+  // Clear the enabled marker
+  await setWorkspaceEnabled(undefined);
 }
 
 async function removeTintPreservingFlag(): Promise<void> {

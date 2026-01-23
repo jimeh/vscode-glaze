@@ -26,30 +26,52 @@ export function isEnabled(): boolean {
 }
 
 /**
- * Returns the workspace modification state.
+ * Returns the workspace enabled state.
  * - undefined: Patina has never modified this workspace
  * - true: Patina has applied colors to this workspace
  * - false: User opted out of Patina for this workspace
  */
-export function getWorkspaceModify(): boolean | undefined {
+export function getWorkspaceEnabled(): boolean | undefined {
   const config = vscode.workspace.getConfiguration('patina');
-  const inspection = config.inspect<boolean>('workspace.modify');
+  const inspection = config.inspect<boolean>('workspace.enabled');
   // Only read workspace-level value, ignore global
   return inspection?.workspaceValue;
 }
 
 /**
- * Sets the workspace modification state at Workspace scope.
+ * Sets the workspace enabled state at Workspace scope.
  */
-export async function setWorkspaceModify(
+export async function setWorkspaceEnabled(
   value: boolean | undefined
 ): Promise<void> {
   const config = vscode.workspace.getConfiguration('patina');
   await config.update(
-    'workspace.modify',
+    'workspace.enabled',
     value,
     vscode.ConfigurationTarget.Workspace
   );
+}
+
+/**
+ * Migrates the old 'workspace.modify' setting to 'workspace.enabled'.
+ */
+export async function migrateWorkspaceModifySetting(): Promise<void> {
+  const config = vscode.workspace.getConfiguration('patina');
+  const inspection = config.inspect<boolean>('workspace.modify');
+
+  // Migrate workspace-level value if it exists
+  if (inspection?.workspaceValue !== undefined) {
+    await config.update(
+      'workspace.enabled',
+      inspection.workspaceValue,
+      vscode.ConfigurationTarget.Workspace
+    );
+    await config.update(
+      'workspace.modify',
+      undefined,
+      vscode.ConfigurationTarget.Workspace
+    );
+  }
 }
 
 const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];

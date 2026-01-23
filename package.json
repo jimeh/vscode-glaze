@@ -41,10 +41,10 @@
           "description": "Enable or disable Patina color tinting globally.",
           "order": 0
         },
-        "patina.workspace.modify": {
+        "patina.workspace.enabled": {
           "type": "boolean",
           "default": null,
-          "description": "Controls whether Patina modifies this workspace. Set to false to disable Patina for this specific workspace. When true or unset, Patina applies colors based on the global 'enabled' setting.",
+          "description": "Enable or disable Patina for this workspace. Only effective when set in workspace settings (.vscode/settings.json); has no effect in user settings. Set to false to disable Patina for this workspace regardless of the global 'enabled' setting.",
           "scope": "window",
           "order": 1
         },
