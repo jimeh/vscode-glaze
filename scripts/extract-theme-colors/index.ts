@@ -431,8 +431,12 @@ async function main(): Promise<void> {
     console.log(`Extensions included: ${allExtensionInfos.length}`);
     console.log(`Would write to: ${CONFIG.indexPath}`);
   } else {
-    writeIndexFile(allExtensionInfos);
-    console.log(`Written index to: ${CONFIG.indexPath}`);
+    const written = writeIndexFile(allExtensionInfos);
+    if (written) {
+      console.log(`Written index to: ${CONFIG.indexPath}`);
+    } else {
+      console.log(`Index unchanged: ${CONFIG.indexPath}`);
+    }
   }
 
   console.log('');
