@@ -237,11 +237,7 @@ suite('getThemeInfo with custom config', () => {
 
   test('falls back to built-in when no custom config', async () => {
     const config = vscode.workspace.getConfiguration('patina');
-    await config.update(
-      'theme.colors',
-      {},
-      vscode.ConfigurationTarget.Global
-    );
+    await config.update('theme.colors', {}, vscode.ConfigurationTarget.Global);
 
     const result = getThemeInfo('One Dark Pro');
     assert.ok(result);

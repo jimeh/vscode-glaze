@@ -19,12 +19,20 @@ suite('isEnabled', () => {
 
   suiteTeardown(async () => {
     const config = vscode.workspace.getConfiguration('patina');
-    await config.update('enabled', originalEnabled, vscode.ConfigurationTarget.Global);
+    await config.update(
+      'enabled',
+      originalEnabled,
+      vscode.ConfigurationTarget.Global
+    );
   });
 
   test('returns true by default', async () => {
     const config = vscode.workspace.getConfiguration('patina');
-    await config.update('enabled', undefined, vscode.ConfigurationTarget.Global);
+    await config.update(
+      'enabled',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
 
     const result = isEnabled();
     assert.strictEqual(result, true);
@@ -486,10 +494,11 @@ suite('getTintConfig', () => {
     );
 
     const result = getTintConfig();
-    assert.deepStrictEqual(
-      result.targets,
-      ['titleBar', 'statusBar', 'activityBar']
-    );
+    assert.deepStrictEqual(result.targets, [
+      'titleBar',
+      'statusBar',
+      'activityBar',
+    ]);
   });
 
   test('defaults to auto mode when not configured', async () => {
@@ -506,7 +515,11 @@ suite('getTintConfig', () => {
 
   test('reads configured mode value', async () => {
     const config = vscode.workspace.getConfiguration('patina');
-    await config.update('tint.mode', 'light', vscode.ConfigurationTarget.Global);
+    await config.update(
+      'tint.mode',
+      'light',
+      vscode.ConfigurationTarget.Global
+    );
 
     const result = getTintConfig();
     assert.strictEqual(result.mode, 'light');

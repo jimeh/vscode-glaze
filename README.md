@@ -83,16 +83,16 @@ Search for "Patina" in the VS Code Extensions view (`Cmd+Shift+X` /
 
 Configure which parts of the VS Code interface receive the tint:
 
-| Element | Description |
-|---------|-------------|
-| `titleBar` | Window title bar (default, enabled) |
-| `statusBar` | Bottom status bar |
-| `activityBar` | Left-side icon bar |
-| `sidebar` | Explorer, search, and other side panels |
-| `editorBackground` | Main editor area background |
-| `tabs` | Editor tab bar |
-| `commandPalette` | Command palette dropdown |
-| `panel` | Bottom panel (terminal, output, problems, etc.) |
+| Element            | Description                                     |
+| ------------------ | ----------------------------------------------- |
+| `titleBar`         | Window title bar (default, enabled)             |
+| `statusBar`        | Bottom status bar                               |
+| `activityBar`      | Left-side icon bar                              |
+| `sidebar`          | Explorer, search, and other side panels         |
+| `editorBackground` | Main editor area background                     |
+| `tabs`             | Editor tab bar                                  |
+| `commandPalette`   | Command palette dropdown                        |
+| `panel`            | Bottom panel (terminal, output, problems, etc.) |
 
 Example configuration to tint multiple elements:
 
@@ -106,9 +106,9 @@ Example configuration to tint multiple elements:
 
 Access these from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
 
-| Command | Description |
-|---------|-------------|
-| `Patina: Enable` | Enable Patina for the current workspace |
+| Command           | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| `Patina: Enable`  | Enable Patina for the current workspace        |
 | `Patina: Disable` | Disable Patina and remove color customizations |
 | `Patina: Refresh` | Regenerate colors (useful after theme changes) |
 

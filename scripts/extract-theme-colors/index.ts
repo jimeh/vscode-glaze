@@ -143,9 +143,7 @@ async function processExtension(
         themes.push(extracted);
         if (verbose) {
           const idPart =
-            extracted.name !== extracted.label
-              ? ` [${extracted.name}]`
-              : '';
+            extracted.name !== extracted.label ? ` [${extracted.name}]` : '';
           console.log(
             `    Extracted: "${extracted.label}"${idPart} (${extracted.type})`
           );
@@ -157,9 +155,7 @@ async function processExtension(
       }
     } catch (error) {
       if (verbose) {
-        console.log(
-          `    Error processing "${contribution.label}": ${error}`
-        );
+        console.log(`    Error processing "${contribution.label}": ${error}`);
       }
     }
   }
@@ -266,8 +262,7 @@ async function main(): Promise<void> {
         skipped++;
 
         if (options.verbose) {
-          const extId =
-            `${extension.publisherName}.${extension.extensionName}`;
+          const extId = `${extension.publisherName}.${extension.extensionName}`;
           console.log(
             `[${processed}/${extensionsToProcess.size}] ` +
               `${extension.displayName} [${extId}] ` +
@@ -342,10 +337,7 @@ async function main(): Promise<void> {
             metadata.extensionName
           );
           metadata.stale = true;
-          fs.writeFileSync(
-            metaPath,
-            JSON.stringify(metadata, null, 2) + '\n'
-          );
+          fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2) + '\n');
         }
       }
 

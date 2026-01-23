@@ -70,7 +70,11 @@ suite('Extension Test Suite', () => {
       // Get fresh config after command
       patinaConfig = vscode.workspace.getConfiguration('patina');
       const enabled = patinaConfig.get<boolean>('enabled');
-      assert.strictEqual(enabled, true, 'patina.enableGloballyd should be true');
+      assert.strictEqual(
+        enabled,
+        true,
+        'patina.enableGloballyd should be true'
+      );
     });
 
     test('sets workbench.colorCustomizations when workspace is open', async function () {
@@ -113,9 +117,11 @@ suite('Extension Test Suite', () => {
 
       const hexPattern = /^#[0-9a-f]{6}$/i;
       for (const [key, value] of Object.entries(colors ?? {})) {
-        if (key.startsWith('titleBar.') ||
-            key.startsWith('statusBar.') ||
-            key.startsWith('activityBar.')) {
+        if (
+          key.startsWith('titleBar.') ||
+          key.startsWith('statusBar.') ||
+          key.startsWith('activityBar.')
+        ) {
           assert.match(value, hexPattern, `Invalid hex for ${key}: ${value}`);
         }
       }
@@ -170,7 +176,11 @@ suite('Extension Test Suite', () => {
       // Get fresh config after command
       patinaConfig = vscode.workspace.getConfiguration('patina');
       const enabled = patinaConfig.get<boolean>('enabled');
-      assert.strictEqual(enabled, false, 'patina.enableGloballyd should be false');
+      assert.strictEqual(
+        enabled,
+        false,
+        'patina.enableGloballyd should be false'
+      );
     });
 
     test('clears workbench.colorCustomizations', async function () {
@@ -213,7 +223,9 @@ suite('Extension Test Suite', () => {
 
       if (vscode.workspace.workspaceFolders?.length) {
         const config = vscode.workspace.getConfiguration();
-        originalColorCustomizations = config.get('workbench.colorCustomizations');
+        originalColorCustomizations = config.get(
+          'workbench.colorCustomizations'
+        );
       }
     });
 

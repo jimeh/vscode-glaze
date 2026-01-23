@@ -10,7 +10,8 @@ import type {
 } from './types';
 
 // Accepts 3, 4, 6, or 8 digit hex colors (#RGB, #RGBA, #RRGGBB, #RRGGBBAA)
-const HEX_COLOR_PATTERN = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})([0-9A-Fa-f]{1,2})?$/;
+const HEX_COLOR_PATTERN =
+  /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})([0-9A-Fa-f]{1,2})?$/;
 
 /**
  * Function type for reading theme files.

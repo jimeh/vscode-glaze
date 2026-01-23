@@ -41,7 +41,9 @@ export interface VsixDownloadOptions {
  * Downloads a VSIX file from the marketplace.
  * Returns the file as a Buffer, using cache when available.
  */
-export async function downloadVsix(options: VsixDownloadOptions): Promise<Buffer> {
+export async function downloadVsix(
+  options: VsixDownloadOptions
+): Promise<Buffer> {
   const { publisherName, extensionName, version, url } = options;
   const cachePath = getVsixCachePath(publisherName, extensionName, version);
 

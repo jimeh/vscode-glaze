@@ -207,7 +207,9 @@ export function parseThemeContributions(
     | undefined;
   if (!contributes) return [];
 
-  const themes = contributes.themes as Array<Record<string, unknown>> | undefined;
+  const themes = contributes.themes as
+    | Array<Record<string, unknown>>
+    | undefined;
   if (!Array.isArray(themes)) return [];
 
   return themes

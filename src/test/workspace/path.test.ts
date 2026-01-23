@@ -25,7 +25,10 @@ suite('normalizePath', () => {
   });
 
   test('handles Windows-style absolute path', () => {
-    assert.strictEqual(normalizePath('C:\\Users\\name\\project'), 'C:/Users/name/project');
+    assert.strictEqual(
+      normalizePath('C:\\Users\\name\\project'),
+      'C:/Users/name/project'
+    );
   });
 
   test('handles path with no separators', () => {

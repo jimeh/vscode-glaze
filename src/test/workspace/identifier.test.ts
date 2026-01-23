@@ -102,10 +102,12 @@ suite('getWorkspaceIdentifier', () => {
 
     test('normalizes backslashes to forward slashes', () => {
       // Simulate a Windows-style path
-      const folders = [{
-        uri: { fsPath: 'C:\\Users\\name\\projects\\my-app' },
-        name: 'my-app',
-      }];
+      const folders = [
+        {
+          uri: { fsPath: 'C:\\Users\\name\\projects\\my-app' },
+          name: 'my-app',
+        },
+      ];
       const result = getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'C:/Users/name/projects/my-app');
     });

@@ -16,7 +16,9 @@ import type {
  * Formats a ThemeColors object as TypeScript code.
  */
 function formatColors(colors: ThemeColors): string {
-  const parts: string[] = [`'editor.background': '${colors['editor.background']}'`];
+  const parts: string[] = [
+    `'editor.background': '${colors['editor.background']}'`,
+  ];
 
   // Add optional color keys in a consistent order
   const optionalKeys = [

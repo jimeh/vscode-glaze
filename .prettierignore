@@ -1,0 +1,8 @@
+.claude/
+dist/
+out/
+node_modules/
+.vscode-test/
+src/theme/generated/
+*.vsix
+pnpm-lock.yaml
