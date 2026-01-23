@@ -78,7 +78,12 @@ async function processExtension(
   // Download VSIX
   let vsixBuffer: Buffer;
   try {
-    vsixBuffer = await downloadVsix(extension.vsixUrl);
+    vsixBuffer = await downloadVsix({
+      publisherName: extension.publisherName,
+      extensionName: extension.extensionName,
+      version: extension.version,
+      url: extension.vsixUrl,
+    });
   } catch (error) {
     if (verbose) {
       console.log(`  Skipping ${extension.displayName}: VSIX download failed`);
@@ -135,7 +140,13 @@ async function processExtension(
       if (extracted && validateTheme(extracted)) {
         themes.push(extracted);
         if (verbose) {
-          console.log(`    Extracted: ${extracted.name} (${extracted.type})`);
+          const idPart =
+            extracted.name !== extracted.label
+              ? ` [${extracted.name}]`
+              : '';
+          console.log(
+            `    Extracted: "${extracted.label}"${idPart} (${extracted.type})`
+          );
         }
       } else if (verbose) {
         console.log(
@@ -295,9 +306,12 @@ async function main(): Promise<void> {
         skipped++;
 
         if (options.verbose) {
+          const extId =
+            `${extension.publisherName}.${extension.extensionName}`;
           console.log(
             `[${processed}/${extensionsToProcess.size}] ` +
-              `${extension.displayName} (skipped - v${extension.version})`
+              `${extension.displayName} [${extId}] ` +
+              `(skipped - v${extension.version})`
           );
         }
         continue;
@@ -306,8 +320,10 @@ async function main(): Promise<void> {
 
     // Process extension
     if (options.verbose) {
+      const extId = `${extension.publisherName}.${extension.extensionName}`;
       console.log(
-        `[${processed}/${extensionsToProcess.size}] ${extension.displayName} ` +
+        `[${processed}/${extensionsToProcess.size}] ` +
+          `${extension.displayName} [${extId}] ` +
           `(${existing ? 'updating' : 'new'} - v${extension.version})`
       );
     } else if (processed % 50 === 0) {

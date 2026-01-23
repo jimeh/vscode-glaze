@@ -19,23 +19,31 @@ function ensureCacheDir(): void {
 }
 
 /**
- * Gets the cache path for a VSIX file.
+ * Gets the cache path for a VSIX file using extension ID + version.
  */
-function getVsixCachePath(url: string): string {
-  // Create a safe filename from the URL
-  const safeName = url
-    .replace(/[^a-zA-Z0-9.-]/g, '_')
-    .replace(/_+/g, '_')
-    .slice(-200); // Limit filename length
-  return path.join(CONFIG.cacheDir, `${safeName}.vsix`);
+function getVsixCachePath(
+  publisherName: string,
+  extensionName: string,
+  version: string
+): string {
+  const filename = `${publisherName}.${extensionName}-${version}.vsix`;
+  return path.join(CONFIG.cacheDir, filename);
+}
+
+export interface VsixDownloadOptions {
+  publisherName: string;
+  extensionName: string;
+  version: string;
+  url: string;
 }
 
 /**
  * Downloads a VSIX file from the marketplace.
  * Returns the file as a Buffer, using cache when available.
  */
-export async function downloadVsix(url: string): Promise<Buffer> {
-  const cachePath = getVsixCachePath(url);
+export async function downloadVsix(options: VsixDownloadOptions): Promise<Buffer> {
+  const { publisherName, extensionName, version, url } = options;
+  const cachePath = getVsixCachePath(publisherName, extensionName, version);
 
   // Check file cache
   if (fs.existsSync(cachePath)) {
