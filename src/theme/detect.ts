@@ -24,11 +24,6 @@ export function getThemeTypeFromColorThemeKind(
 }
 
 /**
- * @deprecated Use getThemeTypeFromColorThemeKind instead.
- */
-export const mapColorThemeKind = getThemeTypeFromColorThemeKind;
-
-/**
  * Gets the current theme context based on VSCode's active theme and user
  * configuration.
  *
@@ -57,23 +52,10 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
   const validatedThemeInfo =
     themeInfo && themeInfo.type === type ? themeInfo : undefined;
 
-  // Build legacy backgrounds object for backwards compatibility
-  const backgrounds = validatedThemeInfo
-    ? {
-        editor: validatedThemeInfo.colors['editor.background'],
-        titleBar: validatedThemeInfo.colors['titleBar.activeBackground'],
-        statusBar: validatedThemeInfo.colors['statusBar.background'],
-        activityBar: validatedThemeInfo.colors['activityBar.background'],
-      }
-    : undefined;
-
   return {
     type,
-    kind: type, // Deprecated alias
     isAutoDetected,
     name,
-    background: validatedThemeInfo?.colors['editor.background'],
     colors: validatedThemeInfo?.colors,
-    backgrounds,
   };
 }

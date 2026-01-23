@@ -5,10 +5,6 @@ import {
   getThemeInfo,
   getColorForKey,
   type ThemeColors,
-  // Backwards compat exports
-  THEME_BACKGROUNDS,
-  getThemeBackground,
-  getBackgroundForKey,
 } from '../../theme/colors';
 import { GENERATED_THEME_COLORS } from '../../theme/generated/colors';
 
@@ -419,61 +415,6 @@ suite('getColorForKey', () => {
     );
     assert.strictEqual(
       getColorForKey('activityBar.background', editorOnlyColors),
-      '#282C34'
-    );
-  });
-});
-
-// Backwards compatibility tests
-suite('THEME_BACKGROUNDS (deprecated)', () => {
-  test('is derived from BUILTIN_THEMES', () => {
-    // Should have the same theme names
-    const builtinNames = Object.keys(BUILTIN_THEMES);
-    const bgNames = Object.keys(THEME_BACKGROUNDS);
-    assert.deepStrictEqual(bgNames.sort(), builtinNames.sort());
-  });
-});
-
-suite('getThemeBackground (deprecated)', () => {
-  test('returns legacy format for known themes', () => {
-    const result = getThemeBackground('One Dark Pro');
-    assert.ok(result);
-    assert.strictEqual(result.backgrounds.editor, '#282C34');
-    assert.strictEqual(result.kind, 'dark');
-  });
-
-  test('returns undefined for unknown themes', () => {
-    const result = getThemeBackground('Unknown Theme');
-    assert.strictEqual(result, undefined);
-  });
-});
-
-suite('getBackgroundForKey (deprecated)', () => {
-  const backgrounds = {
-    editor: '#282C34',
-    titleBar: '#21252B',
-    statusBar: '#3E4451',
-    activityBar: '#2C313A',
-  };
-
-  test('returns titleBar background for titleBar keys', () => {
-    assert.strictEqual(
-      getBackgroundForKey('titleBar.activeBackground', backgrounds),
-      '#21252B'
-    );
-  });
-
-  test('returns statusBar background for statusBar key', () => {
-    assert.strictEqual(
-      getBackgroundForKey('statusBar.background', backgrounds),
-      '#3E4451'
-    );
-  });
-
-  test('falls back to editor when element-specific not defined', () => {
-    const editorOnly = { editor: '#282C34' };
-    assert.strictEqual(
-      getBackgroundForKey('titleBar.activeBackground', editorOnly),
       '#282C34'
     );
   });

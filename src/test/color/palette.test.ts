@@ -14,18 +14,8 @@ function makeThemeContext(
 ): ThemeContext {
   return {
     type,
-    kind: type, // Backwards compat
     isAutoDetected: true,
-    background: options?.colors?.['editor.background'],
     colors: options?.colors,
-    backgrounds: options?.colors
-      ? {
-          editor: options.colors['editor.background'],
-          titleBar: options.colors['titleBar.activeBackground'],
-          statusBar: options.colors['statusBar.background'],
-          activityBar: options.colors['activityBar.background'],
-        }
-      : undefined,
   };
 }
 

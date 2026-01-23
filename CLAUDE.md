@@ -78,7 +78,7 @@ The `--grep` pattern matches against suite/test names.
 
 - Colors are generated from a hash of the workspace identifier, producing the
   same hue for the same workspace
-- The `ThemeContext` carries theme kind, name, and background color for blending
+- The `ThemeContext` carries theme type, name, and colors for blending
 - `TintTarget` determines which UI elements receive colors (titleBar, statusBar,
   activityBar)
 - Colors are written to `.vscode/settings.json` via

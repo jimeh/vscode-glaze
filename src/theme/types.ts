@@ -5,12 +5,6 @@
 export type ThemeType = 'dark' | 'light' | 'hcDark' | 'hcLight';
 
 /**
- * @deprecated Use ThemeType instead. This alias is kept for backwards
- * compatibility.
- */
-export type ThemeKind = ThemeType;
-
-/**
  * User-configurable theme mode setting.
  */
 export type ThemeMode = 'auto' | 'light' | 'dark';
@@ -27,12 +21,6 @@ export interface ThemeContext {
   type: ThemeType;
 
   /**
-   * @deprecated Use `type` instead. This alias is kept for backwards
-   * compatibility.
-   */
-  kind: ThemeType;
-
-  /**
    * Whether the type was auto-detected (true) or manually configured (false).
    */
   isAutoDetected: boolean;
@@ -44,26 +32,8 @@ export interface ThemeContext {
   name?: string;
 
   /**
-   * The theme's editor background color as a hex string (e.g., "#282C34").
-   * Only populated for known themes in the lookup table.
-   * @deprecated Use `colors['editor.background']` instead
-   */
-  background?: string;
-
-  /**
    * Theme colors for different UI elements.
    * Only populated for known themes in the lookup table.
    */
   colors?: ThemeColors;
-
-  /**
-   * @deprecated Use `colors` instead. This alias is kept for backwards
-   * compatibility.
-   */
-  backgrounds?: {
-    editor: string;
-    titleBar?: string;
-    statusBar?: string;
-    activityBar?: string;
-  };
 }

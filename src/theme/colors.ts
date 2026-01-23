@@ -41,30 +41,6 @@ export interface ThemeInfo {
   type: ThemeType;
 }
 
-// Backwards compatibility exports
-/**
- * @deprecated Use ThemeType instead.
- */
-export type ThemeBackgroundKind = 'dark' | 'light';
-
-/**
- * @deprecated Use ThemeColors instead.
- */
-export interface ElementBackgrounds {
-  editor: string;
-  titleBar?: string;
-  statusBar?: string;
-  activityBar?: string;
-}
-
-/**
- * @deprecated Use ThemeInfo instead.
- */
-export interface ThemeBackground {
-  backgrounds: ElementBackgrounds;
-  kind: ThemeBackgroundKind;
-}
-
 /**
  * Element identifier for color lookup.
  */
@@ -316,12 +292,6 @@ export const BUILTIN_THEMES: Record<string, ThemeInfo> = {
   },
 };
 
-/**
- * @deprecated Use BUILTIN_THEMES instead.
- */
-export const THEME_BACKGROUNDS: Record<string, ThemeBackground> =
-  convertToLegacyFormat(BUILTIN_THEMES);
-
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 const VALID_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -414,47 +384,6 @@ function normalizeThemeInfo(value: ThemeInfo): ThemeInfo {
 }
 
 /**
- * Converts ThemeInfo to legacy ThemeBackground format.
- */
-function convertToLegacyThemeBackground(info: ThemeInfo): ThemeBackground {
-  const backgrounds: ElementBackgrounds = {
-    editor: info.colors['editor.background'],
-  };
-
-  if (info.colors['titleBar.activeBackground']) {
-    backgrounds.titleBar = info.colors['titleBar.activeBackground'];
-  }
-  if (info.colors['statusBar.background']) {
-    backgrounds.statusBar = info.colors['statusBar.background'];
-  }
-  if (info.colors['activityBar.background']) {
-    backgrounds.activityBar = info.colors['activityBar.background'];
-  }
-
-  // Map hcDark/hcLight to dark/light for legacy format
-  const kind: ThemeBackgroundKind =
-    info.type === 'light' || info.type === 'hcLight' ? 'light' : 'dark';
-
-  return {
-    backgrounds,
-    kind,
-  };
-}
-
-/**
- * Converts a record of ThemeInfo to legacy ThemeBackground format.
- */
-function convertToLegacyFormat(
-  themes: Record<string, ThemeInfo>
-): Record<string, ThemeBackground> {
-  const result: Record<string, ThemeBackground> = {};
-  for (const [name, info] of Object.entries(themes)) {
-    result[name] = convertToLegacyThemeBackground(info);
-  }
-  return result;
-}
-
-/**
  * Gets custom theme colors from VSCode settings.
  */
 function getCustomThemeInfo(): Record<string, ThemeInfo> {
@@ -496,19 +425,6 @@ export function getThemeInfo(themeName: string): ThemeInfo | undefined {
 }
 
 /**
- * @deprecated Use getThemeInfo instead.
- */
-export function getThemeBackground(
-  themeName: string
-): ThemeBackground | undefined {
-  const info = getThemeInfo(themeName);
-  if (!info) {
-    return undefined;
-  }
-  return convertToLegacyThemeBackground(info);
-}
-
-/**
  * Maps palette keys to their corresponding color keys for lookup.
  */
 const PALETTE_KEY_TO_COLOR_KEY: Partial<
@@ -537,27 +453,4 @@ export function getColorForKey(
     return colors[colorKey]!;
   }
   return colors['editor.background'];
-}
-
-/**
- * @deprecated Use getColorForKey instead.
- */
-export function getBackgroundForKey(
-  key: keyof PatinaColorPalette,
-  backgrounds: ElementBackgrounds
-): string {
-  // Convert to ThemeColors and use new function
-  const colors: ThemeColors = {
-    'editor.background': backgrounds.editor,
-  };
-  if (backgrounds.titleBar) {
-    colors['titleBar.activeBackground'] = backgrounds.titleBar;
-  }
-  if (backgrounds.statusBar) {
-    colors['statusBar.background'] = backgrounds.statusBar;
-  }
-  if (backgrounds.activityBar) {
-    colors['activityBar.background'] = backgrounds.activityBar;
-  }
-  return getColorForKey(key, colors);
 }
