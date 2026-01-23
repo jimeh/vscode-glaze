@@ -6,7 +6,7 @@ import * as path from 'path';
 import AdmZip from 'adm-zip';
 import { parse as parseJsonc } from 'jsonc-parser';
 import { CONFIG } from './config';
-import { getCached, setCache } from './cache';
+import { isTmThemeContent, isTmThemePath, parseTmTheme } from './tmtheme';
 import type { ThemeJson } from './types';
 
 /**
@@ -110,6 +110,12 @@ export function createVsixThemeReader(
       if (!entry) return undefined;
 
       const content = zip.readAsText(entry);
+
+      // Detect TextMate themes by path or content
+      if (isTmThemePath(themePath) || isTmThemeContent(content)) {
+        return parseTmTheme(content);
+      }
+
       return parseJsonc(content) as ThemeJson;
     } catch {
       return undefined;
