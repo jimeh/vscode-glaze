@@ -30,8 +30,9 @@ Extension Development Host.
 Tests use `@vscode/test-cli` with Mocha. Test files live in `src/test/` and
 follow the `*.test.ts` naming convention using `suite()` and `test()` functions.
 
-Tests compile to `out/test/` and run in a VSCode instance. The `pretest` script
-handles compilation automatically.
+Tests compile to `out/test/` and run in a VSCode instance with a fixture
+workspace at `src/test/fixtures/test-workspace/`. The `pretest` script handles
+compilation automatically.
 
 Run a single test file:
 
