@@ -9,7 +9,8 @@ import type {
   ThemeContribution,
 } from './types';
 
-const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/;
+// Accepts 3, 4, 6, or 8 digit hex colors (#RGB, #RGBA, #RRGGBB, #RRGGBBAA)
+const HEX_COLOR_PATTERN = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})([0-9A-Fa-f]{1,2})?$/;
 
 /**
  * Function type for reading theme files.
@@ -27,10 +28,25 @@ function isValidHexColor(value: unknown): value is string {
 
 /**
  * Normalizes a hex color to 6-digit uppercase format.
+ * Handles 3, 4, 6, and 8 digit hex colors.
  */
 function normalizeHexColor(hex: string): string {
-  // Remove alpha channel if present (8-digit hex)
-  const color = hex.length === 9 ? hex.slice(0, 7) : hex;
+  // Strip alpha for 8-digit (#RRGGBBAA) or 4-digit (#RGBA) hex
+  let color = hex;
+  if (hex.length === 9) {
+    color = hex.slice(0, 7);
+  } else if (hex.length === 5) {
+    color = hex.slice(0, 4);
+  }
+
+  // Expand 3-digit to 6-digit (#RGB -> #RRGGBB)
+  if (color.length === 4) {
+    const r = color[1];
+    const g = color[2];
+    const b = color[3];
+    color = `#${r}${r}${g}${g}${b}${b}`;
+  }
+
   return color.toUpperCase();
 }
 
