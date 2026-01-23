@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import type {
-  ThemeBackgroundColors,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -10,7 +9,6 @@ import type {
 } from './types';
 
 export type {
-  ThemeBackgroundColors,
   ThemeConfig,
   ThemeMode,
   TintConfig,

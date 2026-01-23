@@ -1,10 +1,10 @@
-import type { ThemeBackground } from '../theme/backgrounds';
+import type { ThemeInfo } from '../theme/colors';
 
 /**
- * Custom theme background colors configuration.
- * Maps theme names to their background color information.
+ * Custom theme colors configuration.
+ * Maps theme names to their color information.
  */
-export type ThemeBackgroundColors = Record<string, ThemeBackground>;
+export type ThemeColors = Record<string, ThemeInfo>;
 
 /**
  * Determines what value is used to generate the workspace color.

@@ -1,22 +1,22 @@
 import * as vscode from 'vscode';
-import type { ThemeKind } from './types';
+import type { ThemeType } from './types';
 
 /**
- * Gets the effective theme name based on the current theme kind.
+ * Gets the effective theme name based on the current theme type.
  *
  * VS Code allows users to set preferred themes for light and dark modes via
  * `workbench.preferredDarkColorTheme` and `workbench.preferredLightColorTheme`.
  * When these are set and auto-switching is active, the preferred theme takes
  * precedence over `workbench.colorTheme`.
  *
- * @param themeKind - The current theme kind
+ * @param themeType - The current theme type
  * @returns The effective theme name, or undefined if not found
  */
-export function getThemeName(themeKind: ThemeKind): string | undefined {
+export function getThemeName(themeType: ThemeType): string | undefined {
   const config = vscode.workspace.getConfiguration('workbench');
 
   // Check preferred theme settings first (they override colorTheme when set)
-  if (themeKind === 'dark' || themeKind === 'highContrast') {
+  if (themeType === 'dark' || themeType === 'hcDark') {
     const preferred = config.get<string>('preferredDarkColorTheme');
     if (preferred) {
       return preferred;

@@ -3,7 +3,7 @@
  */
 export const CONFIG = {
   /** Maximum number of extensions to process */
-  maxExtensions: 500,
+  maxExtensions: 150,
   /** Page size for marketplace API queries */
   pageSize: 50,
   /** Cache TTL in milliseconds (7 days) */
@@ -13,7 +13,7 @@ export const CONFIG = {
   /** Maximum concurrent requests */
   concurrency: 5,
   /** Output file path */
-  outputPath: 'src/theme/backgrounds.generated.ts',
+  outputPath: 'src/theme/colors.generated.ts',
   /** Cache directory */
   cacheDir: 'scripts/extract-theme-colors/.cache',
   /** Retry configuration */

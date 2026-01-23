@@ -1,58 +1,74 @@
 import * as vscode from 'vscode';
-import type { ThemeKind, ThemeMode, ThemeContext } from './types';
+import type { ThemeType, ThemeMode, ThemeContext } from './types';
 import { getThemeName } from './name';
-import { getThemeBackground } from './backgrounds';
+import { getThemeInfo } from './colors';
 
 /**
- * Maps VSCode's ColorThemeKind enum to our ThemeKind type.
+ * Maps VSCode's ColorThemeKind enum to ThemeType.
  */
-export function mapColorThemeKind(
+export function getThemeTypeFromColorThemeKind(
   colorThemeKind: vscode.ColorThemeKind
-): ThemeKind {
+): ThemeType {
   switch (colorThemeKind) {
     case vscode.ColorThemeKind.Light:
       return 'light';
     case vscode.ColorThemeKind.Dark:
       return 'dark';
     case vscode.ColorThemeKind.HighContrast:
-      return 'highContrast';
+      return 'hcDark';
     case vscode.ColorThemeKind.HighContrastLight:
-      return 'highContrastLight';
+      return 'hcLight';
     default:
       return 'dark';
   }
 }
 
 /**
+ * @deprecated Use getThemeTypeFromColorThemeKind instead.
+ */
+export const mapColorThemeKind = getThemeTypeFromColorThemeKind;
+
+/**
  * Gets the current theme context based on VSCode's active theme and user
  * configuration.
  *
  * @param themeMode - User's theme mode preference ('auto', 'light', or 'dark')
- * @returns Theme context with the resolved kind and detection status
+ * @returns Theme context with the resolved type and detection status
  */
 export function getThemeContext(themeMode: ThemeMode): ThemeContext {
-  let kind: ThemeKind;
+  let type: ThemeType;
   let isAutoDetected: boolean;
 
   if (themeMode === 'auto') {
     const vsCodeKind = vscode.window.activeColorTheme.kind;
-    kind = mapColorThemeKind(vsCodeKind);
+    type = getThemeTypeFromColorThemeKind(vsCodeKind);
     isAutoDetected = true;
   } else {
-    kind = themeMode;
+    type = themeMode;
     isAutoDetected = false;
   }
 
-  // Get the theme name, then look up its background colors
-  const name = getThemeName(kind);
-  const themeInfo = name ? getThemeBackground(name) : undefined;
+  // Get the theme name, then look up its colors
+  const name = getThemeName(type);
+  const themeInfo = name ? getThemeInfo(name) : undefined;
+
+  // Build legacy backgrounds object for backwards compatibility
+  const backgrounds = themeInfo
+    ? {
+        editor: themeInfo.colors['editor.background'],
+        titleBar: themeInfo.colors['titleBar.activeBackground'],
+        statusBar: themeInfo.colors['statusBar.background'],
+        activityBar: themeInfo.colors['activityBar.background'],
+      }
+    : undefined;
 
   return {
-    kind,
+    type,
+    kind: type, // Deprecated alias
     isAutoDetected,
     name,
-    // Deprecated: use backgrounds.editor instead
-    background: themeInfo?.backgrounds.editor,
-    backgrounds: themeInfo?.backgrounds,
+    background: themeInfo?.colors['editor.background'],
+    colors: themeInfo?.colors,
+    backgrounds,
   };
 }

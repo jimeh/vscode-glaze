@@ -1,7 +1,7 @@
 import type { HSL } from './types';
 import type { TintTarget } from '../config';
-import type { ThemeContext, ThemeKind } from '../theme';
-import { getBackgroundForKey } from '../theme/backgrounds';
+import type { ThemeContext, ThemeType } from '../theme';
+import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { hslToHex } from './convert';
 import { blendWithTheme } from './blend';
@@ -64,7 +64,7 @@ const BACKGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
 type ElementConfig = { saturation: number; lightness: number };
 
 /**
- * Configuration for each UI element's color generation per theme kind.
+ * Configuration for each UI element's color generation per theme type.
  * All elements share the same hue but vary in saturation/lightness for visual
  * hierarchy.
  *
@@ -72,7 +72,7 @@ type ElementConfig = { saturation: number; lightness: number };
  * saturation to ensure readability while maintaining color harmony.
  */
 const THEME_CONFIGS: Record<
-  ThemeKind,
+  ThemeType,
   Record<keyof PatinaColorPalette, ElementConfig>
 > = {
   dark: {
@@ -95,7 +95,7 @@ const THEME_CONFIGS: Record<
     'activityBar.background': { saturation: 0.4, lightness: 0.88 },
     'activityBar.foreground': { saturation: 0.2, lightness: 0.06 },
   },
-  highContrast: {
+  hcDark: {
     'titleBar.activeBackground': { saturation: 0.5, lightness: 0.15 },
     'titleBar.activeForeground': { saturation: 0.1, lightness: 0.98 },
     'titleBar.inactiveBackground': { saturation: 0.4, lightness: 0.12 },
@@ -105,7 +105,7 @@ const THEME_CONFIGS: Record<
     'activityBar.background': { saturation: 0.45, lightness: 0.1 },
     'activityBar.foreground': { saturation: 0.1, lightness: 0.95 },
   },
-  highContrastLight: {
+  hcLight: {
     'titleBar.activeBackground': { saturation: 0.5, lightness: 0.92 },
     'titleBar.activeForeground': { saturation: 0.3, lightness: 0.05 },
     'titleBar.inactiveBackground': { saturation: 0.4, lightness: 0.94 },
@@ -125,7 +125,7 @@ export interface GeneratePaletteOptions {
   workspaceIdentifier: string;
   /** Which UI element groups to include in the palette */
   targets: TintTarget[];
-  /** Theme context with kind and optional background color */
+  /** Theme context with type and optional colors */
   themeContext: ThemeContext;
   /** How much to blend toward theme background (0-1), default 0.35 */
   themeBlendFactor?: number;
@@ -136,8 +136,8 @@ export interface GeneratePaletteOptions {
  * All colors share the same hue (derived from the identifier) but vary in
  * saturation and lightness to create visual hierarchy.
  *
- * When a theme background is available, colors are blended toward it for
- * better visual integration with the active theme.
+ * When theme colors are available, colors are blended toward them for better
+ * visual integration with the active theme.
  *
  * @param options - Palette generation options
  * @returns A palette of hex color strings for the specified UI elements
@@ -162,7 +162,7 @@ export function generatePalette(
     }
   }
 
-  const themeConfig = THEME_CONFIGS[themeContext.kind];
+  const themeConfig = THEME_CONFIGS[themeContext.type];
   const palette: PartialPatinaColorPalette = {};
 
   for (const key of keysToInclude) {
@@ -174,8 +174,8 @@ export function generatePalette(
     };
 
     // Only blend background colors, not foreground colors
-    if (BACKGROUND_KEYS.has(key) && themeContext.backgrounds) {
-      const bgColor = getBackgroundForKey(key, themeContext.backgrounds);
+    if (BACKGROUND_KEYS.has(key) && themeContext.colors) {
+      const bgColor = getColorForKey(key, themeContext.colors);
       hsl = blendWithTheme(hsl, bgColor, themeBlendFactor);
     }
 

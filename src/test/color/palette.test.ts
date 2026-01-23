@@ -1,8 +1,7 @@
 import * as assert from 'assert';
 import { generatePalette } from '../../color/palette';
 import type { TintTarget } from '../../config';
-import type { ThemeKind, ThemeContext } from '../../theme';
-import type { ElementBackgrounds } from '../../theme/backgrounds';
+import type { ThemeType, ThemeContext, ThemeColors } from '../../theme';
 
 const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
 
@@ -10,21 +9,23 @@ const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
  * Helper to create a ThemeContext for testing.
  */
 function makeThemeContext(
-  kind: ThemeKind,
-  options?: { background?: string; backgrounds?: ElementBackgrounds }
+  type: ThemeType,
+  options?: { colors?: ThemeColors }
 ): ThemeContext {
-  // Support both old style (background) and new style (backgrounds)
-  let backgrounds: ElementBackgrounds | undefined;
-  if (options?.backgrounds) {
-    backgrounds = options.backgrounds;
-  } else if (options?.background) {
-    backgrounds = { editor: options.background };
-  }
   return {
-    kind,
+    type,
+    kind: type, // Backwards compat
     isAutoDetected: true,
-    background: backgrounds?.editor,
-    backgrounds,
+    background: options?.colors?.['editor.background'],
+    colors: options?.colors,
+    backgrounds: options?.colors
+      ? {
+          editor: options.colors['editor.background'],
+          titleBar: options.colors['titleBar.activeBackground'],
+          statusBar: options.colors['statusBar.background'],
+          activityBar: options.colors['activityBar.background'],
+        }
+      : undefined,
   };
 }
 
@@ -206,33 +207,28 @@ suite('generatePalette', () => {
 });
 
 suite('generatePalette theme support', () => {
-  const THEME_KINDS: ThemeKind[] = [
-    'dark',
-    'light',
-    'highContrast',
-    'highContrastLight',
-  ];
+  const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
-  test('generates valid colors for all theme kinds', () => {
+  test('generates valid colors for all theme types', () => {
     const hexPattern = /^#[0-9a-f]{6}$/i;
 
-    for (const themeKind of THEME_KINDS) {
+    for (const themeType of THEME_TYPES) {
       const palette = generatePalette({
         workspaceIdentifier: 'test-project',
         targets: ALL_TARGETS,
-        themeContext: makeThemeContext(themeKind),
+        themeContext: makeThemeContext(themeType),
       });
       for (const [key, color] of Object.entries(palette)) {
         assert.match(
           color,
           hexPattern,
-          `Invalid hex for ${key} in ${themeKind}: ${color}`
+          `Invalid hex for ${key} in ${themeType}: ${color}`
         );
       }
     }
   });
 
-  test('different theme kinds produce different colors', () => {
+  test('different theme types produce different colors', () => {
     const darkPalette = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
@@ -285,7 +281,7 @@ suite('generatePalette theme support', () => {
     const hcPalette = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('highContrast'),
+      themeContext: makeThemeContext('hcDark'),
     });
 
     const darkBgLum = hexToLuminance(darkPalette['titleBar.activeBackground']!);
@@ -298,28 +294,28 @@ suite('generatePalette theme support', () => {
   });
 
   test('same workspace + theme produces consistent colors', () => {
-    for (const themeKind of THEME_KINDS) {
+    for (const themeType of THEME_TYPES) {
       const p1 = generatePalette({
         workspaceIdentifier: 'consistent-test',
         targets: ALL_TARGETS,
-        themeContext: makeThemeContext(themeKind),
+        themeContext: makeThemeContext(themeType),
       });
       const p2 = generatePalette({
         workspaceIdentifier: 'consistent-test',
         targets: ALL_TARGETS,
-        themeContext: makeThemeContext(themeKind),
+        themeContext: makeThemeContext(themeType),
       });
       assert.deepStrictEqual(
         p1,
         p2,
-        `Palette should be consistent for theme: ${themeKind}`
+        `Palette should be consistent for theme: ${themeType}`
       );
     }
   });
 });
 
 suite('generatePalette theme blending', () => {
-  test('blends colors when theme background is provided', () => {
+  test('blends colors when theme colors are provided', () => {
     // Without blending
     const paletteNoBlend = generatePalette({
       workspaceIdentifier: 'test-project',
@@ -328,11 +324,13 @@ suite('generatePalette theme blending', () => {
       themeBlendFactor: 0,
     });
 
-    // With blending (One Dark Pro background)
+    // With blending (One Dark Pro colors)
     const paletteBlend = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('dark', { background: '#282C34' }),
+      themeContext: makeThemeContext('dark', {
+        colors: { 'editor.background': '#282C34' },
+      }),
       themeBlendFactor: 0.35,
     });
 
@@ -345,7 +343,7 @@ suite('generatePalette theme blending', () => {
   });
 
   test('no blending when factor is 0', () => {
-    const paletteNoBackground = generatePalette({
+    const paletteNoColors = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark'),
@@ -354,15 +352,17 @@ suite('generatePalette theme blending', () => {
     const paletteZeroFactor = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('dark', { background: '#282C34' }),
+      themeContext: makeThemeContext('dark', {
+        colors: { 'editor.background': '#282C34' },
+      }),
       themeBlendFactor: 0,
     });
 
     // With factor 0, should produce same results
     assert.deepStrictEqual(
-      paletteNoBackground,
+      paletteNoColors,
       paletteZeroFactor,
-      'Zero blend factor should produce same results as no background'
+      'Zero blend factor should produce same results as no colors'
     );
   });
 
@@ -373,14 +373,18 @@ suite('generatePalette theme blending', () => {
     const paletteLowBlend = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('dark', { background: themeBg }),
+      themeContext: makeThemeContext('dark', {
+        colors: { 'editor.background': themeBg },
+      }),
       themeBlendFactor: 0.2,
     });
 
     const paletteHighBlend = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('dark', { background: themeBg }),
+      themeContext: makeThemeContext('dark', {
+        colors: { 'editor.background': themeBg },
+      }),
       themeBlendFactor: 0.8,
     });
 
@@ -411,7 +415,9 @@ suite('generatePalette theme blending', () => {
     const paletteBlend = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('light', { background: '#FFFFFF' }),
+      themeContext: makeThemeContext('light', {
+        colors: { 'editor.background': '#FFFFFF' },
+      }),
       themeBlendFactor: 0.35,
     });
 
@@ -423,47 +429,49 @@ suite('generatePalette theme blending', () => {
   });
 
   test('foreground colors are not blended with theme background', () => {
-    // Generate palette without theme background
-    const paletteNoBackground = generatePalette({
+    // Generate palette without theme colors
+    const paletteNoColors = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark'),
     });
 
-    // Generate palette with theme background and blending
-    const paletteWithBackground = generatePalette({
+    // Generate palette with theme colors and blending
+    const paletteWithColors = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
-      themeContext: makeThemeContext('dark', { background: '#282C34' }),
+      themeContext: makeThemeContext('dark', {
+        colors: { 'editor.background': '#282C34' },
+      }),
       themeBlendFactor: 0.5,
     });
 
-    // Foreground colors should remain unchanged regardless of background
+    // Foreground colors should remain unchanged regardless of colors
     assert.strictEqual(
-      paletteNoBackground['titleBar.activeForeground'],
-      paletteWithBackground['titleBar.activeForeground'],
+      paletteNoColors['titleBar.activeForeground'],
+      paletteWithColors['titleBar.activeForeground'],
       'titleBar.activeForeground should not be blended'
     );
     assert.strictEqual(
-      paletteNoBackground['titleBar.inactiveForeground'],
-      paletteWithBackground['titleBar.inactiveForeground'],
+      paletteNoColors['titleBar.inactiveForeground'],
+      paletteWithColors['titleBar.inactiveForeground'],
       'titleBar.inactiveForeground should not be blended'
     );
     assert.strictEqual(
-      paletteNoBackground['statusBar.foreground'],
-      paletteWithBackground['statusBar.foreground'],
+      paletteNoColors['statusBar.foreground'],
+      paletteWithColors['statusBar.foreground'],
       'statusBar.foreground should not be blended'
     );
     assert.strictEqual(
-      paletteNoBackground['activityBar.foreground'],
-      paletteWithBackground['activityBar.foreground'],
+      paletteNoColors['activityBar.foreground'],
+      paletteWithColors['activityBar.foreground'],
       'activityBar.foreground should not be blended'
     );
 
-    // Background colors should be blended (different from no-background)
+    // Background colors should be blended (different from no-colors)
     assert.notStrictEqual(
-      paletteNoBackground['titleBar.activeBackground'],
-      paletteWithBackground['titleBar.activeBackground'],
+      paletteNoColors['titleBar.activeBackground'],
+      paletteWithColors['titleBar.activeBackground'],
       'titleBar.activeBackground should be blended'
     );
   });

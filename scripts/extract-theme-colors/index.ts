@@ -109,7 +109,7 @@ async function processExtension(
       if (extracted && validateTheme(extracted)) {
         themes.push(extracted);
         if (verbose) {
-          console.log(`    Extracted: ${extracted.name} (${extracted.kind})`);
+          console.log(`    Extracted: ${extracted.name} (${extracted.type})`);
         }
       } else if (verbose) {
         console.log(

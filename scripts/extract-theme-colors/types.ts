@@ -3,27 +3,42 @@
  */
 
 /**
- * Theme kind (dark or light).
+ * Official VSCode theme types.
+ * Matches VSCode's uiTheme values and theme JSON type field.
  */
-export type ThemeKind = 'dark' | 'light';
+export type ThemeType = 'dark' | 'light' | 'hcDark' | 'hcLight';
 
 /**
- * Background colors for different UI elements.
+ * All color keys that can be extracted from themes.
+ * Uses native VSCode color keys (matching workbench.colorCustomizations).
  */
-export interface ElementBackgrounds {
-  editor: string;
-  titleBar?: string;
-  statusBar?: string;
-  activityBar?: string;
-}
+export type ThemeColorKey =
+  | 'editor.background'
+  | 'editor.foreground'
+  | 'titleBar.activeBackground'
+  | 'titleBar.activeForeground'
+  | 'titleBar.inactiveBackground'
+  | 'titleBar.inactiveForeground'
+  | 'statusBar.background'
+  | 'statusBar.foreground'
+  | 'activityBar.background'
+  | 'activityBar.foreground';
+
+/**
+ * Theme colors using native VSCode keys.
+ * editor.background is required; all others are optional.
+ */
+export type ThemeColors = {
+  'editor.background': string;
+} & Partial<Record<Exclude<ThemeColorKey, 'editor.background'>, string>>;
 
 /**
  * Extracted theme information.
  */
 export interface ExtractedTheme {
   name: string;
-  backgrounds: ElementBackgrounds;
-  kind: ThemeKind;
+  colors: ThemeColors;
+  type: ThemeType;
   extensionId: string;
   extensionName: string;
   installCount: number;

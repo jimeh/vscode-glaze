@@ -34,7 +34,7 @@ suite('getThemeName', () => {
     );
   });
 
-  test('returns preferredDarkColorTheme for dark theme kind', async () => {
+  test('returns preferredDarkColorTheme for dark theme type', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
     await config.update(
       'preferredDarkColorTheme',
@@ -51,7 +51,7 @@ suite('getThemeName', () => {
     assert.strictEqual(result, 'One Dark Pro');
   });
 
-  test('returns preferredDarkColorTheme for highContrast theme kind', async () => {
+  test('returns preferredDarkColorTheme for hcDark theme type', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
     await config.update(
       'preferredDarkColorTheme',
@@ -64,11 +64,11 @@ suite('getThemeName', () => {
       vscode.ConfigurationTarget.Global
     );
 
-    const result = getThemeName('highContrast');
+    const result = getThemeName('hcDark');
     assert.strictEqual(result, 'Dracula');
   });
 
-  test('returns preferredLightColorTheme for light theme kind', async () => {
+  test('returns preferredLightColorTheme for light theme type', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
     await config.update(
       'preferredLightColorTheme',
@@ -85,7 +85,7 @@ suite('getThemeName', () => {
     assert.strictEqual(result, 'Solarized Light');
   });
 
-  test('returns preferredLightColorTheme for highContrastLight kind', async () => {
+  test('returns preferredLightColorTheme for hcLight type', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
     await config.update(
       'preferredLightColorTheme',
@@ -98,7 +98,7 @@ suite('getThemeName', () => {
       vscode.ConfigurationTarget.Global
     );
 
-    const result = getThemeName('highContrastLight');
+    const result = getThemeName('hcLight');
     assert.strictEqual(result, 'GitHub Light');
   });
 
@@ -146,7 +146,7 @@ suite('getThemeName', () => {
     );
 
     // VSCode always has a default colorTheme, verify it returns a non-empty
-    // string for both dark and light theme kinds
+    // string for both dark and light theme types
     const darkResult = getThemeName('dark');
     const lightResult = getThemeName('light');
     assert.ok(darkResult, 'Should return a theme name for dark');

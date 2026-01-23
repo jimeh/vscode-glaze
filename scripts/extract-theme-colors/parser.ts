@@ -3,8 +3,8 @@
  */
 import type {
   ThemeJson,
-  ThemeKind,
-  ElementBackgrounds,
+  ThemeType,
+  ThemeColors,
   ExtractedTheme,
   ThemeContribution,
 } from './types';
@@ -35,61 +35,68 @@ function normalizeHexColor(hex: string): string {
 }
 
 /**
- * Determines theme kind from uiTheme or type field.
+ * Determines theme type from uiTheme or type field.
+ * Returns official VSCode theme type values.
  */
-function determineThemeKind(
+function determineThemeType(
   uiTheme: string | undefined,
   type: string | undefined
-): ThemeKind | undefined {
+): ThemeType | undefined {
   // Check uiTheme first (from package.json contribution)
   if (uiTheme) {
-    if (uiTheme.includes('dark') || uiTheme === 'vs-dark') return 'dark';
-    if (uiTheme.includes('light') || uiTheme === 'vs') return 'light';
-    if (uiTheme.includes('hc-black')) return 'dark';
-    if (uiTheme.includes('hc-light')) return 'light';
+    if (uiTheme === 'vs-dark' || uiTheme.includes('dark')) return 'dark';
+    if (uiTheme === 'vs' || uiTheme.includes('light')) return 'light';
+    if (uiTheme === 'hc-black') return 'hcDark';
+    if (uiTheme === 'hc-light') return 'hcLight';
   }
 
   // Check type from theme JSON
   if (type) {
-    if (type === 'dark' || type === 'hc') return 'dark';
-    if (type === 'light' || type === 'hcLight') return 'light';
+    if (type === 'dark') return 'dark';
+    if (type === 'light') return 'light';
+    if (type === 'hc' || type === 'hcDark') return 'hcDark';
+    if (type === 'hcLight') return 'hcLight';
   }
 
   return undefined;
 }
 
 /**
- * Extracts background colors from theme colors object.
+ * Extracts colors from theme colors object using native VSCode keys.
  */
-function extractBackgrounds(
+function extractColors(
   colors: Record<string, string> | undefined
-): ElementBackgrounds | undefined {
+): ThemeColors | undefined {
   if (!colors) return undefined;
 
   const editor = colors['editor.background'];
   if (!isValidHexColor(editor)) return undefined;
 
-  const backgrounds: ElementBackgrounds = {
-    editor: normalizeHexColor(editor),
+  const themeColors: ThemeColors = {
+    'editor.background': normalizeHexColor(editor),
   };
 
-  // Extract optional element-specific backgrounds
-  const titleBar = colors['titleBar.activeBackground'];
-  if (isValidHexColor(titleBar)) {
-    backgrounds.titleBar = normalizeHexColor(titleBar);
+  // Extract optional colors using native VSCode keys
+  const optionalKeys = [
+    'editor.foreground',
+    'titleBar.activeBackground',
+    'titleBar.activeForeground',
+    'titleBar.inactiveBackground',
+    'titleBar.inactiveForeground',
+    'statusBar.background',
+    'statusBar.foreground',
+    'activityBar.background',
+    'activityBar.foreground',
+  ] as const;
+
+  for (const key of optionalKeys) {
+    const value = colors[key];
+    if (isValidHexColor(value)) {
+      themeColors[key] = normalizeHexColor(value);
+    }
   }
 
-  const statusBar = colors['statusBar.background'];
-  if (isValidHexColor(statusBar)) {
-    backgrounds.statusBar = normalizeHexColor(statusBar);
-  }
-
-  const activityBar = colors['activityBar.background'];
-  if (isValidHexColor(activityBar)) {
-    backgrounds.activityBar = normalizeHexColor(activityBar);
-  }
-
-  return backgrounds;
+  return themeColors;
 }
 
 /**
@@ -154,15 +161,15 @@ export function parseTheme(
     readThemeFile
   );
 
-  // Determine theme kind
-  const kind = determineThemeKind(contribution.uiTheme, resolvedTheme.type);
-  if (!kind) {
+  // Determine theme type
+  const type = determineThemeType(contribution.uiTheme, resolvedTheme.type);
+  if (!type) {
     return undefined;
   }
 
-  // Extract background colors
-  const backgrounds = extractBackgrounds(resolvedTheme.colors);
-  if (!backgrounds) {
+  // Extract colors
+  const colors = extractColors(resolvedTheme.colors);
+  if (!colors) {
     return undefined;
   }
 
@@ -171,8 +178,8 @@ export function parseTheme(
 
   return {
     name,
-    backgrounds,
-    kind,
+    colors,
+    type,
     extensionId,
     extensionName,
     installCount,
@@ -189,12 +196,13 @@ export function validateTheme(theme: ExtractedTheme): boolean {
   }
 
   // Must have valid editor background
-  if (!isValidHexColor(theme.backgrounds.editor)) {
+  if (!isValidHexColor(theme.colors['editor.background'])) {
     return false;
   }
 
-  // Must have valid kind
-  if (theme.kind !== 'dark' && theme.kind !== 'light') {
+  // Must have valid type
+  const validTypes: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
+  if (!validTypes.includes(theme.type)) {
     return false;
   }
 

@@ -99,54 +99,86 @@
           "default": 0.35,
           "description": "How much to blend tint colors toward the theme's background color. 0 = no blending (vivid colors), 1 = fully match theme (subtle colors). Only applies to known themes."
         },
-        "patina.theme.backgroundColors": {
+        "patina.theme.colors": {
           "type": "object",
           "default": {},
-          "markdownDescription": "Custom theme background colors for themes not in the built-in list or to override built-in values.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"backgrounds\": {\n      \"editor\": \"#282C34\",\n      \"titleBar\": \"#21252B\",\n      \"statusBar\": \"#21252B\",\n      \"activityBar\": \"#21252B\"\n    },\n    \"kind\": \"dark\"\n  }\n}\n```",
+          "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
           "additionalProperties": {
             "type": "object",
             "required": [
-              "backgrounds",
-              "kind"
+              "colors",
+              "type"
             ],
             "properties": {
-              "backgrounds": {
+              "colors": {
                 "type": "object",
-                "description": "Background colors for different UI elements",
+                "description": "Colors for different UI elements using native VSCode keys",
                 "required": [
-                  "editor"
+                  "editor.background"
                 ],
                 "properties": {
-                  "editor": {
+                  "editor.background": {
                     "type": "string",
                     "pattern": "^#[0-9A-Fa-f]{6}$",
-                    "description": "Main editor background (required, fallback for all elements)"
+                    "description": "Main editor background (required)"
                   },
-                  "titleBar": {
+                  "editor.foreground": {
                     "type": "string",
                     "pattern": "^#[0-9A-Fa-f]{6}$",
-                    "description": "Title bar background (titleBar.activeBackground)"
+                    "description": "Main editor foreground"
                   },
-                  "statusBar": {
+                  "titleBar.activeBackground": {
                     "type": "string",
                     "pattern": "^#[0-9A-Fa-f]{6}$",
-                    "description": "Status bar background (statusBar.background)"
+                    "description": "Active title bar background"
                   },
-                  "activityBar": {
+                  "titleBar.activeForeground": {
                     "type": "string",
                     "pattern": "^#[0-9A-Fa-f]{6}$",
-                    "description": "Activity bar background (activityBar.background)"
+                    "description": "Active title bar foreground"
+                  },
+                  "titleBar.inactiveBackground": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Inactive title bar background"
+                  },
+                  "titleBar.inactiveForeground": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Inactive title bar foreground"
+                  },
+                  "statusBar.background": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Status bar background"
+                  },
+                  "statusBar.foreground": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Status bar foreground"
+                  },
+                  "activityBar.background": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Activity bar background"
+                  },
+                  "activityBar.foreground": {
+                    "type": "string",
+                    "pattern": "^#[0-9A-Fa-f]{6}$",
+                    "description": "Activity bar foreground"
                   }
                 },
                 "additionalProperties": false
               },
-              "kind": {
+              "type": {
                 "type": "string",
                 "enum": [
                   "dark",
-                  "light"
+                  "light",
+                  "hcDark",
+                  "hcLight"
                 ],
-                "description": "Whether this is a dark or light theme"
+                "description": "Theme type (dark, light, hcDark, hcLight)"
               }
             },
             "additionalProperties": false
