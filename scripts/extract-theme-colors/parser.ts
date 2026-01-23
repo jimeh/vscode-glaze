@@ -173,11 +173,14 @@ export function parseTheme(
     return undefined;
   }
 
-  // Use contribution label as theme name
-  const name = contribution.label;
+  // Use ID as theme name if available (this is what VSCode stores in settings)
+  // Fall back to label if no ID specified
+  const name = contribution.id ?? contribution.label;
+  const label = contribution.label;
 
   return {
     name,
+    label,
     colors,
     type,
     extensionId,

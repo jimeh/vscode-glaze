@@ -3,7 +3,13 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import type { ExtractedTheme, ThemeColors } from './types';
+import { CONFIG } from './config';
+import {
+  getExtensionFilename,
+  getExtensionTsPath,
+  getExtensionMetaPath,
+} from './scanner';
+import type { ExtractedTheme, ExtensionMetadata, ThemeColors } from './types';
 
 /**
  * Formats a ThemeColors object as TypeScript code.
@@ -218,4 +224,219 @@ export function generateReport(themes: ExtractedTheme[]): string {
 
   lines.push('');
   return lines.join('\n');
+}
+
+/**
+ * Generates TypeScript code for a single extension's themes.
+ */
+export function generateExtensionFileCode(themes: ExtractedTheme[]): string {
+  // Sort alphabetically by name for stable diffs
+  const sortedThemes = [...themes].sort((a, b) =>
+    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+  );
+
+  const lines: string[] = [
+    "import type { ThemeInfo } from '../../colors';",
+    '',
+    'export const THEMES: Record<string, ThemeInfo> = {',
+  ];
+
+  for (const theme of sortedThemes) {
+    const formattedName = formatThemeName(theme.name);
+    const colors = formatColors(theme.colors);
+
+    lines.push(`  ${formattedName}: {`);
+    lines.push(`    colors: ${colors},`);
+    lines.push(`    type: '${theme.type}',`);
+    lines.push('  },');
+  }
+
+  lines.push('};');
+  lines.push('');
+
+  return lines.join('\n');
+}
+
+/**
+ * Writes an extension's theme file and metadata.
+ */
+export function writeExtensionFile(
+  publisherName: string,
+  extensionName: string,
+  themes: ExtractedTheme[],
+  metadata: ExtensionMetadata
+): void {
+  // Ensure directory exists
+  if (!fs.existsSync(CONFIG.extensionsDir)) {
+    fs.mkdirSync(CONFIG.extensionsDir, { recursive: true });
+  }
+
+  // Write .ts file
+  const tsPath = getExtensionTsPath(publisherName, extensionName);
+  const tsContent = generateExtensionFileCode(themes);
+  fs.writeFileSync(tsPath, tsContent);
+
+  // Write .meta.json file
+  const metaPath = getExtensionMetaPath(publisherName, extensionName);
+  fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2) + '\n');
+}
+
+/**
+ * Deletes an extension's theme file and metadata.
+ */
+export function deleteExtensionFile(
+  publisherName: string,
+  extensionName: string
+): void {
+  const tsPath = getExtensionTsPath(publisherName, extensionName);
+  const metaPath = getExtensionMetaPath(publisherName, extensionName);
+
+  if (fs.existsSync(tsPath)) {
+    fs.unlinkSync(tsPath);
+  }
+  if (fs.existsSync(metaPath)) {
+    fs.unlinkSync(metaPath);
+  }
+}
+
+/**
+ * Information needed to generate the index file.
+ */
+export interface ExtensionFileInfo {
+  publisherName: string;
+  extensionName: string;
+  installCount: number;
+  themes: ExtractedTheme[];
+}
+
+/**
+ * Generates the aggregated index.ts file that exports all themes.
+ */
+export function generateIndexCode(
+  extensionInfos: ExtensionFileInfo[]
+): string {
+  // Build a map from extension key to info for conflict resolution
+  const extensionMap = new Map<string, ExtensionFileInfo>();
+  for (const info of extensionInfos) {
+    const key = `${info.publisherName}.${info.extensionName}`;
+    extensionMap.set(key, info);
+  }
+
+  // Collect all themes, resolving conflicts by install count
+  const themeMap = new Map<string, { theme: ExtractedTheme; extKey: string }>();
+  const conflicts: ThemeConflict[] = [];
+
+  for (const info of extensionInfos) {
+    const extKey = `${info.publisherName}.${info.extensionName}`;
+    for (const theme of info.themes) {
+      const existing = themeMap.get(theme.name);
+      if (existing && existing.extKey !== extKey) {
+        // Conflict: same name from different extensions
+        if (theme.installCount > existing.theme.installCount) {
+          themeMap.set(theme.name, { theme, extKey });
+          conflicts.push({ kept: theme, discarded: existing.theme });
+        } else {
+          conflicts.push({ kept: existing.theme, discarded: theme });
+        }
+      } else {
+        themeMap.set(theme.name, { theme, extKey });
+      }
+    }
+  }
+
+  // Log conflicts
+  if (conflicts.length > 0) {
+    console.warn('');
+    console.warn(`Found ${conflicts.length} duplicate theme name(s):`);
+    for (const { kept, discarded } of conflicts) {
+      console.warn(
+        `  "${kept.name}": keeping from "${kept.extensionName}" ` +
+          `(${kept.installCount.toLocaleString()} installs), ` +
+          `discarding from "${discarded.extensionName}" ` +
+          `(${discarded.installCount.toLocaleString()} installs)`
+      );
+    }
+    console.warn('');
+  }
+
+  // Collect unique extension keys that have themes included
+  const includedExtKeys = new Set<string>();
+  for (const [, { extKey }] of themeMap) {
+    includedExtKeys.add(extKey);
+  }
+
+  // Get extension infos for included extensions
+  const includedExtensions: ExtensionFileInfo[] = [];
+  for (const extKey of includedExtKeys) {
+    const info = extensionMap.get(extKey);
+    if (info) {
+      includedExtensions.push(info);
+    }
+  }
+
+  // Sort by filename for stable output
+  includedExtensions.sort((a, b) => {
+    const aFile = getExtensionFilename(a.publisherName, a.extensionName);
+    const bFile = getExtensionFilename(b.publisherName, b.extensionName);
+    return aFile.localeCompare(bFile);
+  });
+
+  const timestamp = new Date().toISOString();
+  const lines: string[] = [
+    '/**',
+    ' * Auto-generated aggregated theme colors.',
+    ` * Generated: ${timestamp}`,
+    ' *',
+    ' * This file is auto-generated by scripts/extract-theme-colors.',
+    ' * Do not edit manually - changes will be overwritten.',
+    ' */',
+    '',
+    "import type { ThemeInfo } from '../colors';",
+    '',
+  ];
+
+  // Generate imports
+  for (const info of includedExtensions) {
+    const filename = getExtensionFilename(info.publisherName, info.extensionName);
+    // Create a safe variable name from the filename
+    // Prefix with underscore if it starts with a number
+    let varName = filename.replace(/[.-]/g, '_');
+    if (/^\d/.test(varName)) {
+      varName = '_' + varName;
+    }
+    lines.push(
+      `import { THEMES as ${varName} } from './extensions/${filename}';`
+    );
+  }
+
+  lines.push('');
+  lines.push('export const GENERATED_THEME_COLORS: Record<string, ThemeInfo> = {');
+
+  // Spread imports in order
+  for (const info of includedExtensions) {
+    const filename = getExtensionFilename(info.publisherName, info.extensionName);
+    let varName = filename.replace(/[.-]/g, '_');
+    if (/^\d/.test(varName)) {
+      varName = '_' + varName;
+    }
+    lines.push(`  ...${varName},`);
+  }
+
+  lines.push('};');
+  lines.push('');
+
+  return lines.join('\n');
+}
+
+/**
+ * Writes the aggregated index.ts file.
+ */
+export function writeIndexFile(extensionInfos: ExtensionFileInfo[]): void {
+  // Ensure directory exists
+  if (!fs.existsSync(CONFIG.outputDir)) {
+    fs.mkdirSync(CONFIG.outputDir, { recursive: true });
+  }
+
+  const content = generateIndexCode(extensionInfos);
+  fs.writeFileSync(CONFIG.indexPath, content);
 }

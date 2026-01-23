@@ -162,10 +162,10 @@ export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
     }
 
     for (const ext of response.results[0].extensions) {
-      const version = ext.versions?.[0];
-      if (!version) continue;
+      const latestVersion = ext.versions?.[0];
+      if (!latestVersion) continue;
 
-      const vsixUrl = extractVsixUrl(version.files);
+      const vsixUrl = extractVsixUrl(latestVersion.files);
       const installCount = extractInstallCount(ext.statistics);
 
       extensions.push({
@@ -173,6 +173,7 @@ export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
         extensionName: ext.extensionName,
         displayName: ext.displayName,
         publisherName: ext.publisher.publisherName,
+        version: latestVersion.version,
         installCount,
         vsixUrl,
         themes: [],
@@ -206,13 +207,101 @@ export function parseThemeContributions(
     | undefined;
   if (!contributes) return [];
 
-  const themes = contributes.themes as ThemeContribution[] | undefined;
+  const themes = contributes.themes as Array<Record<string, unknown>> | undefined;
   if (!Array.isArray(themes)) return [];
 
-  return themes.filter(
-    (t) =>
-      typeof t.label === 'string' &&
-      typeof t.path === 'string' &&
-      typeof t.uiTheme === 'string'
-  );
+  return themes
+    .filter(
+      (t) =>
+        typeof t.label === 'string' &&
+        typeof t.path === 'string' &&
+        typeof t.uiTheme === 'string'
+    )
+    .map((t) => ({
+      label: t.label as string,
+      id: typeof t.id === 'string' ? t.id : undefined,
+      uiTheme: t.uiTheme as string,
+      path: t.path as string,
+    }));
+}
+
+/**
+ * Fetches a single extension by its ID from the marketplace.
+ * @param extensionId - Full extension ID (e.g., "dracula-theme.theme-dracula")
+ * @returns The extension info or undefined if not found
+ */
+export async function fetchExtensionById(
+  extensionId: string
+): Promise<MarketplaceExtension | undefined> {
+  const cacheKey = `extension-${extensionId}`;
+
+  const cached = getCached<MarketplaceExtension>(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const body = {
+    filters: [
+      {
+        criteria: [
+          { filterType: 8, value: 'Microsoft.VisualStudio.Code' },
+          { filterType: 4, value: extensionId }, // Extension name filter
+        ],
+        pageNumber: 1,
+        pageSize: 1,
+        sortBy: 0,
+        sortOrder: 0,
+      },
+    ],
+    assetTypes: [],
+    flags:
+      0x1 | // IncludeVersions
+      0x2 | // IncludeFiles
+      0x4 | // IncludeCategories
+      0x10 | // IncludeVersionProperties
+      0x100, // IncludeStatistics
+  };
+
+  try {
+    const response = await fetchWithRetry(MARKETPLACE_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json;api-version=6.1-preview.1',
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data = (await response.json()) as MarketplaceQueryResponse;
+    const ext = data.results?.[0]?.extensions?.[0];
+
+    if (!ext) {
+      return undefined;
+    }
+
+    const latestVersion = ext.versions?.[0];
+    if (!latestVersion) {
+      return undefined;
+    }
+
+    const vsixUrl = extractVsixUrl(latestVersion.files);
+    const installCount = extractInstallCount(ext.statistics);
+
+    const extension: MarketplaceExtension = {
+      extensionId: ext.extensionId,
+      extensionName: ext.extensionName,
+      displayName: ext.displayName,
+      publisherName: ext.publisher.publisherName,
+      version: latestVersion.version,
+      installCount,
+      vsixUrl,
+      themes: [],
+    };
+
+    setCache(cacheKey, extension);
+    return extension;
+  } catch (error) {
+    console.warn(`Failed to fetch extension ${extensionId}: ${error}`);
+    return undefined;
+  }
 }

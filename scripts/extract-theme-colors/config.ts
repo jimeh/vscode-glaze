@@ -12,8 +12,14 @@ export const CONFIG = {
   requestTimeout: 30000,
   /** Maximum concurrent requests */
   concurrency: 5,
-  /** Output file path */
-  outputPath: 'src/theme/colors.generated.ts',
+  /** Output directory for generated files */
+  outputDir: 'src/theme/generated',
+  /** Directory for per-extension theme files */
+  extensionsDir: 'src/theme/generated/extensions',
+  /** Path to the aggregated index file */
+  indexPath: 'src/theme/generated/index.ts',
+  /** Path to pinned extensions config */
+  pinnedExtensionsPath: 'scripts/extract-theme-colors/pinned-extensions.json',
   /** Cache directory */
   cacheDir: 'scripts/extract-theme-colors/.cache',
   /** Retry configuration */

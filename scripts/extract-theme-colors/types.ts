@@ -36,7 +36,10 @@ export type ThemeColors = {
  * Extracted theme information.
  */
 export interface ExtractedTheme {
+  /** Theme name used as key (ID if available, otherwise label) */
   name: string;
+  /** Display label (may differ from name/ID) */
+  label: string;
   colors: ThemeColors;
   type: ThemeType;
   extensionId: string;
@@ -52,16 +55,34 @@ export interface MarketplaceExtension {
   extensionName: string;
   displayName: string;
   publisherName: string;
+  version: string;
   installCount: number;
   vsixUrl?: string;
   themes: ThemeContribution[];
 }
 
 /**
+ * Per-extension metadata stored in .meta.json sidecar files.
+ */
+export interface ExtensionMetadata {
+  extensionId: string;
+  extensionName: string;
+  publisherName: string;
+  displayName: string;
+  version: string;
+  extractedAt: string;
+  installCount: number;
+  stale: boolean;
+}
+
+/**
  * Theme contribution from package.json.
  */
 export interface ThemeContribution {
+  /** Theme display name */
   label: string;
+  /** Optional unique ID - if present, this is what VSCode stores in settings */
+  id?: string;
   uiTheme: string;
   path: string;
 }
