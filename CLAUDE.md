@@ -33,6 +33,14 @@ follow the `*.test.ts` naming convention using `suite()` and `test()` functions.
 Tests compile to `out/test/` and run in a VSCode instance. The `pretest` script
 handles compilation automatically.
 
+Run a single test file:
+
+```bash
+pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
+```
+
+The `--grep` pattern matches against suite/test names.
+
 ## Architecture
 
 ### Data Flow
@@ -55,8 +63,9 @@ handles compilation automatically.
 
 5. **theme/** — Theme detection and background color lookup:
    - `detect.ts` — Gets current theme context (kind, name, background)
-   - `backgrounds.ts` — Maps known theme names to background colors
+   - `colors.ts` — Aggregates theme colors from generated files and user config
    - `name.ts` — Extracts theme name from VSCode
+   - `generated/` — Auto-generated theme color definitions (do not edit)
 
 6. **settings/** — Writes color customizations to VSCode settings:
    - `colorCustomizations.ts` — Manages `workbench.colorCustomizations`
@@ -79,6 +88,22 @@ handles compilation automatically.
 - **esbuild** bundles `src/extension.ts` → `dist/extension.js` (CommonJS)
 - The `vscode` module is externalized (provided by VSCode at runtime)
 - Tests compile separately via `tsc` to `out/` directory
+
+## Theme Color Extraction
+
+The `scripts/extract-theme-colors/` script fetches popular VSCode themes from
+the marketplace and extracts their background colors for theme-aware blending.
+
+```bash
+pnpm run extract-themes           # Generate theme files
+pnpm run extract-themes:dry-run   # Preview without writing
+pnpm run extract-themes:verbose   # Verbose output
+```
+
+Generated files go to `src/theme/generated/extensions/` with one TypeScript file
+per extension. These are auto-generated and should not be manually edited. Add
+themes to `scripts/extract-theme-colors/pinned.ts` to ensure specific themes
+are always included.
 
 ## Commit Messages
 
