@@ -11,18 +11,18 @@ suite('Extension Test Suite', () => {
   });
 
   suite('Command Registration', () => {
-    test('patina.enable command is registered', async () => {
+    test('patina.enableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.enable'));
+      assert.ok(commands.includes('patina.enableGlobally'));
     });
 
-    test('patina.disable command is registered', async () => {
+    test('patina.disableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.disable'));
+      assert.ok(commands.includes('patina.disableGlobally'));
     });
   });
 
-  suite('patina.enable', () => {
+  suite('patina.enableGlobally', () => {
     let originalColorCustomizations: unknown;
     let originalEnabled: boolean | undefined;
 
@@ -56,7 +56,7 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets patina.enabled to true', async () => {
+    test('sets patina.enableGloballyd to true', async () => {
       // First disable to ensure we're testing the change
       let patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
@@ -65,12 +65,12 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      await vscode.commands.executeCommand('patina.enable');
+      await vscode.commands.executeCommand('patina.enableGlobally');
 
       // Get fresh config after command
       patinaConfig = vscode.workspace.getConfiguration('patina');
       const enabled = patinaConfig.get<boolean>('enabled');
-      assert.strictEqual(enabled, true, 'patina.enabled should be true');
+      assert.strictEqual(enabled, true, 'patina.enableGloballyd should be true');
     });
 
     test('sets workbench.colorCustomizations when workspace is open', async () => {
@@ -79,7 +79,7 @@ suite('Extension Test Suite', () => {
         return;
       }
 
-      await vscode.commands.executeCommand('patina.enable');
+      await vscode.commands.executeCommand('patina.enableGlobally');
 
       // Small delay for config change listener to fire
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -101,7 +101,7 @@ suite('Extension Test Suite', () => {
         return;
       }
 
-      await vscode.commands.executeCommand('patina.enable');
+      await vscode.commands.executeCommand('patina.enableGlobally');
 
       // Small delay for config change listener to fire
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -122,7 +122,7 @@ suite('Extension Test Suite', () => {
     });
   });
 
-  suite('patina.disable', () => {
+  suite('patina.disableGlobally', () => {
     let originalColorCustomizations: unknown;
     let originalEnabled: boolean | undefined;
 
@@ -156,7 +156,7 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets patina.enabled to false', async () => {
+    test('sets patina.enableGloballyd to false', async () => {
       // First enable to ensure we're testing the change
       let patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
@@ -165,12 +165,12 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      await vscode.commands.executeCommand('patina.disable');
+      await vscode.commands.executeCommand('patina.disableGlobally');
 
       // Get fresh config after command
       patinaConfig = vscode.workspace.getConfiguration('patina');
       const enabled = patinaConfig.get<boolean>('enabled');
-      assert.strictEqual(enabled, false, 'patina.enabled should be false');
+      assert.strictEqual(enabled, false, 'patina.enableGloballyd should be false');
     });
 
     test('clears workbench.colorCustomizations', async () => {
@@ -179,13 +179,13 @@ suite('Extension Test Suite', () => {
       }
 
       // First enable to set colors
-      await vscode.commands.executeCommand('patina.enable');
+      await vscode.commands.executeCommand('patina.enableGlobally');
 
       // Small delay for config change listener to fire
       await new Promise((resolve) => setTimeout(resolve, 100));
 
       // Then disable
-      await vscode.commands.executeCommand('patina.disable');
+      await vscode.commands.executeCommand('patina.disableGlobally');
 
       // Small delay for config change listener to fire
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -241,7 +241,7 @@ suite('Extension Test Suite', () => {
       }
 
       // Enable patina first
-      await vscode.commands.executeCommand('patina.enable');
+      await vscode.commands.executeCommand('patina.enableGlobally');
 
       // Get initial colors
       let config = vscode.workspace.getConfiguration();
