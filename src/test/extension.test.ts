@@ -73,10 +73,10 @@ suite('Extension Test Suite', () => {
       assert.strictEqual(enabled, true, 'patina.enableGloballyd should be true');
     });
 
-    test('sets workbench.colorCustomizations when workspace is open', async () => {
+    test('sets workbench.colorCustomizations when workspace is open', async function () {
       // Skip if no workspace is open (tests might run without workspace)
       if (!vscode.workspace.workspaceFolders?.length) {
-        return;
+        return this.skip();
       }
 
       await vscode.commands.executeCommand('patina.enableGlobally');
@@ -96,9 +96,9 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('color values are valid hex codes', async () => {
+    test('color values are valid hex codes', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
-        return;
+        return this.skip();
       }
 
       await vscode.commands.executeCommand('patina.enableGlobally');
@@ -173,9 +173,9 @@ suite('Extension Test Suite', () => {
       assert.strictEqual(enabled, false, 'patina.enableGloballyd should be false');
     });
 
-    test('clears workbench.colorCustomizations', async () => {
+    test('clears workbench.colorCustomizations', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
-        return;
+        return this.skip();
       }
 
       // First enable to set colors

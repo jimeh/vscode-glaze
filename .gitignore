@@ -6,3 +6,6 @@ node_modules
 
 # Theme extraction script cache
 scripts/extract-theme-colors/.cache/
+
+# Test fixture workspace settings (generated during tests)
+src/test/fixtures/test-workspace/.vscode/
