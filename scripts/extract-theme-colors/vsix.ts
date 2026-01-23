@@ -4,6 +4,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import AdmZip from 'adm-zip';
+import { parse as parseJsonc } from 'jsonc-parser';
 import { CONFIG } from './config';
 import { getCached, setCache } from './cache';
 import type { ThemeJson } from './types';
@@ -83,73 +84,6 @@ export function extractPackageJson(
 }
 
 /**
- * Cleans JSONC content (removes comments and trailing commas).
- * Preserves content inside strings.
- */
-function cleanJsonc(content: string): string {
-  // State machine to handle strings and comments properly
-  let result = '';
-  let i = 0;
-  let inString = false;
-
-  while (i < content.length) {
-    const char = content[i];
-    const nextChar = content[i + 1];
-
-    if (inString) {
-      result += char;
-      if (char === '\\' && i + 1 < content.length) {
-        // Escaped character, include next char as-is
-        result += nextChar;
-        i += 2;
-        continue;
-      }
-      if (char === '"') {
-        inString = false;
-      }
-      i++;
-      continue;
-    }
-
-    // Not in string
-    if (char === '"') {
-      inString = true;
-      result += char;
-      i++;
-      continue;
-    }
-
-    // Check for single-line comment
-    if (char === '/' && nextChar === '/') {
-      // Skip until end of line
-      while (i < content.length && content[i] !== '\n') {
-        i++;
-      }
-      continue;
-    }
-
-    // Check for multi-line comment
-    if (char === '/' && nextChar === '*') {
-      i += 2;
-      while (i < content.length - 1) {
-        if (content[i] === '*' && content[i + 1] === '/') {
-          i += 2;
-          break;
-        }
-        i++;
-      }
-      continue;
-    }
-
-    result += char;
-    i++;
-  }
-
-  // Remove trailing commas
-  return result.replace(/,(\s*[}\]])/g, '$1');
-}
-
-/**
  * Creates a theme file reader function for a VSIX buffer.
  * Returns a function that can read theme files from the VSIX.
  */
@@ -168,8 +102,7 @@ export function createVsixThemeReader(
       if (!entry) return undefined;
 
       const content = zip.readAsText(entry);
-      const cleaned = cleanJsonc(content);
-      return JSON.parse(cleaned) as ThemeJson;
+      return parseJsonc(content) as ThemeJson;
     } catch {
       return undefined;
     }
