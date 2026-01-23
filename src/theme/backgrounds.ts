@@ -156,9 +156,7 @@ function isValidElementBackgrounds(
 }
 
 /**
- * Validates a ThemeBackground object (new format with `backgrounds`).
- * Also accepts legacy format with `background` string for backwards
- * compatibility with user settings.
+ * Validates a ThemeBackground object.
  */
 function isValidThemeBackground(value: unknown): value is ThemeBackground {
   if (typeof value !== 'object' || value === null) {
@@ -174,62 +172,27 @@ function isValidThemeBackground(value: unknown): value is ThemeBackground {
     return false;
   }
 
-  // New format: { backgrounds: ElementBackgrounds, kind }
-  if (obj.backgrounds !== undefined) {
-    return isValidElementBackgrounds(obj.backgrounds);
-  }
-
-  // Legacy format: { background: string, kind } - for user config compat
-  if (isValidHexColor(obj.background)) {
-    return true;
-  }
-
-  return false;
+  return isValidElementBackgrounds(obj.backgrounds);
 }
 
 /**
- * Legacy format for user config backwards compatibility.
+ * Normalizes a theme background entry by uppercasing hex colors.
  */
-interface LegacyThemeBackground {
-  background: string;
-  kind: ThemeBackgroundKind;
-}
-
-function isNewFormat(
-  value: ThemeBackground | LegacyThemeBackground
-): value is ThemeBackground {
-  return 'backgrounds' in value;
-}
-
-/**
- * Normalizes a theme background entry, converting legacy format to new format.
- */
-function normalizeThemeBackground(
-  value: ThemeBackground | LegacyThemeBackground
-): ThemeBackground {
-  if (isNewFormat(value)) {
-    return {
-      backgrounds: {
-        editor: value.backgrounds.editor.toUpperCase(),
-        titleBar: value.backgrounds.titleBar?.toUpperCase(),
-        statusBar: value.backgrounds.statusBar?.toUpperCase(),
-        activityBar: value.backgrounds.activityBar?.toUpperCase(),
-      },
-      kind: value.kind,
-    };
-  }
-  // Legacy format - convert to new format
+function normalizeThemeBackground(value: ThemeBackground): ThemeBackground {
   return {
-    backgrounds: { editor: value.background.toUpperCase() },
+    backgrounds: {
+      editor: value.backgrounds.editor.toUpperCase(),
+      titleBar: value.backgrounds.titleBar?.toUpperCase(),
+      statusBar: value.backgrounds.statusBar?.toUpperCase(),
+      activityBar: value.backgrounds.activityBar?.toUpperCase(),
+    },
     kind: value.kind,
   };
 }
 
 /**
  * Gets custom theme background colors from VSCode settings.
- * Invalid entries are silently skipped. Supports both new format (with
- * `backgrounds`) and legacy format (with `background`) for backwards
- * compatibility.
+ * Invalid entries are silently skipped.
  */
 function getCustomThemeBackgrounds(): Record<string, ThemeBackground> {
   const config = vscode.workspace.getConfiguration('patina');
@@ -241,11 +204,7 @@ function getCustomThemeBackgrounds(): Record<string, ThemeBackground> {
   const result: Record<string, ThemeBackground> = {};
   for (const [name, entry] of Object.entries(raw)) {
     if (isValidThemeBackground(entry)) {
-      // Cast is safe after validation; normalizeThemeBackground handles both
-      // new and legacy formats
-      result[name] = normalizeThemeBackground(
-        entry as ThemeBackground | LegacyThemeBackground
-      );
+      result[name] = normalizeThemeBackground(entry);
     }
   }
   return result;

@@ -196,13 +196,13 @@ suite('getThemeBackground with custom config', () => {
     );
   });
 
-  test('custom config overrides built-in theme (legacy format)', async () => {
+  test('custom config overrides built-in theme', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'theme.backgroundColors',
       {
         'One Dark Pro': {
-          background: '#111111',
+          backgrounds: { editor: '#111111' },
           kind: 'dark',
         },
       },
@@ -215,13 +215,13 @@ suite('getThemeBackground with custom config', () => {
     assert.strictEqual(result.kind, 'dark');
   });
 
-  test('custom config adds new theme (legacy format)', async () => {
+  test('custom config adds new theme', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'theme.backgroundColors',
       {
         'My Custom Theme': {
-          background: '#ABCDEF',
+          backgrounds: { editor: '#ABCDEF' },
           kind: 'light',
         },
       },
@@ -248,13 +248,13 @@ suite('getThemeBackground with custom config', () => {
     assert.strictEqual(result.kind, 'dark');
   });
 
-  test('normalizes hex colors to uppercase (legacy format)', async () => {
+  test('normalizes hex colors to uppercase', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'theme.backgroundColors',
       {
         'Lowercase Theme': {
-          background: '#abcdef',
+          backgrounds: { editor: '#abcdef' },
           kind: 'dark',
         },
       },
@@ -272,7 +272,7 @@ suite('getThemeBackground with custom config', () => {
       'theme.backgroundColors',
       {
         'Invalid Hex Theme': {
-          background: 'not-a-hex',
+          backgrounds: { editor: 'not-a-hex' },
           kind: 'dark',
         },
       },
@@ -289,7 +289,7 @@ suite('getThemeBackground with custom config', () => {
       'theme.backgroundColors',
       {
         'Invalid Kind Theme': {
-          background: '#123456',
+          backgrounds: { editor: '#123456' },
           kind: 'medium',
         },
       },
@@ -305,18 +305,23 @@ suite('getThemeBackground with custom config', () => {
     await config.update(
       'theme.backgroundColors',
       {
-        'Missing Background': {
+        'Missing Backgrounds': {
           kind: 'dark',
         },
         'Missing Kind': {
-          background: '#123456',
+          backgrounds: { editor: '#123456' },
+        },
+        'Missing Editor': {
+          backgrounds: { titleBar: '#123456' },
+          kind: 'dark',
         },
       },
       vscode.ConfigurationTarget.Global
     );
 
-    assert.strictEqual(getThemeBackground('Missing Background'), undefined);
+    assert.strictEqual(getThemeBackground('Missing Backgrounds'), undefined);
     assert.strictEqual(getThemeBackground('Missing Kind'), undefined);
+    assert.strictEqual(getThemeBackground('Missing Editor'), undefined);
   });
 
   test('empty config returns empty custom themes', async () => {

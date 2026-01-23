@@ -102,18 +102,14 @@
         "patina.theme.backgroundColors": {
           "type": "object",
           "default": {},
-          "markdownDescription": "Custom theme background colors for themes not in the built-in list or to override built-in values.\n\n**New format** (recommended):\n```json\n{\n  \"My Theme\": {\n    \"backgrounds\": {\n      \"editor\": \"#282C34\",\n      \"titleBar\": \"#21252B\",\n      \"statusBar\": \"#21252B\",\n      \"activityBar\": \"#21252B\"\n    },\n    \"kind\": \"dark\"\n  }\n}\n```\n\n**Legacy format** (still supported):\n```json\n{\n  \"My Theme\": {\n    \"background\": \"#282C34\",\n    \"kind\": \"dark\"\n  }\n}\n```",
+          "markdownDescription": "Custom theme background colors for themes not in the built-in list or to override built-in values.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"backgrounds\": {\n      \"editor\": \"#282C34\",\n      \"titleBar\": \"#21252B\",\n      \"statusBar\": \"#21252B\",\n      \"activityBar\": \"#21252B\"\n    },\n    \"kind\": \"dark\"\n  }\n}\n```",
           "additionalProperties": {
             "type": "object",
             "required": [
+              "backgrounds",
               "kind"
             ],
             "properties": {
-              "background": {
-                "type": "string",
-                "pattern": "^#[0-9A-Fa-f]{6}$",
-                "description": "(Legacy) Editor background color as 6-digit hex (e.g., #282C34). Use 'backgrounds' object instead for per-element colors."
-              },
               "backgrounds": {
                 "type": "object",
                 "description": "Background colors for different UI elements",
