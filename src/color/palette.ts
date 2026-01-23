@@ -1,140 +1,184 @@
-import * as vscode from 'vscode';
-import * as os from 'os';
-import * as path from 'path';
 import type { HSL } from './types';
-import type { WorkspaceIdentifierConfig } from '../config';
+import type { TintTarget } from '../config';
+import type { ThemeContext, ThemeKind } from '../theme';
 import { hashString } from './hash';
 import { hslToHex } from './convert';
+import { blendWithTheme } from './blend';
 
 /**
- * Color palette for VSCode UI elements.
+ * Full color palette for all VSCode UI elements.
  */
 export interface PatinaColorPalette {
   'titleBar.activeBackground': string;
+  'titleBar.activeForeground': string;
   'titleBar.inactiveBackground': string;
+  'titleBar.inactiveForeground': string;
   'statusBar.background': string;
+  'statusBar.foreground': string;
   'activityBar.background': string;
+  'activityBar.foreground': string;
 }
 
 /**
- * Configuration for each UI element's color generation.
- * All elements share the same hue but vary in saturation/lightness for visual
- * hierarchy. Values tuned for dark themes.
+ * Partial palette containing only the requested tint targets.
  */
-const UI_ELEMENT_CONFIG: Record<
-  keyof PatinaColorPalette,
-  { saturation: number; lightness: number }
-> = {
-  'titleBar.activeBackground': { saturation: 0.4, lightness: 0.32 },
-  'titleBar.inactiveBackground': { saturation: 0.3, lightness: 0.28 },
-  'statusBar.background': { saturation: 0.5, lightness: 0.35 },
-  'activityBar.background': { saturation: 0.35, lightness: 0.25 },
+export type PartialPatinaColorPalette = Partial<PatinaColorPalette>;
+
+/**
+ * Maps tint targets to their corresponding palette keys.
+ */
+const TARGET_KEYS: Record<TintTarget, (keyof PatinaColorPalette)[]> = {
+  titleBar: [
+    'titleBar.activeBackground',
+    'titleBar.activeForeground',
+    'titleBar.inactiveBackground',
+    'titleBar.inactiveForeground',
+  ],
+  statusBar: ['statusBar.background', 'statusBar.foreground'],
+  activityBar: ['activityBar.background', 'activityBar.foreground'],
 };
+
+/**
+ * All keys that Patina manages in workbench.colorCustomizations.
+ * Used to preserve user customizations when applying/removing tints.
+ */
+export const PATINA_MANAGED_KEYS: readonly (keyof PatinaColorPalette)[] =
+  Object.values(TARGET_KEYS).flat();
+
+/**
+ * Keys that represent background colors and should be blended with theme.
+ * Note: VSCode uses inconsistent casing (titleBar.activeBackground vs
+ * statusBar.background), so we explicitly list all background keys.
+ */
+const BACKGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
+  'titleBar.activeBackground',
+  'titleBar.inactiveBackground',
+  'statusBar.background',
+  'activityBar.background',
+]);
+
+/**
+ * Configuration for saturation and lightness values.
+ */
+type ElementConfig = { saturation: number; lightness: number };
+
+/**
+ * Configuration for each UI element's color generation per theme kind.
+ * All elements share the same hue but vary in saturation/lightness for visual
+ * hierarchy.
+ *
+ * Foreground colors use the same hue but with appropriate lightness and low
+ * saturation to ensure readability while maintaining color harmony.
+ */
+const THEME_CONFIGS: Record<
+  ThemeKind,
+  Record<keyof PatinaColorPalette, ElementConfig>
+> = {
+  dark: {
+    'titleBar.activeBackground': { saturation: 0.4, lightness: 0.32 },
+    'titleBar.activeForeground': { saturation: 0.15, lightness: 0.9 },
+    'titleBar.inactiveBackground': { saturation: 0.3, lightness: 0.28 },
+    'titleBar.inactiveForeground': { saturation: 0.1, lightness: 0.7 },
+    'statusBar.background': { saturation: 0.5, lightness: 0.35 },
+    'statusBar.foreground': { saturation: 0.15, lightness: 0.9 },
+    'activityBar.background': { saturation: 0.35, lightness: 0.25 },
+    'activityBar.foreground': { saturation: 0.15, lightness: 0.85 },
+  },
+  light: {
+    'titleBar.activeBackground': { saturation: 0.45, lightness: 0.82 },
+    'titleBar.activeForeground': { saturation: 0.25, lightness: 0.05 },
+    'titleBar.inactiveBackground': { saturation: 0.35, lightness: 0.86 },
+    'titleBar.inactiveForeground': { saturation: 0.15, lightness: 0.2 },
+    'statusBar.background': { saturation: 0.5, lightness: 0.78 },
+    'statusBar.foreground': { saturation: 0.25, lightness: 0.05 },
+    'activityBar.background': { saturation: 0.4, lightness: 0.88 },
+    'activityBar.foreground': { saturation: 0.2, lightness: 0.06 },
+  },
+  highContrast: {
+    'titleBar.activeBackground': { saturation: 0.5, lightness: 0.15 },
+    'titleBar.activeForeground': { saturation: 0.1, lightness: 0.98 },
+    'titleBar.inactiveBackground': { saturation: 0.4, lightness: 0.12 },
+    'titleBar.inactiveForeground': { saturation: 0.08, lightness: 0.85 },
+    'statusBar.background': { saturation: 0.55, lightness: 0.18 },
+    'statusBar.foreground': { saturation: 0.1, lightness: 0.98 },
+    'activityBar.background': { saturation: 0.45, lightness: 0.1 },
+    'activityBar.foreground': { saturation: 0.1, lightness: 0.95 },
+  },
+  highContrastLight: {
+    'titleBar.activeBackground': { saturation: 0.5, lightness: 0.92 },
+    'titleBar.activeForeground': { saturation: 0.3, lightness: 0.05 },
+    'titleBar.inactiveBackground': { saturation: 0.4, lightness: 0.94 },
+    'titleBar.inactiveForeground': { saturation: 0.2, lightness: 0.2 },
+    'statusBar.background': { saturation: 0.55, lightness: 0.9 },
+    'statusBar.foreground': { saturation: 0.3, lightness: 0.05 },
+    'activityBar.background': { saturation: 0.45, lightness: 0.95 },
+    'activityBar.foreground': { saturation: 0.25, lightness: 0.08 },
+  },
+};
+
+/**
+ * Options for palette generation.
+ */
+export interface GeneratePaletteOptions {
+  /** A string identifying the workspace (typically the folder name) */
+  workspaceIdentifier: string;
+  /** Which UI element groups to include in the palette */
+  targets: TintTarget[];
+  /** Theme context with kind and optional background color */
+  themeContext: ThemeContext;
+  /** How much to blend toward theme background (0-1), default 0.35 */
+  themeBlendFactor?: number;
+}
 
 /**
  * Generates a harmonious pastel color palette from a workspace identifier.
  * All colors share the same hue (derived from the identifier) but vary in
  * saturation and lightness to create visual hierarchy.
  *
- * @param workspaceIdentifier - A string identifying the workspace (typically
- *                              the folder name)
- * @returns A palette of hex color strings for each UI element
+ * When a theme background is available, colors are blended toward it for
+ * better visual integration with the active theme.
+ *
+ * @param options - Palette generation options
+ * @returns A palette of hex color strings for the specified UI elements
  */
 export function generatePalette(
-  workspaceIdentifier: string
-): PatinaColorPalette {
+  options: GeneratePaletteOptions
+): PartialPatinaColorPalette {
+  const {
+    workspaceIdentifier,
+    targets,
+    themeContext,
+    themeBlendFactor = 0.35,
+  } = options;
+
   const hash = hashString(workspaceIdentifier);
   const baseHue = hash % 360;
 
-  const palette: Partial<PatinaColorPalette> = {};
+  const keysToInclude = new Set<keyof PatinaColorPalette>();
+  for (const target of targets) {
+    for (const key of TARGET_KEYS[target]) {
+      keysToInclude.add(key);
+    }
+  }
 
-  for (const [key, config] of Object.entries(UI_ELEMENT_CONFIG)) {
-    const hsl: HSL = {
+  const themeConfig = THEME_CONFIGS[themeContext.kind];
+  const palette: PartialPatinaColorPalette = {};
+
+  for (const key of keysToInclude) {
+    const config = themeConfig[key];
+    let hsl: HSL = {
       h: baseHue,
       s: config.saturation,
       l: config.lightness,
     };
-    palette[key as keyof PatinaColorPalette] = hslToHex(hsl);
-  }
 
-  return palette as PatinaColorPalette;
-}
-
-/**
- * Normalizes a path by converting backslashes to forward slashes.
- * Ensures consistent hashing across platforms.
- */
-function normalizePath(p: string): string {
-  return p.replace(/\\/g, '/');
-}
-
-/**
- * Expands ~ to the home directory in a path.
- */
-function expandTilde(p: string): string {
-  if (p.startsWith('~')) {
-    return path.join(os.homedir(), p.slice(1));
-  }
-  return p;
-}
-
-/**
- * Computes the relative path from a base to a target.
- * Returns undefined if the target is not within the base path.
- */
-function getRelativePath(basePath: string, targetPath: string): string | undefined {
-  const normalizedBase = normalizePath(path.resolve(basePath));
-  const normalizedTarget = normalizePath(path.resolve(targetPath));
-
-  if (!normalizedTarget.startsWith(normalizedBase + '/') &&
-      normalizedTarget !== normalizedBase) {
-    return undefined;
-  }
-
-  const relative = path.relative(basePath, targetPath);
-  return normalizePath(relative) || '.';
-}
-
-/**
- * Extracts a suitable identifier from the current workspace based on config.
- *
- * @param config - Configuration specifying how to generate the identifier
- * @returns The workspace identifier, or undefined if no workspace is open
- */
-export function getWorkspaceIdentifier(
-  config: WorkspaceIdentifierConfig
-): string | undefined {
-  const folders = vscode.workspace.workspaceFolders;
-  if (!folders || folders.length === 0) {
-    return undefined;
-  }
-
-  const folder = folders[0];
-  const folderPath = folder.uri.fsPath;
-
-  switch (config.source) {
-    case 'name':
-      return folder.name;
-
-    case 'pathRelativeToHome': {
-      const homedir = os.homedir();
-      const relative = getRelativePath(homedir, folderPath);
-      return relative ?? normalizePath(folderPath);
+    // Only blend background colors, not foreground colors
+    if (BACKGROUND_KEYS.has(key) && themeContext.background) {
+      hsl = blendWithTheme(hsl, themeContext.background, themeBlendFactor);
     }
 
-    case 'pathAbsolute':
-      return normalizePath(folderPath);
-
-    case 'pathRelativeToCustom': {
-      if (!config.customBasePath) {
-        return normalizePath(folderPath);
-      }
-      const basePath = expandTilde(config.customBasePath);
-      const relative = getRelativePath(basePath, folderPath);
-      return relative ?? normalizePath(folderPath);
-    }
-
-    default:
-      return folder.name;
+    palette[key] = hslToHex(hsl);
   }
+
+  return palette;
 }

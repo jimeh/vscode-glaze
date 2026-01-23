@@ -1,11 +1,64 @@
 import * as vscode from 'vscode';
 import type {
+  ThemeBackgroundColors,
+  ThemeConfig,
+  ThemeMode,
+  TintConfig,
+  TintTarget,
   WorkspaceIdentifierConfig,
   WorkspaceIdentifierSource,
 } from './types';
 
-export type { WorkspaceIdentifierConfig, WorkspaceIdentifierSource } from
-  './types';
+export type {
+  ThemeBackgroundColors,
+  ThemeConfig,
+  ThemeMode,
+  TintConfig,
+  TintTarget,
+  WorkspaceIdentifierConfig,
+  WorkspaceIdentifierSource,
+} from './types';
+
+/**
+ * Returns whether Patina is globally enabled.
+ */
+export function isEnabled(): boolean {
+  const config = vscode.workspace.getConfiguration('patina');
+  return config.get<boolean>('enabled', true);
+}
+
+/**
+ * Returns the workspace modification state.
+ * - undefined: Patina has never modified this workspace
+ * - true: Patina has applied colors to this workspace
+ * - false: User opted out of Patina for this workspace
+ */
+export function getWorkspaceModify(): boolean | undefined {
+  const config = vscode.workspace.getConfiguration('patina');
+  const inspection = config.inspect<boolean>('workspace.modify');
+  // Only read workspace-level value, ignore global
+  return inspection?.workspaceValue;
+}
+
+/**
+ * Sets the workspace modification state at Workspace scope.
+ */
+export async function setWorkspaceModify(
+  value: boolean | undefined
+): Promise<void> {
+  const config = vscode.workspace.getConfiguration('patina');
+  await config.update(
+    'workspace.modify',
+    value,
+    vscode.ConfigurationTarget.Workspace
+  );
+}
+
+const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];
+
+function isValidThemeMode(value: string): value is ThemeMode {
+  return VALID_THEME_MODES.includes(value as ThemeMode);
+}
 
 const VALID_SOURCES: WorkspaceIdentifierSource[] = [
   'name',
@@ -34,4 +87,45 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
 
 function isValidSource(value: string): value is WorkspaceIdentifierSource {
   return VALID_SOURCES.includes(value as WorkspaceIdentifierSource);
+}
+
+/**
+ * Reads the tint configuration from VSCode settings.
+ */
+export function getTintConfig(): TintConfig {
+  const config = vscode.workspace.getConfiguration('patina');
+
+  const targets: TintTarget[] = [];
+  if (config.get<boolean>('elements.titleBar', true)) {
+    targets.push('titleBar');
+  }
+  if (config.get<boolean>('elements.statusBar', false)) {
+    targets.push('statusBar');
+  }
+  if (config.get<boolean>('elements.activityBar', false)) {
+    targets.push('activityBar');
+  }
+
+  // Default to titleBar if nothing is enabled
+  if (targets.length === 0) {
+    targets.push('titleBar');
+  }
+
+  const modeValue = config.get<string>('tint.mode', 'auto');
+  const mode: ThemeMode = isValidThemeMode(modeValue) ? modeValue : 'auto';
+
+  return { targets, mode };
+}
+
+/**
+ * Reads the theme configuration from VSCode settings.
+ */
+export function getThemeConfig(): ThemeConfig {
+  const config = vscode.workspace.getConfiguration('patina');
+
+  const blendFactorValue = config.get<number>('theme.blendFactor', 0.35);
+  // Clamp to valid range
+  const blendFactor = Math.max(0, Math.min(1, blendFactorValue));
+
+  return { blendFactor };
 }

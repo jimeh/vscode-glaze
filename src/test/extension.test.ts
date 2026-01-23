@@ -1,15 +1,279 @@
 import * as assert from 'assert';
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
 import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+  suiteSetup(async () => {
+    // Ensure extension is activated
+    const ext = vscode.extensions.getExtension('undefined_publisher.patina');
+    if (ext && !ext.isActive) {
+      await ext.activate();
+    }
+  });
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
-	});
+  suite('Command Registration', () => {
+    test('patina.enable command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('patina.enable'));
+    });
+
+    test('patina.disable command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('patina.disable'));
+    });
+  });
+
+  suite('patina.enable', () => {
+    let originalColorCustomizations: unknown;
+    let originalEnabled: boolean | undefined;
+
+    suiteSetup(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      originalColorCustomizations = config.get('workbench.colorCustomizations');
+    });
+
+    suiteTeardown(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('sets patina.enabled to true', async () => {
+      // First disable to ensure we're testing the change
+      let patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      await vscode.commands.executeCommand('patina.enable');
+
+      // Get fresh config after command
+      patinaConfig = vscode.workspace.getConfiguration('patina');
+      const enabled = patinaConfig.get<boolean>('enabled');
+      assert.strictEqual(enabled, true, 'patina.enabled should be true');
+    });
+
+    test('sets workbench.colorCustomizations when workspace is open', async () => {
+      // Skip if no workspace is open (tests might run without workspace)
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+
+      await vscode.commands.executeCommand('patina.enable');
+
+      // Small delay for config change listener to fire
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+
+      assert.ok(colors, 'colorCustomizations should be set');
+      assert.ok(
+        'titleBar.activeBackground' in colors,
+        'should have titleBar.activeBackground'
+      );
+    });
+
+    test('color values are valid hex codes', async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+
+      await vscode.commands.executeCommand('patina.enable');
+
+      // Small delay for config change listener to fire
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+
+      const hexPattern = /^#[0-9a-f]{6}$/i;
+      for (const [key, value] of Object.entries(colors ?? {})) {
+        if (key.startsWith('titleBar.') ||
+            key.startsWith('statusBar.') ||
+            key.startsWith('activityBar.')) {
+          assert.match(value, hexPattern, `Invalid hex for ${key}: ${value}`);
+        }
+      }
+    });
+  });
+
+  suite('patina.disable', () => {
+    let originalColorCustomizations: unknown;
+    let originalEnabled: boolean | undefined;
+
+    suiteSetup(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      originalColorCustomizations = config.get('workbench.colorCustomizations');
+    });
+
+    suiteTeardown(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('sets patina.enabled to false', async () => {
+      // First enable to ensure we're testing the change
+      let patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      await vscode.commands.executeCommand('patina.disable');
+
+      // Get fresh config after command
+      patinaConfig = vscode.workspace.getConfiguration('patina');
+      const enabled = patinaConfig.get<boolean>('enabled');
+      assert.strictEqual(enabled, false, 'patina.enabled should be false');
+    });
+
+    test('clears workbench.colorCustomizations', async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+
+      // First enable to set colors
+      await vscode.commands.executeCommand('patina.enable');
+
+      // Small delay for config change listener to fire
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Then disable
+      await vscode.commands.executeCommand('patina.disable');
+
+      // Small delay for config change listener to fire
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get('workbench.colorCustomizations');
+
+      // Should be undefined or empty object after disable
+      assert.ok(
+        colors === undefined ||
+          (typeof colors === 'object' &&
+            Object.keys(colors as object).length === 0),
+        'colorCustomizations should be cleared'
+      );
+    });
+  });
+
+  suite('Configuration Change Listener', () => {
+    let originalSource: string | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalSource = patinaConfig.get<string>('workspaceIdentifier.source');
+
+      if (vscode.workspace.workspaceFolders?.length) {
+        const config = vscode.workspace.getConfiguration();
+        originalColorCustomizations = config.get('workbench.colorCustomizations');
+      }
+    });
+
+    suiteTeardown(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'workspaceIdentifier.source',
+        originalSource,
+        vscode.ConfigurationTarget.Global
+      );
+
+      if (vscode.workspace.workspaceFolders?.length) {
+        const config = vscode.workspace.getConfiguration();
+        await config.update(
+          'workbench.colorCustomizations',
+          originalColorCustomizations,
+          vscode.ConfigurationTarget.Workspace
+        );
+      }
+    });
+
+    test('re-applies tint when patina config changes', async function () {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Enable patina first
+      await vscode.commands.executeCommand('patina.enable');
+
+      // Get initial colors
+      let config = vscode.workspace.getConfiguration();
+      const initialColors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+
+      // Change the identifier source to pathAbsolute (different from default
+      // 'name')
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'workspaceIdentifier.source',
+        'pathAbsolute',
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Small delay for config change listener to fire
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Get colors after config change
+      config = vscode.workspace.getConfiguration();
+      const newColors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+
+      // Colors should be different because identifier changed
+      assert.ok(newColors, 'colorCustomizations should still be set');
+      assert.notDeepStrictEqual(
+        initialColors,
+        newColors,
+        'colors should change when identifier source changes'
+      );
+    });
+  });
 });

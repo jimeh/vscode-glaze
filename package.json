@@ -4,7 +4,7 @@
   "description": "Applies subtle color tints to your editor windows based on the open project, so you can easly tell your workspaces apart.",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.105.0"
+    "vscode": "^1.102.0"
   },
   "categories": [
     "Other"
@@ -27,6 +27,19 @@
     "configuration": {
       "title": "Patina",
       "properties": {
+        "patina.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable Patina color tinting globally.",
+          "order": 0
+        },
+        "patina.workspace.modify": {
+          "type": "boolean",
+          "default": null,
+          "description": "Tracks whether Patina has modified this workspace's colors. Set to false to opt-out of Patina for this specific workspace.",
+          "scope": "window",
+          "order": 1
+        },
         "patina.workspaceIdentifier.source": {
           "type": "string",
           "enum": [
@@ -48,6 +61,71 @@
           "type": "string",
           "default": "",
           "description": "Base path for 'pathRelativeToCustom' source. Supports ~ for home. Falls back to absolute path if workspace is outside this path."
+        },
+        "patina.tint.mode": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "light",
+            "dark"
+          ],
+          "enumDescriptions": [
+            "Automatically detect from VSCode's current theme",
+            "Always use light theme colors",
+            "Always use dark theme colors"
+          ],
+          "default": "auto",
+          "description": "Theme mode for color generation. Auto-detects from VSCode's current theme."
+        },
+        "patina.elements.titleBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Apply color tint to the window title bar."
+        },
+        "patina.elements.statusBar": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply color tint to the bottom status bar."
+        },
+        "patina.elements.activityBar": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply color tint to the left side activity bar."
+        },
+        "patina.theme.blendFactor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.35,
+          "description": "How much to blend tint colors toward the theme's background color. 0 = no blending (vivid colors), 1 = fully match theme (subtle colors). Only applies to known themes."
+        },
+        "patina.theme.backgroundColors": {
+          "type": "object",
+          "default": {},
+          "description": "Custom theme background colors for themes not in the built-in list or to override built-in values.",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "background",
+              "kind"
+            ],
+            "properties": {
+              "background": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Editor background color as 6-digit hex (e.g., #282C34)"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "dark",
+                  "light"
+                ],
+                "description": "Whether this is a dark or light theme"
+              }
+            },
+            "additionalProperties": false
+          }
         }
       }
     }
@@ -67,7 +145,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.105.0",
+    "@types/vscode": "^1.102.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "typescript-eslint": "^8.52.0",
