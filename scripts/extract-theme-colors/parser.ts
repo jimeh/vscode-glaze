@@ -144,6 +144,40 @@ function resolveInheritance(
 }
 
 /**
+ * Resolves tokenColors when it's a string path to a .tmTheme file.
+ * Returns the theme with colors merged from the referenced .tmTheme.
+ */
+function resolveTokenColorsPath(
+  theme: ThemeJson,
+  basePath: string,
+  readThemeFile: ThemeFileReader
+): ThemeJson {
+  if (typeof theme.tokenColors !== 'string') {
+    return theme;
+  }
+
+  const tokenColorsPath = theme.tokenColors;
+  const baseDir = basePath.substring(0, basePath.lastIndexOf('/'));
+  const resolvedPath = tokenColorsPath.startsWith('./')
+    ? `${baseDir}/${tokenColorsPath.slice(2)}`
+    : `${baseDir}/${tokenColorsPath}`;
+
+  const referencedTheme = readThemeFile(resolvedPath);
+  if (!referencedTheme) {
+    return theme;
+  }
+
+  // Merge: referenced theme provides base, current theme overrides
+  return {
+    ...theme,
+    colors: {
+      ...referencedTheme.colors,
+      ...theme.colors,
+    },
+  };
+}
+
+/**
  * Parses a single theme and extracts its colors.
  */
 export function parseTheme(
@@ -155,8 +189,15 @@ export function parseTheme(
   installCount: number
 ): ExtractedTheme | undefined {
   // Resolve inheritance
-  const resolvedTheme = resolveInheritance(
+  let resolvedTheme = resolveInheritance(
     themeJson,
+    contribution.path,
+    readThemeFile
+  );
+
+  // Resolve tokenColors path reference
+  resolvedTheme = resolveTokenColorsPath(
+    resolvedTheme,
     contribution.path,
     readThemeFile
   );

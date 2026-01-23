@@ -95,7 +95,7 @@ export interface ThemeJson {
   type?: string;
   include?: string;
   colors?: Record<string, string>;
-  tokenColors?: unknown[];
+  tokenColors?: unknown[] | string;
 }
 
 /**
