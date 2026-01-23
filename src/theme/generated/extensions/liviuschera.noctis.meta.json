@@ -4,7 +4,196 @@
   "publisherName": "liviuschera",
   "displayName": "Noctis",
   "version": "10.43.3",
-  "extractedAt": "2026-01-23T21:33:38.341Z",
+  "extractedAt": "2026-01-23T22:59:36.766Z",
   "installCount": 1328772,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Noctis Lux",
+      "label": "Noctis Lux",
+      "colors": {
+        "editor.background": "#FEF8EC",
+        "editor.foreground": "#005661",
+        "titleBar.activeBackground": "#F9F1E1",
+        "titleBar.activeForeground": "#005661",
+        "titleBar.inactiveBackground": "#F9F1E1",
+        "titleBar.inactiveForeground": "#888477",
+        "statusBar.background": "#F0E9D6",
+        "statusBar.foreground": "#0099AD",
+        "activityBar.background": "#FEF8EC",
+        "activityBar.foreground": "#0099AD"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Noctis Hibernus",
+      "label": "Noctis Hibernus",
+      "colors": {
+        "editor.background": "#F4F6F6",
+        "editor.foreground": "#005661",
+        "titleBar.activeBackground": "#E7F2F3",
+        "titleBar.activeForeground": "#005661",
+        "titleBar.inactiveBackground": "#E7F2F3",
+        "titleBar.inactiveForeground": "#71838E",
+        "statusBar.background": "#CAEDF2",
+        "statusBar.foreground": "#0099AD",
+        "activityBar.background": "#F4F6F6",
+        "activityBar.foreground": "#0099AD"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Noctis Lilac",
+      "label": "Noctis Lilac",
+      "colors": {
+        "editor.background": "#F2F1F8",
+        "editor.foreground": "#0C006B",
+        "titleBar.activeBackground": "#EDECF8",
+        "titleBar.activeForeground": "#0C006B",
+        "titleBar.inactiveBackground": "#EDECF8",
+        "titleBar.inactiveForeground": "#75718E",
+        "statusBar.background": "#E2DFF6",
+        "statusBar.foreground": "#7060EB",
+        "activityBar.background": "#F2F1F8",
+        "activityBar.foreground": "#7060EB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Noctis",
+      "label": "Noctis",
+      "colors": {
+        "editor.background": "#052529",
+        "editor.foreground": "#B2CACD",
+        "titleBar.activeBackground": "#041D20",
+        "titleBar.activeForeground": "#B2CACD",
+        "titleBar.inactiveBackground": "#041D20",
+        "titleBar.inactiveForeground": "#87A7AB",
+        "statusBar.background": "#041D20",
+        "statusBar.foreground": "#169FB1",
+        "activityBar.background": "#052529",
+        "activityBar.foreground": "#169FB1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Azureus",
+      "label": "Noctis Azureus",
+      "colors": {
+        "editor.background": "#07273B",
+        "editor.foreground": "#BECFDA",
+        "titleBar.activeBackground": "#07273B",
+        "titleBar.activeForeground": "#BECFDA",
+        "titleBar.inactiveBackground": "#07273B",
+        "titleBar.inactiveForeground": "#9FB6C6",
+        "statusBar.background": "#07273B",
+        "statusBar.foreground": "#1679B6",
+        "activityBar.background": "#07273B",
+        "activityBar.foreground": "#1679B6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Bordo",
+      "label": "Noctis Bordo",
+      "colors": {
+        "editor.background": "#322A2D",
+        "editor.foreground": "#CBBEC2",
+        "titleBar.activeBackground": "#322A2D",
+        "titleBar.activeForeground": "#CBBEC2",
+        "titleBar.inactiveBackground": "#322A2D",
+        "titleBar.inactiveForeground": "#BBAAB0",
+        "statusBar.background": "#322A2D",
+        "statusBar.foreground": "#997582",
+        "activityBar.background": "#322A2D",
+        "activityBar.foreground": "#997582"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Obscuro",
+      "label": "Noctis Obscuro",
+      "colors": {
+        "editor.background": "#031417",
+        "editor.foreground": "#B2CACD",
+        "titleBar.activeBackground": "#031417",
+        "titleBar.activeForeground": "#B2CACD",
+        "titleBar.inactiveBackground": "#031417",
+        "titleBar.inactiveForeground": "#87A7AB",
+        "statusBar.background": "#031417",
+        "statusBar.foreground": "#169FB1",
+        "activityBar.background": "#031417",
+        "activityBar.foreground": "#169FB1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Sereno",
+      "label": "Noctis Sereno",
+      "colors": {
+        "editor.background": "#062E32",
+        "editor.foreground": "#B2CACD",
+        "titleBar.activeBackground": "#052629",
+        "titleBar.activeForeground": "#B2CACD",
+        "titleBar.inactiveBackground": "#052629",
+        "titleBar.inactiveForeground": "#87A7AB",
+        "statusBar.background": "#052629",
+        "statusBar.foreground": "#169FB1",
+        "activityBar.background": "#062E32",
+        "activityBar.foreground": "#169FB1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Uva",
+      "label": "Noctis Uva",
+      "colors": {
+        "editor.background": "#292640",
+        "editor.foreground": "#C5C2D6",
+        "titleBar.activeBackground": "#292640",
+        "titleBar.activeForeground": "#C5C2D6",
+        "titleBar.inactiveBackground": "#292640",
+        "titleBar.inactiveForeground": "#A9A5C0",
+        "statusBar.background": "#292640",
+        "statusBar.foreground": "#6E67A8",
+        "activityBar.background": "#292640",
+        "activityBar.foreground": "#6E67A8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Viola",
+      "label": "Noctis Viola",
+      "colors": {
+        "editor.background": "#30243D",
+        "editor.foreground": "#CCBFD9",
+        "titleBar.activeBackground": "#30243D",
+        "titleBar.activeForeground": "#CCBFD9",
+        "titleBar.inactiveBackground": "#30243D",
+        "titleBar.inactiveForeground": "#B3A5C0",
+        "statusBar.background": "#30243D",
+        "statusBar.foreground": "#8767A8",
+        "activityBar.background": "#30243D",
+        "activityBar.foreground": "#8767A8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Noctis Minimus",
+      "label": "Noctis Minimus",
+      "colors": {
+        "editor.background": "#1B2932",
+        "editor.foreground": "#C5CDD3",
+        "titleBar.activeBackground": "#1B2932",
+        "titleBar.activeForeground": "#C5CDD3",
+        "titleBar.inactiveBackground": "#1B2932",
+        "titleBar.inactiveForeground": "#96A8B6",
+        "statusBar.background": "#1B2932",
+        "statusBar.foreground": "#496D83",
+        "activityBar.background": "#1B2932",
+        "activityBar.foreground": "#496D83"
+      },
+      "type": "dark"
+    }
+  ]
 }

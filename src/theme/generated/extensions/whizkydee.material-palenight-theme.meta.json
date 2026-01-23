@@ -4,7 +4,73 @@
   "publisherName": "whizkydee",
   "displayName": "Palenight Theme",
   "version": "2.0.4",
-  "extractedAt": "2026-01-23T21:33:37.050Z",
+  "extractedAt": "2026-01-23T22:59:35.478Z",
   "installCount": 2477329,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Palenight Theme",
+      "label": "Palenight Theme",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BFC7D5",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#30364C",
+        "statusBar.background": "#282C3D",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#282C3D",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Palenight Italic",
+      "label": "Palenight Italic",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BFC7D5",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#30364C",
+        "statusBar.background": "#282C3D",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#282C3D",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Palenight Operator",
+      "label": "Palenight Operator",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BFC7D5",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#30364C",
+        "statusBar.background": "#282C3D",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#282C3D",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Palenight (Mild Contrast)",
+      "label": "Palenight (Mild Contrast)",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BFC7D5",
+        "titleBar.activeBackground": "#25293A",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#30364C",
+        "statusBar.background": "#25293A",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#242839",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

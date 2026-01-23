@@ -4,7 +4,26 @@
   "publisherName": "bceskavich",
   "displayName": "Dracula At Night",
   "version": "2.7.1",
-  "extractedAt": "2026-01-23T21:33:40.891Z",
+  "extractedAt": "2026-01-23T22:59:39.322Z",
   "installCount": 557565,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dracula At Night",
+      "label": "Dracula At Night",
+      "colors": {
+        "editor.background": "#0E1419",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#253340",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#253340",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#0E1419",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#253340",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
 }

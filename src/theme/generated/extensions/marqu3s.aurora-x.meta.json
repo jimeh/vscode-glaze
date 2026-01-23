@@ -4,7 +4,24 @@
   "publisherName": "marqu3s",
   "displayName": "Aurora X",
   "version": "2.0.2",
-  "extractedAt": "2026-01-23T21:33:49.849Z",
+  "extractedAt": "2026-01-23T22:59:48.289Z",
   "installCount": 188621,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Aurora X",
+      "label": "Aurora X",
+      "colors": {
+        "editor.background": "#07090F",
+        "titleBar.activeBackground": "#07090F",
+        "titleBar.activeForeground": "#86A5FF",
+        "titleBar.inactiveBackground": "#07090F",
+        "statusBar.background": "#86A5FF",
+        "statusBar.foreground": "#07090F",
+        "activityBar.background": "#07090F",
+        "activityBar.foreground": "#86A5FF"
+      },
+      "type": "dark"
+    }
+  ]
 }

@@ -4,7 +4,27 @@
   "publisherName": "jprestidge",
   "displayName": "Sublime Material Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-01-23T22:09:48.699Z",
+  "extractedAt": "2026-01-23T22:59:37.500Z",
   "installCount": 1005274,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sublime Material Theme - Dark",
+      "label": "Sublime Material Theme - Dark",
+      "colors": {
+        "editor.background": "#252526",
+        "editor.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sublime Material Theme - Light",
+      "label": "Sublime Material Theme - Light",
+      "colors": {
+        "editor.background": "#F3F3F3",
+        "editor.foreground": "#80CBC4"
+      },
+      "type": "light"
+    }
+  ]
 }

@@ -4,7 +4,121 @@
   "publisherName": "HarryHopkinson",
   "displayName": "Vim Theme",
   "version": "1.1.8",
-  "extractedAt": "2026-01-23T21:33:51.197Z",
+  "extractedAt": "2026-01-23T22:59:49.651Z",
   "installCount": 175809,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Vim Dark Medium",
+      "label": "Vim Dark Medium",
+      "colors": {
+        "editor.background": "#282828",
+        "editor.foreground": "#EBDBB2",
+        "titleBar.activeBackground": "#282828",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#282828",
+        "statusBar.background": "#282828",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#282828",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vim Dark Hard",
+      "label": "Vim Dark Hard",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#EBDBB2",
+        "titleBar.activeBackground": "#1D2021",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#1D2021",
+        "statusBar.background": "#1D2021",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#1D2021",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vim Dark Soft",
+      "label": "Vim Dark Soft",
+      "colors": {
+        "editor.background": "#32302F",
+        "editor.foreground": "#EBDBB2",
+        "titleBar.activeBackground": "#32302F",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#32302F",
+        "statusBar.background": "#32302F",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#32302F",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vim Light Medium",
+      "label": "Vim Light Medium",
+      "colors": {
+        "editor.background": "#FBF1C7",
+        "editor.foreground": "#3C3836",
+        "titleBar.activeBackground": "#FBF1C7",
+        "titleBar.activeForeground": "#3C3836",
+        "titleBar.inactiveBackground": "#FBF1C7",
+        "statusBar.background": "#FBF1C7",
+        "statusBar.foreground": "#3C3836",
+        "activityBar.background": "#FBF1C7",
+        "activityBar.foreground": "#3C3836"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vim Light Hard",
+      "label": "Vim Light Hard",
+      "colors": {
+        "editor.background": "#F9F5D7",
+        "editor.foreground": "#3C3836",
+        "titleBar.activeBackground": "#F9F5D7",
+        "titleBar.activeForeground": "#3C3836",
+        "titleBar.inactiveBackground": "#F9F5D7",
+        "statusBar.background": "#F9F5D7",
+        "statusBar.foreground": "#3C3836",
+        "activityBar.background": "#F9F5D7",
+        "activityBar.foreground": "#3C3836"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vim Light Soft",
+      "label": "Vim Light Soft",
+      "colors": {
+        "editor.background": "#F2E5BC",
+        "editor.foreground": "#3C3836",
+        "titleBar.activeBackground": "#F2E5BC",
+        "titleBar.activeForeground": "#3C3836",
+        "titleBar.inactiveBackground": "#F2E5BC",
+        "statusBar.background": "#F2E5BC",
+        "statusBar.foreground": "#3C3836",
+        "activityBar.background": "#F2E5BC",
+        "activityBar.foreground": "#3C3836"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vim Deep Dark",
+      "label": "Vim Deep Dark",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#E181FF",
+        "titleBar.activeBackground": "#1D2021",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#1D2021",
+        "statusBar.background": "#1D2021",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#1D2021",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    }
+  ]
 }

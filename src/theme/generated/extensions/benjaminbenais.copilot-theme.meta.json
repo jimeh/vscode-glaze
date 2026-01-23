@@ -4,7 +4,41 @@
   "publisherName": "BenjaminBenais",
   "displayName": "Copilot Theme",
   "version": "1.1.0",
-  "extractedAt": "2026-01-23T21:33:41.098Z",
+  "extractedAt": "2026-01-23T22:59:39.528Z",
   "installCount": 555939,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Copilot Theme",
+      "label": "Copilot Theme",
+      "colors": {
+        "editor.background": "#232A2F",
+        "editor.foreground": "#939DA5",
+        "titleBar.activeBackground": "#1A2023",
+        "titleBar.activeForeground": "#939DA5",
+        "titleBar.inactiveBackground": "#232A2F",
+        "statusBar.background": "#1A2023",
+        "statusBar.foreground": "#939DA5",
+        "activityBar.background": "#1A2023",
+        "activityBar.foreground": "#89DDFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Copilot Theme - Higher Contrast",
+      "label": "Copilot Theme - Higher Contrast",
+      "colors": {
+        "editor.background": "#232A2F",
+        "editor.foreground": "#939DA5",
+        "titleBar.activeBackground": "#1A2023",
+        "titleBar.activeForeground": "#939DA5",
+        "titleBar.inactiveBackground": "#232A2F",
+        "statusBar.background": "#1A2023",
+        "statusBar.foreground": "#939DA5",
+        "activityBar.background": "#1A2023",
+        "activityBar.foreground": "#89DDFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

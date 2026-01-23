@@ -4,7 +4,194 @@
   "publisherName": "felipe-mendes",
   "displayName": "Slack Theme",
   "version": "1.9.17",
-  "extractedAt": "2026-01-23T21:33:41.738Z",
+  "extractedAt": "2026-01-23T22:59:40.175Z",
   "installCount": 509805,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Slack Theme Aubergine",
+      "label": "Slack Theme Aubergine",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#383A42",
+        "titleBar.activeBackground": "#42103E",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#21081F",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#1264A3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#21081F",
+        "activityBar.foreground": "#958793"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Slack Theme Aubergine",
+      "label": "Slack Theme Aubergine",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#4F384A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#261C25",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#3E9689",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#261C25",
+        "activityBar.foreground": "#958793"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Aubergine Dark",
+      "label": "Slack Theme Aubergine Dark",
+      "colors": {
+        "editor.background": "#3E313C",
+        "editor.foreground": "#F6F6F4",
+        "titleBar.activeBackground": "#4F384A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#261C25",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#3E9689",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#261C25",
+        "activityBar.foreground": "#958793"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Monument",
+      "label": "Slack Theme Monument",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#007E82",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#003F42",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#FF9F6C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#003F42",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Ochin",
+      "label": "Slack Theme Ochin",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#2D3E4C",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#161F26",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#5899C5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#161F26",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Slack Theme Work Hard",
+      "label": "Slack Theme Work Hard",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#4C5250",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#272928",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#DB9A51",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272928",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Choco Mint",
+      "label": "Slack Theme Choco Mint",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#564539",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#2B231D",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#4BB09E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2B231D",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Hoth",
+      "label": "Slack Theme Hoth",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#B5B5C8",
+        "titleBar.activeForeground": "#373F45",
+        "titleBar.inactiveBackground": "#DCDCE4",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#009FDC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#DCDCE4",
+        "activityBar.foreground": "#373F45"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Slack Theme Protanopia & Deuteranopia",
+      "label": "Slack Theme Protanopia & Deuteranopia",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#51304B",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#291825",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#905986",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#291825",
+        "activityBar.foreground": "#958793"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Tritanopia",
+      "label": "Slack Theme Tritanopia",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#51304B",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#291825",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#905986",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#291825",
+        "activityBar.foreground": "#958793"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slack Theme Dark Mode",
+      "label": "Slack Theme Dark Mode",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#E6E6E6",
+        "titleBar.activeBackground": "#222222",
+        "titleBar.activeForeground": "#E6E6E6",
+        "titleBar.inactiveBackground": "#222222",
+        "titleBar.inactiveForeground": "#7A7A7A",
+        "statusBar.background": "#222222",
+        "activityBar.background": "#222222"
+      },
+      "type": "dark"
+    }
+  ]
 }

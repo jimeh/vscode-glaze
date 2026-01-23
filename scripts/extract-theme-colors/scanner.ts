@@ -83,3 +83,36 @@ export function needsUpdate(
   }
   return existing.version !== marketplaceVersion;
 }
+
+/**
+ * Checks if metadata has themes data (for migration detection).
+ */
+export function hasThemesInMetadata(metadata: ExtensionMetadata): boolean {
+  return Array.isArray(metadata.themes) && metadata.themes.length > 0;
+}
+
+/**
+ * Cleans up old per-extension .ts files from the extensions directory.
+ * These are no longer needed after migration to consolidated colors.ts.
+ * @returns Array of deleted file paths
+ */
+export function cleanupExtensionTsFiles(): string[] {
+  const deleted: string[] = [];
+
+  if (!fs.existsSync(CONFIG.extensionsDir)) {
+    return deleted;
+  }
+
+  const files = fs.readdirSync(CONFIG.extensionsDir);
+  const tsFiles = files.filter(
+    (f) => f.endsWith('.ts') && !f.endsWith('.d.ts')
+  );
+
+  for (const tsFile of tsFiles) {
+    const tsPath = path.join(CONFIG.extensionsDir, tsFile);
+    fs.unlinkSync(tsPath);
+    deleted.push(tsPath);
+  }
+
+  return deleted;
+}

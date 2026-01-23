@@ -4,7 +4,26 @@
   "publisherName": "fabiospampinato",
   "displayName": "Monokai Night Theme",
   "version": "1.7.1",
-  "extractedAt": "2026-01-23T21:33:40.555Z",
+  "extractedAt": "2026-01-23T22:59:38.981Z",
   "installCount": 606663,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Monokai Night",
+      "label": "Monokai Night",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#161616",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#161616",
+        "titleBar.inactiveForeground": "#666666",
+        "statusBar.background": "#161616",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#0F0F0F",
+        "activityBar.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    }
+  ]
 }

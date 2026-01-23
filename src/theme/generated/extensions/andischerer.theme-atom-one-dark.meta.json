@@ -4,7 +4,18 @@
   "publisherName": "andischerer",
   "displayName": "Atom One Dark Syntax Theme",
   "version": "0.0.1",
-  "extractedAt": "2026-01-23T22:09:52.882Z",
+  "extractedAt": "2026-01-23T22:59:48.392Z",
   "installCount": 187238,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Atom One Dark",
+      "label": "Atom One Dark",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    }
+  ]
 }

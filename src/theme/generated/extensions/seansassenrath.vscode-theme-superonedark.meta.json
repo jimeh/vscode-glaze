@@ -4,7 +4,18 @@
   "publisherName": "seansassenrath",
   "displayName": "Super One Dark Theme",
   "version": "0.0.15",
-  "extractedAt": "2026-01-23T22:09:52.261Z",
+  "extractedAt": "2026-01-23T22:59:46.119Z",
   "installCount": 236056,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Super One Dark",
+      "label": "Super One Dark",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    }
+  ]
 }

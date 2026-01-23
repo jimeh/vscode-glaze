@@ -4,7 +4,97 @@
   "publisherName": "johnpapa",
   "displayName": "Winter is Coming Theme",
   "version": "1.4.4",
-  "extractedAt": "2026-01-23T21:33:36.633Z",
+  "extractedAt": "2026-01-23T22:59:35.061Z",
   "installCount": 3561597,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Winter is Coming (Dark Blue)",
+      "label": "Winter is Coming (Dark Blue)",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#A7DBF7",
+        "titleBar.activeBackground": "#112233",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000A11",
+        "statusBar.background": "#219FD5",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#99D0F7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Winter is Coming (Dark Blue - No Italics)",
+      "label": "Winter is Coming (Dark Blue - No Italics)",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#A7DBF7",
+        "titleBar.activeBackground": "#112233",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000A11",
+        "statusBar.background": "#219FD5",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#99D0F7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Winter is Coming (Light)",
+      "label": "Winter is Coming (Light)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#236EBF",
+        "titleBar.activeBackground": "#112233",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000A11",
+        "statusBar.background": "#2F86D2",
+        "activityBar.foreground": "#99D0F7"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Winter is Coming (Light - No Italics)",
+      "label": "Winter is Coming (Light - No Italics)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#236EBF",
+        "titleBar.activeBackground": "#112233",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000A11",
+        "statusBar.background": "#2F86D2",
+        "activityBar.foreground": "#99D0F7"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Winter is Coming (Dark Black)",
+      "label": "Winter is Coming (Dark Black)",
+      "colors": {
+        "editor.background": "#282822",
+        "editor.foreground": "#A7DBF7",
+        "titleBar.activeBackground": "#112233",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000A11",
+        "statusBar.background": "#219FD5",
+        "activityBar.background": "#282822",
+        "activityBar.foreground": "#99D0F7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Winter is Coming (Dark Black - No Italics)",
+      "label": "Winter is Coming (Dark Black - No Italics)",
+      "colors": {
+        "editor.background": "#282822",
+        "editor.foreground": "#A7DBF7",
+        "titleBar.activeBackground": "#112233",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000A11",
+        "statusBar.background": "#219FD5",
+        "activityBar.background": "#282822",
+        "activityBar.foreground": "#99D0F7"
+      },
+      "type": "dark"
+    }
+  ]
 }

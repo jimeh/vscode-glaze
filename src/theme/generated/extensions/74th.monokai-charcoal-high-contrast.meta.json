@@ -4,7 +4,145 @@
   "publisherName": "74th",
   "displayName": "Monokai Charcoal high contrast",
   "version": "3.5.0",
-  "extractedAt": "2026-01-23T21:33:51.091Z",
+  "extractedAt": "2026-01-23T22:59:49.545Z",
   "installCount": 176652,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "monokai-charcoal",
+      "label": "monokai-charcoal",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#43B9D8",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#43B9D8",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#43B9D8",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#43B9D8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (orange)",
+      "label": "monokai-charcoal (orange)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FD971F",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#FD971F",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FD971F",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FD971F"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (purple)",
+      "label": "monokai-charcoal (purple)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#AE81FF",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#AE81FF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#AE81FF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#AE81FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (red)",
+      "label": "monokai-charcoal (red)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#F82A5D",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#F82A5D",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#F82A5D",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#F82A5D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (yellow)",
+      "label": "monokai-charcoal (yellow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#E7DC60",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#E7DC60",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#E7DC60",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#E7DC60"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (green)",
+      "label": "monokai-charcoal (green)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#A6E22E",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#A6E22E",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#A6E22E",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#A6E22E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (gray)",
+      "label": "monokai-charcoal (gray)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#8F8F8F",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#8F8F8F",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#8F8F8F",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#8F8F8F"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "monokai-charcoal (white)",
+      "label": "monokai-charcoal (white)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#F1F1F1",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#F1F1F1",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#F1F1F1",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#F1F1F1"
+      },
+      "type": "dark"
+    }
+  ]
 }

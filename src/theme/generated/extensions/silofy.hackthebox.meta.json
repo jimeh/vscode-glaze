@@ -4,7 +4,43 @@
   "publisherName": "silofy",
   "displayName": "HackTheBox",
   "version": "0.2.9",
-  "extractedAt": "2026-01-23T21:33:48.095Z",
+  "extractedAt": "2026-01-23T22:59:46.534Z",
   "installCount": 219566,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hack The Box",
+      "label": "Hack The Box",
+      "colors": {
+        "editor.background": "#141D2B",
+        "editor.foreground": "#A4B1CD",
+        "titleBar.activeBackground": "#141D2B",
+        "titleBar.activeForeground": "#A4B1CD",
+        "titleBar.inactiveBackground": "#1A2332",
+        "titleBar.inactiveForeground": "#313F55",
+        "statusBar.background": "#1A2332",
+        "statusBar.foreground": "#A4B1CD",
+        "activityBar.background": "#141D2B",
+        "activityBar.foreground": "#A4B1CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hack The Box-Lite",
+      "label": "Hack The Box-Lite",
+      "colors": {
+        "editor.background": "#1A2332",
+        "editor.foreground": "#A4B1CD",
+        "titleBar.activeBackground": "#1A2332",
+        "titleBar.activeForeground": "#A4B1CD",
+        "titleBar.inactiveBackground": "#1A2332",
+        "titleBar.inactiveForeground": "#313F55",
+        "statusBar.background": "#1A2332",
+        "statusBar.foreground": "#A4B1CD",
+        "activityBar.background": "#1A2332",
+        "activityBar.foreground": "#A4B1CD"
+      },
+      "type": "dark"
+    }
+  ]
 }

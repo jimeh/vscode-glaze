@@ -4,7 +4,29 @@
   "publisherName": "dcasella",
   "displayName": "Monokai++",
   "version": "2.0.4",
-  "extractedAt": "2026-01-23T22:22:27.795Z",
+  "extractedAt": "2026-01-23T22:59:45.605Z",
   "installCount": 244916,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Monokai++",
+      "label": "Monokai++",
+      "colors": {
+        "editor.background": "#1C1C1C",
+        "editor.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monokai++ Unified",
+      "label": "Monokai++ Unified",
+      "colors": {
+        "editor.background": "#1C1C1C",
+        "editor.foreground": "#CCCCCC",
+        "statusBar.background": "#1C1C1C",
+        "activityBar.background": "#1C1C1C"
+      },
+      "type": "dark"
+    }
+  ]
 }

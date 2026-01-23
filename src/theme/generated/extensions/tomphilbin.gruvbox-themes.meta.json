@@ -4,7 +4,63 @@
   "publisherName": "tomphilbin",
   "displayName": "Gruvbox Themes",
   "version": "1.0.0",
-  "extractedAt": "2026-01-23T22:09:51.435Z",
+  "extractedAt": "2026-01-23T22:59:44.775Z",
   "installCount": 282860,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Gruvbox Dark (Hard)",
+      "label": "Gruvbox Dark (Hard)",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gruvbox Dark (Medium)",
+      "label": "Gruvbox Dark (Medium)",
+      "colors": {
+        "editor.background": "#282828",
+        "editor.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gruvbox Dark (Soft)",
+      "label": "Gruvbox Dark (Soft)",
+      "colors": {
+        "editor.background": "#32302F",
+        "editor.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gruvbox Light (Hard)",
+      "label": "Gruvbox Light (Hard)",
+      "colors": {
+        "editor.background": "#F9F5D7",
+        "editor.foreground": "#3C3836"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Gruvbox Light (Medium)",
+      "label": "Gruvbox Light (Medium)",
+      "colors": {
+        "editor.background": "#FBF1C7",
+        "editor.foreground": "#3C3836"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Gruvbox Light (Soft)",
+      "label": "Gruvbox Light (Soft)",
+      "colors": {
+        "editor.background": "#F2E5BC",
+        "editor.foreground": "#3C3836"
+      },
+      "type": "light"
+    }
+  ]
 }

@@ -4,7 +4,41 @@
   "publisherName": "lintangwisesa",
   "displayName": "Arduino",
   "version": "0.3.4",
-  "extractedAt": "2026-01-23T21:33:51.710Z",
+  "extractedAt": "2026-01-23T22:59:50.168Z",
   "installCount": 168757,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Arduino Light",
+      "label": "Arduino Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#3B3A32",
+        "titleBar.activeBackground": "#266F6F",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#50B5B5",
+        "statusBar.background": "#266F6F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#339999",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Arduino Dark",
+      "label": "Arduino Dark",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#266F6F",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#50B5B5",
+        "statusBar.background": "#266F6F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#339999",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

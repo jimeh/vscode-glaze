@@ -4,7 +4,162 @@
   "publisherName": "GitHub",
   "displayName": "GitHub Theme",
   "version": "6.3.5",
-  "extractedAt": "2026-01-23T21:33:35.465Z",
+  "extractedAt": "2026-01-23T22:59:33.885Z",
   "installCount": 18040396,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "GitHub Light Default",
+      "label": "GitHub Light Default",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1F2328",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#656D76",
+        "titleBar.inactiveBackground": "#F6F8FA",
+        "titleBar.inactiveForeground": "#656D76",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#656D76",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#1F2328"
+      },
+      "type": "light"
+    },
+    {
+      "name": "GitHub Light High Contrast",
+      "label": "GitHub Light High Contrast",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#0E1116",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#0E1116",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "titleBar.inactiveForeground": "#0E1116",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#0E1116",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#0E1116"
+      },
+      "type": "light"
+    },
+    {
+      "name": "GitHub Light Colorblind (Beta)",
+      "label": "GitHub Light Colorblind (Beta)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#24292F",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#57606A",
+        "titleBar.inactiveBackground": "#F6F8FA",
+        "titleBar.inactiveForeground": "#57606A",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#57606A",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#24292F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "GitHub Dark Default",
+      "label": "GitHub Dark Default",
+      "colors": {
+        "editor.background": "#0D1117",
+        "editor.foreground": "#E6EDF3",
+        "titleBar.activeBackground": "#0D1117",
+        "titleBar.activeForeground": "#7D8590",
+        "titleBar.inactiveBackground": "#010409",
+        "titleBar.inactiveForeground": "#7D8590",
+        "statusBar.background": "#0D1117",
+        "statusBar.foreground": "#7D8590",
+        "activityBar.background": "#0D1117",
+        "activityBar.foreground": "#E6EDF3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "GitHub Dark High Contrast",
+      "label": "GitHub Dark High Contrast",
+      "colors": {
+        "editor.background": "#0A0C10",
+        "editor.foreground": "#F0F3F6",
+        "titleBar.activeBackground": "#0A0C10",
+        "titleBar.activeForeground": "#F0F3F6",
+        "titleBar.inactiveBackground": "#010409",
+        "titleBar.inactiveForeground": "#F0F3F6",
+        "statusBar.background": "#0A0C10",
+        "statusBar.foreground": "#F0F3F6",
+        "activityBar.background": "#0A0C10",
+        "activityBar.foreground": "#F0F3F6"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "GitHub Dark Colorblind (Beta)",
+      "label": "GitHub Dark Colorblind (Beta)",
+      "colors": {
+        "editor.background": "#0D1117",
+        "editor.foreground": "#C9D1D9",
+        "titleBar.activeBackground": "#0D1117",
+        "titleBar.activeForeground": "#8B949E",
+        "titleBar.inactiveBackground": "#010409",
+        "titleBar.inactiveForeground": "#8B949E",
+        "statusBar.background": "#0D1117",
+        "statusBar.foreground": "#8B949E",
+        "activityBar.background": "#0D1117",
+        "activityBar.foreground": "#C9D1D9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "GitHub Dark Dimmed",
+      "label": "GitHub Dark Dimmed",
+      "colors": {
+        "editor.background": "#22272E",
+        "editor.foreground": "#ADBAC7",
+        "titleBar.activeBackground": "#22272E",
+        "titleBar.activeForeground": "#768390",
+        "titleBar.inactiveBackground": "#1C2128",
+        "titleBar.inactiveForeground": "#768390",
+        "statusBar.background": "#22272E",
+        "statusBar.foreground": "#768390",
+        "activityBar.background": "#22272E",
+        "activityBar.foreground": "#ADBAC7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "GitHub Light",
+      "label": "GitHub Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#24292E",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#2F363D",
+        "titleBar.inactiveBackground": "#F6F8FA",
+        "titleBar.inactiveForeground": "#6A737D",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#586069",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#2F363D"
+      },
+      "type": "light"
+    },
+    {
+      "name": "GitHub Dark",
+      "label": "GitHub Dark",
+      "colors": {
+        "editor.background": "#24292E",
+        "editor.foreground": "#E1E4E8",
+        "titleBar.activeBackground": "#24292E",
+        "titleBar.activeForeground": "#E1E4E8",
+        "titleBar.inactiveBackground": "#1F2428",
+        "titleBar.inactiveForeground": "#959DA5",
+        "statusBar.background": "#24292E",
+        "statusBar.foreground": "#D1D5DA",
+        "activityBar.background": "#24292E",
+        "activityBar.foreground": "#E1E4E8"
+      },
+      "type": "dark"
+    }
+  ]
 }

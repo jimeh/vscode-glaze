@@ -4,7 +4,25 @@
   "publisherName": "PawelBorkar",
   "displayName": "JellyFish Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-01-23T21:33:39.591Z",
+  "extractedAt": "2026-01-23T22:59:38.021Z",
   "installCount": 833288,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "JellyFish",
+      "label": "JellyFish",
+      "colors": {
+        "editor.background": "#00002C",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#0F0021",
+        "titleBar.activeForeground": "#999999",
+        "titleBar.inactiveForeground": "#FFD900",
+        "statusBar.background": "#0A002B",
+        "statusBar.foreground": "#A1A1A1",
+        "activityBar.background": "#000124",
+        "activityBar.foreground": "#00FFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

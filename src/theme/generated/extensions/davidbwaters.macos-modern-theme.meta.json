@@ -4,7 +4,188 @@
   "publisherName": "davidbwaters",
   "displayName": "MacOS Modern Theme",
   "version": "2.3.19",
-  "extractedAt": "2026-01-23T21:33:43.318Z",
+  "extractedAt": "2026-01-23T22:59:41.747Z",
   "installCount": 407475,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "MacOS Modern Dark - Ventura Xcode Civic",
+      "label": "MacOS Modern Dark - Ventura Xcode Civic",
+      "colors": {
+        "editor.background": "#232222",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#403E3E",
+        "titleBar.activeForeground": "#DEDEDE",
+        "titleBar.inactiveBackground": "#403E3E",
+        "titleBar.inactiveForeground": "#ACACAB",
+        "statusBar.background": "#403E3E",
+        "statusBar.foreground": "#B4B3B3",
+        "activityBar.background": "#353333",
+        "activityBar.foreground": "#128CFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "MacOS Modern Dark - Ventura Xcode",
+      "label": "MacOS Modern Dark - Ventura Xcode",
+      "colors": {
+        "editor.background": "#232222",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#403E3E",
+        "titleBar.activeForeground": "#DEDEDE",
+        "titleBar.inactiveBackground": "#403E3E",
+        "titleBar.inactiveForeground": "#ACACAB",
+        "statusBar.background": "#403E3E",
+        "statusBar.foreground": "#B4B3B3",
+        "activityBar.background": "#353333",
+        "activityBar.foreground": "#128CFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "MacOS Modern Dark - Ventura Xcode Default",
+      "label": "MacOS Modern Dark - Ventura Xcode Default",
+      "colors": {
+        "editor.background": "#232222",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#403E3E",
+        "titleBar.activeForeground": "#DEDEDE",
+        "titleBar.inactiveBackground": "#403E3E",
+        "titleBar.inactiveForeground": "#ACACAB",
+        "statusBar.background": "#403E3E",
+        "statusBar.foreground": "#B4B3B3",
+        "activityBar.background": "#353333",
+        "activityBar.foreground": "#128CFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "MacOS Modern Dark - Xcode Civic",
+      "label": "MacOS Modern Dark - Xcode Civic",
+      "colors": {
+        "editor.background": "#242529",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#414045",
+        "titleBar.activeForeground": "#B8B7BC",
+        "titleBar.inactiveBackground": "#414045",
+        "titleBar.inactiveForeground": "#B8B7BC",
+        "statusBar.background": "#414045",
+        "statusBar.foreground": "#A0A0A0",
+        "activityBar.background": "#303136",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "MacOS Modern Dark - Xcode Modern",
+      "label": "MacOS Modern Dark - Xcode Modern",
+      "colors": {
+        "editor.background": "#242529",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#414045",
+        "titleBar.activeForeground": "#B8B7BC",
+        "titleBar.inactiveBackground": "#414045",
+        "titleBar.inactiveForeground": "#B8B7BC",
+        "statusBar.background": "#414045",
+        "statusBar.foreground": "#A0A0A0",
+        "activityBar.background": "#303136",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "MacOS Modern Dark - Xcode Default",
+      "label": "MacOS Modern Dark - Xcode Default",
+      "colors": {
+        "editor.background": "#242529",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#414045",
+        "titleBar.activeForeground": "#B8B7BC",
+        "titleBar.inactiveBackground": "#414045",
+        "titleBar.inactiveForeground": "#B8B7BC",
+        "statusBar.background": "#414045",
+        "statusBar.foreground": "#A0A0A0",
+        "activityBar.background": "#303136",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "MacOS Modern Light - Ventura Xcode",
+      "label": "MacOS Modern Light - Ventura Xcode",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#656F81",
+        "titleBar.activeBackground": "#E7E7E6",
+        "titleBar.activeForeground": "#232323",
+        "titleBar.inactiveBackground": "#F7F7F6",
+        "titleBar.inactiveForeground": "#ACACAB",
+        "statusBar.background": "#F6F6F5",
+        "statusBar.foreground": "#666666",
+        "activityBar.background": "#E6E6E5",
+        "activityBar.foreground": "#128CFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "MacOS Modern Light - Ventura Xcode Default",
+      "label": "MacOS Modern Light - Ventura Xcode Default",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#E7E7E6",
+        "titleBar.activeForeground": "#232323",
+        "titleBar.inactiveBackground": "#F7F7F6",
+        "titleBar.inactiveForeground": "#ACACAB",
+        "statusBar.background": "#F6F6F5",
+        "statusBar.foreground": "#666666",
+        "activityBar.background": "#E6E6E5",
+        "activityBar.foreground": "#128CFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "MacOS Modern Light - Ventura Xcode Low Key",
+      "label": "MacOS Modern Light - Ventura Xcode Low Key",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#E7E7E6",
+        "titleBar.activeForeground": "#232323",
+        "titleBar.inactiveBackground": "#F7F7F6",
+        "titleBar.inactiveForeground": "#ACACAB",
+        "statusBar.background": "#F6F6F5",
+        "statusBar.foreground": "#666666",
+        "activityBar.background": "#E6E6E5",
+        "activityBar.foreground": "#128CFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "MacOS Modern Light - Xcode Default",
+      "label": "MacOS Modern Light - Xcode Default",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "statusBar.background": "#EDEDED",
+        "statusBar.foreground": "#666666",
+        "activityBar.background": "#E7E7E7",
+        "activityBar.foreground": "#555555"
+      },
+      "type": "light"
+    },
+    {
+      "name": "MacOS Modern Light - Xcode Low Key",
+      "label": "MacOS Modern Light - Xcode Low Key",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "statusBar.background": "#EDEDED",
+        "statusBar.foreground": "#666666",
+        "activityBar.background": "#E7E7E7",
+        "activityBar.foreground": "#555555"
+      },
+      "type": "light"
+    }
+  ]
 }

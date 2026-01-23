@@ -4,7 +4,25 @@
   "publisherName": "azemoh",
   "displayName": "One Monokai Theme",
   "version": "0.5.2",
-  "extractedAt": "2026-01-23T21:33:36.841Z",
+  "extractedAt": "2026-01-23T22:59:35.269Z",
   "installCount": 2803777,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "One Monokai",
+      "label": "One Monokai",
+      "colors": {
+        "editor.background": "#282C34",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#2F333D",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    }
+  ]
 }

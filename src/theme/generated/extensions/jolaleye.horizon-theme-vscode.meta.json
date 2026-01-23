@@ -4,7 +4,93 @@
   "publisherName": "jolaleye",
   "displayName": "Horizon Theme",
   "version": "2.0.2",
-  "extractedAt": "2026-01-23T21:33:42.593Z",
+  "extractedAt": "2026-01-23T22:59:41.025Z",
   "installCount": 447868,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Horizon",
+      "label": "Horizon",
+      "colors": {
+        "editor.background": "#1C1E26",
+        "titleBar.activeBackground": "#1C1E26",
+        "titleBar.inactiveBackground": "#1C1E26",
+        "statusBar.background": "#1C1E26",
+        "statusBar.foreground": "#D5D8DA",
+        "activityBar.background": "#1C1E26",
+        "activityBar.foreground": "#D5D8DA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Horizon Italic",
+      "label": "Horizon Italic",
+      "colors": {
+        "editor.background": "#1C1E26",
+        "titleBar.activeBackground": "#1C1E26",
+        "titleBar.inactiveBackground": "#1C1E26",
+        "statusBar.background": "#1C1E26",
+        "statusBar.foreground": "#D5D8DA",
+        "activityBar.background": "#1C1E26",
+        "activityBar.foreground": "#D5D8DA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Horizon Bold",
+      "label": "Horizon Bold",
+      "colors": {
+        "editor.background": "#1C1E26",
+        "titleBar.activeBackground": "#1C1E26",
+        "titleBar.inactiveBackground": "#1C1E26",
+        "statusBar.background": "#1C1E26",
+        "statusBar.foreground": "#D5D8DA",
+        "activityBar.background": "#1C1E26",
+        "activityBar.foreground": "#D5D8DA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Horizon Bright",
+      "label": "Horizon Bright",
+      "colors": {
+        "editor.background": "#FDF0ED",
+        "titleBar.activeBackground": "#FDF0ED",
+        "titleBar.inactiveBackground": "#FDF0ED",
+        "statusBar.background": "#FDF0ED",
+        "statusBar.foreground": "#06060C",
+        "activityBar.background": "#FDF0ED",
+        "activityBar.foreground": "#06060C"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Horizon Bright Italic",
+      "label": "Horizon Bright Italic",
+      "colors": {
+        "editor.background": "#FDF0ED",
+        "titleBar.activeBackground": "#FDF0ED",
+        "titleBar.inactiveBackground": "#FDF0ED",
+        "statusBar.background": "#FDF0ED",
+        "statusBar.foreground": "#06060C",
+        "activityBar.background": "#FDF0ED",
+        "activityBar.foreground": "#06060C"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Horizon Bright Bold",
+      "label": "Horizon Bright Bold",
+      "colors": {
+        "editor.background": "#FDF0ED",
+        "titleBar.activeBackground": "#FDF0ED",
+        "titleBar.inactiveBackground": "#FDF0ED",
+        "statusBar.background": "#FDF0ED",
+        "statusBar.foreground": "#06060C",
+        "activityBar.background": "#FDF0ED",
+        "activityBar.foreground": "#06060C"
+      },
+      "type": "light"
+    }
+  ]
 }

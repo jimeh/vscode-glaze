@@ -4,7 +4,4667 @@
   "publisherName": "daylerees",
   "displayName": "Rainglow",
   "version": "1.5.2",
-  "extractedAt": "2026-01-23T21:33:41.494Z",
+  "extractedAt": "2026-01-23T22:59:39.932Z",
   "installCount": 522002,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Absent Contrast (rainglow)",
+      "label": "Absent Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0E1114",
+        "editor.foreground": "#AEB9C4",
+        "titleBar.activeBackground": "#060708",
+        "statusBar.background": "#228A96",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#12161A",
+        "activityBar.foreground": "#AEB9C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Absent (rainglow)",
+      "label": "Absent (rainglow)",
+      "colors": {
+        "editor.background": "#252C33",
+        "editor.foreground": "#AEB9C4",
+        "titleBar.activeBackground": "#1C2227",
+        "statusBar.background": "#228A96",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#293139",
+        "activityBar.foreground": "#AEB9C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Absent Light (rainglow)",
+      "label": "Absent Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#465360",
+        "titleBar.activeBackground": "#CCD2D9",
+        "titleBar.activeForeground": "#465360",
+        "statusBar.background": "#228A96",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#465360",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Allure Contrast (rainglow)",
+      "label": "Allure Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#17191C",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0E0F11",
+        "statusBar.background": "#5DA892",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C1E22",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Allure (rainglow)",
+      "label": "Allure (rainglow)",
+      "colors": {
+        "editor.background": "#32373D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#292D32",
+        "statusBar.background": "#5DA892",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373C43",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Allure Light (rainglow)",
+      "label": "Allure Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555E68",
+        "titleBar.activeBackground": "#DBDEE1",
+        "titleBar.activeForeground": "#555E68",
+        "statusBar.background": "#5DA892",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555E68",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Arstotzka Contrast (rainglow)",
+      "label": "Arstotzka Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0F0E0D",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#040404",
+        "statusBar.background": "#A2A797",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#141312",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Arstotzka (rainglow)",
+      "label": "Arstotzka (rainglow)",
+      "colors": {
+        "editor.background": "#332E2E",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#282424",
+        "statusBar.background": "#A2A797",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#383333",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Arstotzka Light (rainglow)",
+      "label": "Arstotzka Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#A2A797",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Azure Contrast (rainglow)",
+      "label": "Azure Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#040507",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#6AB0A3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#080A0D",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azure (rainglow)",
+      "label": "Azure (rainglow)",
+      "colors": {
+        "editor.background": "#181D26",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#101319",
+        "statusBar.background": "#6AB0A3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C222C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azure Light (rainglow)",
+      "label": "Azure Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#6AB0A3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Banner Contrast (rainglow)",
+      "label": "Banner Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0A0F",
+        "editor.foreground": "#C5BEDD",
+        "titleBar.activeBackground": "#020203",
+        "statusBar.background": "#7CD827",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0F0E15",
+        "activityBar.foreground": "#C5BEDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Banner (rainglow)",
+      "label": "Banner (rainglow)",
+      "colors": {
+        "editor.background": "#1D1A26",
+        "editor.foreground": "#C5BEDD",
+        "titleBar.activeBackground": "#14121A",
+        "statusBar.background": "#7CD827",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#221E2C",
+        "activityBar.foreground": "#C5BEDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Banner Light (rainglow)",
+      "label": "Banner Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#373247",
+        "titleBar.activeBackground": "#B6B0C8",
+        "titleBar.activeForeground": "#373247",
+        "statusBar.background": "#7CD827",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373247",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Blink Contrast (rainglow)",
+      "label": "Blink Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#131719",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0A0C0D",
+        "statusBar.background": "#5298C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171C1F",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Blink (rainglow)",
+      "label": "Blink (rainglow)",
+      "colors": {
+        "editor.background": "#283035",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#1F2529",
+        "statusBar.background": "#5298C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C353B",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Blink Light (rainglow)",
+      "label": "Blink Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#6A7E89",
+        "titleBar.activeBackground": "#F8F9FA",
+        "titleBar.activeForeground": "#6A7E89",
+        "statusBar.background": "#5298C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#6A7E89",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Bold Contrast (rainglow)",
+      "label": "Bold Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0F0D0D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#040404",
+        "statusBar.background": "#3D8E91",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#141212",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Bold (rainglow)",
+      "label": "Bold (rainglow)",
+      "colors": {
+        "editor.background": "#2A2626",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1F1C1C",
+        "statusBar.background": "#3D8E91",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2F2B2B",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Bold Light (rainglow)",
+      "label": "Bold Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#3D8E91",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Box UK Contrast (rainglow)",
+      "label": "Box UK Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#111519",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#090B0D",
+        "statusBar.background": "#017C9D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#151A1F",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Box UK (rainglow)",
+      "label": "Box UK (rainglow)",
+      "colors": {
+        "editor.background": "#2A353F",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#222B33",
+        "statusBar.background": "#017C9D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2E3A45",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Box UK Light (rainglow)",
+      "label": "Box UK Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#414F5C",
+        "titleBar.activeBackground": "#C6CED6",
+        "titleBar.activeForeground": "#414F5C",
+        "statusBar.background": "#017C9D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#414F5C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Brave Contrast (rainglow)",
+      "label": "Brave Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#101216",
+        "editor.foreground": "#D6DBDB",
+        "titleBar.activeBackground": "#07080A",
+        "statusBar.background": "#BC4331",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#14171C",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Brave (rainglow)",
+      "label": "Brave (rainglow)",
+      "colors": {
+        "editor.background": "#333846",
+        "editor.foreground": "#D6DBDB",
+        "titleBar.activeBackground": "#2A2F3A",
+        "statusBar.background": "#BC4331",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373D4C",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Brave Light (rainglow)",
+      "label": "Brave Light (rainglow)",
+      "colors": {
+        "editor.background": "#F7F9F9",
+        "editor.foreground": "#2C2D2D",
+        "titleBar.activeBackground": "#ABADAD",
+        "titleBar.activeForeground": "#2C2D2D",
+        "statusBar.background": "#BC4331",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C2D2D",
+        "activityBar.foreground": "#F7F9F9"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Carbonight Contrast (rainglow)",
+      "label": "Carbonight Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#C4C4C4",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Carbonight (rainglow)",
+      "label": "Carbonight (rainglow)",
+      "colors": {
+        "editor.background": "#2E2C2B",
+        "editor.foreground": "#B0B0B0",
+        "titleBar.activeBackground": "#232221",
+        "statusBar.background": "#C4C4C4",
+        "statusBar.foreground": "#2E2C2B",
+        "activityBar.background": "#333130",
+        "activityBar.foreground": "#B0B0B0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Carbonight Light (rainglow)",
+      "label": "Carbonight Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2E2C2B",
+        "titleBar.activeBackground": "#AFABA9",
+        "titleBar.activeForeground": "#2E2C2B",
+        "statusBar.background": "#C4C4C4",
+        "statusBar.foreground": "#2E2C2B",
+        "activityBar.background": "#2E2C2B",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Chocolate Contrast (rainglow)",
+      "label": "Chocolate Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#150F08",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#060402",
+        "statusBar.background": "#8B6E46",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C140B",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Chocolate (rainglow)",
+      "label": "Chocolate (rainglow)",
+      "colors": {
+        "editor.background": "#261B0E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#171008",
+        "statusBar.background": "#8B6E46",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2D2011",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Chocolate Light (rainglow)",
+      "label": "Chocolate Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#150F08",
+        "titleBar.activeBackground": "#C1925B",
+        "titleBar.activeForeground": "#150F08",
+        "statusBar.background": "#5B472C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#150F08",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Codecourse Contrast (rainglow)",
+      "label": "Codecourse Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#05080A",
+        "editor.foreground": "#B6CED8",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#1EA8FC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#080D11",
+        "activityBar.foreground": "#B6CED8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Codecourse (rainglow)",
+      "label": "Codecourse (rainglow)",
+      "colors": {
+        "editor.background": "#19272D",
+        "editor.foreground": "#B6CED8",
+        "titleBar.activeBackground": "#121C20",
+        "statusBar.background": "#1EA8FC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1D2D34",
+        "activityBar.foreground": "#B6CED8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Codecourse Light (rainglow)",
+      "label": "Codecourse Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#547F91",
+        "titleBar.activeBackground": "#EFF3F5",
+        "titleBar.activeForeground": "#547F91",
+        "statusBar.background": "#1EA8FC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#547F91",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Coffee Contrast (rainglow)",
+      "label": "Coffee Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0F0C0C",
+        "editor.foreground": "#C4BABB",
+        "titleBar.activeBackground": "#040303",
+        "statusBar.background": "#0A9F9B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#151111",
+        "activityBar.foreground": "#C4BABB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Coffee (rainglow)",
+      "label": "Coffee (rainglow)",
+      "colors": {
+        "editor.background": "#282122",
+        "editor.foreground": "#C4BABB",
+        "titleBar.activeBackground": "#1D1818",
+        "statusBar.background": "#0A9F9B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2E2627",
+        "activityBar.foreground": "#C4BABB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Coffee Light (rainglow)",
+      "label": "Coffee Light (rainglow)",
+      "colors": {
+        "editor.background": "#F4F2F2",
+        "editor.foreground": "#282122",
+        "titleBar.activeBackground": "#AD9B9E",
+        "titleBar.activeForeground": "#282122",
+        "statusBar.background": "#0A9F9B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282122",
+        "activityBar.foreground": "#F4F2F2"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Comrade Contrast (rainglow)",
+      "label": "Comrade Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#121414",
+        "editor.foreground": "#D6DBDB",
+        "titleBar.activeBackground": "#080909",
+        "statusBar.background": "#C24E4B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171919",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Comrade (rainglow)",
+      "label": "Comrade (rainglow)",
+      "colors": {
+        "editor.background": "#343939",
+        "editor.foreground": "#D6DBDB",
+        "titleBar.activeBackground": "#2A2E2E",
+        "statusBar.background": "#C24E4B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#393E3E",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Comrade Light (rainglow)",
+      "label": "Comrade Light (rainglow)",
+      "colors": {
+        "editor.background": "#D6DBDB",
+        "editor.foreground": "#343939",
+        "titleBar.activeBackground": "#B3B9B9",
+        "titleBar.activeForeground": "#343939",
+        "statusBar.background": "#C24E4B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#343939",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Crackpot Contrast (rainglow)",
+      "label": "Crackpot Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#181726",
+        "editor.foreground": "#D2C9EF",
+        "titleBar.activeBackground": "#100F19",
+        "statusBar.background": "#E4B363",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C1B2C",
+        "activityBar.foreground": "#D2C9EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Crackpot (rainglow)",
+      "label": "Crackpot (rainglow)",
+      "colors": {
+        "editor.background": "#3A385B",
+        "editor.foreground": "#D2C9EF",
+        "titleBar.activeBackground": "#32304E",
+        "statusBar.background": "#E4B363",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3E3C61",
+        "activityBar.foreground": "#D2C9EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Crackpot Light (rainglow)",
+      "label": "Crackpot Light (rainglow)",
+      "colors": {
+        "editor.background": "#E6E3EF",
+        "editor.foreground": "#3A385B",
+        "titleBar.activeBackground": "#BEBCD6",
+        "titleBar.activeForeground": "#3A385B",
+        "statusBar.background": "#E4B363",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3A385B",
+        "activityBar.foreground": "#E6E3EF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Crisp Contrast (rainglow)",
+      "label": "Crisp Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C090C",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#CBA0CD",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#120D12",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Crisp (rainglow)",
+      "label": "Crisp (rainglow)",
+      "colors": {
+        "editor.background": "#221A22",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#161116",
+        "statusBar.background": "#CBA0CD",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#281E28",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Crisp Light (rainglow)",
+      "label": "Crisp Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#221A22",
+        "titleBar.activeBackground": "#AA90AA",
+        "titleBar.activeForeground": "#221A22",
+        "statusBar.background": "#99769B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#221A22",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Dare Contrast (rainglow)",
+      "label": "Dare Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#17191C",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0E0F11",
+        "statusBar.background": "#3A8881",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C1E22",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dare (rainglow)",
+      "label": "Dare (rainglow)",
+      "colors": {
+        "editor.background": "#32373D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#292D32",
+        "statusBar.background": "#3A8881",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373C43",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dare Light (rainglow)",
+      "label": "Dare Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#6E7A87",
+        "titleBar.activeBackground": "#F9FAFA",
+        "titleBar.activeForeground": "#6E7A87",
+        "statusBar.background": "#3A8881",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#6E7A87",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Darkside Contrast (rainglow)",
+      "label": "Darkside Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#BABABA",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#1CC3E8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#BABABA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Darkside (rainglow)",
+      "label": "Darkside (rainglow)",
+      "colors": {
+        "editor.background": "#222324",
+        "editor.foreground": "#BABABA",
+        "titleBar.activeBackground": "#181919",
+        "statusBar.background": "#1CC3E8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272829",
+        "activityBar.foreground": "#BABABA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Darkside Light (rainglow)",
+      "label": "Darkside Light (rainglow)",
+      "colors": {
+        "editor.background": "#E0E0E0",
+        "editor.foreground": "#222324",
+        "titleBar.activeBackground": "#A0A2A5",
+        "titleBar.activeForeground": "#222324",
+        "statusBar.background": "#15A2C1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222324",
+        "activityBar.foreground": "#E0E0E0"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Downpour Contrast (rainglow)",
+      "label": "Downpour Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#121419",
+        "editor.foreground": "#D6DBDB",
+        "titleBar.activeBackground": "#090B0D",
+        "statusBar.background": "#BC4331",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#16191F",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Downpour (rainglow)",
+      "label": "Downpour (rainglow)",
+      "colors": {
+        "editor.background": "#2C323D",
+        "editor.foreground": "#D6DBDB",
+        "titleBar.activeBackground": "#232831",
+        "statusBar.background": "#BC4331",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#303743",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Downpour Light (rainglow)",
+      "label": "Downpour Light (rainglow)",
+      "colors": {
+        "editor.background": "#D6DBDB",
+        "editor.foreground": "#2C323D",
+        "titleBar.activeBackground": "#A8B0C0",
+        "titleBar.activeForeground": "#2C323D",
+        "statusBar.background": "#BC4331",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C323D",
+        "activityBar.foreground": "#D6DBDB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Earthsong Contrast (rainglow)",
+      "label": "Earthsong Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#12100F",
+        "editor.foreground": "#EBD1B7",
+        "titleBar.activeBackground": "#070606",
+        "statusBar.background": "#95CC5E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#181514",
+        "activityBar.foreground": "#EBD1B7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Earthsong (rainglow)",
+      "label": "Earthsong (rainglow)",
+      "colors": {
+        "editor.background": "#36312C",
+        "editor.foreground": "#EBD1B7",
+        "titleBar.activeBackground": "#2B2723",
+        "statusBar.background": "#95CC5E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3C3631",
+        "activityBar.foreground": "#EBD1B7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Fodder Contrast (rainglow)",
+      "label": "Fodder Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#131C17",
+        "editor.foreground": "#CCE0D6",
+        "titleBar.activeBackground": "#0B100D",
+        "statusBar.background": "#AD9895",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#17221C",
+        "activityBar.foreground": "#CCE0D6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Fodder (rainglow)",
+      "label": "Fodder (rainglow)",
+      "colors": {
+        "editor.background": "#2D4137",
+        "editor.foreground": "#CCE0D6",
+        "titleBar.activeBackground": "#25352D",
+        "statusBar.background": "#AD9895",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#31473C",
+        "activityBar.foreground": "#CCE0D6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Fodder Light (rainglow)",
+      "label": "Fodder Light (rainglow)",
+      "colors": {
+        "editor.background": "#CCE0D6",
+        "editor.foreground": "#2D4137",
+        "titleBar.activeBackground": "#A9C4B6",
+        "titleBar.activeForeground": "#2D4137",
+        "statusBar.background": "#685B59",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2D4137",
+        "activityBar.foreground": "#CCE0D6"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Frantic Contrast (rainglow)",
+      "label": "Frantic Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0E1114",
+        "editor.foreground": "#AEB9C4",
+        "titleBar.activeBackground": "#060708",
+        "statusBar.background": "#EF6462",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#12161A",
+        "activityBar.foreground": "#AEB9C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Frantic (rainglow)",
+      "label": "Frantic (rainglow)",
+      "colors": {
+        "editor.background": "#252C33",
+        "editor.foreground": "#AEB9C4",
+        "titleBar.activeBackground": "#1C2227",
+        "statusBar.background": "#EF6462",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#293139",
+        "activityBar.foreground": "#AEB9C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Frantic Light (rainglow)",
+      "label": "Frantic Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#516172",
+        "titleBar.activeBackground": "#DCE1E6",
+        "titleBar.activeForeground": "#516172",
+        "statusBar.background": "#EF6462",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#516172",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Earthsong Light (rainglow)",
+      "label": "Earthsong Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4D463E",
+        "titleBar.activeBackground": "#CBC5BF",
+        "titleBar.activeForeground": "#4D463E",
+        "statusBar.background": "#95CC5E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4D463E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Freshcut Contrast (rainglow)",
+      "label": "Freshcut Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#4ECDC4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Freshcut (rainglow)",
+      "label": "Freshcut (rainglow)",
+      "colors": {
+        "editor.background": "#2F3030",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#252626",
+        "statusBar.background": "#4ECDC4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#343535",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Freshcut Light (rainglow)",
+      "label": "Freshcut Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2F3030",
+        "titleBar.activeBackground": "#AEB0B0",
+        "titleBar.activeForeground": "#2F3030",
+        "statusBar.background": "#3DA09A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2F3030",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Friction Contrast (rainglow)",
+      "label": "Friction Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0F",
+        "editor.foreground": "#7E7B99",
+        "titleBar.activeBackground": "#030304",
+        "statusBar.background": "#8D89A5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111115",
+        "activityBar.foreground": "#7E7B99"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Friction (rainglow)",
+      "label": "Friction (rainglow)",
+      "colors": {
+        "editor.background": "#26252D",
+        "editor.foreground": "#7E7B99",
+        "titleBar.activeBackground": "#1D1C22",
+        "statusBar.background": "#8D89A5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2B2A33",
+        "activityBar.foreground": "#7E7B99"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Friction Light (rainglow)",
+      "label": "Friction Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#38363F",
+        "titleBar.activeBackground": "#F5F5F5",
+        "statusBar.background": "#8D89A5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#38363F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Frontier Contrast (rainglow)",
+      "label": "Frontier Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#110F0E",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#060505",
+        "statusBar.background": "#2EBF7E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171413",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Frontier (rainglow)",
+      "label": "Frontier (rainglow)",
+      "colors": {
+        "editor.background": "#36312C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2B2723",
+        "statusBar.background": "#2EBF7E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3C3631",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Frontier Light (rainglow)",
+      "label": "Frontier Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#36312C",
+        "titleBar.activeBackground": "#B8B0A8",
+        "titleBar.activeForeground": "#36312C",
+        "statusBar.background": "#1A724A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#36312C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Github Contrast (rainglow)",
+      "label": "Github Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#111111",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#070707",
+        "statusBar.background": "#7385BC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#161616",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Github (rainglow)",
+      "label": "Github (rainglow)",
+      "colors": {
+        "editor.background": "#333333",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#292929",
+        "statusBar.background": "#7385BC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#383838",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Github Light (rainglow)",
+      "label": "Github Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#445588",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Glance Contrast (rainglow)",
+      "label": "Glance Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#111219",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#09090D",
+        "statusBar.background": "#EF8354",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#15161F",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Glance (rainglow)",
+      "label": "Glance (rainglow)",
+      "colors": {
+        "editor.background": "#2D3142",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#252836",
+        "statusBar.background": "#EF8354",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#313548",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Glance Light (rainglow)",
+      "label": "Glance Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2D3142",
+        "titleBar.activeBackground": "#A9AFC5",
+        "titleBar.activeForeground": "#2D3142",
+        "statusBar.background": "#EF8354",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2D3142",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Gloom Contrast (rainglow)",
+      "label": "Gloom Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0F120F",
+        "editor.foreground": "#D8EBE5",
+        "titleBar.activeBackground": "#060706",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#141814",
+        "activityBar.foreground": "#D8EBE5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gloom (rainglow)",
+      "label": "Gloom (rainglow)",
+      "colors": {
+        "editor.background": "#2A332B",
+        "editor.foreground": "#D8EBE5",
+        "titleBar.activeBackground": "#212822",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2F3930",
+        "activityBar.foreground": "#D8EBE5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gloom Light (rainglow)",
+      "label": "Gloom Light (rainglow)",
+      "colors": {
+        "editor.background": "#D8EBE5",
+        "editor.foreground": "#2A332B",
+        "titleBar.activeBackground": "#A6B6A8",
+        "titleBar.activeForeground": "#2A332B",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2A332B",
+        "activityBar.foreground": "#D8EBE5"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Glowfish Contrast (rainglow)",
+      "label": "Glowfish Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#090B07",
+        "editor.foreground": "#6EA240",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#95CC5E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0E110B",
+        "activityBar.foreground": "#6EA240"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Glowfish (rainglow)",
+      "label": "Glowfish (rainglow)",
+      "colors": {
+        "editor.background": "#191F13",
+        "editor.foreground": "#6EA240",
+        "titleBar.activeBackground": "#0F120B",
+        "statusBar.background": "#95CC5E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E2517",
+        "activityBar.foreground": "#6EA240"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Glowfish Light (rainglow)",
+      "label": "Glowfish Light (rainglow)",
+      "colors": {
+        "editor.background": "#E3EADC",
+        "editor.foreground": "#191F13",
+        "titleBar.activeBackground": "#98B180",
+        "titleBar.activeForeground": "#191F13",
+        "statusBar.background": "#95CC5E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191F13",
+        "activityBar.foreground": "#E3EADC"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Goldfish (rainglow)",
+      "label": "Goldfish (rainglow)",
+      "colors": {
+        "editor.background": "#2E3336",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#25292B",
+        "statusBar.background": "#F38630",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#33383B",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Goldfish Light (rainglow)",
+      "label": "Goldfish Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2E3336",
+        "titleBar.activeBackground": "#ABB3B8",
+        "titleBar.activeForeground": "#2E3336",
+        "statusBar.background": "#F38630",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2E3336",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Grunge Contrast (rainglow)",
+      "label": "Grunge Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0A",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#010101",
+        "statusBar.background": "#D1F2A5",
+        "statusBar.foreground": "#5C634F",
+        "activityBar.background": "#12120F",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Grunge (rainglow)",
+      "label": "Grunge (rainglow)",
+      "colors": {
+        "editor.background": "#31332C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#262823",
+        "statusBar.background": "#D1F2A5",
+        "statusBar.foreground": "#5C634F",
+        "activityBar.background": "#363831",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Grunge Light (rainglow)",
+      "label": "Grunge Light (rainglow)",
+      "colors": {
+        "editor.background": "#F8F8F2",
+        "editor.foreground": "#31332C",
+        "titleBar.activeBackground": "#B2B5A9",
+        "titleBar.activeForeground": "#31332C",
+        "statusBar.background": "#ABC687",
+        "statusBar.foreground": "#5C634F",
+        "activityBar.background": "#31332C",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Halflife Contrast (rainglow)",
+      "label": "Halflife Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FC913A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Halflife (rainglow)",
+      "label": "Halflife (rainglow)",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#181818",
+        "statusBar.background": "#FC913A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272727",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Halflife Light (rainglow)",
+      "label": "Halflife Light (rainglow)",
+      "colors": {
+        "editor.background": "#F0F0F0",
+        "editor.foreground": "#222222",
+        "titleBar.activeBackground": "#A1A1A1",
+        "titleBar.activeForeground": "#222222",
+        "statusBar.background": "#FC913A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Hawaii Contrast (rainglow)",
+      "label": "Hawaii Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#111110",
+        "editor.foreground": "#E8E1DE",
+        "titleBar.activeBackground": "#060606",
+        "statusBar.background": "#EDBD44",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#161615",
+        "activityBar.foreground": "#E8E1DE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hawaii (rainglow)",
+      "label": "Hawaii (rainglow)",
+      "colors": {
+        "editor.background": "#333130",
+        "editor.foreground": "#E8E1DE",
+        "titleBar.activeBackground": "#282726",
+        "statusBar.background": "#EDBD44",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#383635",
+        "activityBar.foreground": "#E8E1DE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hawaii Light (rainglow)",
+      "label": "Hawaii Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#6D6764",
+        "titleBar.activeBackground": "#E9E8E7",
+        "titleBar.activeForeground": "#6D6764",
+        "statusBar.background": "#EDBD44",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#6D6764",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Heroku Contrast (rainglow)",
+      "label": "Heroku Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0B0F",
+        "editor.foreground": "#C8C7D5",
+        "titleBar.activeBackground": "#020203",
+        "statusBar.background": "#585480",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0F0F15",
+        "activityBar.foreground": "#C8C7D5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Heroku (rainglow)",
+      "label": "Heroku (rainglow)",
+      "colors": {
+        "editor.background": "#1B1B24",
+        "editor.foreground": "#C8C7D5",
+        "titleBar.activeBackground": "#121218",
+        "statusBar.background": "#585480",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1F1F2A",
+        "activityBar.foreground": "#C8C7D5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Heroku Light (rainglow)",
+      "label": "Heroku Light (rainglow)",
+      "colors": {
+        "editor.background": "#F7F7FC",
+        "editor.foreground": "#1B1B24",
+        "titleBar.activeBackground": "#9191AD",
+        "titleBar.activeForeground": "#1B1B24",
+        "statusBar.background": "#585480",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1B1B24",
+        "activityBar.foreground": "#F7F7FC"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Hive Contrast (rainglow)",
+      "label": "Hive Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0F1016",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#07070A",
+        "statusBar.background": "#7CB8BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#13141C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hive (rainglow)",
+      "label": "Hive (rainglow)",
+      "colors": {
+        "editor.background": "#2D3142",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#252836",
+        "statusBar.background": "#7CB8BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#313548",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hive Light (rainglow)",
+      "label": "Hive Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2D3142",
+        "titleBar.activeBackground": "#A9AFC5",
+        "titleBar.activeForeground": "#2D3142",
+        "statusBar.background": "#7CB8BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2D3142",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Horizon Contrast (rainglow)",
+      "label": "Horizon Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#11101C",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#09090F",
+        "statusBar.background": "#FD8A25",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#151422",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Horizon (rainglow)",
+      "label": "Horizon (rainglow)",
+      "colors": {
+        "editor.background": "#474466",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#3E3C5A",
+        "statusBar.background": "#FD8A25",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4B486C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Horizon Light (rainglow)",
+      "label": "Horizon Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#474466",
+        "titleBar.activeBackground": "#CDCCDD",
+        "titleBar.activeForeground": "#474466",
+        "statusBar.background": "#FD8A25",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#474466",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Hub Contrast (rainglow)",
+      "label": "Hub Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#191D21",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#101315",
+        "statusBar.background": "#E85362",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1D2227",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hub (rainglow)",
+      "label": "Hub (rainglow)",
+      "colors": {
+        "editor.background": "#3B444C",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#323A41",
+        "statusBar.background": "#E85362",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3F4952",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hub Light (rainglow)",
+      "label": "Hub Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#24292E",
+        "titleBar.activeBackground": "#9EA8B3",
+        "titleBar.activeForeground": "#24292E",
+        "statusBar.background": "#D73A49",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#24292E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Hyrule Contrast (rainglow)",
+      "label": "Hyrule Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0C",
+        "editor.foreground": "#C0D5C1",
+        "titleBar.activeBackground": "#020202",
+        "statusBar.background": "#F5C504",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111111",
+        "activityBar.foreground": "#C0D5C1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hyrule (rainglow)",
+      "label": "Hyrule (rainglow)",
+      "colors": {
+        "editor.background": "#2D2C2B",
+        "editor.foreground": "#C0D5C1",
+        "titleBar.activeBackground": "#232221",
+        "statusBar.background": "#F5C504",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#323130",
+        "activityBar.foreground": "#C0D5C1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hyrule Light (rainglow)",
+      "label": "Hyrule Light (rainglow)",
+      "colors": {
+        "editor.background": "#C0D5C1",
+        "editor.foreground": "#2D2C2B",
+        "titleBar.activeBackground": "#ADABAA",
+        "titleBar.activeForeground": "#2D2C2B",
+        "statusBar.background": "#B7950C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2D2C2B",
+        "activityBar.foreground": "#C0D5C1"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Iceberg Contrast (rainglow)",
+      "label": "Iceberg Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0E0E",
+        "editor.foreground": "#BDD6DB",
+        "titleBar.activeBackground": "#020303",
+        "statusBar.background": "#59C0E3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0F1414",
+        "activityBar.foreground": "#BDD6DB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Iceberg (rainglow)",
+      "label": "Iceberg (rainglow)",
+      "colors": {
+        "editor.background": "#323B3D",
+        "editor.foreground": "#BDD6DB",
+        "titleBar.activeBackground": "#293032",
+        "statusBar.background": "#59C0E3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#374043",
+        "activityBar.foreground": "#BDD6DB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Iceberg Light (rainglow)",
+      "label": "Iceberg Light (rainglow)",
+      "colors": {
+        "editor.background": "#BDD6DB",
+        "editor.foreground": "#323B3D",
+        "titleBar.activeBackground": "#B0BCBE",
+        "titleBar.activeForeground": "#323B3D",
+        "statusBar.background": "#499FBC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#323B3D",
+        "activityBar.foreground": "#BDD6DB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Isotope Contrast (rainglow)",
+      "label": "Isotope Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0E0F11",
+        "editor.foreground": "#F3EFF5",
+        "titleBar.activeBackground": "#050506",
+        "statusBar.background": "#72B01D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#131417",
+        "activityBar.foreground": "#F3EFF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Isotope (rainglow)",
+      "label": "Isotope (rainglow)",
+      "colors": {
+        "editor.background": "#454955",
+        "editor.foreground": "#F3EFF5",
+        "titleBar.activeBackground": "#3C3F4A",
+        "statusBar.background": "#72B01D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4A4E5B",
+        "activityBar.foreground": "#F3EFF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Isotope Light (rainglow)",
+      "label": "Isotope Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#454955",
+        "titleBar.activeBackground": "#C7CAD2",
+        "titleBar.activeForeground": "#454955",
+        "statusBar.background": "#72B01D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#454955",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Jewel Contrast (rainglow)",
+      "label": "Jewel Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#141619",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0B0C0E",
+        "statusBar.background": "#6299C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191B1F",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Jewel (rainglow)",
+      "label": "Jewel (rainglow)",
+      "colors": {
+        "editor.background": "#32373D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#292D32",
+        "statusBar.background": "#6299C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373C43",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Jewel Light (rainglow)",
+      "label": "Jewel Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#5C6470",
+        "titleBar.activeBackground": "#E3E5E8",
+        "titleBar.activeForeground": "#5C6470",
+        "statusBar.background": "#6299C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#5C6470",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Jingle Contrast (rainglow)",
+      "label": "Jingle Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0D1011",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#040505",
+        "statusBar.background": "#E06D5C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111517",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Jingle (rainglow)",
+      "label": "Jingle (rainglow)",
+      "colors": {
+        "editor.background": "#283035",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#1F2529",
+        "statusBar.background": "#E06D5C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C353B",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Jingle Light (rainglow)",
+      "label": "Jingle Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#485860",
+        "titleBar.activeBackground": "#CDD6DA",
+        "titleBar.activeForeground": "#485860",
+        "statusBar.background": "#E06D5C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#485860",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Joker Contrast (rainglow)",
+      "label": "Joker Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#141619",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0B0C0E",
+        "statusBar.background": "#00B27D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191B1F",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Joker (rainglow)",
+      "label": "Joker (rainglow)",
+      "colors": {
+        "editor.background": "#32373D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#292D32",
+        "statusBar.background": "#00B27D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373C43",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Joker Light (rainglow)",
+      "label": "Joker Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4A5159",
+        "titleBar.activeBackground": "#CDD1D5",
+        "titleBar.activeForeground": "#4A5159",
+        "statusBar.background": "#00B27D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4A5159",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Juicy Contrast (rainglow)",
+      "label": "Juicy Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#E3E2E0",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FF4E50",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#E3E2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Juicy (rainglow)",
+      "label": "Juicy (rainglow)",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#E3E2E0",
+        "titleBar.activeBackground": "#181818",
+        "statusBar.background": "#FF4E50",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272727",
+        "activityBar.foreground": "#E3E2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Juicy Light (rainglow)",
+      "label": "Juicy Light (rainglow)",
+      "colors": {
+        "editor.background": "#F0F0F0",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#FF4E50",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Jumper Contrast (rainglow)",
+      "label": "Jumper Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0E1111",
+        "editor.foreground": "#8DA0A0",
+        "titleBar.activeBackground": "#050606",
+        "statusBar.background": "#36A595",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#131717",
+        "activityBar.foreground": "#8DA0A0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Jumper (rainglow)",
+      "label": "Jumper (rainglow)",
+      "colors": {
+        "editor.background": "#222A2A",
+        "editor.foreground": "#8DA0A0",
+        "titleBar.activeBackground": "#191F1F",
+        "statusBar.background": "#36A595",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#273030",
+        "activityBar.foreground": "#8DA0A0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Jumper Light (rainglow)",
+      "label": "Jumper Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#222A2A",
+        "titleBar.activeBackground": "#9CAFAF",
+        "titleBar.activeForeground": "#222A2A",
+        "statusBar.background": "#36A595",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222A2A",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Keen Contrast (rainglow)",
+      "label": "Keen Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#6F8B94",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Keen (rainglow)",
+      "label": "Keen (rainglow)",
+      "colors": {
+        "editor.background": "#111111",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#070707",
+        "statusBar.background": "#6F8B94",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#161616",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Keen Light (rainglow)",
+      "label": "Keen Light (rainglow)",
+      "colors": {
+        "editor.background": "#CCCCCC",
+        "editor.foreground": "#111111",
+        "titleBar.activeBackground": "#909090",
+        "titleBar.activeForeground": "#111111",
+        "statusBar.background": "#6F8B94",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111111",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Kiwi Contrast (rainglow)",
+      "label": "Kiwi Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0F0E",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#030403",
+        "statusBar.background": "#229986",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111513",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Kiwi (rainglow)",
+      "label": "Kiwi (rainglow)",
+      "colors": {
+        "editor.background": "#2A3330",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#212825",
+        "statusBar.background": "#229986",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2F3935",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Kiwi Light (rainglow)",
+      "label": "Kiwi Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#229986",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Laracasts Contrast (rainglow)",
+      "label": "Laracasts Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#292D33",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#202328",
+        "statusBar.background": "#00B1B3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2E3239",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Laracasts (rainglow)",
+      "label": "Laracasts (rainglow)",
+      "colors": {
+        "editor.background": "#4D545D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#444A52",
+        "statusBar.background": "#00B1B3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#525963",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Laracasts Light (rainglow)",
+      "label": "Laracasts Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4D545D",
+        "titleBar.activeBackground": "#D0D4D8",
+        "titleBar.activeForeground": "#4D545D",
+        "statusBar.background": "#00B1B3",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4D545D",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Laravel Contrast (rainglow)",
+      "label": "Laravel Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FFC48C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Laravel (rainglow)",
+      "label": "Laravel (rainglow)",
+      "colors": {
+        "editor.background": "#2E2C2B",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#232221",
+        "statusBar.background": "#FFC48C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333130",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Laravel Light (rainglow)",
+      "label": "Laravel Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#FFC48C",
+        "statusBar.foreground": "#77593D",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Lavender Contrast (rainglow)",
+      "label": "Lavender Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#080709",
+        "editor.foreground": "#E0CEED",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#A29DFA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0D0B0F",
+        "activityBar.foreground": "#E0CEED"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lavender (rainglow)",
+      "label": "Lavender (rainglow)",
+      "colors": {
+        "editor.background": "#29222E",
+        "editor.foreground": "#E0CEED",
+        "titleBar.activeBackground": "#1F1922",
+        "statusBar.background": "#A29DFA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2E2634",
+        "activityBar.foreground": "#E0CEED"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lavender Light (rainglow)",
+      "label": "Lavender Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#29222E",
+        "titleBar.activeBackground": "#AA9AB5",
+        "titleBar.activeForeground": "#29222E",
+        "statusBar.background": "#A29DFA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#29222E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Legacy Contrast (rainglow)",
+      "label": "Legacy Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#080A0C",
+        "editor.foreground": "#AEC2E0",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#267FB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0C0F12",
+        "activityBar.foreground": "#AEC2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Legacy (rainglow)",
+      "label": "Legacy (rainglow)",
+      "colors": {
+        "editor.background": "#212933",
+        "editor.foreground": "#AEC2E0",
+        "titleBar.activeBackground": "#191F27",
+        "statusBar.background": "#267FB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#252E39",
+        "activityBar.foreground": "#AEC2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Legacy Light (rainglow)",
+      "label": "Legacy Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#267FB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Lichen Contrast (rainglow)",
+      "label": "Lichen Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#090D11",
+        "editor.foreground": "#9CADBC",
+        "titleBar.activeBackground": "#020304",
+        "statusBar.background": "#249388",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0D1218",
+        "activityBar.foreground": "#9CADBC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lichen (rainglow)",
+      "label": "Lichen (rainglow)",
+      "colors": {
+        "editor.background": "#1A252F",
+        "editor.foreground": "#9CADBC",
+        "titleBar.activeBackground": "#131B22",
+        "statusBar.background": "#249388",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E2A36",
+        "activityBar.foreground": "#9CADBC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lichen Light (rainglow)",
+      "label": "Lichen Light (rainglow)",
+      "colors": {
+        "editor.background": "#E6E9ED",
+        "editor.foreground": "#414549",
+        "titleBar.activeBackground": "#C1C4C8",
+        "titleBar.activeForeground": "#414549",
+        "statusBar.background": "#249388",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#414549",
+        "activityBar.foreground": "#E6E9ED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Loyal Contrast (rainglow)",
+      "label": "Loyal Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#1D1B23",
+        "editor.foreground": "#BBB1C9",
+        "titleBar.activeBackground": "#131217",
+        "statusBar.background": "#3CBBB1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#221F29",
+        "activityBar.foreground": "#BBB1C9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Loyal (rainglow)",
+      "label": "Loyal (rainglow)",
+      "colors": {
+        "editor.background": "#413E4F",
+        "editor.foreground": "#BBB1C9",
+        "titleBar.activeBackground": "#383544",
+        "statusBar.background": "#3CBBB1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#464255",
+        "activityBar.foreground": "#BBB1C9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Loyal Light (rainglow)",
+      "label": "Loyal Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#413E4F",
+        "titleBar.activeBackground": "#C2BFCD",
+        "titleBar.activeForeground": "#413E4F",
+        "statusBar.background": "#3CBBB1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#413E4F",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Mauve Contrast (rainglow)",
+      "label": "Mauve Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#191119",
+        "editor.foreground": "#AF92B2",
+        "titleBar.activeBackground": "#0D090D",
+        "statusBar.background": "#C89933",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1F151F",
+        "activityBar.foreground": "#AF92B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mauve (rainglow)",
+      "label": "Mauve (rainglow)",
+      "colors": {
+        "editor.background": "#372638",
+        "editor.foreground": "#AF92B2",
+        "titleBar.activeBackground": "#2B1E2C",
+        "statusBar.background": "#C89933",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3D2A3E",
+        "activityBar.foreground": "#AF92B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mauve Light (rainglow)",
+      "label": "Mauve Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#372638",
+        "titleBar.activeBackground": "#BC9FBE",
+        "titleBar.activeForeground": "#372638",
+        "statusBar.background": "#C89933",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#372638",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Mellow Contrast (rainglow)",
+      "label": "Mellow Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0A09",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#F2BC79",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#110F0E",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mellow (rainglow)",
+      "label": "Mellow (rainglow)",
+      "colors": {
+        "editor.background": "#36312C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2B2723",
+        "statusBar.background": "#F2BC79",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3C3631",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mellow Light (rainglow)",
+      "label": "Mellow Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#F2BC79",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Mintchoc Contrast (rainglow)",
+      "label": "Mintchoc Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0A08",
+        "editor.foreground": "#BABABA",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#9D8262",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#120F0C",
+        "activityBar.foreground": "#BABABA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mintchoc (rainglow)",
+      "label": "Mintchoc (rainglow)",
+      "colors": {
+        "editor.background": "#2B221C",
+        "editor.foreground": "#BABABA",
+        "titleBar.activeBackground": "#1F1814",
+        "statusBar.background": "#9D8262",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#312720",
+        "activityBar.foreground": "#BABABA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mintchoc Light (rainglow)",
+      "label": "Mintchoc Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#9D8262",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monzo Contrast (rainglow)",
+      "label": "Monzo Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B1421",
+        "editor.foreground": "#B0CBF4",
+        "titleBar.activeBackground": "#060B12",
+        "statusBar.background": "#98BAA6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0E1929",
+        "activityBar.foreground": "#B0CBF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monzo (rainglow)",
+      "label": "Monzo (rainglow)",
+      "colors": {
+        "editor.background": "#15243B",
+        "editor.foreground": "#B0CBF4",
+        "titleBar.activeBackground": "#101B2C",
+        "statusBar.background": "#98BAA6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#182942",
+        "activityBar.foreground": "#B0CBF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monzo Light (rainglow)",
+      "label": "Monzo Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#5A79A8",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#5A79A8",
+        "statusBar.background": "#98BAA6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#5A79A8",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Morass Contrast (rainglow)",
+      "label": "Morass Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#1A1F1D",
+        "editor.foreground": "#E4E3E1",
+        "titleBar.activeBackground": "#111413",
+        "statusBar.background": "#FDEC5A",
+        "statusBar.foreground": "#1A1F1D",
+        "activityBar.background": "#1F2522",
+        "activityBar.foreground": "#E4E3E1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Morass (rainglow)",
+      "label": "Morass (rainglow)",
+      "colors": {
+        "editor.background": "#313A36",
+        "editor.foreground": "#E4E3E1",
+        "titleBar.activeBackground": "#282F2C",
+        "statusBar.background": "#FDEC5A",
+        "statusBar.foreground": "#1A1F1D",
+        "activityBar.background": "#36403B",
+        "activityBar.foreground": "#E4E3E1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Morass Light (rainglow)",
+      "label": "Morass Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#CEC040",
+        "statusBar.foreground": "#1A1F1D",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Mud Contrast (rainglow)",
+      "label": "Mud Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0D0B0B",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#020202",
+        "statusBar.background": "#F2C12F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#131010",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mud (rainglow)",
+      "label": "Mud (rainglow)",
+      "colors": {
+        "editor.background": "#403635",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#352D2C",
+        "statusBar.background": "#E9C865",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#463B3A",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mud Light (rainglow)",
+      "label": "Mud Light (rainglow)",
+      "colors": {
+        "editor.background": "#EDE8E8",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#C4A446",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#EDE8E8"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Newton Contrast (rainglow)",
+      "label": "Newton Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#121014",
+        "editor.foreground": "#EAEBFF",
+        "titleBar.activeBackground": "#080709",
+        "statusBar.background": "#FA824C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#17151A",
+        "activityBar.foreground": "#EAEBFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Newton (rainglow)",
+      "label": "Newton (rainglow)",
+      "colors": {
+        "editor.background": "#342E37",
+        "editor.foreground": "#EAEBFF",
+        "titleBar.activeBackground": "#29252C",
+        "statusBar.background": "#FA824C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#39333D",
+        "activityBar.foreground": "#EAEBFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Newton Light (rainglow)",
+      "label": "Newton Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#FA824C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Otakon Contrast (rainglow)",
+      "label": "Otakon Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#171417",
+        "editor.foreground": "#F9F3F9",
+        "titleBar.activeBackground": "#0C0B0C",
+        "statusBar.background": "#B1A6CA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C191C",
+        "activityBar.foreground": "#F9F3F9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Otakon (rainglow)",
+      "label": "Otakon (rainglow)",
+      "colors": {
+        "editor.background": "#3F373F",
+        "editor.foreground": "#F9F3F9",
+        "titleBar.activeBackground": "#342D34",
+        "statusBar.background": "#B1A6CA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#443C44",
+        "activityBar.foreground": "#F9F3F9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Otakon Light (rainglow)",
+      "label": "Otakon Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#514B60",
+        "titleBar.activeBackground": "#D3D0DA",
+        "titleBar.activeForeground": "#514B60",
+        "statusBar.background": "#B1A6CA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#514B60",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Overflow Contrast (rainglow)",
+      "label": "Overflow Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#14181C",
+        "editor.foreground": "#AEB9C4",
+        "titleBar.activeBackground": "#0B0E10",
+        "statusBar.background": "#FE532C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#181D22",
+        "activityBar.foreground": "#AEB9C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Overflow (rainglow)",
+      "label": "Overflow (rainglow)",
+      "colors": {
+        "editor.background": "#252C33",
+        "editor.foreground": "#AEB9C4",
+        "titleBar.activeBackground": "#1C2227",
+        "statusBar.background": "#FE532C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#293139",
+        "activityBar.foreground": "#AEB9C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Overflow Light (rainglow)",
+      "label": "Overflow Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#3E4956",
+        "titleBar.activeBackground": "#C1C9D2",
+        "titleBar.activeForeground": "#3E4956",
+        "statusBar.background": "#FE532C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3E4956",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Pastel Contrast (rainglow)",
+      "label": "Pastel Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0F0F0F",
+        "editor.foreground": "#EEEEEE",
+        "titleBar.activeBackground": "#050505",
+        "statusBar.background": "#9474A9",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#141414",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pastel (rainglow)",
+      "label": "Pastel (rainglow)",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#EEEEEE",
+        "titleBar.activeBackground": "#181818",
+        "statusBar.background": "#9474A9",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272727",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pastel Light (rainglow)",
+      "label": "Pastel Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#222222",
+        "titleBar.activeBackground": "#A1A1A1",
+        "titleBar.activeForeground": "#222222",
+        "statusBar.background": "#9474A9",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Patriot Contrast (rainglow)",
+      "label": "Patriot Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0D0E0F",
+        "editor.foreground": "#CAD9E3",
+        "titleBar.activeBackground": "#040404",
+        "statusBar.background": "#DE333C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#121314",
+        "activityBar.foreground": "#CAD9E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Patriot (rainglow)",
+      "label": "Patriot (rainglow)",
+      "colors": {
+        "editor.background": "#2D3133",
+        "editor.foreground": "#CAD9E3",
+        "titleBar.activeBackground": "#232728",
+        "statusBar.background": "#DE333C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#323638",
+        "activityBar.foreground": "#CAD9E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Patriot Light (rainglow)",
+      "label": "Patriot Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#DE333C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Peacock Contrast (rainglow)",
+      "label": "Peacock Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0B",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#010101",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111110",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Peacock (rainglow)",
+      "label": "Peacock (rainglow)",
+      "colors": {
+        "editor.background": "#2B2A27",
+        "editor.foreground": "#EDE0CE",
+        "titleBar.activeBackground": "#20201D",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#302F2C",
+        "activityBar.foreground": "#EDE0CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Peacock Light (rainglow)",
+      "label": "Peacock Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Peacocks In Space Contrast (rainglow)",
+      "label": "Peacocks In Space Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#121419",
+        "editor.foreground": "#DEE3EC",
+        "titleBar.activeBackground": "#090B0D",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#16191F",
+        "activityBar.foreground": "#DEE3EC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Peacocks In Space (rainglow)",
+      "label": "Peacocks In Space (rainglow)",
+      "colors": {
+        "editor.background": "#2B303B",
+        "editor.foreground": "#DEE3EC",
+        "titleBar.activeBackground": "#22262F",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2F3541",
+        "activityBar.foreground": "#DEE3EC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Peacocks In Space Light (rainglow)",
+      "label": "Peacocks In Space Light (rainglow)",
+      "colors": {
+        "editor.background": "#DEE3EC",
+        "editor.foreground": "#2B303B",
+        "titleBar.activeBackground": "#A7AEBE",
+        "titleBar.activeForeground": "#2B303B",
+        "statusBar.background": "#26A6A6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2B303B",
+        "activityBar.foreground": "#DEE3EC"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Peel Contrast (rainglow)",
+      "label": "Peel Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0B0A",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#010101",
+        "statusBar.background": "#94C7B6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#12100F",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Peel (rainglow)",
+      "label": "Peel (rainglow)",
+      "colors": {
+        "editor.background": "#23201C",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#181613",
+        "statusBar.background": "#94C7B6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#292521",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Peel Light (rainglow)",
+      "label": "Peel Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#94C7B6",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Penitent Contrast (rainglow)",
+      "label": "Penitent Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#101C18",
+        "editor.foreground": "#B9CEC7",
+        "titleBar.activeBackground": "#090F0D",
+        "statusBar.background": "#E54334",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#14221E",
+        "activityBar.foreground": "#B9CEC7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Penitent (rainglow)",
+      "label": "Penitent (rainglow)",
+      "colors": {
+        "editor.background": "#1F352E",
+        "editor.foreground": "#B9CEC7",
+        "titleBar.activeBackground": "#172823",
+        "statusBar.background": "#E54334",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#233B34",
+        "activityBar.foreground": "#B9CEC7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Penitent Light (rainglow)",
+      "label": "Penitent Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#33564B",
+        "titleBar.activeBackground": "#B5D3CA",
+        "titleBar.activeForeground": "#33564B",
+        "statusBar.background": "#E54334",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#33564B",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Piggy Contrast (rainglow)",
+      "label": "Piggy Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#1C1618",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#110D0E",
+        "statusBar.background": "#F52E62",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#221A1D",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Piggy (rainglow)",
+      "label": "Piggy (rainglow)",
+      "colors": {
+        "editor.background": "#3D2F34",
+        "editor.foreground": "#EDEBE6",
+        "titleBar.activeBackground": "#31262A",
+        "statusBar.background": "#F52E62",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#433339",
+        "activityBar.foreground": "#EDEBE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Piggy Light (rainglow)",
+      "label": "Piggy Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#F52E62",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Pleasure Contrast (rainglow)",
+      "label": "Pleasure Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#17191C",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0E0F11",
+        "statusBar.background": "#A175BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C1E22",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pleasure (rainglow)",
+      "label": "Pleasure (rainglow)",
+      "colors": {
+        "editor.background": "#32373D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#292D32",
+        "statusBar.background": "#A175BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373C43",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pleasure Light (rainglow)",
+      "label": "Pleasure Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#474E56",
+        "titleBar.activeBackground": "#C9CED3",
+        "titleBar.activeForeground": "#474E56",
+        "statusBar.background": "#A175BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#474E56",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Potpourri Contrast (rainglow)",
+      "label": "Potpourri Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0D0C0C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#020202",
+        "statusBar.background": "#C491C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#121111",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Potpourri (rainglow)",
+      "label": "Potpourri (rainglow)",
+      "colors": {
+        "editor.background": "#2E2B2C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#232122",
+        "statusBar.background": "#C491C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333031",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Potpourri Light (rainglow)",
+      "label": "Potpourri Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#C491C4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Prime Contrast (rainglow)",
+      "label": "Prime Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0B11",
+        "editor.foreground": "#9090B2",
+        "titleBar.activeBackground": "#030305",
+        "statusBar.background": "#9D50BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0F0F17",
+        "activityBar.foreground": "#9090B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Prime (rainglow)",
+      "label": "Prime (rainglow)",
+      "colors": {
+        "editor.background": "#202030",
+        "editor.foreground": "#9090B2",
+        "titleBar.activeBackground": "#181824",
+        "statusBar.background": "#9D50BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#242436",
+        "activityBar.foreground": "#9090B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Prime Light (rainglow)",
+      "label": "Prime Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#3D3D5B",
+        "titleBar.activeBackground": "#C1C1D6",
+        "titleBar.activeForeground": "#3D3D5B",
+        "statusBar.background": "#9D50BA",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3D3D5B",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Rainbow Contrast (rainglow)",
+      "label": "Rainbow Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#16181A",
+        "editor.foreground": "#C7D0D9",
+        "titleBar.activeBackground": "#0D0E0F",
+        "statusBar.background": "#B3CC57",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1B1D20",
+        "activityBar.foreground": "#C7D0D9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rainbow (rainglow)",
+      "label": "Rainbow (rainglow)",
+      "colors": {
+        "editor.background": "#373C42",
+        "editor.foreground": "#C7D0D9",
+        "titleBar.activeBackground": "#2E3237",
+        "statusBar.background": "#B3CC57",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3C4148",
+        "activityBar.foreground": "#C7D0D9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rainbow Light (rainglow)",
+      "label": "Rainbow Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#B3CC57",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Rebellion Contrast (rainglow)",
+      "label": "Rebellion Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C09",
+        "editor.foreground": "#D6C7AB",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FE5F00",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#12120D",
+        "activityBar.foreground": "#D6C7AB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rebellion (rainglow)",
+      "label": "Rebellion (rainglow)",
+      "colors": {
+        "editor.background": "#23231A",
+        "editor.foreground": "#D6C7AB",
+        "titleBar.activeBackground": "#171711",
+        "statusBar.background": "#FE5F00",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#29291E",
+        "activityBar.foreground": "#D6C7AB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rebellion Light (rainglow)",
+      "label": "Rebellion Light (rainglow)",
+      "colors": {
+        "editor.background": "#EDE8DE",
+        "editor.foreground": "#443A27",
+        "titleBar.activeBackground": "#C9BBA1",
+        "titleBar.activeForeground": "#443A27",
+        "statusBar.background": "#FE5F00",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#443A27",
+        "activityBar.foreground": "#EDE8DE"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Revelation Contrast (rainglow)",
+      "label": "Revelation Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0B0B",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#010101",
+        "statusBar.background": "#4E5D84",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111010",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Revelation (rainglow)",
+      "label": "Revelation (rainglow)",
+      "colors": {
+        "editor.background": "#2E2C2B",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#232221",
+        "statusBar.background": "#4E5D84",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333130",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Revelation Light (rainglow)",
+      "label": "Revelation Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#4E5D84",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Scorch Contrast (rainglow)",
+      "label": "Scorch Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#160D0E",
+        "editor.foreground": "#BAA0A2",
+        "titleBar.activeBackground": "#090506",
+        "statusBar.background": "#D39452",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C1112",
+        "activityBar.foreground": "#BAA0A2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Scorch (rainglow)",
+      "label": "Scorch (rainglow)",
+      "colors": {
+        "editor.background": "#392123",
+        "editor.foreground": "#BAA0A2",
+        "titleBar.activeBackground": "#2C1A1B",
+        "statusBar.background": "#D39452",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3F2527",
+        "activityBar.foreground": "#BAA0A2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Scorch Light (rainglow)",
+      "label": "Scorch Light (rainglow)",
+      "colors": {
+        "editor.background": "#F2EDED",
+        "editor.foreground": "#514242",
+        "titleBar.activeBackground": "#CEC3C3",
+        "titleBar.activeForeground": "#514242",
+        "statusBar.background": "#D39452",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#514242",
+        "activityBar.foreground": "#F2EDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Service Contrast (rainglow)",
+      "label": "Service Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0C",
+        "editor.foreground": "#E8E1DE",
+        "titleBar.activeBackground": "#020202",
+        "statusBar.background": "#6C8375",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111111",
+        "activityBar.foreground": "#E8E1DE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Service (rainglow)",
+      "label": "Service (rainglow)",
+      "colors": {
+        "editor.background": "#252727",
+        "editor.foreground": "#E8E1DE",
+        "titleBar.activeBackground": "#1B1D1D",
+        "statusBar.background": "#6C8375",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2A2C2C",
+        "activityBar.foreground": "#E8E1DE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Service Light (rainglow)",
+      "label": "Service Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4D5151",
+        "titleBar.activeBackground": "#CDD0D0",
+        "titleBar.activeForeground": "#4D5151",
+        "statusBar.background": "#6C8375",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4D5151",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Shrek Contrast (rainglow)",
+      "label": "Shrek Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#B2DE62",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Shrek (rainglow)",
+      "label": "Shrek (rainglow)",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#181818",
+        "statusBar.background": "#B2DE62",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272727",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Shrek Light (rainglow)",
+      "label": "Shrek Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#222222",
+        "titleBar.activeBackground": "#A1A1A1",
+        "titleBar.activeForeground": "#222222",
+        "statusBar.background": "#B2DE62",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Slate Contrast (rainglow)",
+      "label": "Slate Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#19191F",
+        "editor.foreground": "#EBEBF4",
+        "titleBar.activeBackground": "#101014",
+        "statusBar.background": "#566981",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E1E25",
+        "activityBar.foreground": "#EBEBF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slate (rainglow)",
+      "label": "Slate (rainglow)",
+      "colors": {
+        "editor.background": "#3D3D4C",
+        "editor.foreground": "#EBEBF4",
+        "titleBar.activeBackground": "#343441",
+        "statusBar.background": "#566981",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#424252",
+        "activityBar.foreground": "#EBEBF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slate Light (rainglow)",
+      "label": "Slate Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#19191F",
+        "titleBar.activeBackground": "#9191A6",
+        "titleBar.activeForeground": "#19191F",
+        "statusBar.background": "#566981",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#19191F",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Slime Contrast (rainglow)",
+      "label": "Slime Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0C0D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#020202",
+        "statusBar.background": "#D8E778",
+        "statusBar.foreground": "#3B3A32",
+        "activityBar.background": "#101113",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slime (rainglow)",
+      "label": "Slime (rainglow)",
+      "colors": {
+        "editor.background": "#292D30",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202325",
+        "statusBar.background": "#FAFFDB",
+        "statusBar.foreground": "#3B3A32",
+        "activityBar.background": "#2E3235",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Slime Light (rainglow)",
+      "label": "Slime Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#8B9355",
+        "statusBar.foreground": "#3B3A32",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Snappy Contrast (rainglow)",
+      "label": "Snappy Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0C",
+        "editor.foreground": "#E3E2E0",
+        "titleBar.activeBackground": "#020202",
+        "statusBar.background": "#4EA1DF",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111111",
+        "activityBar.foreground": "#E3E2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Snappy Light (rainglow)",
+      "label": "Snappy Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#555555",
+        "titleBar.activeBackground": "#D4D4D4",
+        "titleBar.activeForeground": "#555555",
+        "statusBar.background": "#4EA1DF",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#555555",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Snappy (rainglow)",
+      "label": "Snappy (rainglow)",
+      "colors": {
+        "editor.background": "#393939",
+        "editor.foreground": "#E3E2E0",
+        "titleBar.activeBackground": "#2F2F2F",
+        "statusBar.background": "#4EA1DF",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3E3E3E",
+        "activityBar.foreground": "#E3E2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Solarflare Contrast (rainglow)",
+      "label": "Solarflare Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#E3E2E0",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FC913A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#E3E2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Solarflare (rainglow)",
+      "label": "Solarflare (rainglow)",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#E3E2E0",
+        "titleBar.activeBackground": "#181818",
+        "statusBar.background": "#FC913A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272727",
+        "activityBar.foreground": "#E3E2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Solarflare Light (rainglow)",
+      "label": "Solarflare Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#222222",
+        "titleBar.activeBackground": "#A1A1A1",
+        "titleBar.activeForeground": "#222222",
+        "statusBar.background": "#D87627",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Soup Contrast (rainglow)",
+      "label": "Soup Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#17181C",
+        "editor.foreground": "#9090B2",
+        "titleBar.activeBackground": "#0E0E11",
+        "statusBar.background": "#68B0AB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1C1D22",
+        "activityBar.foreground": "#9090B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Soup (rainglow)",
+      "label": "Soup (rainglow)",
+      "colors": {
+        "editor.background": "#40424C",
+        "editor.foreground": "#9090B2",
+        "titleBar.activeBackground": "#373841",
+        "statusBar.background": "#68B0AB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#454752",
+        "activityBar.foreground": "#9090B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Soup Light (rainglow)",
+      "label": "Soup Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#666A7A",
+        "titleBar.activeBackground": "#EEEFF1",
+        "titleBar.activeForeground": "#666A7A",
+        "statusBar.background": "#68B0AB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#666A7A",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Sourlick Contrast (rainglow)",
+      "label": "Sourlick Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#060606",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#EDF252",
+        "statusBar.foreground": "#3B3A32",
+        "activityBar.background": "#0B0B0B",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sourlick (rainglow)",
+      "label": "Sourlick (rainglow)",
+      "colors": {
+        "editor.background": "#2E2C2B",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#232221",
+        "statusBar.background": "#EDF252",
+        "statusBar.foreground": "#3B3A32",
+        "activityBar.background": "#333130",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sourlick Light (rainglow)",
+      "label": "Sourlick Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#BFC431",
+        "statusBar.foreground": "#3B3A32",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Spearmint Contrast (rainglow)",
+      "label": "Spearmint Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#1A2322",
+        "editor.foreground": "#C9DBD9",
+        "titleBar.activeBackground": "#111717",
+        "statusBar.background": "#69ADB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E2928",
+        "activityBar.foreground": "#C9DBD9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Spearmint (rainglow)",
+      "label": "Spearmint (rainglow)",
+      "colors": {
+        "editor.background": "#415654",
+        "editor.foreground": "#C9DBD9",
+        "titleBar.activeBackground": "#384A49",
+        "statusBar.background": "#69ADB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#455C5A",
+        "activityBar.foreground": "#C9DBD9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Spearmint Light (rainglow)",
+      "label": "Spearmint Light (rainglow)",
+      "colors": {
+        "editor.background": "#E1F0EE",
+        "editor.foreground": "#719692",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#719692",
+        "statusBar.background": "#69ADB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#719692",
+        "activityBar.foreground": "#E1F0EE"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Spitfire Contrast (rainglow)",
+      "label": "Spitfire Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#091C19",
+        "editor.foreground": "#BAD3D0",
+        "titleBar.activeBackground": "#040D0B",
+        "statusBar.background": "#F75431",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0B2420",
+        "activityBar.foreground": "#BAD3D0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Spitfire (rainglow)",
+      "label": "Spitfire (rainglow)",
+      "colors": {
+        "editor.background": "#184540",
+        "editor.foreground": "#BAD3D0",
+        "titleBar.activeBackground": "#133632",
+        "statusBar.background": "#F75431",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1B4D47",
+        "activityBar.foreground": "#BAD3D0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Spitfire Light (rainglow)",
+      "label": "Spitfire Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#24665E",
+        "titleBar.activeBackground": "#A8E0DA",
+        "titleBar.activeForeground": "#24665E",
+        "statusBar.background": "#F75431",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#24665E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Stark Contrast (rainglow)",
+      "label": "Stark Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0A0A",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FFBB29",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#100F0F",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stark (rainglow)",
+      "label": "Stark (rainglow)",
+      "colors": {
+        "editor.background": "#2E2C2B",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#232221",
+        "statusBar.background": "#FFBB29",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333130",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stark Light (rainglow)",
+      "label": "Stark Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#FFBB29",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Stasis Contrast (rainglow)",
+      "label": "Stasis Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0E0D0F",
+        "editor.foreground": "#BBB1C9",
+        "titleBar.activeBackground": "#040404",
+        "statusBar.background": "#FC814A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#131214",
+        "activityBar.foreground": "#BBB1C9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stasis (rainglow)",
+      "label": "Stasis (rainglow)",
+      "colors": {
+        "editor.background": "#2F2C33",
+        "editor.foreground": "#BBB1C9",
+        "titleBar.activeBackground": "#252328",
+        "statusBar.background": "#FC814A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#343138",
+        "activityBar.foreground": "#BBB1C9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stasis Light (rainglow)",
+      "label": "Stasis Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#605A68",
+        "titleBar.activeBackground": "#E0DEE3",
+        "titleBar.activeForeground": "#605A68",
+        "statusBar.background": "#FC814A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#605A68",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Stealth Contrast (rainglow)",
+      "label": "Stealth Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0D0E0F",
+        "editor.foreground": "#5F656D",
+        "titleBar.activeBackground": "#040404",
+        "statusBar.background": "#3C4044",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#121314",
+        "activityBar.foreground": "#5F656D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stealth (rainglow)",
+      "label": "Stealth (rainglow)",
+      "colors": {
+        "editor.background": "#27292B",
+        "editor.foreground": "#5F656D",
+        "titleBar.activeBackground": "#1D1F20",
+        "statusBar.background": "#3C4044",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C2E30",
+        "activityBar.foreground": "#5F656D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stealth Light (rainglow)",
+      "label": "Stealth Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#CCCCCC",
+        "statusBar.background": "#BBBBBB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#CCCCCC",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Storm Contrast (rainglow)",
+      "label": "Storm Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#020B0C",
+        "editor.foreground": "#BACEDD",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#126D6B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#031315",
+        "activityBar.foreground": "#BACEDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Storm (rainglow)",
+      "label": "Storm (rainglow)",
+      "colors": {
+        "editor.background": "#092327",
+        "editor.foreground": "#BACEDD",
+        "titleBar.activeBackground": "#051416",
+        "statusBar.background": "#126D6B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0B2A2F",
+        "activityBar.foreground": "#BACEDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Storm Light (rainglow)",
+      "label": "Storm Light (rainglow)",
+      "colors": {
+        "editor.background": "#DEE4E5",
+        "editor.foreground": "#092327",
+        "titleBar.activeBackground": "#57C7D8",
+        "titleBar.activeForeground": "#092327",
+        "statusBar.background": "#126D6B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#092327",
+        "activityBar.foreground": "#DEE4E5"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Super Contrast (rainglow)",
+      "label": "Super Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#15191D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#0C0F11",
+        "statusBar.background": "#5D67AD",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191E23",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Super (rainglow)",
+      "label": "Super (rainglow)",
+      "colors": {
+        "editor.background": "#2C343D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#232A31",
+        "statusBar.background": "#5D67AD",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#303943",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Super Light (rainglow)",
+      "label": "Super Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#B3B3B3",
+        "titleBar.activeForeground": "#333333",
+        "statusBar.background": "#5D67AD",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#333333",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tame Contrast (rainglow)",
+      "label": "Tame Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#15191C",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0C0F10",
+        "statusBar.background": "#4571A8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191E22",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tame (rainglow)",
+      "label": "Tame (rainglow)",
+      "colors": {
+        "editor.background": "#283035",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#1F2529",
+        "statusBar.background": "#4571A8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C353B",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tame Light (rainglow)",
+      "label": "Tame Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#495760",
+        "titleBar.activeBackground": "#CED5DA",
+        "titleBar.activeForeground": "#495760",
+        "statusBar.background": "#4571A8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#495760",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tetra Contrast (rainglow)",
+      "label": "Tetra Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#050F11",
+        "editor.foreground": "#C9D7DB",
+        "titleBar.activeBackground": "#000101",
+        "statusBar.background": "#148B97",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#071619",
+        "activityBar.foreground": "#C9D7DB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tetra (rainglow)",
+      "label": "Tetra (rainglow)",
+      "colors": {
+        "editor.background": "#13363F",
+        "editor.foreground": "#C9D7DB",
+        "titleBar.activeBackground": "#0E292F",
+        "statusBar.background": "#148B97",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#153D47",
+        "activityBar.foreground": "#C9D7DB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tetra Light (rainglow)",
+      "label": "Tetra Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#205A68",
+        "titleBar.activeBackground": "#A4D7E3",
+        "titleBar.activeForeground": "#205A68",
+        "statusBar.background": "#148B97",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#205A68",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tickle Contrast (rainglow)",
+      "label": "Tickle Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#181819",
+        "editor.foreground": "#C1C1C1",
+        "titleBar.activeBackground": "#0E0E0F",
+        "statusBar.background": "#85FFC7",
+        "statusBar.foreground": "#35443D",
+        "activityBar.background": "#1D1D1E",
+        "activityBar.foreground": "#C1C1C1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tickle (rainglow)",
+      "label": "Tickle (rainglow)",
+      "colors": {
+        "editor.background": "#39393A",
+        "editor.foreground": "#C1C1C1",
+        "titleBar.activeBackground": "#2F2F30",
+        "statusBar.background": "#85FFC7",
+        "statusBar.foreground": "#35443D",
+        "activityBar.background": "#3E3E3F",
+        "activityBar.foreground": "#C1C1C1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tickle Light (rainglow)",
+      "label": "Tickle Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#65C699",
+        "statusBar.foreground": "#35443D",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tonic Contrast (rainglow)",
+      "label": "Tonic Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#111314",
+        "editor.foreground": "#EEEEEE",
+        "titleBar.activeBackground": "#080909",
+        "statusBar.background": "#75A1A4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#161819",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tonic (rainglow)",
+      "label": "Tonic (rainglow)",
+      "colors": {
+        "editor.background": "#2A2F31",
+        "editor.foreground": "#EEEEEE",
+        "titleBar.activeBackground": "#212426",
+        "statusBar.background": "#75A1A4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2F3436",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tonic Light (rainglow)",
+      "label": "Tonic Light (rainglow)",
+      "colors": {
+        "editor.background": "#EEEEEE",
+        "editor.foreground": "#2A2F31",
+        "titleBar.activeBackground": "#A7B0B3",
+        "titleBar.activeForeground": "#2A2F31",
+        "statusBar.background": "#75A1A4",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2A2F31",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tribal Contrast (rainglow)",
+      "label": "Tribal Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#19191D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#101012",
+        "statusBar.background": "#C43535",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E1E22",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tribal (rainglow)",
+      "label": "Tribal (rainglow)",
+      "colors": {
+        "editor.background": "#393942",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#303037",
+        "statusBar.background": "#C43535",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3E3E47",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tribal Light (rainglow)",
+      "label": "Tribal Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#C43535",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tron Contrast (rainglow)",
+      "label": "Tron Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#07090B",
+        "editor.foreground": "#AEC2E0",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#267FB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0B0E11",
+        "activityBar.foreground": "#AEC2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tron (rainglow)",
+      "label": "Tron (rainglow)",
+      "colors": {
+        "editor.background": "#14191F",
+        "editor.foreground": "#AEC2E0",
+        "titleBar.activeBackground": "#0C0F13",
+        "statusBar.background": "#267FB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#181E25",
+        "activityBar.foreground": "#AEC2E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tron Light (rainglow)",
+      "label": "Tron Light (rainglow)",
+      "colors": {
+        "editor.background": "#D7E5ED",
+        "editor.foreground": "#222222",
+        "titleBar.activeBackground": "#A1A1A1",
+        "titleBar.activeForeground": "#222222",
+        "statusBar.background": "#267FB5",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#D7E5ED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Turnip Contrast (rainglow)",
+      "label": "Turnip Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#080809",
+        "editor.foreground": "#EDE0CE",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#92B55F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0D0D0E",
+        "activityBar.foreground": "#EDE0CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Turnip (rainglow)",
+      "label": "Turnip (rainglow)",
+      "colors": {
+        "editor.background": "#1A1B1D",
+        "editor.foreground": "#EDE0CE",
+        "titleBar.activeBackground": "#101112",
+        "statusBar.background": "#92B55F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1F2022",
+        "activityBar.foreground": "#EDE0CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Turnip Light (rainglow)",
+      "label": "Turnip Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#92B55F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tweed Contrast (rainglow)",
+      "label": "Tweed Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#1E2026",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#15161B",
+        "statusBar.background": "#777F93",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#22252C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tweed (rainglow)",
+      "label": "Tweed (rainglow)",
+      "colors": {
+        "editor.background": "#3B3F4C",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#323541",
+        "statusBar.background": "#777F93",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#3F4452",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tweed Light (rainglow)",
+      "label": "Tweed Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#585E6D",
+        "titleBar.activeBackground": "#DFE1E5",
+        "titleBar.activeForeground": "#585E6D",
+        "statusBar.background": "#585E6D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#585E6D",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Violaceous Contrast (rainglow)",
+      "label": "Violaceous Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0B0A11",
+        "editor.foreground": "#BDB2F7",
+        "titleBar.activeBackground": "#030204",
+        "statusBar.background": "#725AC1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0F0E17",
+        "activityBar.foreground": "#BDB2F7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Violaceous (rainglow)",
+      "label": "Violaceous (rainglow)",
+      "colors": {
+        "editor.background": "#242038",
+        "editor.foreground": "#BDB2F7",
+        "titleBar.activeBackground": "#1C192B",
+        "statusBar.background": "#725AC1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#28243E",
+        "activityBar.foreground": "#BDB2F7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Violaceous Light (rainglow)",
+      "label": "Violaceous Light (rainglow)",
+      "colors": {
+        "editor.background": "#E5E3EF",
+        "editor.foreground": "#444349",
+        "titleBar.activeBackground": "#C4C3C8",
+        "titleBar.activeForeground": "#444349",
+        "statusBar.background": "#725AC1",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444349",
+        "activityBar.foreground": "#E5E3EF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vision (colorblind) (rainglow)",
+      "label": "Vision (colorblind) (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#FC4D1F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vision Light (colorblind) (rainglow)",
+      "label": "Vision Light (colorblind) (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#808080",
+        "titleBar.activeForeground": "#000000",
+        "statusBar.background": "#81209E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Volatile Contrast (rainglow)",
+      "label": "Volatile Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#141619",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#0B0C0E",
+        "statusBar.background": "#EE9C3D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191B1F",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Volatile (rainglow)",
+      "label": "Volatile (rainglow)",
+      "colors": {
+        "editor.background": "#32373D",
+        "editor.foreground": "#C0CCDB",
+        "titleBar.activeBackground": "#292D32",
+        "statusBar.background": "#EE9C3D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#373C43",
+        "activityBar.foreground": "#C0CCDB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Volatile Light (rainglow)",
+      "label": "Volatile Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#474F56",
+        "titleBar.activeBackground": "#C9CED3",
+        "titleBar.activeForeground": "#474F56",
+        "statusBar.background": "#EE9C3D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#474F56",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Warlock Contrast (rainglow)",
+      "label": "Warlock Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#171123",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#0E0A15",
+        "statusBar.background": "#F46036",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1B142A",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Warlock (rainglow)",
+      "label": "Warlock (rainglow)",
+      "colors": {
+        "editor.background": "#4B4060",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#413854",
+        "statusBar.background": "#F46036",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#504466",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Warlock Light (rainglow)",
+      "label": "Warlock Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4B4060",
+        "titleBar.activeBackground": "#CDC6D9",
+        "titleBar.activeForeground": "#4B4060",
+        "statusBar.background": "#F46036",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#4B4060",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Waste Contrast (rainglow)",
+      "label": "Waste Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#081011",
+        "editor.foreground": "#B1C7CC",
+        "titleBar.activeBackground": "#010303",
+        "statusBar.background": "#43BDB2",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#0B1718",
+        "activityBar.foreground": "#B1C7CC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Waste (rainglow)",
+      "label": "Waste (rainglow)",
+      "colors": {
+        "editor.background": "#1B353A",
+        "editor.foreground": "#B1C7CC",
+        "titleBar.activeBackground": "#15282C",
+        "statusBar.background": "#43BDB2",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E3B41",
+        "activityBar.foreground": "#B1C7CC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Waste Light (rainglow)",
+      "label": "Waste Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#43BDB2",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Yitzchok Contrast (rainglow)",
+      "label": "Yitzchok Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#101316",
+        "editor.foreground": "#AFB7BF",
+        "titleBar.activeBackground": "#07090A",
+        "statusBar.background": "#E7BE45",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#14181C",
+        "activityBar.foreground": "#AFB7BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Yitzchok (rainglow)",
+      "label": "Yitzchok (rainglow)",
+      "colors": {
+        "editor.background": "#252C33",
+        "editor.foreground": "#AFB7BF",
+        "titleBar.activeBackground": "#1C2227",
+        "statusBar.background": "#E7BE45",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#293139",
+        "activityBar.foreground": "#AFB7BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Yitzchok Light (rainglow)",
+      "label": "Yitzchok Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#6A7684",
+        "titleBar.activeBackground": "#F6F6F7",
+        "titleBar.activeForeground": "#6A7684",
+        "statusBar.background": "#E7BE45",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#6A7684",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Userscape Contrast (rainglow)",
+      "label": "Userscape Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#15181C",
+        "editor.foreground": "#DCE2E8",
+        "titleBar.activeBackground": "#0C0E10",
+        "statusBar.background": "#A8C0E0",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#191D22",
+        "activityBar.foreground": "#DCE2E8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Userscape (rainglow)",
+      "label": "Userscape (rainglow)",
+      "colors": {
+        "editor.background": "#323A42",
+        "editor.foreground": "#DCE2E8",
+        "titleBar.activeBackground": "#293036",
+        "statusBar.background": "#A8C0E0",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#363F48",
+        "activityBar.foreground": "#DCE2E8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Userscape Light (rainglow)",
+      "label": "Userscape Light (rainglow)",
+      "colors": {
+        "editor.background": "#F5F8FC",
+        "editor.foreground": "#879BB0",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#879BB0",
+        "statusBar.background": "#A8C0E0",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#879BB0",
+        "activityBar.foreground": "#F5F8FC"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vegetable Contrast (rainglow)",
+      "label": "Vegetable Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#161314",
+        "editor.foreground": "#E2DCDD",
+        "titleBar.activeBackground": "#0B0A0A",
+        "statusBar.background": "#F0A56C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1B1819",
+        "activityBar.foreground": "#E2DCDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vegetable (rainglow)",
+      "label": "Vegetable (rainglow)",
+      "colors": {
+        "editor.background": "#2D2627",
+        "editor.foreground": "#E2DCDD",
+        "titleBar.activeBackground": "#221D1D",
+        "statusBar.background": "#F0A56C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#332B2C",
+        "activityBar.foreground": "#E2DCDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vegetable Light (rainglow)",
+      "label": "Vegetable Light (rainglow)",
+      "colors": {
+        "editor.background": "#E2DCDD",
+        "editor.foreground": "#514547",
+        "titleBar.activeBackground": "#CFC6C8",
+        "titleBar.activeForeground": "#514547",
+        "statusBar.background": "#F0A56C",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#514547",
+        "activityBar.foreground": "#E2DCDD"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Yule Contrast (rainglow)",
+      "label": "Yule Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#0C0C0B",
+        "editor.foreground": "#EDE0CE",
+        "titleBar.activeBackground": "#010101",
+        "statusBar.background": "#39B81F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#111110",
+        "activityBar.foreground": "#EDE0CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Yule (rainglow)",
+      "label": "Yule (rainglow)",
+      "colors": {
+        "editor.background": "#2B2A27",
+        "editor.foreground": "#EDE0CE",
+        "titleBar.activeBackground": "#20201D",
+        "statusBar.background": "#39B81F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#302F2C",
+        "activityBar.foreground": "#EDE0CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Yule Light (rainglow)",
+      "label": "Yule Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#39B81F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Zacks Contrast (rainglow)",
+      "label": "Zacks Contrast (rainglow)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#F0F0F0",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#9C7DDB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Zacks (rainglow)",
+      "label": "Zacks (rainglow)",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#F0F0F0",
+        "titleBar.activeBackground": "#181818",
+        "statusBar.background": "#9C7DDB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272727",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Zacks Light (rainglow)",
+      "label": "Zacks Light (rainglow)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#444444",
+        "titleBar.activeBackground": "#C3C3C3",
+        "titleBar.activeForeground": "#444444",
+        "statusBar.background": "#9C7DDB",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#444444",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    }
+  ]
 }

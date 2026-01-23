@@ -4,7 +4,103 @@
   "publisherName": "Youssef",
   "displayName": "Viow Color Themes",
   "version": "0.3.3",
-  "extractedAt": "2026-01-23T21:33:46.645Z",
+  "extractedAt": "2026-01-23T22:59:45.083Z",
   "installCount": 273937,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Viow Darker",
+      "label": "Viow Darker",
+      "colors": {
+        "editor.background": "#21252B",
+        "editor.foreground": "#D3D0C8",
+        "titleBar.activeBackground": "#15468E",
+        "statusBar.background": "#161A22",
+        "activityBar.background": "#191D25",
+        "activityBar.foreground": "#CDCDCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Viow Flat",
+      "label": "Viow Flat",
+      "colors": {
+        "editor.background": "#191C28",
+        "editor.foreground": "#D3D0C8",
+        "titleBar.activeBackground": "#191C28",
+        "statusBar.background": "#191C28",
+        "activityBar.background": "#191C28",
+        "activityBar.foreground": "#CDCDCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Viow Light",
+      "label": "Viow Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#57606C",
+        "titleBar.activeBackground": "#F7F7F7",
+        "statusBar.background": "#DFDFDF",
+        "statusBar.foreground": "#454545",
+        "activityBar.background": "#EAEAEA",
+        "activityBar.foreground": "#666666"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Viow Neon",
+      "label": "Viow Neon",
+      "colors": {
+        "editor.background": "#202432",
+        "editor.foreground": "#D3D0C8",
+        "titleBar.activeBackground": "#191C28",
+        "statusBar.background": "#001432",
+        "activityBar.background": "#181B25",
+        "activityBar.foreground": "#CDCDCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Viow Mars",
+      "label": "Viow Mars",
+      "colors": {
+        "editor.background": "#130C0F",
+        "editor.foreground": "#D3D0C8",
+        "titleBar.activeBackground": "#8E1533",
+        "statusBar.background": "#3A1223",
+        "activityBar.background": "#130C0F",
+        "activityBar.foreground": "#CDCDCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Viow Arabian",
+      "label": "Viow Arabian",
+      "colors": {
+        "editor.background": "#110E1A",
+        "editor.foreground": "#A497B5",
+        "titleBar.activeBackground": "#110E1A",
+        "statusBar.background": "#110E1A",
+        "statusBar.foreground": "#85749F",
+        "activityBar.background": "#110F1A",
+        "activityBar.foreground": "#7A7398"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Viow Arabian - Mix",
+      "label": "Viow Arabian - Mix",
+      "colors": {
+        "editor.background": "#110E1A",
+        "editor.foreground": "#A497B5",
+        "titleBar.activeBackground": "#110E1A",
+        "statusBar.background": "#110E1A",
+        "statusBar.foreground": "#85749F",
+        "activityBar.background": "#110F1A",
+        "activityBar.foreground": "#7A7398"
+      },
+      "type": "dark"
+    }
+  ]
 }

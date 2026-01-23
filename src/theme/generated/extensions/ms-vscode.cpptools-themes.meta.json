@@ -4,7 +4,45 @@
   "publisherName": "ms-vscode",
   "displayName": "C/C++ Themes",
   "version": "2.0.0",
-  "extractedAt": "2026-01-23T21:33:35.130Z",
+  "extractedAt": "2026-01-23T22:59:33.548Z",
   "installCount": 51916016,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Visual Studio Dark - C++",
+      "label": "Dark (Visual Studio - C/C++)",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#DADADA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Visual Studio 2017 Dark - C++",
+      "label": "2017 Dark (Visual Studio - C/C++)",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Visual Studio Light - C++",
+      "label": "Light (Visual Studio - C/C++)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Visual Studio 2017 Light - C++",
+      "label": "2017 Light (Visual Studio - C/C++)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ]
 }

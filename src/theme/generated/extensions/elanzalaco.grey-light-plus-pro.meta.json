@@ -4,7 +4,22 @@
   "publisherName": "elanzalaco",
   "displayName": "Grey Light+ Pro",
   "version": "0.0.1",
-  "extractedAt": "2026-01-23T21:33:51.298Z",
+  "extractedAt": "2026-01-23T22:59:49.753Z",
   "installCount": 175324,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Grey Light+ Pro",
+      "label": "Grey Light+ Pro",
+      "colors": {
+        "editor.background": "#EEEEEE",
+        "editor.foreground": "#000000",
+        "statusBar.background": "#DDDDDD",
+        "statusBar.foreground": "#6F6F6F",
+        "activityBar.background": "#DDDDDD",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ]
 }

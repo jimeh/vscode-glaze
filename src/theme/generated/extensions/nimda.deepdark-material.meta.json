@@ -4,7 +4,43 @@
   "publisherName": "Nimda",
   "displayName": "Deepdark Material Theme",
   "version": "3.3.1",
-  "extractedAt": "2026-01-23T21:33:45.372Z",
+  "extractedAt": "2026-01-23T22:59:43.803Z",
   "installCount": 306413,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Deepdark Material Theme | Default Version",
+      "label": "Deepdark Material Theme | Default Version",
+      "colors": {
+        "editor.background": "#080808",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#080808",
+        "titleBar.activeForeground": "#878787",
+        "titleBar.inactiveBackground": "#080808",
+        "titleBar.inactiveForeground": "#878787",
+        "statusBar.background": "#080808",
+        "statusBar.foreground": "#878787",
+        "activityBar.background": "#080808",
+        "activityBar.foreground": "#F5F5F5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Deepdark Material Theme | Full Black Version",
+      "label": "Deepdark Material Theme | Full Black Version",
+      "colors": {
+        "editor.background": "#080808",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#080808",
+        "titleBar.activeForeground": "#878787",
+        "titleBar.inactiveBackground": "#080808",
+        "titleBar.inactiveForeground": "#878787",
+        "statusBar.background": "#080808",
+        "statusBar.foreground": "#878787",
+        "activityBar.background": "#080808",
+        "activityBar.foreground": "#F5F5F5"
+      },
+      "type": "dark"
+    }
+  ]
 }

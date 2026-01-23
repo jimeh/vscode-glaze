@@ -4,7 +4,45 @@
   "publisherName": "ms-vscode",
   "displayName": "Markdown Theme Kit",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:09:49.232Z",
+  "extractedAt": "2026-01-23T22:59:39.219Z",
   "installCount": 569687,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Markdown Editor",
+      "label": "Markdown Editor",
+      "colors": {
+        "editor.background": "#ECECEC",
+        "editor.foreground": "#555555"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Markdown Editor Dark",
+      "label": "Markdown Editor Dark",
+      "colors": {
+        "editor.background": "#131313",
+        "editor.foreground": "#AAAAAA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Markdown Editor Focus",
+      "label": "Markdown Editor Focus",
+      "colors": {
+        "editor.background": "#CCCCCC",
+        "editor.foreground": "#666666"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Markdown Editor Yellow",
+      "label": "Markdown Editor Yellow",
+      "colors": {
+        "editor.background": "#EFE9B7",
+        "editor.foreground": "#705442"
+      },
+      "type": "light"
+    }
+  ]
 }

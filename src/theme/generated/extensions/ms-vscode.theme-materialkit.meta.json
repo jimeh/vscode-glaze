@@ -4,7 +4,36 @@
   "publisherName": "ms-vscode",
   "displayName": "Material Theme Kit",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:09:49.886Z",
+  "extractedAt": "2026-01-23T22:59:41.533Z",
   "installCount": 423522,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Material",
+      "label": "Material",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#80CBC4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Night Eighties",
+      "label": "Material Night Eighties",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#C0C5CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Night",
+      "label": "Material Night",
+      "colors": {
+        "editor.background": "#FAFAFA",
+        "editor.foreground": "#90A4AE"
+      },
+      "type": "light"
+    }
+  ]
 }

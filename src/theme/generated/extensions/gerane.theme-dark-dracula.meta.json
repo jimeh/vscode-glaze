@@ -4,7 +4,18 @@
   "publisherName": "gerane",
   "displayName": "Dark-Dracula Theme",
   "version": "0.0.5",
-  "extractedAt": "2026-01-23T22:09:51.641Z",
+  "extractedAt": "2026-01-23T22:59:45.295Z",
   "installCount": 267040,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark-Dracula",
+      "label": "Dark-Dracula",
+      "colors": {
+        "editor.background": "#202020",
+        "editor.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
 }

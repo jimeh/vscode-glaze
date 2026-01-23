@@ -4,7 +4,25 @@
   "publisherName": "hsnazar",
   "displayName": "Hyper Term Theme",
   "version": "0.3.0",
-  "extractedAt": "2026-01-23T21:33:51.401Z",
+  "extractedAt": "2026-01-23T22:59:49.856Z",
   "installCount": 175124,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hyper Term Black",
+      "label": "Hyper Term Black",
+      "colors": {
+        "editor.background": "#000000",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    }
+  ]
 }

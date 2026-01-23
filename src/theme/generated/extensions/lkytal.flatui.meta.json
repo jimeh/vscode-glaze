@@ -4,7 +4,43 @@
   "publisherName": "lkytal",
   "displayName": "Flat UI",
   "version": "1.4.9",
-  "extractedAt": "2026-01-23T21:33:46.959Z",
+  "extractedAt": "2026-01-23T22:59:45.401Z",
   "installCount": 262664,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "FlatUI",
+      "label": "FlatUI",
+      "colors": {
+        "editor.background": "#FDFDFD",
+        "editor.foreground": "#474747",
+        "titleBar.activeBackground": "#F3F3F3"
+      },
+      "type": "light"
+    },
+    {
+      "name": "FlatUI Immersed",
+      "label": "FlatUI Immersed",
+      "colors": {
+        "editor.background": "#FBFBFB",
+        "editor.foreground": "#414141",
+        "titleBar.activeBackground": "#F0F0F0",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#414141",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#414141"
+      },
+      "type": "light"
+    },
+    {
+      "name": "FlatUI Dark",
+      "label": "FlatUI Dark",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#252526"
+      },
+      "type": "dark"
+    }
+  ]
 }

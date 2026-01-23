@@ -4,7 +4,25 @@
   "publisherName": "azemoh",
   "displayName": "One Dark Theme",
   "version": "0.6.0",
-  "extractedAt": "2026-01-23T21:33:43.638Z",
+  "extractedAt": "2026-01-23T22:59:42.068Z",
   "installCount": 382668,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "One Dark Theme",
+      "label": "One Dark Theme",
+      "colors": {
+        "editor.background": "#282C34",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#2F333D",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    }
+  ]
 }

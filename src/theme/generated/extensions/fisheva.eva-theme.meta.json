@@ -4,7 +4,145 @@
   "publisherName": "fisheva",
   "displayName": "Eva Theme",
   "version": "2.8.3",
-  "extractedAt": "2026-01-23T21:33:39.721Z",
+  "extractedAt": "2026-01-23T22:59:38.148Z",
   "installCount": 792056,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Eva Dark",
+      "label": "Eva Dark",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Eva Dark Bold",
+      "label": "Eva Dark Bold",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Eva Dark Italic",
+      "label": "Eva Dark Italic",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Eva Dark Italic Bold",
+      "label": "Eva Dark Italic Bold",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Eva Light",
+      "label": "Eva Light",
+      "colors": {
+        "editor.background": "#EBEEF5",
+        "editor.foreground": "#5D5D5F",
+        "titleBar.activeBackground": "#EBEEF5",
+        "titleBar.activeForeground": "#626264",
+        "titleBar.inactiveBackground": "#EBEEF5",
+        "titleBar.inactiveForeground": "#8E8E90",
+        "statusBar.background": "#E1E4EB",
+        "statusBar.foreground": "#5D5D5F",
+        "activityBar.background": "#EBEEF5",
+        "activityBar.foreground": "#787A7F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Eva Light Bold",
+      "label": "Eva Light Bold",
+      "colors": {
+        "editor.background": "#EBEEF5",
+        "editor.foreground": "#5D5D5F",
+        "titleBar.activeBackground": "#EBEEF5",
+        "titleBar.activeForeground": "#626264",
+        "titleBar.inactiveBackground": "#EBEEF5",
+        "titleBar.inactiveForeground": "#8E8E90",
+        "statusBar.background": "#E1E4EB",
+        "statusBar.foreground": "#5D5D5F",
+        "activityBar.background": "#EBEEF5",
+        "activityBar.foreground": "#787A7F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Eva Light Italic",
+      "label": "Eva Light Italic",
+      "colors": {
+        "editor.background": "#EBEEF5",
+        "editor.foreground": "#5D5D5F",
+        "titleBar.activeBackground": "#EBEEF5",
+        "titleBar.activeForeground": "#626264",
+        "titleBar.inactiveBackground": "#EBEEF5",
+        "titleBar.inactiveForeground": "#8E8E90",
+        "statusBar.background": "#E1E4EB",
+        "statusBar.foreground": "#5D5D5F",
+        "activityBar.background": "#EBEEF5",
+        "activityBar.foreground": "#787A7F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Eva Light Italic Bold",
+      "label": "Eva Light Italic Bold",
+      "colors": {
+        "editor.background": "#EBEEF5",
+        "editor.foreground": "#5D5D5F",
+        "titleBar.activeBackground": "#EBEEF5",
+        "titleBar.activeForeground": "#626264",
+        "titleBar.inactiveBackground": "#EBEEF5",
+        "titleBar.inactiveForeground": "#8E8E90",
+        "statusBar.background": "#E1E4EB",
+        "statusBar.foreground": "#5D5D5F",
+        "activityBar.background": "#EBEEF5",
+        "activityBar.foreground": "#787A7F"
+      },
+      "type": "light"
+    }
+  ]
 }

@@ -4,7 +4,26 @@
   "publisherName": "akamud",
   "displayName": "Atom One Light Theme",
   "version": "2.3.0",
-  "extractedAt": "2026-01-23T21:33:38.094Z",
+  "extractedAt": "2026-01-23T22:59:36.519Z",
   "installCount": 1374169,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Atom One Light",
+      "label": "Atom One Light",
+      "colors": {
+        "editor.background": "#FAFAFA",
+        "editor.foreground": "#383A42",
+        "titleBar.activeBackground": "#EAEAEB",
+        "titleBar.activeForeground": "#424243",
+        "titleBar.inactiveBackground": "#EAEAEB",
+        "titleBar.inactiveForeground": "#424243",
+        "statusBar.background": "#EAEAEB",
+        "statusBar.foreground": "#424243",
+        "activityBar.background": "#FAFAFA",
+        "activityBar.foreground": "#121417"
+      },
+      "type": "light"
+    }
+  ]
 }

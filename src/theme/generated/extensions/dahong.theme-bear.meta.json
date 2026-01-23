@@ -4,7 +4,26 @@
   "publisherName": "dahong",
   "displayName": "Bear Theme",
   "version": "2.1.0",
-  "extractedAt": "2026-01-23T21:33:48.819Z",
+  "extractedAt": "2026-01-23T22:59:47.252Z",
   "installCount": 214313,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Bear Theme",
+      "label": "Bear Theme",
+      "colors": {
+        "editor.background": "#1F2023",
+        "editor.foreground": "#BCB28D",
+        "titleBar.activeBackground": "#1F2023",
+        "titleBar.activeForeground": "#BCB28D",
+        "titleBar.inactiveBackground": "#31343C",
+        "titleBar.inactiveForeground": "#707C74",
+        "statusBar.background": "#1F2023",
+        "statusBar.foreground": "#BCB28D",
+        "activityBar.background": "#1F2023",
+        "activityBar.foreground": "#BCB28D"
+      },
+      "type": "dark"
+    }
+  ]
 }

@@ -4,7 +4,43 @@
   "publisherName": "uloco",
   "displayName": "Bluloco Dark Theme",
   "version": "3.7.6",
-  "extractedAt": "2026-01-23T21:33:41.843Z",
+  "extractedAt": "2026-01-23T22:59:40.282Z",
   "installCount": 503765,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Bluloco Dark",
+      "label": "Bluloco Dark",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#404753",
+        "titleBar.activeForeground": "#ABB2BF",
+        "titleBar.inactiveBackground": "#404753",
+        "titleBar.inactiveForeground": "#ABB2BF",
+        "statusBar.background": "#37404B",
+        "statusBar.foreground": "#ABB2BF",
+        "activityBar.background": "#2D333D",
+        "activityBar.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Bluloco Dark Italic",
+      "label": "Bluloco Dark Italic",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#404753",
+        "titleBar.activeForeground": "#ABB2BF",
+        "titleBar.inactiveBackground": "#404753",
+        "titleBar.inactiveForeground": "#ABB2BF",
+        "statusBar.background": "#37404B",
+        "statusBar.foreground": "#ABB2BF",
+        "activityBar.background": "#2D333D",
+        "activityBar.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    }
+  ]
 }

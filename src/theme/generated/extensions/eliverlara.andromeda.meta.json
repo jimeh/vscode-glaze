@@ -4,7 +4,61 @@
   "publisherName": "EliverLara",
   "displayName": "Andromeda",
   "version": "1.10.0",
-  "extractedAt": "2026-01-23T21:33:37.776Z",
+  "extractedAt": "2026-01-23T22:59:36.202Z",
   "installCount": 1597150,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Andromeda",
+      "label": "Andromeda",
+      "colors": {
+        "editor.background": "#23262E",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#23262E",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Andromeda Bordered",
+      "label": "Andromeda Bordered",
+      "colors": {
+        "editor.background": "#262A33",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#20232B",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Andromeda Italic Bordered",
+      "label": "Andromeda Italic Bordered",
+      "colors": {
+        "editor.background": "#262A33",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#20232B",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Andromeda Italic",
+      "label": "Andromeda Italic",
+      "colors": {
+        "editor.background": "#23262E",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#23262E",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    }
+  ]
 }

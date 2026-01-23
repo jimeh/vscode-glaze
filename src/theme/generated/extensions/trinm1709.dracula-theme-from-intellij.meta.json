@@ -4,7 +4,18 @@
   "publisherName": "trinm1709",
   "displayName": "Darcula IntelliJ Theme",
   "version": "0.3.0",
-  "extractedAt": "2026-01-23T21:33:46.233Z",
+  "extractedAt": "2026-01-23T22:59:44.656Z",
   "installCount": 282994,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Darcula Theme from IntelliJ",
+      "label": "Darcula Theme from IntelliJ",
+      "colors": {
+        "editor.background": "#212122",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ]
 }

@@ -4,12 +4,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { CONFIG } from './config';
-import {
-  getExtensionFilename,
-  getExtensionTsPath,
-  getExtensionMetaPath,
-} from './scanner';
-import type { ExtractedTheme, ExtensionMetadata, ThemeColors } from './types';
+import { getExtensionMetaPath } from './scanner';
+import type {
+  ExtractedTheme,
+  ExtensionMetadata,
+  MetadataTheme,
+  ThemeColors,
+} from './types';
 
 /**
  * Formats a ThemeColors object as TypeScript code.
@@ -227,43 +228,23 @@ export function generateReport(themes: ExtractedTheme[]): string {
 }
 
 /**
- * Generates TypeScript code for a single extension's themes.
+ * Converts ExtractedTheme array to MetadataTheme array for storage.
  */
-export function generateExtensionFileCode(themes: ExtractedTheme[]): string {
-  // Sort alphabetically by name for stable diffs
-  const sortedThemes = [...themes].sort((a, b) =>
-    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-  );
-
-  const lines: string[] = [
-    "import type { ThemeInfo } from '../../colors';",
-    '',
-    'export const THEMES: Record<string, ThemeInfo> = {',
-  ];
-
-  for (const theme of sortedThemes) {
-    const formattedName = formatThemeName(theme.name);
-    const colors = formatColors(theme.colors);
-
-    lines.push(`  ${formattedName}: {`);
-    lines.push(`    colors: ${colors},`);
-    lines.push(`    type: '${theme.type}',`);
-    lines.push('  },');
-  }
-
-  lines.push('};');
-  lines.push('');
-
-  return lines.join('\n');
+export function toMetadataThemes(themes: ExtractedTheme[]): MetadataTheme[] {
+  return themes.map((t) => ({
+    name: t.name,
+    label: t.label,
+    colors: t.colors,
+    type: t.type,
+  }));
 }
 
 /**
- * Writes an extension's theme file and metadata.
+ * Writes an extension's metadata file (with themes data).
  */
-export function writeExtensionFile(
+export function writeExtensionMetadata(
   publisherName: string,
   extensionName: string,
-  themes: ExtractedTheme[],
   metadata: ExtensionMetadata
 ): void {
   // Ensure directory exists
@@ -271,29 +252,19 @@ export function writeExtensionFile(
     fs.mkdirSync(CONFIG.extensionsDir, { recursive: true });
   }
 
-  // Write .ts file
-  const tsPath = getExtensionTsPath(publisherName, extensionName);
-  const tsContent = generateExtensionFileCode(themes);
-  fs.writeFileSync(tsPath, tsContent);
-
-  // Write .meta.json file
   const metaPath = getExtensionMetaPath(publisherName, extensionName);
   fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2) + '\n');
 }
 
 /**
- * Deletes an extension's theme file and metadata.
+ * Deletes an extension's metadata file.
  */
-export function deleteExtensionFile(
+export function deleteExtensionMetadata(
   publisherName: string,
   extensionName: string
 ): void {
-  const tsPath = getExtensionTsPath(publisherName, extensionName);
   const metaPath = getExtensionMetaPath(publisherName, extensionName);
 
-  if (fs.existsSync(tsPath)) {
-    fs.unlinkSync(tsPath);
-  }
   if (fs.existsSync(metaPath)) {
     fs.unlinkSync(metaPath);
   }
@@ -317,20 +288,11 @@ function stripTimestamp(content: string): string {
 }
 
 /**
- * Generates the aggregated index.ts file that exports all themes.
+ * Resolves theme conflicts and returns merged themes map.
  */
-export function generateIndexCode(
-  extensionInfos: ExtensionFileInfo[],
-  timestamp?: string
-): string {
-  // Build a map from extension key to info for conflict resolution
-  const extensionMap = new Map<string, ExtensionFileInfo>();
-  for (const info of extensionInfos) {
-    const key = `${info.publisherName}.${info.extensionName}`;
-    extensionMap.set(key, info);
-  }
-
-  // Collect all themes, resolving conflicts by install count
+function resolveThemeConflicts(
+  extensionInfos: ExtensionFileInfo[]
+): Map<string, ExtractedTheme> {
   const themeMap = new Map<string, { theme: ExtractedTheme; extKey: string }>();
   const conflicts: ThemeConflict[] = [];
 
@@ -367,32 +329,32 @@ export function generateIndexCode(
     console.warn('');
   }
 
-  // Collect unique extension keys that have themes included
-  const includedExtKeys = new Set<string>();
-  for (const [, { extKey }] of themeMap) {
-    includedExtKeys.add(extKey);
+  // Convert to simple map
+  const result = new Map<string, ExtractedTheme>();
+  for (const [name, { theme }] of themeMap) {
+    result.set(name, theme);
   }
+  return result;
+}
 
-  // Get extension infos for included extensions
-  const includedExtensions: ExtensionFileInfo[] = [];
-  for (const extKey of includedExtKeys) {
-    const info = extensionMap.get(extKey);
-    if (info) {
-      includedExtensions.push(info);
-    }
-  }
+/**
+ * Generates consolidated colors.ts with all themes defined inline.
+ */
+export function generateConsolidatedColorsCode(
+  extensionInfos: ExtensionFileInfo[],
+  timestamp?: string
+): string {
+  const themeMap = resolveThemeConflicts(extensionInfos);
 
-  // Sort by filename for stable output
-  includedExtensions.sort((a, b) => {
-    const aFile = getExtensionFilename(a.publisherName, a.extensionName);
-    const bFile = getExtensionFilename(b.publisherName, b.extensionName);
-    return aFile.localeCompare(bFile);
-  });
+  // Sort alphabetically for stable diffs
+  const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: 'base' })
+  );
 
   const ts = timestamp ?? new Date().toISOString();
   const lines: string[] = [
     '/**',
-    ' * Auto-generated aggregated theme colors.',
+    ' * Auto-generated theme colors.',
     ` * Generated: ${ts}`,
     ' *',
     ' * This file is auto-generated by scripts/extract-theme-colors.',
@@ -401,33 +363,18 @@ export function generateIndexCode(
     '',
     "import type { ThemeInfo } from '../colors';",
     '',
+    'export const GENERATED_THEME_COLORS: Record<string, ThemeInfo> = {',
   ];
 
-  // Generate imports
-  for (const info of includedExtensions) {
-    const filename = getExtensionFilename(info.publisherName, info.extensionName);
-    // Create a safe variable name from the filename
-    // Prefix with underscore if it starts with a number
-    let varName = filename.replace(/[.-]/g, '_');
-    if (/^\d/.test(varName)) {
-      varName = '_' + varName;
-    }
-    lines.push(
-      `import { THEMES as ${varName} } from './extensions/${filename}';`
-    );
-  }
+  for (const name of sortedNames) {
+    const theme = themeMap.get(name)!;
+    const formattedName = formatThemeName(name);
+    const colors = formatColors(theme.colors);
 
-  lines.push('');
-  lines.push('export const GENERATED_THEME_COLORS: Record<string, ThemeInfo> = {');
-
-  // Spread imports in order
-  for (const info of includedExtensions) {
-    const filename = getExtensionFilename(info.publisherName, info.extensionName);
-    let varName = filename.replace(/[.-]/g, '_');
-    if (/^\d/.test(varName)) {
-      varName = '_' + varName;
-    }
-    lines.push(`  ...${varName},`);
+    lines.push(`  ${formattedName}: {`);
+    lines.push(`    colors: ${colors},`);
+    lines.push(`    type: '${theme.type}',`);
+    lines.push('  },');
   }
 
   lines.push('};');
@@ -437,25 +384,27 @@ export function generateIndexCode(
 }
 
 /**
- * Writes the aggregated index.ts file if content has changed.
+ * Writes the consolidated colors.ts file if content has changed.
  * Returns true if the file was written, false if skipped (no changes).
  */
-export function writeIndexFile(extensionInfos: ExtensionFileInfo[]): boolean {
+export function writeConsolidatedColorsFile(
+  extensionInfos: ExtensionFileInfo[]
+): boolean {
   // Ensure directory exists
   if (!fs.existsSync(CONFIG.outputDir)) {
     fs.mkdirSync(CONFIG.outputDir, { recursive: true });
   }
 
-  const newContent = generateIndexCode(extensionInfos);
+  const newContent = generateConsolidatedColorsCode(extensionInfos);
 
   // Check if existing file has the same content (ignoring timestamp)
-  if (fs.existsSync(CONFIG.indexPath)) {
-    const existingContent = fs.readFileSync(CONFIG.indexPath, 'utf-8');
+  if (fs.existsSync(CONFIG.colorsPath)) {
+    const existingContent = fs.readFileSync(CONFIG.colorsPath, 'utf-8');
     if (stripTimestamp(existingContent) === stripTimestamp(newContent)) {
       return false;
     }
   }
 
-  fs.writeFileSync(CONFIG.indexPath, newContent);
+  fs.writeFileSync(CONFIG.colorsPath, newContent);
   return true;
 }

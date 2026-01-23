@@ -4,7 +4,23 @@
   "publisherName": "RobbOwen",
   "displayName": "SynthWave '84",
   "version": "0.1.20",
-  "extractedAt": "2026-01-23T21:33:37.153Z",
+  "extractedAt": "2026-01-23T22:59:35.581Z",
   "installCount": 2399645,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "SynthWave '84",
+      "label": "SynthWave '84",
+      "colors": {
+        "editor.background": "#262335",
+        "titleBar.activeBackground": "#241B2F",
+        "titleBar.inactiveBackground": "#241B2F",
+        "statusBar.background": "#241B2F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171520",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

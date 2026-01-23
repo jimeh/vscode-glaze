@@ -4,7 +4,25 @@
   "publisherName": "webfreak",
   "displayName": "Cute Pink Light Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-01-23T21:33:49.437Z",
+  "extractedAt": "2026-01-23T22:59:47.875Z",
   "installCount": 199527,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cute",
+      "label": "Cute",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#FCDEE9",
+        "titleBar.activeForeground": "#333333",
+        "titleBar.inactiveBackground": "#FCEAF1",
+        "titleBar.inactiveForeground": "#333333",
+        "statusBar.background": "#FF4574",
+        "activityBar.background": "#2E2638",
+        "activityBar.foreground": "#FCEAF1"
+      },
+      "type": "light"
+    }
+  ]
 }

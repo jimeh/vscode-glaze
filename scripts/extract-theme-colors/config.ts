@@ -16,8 +16,8 @@ export const CONFIG = {
   outputDir: 'src/theme/generated',
   /** Directory for per-extension theme files */
   extensionsDir: 'src/theme/generated/extensions',
-  /** Path to the aggregated index file */
-  indexPath: 'src/theme/generated/index.ts',
+  /** Path to the consolidated colors file */
+  colorsPath: 'src/theme/generated/colors.ts',
   /** Path to pinned extensions config */
   pinnedExtensionsPath: 'scripts/extract-theme-colors/pinned-extensions.json',
   /** Cache directory */

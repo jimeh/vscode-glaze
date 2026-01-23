@@ -4,7 +4,55 @@
   "publisherName": "dunstontc",
   "displayName": "dark-plus-syntax",
   "version": "0.2.11",
-  "extractedAt": "2026-01-23T21:33:46.753Z",
+  "extractedAt": "2026-01-23T22:59:45.190Z",
   "installCount": 270208,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "dark-plus-syntax",
+      "label": "dark-plus-syntax",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4",
+        "statusBar.background": "#303030"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "light-plus-syntax",
+      "label": "light-plus-syntax",
+      "colors": {
+        "editor.background": "#D4D4D4",
+        "editor.foreground": "#1E1E1E",
+        "statusBar.background": "#D4D4D4",
+        "statusBar.foreground": "#1E1E1E",
+        "activityBar.background": "#D4D4D4",
+        "activityBar.foreground": "#1E1E1E"
+      },
+      "type": "light"
+    },
+    {
+      "name": "dark-plus-syntax (high contrast)",
+      "label": "dark-plus-syntax (high contrast)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "statusBar.background": "#000000"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "light-plus-syntax (high contrast)",
+      "label": "light-plus-syntax (high contrast)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ]
 }

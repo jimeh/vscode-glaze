@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import type { PatinaColorPalette } from '../color/palette';
-import { GENERATED_THEME_COLORS } from './generated';
+import { GENERATED_THEME_COLORS } from './generated/colors';
 
 /**
  * Official VSCode theme types.

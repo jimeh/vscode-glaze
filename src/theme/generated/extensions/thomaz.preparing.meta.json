@@ -4,7 +4,25 @@
   "publisherName": "Thomaz",
   "displayName": "Dark",
   "version": "1.7.0",
-  "extractedAt": "2026-01-23T21:33:45.063Z",
+  "extractedAt": "2026-01-23T22:59:43.493Z",
   "installCount": 324761,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "NarutoDark",
+      "label": "NarutoDark",
+      "colors": {
+        "editor.background": "#0D0D1D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#09051B",
+        "titleBar.activeForeground": "#FCFCFC",
+        "titleBar.inactiveBackground": "#2E2A36",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#24375A",
+        "activityBar.background": "#161620",
+        "activityBar.foreground": "#F85D03"
+      },
+      "type": "dark"
+    }
+  ]
 }

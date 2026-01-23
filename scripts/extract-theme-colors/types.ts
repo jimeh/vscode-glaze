@@ -62,6 +62,16 @@ export interface MarketplaceExtension {
 }
 
 /**
+ * Theme data stored in metadata files.
+ */
+export interface MetadataTheme {
+  name: string;
+  label: string;
+  colors: ThemeColors;
+  type: ThemeType;
+}
+
+/**
  * Per-extension metadata stored in .meta.json sidecar files.
  */
 export interface ExtensionMetadata {
@@ -73,6 +83,8 @@ export interface ExtensionMetadata {
   extractedAt: string;
   installCount: number;
   stale: boolean;
+  /** Theme data extracted from extension */
+  themes: MetadataTheme[];
 }
 
 /**

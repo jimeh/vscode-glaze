@@ -4,7 +4,111 @@
   "publisherName": "teabyii",
   "displayName": "Ayu",
   "version": "1.1.7",
-  "extractedAt": "2026-01-23T21:33:36.316Z",
+  "extractedAt": "2026-01-23T22:59:34.739Z",
   "installCount": 3962171,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Ayu Light",
+      "label": "Ayu Light",
+      "colors": {
+        "editor.background": "#F8F9FA",
+        "editor.foreground": "#5C6166",
+        "titleBar.activeBackground": "#F8F9FA",
+        "titleBar.activeForeground": "#828E9F",
+        "titleBar.inactiveBackground": "#F8F9FA",
+        "titleBar.inactiveForeground": "#828E9F",
+        "statusBar.background": "#F8F9FA",
+        "statusBar.foreground": "#828E9F",
+        "activityBar.background": "#F8F9FA",
+        "activityBar.foreground": "#828E9F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Ayu Light Bordered",
+      "label": "Ayu Light Bordered",
+      "colors": {
+        "editor.background": "#FCFCFC",
+        "editor.foreground": "#5C6166",
+        "titleBar.activeBackground": "#F8F9FA",
+        "titleBar.activeForeground": "#828E9F",
+        "titleBar.inactiveBackground": "#F8F9FA",
+        "titleBar.inactiveForeground": "#828E9F",
+        "statusBar.background": "#F8F9FA",
+        "statusBar.foreground": "#828E9F",
+        "activityBar.background": "#F8F9FA",
+        "activityBar.foreground": "#828E9F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Ayu Mirage",
+      "label": "Ayu Mirage",
+      "colors": {
+        "editor.background": "#1F2430",
+        "editor.foreground": "#CCCAC2",
+        "titleBar.activeBackground": "#1F2430",
+        "titleBar.activeForeground": "#707A8C",
+        "titleBar.inactiveBackground": "#1F2430",
+        "titleBar.inactiveForeground": "#707A8C",
+        "statusBar.background": "#1F2430",
+        "statusBar.foreground": "#707A8C",
+        "activityBar.background": "#1F2430",
+        "activityBar.foreground": "#707A8C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ayu Mirage Bordered",
+      "label": "Ayu Mirage Bordered",
+      "colors": {
+        "editor.background": "#242936",
+        "editor.foreground": "#CCCAC2",
+        "titleBar.activeBackground": "#1F2430",
+        "titleBar.activeForeground": "#707A8C",
+        "titleBar.inactiveBackground": "#1F2430",
+        "titleBar.inactiveForeground": "#707A8C",
+        "statusBar.background": "#1F2430",
+        "statusBar.foreground": "#707A8C",
+        "activityBar.background": "#1F2430",
+        "activityBar.foreground": "#707A8C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ayu Dark",
+      "label": "Ayu Dark",
+      "colors": {
+        "editor.background": "#0D1017",
+        "editor.foreground": "#BFBDB6",
+        "titleBar.activeBackground": "#0D1017",
+        "titleBar.activeForeground": "#555E73",
+        "titleBar.inactiveBackground": "#0D1017",
+        "titleBar.inactiveForeground": "#555E73",
+        "statusBar.background": "#0D1017",
+        "statusBar.foreground": "#555E73",
+        "activityBar.background": "#0D1017",
+        "activityBar.foreground": "#555E73"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ayu Dark Bordered",
+      "label": "Ayu Dark Bordered",
+      "colors": {
+        "editor.background": "#10141C",
+        "editor.foreground": "#BFBDB6",
+        "titleBar.activeBackground": "#0D1017",
+        "titleBar.activeForeground": "#555E73",
+        "titleBar.inactiveBackground": "#0D1017",
+        "titleBar.inactiveForeground": "#555E73",
+        "statusBar.background": "#0D1017",
+        "statusBar.foreground": "#555E73",
+        "activityBar.background": "#0D1017",
+        "activityBar.foreground": "#555E73"
+      },
+      "type": "dark"
+    }
+  ]
 }

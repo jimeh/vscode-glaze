@@ -4,7 +4,18 @@
   "publisherName": "AdamCaviness",
   "displayName": "Monokai Dark Soda",
   "version": "1.2.0",
-  "extractedAt": "2026-01-23T21:33:44.754Z",
+  "extractedAt": "2026-01-23T22:59:43.178Z",
   "installCount": 329249,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Monokai Dark Soda",
+      "label": "Monokai Dark Soda",
+      "colors": {
+        "editor.background": "#242424",
+        "editor.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
 }

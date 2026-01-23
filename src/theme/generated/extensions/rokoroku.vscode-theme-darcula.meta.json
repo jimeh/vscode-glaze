@@ -4,7 +4,24 @@
   "publisherName": "rokoroku",
   "displayName": "Darcula Theme",
   "version": "1.2.3",
-  "extractedAt": "2026-01-23T21:33:39.488Z",
+  "extractedAt": "2026-01-23T22:59:37.917Z",
   "installCount": 883713,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Darcula",
+      "label": "Darcula",
+      "colors": {
+        "editor.background": "#242424",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

@@ -27,15 +27,17 @@ import {
 import { parseTheme, validateTheme } from './parser';
 import {
   generateReport,
-  writeExtensionFile,
-  writeIndexFile,
+  writeExtensionMetadata,
+  writeConsolidatedColorsFile,
+  toMetadataThemes,
   type ExtensionFileInfo,
 } from './output';
 import {
   scanExistingExtensions,
   needsUpdate,
-  getExtensionTsPath,
+  hasThemesInMetadata,
   getExtensionMetaPath,
+  cleanupExtensionTsFiles,
 } from './scanner';
 import { loadPinnedExtensions } from './pinned';
 import type {
@@ -166,60 +168,22 @@ async function processExtension(
 }
 
 /**
- * Loads themes from an existing extension file.
+ * Loads themes from existing metadata.
  */
-function loadExistingThemes(
-  publisherName: string,
-  extensionName: string,
-  metadata: ExtensionMetadata
-): ExtractedTheme[] {
-  const tsPath = getExtensionTsPath(publisherName, extensionName);
-
-  if (!fs.existsSync(tsPath)) {
+function loadExistingThemes(metadata: ExtensionMetadata): ExtractedTheme[] {
+  if (!hasThemesInMetadata(metadata)) {
     return [];
   }
 
-  try {
-    // Parse the file content to extract theme data
-    const content = fs.readFileSync(tsPath, 'utf-8');
-
-    // Extract themes using regex
-    const themes: ExtractedTheme[] = [];
-    const themeRegex =
-      /"([^"]+)":\s*\{\s*colors:\s*(\{[^}]+\}),\s*type:\s*'([^']+)'/g;
-    let match;
-
-    while ((match = themeRegex.exec(content)) !== null) {
-      const [, name, colorsStr, type] = match;
-
-      // Parse colors object
-      const colors: Record<string, string> = {};
-      const colorRegex = /'([^']+)':\s*'([^']+)'/g;
-      let colorMatch;
-      while ((colorMatch = colorRegex.exec(colorsStr)) !== null) {
-        colors[colorMatch[1]] = colorMatch[2];
-      }
-
-      if (colors['editor.background']) {
-        themes.push({
-          name,
-          label: name, // When loading from existing files, assume name is the label
-          colors: colors as ExtractedTheme['colors'],
-          type: type as ExtractedTheme['type'],
-          extensionId: metadata.extensionId,
-          extensionName: metadata.extensionName,
-          installCount: metadata.installCount,
-        });
-      }
-    }
-
-    return themes;
-  } catch (error) {
-    console.warn(
-      `Failed to load themes from ${tsPath}: ${error}`
-    );
-    return [];
-  }
+  return metadata.themes.map((t) => ({
+    name: t.name,
+    label: t.label,
+    colors: t.colors,
+    type: t.type,
+    extensionId: metadata.extensionId,
+    extensionName: metadata.extensionName,
+    installCount: metadata.installCount,
+  }));
 }
 
 async function main(): Promise<void> {
@@ -288,13 +252,9 @@ async function main(): Promise<void> {
     const shouldUpdate =
       options.forceAll || needsUpdate(existing, extension.version);
 
-    if (!shouldUpdate && existing) {
-      // Load themes from existing file
-      const themes = loadExistingThemes(
-        existing.publisherName,
-        existing.extensionName,
-        existing
-      );
+    if (!shouldUpdate && existing && hasThemesInMetadata(existing)) {
+      // Load themes from existing metadata
+      const themes = loadExistingThemes(existing);
 
       if (themes.length > 0) {
         allExtensionInfos.push({
@@ -344,13 +304,13 @@ async function main(): Promise<void> {
         extractedAt: new Date().toISOString(),
         installCount: extension.installCount,
         stale: false,
+        themes: toMetadataThemes(themes),
       };
 
       if (!options.dryRun) {
-        writeExtensionFile(
+        writeExtensionMetadata(
           extension.publisherName,
           extension.extensionName,
-          themes,
           metadata
         );
       }
@@ -389,19 +349,17 @@ async function main(): Promise<void> {
         }
       }
 
-      // Still include stale extensions in the output
-      const themes = loadExistingThemes(
-        metadata.publisherName,
-        metadata.extensionName,
-        metadata
-      );
-      if (themes.length > 0) {
-        allExtensionInfos.push({
-          publisherName: metadata.publisherName,
-          extensionName: metadata.extensionName,
-          installCount: metadata.installCount,
-          themes,
-        });
+      // Still include stale extensions in the output if they have themes
+      if (hasThemesInMetadata(metadata)) {
+        const themes = loadExistingThemes(metadata);
+        if (themes.length > 0) {
+          allExtensionInfos.push({
+            publisherName: metadata.publisherName,
+            extensionName: metadata.extensionName,
+            installCount: metadata.installCount,
+            themes,
+          });
+        }
       }
     }
   }
@@ -424,18 +382,26 @@ async function main(): Promise<void> {
   console.log('');
   console.log(report);
 
-  // Step 7: Generate index file
+  // Step 7: Clean up old per-extension .ts files
+  if (!options.dryRun) {
+    const deletedFiles = cleanupExtensionTsFiles();
+    if (deletedFiles.length > 0) {
+      console.log(`Cleaned up ${deletedFiles.length} old extension .ts files`);
+    }
+  }
+
+  // Step 8: Generate consolidated colors file
   if (options.dryRun) {
     console.log('');
-    console.log('=== DRY RUN - Would generate index file ===');
+    console.log('=== DRY RUN - Would generate output files ===');
     console.log(`Extensions included: ${allExtensionInfos.length}`);
-    console.log(`Would write to: ${CONFIG.indexPath}`);
+    console.log(`Would write to: ${CONFIG.colorsPath}`);
   } else {
-    const written = writeIndexFile(allExtensionInfos);
-    if (written) {
-      console.log(`Written index to: ${CONFIG.indexPath}`);
+    const colorsWritten = writeConsolidatedColorsFile(allExtensionInfos);
+    if (colorsWritten) {
+      console.log(`Written colors to: ${CONFIG.colorsPath}`);
     } else {
-      console.log(`Index unchanged: ${CONFIG.indexPath}`);
+      console.log(`Colors unchanged: ${CONFIG.colorsPath}`);
     }
   }
 

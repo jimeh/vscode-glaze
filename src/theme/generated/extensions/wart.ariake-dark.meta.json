@@ -4,7 +4,23 @@
   "publisherName": "wart",
   "displayName": "Ariake Dark",
   "version": "0.2.2",
-  "extractedAt": "2026-01-23T21:33:49.642Z",
+  "extractedAt": "2026-01-23T22:59:48.082Z",
   "installCount": 193262,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Ariake Dark",
+      "label": "Ariake Dark",
+      "colors": {
+        "editor.background": "#2A2D37",
+        "editor.foreground": "#C0C5CE",
+        "titleBar.activeBackground": "#1C1F26",
+        "titleBar.inactiveBackground": "#1C1F26",
+        "statusBar.background": "#1C1F26",
+        "statusBar.foreground": "#4F5B66",
+        "activityBar.background": "#1C1F26"
+      },
+      "type": "dark"
+    }
+  ]
 }

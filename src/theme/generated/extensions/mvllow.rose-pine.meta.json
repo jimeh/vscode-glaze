@@ -4,7 +4,111 @@
   "publisherName": "mvllow",
   "displayName": "Rosé Pine",
   "version": "2.15.0",
-  "extractedAt": "2026-01-23T21:33:46.130Z",
+  "extractedAt": "2026-01-23T22:59:44.554Z",
   "installCount": 286820,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Rosé Pine",
+      "label": "Rosé Pine",
+      "colors": {
+        "editor.background": "#191724",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#191724",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#1F1D2E",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#191724",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#191724",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rosé Pine (no italics)",
+      "label": "Rosé Pine (no italics)",
+      "colors": {
+        "editor.background": "#191724",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#191724",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#1F1D2E",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#191724",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#191724",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rosé Pine Moon",
+      "label": "Rosé Pine Moon",
+      "colors": {
+        "editor.background": "#232136",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#232136",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#2A273F",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#232136",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#232136",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rosé Pine Moon (no italics)",
+      "label": "Rosé Pine Moon (no italics)",
+      "colors": {
+        "editor.background": "#232136",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#232136",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#2A273F",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#232136",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#232136",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rosé Pine Dawn",
+      "label": "Rosé Pine Dawn",
+      "colors": {
+        "editor.background": "#FAF4ED",
+        "editor.foreground": "#575279",
+        "titleBar.activeBackground": "#FAF4ED",
+        "titleBar.activeForeground": "#797593",
+        "titleBar.inactiveBackground": "#FFFAF3",
+        "titleBar.inactiveForeground": "#797593",
+        "statusBar.background": "#FAF4ED",
+        "statusBar.foreground": "#797593",
+        "activityBar.background": "#FAF4ED",
+        "activityBar.foreground": "#575279"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Rosé Pine Dawn (no italics)",
+      "label": "Rosé Pine Dawn (no italics)",
+      "colors": {
+        "editor.background": "#FAF4ED",
+        "editor.foreground": "#575279",
+        "titleBar.activeBackground": "#FAF4ED",
+        "titleBar.activeForeground": "#797593",
+        "titleBar.inactiveBackground": "#FFFAF3",
+        "titleBar.inactiveForeground": "#797593",
+        "statusBar.background": "#FAF4ED",
+        "statusBar.foreground": "#797593",
+        "activityBar.background": "#FAF4ED",
+        "activityBar.foreground": "#575279"
+      },
+      "type": "light"
+    }
+  ]
 }

@@ -4,7 +4,26 @@
   "publisherName": "brittanychiang",
   "displayName": "Halcyon Theme",
   "version": "0.4.0",
-  "extractedAt": "2026-01-23T21:33:50.158Z",
+  "extractedAt": "2026-01-23T22:59:48.604Z",
   "installCount": 185347,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Halcyon",
+      "label": "Halcyon",
+      "colors": {
+        "editor.background": "#1D2433",
+        "editor.foreground": "#A2AABC",
+        "titleBar.activeBackground": "#171C28",
+        "titleBar.activeForeground": "#D7DCE2",
+        "titleBar.inactiveBackground": "#171C28",
+        "titleBar.inactiveForeground": "#8695B7",
+        "statusBar.background": "#171C28",
+        "statusBar.foreground": "#8695B7",
+        "activityBar.background": "#171C28",
+        "activityBar.foreground": "#8695B7"
+      },
+      "type": "dark"
+    }
+  ]
 }

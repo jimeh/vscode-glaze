@@ -4,7 +4,27 @@
   "publisherName": "naumovs",
   "displayName": "Theme - Oceanic Next",
   "version": "0.0.4",
-  "extractedAt": "2026-01-23T22:09:49.337Z",
+  "extractedAt": "2026-01-23T22:59:40.036Z",
   "installCount": 515578,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Oceanic Next",
+      "label": "Oceanic Next",
+      "colors": {
+        "editor.background": "#1B2B34",
+        "editor.foreground": "#CDD3DE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Oceanic Next (dimmed bg)",
+      "label": "Oceanic Next (dimmed bg)",
+      "colors": {
+        "editor.background": "#1D2225",
+        "editor.foreground": "#CDD3DE"
+      },
+      "type": "dark"
+    }
+  ]
 }

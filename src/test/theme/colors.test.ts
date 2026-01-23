@@ -10,7 +10,7 @@ import {
   getThemeBackground,
   getBackgroundForKey,
 } from '../../theme/colors';
-import { GENERATED_THEME_COLORS } from '../../theme/generated';
+import { GENERATED_THEME_COLORS } from '../../theme/generated/colors';
 
 suite('BUILTIN_THEMES', () => {
   test('contains VS Code built-in themes', () => {

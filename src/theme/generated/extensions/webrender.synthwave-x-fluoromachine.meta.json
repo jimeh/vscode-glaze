@@ -4,7 +4,23 @@
   "publisherName": "webrender",
   "displayName": "Synthwave x Fluoromachine",
   "version": "0.0.14",
-  "extractedAt": "2026-01-23T21:33:49.540Z",
+  "extractedAt": "2026-01-23T22:59:47.977Z",
   "installCount": 197956,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Synthwave x Fluoromachine",
+      "label": "Synthwave x Fluoromachine",
+      "colors": {
+        "editor.background": "#262335",
+        "titleBar.activeBackground": "#241B2F",
+        "titleBar.inactiveBackground": "#241B2F",
+        "statusBar.background": "#241B2F",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171520",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

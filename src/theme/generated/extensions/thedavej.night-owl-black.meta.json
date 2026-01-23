@@ -4,7 +4,41 @@
   "publisherName": "thedavej",
   "displayName": "Night Owl Black",
   "version": "1.3.1",
-  "extractedAt": "2026-01-23T21:33:49.129Z",
+  "extractedAt": "2026-01-23T22:59:47.567Z",
   "installCount": 204702,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Night Owl Black",
+      "label": "Night Owl Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010E1A",
+        "statusBar.background": "#131313",
+        "statusBar.foreground": "#8BADC1",
+        "activityBar.background": "#131313",
+        "activityBar.foreground": "#A599E9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Owl Black (No Italics)",
+      "label": "Night Owl Black (No Italics)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010E1A",
+        "statusBar.background": "#131313",
+        "statusBar.foreground": "#8BADC1",
+        "activityBar.background": "#131313",
+        "activityBar.foreground": "#A599E9"
+      },
+      "type": "dark"
+    }
+  ]
 }

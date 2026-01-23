@@ -4,7 +4,45 @@
   "publisherName": "ms-vscode",
   "displayName": "Tomorrow and Tomorrow Night Theme Kit",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:09:52.571Z",
+  "extractedAt": "2026-01-23T22:59:47.462Z",
   "installCount": 208507,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Tomorrow",
+      "label": "Tomorrow",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4D4D4C"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tomorrow Night Eighties",
+      "label": "Tomorrow Night Eighties",
+      "colors": {
+        "editor.background": "#2D2D2D",
+        "editor.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tomorrow Night",
+      "label": "Tomorrow Night",
+      "colors": {
+        "editor.background": "#1D1F21",
+        "editor.foreground": "#C5C8C6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tomorrow Night Bright",
+      "label": "Tomorrow Night Bright",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    }
+  ]
 }

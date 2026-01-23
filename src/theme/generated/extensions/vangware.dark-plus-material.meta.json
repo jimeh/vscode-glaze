@@ -4,7 +4,26 @@
   "publisherName": "vangware",
   "displayName": "Dark+ Material",
   "version": "3.2.1",
-  "extractedAt": "2026-01-23T21:33:42.893Z",
+  "extractedAt": "2026-01-23T22:59:41.319Z",
   "installCount": 437797,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark+ Material",
+      "label": "Dark+ Material",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#BDBDBD",
+        "titleBar.activeBackground": "#424242",
+        "titleBar.activeForeground": "#BDBDBD",
+        "titleBar.inactiveBackground": "#424242",
+        "titleBar.inactiveForeground": "#BDBDBD",
+        "statusBar.background": "#0277BD",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#424242",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

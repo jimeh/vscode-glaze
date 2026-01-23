@@ -4,7 +4,73 @@
   "publisherName": "SolarLiner",
   "displayName": "Linux Themes for VS Code",
   "version": "1.0.1",
-  "extractedAt": "2026-01-23T21:33:39.936Z",
+  "extractedAt": "2026-01-23T22:59:38.363Z",
   "installCount": 726925,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Arc Dark",
+      "label": "Arc Dark",
+      "colors": {
+        "editor.background": "#2F343F",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#2F343F",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#2F343F",
+        "titleBar.inactiveForeground": "#888888",
+        "statusBar.background": "#262B33",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#262B33"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Adapta Nokto",
+      "label": "Adapta Nokto",
+      "colors": {
+        "editor.background": "#29353B",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#2F343F",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#2F343F",
+        "titleBar.inactiveForeground": "#888888",
+        "statusBar.background": "#222D32",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#222D32"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "United Ubuntu",
+      "label": "United Ubuntu",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#111111",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#111111",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#181818",
+        "activityBar.background": "#242424",
+        "activityBar.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ambiance [beta]",
+      "label": "Ambiance [beta]",
+      "colors": {
+        "editor.background": "#31312E",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#111111",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#111111",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#31312E",
+        "activityBar.background": "#31312E",
+        "activityBar.foreground": "#F3F2F1"
+      },
+      "type": "dark"
+    }
+  ]
 }

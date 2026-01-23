@@ -4,7 +4,69 @@
   "publisherName": "sdras",
   "displayName": "Night Owl",
   "version": "2.1.1",
-  "extractedAt": "2026-01-23T21:33:36.738Z",
+  "extractedAt": "2026-01-23T22:59:35.167Z",
   "installCount": 3385247,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Night Owl",
+      "label": "Night Owl",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010E1A",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#5F7E97",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#5F7E97"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Owl (No Italics)",
+      "label": "Night Owl (No Italics)",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010E1A",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#5F7E97",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#5F7E97"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Owl Light",
+      "label": "Night Owl Light",
+      "colors": {
+        "editor.background": "#FBFBFB",
+        "editor.foreground": "#403F53",
+        "titleBar.activeBackground": "#F0F0F0",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#403F53",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#403F53"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Night Owl Light (No Italics)",
+      "label": "Night Owl Light (No Italics)",
+      "colors": {
+        "editor.background": "#FBFBFB",
+        "editor.foreground": "#403F53",
+        "titleBar.activeBackground": "#F0F0F0",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#403F53",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#403F53"
+      },
+      "type": "light"
+    }
+  ]
 }

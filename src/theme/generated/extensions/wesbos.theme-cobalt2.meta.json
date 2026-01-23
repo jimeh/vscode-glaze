@@ -4,7 +4,26 @@
   "publisherName": "wesbos",
   "displayName": "Cobalt2 Theme Official",
   "version": "2.5.0",
-  "extractedAt": "2026-01-23T21:33:37.466Z",
+  "extractedAt": "2026-01-23T22:59:35.892Z",
   "installCount": 1819978,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cobalt2",
+      "label": "Cobalt2",
+      "colors": {
+        "editor.background": "#193549",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#15232D",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#193549",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#15232D",
+        "statusBar.foreground": "#AAAAAA",
+        "activityBar.background": "#122738",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
 }

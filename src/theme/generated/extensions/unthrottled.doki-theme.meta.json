@@ -4,7 +4,1264 @@
   "publisherName": "unthrottled",
   "displayName": "Doki Theme",
   "version": "88.1.18",
-  "extractedAt": "2026-01-23T21:33:40.682Z",
+  "extractedAt": "2026-01-23T22:59:39.107Z",
   "installCount": 575270,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "13adffd9-acbe-47af-8101-fa71269a4c5c",
+      "label": "Doki Theme: Franxx:  Zero Two Dark Obsidian",
+      "colors": {
+        "editor.background": "#17070E",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#150A0E",
+        "titleBar.inactiveBackground": "#150A0E",
+        "statusBar.background": "#1ECD86",
+        "statusBar.foreground": "#1A0C12",
+        "activityBar.background": "#1A0C12",
+        "activityBar.foreground": "#1ECD86"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "e55e70ea-454b-47ef-9270-d46390dd2769",
+      "label": "Doki Theme: AzurLane:  Essex",
+      "colors": {
+        "editor.background": "#001D39",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#00203E",
+        "titleBar.inactiveBackground": "#00203E",
+        "statusBar.background": "#D53232",
+        "activityBar.background": "#002446",
+        "activityBar.foreground": "#D53232"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "6106e529-efef-444d-9db0-a9b0b444cf1b",
+      "label": "Doki Theme: BlendS:  Maika",
+      "colors": {
+        "editor.background": "#24062F",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#20052A",
+        "titleBar.inactiveBackground": "#20052A",
+        "statusBar.background": "#BC5D71",
+        "activityBar.background": "#24062F",
+        "activityBar.foreground": "#BC5D71"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "0527c6fc-316a-4f80-9459-d92ced0e6492",
+      "label": "Doki Theme: BunnySenpai:  Mai",
+      "colors": {
+        "editor.background": "#242448",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#25254E",
+        "titleBar.inactiveBackground": "#25254E",
+        "statusBar.background": "#FEE3CF",
+        "statusBar.foreground": "#25254B",
+        "activityBar.background": "#25254B",
+        "activityBar.foreground": "#FEE3CF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "98878c8e-9f91-4e25-930d-dd7d280d9e35",
+      "label": "Doki Theme: BunnySenpai:  Mai",
+      "colors": {
+        "editor.background": "#FAF2F1",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFF7F6",
+        "titleBar.inactiveBackground": "#FFF7F6",
+        "statusBar.background": "#4F5287",
+        "activityBar.background": "#F1ECF2",
+        "activityBar.foreground": "#4F5287"
+      },
+      "type": "light"
+    },
+    {
+      "name": "4fb20370-1b89-4a0d-9f8f-84542ec147b2",
+      "label": "Doki Theme: Charlotte:  Nao",
+      "colors": {
+        "editor.background": "#EFE7DE",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F1E7DE",
+        "titleBar.inactiveBackground": "#F1E7DE",
+        "statusBar.background": "#276FD8",
+        "activityBar.background": "#E2E1E2",
+        "activityBar.foreground": "#276FD8"
+      },
+      "type": "light"
+    },
+    {
+      "name": "5412c41d-f76b-4488-85a7-1ae1a63bbfcc",
+      "label": "Doki Theme: Chuunibyou:  Rikka",
+      "colors": {
+        "editor.background": "#1E1928",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1D1926",
+        "titleBar.inactiveBackground": "#1D1926",
+        "statusBar.background": "#DD2A62",
+        "activityBar.background": "#231E2D",
+        "activityBar.foreground": "#DD2A62"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "3462121b-b101-406f-8b31-ce04d09b2ef6",
+      "label": "Doki Theme: CodeGeass:  C.C.",
+      "colors": {
+        "editor.background": "#C4EA8A",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#CAEC92",
+        "titleBar.inactiveBackground": "#CAEC92",
+        "statusBar.background": "#68AC17",
+        "activityBar.background": "#D0F09E",
+        "activityBar.foreground": "#68AC17"
+      },
+      "type": "light"
+    },
+    {
+      "name": "dce48196-ff46-470c-b5f9-d1e23f4a79d3",
+      "label": "Doki Theme: DDLC:  Monika",
+      "colors": {
+        "editor.background": "#1D2115",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1D2115",
+        "titleBar.inactiveBackground": "#1D2115",
+        "statusBar.background": "#388E3C",
+        "activityBar.background": "#1A1E12",
+        "activityBar.foreground": "#388E3C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "9a310731-ab2d-40f5-b502-fa5419f799a2",
+      "label": "Doki Theme: DDLC:  Monika",
+      "colors": {
+        "editor.background": "#F2FFF0",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F2FFF0",
+        "titleBar.inactiveBackground": "#F2FFF0",
+        "statusBar.background": "#388E3C",
+        "activityBar.background": "#DCF7E0",
+        "activityBar.foreground": "#388E3C"
+      },
+      "type": "light"
+    },
+    {
+      "name": "a7e0aa28-739a-4671-80ae-3980997e6b71",
+      "label": "Doki Theme: DDLC:  Natsuki",
+      "colors": {
+        "editor.background": "#35102C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2F0A27",
+        "titleBar.inactiveBackground": "#2F0A27",
+        "statusBar.background": "#E94686",
+        "activityBar.background": "#310A29",
+        "activityBar.foreground": "#E94686"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "91415015-8fe3-48eb-9951-70a5cd6cbb7f",
+      "label": "Doki Theme: DDLC:  Natsuki",
+      "colors": {
+        "editor.background": "#FFE5F1",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFE0F0",
+        "titleBar.inactiveBackground": "#FFE0F0",
+        "statusBar.background": "#E94686",
+        "activityBar.background": "#FFE0F0",
+        "activityBar.foreground": "#E94686"
+      },
+      "type": "light"
+    },
+    {
+      "name": "b0340303-0a5a-4a20-9b9c-fc8ce9880078",
+      "label": "Doki Theme: DDLC:  Sayori",
+      "colors": {
+        "editor.background": "#111B2D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0E1B2F",
+        "titleBar.inactiveBackground": "#0E1B2F",
+        "statusBar.background": "#00BCD4",
+        "activityBar.background": "#0E1D31",
+        "activityBar.foreground": "#00BCD4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "cb8ef4b7-0844-4a04-b08b-754086598de4",
+      "label": "Doki Theme: DDLC:  Sayori",
+      "colors": {
+        "editor.background": "#F0FAFF",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F0FAFF",
+        "titleBar.inactiveBackground": "#F0FAFF",
+        "statusBar.background": "#00BCD4",
+        "activityBar.background": "#DCEEF7",
+        "activityBar.foreground": "#00BCD4"
+      },
+      "type": "light"
+    },
+    {
+      "name": "a14733d6-8e15-4e75-b6b8-509f323e5b3b",
+      "label": "Doki Theme: DDLC:  Yuri",
+      "colors": {
+        "editor.background": "#422D5A",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#442E5C",
+        "titleBar.inactiveBackground": "#442E5C",
+        "statusBar.background": "#AB47BC",
+        "activityBar.background": "#493162",
+        "activityBar.foreground": "#AB47BC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "cecf3f92-76d4-4f14-9a9c-3d558b6b3b68",
+      "label": "Doki Theme: DDLC:  Yuri",
+      "colors": {
+        "editor.background": "#F3F0FF",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F5F0FF",
+        "titleBar.inactiveBackground": "#F5F0FF",
+        "statusBar.background": "#AB74CB",
+        "activityBar.background": "#E4DCF7",
+        "activityBar.foreground": "#AB74CB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "b93ab4ea-ff96-4459-8fa2-0caae5bc7116",
+      "label": "Doki Theme: DM:  Kanna",
+      "colors": {
+        "editor.background": "#1A1426",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1A1526",
+        "titleBar.inactiveBackground": "#1A1526",
+        "statusBar.background": "#46459E",
+        "activityBar.background": "#1B1529",
+        "activityBar.foreground": "#46459E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "2d049451-6e89-4325-af38-6ce889991e5b",
+      "label": "Doki Theme: DM:  Tohru",
+      "colors": {
+        "editor.background": "#FFE090",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F6D988",
+        "titleBar.inactiveBackground": "#F6D988",
+        "statusBar.background": "#D23C4B",
+        "activityBar.background": "#FFE797",
+        "activityBar.foreground": "#D23C4B"
+      },
+      "type": "light"
+    },
+    {
+      "name": "420b0ed5-803c-4127-97e3-dae6aa1a5972",
+      "label": "Doki Theme: DR:  Ibuki",
+      "colors": {
+        "editor.background": "#191B1D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#17191B",
+        "titleBar.inactiveBackground": "#17191B",
+        "statusBar.background": "#5395B4",
+        "activityBar.background": "#141617",
+        "activityBar.foreground": "#5395B4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "697e8564-0975-4907-a34c-51f65177ebf3",
+      "label": "Doki Theme: DR:  Ibuki",
+      "colors": {
+        "editor.background": "#FFEEFD",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFEEFD",
+        "titleBar.inactiveBackground": "#FFEEFD",
+        "statusBar.background": "#DA46A7",
+        "activityBar.background": "#F7DCF3",
+        "activityBar.foreground": "#DA46A7"
+      },
+      "type": "light"
+    },
+    {
+      "name": "ca45f54a-57cb-4d8c-82a6-d4b31c850bd6",
+      "label": "Doki Theme: DTWMMN:  Nagatoro",
+      "colors": {
+        "editor.background": "#151515",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "statusBar.background": "#D2824E",
+        "statusBar.foreground": "#1D1D1D",
+        "activityBar.background": "#1D1D1D",
+        "activityBar.foreground": "#D2824E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "c5e92ad9-2fa0-491e-b92a-48ab92d13597",
+      "label": "Doki Theme: DxD:  Rias",
+      "colors": {
+        "editor.background": "#3E1010",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#3D1313",
+        "titleBar.inactiveBackground": "#3D1313",
+        "statusBar.background": "#E03943",
+        "activityBar.background": "#401112",
+        "activityBar.foreground": "#E03943"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ea9a13f6-fa7f-46a4-ba6e-6cefe1f55160",
+      "label": "Doki Theme: DxD:  Rias",
+      "colors": {
+        "editor.background": "#100000",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#100000",
+        "titleBar.inactiveBackground": "#100000",
+        "statusBar.background": "#7C171F",
+        "activityBar.background": "#130000",
+        "activityBar.foreground": "#7C171F"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "dc8e4142-c371-4107-a3c3-99dceefadac2",
+      "label": "Doki Theme: EroManga:  Sagiri",
+      "colors": {
+        "editor.background": "#0A3B36",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0A3F39",
+        "titleBar.inactiveBackground": "#0A3F39",
+        "statusBar.background": "#5EABB8",
+        "activityBar.background": "#0B443E",
+        "activityBar.foreground": "#5EABB8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "8e8773ee-4bbb-4812-b311-005f04f6bb20",
+      "label": "Doki Theme: EVA:  Misato",
+      "colors": {
+        "editor.background": "#382536",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#3D2536",
+        "titleBar.inactiveBackground": "#3D2536",
+        "statusBar.background": "#C2383E",
+        "activityBar.background": "#3A2333",
+        "activityBar.foreground": "#C2383E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "c262185d-9682-413b-9143-85a2dda76b2f",
+      "label": "Doki Theme: EVA:  Rei",
+      "colors": {
+        "editor.background": "#191B1F",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#131514",
+        "titleBar.inactiveBackground": "#131514",
+        "statusBar.background": "#B53241",
+        "activityBar.background": "#171918",
+        "activityBar.foreground": "#B53241"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ceb8c11f-f736-420b-962b-fc0db26b3708",
+      "label": "Doki Theme: Franxx:  Hiro",
+      "colors": {
+        "editor.background": "#16171A",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#16171A",
+        "titleBar.inactiveBackground": "#16171A",
+        "statusBar.background": "#3877D1",
+        "activityBar.background": "#1D1E22",
+        "activityBar.foreground": "#3877D1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "1f9697bd-aec1-49ff-bdb4-c37ef8ace62b",
+      "label": "Doki Theme: Franxx:  Hiro x Zero Two",
+      "colors": {
+        "editor.background": "#150B24",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0F071A",
+        "titleBar.inactiveBackground": "#0F071A",
+        "statusBar.background": "#C93939",
+        "activityBar.background": "#150B24",
+        "activityBar.foreground": "#C93939"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "8c99ec4b-fda0-4ab7-95ad-a6bf80c3924b",
+      "label": "Doki Theme: Franxx:  Zero Two Dark Rose",
+      "colors": {
+        "editor.background": "#310F0F",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#300D0E",
+        "titleBar.inactiveBackground": "#300D0E",
+        "statusBar.background": "#E4DAD4",
+        "statusBar.foreground": "#330F10",
+        "activityBar.background": "#330F10",
+        "activityBar.foreground": "#E4DAD4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "4fd5cb34-d36e-4a3c-8639-052b19b26ba1",
+      "label": "Doki Theme: Franxx:  Zero Two Light Lily",
+      "colors": {
+        "editor.background": "#FCFCFC",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FAFAFA",
+        "titleBar.inactiveBackground": "#FAFAFA",
+        "statusBar.background": "#A62210",
+        "activityBar.background": "#EEF9FE",
+        "activityBar.foreground": "#A62210"
+      },
+      "type": "light"
+    },
+    {
+      "name": "2eedcc31-b5fa-4b30-b045-6a539e915581",
+      "label": "Doki Theme: Franxx:  Zero Two Light Sakura",
+      "colors": {
+        "editor.background": "#FFE6EE",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFE5EF",
+        "titleBar.inactiveBackground": "#FFE5EF",
+        "statusBar.background": "#A62210",
+        "activityBar.background": "#FFDBE5",
+        "activityBar.foreground": "#A62210"
+      },
+      "type": "light"
+    },
+    {
+      "name": "5ec63d95-1e7d-4649-b3d0-0078af8f8740",
+      "label": "Doki Theme: FutureDiary:  Yuno",
+      "colors": {
+        "editor.background": "#150713",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1A0717",
+        "titleBar.inactiveBackground": "#1A0717",
+        "statusBar.background": "#FFA0B2",
+        "statusBar.foreground": "#1A081A",
+        "activityBar.background": "#1A081A",
+        "activityBar.foreground": "#FFA0B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "355d711c-2fa6-4df2-9504-dd44d8f5e350",
+      "label": "Doki Theme: Gate:  Rory",
+      "colors": {
+        "editor.background": "#141417",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#18181B",
+        "titleBar.inactiveBackground": "#18181B",
+        "statusBar.background": "#B53241",
+        "activityBar.background": "#161619",
+        "activityBar.foreground": "#B53241"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "926c4bf5-eafb-463e-815a-b6a101fc1f4a",
+      "label": "Doki Theme: GuiltyCrown:  Inori",
+      "colors": {
+        "editor.background": "#FFA772",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F8A56E",
+        "titleBar.inactiveBackground": "#F8A56E",
+        "statusBar.background": "#BA1515",
+        "activityBar.background": "#FD9C8C",
+        "activityBar.foreground": "#BA1515"
+      },
+      "type": "light"
+    },
+    {
+      "name": "44ed0d2d-cce8-4707-a0cf-5150e1b31c16",
+      "label": "Doki Theme: Haikyu:  Shoyo",
+      "colors": {
+        "editor.background": "#201C37",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#24203C",
+        "titleBar.inactiveBackground": "#24203C",
+        "statusBar.background": "#F58D02",
+        "activityBar.background": "#26223D",
+        "activityBar.foreground": "#F58D02"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "91d0931d-3e1d-4101-b923-278ce264f0f5",
+      "label": "Doki Theme: JahySama:  Jahy",
+      "colors": {
+        "editor.background": "#1B102E",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1430",
+        "titleBar.inactiveBackground": "#1E1430",
+        "statusBar.background": "#874488",
+        "activityBar.background": "#221738",
+        "activityBar.foreground": "#874488"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "a1da4f2f-e736-40e7-86d9-9167a247da93",
+      "label": "Doki Theme: Kakegurui:  Yumeko",
+      "colors": {
+        "editor.background": "#050000",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0B0000",
+        "titleBar.inactiveBackground": "#0B0000",
+        "statusBar.background": "#8A1820",
+        "activityBar.background": "#070000",
+        "activityBar.foreground": "#8A1820"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "19b65ec8-133c-4655-a77b-13623d8e97d3",
+      "label": "Doki Theme: KillLaKill:  Ryuko",
+      "colors": {
+        "editor.background": "#2B3238",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2B3238",
+        "titleBar.inactiveBackground": "#2B3238",
+        "statusBar.background": "#A73035",
+        "activityBar.background": "#2F363C",
+        "activityBar.foreground": "#A73035"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "3fbd90c3-859d-4618-8e31-90461ac7a556",
+      "label": "Doki Theme: KillLaKill:  Ryuko",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F5F6F7",
+        "titleBar.inactiveBackground": "#F5F6F7",
+        "statusBar.background": "#169EF2",
+        "activityBar.background": "#E6EFFC",
+        "activityBar.foreground": "#169EF2"
+      },
+      "type": "light"
+    },
+    {
+      "name": "12a54623-1f0b-4769-9917-d5267092a605",
+      "label": "Doki Theme: KillLaKill:  Satsuki",
+      "colors": {
+        "editor.background": "#242729",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#212427",
+        "titleBar.inactiveBackground": "#212427",
+        "statusBar.background": "#F03022",
+        "activityBar.background": "#272B2D",
+        "activityBar.foreground": "#F03022"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "3a78b13e-dbf2-410f-bb20-12b57bff7735",
+      "label": "Doki Theme: KillLaKill:  Satsuki",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#F5F6F7",
+        "titleBar.inactiveBackground": "#F5F6F7",
+        "statusBar.background": "#275AB3",
+        "activityBar.background": "#E6EFFC",
+        "activityBar.foreground": "#275AB3"
+      },
+      "type": "light"
+    },
+    {
+      "name": "15e51483-1ccd-46b7-90cf-885cccaaaf2c",
+      "label": "Doki Theme: KonoSuba:  Aqua",
+      "colors": {
+        "editor.background": "#262940",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2A2D44",
+        "titleBar.inactiveBackground": "#2A2D44",
+        "statusBar.background": "#578CDA",
+        "activityBar.background": "#282B42",
+        "activityBar.foreground": "#578CDA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "774ec7ad-d6a0-4d9c-b195-2f54d72ab664",
+      "label": "Doki Theme: KonoSuba:  Darkness",
+      "colors": {
+        "editor.background": "#0A0904",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#090802",
+        "titleBar.inactiveBackground": "#090802",
+        "statusBar.background": "#E99745",
+        "statusBar.foreground": "#080703",
+        "activityBar.background": "#080703",
+        "activityBar.foreground": "#E99745"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "8474d98d-7bb1-462c-82b1-dd7c512142a6",
+      "label": "Doki Theme: KonoSuba:  Darkness",
+      "colors": {
+        "editor.background": "#FFFEF9",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFFEF9",
+        "titleBar.inactiveBackground": "#FFFEF9",
+        "statusBar.background": "#F5C83C",
+        "activityBar.background": "#FFF6E4",
+        "activityBar.foreground": "#F5C83C"
+      },
+      "type": "light"
+    },
+    {
+      "name": "63fe4617-4cac-47a5-9b93-6794514c35ad",
+      "label": "Doki Theme: KonoSuba:  Megumin",
+      "colors": {
+        "editor.background": "#2C2126",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2A1F24",
+        "titleBar.inactiveBackground": "#2A1F24",
+        "statusBar.background": "#A73035",
+        "activityBar.background": "#271C21",
+        "activityBar.foreground": "#A73035"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "2d1112ac-04ab-4f78-82c4-22e5e2c1754b",
+      "label": "Doki Theme: Love Live:  Umi",
+      "colors": {
+        "editor.background": "#15173C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#191B44",
+        "titleBar.inactiveBackground": "#191B44",
+        "statusBar.background": "#EFA554",
+        "statusBar.foreground": "#15173E",
+        "activityBar.background": "#15173E",
+        "activityBar.foreground": "#EFA554"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "be058474-b967-4afb-b6d9-bda1948b33ec",
+      "label": "Doki Theme: LS:  Konata",
+      "colors": {
+        "editor.background": "#355082",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#314978",
+        "titleBar.inactiveBackground": "#314978",
+        "statusBar.background": "#4BCF4C",
+        "statusBar.foreground": "#334C7D",
+        "activityBar.background": "#334C7D",
+        "activityBar.foreground": "#4BCF4C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "dfd05a73-c189-4622-87c7-573fbb3a46b9",
+      "label": "Doki Theme: Monogatari:  Tsubasa",
+      "colors": {
+        "editor.background": "#100D11",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0F0D10",
+        "titleBar.inactiveBackground": "#0F0D10",
+        "statusBar.background": "#7660A4",
+        "activityBar.background": "#141115",
+        "activityBar.foreground": "#7660A4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "5903b523-ea0a-4724-85d4-f0d0652c3010",
+      "label": "Doki Theme: MonsterMusume:  Miia",
+      "colors": {
+        "editor.background": "#310E19",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#3A1020",
+        "titleBar.inactiveBackground": "#3A1020",
+        "statusBar.background": "#D6A53E",
+        "statusBar.foreground": "#36101C",
+        "activityBar.background": "#36101C",
+        "activityBar.foreground": "#D6A53E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "83e94920-9ae2-4838-9b85-4c3fa22b67b8",
+      "label": "Doki Theme: NekoPara:  Azuki",
+      "colors": {
+        "editor.background": "#2E221F",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2D221F",
+        "titleBar.inactiveBackground": "#2D221F",
+        "statusBar.background": "#E9B14E",
+        "statusBar.foreground": "#322623",
+        "activityBar.background": "#322623",
+        "activityBar.foreground": "#E9B14E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "93035c21-9eb7-4b0e-92d0-35d66d16c8e0",
+      "label": "Doki Theme: NekoPara:  Chocola",
+      "colors": {
+        "editor.background": "#2C2729",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2C2428",
+        "titleBar.inactiveBackground": "#2C2428",
+        "statusBar.background": "#F771A3",
+        "activityBar.background": "#30292C",
+        "activityBar.foreground": "#F771A3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "6428e1ff-202c-4a43-afb3-9999ebe3b2ca",
+      "label": "Doki Theme: NekoPara:  Christmas Chocola",
+      "colors": {
+        "editor.background": "#3A141D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#37131B",
+        "titleBar.inactiveBackground": "#37131B",
+        "statusBar.background": "#FFFFFE",
+        "activityBar.background": "#3C161F",
+        "activityBar.foreground": "#FFFFFE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "84dc0d3c-1c83-4dde-87b9-e1ea27cd34b0",
+      "label": "Doki Theme: NekoPara:  Cinnamon",
+      "colors": {
+        "editor.background": "#343277",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#37357F",
+        "titleBar.inactiveBackground": "#37357F",
+        "statusBar.background": "#54E255",
+        "statusBar.foreground": "#393784",
+        "activityBar.background": "#393784",
+        "activityBar.foreground": "#54E255"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "432fdab1-b8fa-412e-8cca-1844f18a1a43",
+      "label": "Doki Theme: NekoPara:  Coconut",
+      "colors": {
+        "editor.background": "#312B3A",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#312C3A",
+        "titleBar.inactiveBackground": "#312C3A",
+        "statusBar.background": "#D2B503",
+        "statusBar.foreground": "#3A3143",
+        "activityBar.background": "#3A3143",
+        "activityBar.foreground": "#D2B503"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "13407818-da66-432b-94e3-fd2192e98118",
+      "label": "Doki Theme: NekoPara:  Maple",
+      "colors": {
+        "editor.background": "#2D1D1D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2F1B1B",
+        "titleBar.inactiveBackground": "#2F1B1B",
+        "statusBar.background": "#46AB79",
+        "activityBar.background": "#321F1F",
+        "activityBar.foreground": "#46AB79"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ea7a8b00-2d86-4e06-81a2-5c14a46264d5",
+      "label": "Doki Theme: NekoPara:  Maple",
+      "colors": {
+        "editor.background": "#FFD091",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FDCD8F",
+        "titleBar.inactiveBackground": "#FDCD8F",
+        "statusBar.background": "#923A4E",
+        "activityBar.background": "#FFC392",
+        "activityBar.foreground": "#923A4E"
+      },
+      "type": "light"
+    },
+    {
+      "name": "67278007-b7f8-46d4-88b7-e40cac3576a7",
+      "label": "Doki Theme: NekoPara:  Shigure",
+      "colors": {
+        "editor.background": "#E9E9FF",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#DAD9FF",
+        "titleBar.inactiveBackground": "#DAD9FF",
+        "statusBar.background": "#5E1F7F",
+        "activityBar.background": "#D4D2FF",
+        "activityBar.foreground": "#5E1F7F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "31d5574d-f56b-408f-81dc-9d44feeb62c2",
+      "label": "Doki Theme: NekoPara:  Vanilla",
+      "colors": {
+        "editor.background": "#2B2C3D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#292A3A",
+        "titleBar.inactiveBackground": "#292A3A",
+        "statusBar.background": "#9DEBFF",
+        "statusBar.foreground": "#2D2F43",
+        "activityBar.background": "#2D2F43",
+        "activityBar.foreground": "#9DEBFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "22d0250f-a33b-409a-9cef-22f5eb69fc3d",
+      "label": "Doki Theme: OPM:  Genos",
+      "colors": {
+        "editor.background": "#313234",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#252627",
+        "titleBar.inactiveBackground": "#252627",
+        "statusBar.background": "#DDC7A1",
+        "statusBar.foreground": "#2F3031",
+        "activityBar.background": "#2F3031",
+        "activityBar.foreground": "#DDC7A1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "06143cbe-2d51-4423-9a93-73a02c828119",
+      "label": "Doki Theme: OreGairu:  Yukino",
+      "colors": {
+        "editor.background": "#1F2126",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#282A2F",
+        "titleBar.inactiveBackground": "#282A2F",
+        "statusBar.background": "#2D6382",
+        "activityBar.background": "#24262B",
+        "activityBar.foreground": "#2D6382"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "2f2dff01-7e0e-4ebc-ab1e-34be2486c66f",
+      "label": "Doki Theme: OreImo:  Kirino",
+      "colors": {
+        "editor.background": "#121E1C",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#121E1C",
+        "titleBar.inactiveBackground": "#121E1C",
+        "statusBar.background": "#6CB3B5",
+        "activityBar.background": "#152321",
+        "activityBar.foreground": "#6CB3B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "a8c6675e-7bdb-41f0-af80-4e9ebbf617d2",
+      "label": "Doki Theme: QQ:  Ichika",
+      "colors": {
+        "editor.background": "#E3CCFD",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#E2C9FA",
+        "titleBar.inactiveBackground": "#E2C9FA",
+        "statusBar.background": "#7F5EF5",
+        "activityBar.background": "#DEC3F9",
+        "activityBar.foreground": "#7F5EF5"
+      },
+      "type": "light"
+    },
+    {
+      "name": "dd37f2e1-24bd-4cb2-b350-e2d1f4a0a50f",
+      "label": "Doki Theme: QQ:  Itsuki",
+      "colors": {
+        "editor.background": "#FFBEBE",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FCC1C1",
+        "titleBar.inactiveBackground": "#FCC1C1",
+        "statusBar.background": "#4F52C4",
+        "activityBar.background": "#FFB1B1",
+        "activityBar.foreground": "#4F52C4"
+      },
+      "type": "light"
+    },
+    {
+      "name": "d96c6599-ebf8-4359-ae26-19f79b69e919",
+      "label": "Doki Theme: QQ:  Miku",
+      "colors": {
+        "editor.background": "#244158",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#24445B",
+        "titleBar.inactiveBackground": "#24445B",
+        "statusBar.background": "#A5F3FA",
+        "statusBar.foreground": "#25475E",
+        "activityBar.background": "#25475E",
+        "activityBar.foreground": "#A5F3FA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "5e6a266f-c6d5-4891-a065-a2c2b857016a",
+      "label": "Doki Theme: QQ:  Nino",
+      "colors": {
+        "editor.background": "#1C191D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1F1A1F",
+        "titleBar.inactiveBackground": "#1F1A1F",
+        "statusBar.background": "#D45575",
+        "activityBar.background": "#1A161C",
+        "activityBar.foreground": "#D45575"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "3b11c8f4-d030-4a7e-a46f-b22d3e430a1d",
+      "label": "Doki Theme: QQ:  Yotsuba",
+      "colors": {
+        "editor.background": "#200909",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#110C15",
+        "titleBar.inactiveBackground": "#110C15",
+        "statusBar.background": "#E86A44",
+        "statusBar.foreground": "#140E19",
+        "activityBar.background": "#140E19",
+        "activityBar.foreground": "#E86A44"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "01e61500-862c-41cd-b653-48d2ef7b1882",
+      "label": "Doki Theme: Railgun:  Mikoto",
+      "colors": {
+        "editor.background": "#0B173A",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0B1633",
+        "titleBar.inactiveBackground": "#0B1633",
+        "statusBar.background": "#3EB7E5",
+        "activityBar.background": "#0D193B",
+        "activityBar.foreground": "#3EB7E5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "35422aa4-1396-4e76-8ec6-c5560884df22",
+      "label": "Doki Theme: Re:Zero:  Beatrice",
+      "colors": {
+        "editor.background": "#FFE5F1",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFE0F0",
+        "titleBar.inactiveBackground": "#FFE0F0",
+        "statusBar.background": "#78A5EB",
+        "activityBar.background": "#FFE0F0",
+        "activityBar.foreground": "#78A5EB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "b4d08c16-a891-4186-884d-e469cba72e99",
+      "label": "Doki Theme: Re:Zero:  Echidna",
+      "colors": {
+        "editor.background": "#121014",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#171519",
+        "titleBar.inactiveBackground": "#171519",
+        "statusBar.background": "#ECECEC",
+        "statusBar.foreground": "#141216",
+        "activityBar.background": "#141216",
+        "activityBar.foreground": "#ECECEC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "696de7c1-3a8e-4445-83ee-3eb7e9dca47f",
+      "label": "Doki Theme: Re:Zero:  Emilia",
+      "colors": {
+        "editor.background": "#492D5A",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#4C2E5C",
+        "titleBar.inactiveBackground": "#4C2E5C",
+        "statusBar.background": "#A53BA0",
+        "activityBar.background": "#4E3162",
+        "activityBar.foreground": "#A53BA0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "e828aaae-aa8c-4084-8993-d64697146930",
+      "label": "Doki Theme: Re:Zero:  Emilia",
+      "colors": {
+        "editor.background": "#FBF0FF",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FBF0FF",
+        "titleBar.inactiveBackground": "#FBF0FF",
+        "statusBar.background": "#82357D",
+        "activityBar.background": "#F1DCF7",
+        "activityBar.foreground": "#82357D"
+      },
+      "type": "light"
+    },
+    {
+      "name": "ecb74f1c-8c84-40c4-916f-601039ba2af0",
+      "label": "Doki Theme: Re:Zero:  Ram",
+      "colors": {
+        "editor.background": "#342C34",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2B252B",
+        "titleBar.inactiveBackground": "#2B252B",
+        "statusBar.background": "#E594BF",
+        "statusBar.foreground": "#302930",
+        "activityBar.background": "#302930",
+        "activityBar.foreground": "#E594BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "f770dcfc-f41e-4b49-aa17-66e9ffc208fd",
+      "label": "Doki Theme: Re:Zero:  Rem",
+      "colors": {
+        "editor.background": "#2C2D34",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#25262B",
+        "titleBar.inactiveBackground": "#25262B",
+        "statusBar.background": "#578CDA",
+        "activityBar.background": "#292A30",
+        "activityBar.foreground": "#578CDA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "bac375a4-abb3-44d5-9bef-8039eb83fec0",
+      "label": "Doki Theme: SAO:  Asuna",
+      "colors": {
+        "editor.background": "#1B1B1B",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1E1E",
+        "titleBar.inactiveBackground": "#1E1E1E",
+        "statusBar.background": "#99202C",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#99202C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "546e8fb8-6082-4ef5-a5e3-44790686f02f",
+      "label": "Doki Theme: SAO:  Asuna",
+      "colors": {
+        "editor.background": "#FCFCFC",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FDFDFD",
+        "titleBar.inactiveBackground": "#FDFDFD",
+        "statusBar.background": "#A61D0D",
+        "activityBar.background": "#FEEEEE",
+        "activityBar.foreground": "#A61D0D"
+      },
+      "type": "light"
+    },
+    {
+      "name": "7bafa167-148d-472a-8a9b-6f4129ef2e1f",
+      "label": "Doki Theme: Senko-san:  Senko",
+      "colors": {
+        "editor.background": "#FFE7CD",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FCE2C6",
+        "titleBar.inactiveBackground": "#FCE2C6",
+        "statusBar.background": "#CB3752",
+        "activityBar.background": "#F9E2C4",
+        "activityBar.foreground": "#CB3752"
+      },
+      "type": "light"
+    },
+    {
+      "name": "df23dabc-61eb-4559-a504-992786964602",
+      "label": "Doki Theme: ShieldHero:  Raphtalia",
+      "colors": {
+        "editor.background": "#1E1710",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1C140F",
+        "titleBar.inactiveBackground": "#1C140F",
+        "statusBar.background": "#8A3C3D",
+        "activityBar.background": "#231A13",
+        "activityBar.foreground": "#8A3C3D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "fb25d871-4a7c-49f5-9426-1f7eb00c2699",
+      "label": "Doki Theme: Shokugeki:  Soma",
+      "colors": {
+        "editor.background": "#09192B",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0C1C2E",
+        "titleBar.inactiveBackground": "#0C1C2E",
+        "statusBar.background": "#D13358",
+        "activityBar.background": "#122235",
+        "activityBar.foreground": "#D13358"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "5ca2846d-31a9-40b3-8908-965dad3c127d",
+      "label": "Doki Theme: Slime:  Rimuru",
+      "colors": {
+        "editor.background": "#1C171D",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#211C22",
+        "titleBar.inactiveBackground": "#211C22",
+        "statusBar.background": "#D7CF8B",
+        "statusBar.foreground": "#262127",
+        "activityBar.background": "#262127",
+        "activityBar.foreground": "#D7CF8B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "d39df813-8701-463b-a964-b8cb7714d1cc",
+      "label": "Doki Theme: Steins Gate:  Kurisu",
+      "colors": {
+        "editor.background": "#170A0B",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1A0E0E",
+        "titleBar.inactiveBackground": "#1A0E0E",
+        "statusBar.background": "#8F60B5",
+        "activityBar.background": "#1C1010",
+        "activityBar.foreground": "#8F60B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "930c70c8-474e-4e2d-a223-d1e2b9da4fb1",
+      "label": "Doki Theme: TypeMoon:  Astolfo",
+      "colors": {
+        "editor.background": "#1A1C19",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#181917",
+        "titleBar.inactiveBackground": "#181917",
+        "statusBar.background": "#D58D9C",
+        "statusBar.foreground": "#171816",
+        "activityBar.background": "#171816",
+        "activityBar.foreground": "#D58D9C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "5de1c901-2a12-411f-b75b-64e43aaf2c9d",
+      "label": "Doki Theme: TypeMoon:  Gray",
+      "colors": {
+        "editor.background": "#35393B",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#363B3D",
+        "titleBar.inactiveBackground": "#363B3D",
+        "statusBar.background": "#4ED4B0",
+        "statusBar.foreground": "#3B3F41",
+        "activityBar.background": "#3B3F41",
+        "activityBar.foreground": "#4ED4B0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "62a4f26f-34b2-46f8-a10c-798e48c1ce9d",
+      "label": "Doki Theme: TypeMoon:  Ishtar",
+      "colors": {
+        "editor.background": "#110F10",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#0D0B0C",
+        "titleBar.inactiveBackground": "#0D0B0C",
+        "statusBar.background": "#F5C443",
+        "statusBar.foreground": "#0F0D0E",
+        "activityBar.background": "#0F0D0E",
+        "activityBar.foreground": "#F5C443"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "325c5d4d-5614-4c58-b296-18924f2f6928",
+      "label": "Doki Theme: TypeMoon:  Ishtar",
+      "colors": {
+        "editor.background": "#FFFEFB",
+        "editor.foreground": "#4D4D4A",
+        "titleBar.activeBackground": "#FFFEFB",
+        "titleBar.inactiveBackground": "#FFFEFB",
+        "statusBar.background": "#F5A821",
+        "activityBar.background": "#FFFAED",
+        "activityBar.foreground": "#F5A821"
+      },
+      "type": "light"
+    },
+    {
+      "name": "3546f7be-b84f-4b8e-8cad-effa3f4603af",
+      "label": "Doki Theme: TypeMoon:  Rin",
+      "colors": {
+        "editor.background": "#161415",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1B191A",
+        "titleBar.inactiveBackground": "#1B191A",
+        "statusBar.background": "#4C9697",
+        "activityBar.background": "#191718",
+        "activityBar.foreground": "#4C9697"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "bc12b380-1f2a-4a9d-89d8-388a07f1e15f",
+      "label": "Doki Theme: Vocaloid:  Miku",
+      "colors": {
+        "editor.background": "#2F3635",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2C3333",
+        "titleBar.inactiveBackground": "#2C3333",
+        "statusBar.background": "#53B0B4",
+        "activityBar.background": "#293030",
+        "activityBar.foreground": "#53B0B4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "d587f5ab-9334-4b7b-a99e-58461719d87b",
+      "label": "Doki Theme: YuruCamp:  Nadeshiko",
+      "colors": {
+        "editor.background": "#2C1F26",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2F2128",
+        "titleBar.inactiveBackground": "#2F2128",
+        "statusBar.background": "#78C6D0",
+        "statusBar.foreground": "#34252E",
+        "activityBar.background": "#34252E",
+        "activityBar.foreground": "#78C6D0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "5fb9c0a4-e613-457c-97a5-6204f9076cef",
+      "label": "Doki Theme: YuruCamp:  Rin",
+      "colors": {
+        "editor.background": "#2B303B",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#2E343E",
+        "titleBar.inactiveBackground": "#2E343E",
+        "statusBar.background": "#6688AD",
+        "activityBar.background": "#323742",
+        "activityBar.foreground": "#6688AD"
+      },
+      "type": "dark"
+    }
+  ]
 }

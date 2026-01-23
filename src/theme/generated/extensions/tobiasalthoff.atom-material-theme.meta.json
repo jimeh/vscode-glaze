@@ -4,7 +4,23 @@
   "publisherName": "tobiasalthoff",
   "displayName": "Atom Material Theme",
   "version": "1.10.9",
-  "extractedAt": "2026-01-23T21:33:41.303Z",
+  "extractedAt": "2026-01-23T22:59:39.735Z",
   "installCount": 533953,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Atom Material Theme",
+      "label": "Atom Material Theme",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#222D32",
+        "statusBar.background": "#232E33",
+        "statusBar.foreground": "#A7B6B8",
+        "activityBar.background": "#20292E",
+        "activityBar.foreground": "#A7B6B8"
+      },
+      "type": "dark"
+    }
+  ]
 }

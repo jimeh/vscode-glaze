@@ -4,7 +4,60 @@
   "publisherName": "idleberg",
   "displayName": "Hopscotch",
   "version": "0.8.2",
-  "extractedAt": "2026-01-23T21:33:46.438Z",
+  "extractedAt": "2026-01-23T22:59:44.877Z",
   "installCount": 279205,
-  "stale": false
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hopscotch [proofreader]",
+      "label": "Hopscotch [proofreader]",
+      "colors": {
+        "editor.background": "#322931",
+        "editor.foreground": "#797379",
+        "titleBar.activeBackground": "#171015",
+        "statusBar.background": "#1290BF",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#392F4B",
+        "activityBar.foreground": "#FFFDE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hopscotch Mono",
+      "label": "Hopscotch Mono",
+      "colors": {
+        "editor.background": "#322931",
+        "editor.foreground": "#B9B5B8",
+        "titleBar.activeBackground": "#171015",
+        "statusBar.background": "#171015",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171015",
+        "activityBar.foreground": "#FFFDE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hopscotch Mono [proofreader]",
+      "label": "Hopscotch Mono [proofreader]",
+      "colors": {
+        "editor.background": "#322931",
+        "editor.foreground": "#797379",
+        "titleBar.activeBackground": "#171015",
+        "statusBar.background": "#171015",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171015",
+        "activityBar.foreground": "#FFFDE6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Hopscotch Classic",
+      "label": "Hopscotch Classic",
+      "colors": {
+        "editor.background": "#322931",
+        "editor.foreground": "#B9B5B8"
+      },
+      "type": "dark"
+    }
+  ]
 }
