@@ -1,5 +1,5 @@
 [tools]
 "npm:@vscode/vsce" = "latest"
 "npm:ovsx" = "latest"
-node = "lts"
+node = "22"
 pnpm = "latest"
