@@ -37,7 +37,7 @@ export interface MarketplaceExtension {
   displayName: string;
   publisherName: string;
   installCount: number;
-  repositoryUrl?: string;
+  vsixUrl?: string;
   themes: ThemeContribution[];
 }
 
@@ -59,16 +59,6 @@ export interface ThemeJson {
   include?: string;
   colors?: Record<string, string>;
   tokenColors?: unknown[];
-}
-
-/**
- * Repository information parsed from URL.
- */
-export interface RepoInfo {
-  type: 'github' | 'gitlab' | 'bitbucket' | 'unknown';
-  owner: string;
-  repo: string;
-  url: string;
 }
 
 /**

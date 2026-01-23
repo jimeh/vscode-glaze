@@ -7,11 +7,14 @@ import type {
   ElementBackgrounds,
   ExtractedTheme,
   ThemeContribution,
-  RepoInfo,
 } from './types';
-import { fetchThemeFile } from './repository';
 
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/;
+
+/**
+ * Function type for reading theme files.
+ */
+export type ThemeFileReader = (path: string) => ThemeJson | undefined;
 
 /**
  * Checks if a value is a valid hex color (ignoring CSS variables).
@@ -93,12 +96,12 @@ function extractBackgrounds(
  * Resolves theme inheritance (include directive).
  * Maximum depth of 5 to prevent infinite loops.
  */
-async function resolveInheritance(
+function resolveInheritance(
   theme: ThemeJson,
-  repoInfo: RepoInfo,
   basePath: string,
+  readThemeFile: ThemeFileReader,
   depth = 0
-): Promise<ThemeJson> {
+): ThemeJson {
   if (depth > 5 || !theme.include) {
     return theme;
   }
@@ -109,16 +112,16 @@ async function resolveInheritance(
     ? `${baseDir}/${theme.include.slice(2)}`
     : `${baseDir}/${theme.include}`;
 
-  const parentTheme = await fetchThemeFile(repoInfo, includePath);
+  const parentTheme = readThemeFile(includePath);
   if (!parentTheme) {
     return theme;
   }
 
   // Recursively resolve parent's includes
-  const resolvedParent = await resolveInheritance(
+  const resolvedParent = resolveInheritance(
     parentTheme,
-    repoInfo,
     includePath,
+    readThemeFile,
     depth + 1
   );
 
@@ -136,18 +139,18 @@ async function resolveInheritance(
 /**
  * Parses a single theme and extracts its colors.
  */
-export async function parseTheme(
+export function parseTheme(
   themeJson: ThemeJson,
   contribution: ThemeContribution,
-  repoInfo: RepoInfo,
+  readThemeFile: ThemeFileReader,
   extensionId: string,
   extensionName: string
-): Promise<ExtractedTheme | undefined> {
+): ExtractedTheme | undefined {
   // Resolve inheritance
-  const resolvedTheme = await resolveInheritance(
+  const resolvedTheme = resolveInheritance(
     themeJson,
-    repoInfo,
-    contribution.path
+    contribution.path,
+    readThemeFile
   );
 
   // Determine theme kind

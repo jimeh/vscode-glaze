@@ -117,7 +117,9 @@
               "backgrounds": {
                 "type": "object",
                 "description": "Background colors for different UI elements",
-                "required": ["editor"],
+                "required": [
+                  "editor"
+                ],
                 "properties": {
                   "editor": {
                     "type": "string",
@@ -175,16 +177,18 @@
     "extract-themes:verbose": "tsx scripts/extract-theme-colors/index.ts --verbose"
   },
   "devDependencies": {
-    "@types/vscode": "^1.102.0",
+    "@types/adm-zip": "^0.5.7",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.52.0",
-    "eslint": "^9.39.2",
-    "esbuild": "^0.27.2",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.9.3",
+    "@types/vscode": "^1.102.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
-    "tsx": "^4.7.0"
+    "adm-zip": "^0.5.16",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.39.2",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.52.0"
   }
 }

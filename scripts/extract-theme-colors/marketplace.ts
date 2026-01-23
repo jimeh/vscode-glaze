@@ -12,10 +12,7 @@ import type {
 const MARKETPLACE_API =
   'https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery';
 
-const PROPERTY_KEYS = {
-  repository: 'Microsoft.VisualStudio.Services.Links.Source',
-  github: 'Microsoft.VisualStudio.Services.Links.GitHub',
-};
+const VSIX_ASSET_TYPE = 'Microsoft.VisualStudio.Services.VSIXPackage';
 
 /**
  * Fetches with retry and exponential backoff.
@@ -93,8 +90,7 @@ async function queryMarketplace(
       {
         criteria: [
           { filterType: 8, value: 'Microsoft.VisualStudio.Code' },
-          { filterType: 10, value: 'themes' },
-          { filterType: 12, value: '37888' }, // Themes category
+          { filterType: 5, value: 'Themes' }, // Category name filter
         ],
         pageNumber,
         pageSize: CONFIG.pageSize,
@@ -126,20 +122,14 @@ async function queryMarketplace(
 }
 
 /**
- * Extracts repository URL from extension properties.
+ * Extracts VSIX download URL from extension version files.
  */
-function extractRepositoryUrl(
-  properties?: Array<{ key: string; value: string }>
+function extractVsixUrl(
+  files?: Array<{ assetType: string; source: string }>
 ): string | undefined {
-  if (!properties) return undefined;
-
-  // Try GitHub link first
-  const github = properties.find((p) => p.key === PROPERTY_KEYS.github);
-  if (github?.value) return github.value;
-
-  // Fall back to source link
-  const source = properties.find((p) => p.key === PROPERTY_KEYS.repository);
-  return source?.value;
+  if (!files) return undefined;
+  const vsixFile = files.find((f) => f.assetType === VSIX_ASSET_TYPE);
+  return vsixFile?.source;
 }
 
 /**
@@ -175,18 +165,16 @@ export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
       const version = ext.versions?.[0];
       if (!version) continue;
 
-      const repositoryUrl = extractRepositoryUrl(version.properties);
+      const vsixUrl = extractVsixUrl(version.files);
       const installCount = extractInstallCount(ext.statistics);
 
-      // Extract theme contributions from package.json (if available)
-      // We'll fetch these later from the repository
       extensions.push({
         extensionId: ext.extensionId,
         extensionName: ext.extensionName,
         displayName: ext.displayName,
         publisherName: ext.publisher.publisherName,
         installCount,
-        repositoryUrl,
+        vsixUrl,
         themes: [],
       });
 

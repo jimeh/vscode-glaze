@@ -12,8 +12,6 @@ export const CONFIG = {
   requestTimeout: 30000,
   /** Maximum concurrent requests */
   concurrency: 5,
-  /** Environment variable name for GitHub token */
-  githubTokenEnv: 'GITHUB_TOKEN',
   /** Output file path */
   outputPath: 'src/theme/backgrounds.generated.ts',
   /** Cache directory */

@@ -11,18 +11,15 @@
  */
 import { CONFIG } from './config';
 import { clearCache } from './cache';
-import {
-  fetchThemeExtensions,
-  parseThemeContributions,
-} from './marketplace';
-import { parseRepoUrl, fetchPackageJson, fetchThemeFile } from './repository';
+import { fetchThemeExtensions, parseThemeContributions } from './marketplace';
+import { downloadVsix, extractPackageJson, createVsixThemeReader } from './vsix';
 import { parseTheme, validateTheme } from './parser';
 import {
   generateTypeScriptCode,
   writeOutputFile,
   generateReport,
 } from './output';
-import type { ExtractedTheme } from './types';
+import type { ExtractedTheme, MarketplaceExtension } from './types';
 
 interface CliOptions {
   dryRun: boolean;
@@ -40,39 +37,35 @@ function parseArgs(): CliOptions {
 }
 
 async function processExtension(
-  extension: {
-    extensionId: string;
-    extensionName: string;
-    displayName: string;
-    repositoryUrl?: string;
-  },
+  extension: MarketplaceExtension,
   verbose: boolean
 ): Promise<ExtractedTheme[]> {
   const themes: ExtractedTheme[] = [];
 
-  if (!extension.repositoryUrl) {
+  if (!extension.vsixUrl) {
     if (verbose) {
-      console.log(`  Skipping ${extension.displayName}: no repository URL`);
+      console.log(`  Skipping ${extension.displayName}: no VSIX URL`);
     }
     return themes;
   }
 
-  const repoInfo = parseRepoUrl(extension.repositoryUrl);
-  if (!repoInfo) {
+  // Download VSIX
+  let vsixBuffer: Buffer;
+  try {
+    vsixBuffer = await downloadVsix(extension.vsixUrl);
+  } catch (error) {
     if (verbose) {
-      console.log(
-        `  Skipping ${extension.displayName}: unsupported repository`
-      );
+      console.log(`  Skipping ${extension.displayName}: VSIX download failed`);
     }
     return themes;
   }
 
-  // Fetch package.json to get theme contributions
-  const packageJson = await fetchPackageJson(repoInfo);
+  // Extract package.json from VSIX
+  const packageJson = extractPackageJson(vsixBuffer);
   if (!packageJson) {
     if (verbose) {
       console.log(
-        `  Skipping ${extension.displayName}: could not fetch package.json`
+        `  Skipping ${extension.displayName}: no package.json in VSIX`
       );
     }
     return themes;
@@ -88,23 +81,26 @@ async function processExtension(
     return themes;
   }
 
+  // Create theme file reader for this VSIX
+  const readThemeFile = createVsixThemeReader(vsixBuffer);
+
   // Process each theme contribution
   for (const contribution of contributions) {
     try {
-      const themeJson = await fetchThemeFile(repoInfo, contribution.path);
+      const themeJson = readThemeFile(contribution.path);
       if (!themeJson) {
         if (verbose) {
           console.log(
-            `    Skipping theme "${contribution.label}": could not fetch`
+            `    Skipping theme "${contribution.label}": could not extract`
           );
         }
         continue;
       }
 
-      const extracted = await parseTheme(
+      const extracted = parseTheme(
         themeJson,
         contribution,
-        repoInfo,
+        readThemeFile,
         extension.extensionId,
         extension.extensionName
       );
@@ -166,12 +162,14 @@ async function main(): Promise<void> {
     const themes = await processExtension(extension, options.verbose);
     allThemes.push(...themes);
 
-    // Small delay to be nice to GitHub API
+    // Small delay between VSIX downloads
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
   console.log('');
-  console.log(`Extracted ${allThemes.length} themes from ${processed} extensions`);
+  console.log(
+    `Extracted ${allThemes.length} themes from ${processed} extensions`
+  );
 
   // Generate report
   const report = generateReport(allThemes);
