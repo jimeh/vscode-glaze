@@ -21,13 +21,19 @@ export function activate(context: vscode.ExtensionContext) {
   applyTint();
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('patina.enable', async () => {
+    vscode.commands.registerCommand('patina.enableGlobally', async () => {
       const config = vscode.workspace.getConfiguration('patina');
       await config.update('enabled', true, vscode.ConfigurationTarget.Global);
     }),
-    vscode.commands.registerCommand('patina.disable', async () => {
+    vscode.commands.registerCommand('patina.disableGlobally', async () => {
       const config = vscode.workspace.getConfiguration('patina');
       await config.update('enabled', false, vscode.ConfigurationTarget.Global);
+    }),
+    vscode.commands.registerCommand('patina.enableWorkspace', async () => {
+      await setWorkspaceModify(true);
+    }),
+    vscode.commands.registerCommand('patina.disableWorkspace', async () => {
+      await setWorkspaceModify(false);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration('patina.workspace.modify')) {

@@ -1,7 +1,7 @@
 {
   "name": "patina",
   "displayName": "Patina",
-  "description": "Applies subtle color tints to your editor windows based on the open project, so you can easly tell your workspaces apart.",
+  "description": "Applies subtle color tints to your editor windows based on the open project, so you can easily tell your workspaces apart.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.102.0"
@@ -16,12 +16,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "patina.enable",
-        "title": "Patina: Enable Color Tint"
+        "command": "patina.enableGlobally",
+        "title": "Patina: Enable Globally"
       },
       {
-        "command": "patina.disable",
-        "title": "Patina: Disable Color Tint"
+        "command": "patina.disableGlobally",
+        "title": "Patina: Disable Globally"
+      },
+      {
+        "command": "patina.enableWorkspace",
+        "title": "Patina: Enable for This Workspace"
+      },
+      {
+        "command": "patina.disableWorkspace",
+        "title": "Patina: Disable for This Workspace"
       }
     ],
     "configuration": {
@@ -36,7 +44,7 @@
         "patina.workspace.modify": {
           "type": "boolean",
           "default": null,
-          "description": "Tracks whether Patina has modified this workspace's colors. Set to false to opt-out of Patina for this specific workspace.",
+          "description": "Controls whether Patina modifies this workspace. Set to false to disable Patina for this specific workspace. When true or unset, Patina applies colors based on the global 'enabled' setting.",
           "scope": "window",
           "order": 1
         },
