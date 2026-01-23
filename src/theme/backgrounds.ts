@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import type { PatinaColorPalette } from '../color/palette';
+import { GENERATED_THEME_BACKGROUNDS } from './backgrounds.generated';
 
 /**
  * Element identifier for background color lookup.
@@ -252,7 +253,10 @@ function getCustomThemeBackgrounds(): Record<string, ThemeBackground> {
 
 /**
  * Gets the background information for a theme by name.
- * User-configured custom themes take precedence over built-in themes.
+ * Priority order:
+ * 1. User-configured custom themes (highest)
+ * 2. Generated themes from extracted VSIX data
+ * 3. Built-in themes (fallback)
  *
  * @param themeName - The theme name as it appears in VS Code settings
  * @returns Theme background info if found, undefined otherwise
@@ -260,11 +264,16 @@ function getCustomThemeBackgrounds(): Record<string, ThemeBackground> {
 export function getThemeBackground(
   themeName: string
 ): ThemeBackground | undefined {
-  // User config takes precedence over built-in
+  // User config takes highest precedence
   const custom = getCustomThemeBackgrounds();
   if (custom[themeName]) {
     return custom[themeName];
   }
+  // Generated themes from VSIX extraction
+  if (GENERATED_THEME_BACKGROUNDS[themeName]) {
+    return GENERATED_THEME_BACKGROUNDS[themeName];
+  }
+  // Built-in themes as fallback
   return THEME_BACKGROUNDS[themeName];
 }
 

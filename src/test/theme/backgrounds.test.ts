@@ -6,6 +6,7 @@ import {
   getBackgroundForKey,
   type ElementBackgrounds,
 } from '../../theme/backgrounds';
+import { GENERATED_THEME_BACKGROUNDS } from '../../theme/backgrounds.generated';
 
 suite('THEME_BACKGROUNDS', () => {
   test('contains VS Code built-in themes', () => {
@@ -119,6 +120,62 @@ suite('getThemeBackground', () => {
     // Theme names must match exactly
     const result = getThemeBackground('one dark pro');
     assert.strictEqual(result, undefined);
+  });
+});
+
+suite('getThemeBackground priority order', () => {
+  // Verify that generated themes take precedence over built-in themes
+  test('generated themes override built-in themes', () => {
+    // Atom One Dark exists in both built-in and generated
+    // Generated has per-element backgrounds, built-in only has editor
+    assert.ok(THEME_BACKGROUNDS['Atom One Dark'], 'should exist in built-in');
+    assert.ok(
+      GENERATED_THEME_BACKGROUNDS['Atom One Dark'],
+      'should exist in generated'
+    );
+
+    const result = getThemeBackground('Atom One Dark');
+    assert.ok(result);
+
+    // Verify we get the generated version (which has additional backgrounds)
+    const generated = GENERATED_THEME_BACKGROUNDS['Atom One Dark'];
+    assert.strictEqual(
+      result.backgrounds.editor,
+      generated.backgrounds.editor,
+      'should use generated editor color'
+    );
+    assert.strictEqual(
+      result.backgrounds.titleBar,
+      generated.backgrounds.titleBar,
+      'should have titleBar from generated (not present in built-in)'
+    );
+  });
+
+  test('built-in themes serve as fallback for themes not in generated', () => {
+    // One Dark Pro is in built-in but may not be in generated (or has same)
+    // Use a theme that's definitely only in built-in
+    const builtinOnly = 'One Dark Pro Flat';
+    assert.ok(THEME_BACKGROUNDS[builtinOnly], 'should exist in built-in');
+
+    const result = getThemeBackground(builtinOnly);
+    assert.ok(result, 'should fall back to built-in');
+    assert.strictEqual(
+      result.backgrounds.editor,
+      THEME_BACKGROUNDS[builtinOnly].backgrounds.editor
+    );
+  });
+
+  test('generated themes provide per-element backgrounds', () => {
+    // Verify that a generated theme with all element backgrounds returns them
+    const themeName = 'Atom One Dark';
+    const result = getThemeBackground(themeName);
+    assert.ok(result);
+
+    // Should have all four background types
+    assert.ok(result.backgrounds.editor);
+    assert.ok(result.backgrounds.titleBar);
+    assert.ok(result.backgrounds.statusBar);
+    assert.ok(result.backgrounds.activityBar);
   });
 });
 
