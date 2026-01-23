@@ -26,6 +26,7 @@ export interface ExtractedTheme {
   kind: ThemeKind;
   extensionId: string;
   extensionName: string;
+  installCount: number;
 }
 
 /**

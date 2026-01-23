@@ -144,7 +144,8 @@ export function parseTheme(
   contribution: ThemeContribution,
   readThemeFile: ThemeFileReader,
   extensionId: string,
-  extensionName: string
+  extensionName: string,
+  installCount: number
 ): ExtractedTheme | undefined {
   // Resolve inheritance
   const resolvedTheme = resolveInheritance(
@@ -174,6 +175,7 @@ export function parseTheme(
     kind,
     extensionId,
     extensionName,
+    installCount,
   };
 }
 

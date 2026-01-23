@@ -102,7 +102,8 @@ async function processExtension(
         contribution,
         readThemeFile,
         extension.extensionId,
-        extension.extensionName
+        extension.extensionName,
+        extension.installCount
       );
 
       if (extracted && validateTheme(extracted)) {

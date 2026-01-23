@@ -29,14 +29,58 @@ function formatBackgrounds(backgrounds: ElementBackgrounds): string {
 }
 
 /**
- * Escapes a theme name for use as an object key.
+ * Formats a theme name for use as an object key.
+ * Uses JSON.stringify to handle all edge cases (numeric strings, special
+ * characters, embedded quotes, unicode).
  */
 function formatThemeName(name: string): string {
-  // If the name contains special characters, quote it
-  if (/[^a-zA-Z0-9_]/.test(name)) {
-    return `'${name.replace(/'/g, "\\'")}'`;
+  return JSON.stringify(name);
+}
+
+interface ThemeConflict {
+  kept: ExtractedTheme;
+  discarded: ExtractedTheme;
+}
+
+interface MergeResult {
+  themes: Map<string, ExtractedTheme>;
+  conflicts: ThemeConflict[];
+}
+
+/**
+ * Merges new themes with existing themes, resolving conflicts by keeping
+ * the theme from the extension with more downloads.
+ */
+function mergeThemes(
+  newThemes: ExtractedTheme[],
+  existingThemes?: Map<string, ExtractedTheme>
+): MergeResult {
+  const mergedThemes = new Map<string, ExtractedTheme>();
+  const conflicts: ThemeConflict[] = [];
+
+  if (existingThemes) {
+    for (const [name, theme] of existingThemes) {
+      mergedThemes.set(name, theme);
+    }
   }
-  return name;
+
+  for (const theme of newThemes) {
+    const existing = mergedThemes.get(theme.name);
+
+    if (existing && existing.extensionId !== theme.extensionId) {
+      // Conflict: same name from different extensions
+      if (theme.installCount > existing.installCount) {
+        mergedThemes.set(theme.name, theme);
+        conflicts.push({ kept: theme, discarded: existing });
+      } else {
+        conflicts.push({ kept: existing, discarded: theme });
+      }
+    } else {
+      mergedThemes.set(theme.name, theme);
+    }
+  }
+
+  return { themes: mergedThemes, conflicts };
 }
 
 /**
@@ -46,19 +90,21 @@ export function generateTypeScriptCode(
   themes: ExtractedTheme[],
   existingThemes?: Map<string, ExtractedTheme>
 ): string {
-  // Merge with existing themes (preserving manually added ones)
-  const mergedThemes = new Map<string, ExtractedTheme>();
+  const { themes: mergedThemes, conflicts } = mergeThemes(themes, existingThemes);
 
-  // Add existing themes first
-  if (existingThemes) {
-    for (const [name, theme] of existingThemes) {
-      mergedThemes.set(name, theme);
+  // Log warnings for conflicts
+  if (conflicts.length > 0) {
+    console.warn('');
+    console.warn(`Found ${conflicts.length} duplicate theme name(s):`);
+    for (const { kept, discarded } of conflicts) {
+      console.warn(
+        `  "${kept.name}": keeping from "${kept.extensionName}" ` +
+          `(${kept.installCount.toLocaleString()} installs), ` +
+          `discarding from "${discarded.extensionName}" ` +
+          `(${discarded.installCount.toLocaleString()} installs)`
+      );
     }
-  }
-
-  // Add/update with extracted themes
-  for (const theme of themes) {
-    mergedThemes.set(theme.name, theme);
+    console.warn('');
   }
 
   // Sort alphabetically for stable diffs
@@ -142,9 +188,15 @@ export function generateReport(themes: ExtractedTheme[]): string {
   } else {
     for (const theme of themesWithElements) {
       const elements: string[] = [];
-      if (theme.backgrounds.titleBar) elements.push('titleBar');
-      if (theme.backgrounds.statusBar) elements.push('statusBar');
-      if (theme.backgrounds.activityBar) elements.push('activityBar');
+      if (theme.backgrounds.titleBar) {
+        elements.push('titleBar');
+      }
+      if (theme.backgrounds.statusBar) {
+        elements.push('statusBar');
+      }
+      if (theme.backgrounds.activityBar) {
+        elements.push('activityBar');
+      }
       lines.push(`- ${theme.name}: ${elements.join(', ')}`);
     }
   }
