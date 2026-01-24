@@ -46,6 +46,27 @@ async function waitForColorCustomizations(
   throw new Error('Timeout waiting for colorCustomizations');
 }
 
+/**
+ * Waits for patina.workspace.enabled to be set to the expected value, polling with timeout.
+ * This is needed because applyTint() sets colors first, then sets workspace.enabled async.
+ */
+async function waitForWorkspaceEnabled(
+  expected: boolean | undefined,
+  timeoutMs = 2000,
+  intervalMs = 50
+): Promise<void> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('workspace.enabled');
+    if (inspection?.workspaceValue === expected) {
+      return;
+    }
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+  }
+  throw new Error(`Timeout waiting for workspace.enabled to be ${expected}`);
+}
+
 suite('Extension Test Suite', () => {
   suiteSetup(async () => {
     // Ensure extension is activated
@@ -223,6 +244,10 @@ suite('Extension Test Suite', () => {
 
       // Wait for colors to be set
       await waitForColorCustomizations();
+
+      // Also wait for workspace.enabled flag to be set (applyTint sets this after colors)
+      // This is critical: removeTint() checks this flag and skips removal if not set
+      await waitForWorkspaceEnabled(true);
 
       // Then disable
       await vscode.commands.executeCommand('patina.disableGlobally');

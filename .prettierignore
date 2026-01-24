@@ -1,4 +1,5 @@
 .claude/
+.github/workflows/
 dist/
 out/
 node_modules/
