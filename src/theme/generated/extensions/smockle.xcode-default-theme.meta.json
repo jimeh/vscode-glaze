@@ -1,0 +1,36 @@
+{
+  "extensionId": "0e4f50c8-76f1-4e2a-a177-2418b5f5a847",
+  "extensionName": "xcode-default-theme",
+  "publisherName": "smockle",
+  "displayName": "Xcode Default Theme",
+  "version": "2.0.24",
+  "extractedAt": "2026-01-24T01:41:59.629Z",
+  "installCount": 131641,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Xcode Default (Dark)",
+      "label": "Xcode Default (Dark)",
+      "colors": {
+        "editor.background": "#292A30",
+        "statusBar.background": "#252629",
+        "statusBar.foreground": "#A6A7A8",
+        "activityBar.background": "#1C1D20",
+        "activityBar.foreground": "#DFDFE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Xcode Partial (Dark)",
+      "label": "Xcode Partial (Dark)",
+      "colors": {
+        "editor.background": "#292A30",
+        "statusBar.background": "#252629",
+        "statusBar.foreground": "#A6A7A8",
+        "activityBar.background": "#1C1D20",
+        "activityBar.foreground": "#DFDFE0"
+      },
+      "type": "dark"
+    }
+  ]
+}

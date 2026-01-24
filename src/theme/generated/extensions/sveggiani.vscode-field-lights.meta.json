@@ -1,0 +1,29 @@
+{
+  "extensionId": "540c422b-bb90-470c-a130-e4c3aa473f9f",
+  "extensionName": "vscode-field-lights",
+  "publisherName": "sveggiani",
+  "displayName": "Field Lights Theme",
+  "version": "0.0.11",
+  "extractedAt": "2026-01-24T01:41:56.583Z",
+  "installCount": 136607,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Field Lights",
+      "label": "Field Lights",
+      "colors": {
+        "editor.background": "#212733",
+        "editor.foreground": "#D9D7CE",
+        "titleBar.activeBackground": "#1A1F28",
+        "titleBar.activeForeground": "#738699",
+        "titleBar.inactiveBackground": "#1A1F28",
+        "titleBar.inactiveForeground": "#516170",
+        "statusBar.background": "#1A1F28",
+        "statusBar.foreground": "#738699",
+        "activityBar.background": "#1A1F28",
+        "activityBar.foreground": "#738699"
+      },
+      "type": "dark"
+    }
+  ]
+}

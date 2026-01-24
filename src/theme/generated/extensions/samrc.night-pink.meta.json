@@ -1,0 +1,29 @@
+{
+  "extensionId": "f74f905c-fbb1-40f2-813c-1b9a85ed642b",
+  "extensionName": "night-pink",
+  "publisherName": "SamRC",
+  "displayName": "Night Pink",
+  "version": "0.5.0",
+  "extractedAt": "2026-01-24T01:42:06.817Z",
+  "installCount": 113111,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Night Pink",
+      "label": "Night Pink",
+      "colors": {
+        "editor.background": "#181818",
+        "editor.foreground": "#FFC1EF",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.activeForeground": "#FFC1EF",
+        "titleBar.inactiveBackground": "#181818",
+        "titleBar.inactiveForeground": "#442342",
+        "statusBar.background": "#5E0166",
+        "statusBar.foreground": "#EEEEEE",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#FFC1EF"
+      },
+      "type": "dark"
+    }
+  ]
+}

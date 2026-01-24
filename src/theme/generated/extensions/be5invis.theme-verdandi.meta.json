@@ -1,0 +1,46 @@
+{
+  "extensionId": "d2149167-a7c8-4dea-ad4e-8e7a7fc63f35",
+  "extensionName": "theme-verdandi",
+  "publisherName": "be5invis",
+  "displayName": "Verdandi Theme",
+  "version": "2.0.1",
+  "extractedAt": "2026-01-24T01:42:12.497Z",
+  "installCount": 95301,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Verdandi",
+      "label": "Verdandi",
+      "colors": {
+        "editor.background": "#F8F9FA",
+        "editor.foreground": "#51575E",
+        "titleBar.activeBackground": "#51575E",
+        "titleBar.activeForeground": "#E9ECEE",
+        "titleBar.inactiveBackground": "#939BA4",
+        "titleBar.inactiveForeground": "#E9ECEE",
+        "statusBar.background": "#CFD4D9",
+        "statusBar.foreground": "#51575E",
+        "activityBar.background": "#BFC6CD",
+        "activityBar.foreground": "#353A3F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Verdandi Alter",
+      "label": "Verdandi Alter",
+      "colors": {
+        "editor.background": "#0F1216",
+        "editor.foreground": "#949CA3",
+        "titleBar.activeBackground": "#20262C",
+        "titleBar.activeForeground": "#B5BBC0",
+        "titleBar.inactiveBackground": "#5F6871",
+        "titleBar.inactiveForeground": "#171B20",
+        "statusBar.background": "#2C3239",
+        "statusBar.foreground": "#949CA3",
+        "activityBar.background": "#39414A",
+        "activityBar.foreground": "#B5BBC0"
+      },
+      "type": "dark"
+    }
+  ]
+}

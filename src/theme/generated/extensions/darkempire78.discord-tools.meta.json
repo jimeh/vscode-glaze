@@ -1,0 +1,25 @@
+{
+  "extensionId": "b7ae608d-676a-47df-b0fe-59602c6b2ab4",
+  "extensionName": "discord-tools",
+  "publisherName": "Darkempire78",
+  "displayName": "Discord Tools",
+  "version": "1.5.0",
+  "extractedAt": "2026-01-24T01:41:41.341Z",
+  "installCount": 166825,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Discord Theme (Dark)",
+      "label": "Discord Theme (Dark)",
+      "colors": {
+        "editor.background": "#36393F",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202225",
+        "titleBar.inactiveBackground": "#202225",
+        "statusBar.background": "#202225",
+        "activityBar.background": "#202225"
+      },
+      "type": "dark"
+    }
+  ]
+}

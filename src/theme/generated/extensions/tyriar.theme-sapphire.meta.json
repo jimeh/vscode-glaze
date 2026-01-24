@@ -1,0 +1,48 @@
+{
+  "extensionId": "a7776178-9e5a-46b6-a12d-480d9a3ee80a",
+  "extensionName": "theme-sapphire",
+  "publisherName": "Tyriar",
+  "displayName": "Sapphire Theme",
+  "version": "0.9.4",
+  "extractedAt": "2026-01-24T01:42:06.321Z",
+  "installCount": 115390,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sapphire",
+      "label": "Sapphire",
+      "colors": {
+        "editor.background": "#181E29",
+        "editor.foreground": "#EFEFEF",
+        "titleBar.activeBackground": "#131820",
+        "statusBar.background": "#131820",
+        "activityBar.background": "#212A39"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sapphire (Bright)",
+      "label": "Sapphire (Bright)",
+      "colors": {
+        "editor.background": "#2A3447",
+        "editor.foreground": "#EFEFEF",
+        "titleBar.activeBackground": "#1C2430",
+        "statusBar.background": "#1C2430",
+        "activityBar.background": "#323F55"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sapphire (Dim)",
+      "label": "Sapphire (Dim)",
+      "colors": {
+        "editor.background": "#080D14",
+        "editor.foreground": "#EFEFEF",
+        "titleBar.activeBackground": "#060A10",
+        "statusBar.background": "#060A10",
+        "activityBar.background": "#0B121C"
+      },
+      "type": "dark"
+    }
+  ]
+}

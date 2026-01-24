@@ -1,0 +1,35 @@
+{
+  "extensionId": "e33d5e56-ddd7-45d4-9351-42266104a0f3",
+  "extensionName": "light-pink-theme",
+  "publisherName": "mgwg",
+  "displayName": "Light Pink Theme",
+  "version": "0.6.0",
+  "extractedAt": "2026-01-24T01:41:55.497Z",
+  "installCount": 137554,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Light Pink",
+      "label": "Light Pink",
+      "colors": {
+        "editor.background": "#F5F5F5",
+        "titleBar.activeBackground": "#F5BEDB",
+        "titleBar.activeForeground": "#736A6D",
+        "statusBar.background": "#FF7AB3",
+        "activityBar.background": "#F2E7ED",
+        "activityBar.foreground": "#FF7AB3"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Dark Pink",
+      "label": "Dark Pink",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4",
+        "statusBar.background": "#F15FB4"
+      },
+      "type": "dark"
+    }
+  ]
+}

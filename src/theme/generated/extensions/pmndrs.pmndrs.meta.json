@@ -1,0 +1,80 @@
+{
+  "extensionId": "51c57bc5-73aa-4901-8c2b-1bd0af852e72",
+  "extensionName": "pmndrs",
+  "publisherName": "pmndrs",
+  "displayName": "poimandres",
+  "version": "0.3.7",
+  "extractedAt": "2026-01-24T01:41:53.641Z",
+  "installCount": 142577,
+  "stale": false,
+  "themes": [
+    {
+      "name": "poimandres",
+      "label": "poimandres",
+      "colors": {
+        "editor.background": "#1B1E28",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#1B1E28",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#1B1E28",
+        "titleBar.inactiveForeground": "#767C9D",
+        "statusBar.background": "#1B1E28",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#1B1E28",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "poimandres-noitalics",
+      "label": "poimandres-noitalics",
+      "colors": {
+        "editor.background": "#1B1E28",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#1B1E28",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#1B1E28",
+        "titleBar.inactiveForeground": "#767C9D",
+        "statusBar.background": "#1B1E28",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#1B1E28",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "poimandres-storm",
+      "label": "poimandres-storm",
+      "colors": {
+        "editor.background": "#252B37",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#252B37",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#252B37",
+        "titleBar.inactiveForeground": "#868CAD",
+        "statusBar.background": "#252B37",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#252B37",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "poimandres-noitalics-storm",
+      "label": "poimandres-noitalics-storm",
+      "colors": {
+        "editor.background": "#252B37",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#252B37",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#252B37",
+        "titleBar.inactiveForeground": "#868CAD",
+        "statusBar.background": "#252B37",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#252B37",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    }
+  ]
+}

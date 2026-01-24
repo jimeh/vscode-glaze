@@ -1,0 +1,46 @@
+{
+  "extensionId": "0615a8d1-878b-482f-b36c-773d1ed16adb",
+  "extensionName": "plastic",
+  "publisherName": "will-stone",
+  "displayName": "Plastic",
+  "version": "9.5.0",
+  "extractedAt": "2026-01-24T01:41:54.655Z",
+  "installCount": 138532,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Plastic",
+      "label": "Plastic",
+      "colors": {
+        "editor.background": "#21252B",
+        "editor.foreground": "#A9B2C3",
+        "titleBar.activeBackground": "#21252B",
+        "titleBar.activeForeground": "#C6CCD7",
+        "titleBar.inactiveBackground": "#21252B",
+        "titleBar.inactiveForeground": "#5F6672",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#A9B2C3",
+        "activityBar.background": "#21252B",
+        "activityBar.foreground": "#C6CCD7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Plastic - deprioritised punctuation",
+      "label": "Plastic - deprioritised punctuation",
+      "colors": {
+        "editor.background": "#21252B",
+        "editor.foreground": "#A9B2C3",
+        "titleBar.activeBackground": "#21252B",
+        "titleBar.activeForeground": "#C6CCD7",
+        "titleBar.inactiveBackground": "#21252B",
+        "titleBar.inactiveForeground": "#5F6672",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#A9B2C3",
+        "activityBar.background": "#21252B",
+        "activityBar.foreground": "#C6CCD7"
+      },
+      "type": "dark"
+    }
+  ]
+}

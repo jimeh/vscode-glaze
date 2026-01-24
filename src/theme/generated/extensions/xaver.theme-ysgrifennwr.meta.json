@@ -1,0 +1,29 @@
+{
+  "extensionId": "3e7b2244-1c35-49a7-abdd-02e2f802c64d",
+  "extensionName": "theme-ysgrifennwr",
+  "publisherName": "xaver",
+  "displayName": "Ysgrifennwr Theme",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T01:42:09.152Z",
+  "installCount": 104161,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Ysgrifennwr",
+      "label": "Ysgrifennwr",
+      "colors": {
+        "editor.background": "#F9F8F4",
+        "editor.foreground": "#424242",
+        "titleBar.activeBackground": "#EDECE8",
+        "titleBar.activeForeground": "#424242",
+        "titleBar.inactiveBackground": "#EDECE8",
+        "titleBar.inactiveForeground": "#424242",
+        "statusBar.background": "#005577",
+        "statusBar.foreground": "#F9F8F4",
+        "activityBar.background": "#EDECE8",
+        "activityBar.foreground": "#424242"
+      },
+      "type": "light"
+    }
+  ]
+}

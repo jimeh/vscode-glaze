@@ -1,0 +1,22 @@
+{
+  "extensionId": "41849acd-8536-4a2b-bacc-18e965cc06ae",
+  "extensionName": "particle-vscode-theme",
+  "publisherName": "particle",
+  "displayName": "Workbench Themes",
+  "version": "1.16.44",
+  "extractedAt": "2026-01-24T01:42:01.287Z",
+  "installCount": 128363,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark Matter (by Particle)",
+      "label": "Dark Matter (by Particle)",
+      "colors": {
+        "editor.background": "#001928",
+        "statusBar.background": "#00334F",
+        "activityBar.background": "#030B15"
+      },
+      "type": "dark"
+    }
+  ]
+}

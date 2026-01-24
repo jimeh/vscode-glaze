@@ -1,0 +1,97 @@
+{
+  "extensionId": "f54ff52a-32bb-418d-8b5f-983b8eafe22b",
+  "extensionName": "dark-low-contrast",
+  "publisherName": "EvgeniyPetukhov",
+  "displayName": "Dark Low Contrast Themes",
+  "version": "0.6.0",
+  "extractedAt": "2026-01-24T01:41:41.646Z",
+  "installCount": 166039,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark Low Contrast",
+      "label": "Dark Low Contrast",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#AFAFAF",
+        "titleBar.activeBackground": "#363636",
+        "titleBar.activeForeground": "#A9A9A9",
+        "titleBar.inactiveBackground": "#363636",
+        "titleBar.inactiveForeground": "#A9A9A9",
+        "statusBar.background": "#0667A9",
+        "statusBar.foreground": "#D2D2D2",
+        "activityBar.background": "#2E2E2E",
+        "activityBar.foreground": "#D2D2D2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dark Low Contrast Warm",
+      "label": "Dark Low Contrast Warm",
+      "colors": {
+        "editor.background": "#231E19",
+        "editor.foreground": "#B4AFAA",
+        "titleBar.activeBackground": "#3B3631",
+        "titleBar.activeForeground": "#AEA9A4",
+        "titleBar.inactiveBackground": "#3B3631",
+        "titleBar.inactiveForeground": "#AEA9A4",
+        "statusBar.background": "#0B67A4",
+        "statusBar.foreground": "#D7D2CD",
+        "activityBar.background": "#332E29",
+        "activityBar.foreground": "#D7D2CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dark Low Contrast Cold",
+      "label": "Dark Low Contrast Cold",
+      "colors": {
+        "editor.background": "#1E1E23",
+        "editor.foreground": "#AFAFB4",
+        "titleBar.activeBackground": "#36363B",
+        "titleBar.activeForeground": "#A9A9AE",
+        "titleBar.inactiveBackground": "#36363B",
+        "titleBar.inactiveForeground": "#A9A9AE",
+        "statusBar.background": "#0667AE",
+        "statusBar.foreground": "#D2D2D7",
+        "activityBar.background": "#2E2E33",
+        "activityBar.foreground": "#D2D2D7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dark Low Contrast Nature",
+      "label": "Dark Low Contrast Nature",
+      "colors": {
+        "editor.background": "#1E231E",
+        "editor.foreground": "#AFB4AF",
+        "titleBar.activeBackground": "#363B36",
+        "titleBar.activeForeground": "#A9AEA9",
+        "titleBar.inactiveBackground": "#363B36",
+        "titleBar.inactiveForeground": "#A9AEA9",
+        "statusBar.background": "#066CA9",
+        "statusBar.foreground": "#D2D7D2",
+        "activityBar.background": "#2E332E",
+        "activityBar.foreground": "#D2D7D2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dark Low Contrast Fire",
+      "label": "Dark Low Contrast Fire",
+      "colors": {
+        "editor.background": "#231E1E",
+        "editor.foreground": "#B4AFAF",
+        "titleBar.activeBackground": "#3B3636",
+        "titleBar.activeForeground": "#AEA9A9",
+        "titleBar.inactiveBackground": "#3B3636",
+        "titleBar.inactiveForeground": "#AEA9A9",
+        "statusBar.background": "#0B67A9",
+        "statusBar.foreground": "#D7D2D2",
+        "activityBar.background": "#332E2E",
+        "activityBar.foreground": "#D7D2D2"
+      },
+      "type": "dark"
+    }
+  ]
+}

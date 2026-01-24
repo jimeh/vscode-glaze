@@ -1,0 +1,21 @@
+{
+  "extensionId": "93c032be-2d17-43a3-897d-c930eb3a5f6b",
+  "extensionName": "theme-hackershaze",
+  "publisherName": "Nuuf",
+  "displayName": "Hackers Haze Theme",
+  "version": "2.0.1",
+  "extractedAt": "2026-01-24T01:41:54.315Z",
+  "installCount": 139866,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hackers Haze",
+      "label": "Hackers Haze",
+      "colors": {
+        "editor.background": "#151715",
+        "editor.foreground": "#1FFF2A"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "extensionId": "0be056c8-bdb7-48b3-a63e-01719eab4427",
+  "extensionName": "beautiful-dracula",
+  "publisherName": "NguyenHoangLam",
+  "displayName": "Beautiful Dracula",
+  "version": "0.1.4",
+  "extractedAt": "2026-01-24T01:42:04.229Z",
+  "installCount": 122138,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Beautiful Dracula Normal",
+      "label": "Beautiful Dracula Normal",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Beautiful Dracula Normal - No Highlight",
+      "label": "Beautiful Dracula Normal - No Highlight",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Beautiful Dracula Darker",
+      "label": "Beautiful Dracula Darker",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Beautiful Dracula Darker - No Highlight",
+      "label": "Beautiful Dracula Darker - No Highlight",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
+}

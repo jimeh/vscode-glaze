@@ -1,0 +1,24 @@
+{
+  "extensionId": "043cbe69-59a0-4952-a548-2366587a1226",
+  "extensionName": "theme-github",
+  "publisherName": "thomaspink",
+  "displayName": "Github Theme",
+  "version": "1.0.1",
+  "extractedAt": "2026-01-24T01:42:00.837Z",
+  "installCount": 129739,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Github",
+      "label": "Github",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#24292E",
+        "statusBar.background": "#FAFBFC",
+        "statusBar.foreground": "#24292E",
+        "activityBar.background": "#24292E"
+      },
+      "type": "light"
+    }
+  ]
+}

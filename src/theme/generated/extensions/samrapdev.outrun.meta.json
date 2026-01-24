@@ -1,0 +1,40 @@
+{
+  "extensionId": "86c27965-680c-4a61-9cf9-9e67521b1afc",
+  "extensionName": "outrun",
+  "publisherName": "samrapdev",
+  "displayName": "Outrun",
+  "version": "0.2.2",
+  "extractedAt": "2026-01-24T01:42:07.705Z",
+  "installCount": 108113,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Outrun Night",
+      "label": "Outrun Night",
+      "colors": {
+        "editor.background": "#161130",
+        "editor.foreground": "#EBECF8",
+        "titleBar.activeBackground": "#0C0A20",
+        "statusBar.background": "#0C0A20",
+        "statusBar.foreground": "#7984D1",
+        "activityBar.background": "#161130",
+        "activityBar.foreground": "#7984D1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Outrun Electric",
+      "label": "Outrun Electric",
+      "colors": {
+        "editor.background": "#0C0A20",
+        "editor.foreground": "#F2F3F7",
+        "titleBar.activeBackground": "#090819",
+        "statusBar.background": "#090819",
+        "statusBar.foreground": "#7984D1",
+        "activityBar.background": "#0C0A20",
+        "activityBar.foreground": "#7984D1"
+      },
+      "type": "dark"
+    }
+  ]
+}

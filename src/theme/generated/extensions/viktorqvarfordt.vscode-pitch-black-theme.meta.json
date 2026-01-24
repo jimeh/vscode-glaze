@@ -1,0 +1,28 @@
+{
+  "extensionId": "28b20c66-dbb8-4c01-a0f9-590be00ec2d3",
+  "extensionName": "vscode-pitch-black-theme",
+  "publisherName": "viktorqvarfordt",
+  "displayName": "Pitch Black Theme",
+  "version": "1.3.0",
+  "extractedAt": "2026-01-24T01:41:44.604Z",
+  "installCount": 162372,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Pitch Black",
+      "label": "Pitch Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#000000"
+      },
+      "type": "dark"
+    }
+  ]
+}

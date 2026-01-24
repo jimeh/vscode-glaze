@@ -1,0 +1,27 @@
+{
+  "extensionId": "02e454a7-cc5f-4703-b9cf-534c52cb3726",
+  "extensionName": "radical-vscode",
+  "publisherName": "dhedgecock",
+  "displayName": "Radical",
+  "version": "3.3.1",
+  "extractedAt": "2026-01-24T01:41:52.367Z",
+  "installCount": 146853,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Radical",
+      "label": "Radical",
+      "colors": {
+        "editor.background": "#141322",
+        "editor.foreground": "#94B4C4",
+        "titleBar.activeBackground": "#100F1A",
+        "titleBar.activeForeground": "#F52277",
+        "statusBar.background": "#12111F",
+        "statusBar.foreground": "#7C9C9E",
+        "activityBar.background": "#100F1A",
+        "activityBar.foreground": "#F52277"
+      },
+      "type": "dark"
+    }
+  ]
+}

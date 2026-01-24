@@ -1,0 +1,80 @@
+{
+  "extensionId": "959bb51c-18f2-45de-acdc-18b2cf831b89",
+  "extensionName": "tokyo-night",
+  "publisherName": "Avetis",
+  "displayName": "tokyo-night",
+  "version": "1.0.2",
+  "extractedAt": "2026-01-24T01:42:08.380Z",
+  "installCount": 106221,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Tokyo Storm Gogh",
+      "label": "Tokyo Storm Gogh",
+      "colors": {
+        "editor.background": "#24283B",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#24283B",
+        "titleBar.activeForeground": "#B7BCCF",
+        "titleBar.inactiveBackground": "#363B4F",
+        "titleBar.inactiveForeground": "#6E7084",
+        "statusBar.background": "#24283B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#24283B",
+        "activityBar.foreground": "#C0CAF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tokyo Night Gogh",
+      "label": "Tokyo Night Gogh",
+      "colors": {
+        "editor.background": "#1A1B26",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#1D1F2D",
+        "titleBar.activeForeground": "#B7BCCF",
+        "titleBar.inactiveBackground": "#363B4F",
+        "titleBar.inactiveForeground": "#6E7084",
+        "statusBar.background": "#1D1F2D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1A1B26",
+        "activityBar.foreground": "#C0CAF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tokyo Night AltSynt",
+      "label": "Tokyo Night AltSynt",
+      "colors": {
+        "editor.background": "#1A1B26",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#1D1F2D",
+        "titleBar.activeForeground": "#B7BCCF",
+        "titleBar.inactiveBackground": "#363B4F",
+        "titleBar.inactiveForeground": "#6E7084",
+        "statusBar.background": "#1D1F2D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1A1B26",
+        "activityBar.foreground": "#C0CAF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tokyo Storm AltSynt",
+      "label": "Tokyo Storm AltSynt",
+      "colors": {
+        "editor.background": "#24283B",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#24283B",
+        "titleBar.activeForeground": "#B7BCCF",
+        "titleBar.inactiveBackground": "#363B4F",
+        "titleBar.inactiveForeground": "#6E7084",
+        "statusBar.background": "#24283B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#24283B",
+        "activityBar.foreground": "#C0CAF5"
+      },
+      "type": "dark"
+    }
+  ]
+}

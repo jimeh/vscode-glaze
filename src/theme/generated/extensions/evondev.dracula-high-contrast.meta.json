@@ -1,0 +1,182 @@
+{
+  "extensionId": "7c2f263b-00aa-4779-9a54-590199535879",
+  "extensionName": "dracula-high-contrast",
+  "publisherName": "evondev",
+  "displayName": "Evondev Dracula",
+  "version": "0.2.89",
+  "extractedAt": "2026-01-24T01:41:49.610Z",
+  "installCount": 152208,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Evondev Dracula New Contrast",
+      "label": "Evondev Dracula New Contrast",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8FA",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8FA",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8FA",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8FA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula High Contrast New Color",
+      "label": "Evondev Dracula High Contrast New Color",
+      "colors": {
+        "editor.background": "#191A2E",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#191A2E",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Night Contrast New Color",
+      "label": "Evondev Dracula Night Contrast New Color",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#011627",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula High Contrast",
+      "label": "Evondev Dracula High Contrast",
+      "colors": {
+        "editor.background": "#191A2E",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#191A2E",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Night Contrast",
+      "label": "Evondev Dracula Night Contrast",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#011627",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Normal Contrast",
+      "label": "Evondev Dracula Normal Contrast",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Author",
+      "label": "Evondev Dracula Author",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8FA",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8FA",
+        "titleBar.inactiveBackground": "#1E1F36",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8FA",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8FA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Author High Contrast",
+      "label": "Evondev Dracula Author High Contrast",
+      "colors": {
+        "editor.background": "#191A2E",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#191A2E",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Darker Contrast",
+      "label": "Evondev Dracula Darker Contrast",
+      "colors": {
+        "editor.background": "#141523",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#141523",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#141523",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Evondev Dracula Darker Contrast New Color",
+      "label": "Evondev Dracula Darker Contrast New Color",
+      "colors": {
+        "editor.background": "#141523",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#141523",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#141523",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
+}

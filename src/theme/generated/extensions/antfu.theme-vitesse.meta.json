@@ -1,0 +1,97 @@
+{
+  "extensionId": "e0a67685-8605-4546-8520-73b228de61b5",
+  "extensionName": "theme-vitesse",
+  "publisherName": "antfu",
+  "displayName": "Vitesse Theme",
+  "version": "1.0.1",
+  "extractedAt": "2026-01-24T01:42:08.885Z",
+  "installCount": 105840,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Vitesse Light",
+      "label": "Vitesse Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#393A34",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#4E4F47",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "titleBar.inactiveForeground": "#6A737D",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#4E4F47",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#393A34"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vitesse Dark",
+      "label": "Vitesse Dark",
+      "colors": {
+        "editor.background": "#121212",
+        "editor.foreground": "#DBD7CA",
+        "titleBar.activeBackground": "#121212",
+        "titleBar.activeForeground": "#BFBAAA",
+        "titleBar.inactiveBackground": "#121212",
+        "titleBar.inactiveForeground": "#959DA5",
+        "statusBar.background": "#121212",
+        "statusBar.foreground": "#BFBAAA",
+        "activityBar.background": "#121212",
+        "activityBar.foreground": "#DBD7CA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vitesse Black",
+      "label": "Vitesse Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#DBD7CA",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#BFBAAA",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#959DA5",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#BFBAAA",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#DBD7CA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vitesse Light Soft",
+      "label": "Vitesse Light Soft",
+      "colors": {
+        "editor.background": "#F1F0E9",
+        "editor.foreground": "#393A34",
+        "titleBar.activeBackground": "#F1F0E9",
+        "titleBar.activeForeground": "#4E4F47",
+        "titleBar.inactiveBackground": "#F1F0E9",
+        "titleBar.inactiveForeground": "#6A737D",
+        "statusBar.background": "#F1F0E9",
+        "statusBar.foreground": "#4E4F47",
+        "activityBar.background": "#F1F0E9",
+        "activityBar.foreground": "#393A34"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Vitesse Dark Soft",
+      "label": "Vitesse Dark Soft",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#DBD7CA",
+        "titleBar.activeBackground": "#222222",
+        "titleBar.activeForeground": "#BFBAAA",
+        "titleBar.inactiveBackground": "#222222",
+        "titleBar.inactiveForeground": "#959DA5",
+        "statusBar.background": "#222222",
+        "statusBar.foreground": "#BFBAAA",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#DBD7CA"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "extensionId": "c3c225bf-758d-4db6-9341-00952baff6dd",
+  "extensionName": "Theme-azure",
+  "publisherName": "gerane",
+  "displayName": "azure Theme",
+  "version": "0.0.5",
+  "extractedAt": "2026-01-24T01:41:53.829Z",
+  "installCount": 141817,
+  "stale": false,
+  "themes": [
+    {
+      "name": "azure",
+      "label": "azure",
+      "colors": {
+        "editor.background": "#181D26",
+        "editor.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

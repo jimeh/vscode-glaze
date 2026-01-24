@@ -1,0 +1,26 @@
+{
+  "extensionId": "9fc2be41-3d58-42cf-9beb-6e8c5a3fcf1c",
+  "extensionName": "dark-horizon",
+  "publisherName": "mcagampan",
+  "displayName": "Dark Horizon",
+  "version": "0.4.2",
+  "extractedAt": "2026-01-24T01:41:59.355Z",
+  "installCount": 131911,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark Horizon",
+      "label": "Dark Horizon",
+      "colors": {
+        "editor.background": "#0E0E0E",
+        "titleBar.activeBackground": "#0E0E0E",
+        "titleBar.inactiveBackground": "#1C1E26",
+        "statusBar.background": "#0E0E0E",
+        "statusBar.foreground": "#D5D8DA",
+        "activityBar.background": "#080808",
+        "activityBar.foreground": "#D5D8DA"
+      },
+      "type": "dark"
+    }
+  ]
+}

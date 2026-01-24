@@ -1,0 +1,21 @@
+{
+  "extensionId": "f09c82dc-45f5-43ab-be47-c5d8748b5076",
+  "extensionName": "Theme-Dracula",
+  "publisherName": "gerane",
+  "displayName": "Dracula Theme",
+  "version": "0.0.5",
+  "extractedAt": "2026-01-24T01:41:49.335Z",
+  "installCount": 152856,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dracula",
+      "label": "Dracula",
+      "colors": {
+        "editor.background": "#282A36",
+        "editor.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "extensionId": "e040918e-a5fa-407c-b0af-607287357259",
+  "extensionName": "code-blue",
+  "publisherName": "Sujan",
+  "displayName": "Code Blue",
+  "version": "0.9.12",
+  "extractedAt": "2026-01-24T01:41:48.671Z",
+  "installCount": 154989,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Code Blue",
+      "label": "Code Blue",
+      "colors": {
+        "editor.background": "#2A324B",
+        "editor.foreground": "#E2E6E9",
+        "titleBar.activeBackground": "#242B40",
+        "titleBar.activeForeground": "#E2E6E9",
+        "titleBar.inactiveBackground": "#242B40",
+        "titleBar.inactiveForeground": "#E2E6E9",
+        "statusBar.background": "#242B40",
+        "statusBar.foreground": "#E2E6E9",
+        "activityBar.background": "#242B40",
+        "activityBar.foreground": "#E2E6E9"
+      },
+      "type": "dark"
+    }
+  ]
+}

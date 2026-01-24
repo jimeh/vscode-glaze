@@ -1,0 +1,21 @@
+{
+  "extensionId": "362d5faf-824c-4e3c-9b1c-73a3df6ce8e4",
+  "extensionName": "Theme-1337",
+  "publisherName": "ms-vscode",
+  "displayName": "1337 Theme",
+  "version": "0.1.4",
+  "extractedAt": "2026-01-24T01:42:03.783Z",
+  "installCount": 124316,
+  "stale": false,
+  "themes": [
+    {
+      "name": "1337",
+      "label": "1337",
+      "colors": {
+        "editor.background": "#191919",
+        "editor.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
+}

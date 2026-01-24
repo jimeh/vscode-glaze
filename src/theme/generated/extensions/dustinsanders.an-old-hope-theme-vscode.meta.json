@@ -1,0 +1,58 @@
+{
+  "extensionId": "e1efb0c8-2c62-4d86-bb6a-c88f198ddfcc",
+  "extensionName": "an-old-hope-theme-vscode",
+  "publisherName": "dustinsanders",
+  "displayName": "An Old Hope Theme",
+  "version": "4.4.0",
+  "extractedAt": "2026-01-24T01:42:09.654Z",
+  "installCount": 102462,
+  "stale": false,
+  "themes": [
+    {
+      "name": "An Old Hope",
+      "label": "An Old Hope",
+      "colors": {
+        "editor.background": "#1C1D21",
+        "editor.foreground": "#CBCDD2",
+        "titleBar.activeForeground": "#CBCDD2",
+        "statusBar.background": "#1C1D21",
+        "statusBar.foreground": "#686B78",
+        "activityBar.background": "#1C1D21",
+        "activityBar.foreground": "#535458"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "An Old Hope Italic",
+      "label": "An Old Hope Italic",
+      "colors": {
+        "editor.background": "#1C1D21",
+        "editor.foreground": "#CBCDD2",
+        "titleBar.activeForeground": "#CBCDD2",
+        "statusBar.background": "#1C1D21",
+        "statusBar.foreground": "#686B78",
+        "activityBar.background": "#1C1D21",
+        "activityBar.foreground": "#535458"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "An Old Hope Classic",
+      "label": "An Old Hope Classic",
+      "colors": {
+        "editor.background": "#1C1D21",
+        "editor.foreground": "#CBCDD2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "An Old Hope Light",
+      "label": "An Old Hope Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1C1D21"
+      },
+      "type": "light"
+    }
+  ]
+}

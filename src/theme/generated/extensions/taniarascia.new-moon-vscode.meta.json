@@ -1,0 +1,23 @@
+{
+  "extensionId": "da62dfba-5132-4928-a127-0ef0c8af08c3",
+  "extensionName": "new-moon-vscode",
+  "publisherName": "taniarascia",
+  "displayName": "New Moon Syntax Theme",
+  "version": "1.8.8",
+  "extractedAt": "2026-01-24T01:42:05.271Z",
+  "installCount": 116997,
+  "stale": false,
+  "themes": [
+    {
+      "name": "New Moon",
+      "label": "New Moon",
+      "colors": {
+        "editor.background": "#2D2D2D",
+        "editor.foreground": "#B3B9C5",
+        "statusBar.background": "#202020",
+        "statusBar.foreground": "#909090"
+      },
+      "type": "dark"
+    }
+  ]
+}

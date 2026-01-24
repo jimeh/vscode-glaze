@@ -1,0 +1,46 @@
+{
+  "extensionId": "330982cd-dddd-4939-b9ad-656ce474b089",
+  "extensionName": "everforest",
+  "publisherName": "sainnhe",
+  "displayName": "Everforest",
+  "version": "0.3.0",
+  "extractedAt": "2026-01-24T01:42:05.507Z",
+  "installCount": 116437,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Everforest Dark",
+      "label": "Everforest Dark",
+      "colors": {
+        "editor.background": "#2D353B",
+        "editor.foreground": "#D3C6AA",
+        "titleBar.activeBackground": "#2D353B",
+        "titleBar.activeForeground": "#9AA79D",
+        "titleBar.inactiveBackground": "#2D353B",
+        "titleBar.inactiveForeground": "#7F897D",
+        "statusBar.background": "#2D353B",
+        "statusBar.foreground": "#9AA79D",
+        "activityBar.background": "#2D353B",
+        "activityBar.foreground": "#D3C6AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Everforest Light",
+      "label": "Everforest Light",
+      "colors": {
+        "editor.background": "#FDF6E3",
+        "editor.foreground": "#5C6A72",
+        "titleBar.activeBackground": "#FDF6E3",
+        "titleBar.activeForeground": "#879686",
+        "titleBar.inactiveBackground": "#FDF6E3",
+        "titleBar.inactiveForeground": "#A4AD9E",
+        "statusBar.background": "#FDF6E3",
+        "statusBar.foreground": "#879686",
+        "activityBar.background": "#FDF6E3",
+        "activityBar.foreground": "#5C6A72"
+      },
+      "type": "light"
+    }
+  ]
+}

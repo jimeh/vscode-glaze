@@ -1,0 +1,520 @@
+{
+  "extensionId": "48ae7c99-20a7-46e2-ad55-bb870d763998",
+  "extensionName": "august-themes",
+  "publisherName": "inci-august",
+  "displayName": "August Themes",
+  "version": "2.8.0",
+  "extractedAt": "2026-01-24T01:41:54.096Z",
+  "installCount": 141729,
+  "stale": false,
+  "themes": [
+    {
+      "name": "August - Arstotzka",
+      "label": "August - Arstotzka",
+      "colors": {
+        "editor.background": "#0F0B0B",
+        "editor.foreground": "#556955",
+        "titleBar.activeBackground": "#0F0B0B",
+        "titleBar.activeForeground": "#556955",
+        "titleBar.inactiveBackground": "#0F0B0B",
+        "titleBar.inactiveForeground": "#556955",
+        "statusBar.background": "#0F0B0B",
+        "statusBar.foreground": "#556955",
+        "activityBar.background": "#0F0B0B",
+        "activityBar.foreground": "#9CB5AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Arstotzka (Lighter)",
+      "label": "August - Arstotzka (Lighter)",
+      "colors": {
+        "editor.background": "#191212",
+        "editor.foreground": "#556955",
+        "titleBar.activeBackground": "#191212",
+        "titleBar.activeForeground": "#556955",
+        "titleBar.inactiveBackground": "#191212",
+        "titleBar.inactiveForeground": "#556955",
+        "statusBar.background": "#191212",
+        "statusBar.foreground": "#556955",
+        "activityBar.background": "#191212",
+        "activityBar.foreground": "#9CB5AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Arstotzka (Darker)",
+      "label": "August - Arstotzka (Darker)",
+      "colors": {
+        "editor.background": "#050404",
+        "editor.foreground": "#556955",
+        "titleBar.activeBackground": "#050404",
+        "titleBar.activeForeground": "#556955",
+        "titleBar.inactiveBackground": "#050404",
+        "titleBar.inactiveForeground": "#556955",
+        "statusBar.background": "#050404",
+        "statusBar.foreground": "#556955",
+        "activityBar.background": "#050404",
+        "activityBar.foreground": "#9CB5AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Arstotzka 2",
+      "label": "August - Arstotzka 2",
+      "colors": {
+        "editor.background": "#0F0B0B",
+        "editor.foreground": "#556955",
+        "titleBar.activeBackground": "#0F0B0B",
+        "titleBar.activeForeground": "#556955",
+        "titleBar.inactiveBackground": "#0F0B0B",
+        "titleBar.inactiveForeground": "#556955",
+        "statusBar.background": "#0F0B0B",
+        "statusBar.foreground": "#556955",
+        "activityBar.background": "#0F0B0B",
+        "activityBar.foreground": "#9CB5AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Arstotzka 2 (Lighter)",
+      "label": "August - Arstotzka 2 (Lighter)",
+      "colors": {
+        "editor.background": "#191212",
+        "editor.foreground": "#556955",
+        "titleBar.activeBackground": "#191212",
+        "titleBar.activeForeground": "#556955",
+        "titleBar.inactiveBackground": "#191212",
+        "titleBar.inactiveForeground": "#556955",
+        "statusBar.background": "#191212",
+        "statusBar.foreground": "#556955",
+        "activityBar.background": "#191212",
+        "activityBar.foreground": "#9CB5AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Arstotzka 2 (Darker)",
+      "label": "August - Arstotzka 2 (Darker)",
+      "colors": {
+        "editor.background": "#050404",
+        "editor.foreground": "#556955",
+        "titleBar.activeBackground": "#050404",
+        "titleBar.activeForeground": "#556955",
+        "titleBar.inactiveBackground": "#050404",
+        "titleBar.inactiveForeground": "#556955",
+        "statusBar.background": "#050404",
+        "statusBar.foreground": "#556955",
+        "activityBar.background": "#050404",
+        "activityBar.foreground": "#9CB5AA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Ariake Dark",
+      "label": "August - Ariake Dark",
+      "colors": {
+        "editor.background": "#191C22",
+        "editor.foreground": "#7B88A1",
+        "titleBar.activeBackground": "#191C22",
+        "titleBar.activeForeground": "#7B88A1",
+        "titleBar.inactiveBackground": "#191C22",
+        "titleBar.inactiveForeground": "#7B88A1",
+        "statusBar.background": "#191C22",
+        "statusBar.foreground": "#7B88A1",
+        "activityBar.background": "#191C22",
+        "activityBar.foreground": "#7B88A1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Nord",
+      "label": "August - Nord",
+      "colors": {
+        "editor.background": "#272C36",
+        "editor.foreground": "#7B88A1",
+        "titleBar.activeBackground": "#272C36",
+        "titleBar.activeForeground": "#7B88A1",
+        "titleBar.inactiveBackground": "#272C36",
+        "titleBar.inactiveForeground": "#7B88A1",
+        "statusBar.background": "#272C36",
+        "statusBar.foreground": "#7B88A1",
+        "activityBar.background": "#272C36",
+        "activityBar.foreground": "#7B88A1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Nord (Darker)",
+      "label": "August - Nord (Darker)",
+      "colors": {
+        "editor.background": "#191C22",
+        "editor.foreground": "#7B88A1",
+        "titleBar.activeBackground": "#191C22",
+        "titleBar.activeForeground": "#7B88A1",
+        "titleBar.inactiveBackground": "#191C22",
+        "titleBar.inactiveForeground": "#7B88A1",
+        "statusBar.background": "#191C22",
+        "statusBar.foreground": "#7B88A1",
+        "activityBar.background": "#191C22",
+        "activityBar.foreground": "#7B88A1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - City Lights",
+      "label": "August - City Lights",
+      "colors": {
+        "editor.background": "#1D252C",
+        "editor.foreground": "#8094A7",
+        "titleBar.activeBackground": "#1D252C",
+        "titleBar.activeForeground": "#8094A7",
+        "titleBar.inactiveBackground": "#1D252C",
+        "titleBar.inactiveForeground": "#8094A7",
+        "statusBar.background": "#1D252C",
+        "statusBar.foreground": "#8094A7",
+        "activityBar.background": "#1D252C",
+        "activityBar.foreground": "#8094A7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - City Lights (Darker)",
+      "label": "August - City Lights (Darker)",
+      "colors": {
+        "editor.background": "#161C22",
+        "editor.foreground": "#8094A7",
+        "titleBar.activeBackground": "#161C22",
+        "titleBar.activeForeground": "#8094A7",
+        "titleBar.inactiveBackground": "#161C22",
+        "titleBar.inactiveForeground": "#8094A7",
+        "statusBar.background": "#161C22",
+        "statusBar.foreground": "#8094A7",
+        "activityBar.background": "#161C22",
+        "activityBar.foreground": "#8094A7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Night Owl",
+      "label": "August - Night Owl",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#5F7E97",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#5F7E97",
+        "titleBar.inactiveBackground": "#011627",
+        "titleBar.inactiveForeground": "#5F7E97",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#5F7E97",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#5F7E97"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Night Owl (Darker)",
+      "label": "August - Night Owl (Darker)",
+      "colors": {
+        "editor.background": "#010D16",
+        "editor.foreground": "#5F7E97",
+        "titleBar.activeBackground": "#010D16",
+        "titleBar.activeForeground": "#5F7E97",
+        "titleBar.inactiveBackground": "#010D16",
+        "titleBar.inactiveForeground": "#5F7E97",
+        "statusBar.background": "#010D16",
+        "statusBar.foreground": "#5F7E97",
+        "activityBar.background": "#010D16",
+        "activityBar.foreground": "#5F7E97"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - In Bed By 7pm",
+      "label": "August - In Bed By 7pm",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#292D3E",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#292D3E",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#292D3E",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - In Bed By 7pm (Darker)",
+      "label": "August - In Bed By 7pm (Darker)",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#0F111A",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#0F111A",
+        "titleBar.inactiveForeground": "#525975",
+        "statusBar.background": "#0F111A",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#0F111A",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Radical",
+      "label": "August - Radical",
+      "colors": {
+        "editor.background": "#12111F",
+        "editor.foreground": "#7C9C9E",
+        "titleBar.activeBackground": "#100F1A",
+        "titleBar.activeForeground": "#F52277",
+        "titleBar.inactiveBackground": "#12111F",
+        "titleBar.inactiveForeground": "#F52277",
+        "statusBar.background": "#12111F",
+        "statusBar.foreground": "#7C9C9E",
+        "activityBar.background": "#100F1A",
+        "activityBar.foreground": "#F52277"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Radical 2",
+      "label": "August - Radical 2",
+      "colors": {
+        "editor.background": "#12111F",
+        "editor.foreground": "#7C9C9E",
+        "titleBar.activeBackground": "#100F1A",
+        "titleBar.activeForeground": "#F52277",
+        "titleBar.inactiveBackground": "#12111F",
+        "titleBar.inactiveForeground": "#F52277",
+        "statusBar.background": "#12111F",
+        "statusBar.foreground": "#7C9C9E",
+        "activityBar.background": "#100F1A",
+        "activityBar.foreground": "#F52277"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Drawbridge",
+      "label": "August - Drawbridge",
+      "colors": {
+        "editor.background": "#131520",
+        "editor.foreground": "#B8CDFE",
+        "titleBar.activeBackground": "#131520",
+        "titleBar.activeForeground": "#B8CDFE",
+        "titleBar.inactiveBackground": "#131520",
+        "titleBar.inactiveForeground": "#B8CDFE",
+        "statusBar.background": "#131520",
+        "statusBar.foreground": "#B8CDFE",
+        "activityBar.background": "#131520",
+        "activityBar.foreground": "#B8CDFE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Drawbridge (Darker)",
+      "label": "August - Drawbridge (Darker)",
+      "colors": {
+        "editor.background": "#0D0E15",
+        "editor.foreground": "#B8CDFE",
+        "titleBar.activeBackground": "#0D0E15",
+        "titleBar.activeForeground": "#B8CDFE",
+        "titleBar.inactiveBackground": "#0D0E15",
+        "titleBar.inactiveForeground": "#B8CDFE",
+        "statusBar.background": "#0D0E15",
+        "statusBar.foreground": "#B8CDFE",
+        "activityBar.background": "#0D0E15",
+        "activityBar.foreground": "#B8CDFE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Material Palenight",
+      "label": "August - Material Palenight",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#292D3E",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#292D3E",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#292D3E",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Material Ocean",
+      "label": "August - Material Ocean",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#0F111A",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#0F111A",
+        "titleBar.inactiveForeground": "#525975",
+        "statusBar.background": "#0F111A",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#0F111A",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Gruvbox",
+      "label": "August - Gruvbox",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#EBDBB2",
+        "titleBar.activeBackground": "#1D2021",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#1D2021",
+        "statusBar.background": "#1D2021",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#1D2021",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Gruvbox (Darker)",
+      "label": "August - Gruvbox (Darker)",
+      "colors": {
+        "editor.background": "#151718",
+        "editor.foreground": "#EBDBB2",
+        "titleBar.activeBackground": "#151718",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#151718",
+        "statusBar.background": "#151718",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#151718",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Rosé Pine",
+      "label": "August - Rosé Pine",
+      "colors": {
+        "editor.background": "#191724",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#191724",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#1F1D2E",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#191724",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#191724",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Rosé Pine Moon",
+      "label": "August - Rosé Pine Moon",
+      "colors": {
+        "editor.background": "#232136",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#232136",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#2A273F",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#232136",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#232136",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - BeardedTheme Oceanic Reversed",
+      "label": "August - BeardedTheme Oceanic Reversed",
+      "colors": {
+        "editor.background": "#111C22",
+        "editor.foreground": "#C3D6E0",
+        "titleBar.activeBackground": "#101C22",
+        "titleBar.activeForeground": "#41687C",
+        "titleBar.inactiveBackground": "#101C22",
+        "titleBar.inactiveForeground": "#41687C",
+        "statusBar.background": "#111C22",
+        "statusBar.foreground": "#A2BFCE",
+        "activityBar.background": "#101C22",
+        "activityBar.foreground": "#97C892"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - BeardedTheme Surprising Blueberry",
+      "label": "August - BeardedTheme Surprising Blueberry",
+      "colors": {
+        "editor.background": "#101A29",
+        "editor.foreground": "#BACBE4",
+        "titleBar.activeBackground": "#090E16",
+        "titleBar.activeForeground": "#BACBE4",
+        "titleBar.inactiveBackground": "#090E16",
+        "titleBar.inactiveForeground": "#355484",
+        "statusBar.background": "#101A29",
+        "statusBar.foreground": "#96AFD5",
+        "activityBar.background": "#0D1521",
+        "activityBar.foreground": "#C93E71"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Kanagawa",
+      "label": "August - Kanagawa",
+      "colors": {
+        "editor.background": "#1F1F28",
+        "editor.foreground": "#DCD7BA",
+        "titleBar.activeBackground": "#1F1F28",
+        "titleBar.activeForeground": "#DCD7BA",
+        "titleBar.inactiveBackground": "#1F1F28",
+        "titleBar.inactiveForeground": "#DCD7BA",
+        "statusBar.background": "#1F1F28",
+        "statusBar.foreground": "#C8C093",
+        "activityBar.background": "#1F1F28",
+        "activityBar.foreground": "#DCD7BA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Kanagawa (Darker)",
+      "label": "August - Kanagawa (Darker)",
+      "colors": {
+        "editor.background": "#16161E",
+        "editor.foreground": "#DCD7BA",
+        "titleBar.activeBackground": "#16161E",
+        "titleBar.activeForeground": "#DCD7BA",
+        "titleBar.inactiveBackground": "#16161E",
+        "titleBar.inactiveForeground": "#DCD7BA",
+        "statusBar.background": "#16161E",
+        "statusBar.foreground": "#C8C093",
+        "activityBar.background": "#16161E",
+        "activityBar.foreground": "#DCD7BA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "August - Catppuccin",
+      "label": "August - Catppuccin",
+      "colors": {
+        "editor.background": "#1E2030",
+        "editor.foreground": "#CAD3F5",
+        "titleBar.activeBackground": "#1E2030",
+        "titleBar.activeForeground": "#CAD3F5",
+        "titleBar.inactiveBackground": "#1E2030",
+        "titleBar.inactiveForeground": "#CAD3F5",
+        "statusBar.background": "#1E2030",
+        "statusBar.foreground": "#CAD3F5",
+        "activityBar.background": "#1E2030",
+        "activityBar.foreground": "#C6A0F6"
+      },
+      "type": "dark"
+    }
+  ]
+}

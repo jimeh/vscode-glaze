@@ -1,0 +1,28 @@
+{
+  "extensionId": "2eace7db-c7ce-4d26-a10f-373f471ac8df",
+  "extensionName": "freecodecamp-dark-vscode-theme",
+  "publisherName": "freeCodeCamp",
+  "displayName": "freeCodeCamp Dark Theme",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T01:41:58.280Z",
+  "installCount": 132258,
+  "stale": false,
+  "themes": [
+    {
+      "name": "freeCodeCamp Dark Theme",
+      "label": "freeCodeCamp Dark Theme",
+      "colors": {
+        "editor.background": "#2A2A40",
+        "editor.foreground": "#DFDFE2",
+        "titleBar.activeBackground": "#0A0A23",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#2A2A40",
+        "titleBar.inactiveForeground": "#DFDFE2",
+        "statusBar.background": "#0A0A23",
+        "activityBar.background": "#0A0A23",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

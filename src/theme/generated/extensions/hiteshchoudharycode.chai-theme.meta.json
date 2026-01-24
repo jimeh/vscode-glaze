@@ -1,0 +1,46 @@
+{
+  "extensionId": "a3712931-416f-4480-85b3-6de388e0827a",
+  "extensionName": "chai-theme",
+  "publisherName": "hiteshchoudharycode",
+  "displayName": "chai theme",
+  "version": "0.2.0",
+  "extractedAt": "2026-01-24T01:41:45.528Z",
+  "installCount": 157806,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark Chai",
+      "label": "Dark Chai",
+      "colors": {
+        "editor.background": "#010107",
+        "editor.foreground": "#BECFDA",
+        "titleBar.activeBackground": "#07273B",
+        "titleBar.activeForeground": "#BECFDA",
+        "titleBar.inactiveBackground": "#07273B",
+        "titleBar.inactiveForeground": "#9FB6C6",
+        "statusBar.background": "#07273B",
+        "statusBar.foreground": "#1679B6",
+        "activityBar.background": "#07273B",
+        "activityBar.foreground": "#1679B6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Light Chai",
+      "label": "Light Chai",
+      "colors": {
+        "editor.background": "#F7F7F7",
+        "editor.foreground": "#383A42",
+        "titleBar.activeBackground": "#C2C4C7",
+        "titleBar.activeForeground": "#383A42",
+        "titleBar.inactiveBackground": "#C2C4C7",
+        "titleBar.inactiveForeground": "#383A42",
+        "statusBar.background": "#EBEBEB",
+        "statusBar.foreground": "#383A42",
+        "activityBar.background": "#CEAB93",
+        "activityBar.foreground": "#383A42"
+      },
+      "type": "dark"
+    }
+  ]
+}

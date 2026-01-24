@@ -1,0 +1,72 @@
+{
+  "extensionId": "1b59a093-93c8-429e-a7d7-2a177cea4f47",
+  "extensionName": "xcode-12-theme",
+  "publisherName": "MateoCERQUETELLA",
+  "displayName": "Xcode Theme",
+  "version": "5.0.1",
+  "extractedAt": "2026-01-24T01:41:42.177Z",
+  "installCount": 164391,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Xcode Classic (Dark)",
+      "label": "Xcode Classic (Dark)",
+      "colors": {
+        "editor.background": "#292A30",
+        "editor.foreground": "#DFDFE0",
+        "titleBar.activeBackground": "#282831",
+        "titleBar.activeForeground": "#B7B8BB",
+        "statusBar.background": "#1C1F21",
+        "statusBar.foreground": "#DCDDDD",
+        "activityBar.background": "#282831",
+        "activityBar.foreground": "#DFDFDF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Xcode Civic (Dark)",
+      "label": "Xcode Civic (Dark)",
+      "colors": {
+        "editor.background": "#292B36",
+        "editor.foreground": "#DFDFE0",
+        "titleBar.activeBackground": "#282831",
+        "titleBar.activeForeground": "#B7B8BB",
+        "statusBar.background": "#1C1F21",
+        "statusBar.foreground": "#DCDDDD",
+        "activityBar.background": "#282831",
+        "activityBar.foreground": "#DFDFDF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Xcode Default (Dark)",
+      "label": "Xcode Default (Dark)",
+      "colors": {
+        "editor.background": "#1F1F24",
+        "editor.foreground": "#DFDFE0",
+        "titleBar.activeBackground": "#383A3D",
+        "titleBar.activeForeground": "#B7B8BB",
+        "statusBar.background": "#1C1F21",
+        "statusBar.foreground": "#DCDDDD",
+        "activityBar.background": "#2A2C2F",
+        "activityBar.foreground": "#DFDFDF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Xcode Default (Dark Customized Version)",
+      "label": "Xcode Default (Dark Customized Version)",
+      "colors": {
+        "editor.background": "#1F1F24",
+        "editor.foreground": "#DFDFE0",
+        "titleBar.activeBackground": "#383A3D",
+        "titleBar.activeForeground": "#B7B8BB",
+        "statusBar.background": "#1C1F21",
+        "statusBar.foreground": "#DCDDDD",
+        "activityBar.background": "#2A2C2F",
+        "activityBar.foreground": "#DFDFDF"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "extensionId": "502f71da-d7e3-4cad-84e9-9cb39d8bc252",
+  "extensionName": "tokyo-hack",
+  "publisherName": "ajshortt",
+  "displayName": "Tokyo Hack",
+  "version": "0.3.2",
+  "extractedAt": "2026-01-24T01:42:08.654Z",
+  "installCount": 106093,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Tokyo Hack",
+      "label": "Tokyo Hack",
+      "colors": {
+        "editor.background": "#18173E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#18173E",
+        "titleBar.inactiveBackground": "#18173E",
+        "statusBar.background": "#F08DF0",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#18173E",
+        "activityBar.foreground": "#F08DF0"
+      },
+      "type": "dark"
+    }
+  ]
+}

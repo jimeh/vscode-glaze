@@ -1,0 +1,63 @@
+{
+  "extensionId": "1005efda-ea0e-41d7-87fc-b628cef199eb",
+  "extensionName": "CobaltNext",
+  "publisherName": "dline",
+  "displayName": "Cobalt Next",
+  "version": "0.4.5",
+  "extractedAt": "2026-01-24T01:42:03.323Z",
+  "installCount": 124584,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cobalt Next",
+      "label": "Cobalt Next",
+      "colors": {
+        "editor.background": "#1B2B34",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1B2B34",
+        "titleBar.activeForeground": "#D8DEE9",
+        "titleBar.inactiveBackground": "#1B2B34",
+        "titleBar.inactiveForeground": "#65737E",
+        "statusBar.background": "#1B2B34",
+        "statusBar.foreground": "#D8DEE9",
+        "activityBar.background": "#1B2B34",
+        "activityBar.foreground": "#D8DEE9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Cobalt Next Dark",
+      "label": "Cobalt Next Dark",
+      "colors": {
+        "editor.background": "#0F1C23",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1B2B34",
+        "titleBar.activeForeground": "#D8DEE9",
+        "titleBar.inactiveBackground": "#1B2B34",
+        "titleBar.inactiveForeground": "#65737E",
+        "statusBar.background": "#1B2B34",
+        "statusBar.foreground": "#D8DEE9",
+        "activityBar.background": "#0F1C23",
+        "activityBar.foreground": "#D8DEE9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Cobalt Next Minimal",
+      "label": "Cobalt Next Minimal",
+      "colors": {
+        "editor.background": "#0F1C23",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1B2B34",
+        "titleBar.activeForeground": "#D8DEE9",
+        "titleBar.inactiveBackground": "#1B2B34",
+        "titleBar.inactiveForeground": "#65737E",
+        "statusBar.background": "#0F1C23",
+        "statusBar.foreground": "#D8DEE9",
+        "activityBar.background": "#0F1C23",
+        "activityBar.foreground": "#5FB3B3"
+      },
+      "type": "dark"
+    }
+  ]
+}

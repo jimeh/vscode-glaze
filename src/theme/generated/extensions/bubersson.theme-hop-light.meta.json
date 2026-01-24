@@ -1,0 +1,21 @@
+{
+  "extensionId": "826d97bc-56ff-4fcd-88eb-1bf4092427fd",
+  "extensionName": "theme-hop-light",
+  "publisherName": "bubersson",
+  "displayName": "Hop Light",
+  "version": "0.0.4",
+  "extractedAt": "2026-01-24T01:41:52.576Z",
+  "installCount": 145019,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hop Light",
+      "label": "Hop Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1A1A1A"
+      },
+      "type": "light"
+    }
+  ]
+}

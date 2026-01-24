@@ -1,0 +1,1400 @@
+{
+  "extensionId": "c3b1038a-d886-4317-940c-01b7c3fdcf3b",
+  "extensionName": "best-themes-redefined",
+  "publisherName": "lakshits11",
+  "displayName": "Best Themes Redefined 🚀",
+  "version": "0.4.6",
+  "extractedAt": "2026-01-24T01:41:57.270Z",
+  "installCount": 135908,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Best Themes - Andromeda Mariana",
+      "label": "Best Themes - Andromeda Mariana",
+      "colors": {
+        "editor.background": "#23262E",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#23262E",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Andromeda Mariana Italic",
+      "label": "Best Themes - Andromeda Mariana Italic",
+      "colors": {
+        "editor.background": "#23262E",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#23262E",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Andromeda Mariana Bordered",
+      "label": "Best Themes - Andromeda Mariana Bordered",
+      "colors": {
+        "editor.background": "#262A33",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#20232B",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Andromeda Mariana Italic Bordered",
+      "label": "Best Themes - Andromeda Mariana Italic Bordered",
+      "colors": {
+        "editor.background": "#262A33",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#23262E",
+        "statusBar.background": "#23262E",
+        "activityBar.background": "#20232B",
+        "activityBar.foreground": "#BAAFC0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Ayu Darkvenom",
+      "label": "Best Themes - Ayu Darkvenom",
+      "colors": {
+        "editor.background": "#0B0E14",
+        "editor.foreground": "#BFBDB6",
+        "titleBar.activeBackground": "#0B0E14",
+        "titleBar.activeForeground": "#BFBDB6",
+        "titleBar.inactiveBackground": "#0B0E14",
+        "titleBar.inactiveForeground": "#565B66",
+        "statusBar.background": "#0B0E14",
+        "statusBar.foreground": "#565B66",
+        "activityBar.background": "#0B0E14",
+        "activityBar.foreground": "#565B66"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Blueberry Banana",
+      "label": "Best Themes - Blueberry Banana",
+      "colors": {
+        "editor.background": "#17141F",
+        "editor.foreground": "#CDCDCD",
+        "titleBar.activeBackground": "#17141F",
+        "titleBar.activeForeground": "#CDCDCD",
+        "titleBar.inactiveBackground": "#17141F",
+        "titleBar.inactiveForeground": "#888787",
+        "statusBar.background": "#17141F",
+        "statusBar.foreground": "#1C212B",
+        "activityBar.background": "#17141F",
+        "activityBar.foreground": "#AE66B6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Brogrammer",
+      "label": "Best Themes - Brogrammer",
+      "colors": {
+        "editor.background": "#1A1A1A",
+        "editor.foreground": "#ECF0F1",
+        "statusBar.background": "#121212"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Calm Darkvenom",
+      "label": "Best Themes - Calm Darkvenom",
+      "colors": {
+        "editor.background": "#1B1B1B",
+        "editor.foreground": "#C0C0C0",
+        "titleBar.activeBackground": "#1B1B1B",
+        "titleBar.activeForeground": "#C0C0C0",
+        "titleBar.inactiveBackground": "#1B1B1B",
+        "titleBar.inactiveForeground": "#7F7E7E",
+        "statusBar.background": "#1B1B1B",
+        "statusBar.foreground": "#7F7E7E",
+        "activityBar.background": "#1B1B1B",
+        "activityBar.foreground": "#C0C0C0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Catppuccin",
+      "label": "Best Themes - Catppuccin",
+      "colors": {
+        "editor.background": "#181827",
+        "editor.foreground": "#CDD6F4",
+        "titleBar.activeBackground": "#11111B",
+        "titleBar.activeForeground": "#CDD6F4",
+        "titleBar.inactiveBackground": "#11111B",
+        "titleBar.inactiveForeground": "#CDD6F4",
+        "statusBar.background": "#11111B",
+        "statusBar.foreground": "#CDD6F4",
+        "activityBar.background": "#11111B",
+        "activityBar.foreground": "#CBA6F7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Cosmic",
+      "label": "Best Themes - Cosmic",
+      "colors": {
+        "editor.background": "#18172E",
+        "editor.foreground": "#D6D9E0",
+        "titleBar.activeBackground": "#100E22",
+        "titleBar.activeForeground": "#758096",
+        "titleBar.inactiveBackground": "#0C0A1B",
+        "titleBar.inactiveForeground": "#2D345A",
+        "statusBar.background": "#100E22",
+        "statusBar.foreground": "#8A94A8",
+        "activityBar.background": "#100E22",
+        "activityBar.foreground": "#4C5874"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Darcula",
+      "label": "Best Themes - Darcula",
+      "colors": {
+        "editor.background": "#242424",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Darcula Darker",
+      "label": "Best Themes - Darcula Darker",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#1E1E1E",
+        "titleBar.inactiveForeground": "#1E1E1E",
+        "statusBar.background": "#1E1E1E",
+        "statusBar.foreground": "#97A7C8",
+        "activityBar.background": "#1E1E1E",
+        "activityBar.foreground": "#97A7C8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Dark Phoenix",
+      "label": "Best Themes - Dark Phoenix",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#040616",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#3A3A3A",
+        "statusBar.background": "#040616",
+        "statusBar.foreground": "#777777",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#E406C6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Darwin",
+      "label": "Best Themes - Darwin",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#0C0D0E",
+        "titleBar.activeForeground": "#3A3A3A",
+        "titleBar.inactiveBackground": "#0C0D0E",
+        "titleBar.inactiveForeground": "#3A3A3A",
+        "statusBar.background": "#0C0D0E",
+        "statusBar.foreground": "#777777",
+        "activityBar.background": "#0C0D0E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Dracula Redefined",
+      "label": "Best Themes - Dracula Redefined",
+      "colors": {
+        "editor.background": "#111622",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1B202C",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1B202C",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Dracula Redefined No Italic",
+      "label": "Best Themes - Dracula Redefined No Italic",
+      "colors": {
+        "editor.background": "#111622",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1B202C",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1B202C",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Ethereal Aura",
+      "label": "Best Themes - Ethereal Aura",
+      "colors": {
+        "editor.background": "#0F1014",
+        "editor.foreground": "#C0C0CC",
+        "titleBar.activeBackground": "#0F1014",
+        "titleBar.activeForeground": "#777885",
+        "titleBar.inactiveBackground": "#111216",
+        "titleBar.inactiveForeground": "#777885",
+        "statusBar.background": "#0F1014",
+        "statusBar.foreground": "#777885",
+        "activityBar.background": "#0F1014",
+        "activityBar.foreground": "#DEE0EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Ethereal Gaze",
+      "label": "Best Themes - Ethereal Gaze",
+      "colors": {
+        "editor.background": "#0F1014",
+        "editor.foreground": "#C0C0CC",
+        "titleBar.activeBackground": "#0F1014",
+        "titleBar.activeForeground": "#777885",
+        "titleBar.inactiveBackground": "#111216",
+        "titleBar.inactiveForeground": "#777885",
+        "statusBar.background": "#0F1014",
+        "statusBar.foreground": "#777885",
+        "activityBar.background": "#0F1014",
+        "activityBar.foreground": "#DEE0EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Ethereal Quest",
+      "label": "Best Themes - Ethereal Quest",
+      "colors": {
+        "editor.background": "#0F1014",
+        "editor.foreground": "#C0C0CC",
+        "titleBar.activeBackground": "#0F1014",
+        "titleBar.activeForeground": "#777885",
+        "titleBar.inactiveBackground": "#111216",
+        "titleBar.inactiveForeground": "#777885",
+        "statusBar.background": "#0F1014",
+        "statusBar.foreground": "#777885",
+        "activityBar.background": "#0F1014",
+        "activityBar.foreground": "#DEE0EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Ethereal Zen",
+      "label": "Best Themes - Ethereal Zen",
+      "colors": {
+        "editor.background": "#0F1014",
+        "editor.foreground": "#C0C0CC",
+        "titleBar.activeBackground": "#0F1014",
+        "titleBar.activeForeground": "#777885",
+        "titleBar.inactiveBackground": "#111216",
+        "titleBar.inactiveForeground": "#777885",
+        "statusBar.background": "#0F1014",
+        "statusBar.foreground": "#777885",
+        "activityBar.background": "#0F1014",
+        "activityBar.foreground": "#DEE0EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Github Black",
+      "label": "Best Themes - Github Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#E1E4E8",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#E1E4E8",
+        "titleBar.inactiveBackground": "#1F2428",
+        "titleBar.inactiveForeground": "#959DA5",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#D1D5DA",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#E1E4E8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Github Dark Default",
+      "label": "Best Themes - Github Dark Default",
+      "colors": {
+        "editor.background": "#0D1117",
+        "editor.foreground": "#E6EDF3",
+        "titleBar.activeBackground": "#0D1117",
+        "titleBar.activeForeground": "#7D8590",
+        "titleBar.inactiveBackground": "#010409",
+        "titleBar.inactiveForeground": "#7D8590",
+        "statusBar.background": "#0D1117",
+        "statusBar.foreground": "#7D8590",
+        "activityBar.background": "#0D1117",
+        "activityBar.foreground": "#E6EDF3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Github Minimal",
+      "label": "Best Themes - Github Minimal",
+      "colors": {
+        "editor.background": "#141619",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#141619",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1D2024",
+        "titleBar.inactiveForeground": "#A9A9A9",
+        "statusBar.background": "#141619",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#141619",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Gruvbox Dark",
+      "label": "Best Themes - Gruvbox Dark",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#EBDBB2",
+        "titleBar.activeBackground": "#1D2021",
+        "titleBar.activeForeground": "#EBDBB2",
+        "titleBar.inactiveBackground": "#1D2021",
+        "statusBar.background": "#1D2021",
+        "statusBar.foreground": "#EBDBB2",
+        "activityBar.background": "#1D2021",
+        "activityBar.foreground": "#EBDBB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Gruvbox Extra Dark",
+      "label": "Best Themes - Gruvbox Extra Dark",
+      "colors": {
+        "editor.background": "#0B1015",
+        "editor.foreground": "#C7D0D9",
+        "titleBar.activeBackground": "#0B1015",
+        "titleBar.inactiveForeground": "#0B1015",
+        "statusBar.background": "#0B1015",
+        "statusBar.foreground": "#74819B",
+        "activityBar.background": "#0B1015",
+        "activityBar.foreground": "#74819B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Gruvbox Extra Dark Italic",
+      "label": "Best Themes - Gruvbox Extra Dark Italic",
+      "colors": {
+        "editor.background": "#0B1015",
+        "editor.foreground": "#C7D0D9",
+        "titleBar.activeBackground": "#0B1015",
+        "titleBar.inactiveForeground": "#0B1015",
+        "statusBar.background": "#0B1015",
+        "statusBar.foreground": "#74819B",
+        "activityBar.background": "#0B1015",
+        "activityBar.foreground": "#74819B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Gruvbox Material Dark",
+      "label": "Best Themes - Gruvbox Material Dark",
+      "colors": {
+        "editor.background": "#202020",
+        "editor.foreground": "#D4BE98",
+        "titleBar.activeBackground": "#202020",
+        "titleBar.activeForeground": "#A89984",
+        "titleBar.inactiveBackground": "#202020",
+        "titleBar.inactiveForeground": "#7C6F64",
+        "statusBar.background": "#202020",
+        "statusBar.foreground": "#A89984",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#A89984"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Gruvbox Concoctis Dark",
+      "label": "Best Themes - Gruvbox Concoctis Dark",
+      "colors": {
+        "editor.background": "#1C1C1C",
+        "editor.foreground": "#D4BE98",
+        "titleBar.activeBackground": "#171819",
+        "titleBar.activeForeground": "#D4BE98",
+        "titleBar.inactiveBackground": "#171819",
+        "titleBar.inactiveForeground": "#928374",
+        "statusBar.background": "#171819",
+        "statusBar.foreground": "#A89984",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#7C6F64"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Gruvbox NvChad",
+      "label": "Best Themes - Gruvbox NvChad",
+      "colors": {
+        "editor.background": "#1E2122",
+        "editor.foreground": "#C3B499",
+        "titleBar.activeBackground": "#1E2122",
+        "titleBar.activeForeground": "#C3B499",
+        "titleBar.inactiveBackground": "#1E2122",
+        "statusBar.background": "#1E2122",
+        "statusBar.foreground": "#C3B499",
+        "activityBar.background": "#1E2122",
+        "activityBar.foreground": "#C3B499"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Horizon",
+      "label": "Best Themes - Horizon",
+      "colors": {
+        "editor.background": "#1C1E26",
+        "titleBar.activeBackground": "#1C1E26",
+        "titleBar.inactiveBackground": "#1C1E26",
+        "statusBar.background": "#1C1E26",
+        "statusBar.foreground": "#D5D8DA",
+        "activityBar.background": "#1C1E26",
+        "activityBar.foreground": "#D5D8DA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Horizon Warm",
+      "label": "Best Themes - Horizon Warm",
+      "colors": {
+        "editor.background": "#181818",
+        "editor.foreground": "#BBBBBB",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.inactiveBackground": "#232323",
+        "statusBar.background": "#181818",
+        "statusBar.foreground": "#BBBBBB",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#BBBBBB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Karma",
+      "label": "Best Themes - Karma",
+      "colors": {
+        "editor.background": "#0D131C",
+        "editor.foreground": "#F7F1FF",
+        "titleBar.activeBackground": "#0A0E14",
+        "titleBar.activeForeground": "#8B888F",
+        "titleBar.inactiveBackground": "#0A0E14",
+        "titleBar.inactiveForeground": "#525053",
+        "statusBar.background": "#0A0E14",
+        "statusBar.foreground": "#69676C",
+        "activityBar.background": "#0A0E14",
+        "activityBar.foreground": "#BAB6C0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Laserwave",
+      "label": "Best Themes - Laserwave",
+      "colors": {
+        "editor.background": "#27212E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#27212E",
+        "titleBar.inactiveBackground": "#27212E",
+        "statusBar.background": "#EB64B9",
+        "statusBar.foreground": "#27212E",
+        "activityBar.background": "#27212E",
+        "activityBar.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Laserwave Italic",
+      "label": "Best Themes - Laserwave Italic",
+      "colors": {
+        "editor.background": "#27212E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#27212E",
+        "titleBar.inactiveBackground": "#27212E",
+        "statusBar.background": "#EB64B9",
+        "statusBar.foreground": "#27212E",
+        "activityBar.background": "#27212E",
+        "activityBar.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Lunar",
+      "label": "Best Themes - Lunar",
+      "colors": {
+        "editor.background": "#1F2023",
+        "editor.foreground": "#BCB28D",
+        "titleBar.activeBackground": "#1F2023",
+        "titleBar.activeForeground": "#BCB28D",
+        "titleBar.inactiveBackground": "#AAAAAA",
+        "titleBar.inactiveForeground": "#EEEEEE",
+        "statusBar.background": "#1F2023",
+        "statusBar.foreground": "#BCB28D",
+        "activityBar.background": "#1F2023",
+        "activityBar.foreground": "#BCB28D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Material Black No Italic",
+      "label": "Best Themes - Material Black No Italic",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#F0F0F0",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#888888",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#50BDFB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Material Black Italic",
+      "label": "Best Themes - Material Black Italic",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#F0F0F0",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#888888",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#50BDFB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Material High Contrast No Italic",
+      "label": "Best Themes - Material High Contrast No Italic",
+      "colors": {
+        "editor.background": "#0E1012",
+        "editor.foreground": "#EEFFFF",
+        "titleBar.activeBackground": "#0E1012",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#848484",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#0F1011",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Material High Contrast Italic",
+      "label": "Best Themes - Material High Contrast Italic",
+      "colors": {
+        "editor.background": "#0E1012",
+        "editor.foreground": "#EEFFFF",
+        "titleBar.activeBackground": "#0E1012",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#848484",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#0F1011",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Material Ocean No Italic",
+      "label": "Best Themes - Material Ocean No Italic",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#090B10",
+        "titleBar.activeForeground": "#8F93A2",
+        "titleBar.inactiveBackground": "#090B10",
+        "titleBar.inactiveForeground": "#4B526D",
+        "statusBar.background": "#090B10",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#090B10",
+        "activityBar.foreground": "#C7C7C7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Material Ocean Italic",
+      "label": "Best Themes - Material Ocean Italic",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#090B10",
+        "titleBar.activeForeground": "#8F93A2",
+        "titleBar.inactiveBackground": "#090B10",
+        "titleBar.inactiveForeground": "#4B526D",
+        "statusBar.background": "#090B10",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#090B10",
+        "activityBar.foreground": "#C7C7C7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Midnight City",
+      "label": "Best Themes - Midnight City",
+      "colors": {
+        "editor.background": "#100B16",
+        "editor.foreground": "#FFFFD8",
+        "titleBar.activeBackground": "#0C0515",
+        "titleBar.activeForeground": "#FFFFD8",
+        "titleBar.inactiveBackground": "#0D011E",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#0D011E",
+        "statusBar.foreground": "#FFFFD8",
+        "activityBar.background": "#100B16",
+        "activityBar.foreground": "#FFFFD8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Awesome",
+      "label": "Best Themes - Monokai Awesome",
+      "colors": {
+        "editor.background": "#0E141A",
+        "editor.foreground": "#ECECEC",
+        "titleBar.activeBackground": "#0A1016",
+        "titleBar.activeForeground": "#6E7D9A",
+        "titleBar.inactiveBackground": "#060C12",
+        "titleBar.inactiveForeground": "#6E7D9A",
+        "statusBar.background": "#0A1016",
+        "statusBar.foreground": "#6E7D9A",
+        "activityBar.background": "#060C12",
+        "activityBar.foreground": "#6E7D9A"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Black",
+      "label": "Best Themes - Monokai Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#BBBBBB",
+        "titleBar.inactiveBackground": "#222222",
+        "titleBar.inactiveForeground": "#AAAAAA",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Night Time Italic",
+      "label": "Best Themes - Monokai Night Time Italic",
+      "colors": {
+        "editor.background": "#1D1D1D",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#1D1D1D",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#161616",
+        "titleBar.inactiveForeground": "#666666",
+        "statusBar.background": "#212121",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#212121",
+        "activityBar.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Night Time No Italic",
+      "label": "Best Themes - Monokai Night Time No Italic",
+      "colors": {
+        "editor.background": "#19191A",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#1D1D1D",
+        "titleBar.activeForeground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#161616",
+        "titleBar.inactiveForeground": "#666666",
+        "statusBar.background": "#212121",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Pirokai Arctic Frost",
+      "label": "Best Themes - Monokai Pirokai Arctic Frost",
+      "colors": {
+        "editor.background": "#181A1F",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#181A1F",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#181A1F",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#181A1F",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#181A1F",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Pirokai Beach Sunset",
+      "label": "Best Themes - Monokai Pirokai Beach Sunset",
+      "colors": {
+        "editor.background": "#131313",
+        "editor.foreground": "#C8C8CA",
+        "titleBar.activeBackground": "#191919",
+        "titleBar.activeForeground": "#8B888F",
+        "titleBar.inactiveBackground": "#191919",
+        "titleBar.inactiveForeground": "#525053",
+        "statusBar.background": "#131313",
+        "statusBar.foreground": "#A8A8A8",
+        "activityBar.background": "#131313",
+        "activityBar.foreground": "#DADADA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Monokai Winter Night",
+      "label": "Best Themes - Monokai Winter Night",
+      "colors": {
+        "editor.background": "#0D121F",
+        "editor.foreground": "#CADBEB",
+        "titleBar.activeBackground": "#090D17",
+        "titleBar.activeForeground": "#CADBEB",
+        "titleBar.inactiveBackground": "#090D17",
+        "titleBar.inactiveForeground": "#677078",
+        "statusBar.background": "#090D17",
+        "statusBar.foreground": "#CADBEB",
+        "activityBar.background": "#05080F",
+        "activityBar.foreground": "#CADBEB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Mystic Cyan",
+      "label": "Best Themes - Mystic Cyan",
+      "colors": {
+        "editor.background": "#002B36",
+        "editor.foreground": "#E6E6E6",
+        "titleBar.activeBackground": "#002B36",
+        "titleBar.activeForeground": "#09CBDD",
+        "titleBar.inactiveBackground": "#002B36",
+        "titleBar.inactiveForeground": "#09CBDD",
+        "statusBar.background": "#002B36",
+        "statusBar.foreground": "#19F9D8",
+        "activityBar.background": "#002B36",
+        "activityBar.foreground": "#19F9D8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Neon City Darkvenom",
+      "label": "Best Themes - Neon City Darkvenom",
+      "colors": {
+        "editor.background": "#0C0A20",
+        "editor.foreground": "#F2F3F7",
+        "titleBar.activeBackground": "#090819",
+        "statusBar.background": "#090819",
+        "statusBar.foreground": "#7984D1",
+        "activityBar.background": "#0C0A20",
+        "activityBar.foreground": "#7984D1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Neovim",
+      "label": "Best Themes - Neovim",
+      "colors": {
+        "editor.background": "#161320",
+        "editor.foreground": "#C9CBFF",
+        "titleBar.activeBackground": "#161320",
+        "titleBar.activeForeground": "#C9CBFF",
+        "titleBar.inactiveBackground": "#161320",
+        "titleBar.inactiveForeground": "#C9CBFF",
+        "statusBar.background": "#161320",
+        "statusBar.foreground": "#C9CBFF",
+        "activityBar.background": "#161320",
+        "activityBar.foreground": "#C9CBFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Night Owl",
+      "label": "Best Themes - Night Owl",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010E1A",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#5F7E97",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#5F7E97"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Night Owl No Italic",
+      "label": "Best Themes - Night Owl No Italic",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010E1A",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#5F7E97",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#5F7E97"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Nord Cold",
+      "label": "Best Themes - Nord Cold",
+      "colors": {
+        "editor.background": "#0F1520",
+        "editor.foreground": "#DADBDD",
+        "titleBar.activeBackground": "#151B26",
+        "titleBar.activeForeground": "#A0A2A8",
+        "titleBar.inactiveBackground": "#151B26",
+        "titleBar.inactiveForeground": "#4C5059",
+        "statusBar.background": "#1D232D",
+        "statusBar.foreground": "#A0A2A8",
+        "activityBar.background": "#151B26",
+        "activityBar.foreground": "#5F97A6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Nord Dark",
+      "label": "Best Themes - Nord Dark",
+      "colors": {
+        "editor.background": "#131517",
+        "editor.foreground": "#DBDBDB",
+        "titleBar.activeBackground": "#1A1B1D",
+        "titleBar.activeForeground": "#A2A2A2",
+        "titleBar.inactiveBackground": "#1A1B1D",
+        "titleBar.inactiveForeground": "#4F4F4F",
+        "statusBar.background": "#222224",
+        "statusBar.foreground": "#A2A2A2",
+        "activityBar.background": "#1A1B1D",
+        "activityBar.foreground": "#70949E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Ocean Night",
+      "label": "Best Themes - Ocean Night",
+      "colors": {
+        "editor.background": "#0F1722",
+        "editor.foreground": "#A9B1D6",
+        "titleBar.activeBackground": "#101825",
+        "titleBar.activeForeground": "#787C99",
+        "titleBar.inactiveBackground": "#16161E",
+        "titleBar.inactiveForeground": "#787C99",
+        "statusBar.background": "#101825",
+        "statusBar.foreground": "#787C99",
+        "activityBar.background": "#101825",
+        "activityBar.foreground": "#787C99"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - One Dark Pro",
+      "label": "Best Themes - One Dark Pro",
+      "colors": {
+        "editor.background": "#181A1F",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#181A1F",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#181A1F",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#181A1F",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#181A1F",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - One Dark Pro No Italic",
+      "label": "Best Themes - One Dark Pro No Italic",
+      "colors": {
+        "editor.background": "#181A1F",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#181A1F",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#181A1F",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#181A1F",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#181A1F",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - One Monokai",
+      "label": "Best Themes - One Monokai",
+      "colors": {
+        "editor.background": "#1E222A",
+        "titleBar.activeBackground": "#1E222A",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#1E222A",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - One Monokai Darker",
+      "label": "Best Themes - One Monokai Darker",
+      "colors": {
+        "editor.background": "#0E1012",
+        "titleBar.activeBackground": "#020202",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#020202",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#020202",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#0E1012",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Outrun Space",
+      "label": "Best Themes - Outrun Space",
+      "colors": {
+        "editor.background": "#0C0A20",
+        "editor.foreground": "#EBECF8",
+        "titleBar.activeBackground": "#0C0A20",
+        "statusBar.background": "#0C0A20",
+        "statusBar.foreground": "#7984D1",
+        "activityBar.background": "#0C0A20",
+        "activityBar.foreground": "#7984D1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Panda Syntax",
+      "label": "Best Themes - Panda Syntax",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#E6E6E6",
+        "titleBar.activeBackground": "#242526",
+        "titleBar.activeForeground": "#E6E6E6",
+        "titleBar.inactiveBackground": "#242526",
+        "titleBar.inactiveForeground": "#E6E6E6",
+        "statusBar.background": "#222223",
+        "statusBar.foreground": "#E6E6E6",
+        "activityBar.background": "#222223",
+        "activityBar.foreground": "#E6E6E6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Pink Panther",
+      "label": "Best Themes - Pink Panther",
+      "colors": {
+        "editor.background": "#171825",
+        "editor.foreground": "#FFF0F5",
+        "titleBar.activeBackground": "#2D2F42",
+        "statusBar.background": "#171825",
+        "activityBar.background": "#171825",
+        "activityBar.foreground": "#FF99C9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Poimandres Dark",
+      "label": "Best Themes - Poimandres Dark",
+      "colors": {
+        "editor.background": "#12131B",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#12131B",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#12131B",
+        "titleBar.inactiveForeground": "#767C9D",
+        "statusBar.background": "#12131B",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#12131B",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Poimandres Darker",
+      "label": "Best Themes - Poimandres Darker",
+      "colors": {
+        "editor.background": "#0F1017",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#0F1017",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#0F1017",
+        "titleBar.inactiveForeground": "#767C9D",
+        "statusBar.background": "#0F1017",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#0F1017",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Poimandres More Darker",
+      "label": "Best Themes - Poimandres More Darker",
+      "colors": {
+        "editor.background": "#090909",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#090909",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#090909",
+        "titleBar.inactiveForeground": "#767C9D",
+        "statusBar.background": "#090909",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#090909",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Poimandres Black",
+      "label": "Best Themes - Poimandres Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#A6ACCD",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#A6ACCD",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#767C9D",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#A6ACCD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Rose Noctis",
+      "label": "Best Themes - Rose Noctis",
+      "colors": {
+        "editor.background": "#191724",
+        "editor.foreground": "#E0DEF4",
+        "titleBar.activeBackground": "#191724",
+        "titleBar.activeForeground": "#908CAA",
+        "titleBar.inactiveBackground": "#1F1D2E",
+        "titleBar.inactiveForeground": "#908CAA",
+        "statusBar.background": "#191724",
+        "statusBar.foreground": "#908CAA",
+        "activityBar.background": "#191724",
+        "activityBar.foreground": "#E0DEF4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Sia Synthwave",
+      "label": "Best Themes - Sia Synthwave",
+      "colors": {
+        "editor.background": "#100B16",
+        "editor.foreground": "#D9D3E0",
+        "titleBar.activeBackground": "#130D1A",
+        "titleBar.activeForeground": "#B141F1",
+        "titleBar.inactiveBackground": "#130D1A",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#130D1A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#100B16",
+        "activityBar.foreground": "#FF0EDF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Seti Black",
+      "label": "Best Themes - Seti Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D7D7D7",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.inactiveBackground": "#101010",
+        "statusBar.background": "#000000",
+        "activityBar.background": "#000000"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Shades of Purple",
+      "label": "Best Themes - Shades of Purple",
+      "colors": {
+        "editor.background": "#2D2B55",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1E1E3F",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1E1E3F",
+        "titleBar.inactiveForeground": "#A599E9",
+        "statusBar.background": "#1E1E3F",
+        "statusBar.foreground": "#A599E9",
+        "activityBar.background": "#28284E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Shades of Purple (Super Dark)",
+      "label": "Best Themes - Shades of Purple (Super Dark)",
+      "colors": {
+        "editor.background": "#191830",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#15152B",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#15152B",
+        "titleBar.inactiveForeground": "#A599E9",
+        "statusBar.background": "#15152B",
+        "statusBar.foreground": "#A599E9",
+        "activityBar.background": "#15152A",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Slime",
+      "label": "Best Themes - Slime",
+      "colors": {
+        "editor.background": "#1E2324",
+        "editor.foreground": "#E0E0E0",
+        "titleBar.activeBackground": "#282E2F",
+        "titleBar.inactiveBackground": "#282E2F",
+        "statusBar.background": "#282E2F",
+        "statusBar.foreground": "#62706A",
+        "activityBar.background": "#293030",
+        "activityBar.foreground": "#878F8C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Slime Extra Dark",
+      "label": "Best Themes - Slime Extra Dark",
+      "colors": {
+        "editor.background": "#0B1015",
+        "editor.foreground": "#C7D0D9",
+        "titleBar.activeBackground": "#0B1015",
+        "titleBar.inactiveForeground": "#0B1015",
+        "statusBar.background": "#0B1015",
+        "statusBar.foreground": "#74819B",
+        "activityBar.background": "#0B1015",
+        "activityBar.foreground": "#74819B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Slime Extra Dark Italic",
+      "label": "Best Themes - Slime Extra Dark Italic",
+      "colors": {
+        "editor.background": "#0B1015",
+        "editor.foreground": "#C7D0D9",
+        "titleBar.activeBackground": "#0B1015",
+        "titleBar.inactiveForeground": "#0B1015",
+        "statusBar.background": "#0B1015",
+        "statusBar.foreground": "#74819B",
+        "activityBar.background": "#0B1015",
+        "activityBar.foreground": "#74819B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Snazzy",
+      "label": "Best Themes - Snazzy",
+      "colors": {
+        "editor.background": "#141622",
+        "editor.foreground": "#EFF0EB",
+        "titleBar.activeBackground": "#181B29",
+        "titleBar.activeForeground": "#EFF0EB",
+        "titleBar.inactiveBackground": "#2C2F3F",
+        "titleBar.inactiveForeground": "#585A61",
+        "statusBar.background": "#181B29",
+        "statusBar.foreground": "#585A61",
+        "activityBar.background": "#141622",
+        "activityBar.foreground": "#EFF0EB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Stellar",
+      "label": "Best Themes - Stellar",
+      "colors": {
+        "editor.background": "#1A1B26",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#1D1F2D",
+        "titleBar.activeForeground": "#B7BCCF",
+        "titleBar.inactiveBackground": "#363B4F",
+        "titleBar.inactiveForeground": "#6E7084",
+        "statusBar.background": "#1D1F2D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1A1B26",
+        "activityBar.foreground": "#C0CAF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Sweet Dark",
+      "label": "Best Themes - Sweet Dark",
+      "colors": {
+        "editor.background": "#1D2125",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Sweet Dark Italic",
+      "label": "Best Themes - Sweet Dark Italic",
+      "colors": {
+        "editor.background": "#1D2125",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Sweet Dark Bold",
+      "label": "Best Themes - Sweet Dark Bold",
+      "colors": {
+        "editor.background": "#1D2125",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Sweet Dark Italic Bold",
+      "label": "Best Themes - Sweet Dark Italic Bold",
+      "colors": {
+        "editor.background": "#1D2125",
+        "editor.foreground": "#9DA5B3",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#8E99B1",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B3",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#96A4CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Synthwave Black(No Neon)",
+      "label": "Best Themes - Synthwave Black(No Neon)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#000000",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#5E686C",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#7D888D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Tomorrow Night Minimal",
+      "label": "Best Themes - Tomorrow Night Minimal",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "titleBar.activeBackground": "#1A1A1A",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#7E7E7E",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#7D7D7D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Xcode Fusion",
+      "label": "Best Themes - Xcode Fusion",
+      "colors": {
+        "editor.background": "#1F1F24",
+        "editor.foreground": "#DFDFE0",
+        "titleBar.activeBackground": "#383A3D",
+        "titleBar.activeForeground": "#B7B8BB",
+        "statusBar.background": "#1C1F21",
+        "statusBar.foreground": "#DCDDDD",
+        "activityBar.background": "#2A2C2F",
+        "activityBar.foreground": "#DFDFDF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Best Themes - Zenith",
+      "label": "Best Themes - Zenith",
+      "colors": {
+        "editor.background": "#151515",
+        "editor.foreground": "#999999",
+        "titleBar.activeBackground": "#151515",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#151515",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#343434",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#151515"
+      },
+      "type": "dark"
+    }
+  ]
+}

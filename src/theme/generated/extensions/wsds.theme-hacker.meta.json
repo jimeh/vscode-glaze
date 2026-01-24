@@ -1,0 +1,21 @@
+{
+  "extensionId": "2505b800-b73d-4cd5-ab8c-e95dc7b5a045",
+  "extensionName": "theme-hacker",
+  "publisherName": "wsds",
+  "displayName": "Hacker Style Themes",
+  "version": "0.2.0",
+  "extractedAt": "2026-01-24T01:42:03.980Z",
+  "installCount": 124222,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hacker",
+      "label": "Hacker",
+      "colors": {
+        "editor.background": "#001D09",
+        "editor.foreground": "#A2E14E"
+      },
+      "type": "dark"
+    }
+  ]
+}

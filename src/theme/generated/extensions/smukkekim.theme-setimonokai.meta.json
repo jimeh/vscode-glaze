@@ -1,0 +1,57 @@
+{
+  "extensionId": "a632127c-0d36-4279-9be5-359835574cfb",
+  "extensionName": "theme-setimonokai",
+  "publisherName": "SmukkeKim",
+  "displayName": "Theme - Seti-Monokai",
+  "version": "0.0.2",
+  "extractedAt": "2026-01-24T01:42:01.808Z",
+  "installCount": 126942,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Seti Monokai: Original",
+      "label": "Seti Monokai: Original",
+      "colors": {
+        "editor.background": "#0D1011",
+        "editor.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Seti Monokai: Pale Night",
+      "label": "Seti Monokai: Pale Night",
+      "colors": {
+        "editor.background": "#151D4D",
+        "editor.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Seti Monokai: Royal",
+      "label": "Seti Monokai: Royal",
+      "colors": {
+        "editor.background": "#171F2B",
+        "editor.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Seti Monokai: Dark Forest",
+      "label": "Seti Monokai: Dark Forest",
+      "colors": {
+        "editor.background": "#0D1C0B",
+        "editor.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Seti Monokai: Space",
+      "label": "Seti Monokai: Space",
+      "colors": {
+        "editor.background": "#152238",
+        "editor.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    }
+  ]
+}

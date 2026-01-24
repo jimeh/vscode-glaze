@@ -1,0 +1,79 @@
+{
+  "extensionId": "2d7381e3-ca4b-430c-a6cf-0d8ee0643f64",
+  "extensionName": "theme-tinaciousdesign",
+  "publisherName": "tinaciousdesign",
+  "displayName": "Tinacious Design theme",
+  "version": "2.4.0",
+  "extractedAt": "2026-01-24T01:41:50.085Z",
+  "installCount": 149429,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Tinacious Design",
+      "label": "Tinacious Design",
+      "colors": {
+        "editor.background": "#1D1D26",
+        "editor.foreground": "#B3B3D4",
+        "titleBar.activeBackground": "#1D1D26",
+        "titleBar.activeForeground": "#B3B3D4",
+        "titleBar.inactiveBackground": "#1D1D26",
+        "titleBar.inactiveForeground": "#B3B3D4",
+        "statusBar.background": "#FF3399",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1D1D26",
+        "activityBar.foreground": "#CC66FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tinacious Design (Light)",
+      "label": "Tinacious Design (Light)",
+      "colors": {
+        "editor.background": "#F8F8FF",
+        "editor.foreground": "#44425E",
+        "titleBar.activeBackground": "#F8F8FF",
+        "titleBar.activeForeground": "#44425E",
+        "titleBar.inactiveBackground": "#F8F8FF",
+        "titleBar.inactiveForeground": "#44425E",
+        "statusBar.background": "#FF3399",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#F8F8FF",
+        "activityBar.foreground": "#FF3399"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tinacious Design (legacy, 2016)",
+      "label": "Tinacious Design (legacy, 2016)",
+      "colors": {
+        "editor.background": "#1D1D26",
+        "editor.foreground": "#B3B3D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Tinacious Design (Light)  (legacy, 2017)",
+      "label": "Tinacious Design (Light)  (legacy, 2017)",
+      "colors": {
+        "editor.background": "#F8F8FF",
+        "editor.foreground": "#44425E"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tinacious Design (High Contrast)",
+      "label": "Tinacious Design (High Contrast)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D8D8F0",
+        "titleBar.activeBackground": "#050505",
+        "titleBar.activeForeground": "#FFFFFF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

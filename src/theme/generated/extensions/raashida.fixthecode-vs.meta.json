@@ -1,0 +1,25 @@
+{
+  "extensionId": "1267c0bc-d88a-4291-8a6d-036a86a044ca",
+  "extensionName": "fixthecode-vs",
+  "publisherName": "raashida",
+  "displayName": "Sea Green Theme",
+  "version": "1.1.2",
+  "extractedAt": "2026-01-24T01:42:11.773Z",
+  "installCount": 97065,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sea Green Theme",
+      "label": "Sea Green Theme",
+      "colors": {
+        "editor.background": "#0A1018",
+        "editor.foreground": "#25A2A6",
+        "statusBar.background": "#242B38",
+        "statusBar.foreground": "#7F8796",
+        "activityBar.background": "#151B25",
+        "activityBar.foreground": "#25A2A6"
+      },
+      "type": "dark"
+    }
+  ]
+}

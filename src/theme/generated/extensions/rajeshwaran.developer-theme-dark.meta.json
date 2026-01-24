@@ -1,0 +1,129 @@
+{
+  "extensionId": "5b4fa940-a86e-4a17-8ff5-40a1a2f18d21",
+  "extensionName": "developer-theme-dark",
+  "publisherName": "Rajeshwaran",
+  "displayName": "Developer's theme",
+  "version": "5.0.0",
+  "extractedAt": "2026-01-24T01:41:47.018Z",
+  "installCount": 157494,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Developers Theme - Aubergine",
+      "label": "Developers Theme - Aubergine",
+      "colors": {
+        "editor.background": "#3E313C",
+        "editor.foreground": "#F6F6F4",
+        "titleBar.activeBackground": "#4F384A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#261C25",
+        "titleBar.inactiveForeground": "#685C66",
+        "statusBar.background": "#3E9689",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#261C25",
+        "activityBar.foreground": "#958793"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme",
+      "label": "Developers Theme",
+      "colors": {
+        "editor.background": "#24292E",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#24292E",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#343746",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme - Firefox Dark",
+      "label": "Developers Theme - Firefox Dark",
+      "colors": {
+        "editor.background": "#2A2A2E",
+        "editor.foreground": "#B1B1B3",
+        "titleBar.activeBackground": "#1B1B1D",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#0C0C0D",
+        "titleBar.inactiveForeground": "#B1B1B3",
+        "statusBar.background": "#0C0C0D",
+        "statusBar.foreground": "#B1B1B3",
+        "activityBar.background": "#1B1B1D",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme - Green Coffee",
+      "label": "Developers Theme - Green Coffee",
+      "colors": {
+        "editor.background": "#0D0202",
+        "editor.foreground": "#C9A4A4",
+        "titleBar.activeBackground": "#261D1D",
+        "titleBar.activeForeground": "#D6D9D6",
+        "titleBar.inactiveBackground": "#2A3447",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#191D11",
+        "statusBar.foreground": "#BC9595",
+        "activityBar.background": "#261D1D",
+        "activityBar.foreground": "#74A160"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme - Ocean",
+      "label": "Developers Theme - Ocean",
+      "colors": {
+        "editor.background": "#141026",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1D1A1A",
+        "titleBar.activeForeground": "#7564E8",
+        "titleBar.inactiveBackground": "#3C3C3C",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "statusBar.background": "#301075",
+        "statusBar.foreground": "#FBFBFB",
+        "activityBar.background": "#110D0D",
+        "activityBar.foreground": "#2E76FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme - Slack Dark",
+      "label": "Developers Theme - Slack Dark",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#E6E6E6",
+        "titleBar.activeBackground": "#222222",
+        "titleBar.activeForeground": "#E6E6E6",
+        "titleBar.inactiveBackground": "#222222",
+        "titleBar.inactiveForeground": "#7A7A7A",
+        "statusBar.background": "#222222",
+        "activityBar.background": "#222222"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme - Silver Dark",
+      "label": "Developers Theme - Silver Dark",
+      "colors": {
+        "editor.background": "#1D252C",
+        "editor.foreground": "#B7C5D3",
+        "titleBar.activeBackground": "#171D23",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1D252C",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#171D23",
+        "statusBar.foreground": "#B7C5D3",
+        "activityBar.background": "#1D252C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

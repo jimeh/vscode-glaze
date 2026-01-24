@@ -1,0 +1,29 @@
+{
+  "extensionId": "c499a94d-a1f3-4d95-8284-985e07034bea",
+  "extensionName": "sweetdracula",
+  "publisherName": "PROxZIMA",
+  "displayName": "Sweet Dracula",
+  "version": "1.0.9",
+  "extractedAt": "2026-01-24T01:42:08.146Z",
+  "installCount": 107694,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sweet Dracula",
+      "label": "Sweet Dracula",
+      "colors": {
+        "editor.background": "#161925",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#161925",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#161925",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#11131C",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#232634",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
+}

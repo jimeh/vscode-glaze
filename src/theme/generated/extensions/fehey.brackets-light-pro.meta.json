@@ -1,0 +1,42 @@
+{
+  "extensionId": "1363b9f6-b056-4fac-9698-c4b7bc37b19d",
+  "extensionName": "brackets-light-pro",
+  "publisherName": "fehey",
+  "displayName": "Brackets Light Pro",
+  "version": "0.4.6",
+  "extractedAt": "2026-01-24T01:41:48.175Z",
+  "installCount": 156259,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Brackets Light Pro",
+      "label": "Brackets Light Pro",
+      "colors": {
+        "editor.background": "#F8F8F8",
+        "editor.foreground": "#353535",
+        "titleBar.activeBackground": "#DFE4E7",
+        "titleBar.activeForeground": "#000000",
+        "statusBar.background": "#A4A9B2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#C3C7CD",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Brackets Light Pro Bold",
+      "label": "Brackets Light Pro Bold",
+      "colors": {
+        "editor.background": "#F8F8F8",
+        "editor.foreground": "#353535",
+        "titleBar.activeBackground": "#DFE4E7",
+        "titleBar.activeForeground": "#000000",
+        "statusBar.background": "#A4A9B2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#C3C7CD",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ]
+}

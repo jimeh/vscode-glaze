@@ -1,0 +1,30 @@
+{
+  "extensionId": "1e13ade8-88e4-4bec-b8bf-5d4365b9c924",
+  "extensionName": "ColdFusion",
+  "publisherName": "ilich8086",
+  "displayName": "coldfusion",
+  "version": "1.0.1",
+  "extractedAt": "2026-01-24T01:42:10.137Z",
+  "installCount": 101999,
+  "stale": false,
+  "themes": [
+    {
+      "name": "CFML Light",
+      "label": "CFML Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "CFML Dark",
+      "label": "CFML Dark",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ]
+}

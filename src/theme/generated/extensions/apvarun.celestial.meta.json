@@ -1,0 +1,26 @@
+{
+  "extensionId": "a5b95000-8469-4373-a39c-a818bb97ef0e",
+  "extensionName": "celestial",
+  "publisherName": "apvarun",
+  "displayName": "Celestial",
+  "version": "0.3.0",
+  "extractedAt": "2026-01-24T01:42:12.019Z",
+  "installCount": 96857,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Celestial",
+      "label": "Celestial",
+      "colors": {
+        "editor.background": "#0B0C0F",
+        "titleBar.activeBackground": "#0B0C0F",
+        "titleBar.inactiveBackground": "#0B0C0F",
+        "statusBar.background": "#0B0C0F",
+        "statusBar.foreground": "#D5D8DA",
+        "activityBar.background": "#0E0F13",
+        "activityBar.foreground": "#D5D8DA"
+      },
+      "type": "dark"
+    }
+  ]
+}

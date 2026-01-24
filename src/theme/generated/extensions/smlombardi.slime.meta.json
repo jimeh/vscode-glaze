@@ -1,0 +1,27 @@
+{
+  "extensionId": "735af542-944f-4b07-b336-9df27d7b8d84",
+  "extensionName": "slime",
+  "publisherName": "smlombardi",
+  "displayName": "Slime Theme",
+  "version": "3.2.1",
+  "extractedAt": "2026-01-24T01:42:01.088Z",
+  "installCount": 129124,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Slime",
+      "label": "Slime",
+      "colors": {
+        "editor.background": "#1E2324",
+        "editor.foreground": "#E0E0E0",
+        "titleBar.activeBackground": "#282E2F",
+        "titleBar.inactiveBackground": "#282E2F",
+        "statusBar.background": "#282E2F",
+        "statusBar.foreground": "#62706A",
+        "activityBar.background": "#293030",
+        "activityBar.foreground": "#878F8C"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "extensionId": "a150991b-031b-457a-b823-ef4c45425a1b",
+  "extensionName": "theme-karyfoundation-themes",
+  "publisherName": "karyfoundation",
+  "displayName": "Kary Pro Colors",
+  "version": "37.0.0",
+  "extractedAt": "2026-01-24T01:41:46.699Z",
+  "installCount": 157531,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Kary Pro Colors － Light",
+      "label": "Kary Pro Colors － Light",
+      "colors": {
+        "editor.background": "#F0F6FB",
+        "editor.foreground": "#65758D",
+        "titleBar.activeBackground": "#F1F1F1",
+        "titleBar.activeForeground": "#858585",
+        "titleBar.inactiveForeground": "#BABABA",
+        "statusBar.background": "#57893A",
+        "statusBar.foreground": "#C7E2B7",
+        "activityBar.background": "#F1F1F1",
+        "activityBar.foreground": "#3778B7"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Kary Pro Colors － Dark",
+      "label": "Kary Pro Colors － Dark",
+      "colors": {
+        "editor.background": "#1A1A1A",
+        "editor.foreground": "#909090",
+        "titleBar.activeBackground": "#171717",
+        "titleBar.activeForeground": "#BABABA",
+        "titleBar.inactiveBackground": "#171717",
+        "titleBar.inactiveForeground": "#7E7E7E",
+        "statusBar.background": "#356326",
+        "statusBar.foreground": "#70CF50",
+        "activityBar.background": "#171717",
+        "activityBar.foreground": "#7DA76F"
+      },
+      "type": "dark"
+    }
+  ]
+}

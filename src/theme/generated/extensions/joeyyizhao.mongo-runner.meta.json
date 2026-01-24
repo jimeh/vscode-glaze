@@ -1,0 +1,21 @@
+{
+  "extensionId": "79f1d55d-695e-4022-9baa-2fe46f9cb026",
+  "extensionName": "mongo-runner",
+  "publisherName": "JoeyYiZhao",
+  "displayName": "Mongo Runner",
+  "version": "0.6.4",
+  "extractedAt": "2026-01-24T01:42:10.866Z",
+  "installCount": 101172,
+  "stale": false,
+  "themes": [
+    {
+      "name": "mongodbRunnerTheme",
+      "label": "mongodbRunnerTheme",
+      "colors": {
+        "editor.background": "#31333D",
+        "editor.foreground": "#BBCF54"
+      },
+      "type": "dark"
+    }
+  ]
+}

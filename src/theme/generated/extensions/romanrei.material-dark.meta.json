@@ -1,0 +1,23 @@
+{
+  "extensionId": "67391e10-808a-46b2-8ec7-4e7fc6529c3a",
+  "extensionName": "material-dark",
+  "publisherName": "romanrei",
+  "displayName": "Material Dark",
+  "version": "1.1.0",
+  "extractedAt": "2026-01-24T01:42:06.053Z",
+  "installCount": 115448,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Material Dark Theme",
+      "label": "Material Dark Theme",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#EEFFFF",
+        "statusBar.background": "#212121",
+        "activityBar.background": "#212121"
+      },
+      "type": "dark"
+    }
+  ]
+}

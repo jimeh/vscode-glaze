@@ -1,0 +1,21 @@
+{
+  "extensionId": "5f67121f-c68c-4f5e-9a65-7693294ab0b7",
+  "extensionName": "theme-notepadplusplusremixed",
+  "publisherName": "sh4dow",
+  "displayName": "NotepadPlusPlus Remixed Theme",
+  "version": "1.0.3",
+  "extractedAt": "2026-01-24T01:42:12.238Z",
+  "installCount": 96104,
+  "stale": false,
+  "themes": [
+    {
+      "name": "NotepadPlusPlus Remixed Theme",
+      "label": "NotepadPlusPlus Remixed Theme",
+      "colors": {
+        "editor.background": "#F7F9FF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ]
+}

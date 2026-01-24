@@ -1,0 +1,226 @@
+{
+  "extensionId": "466e3c46-a580-40b7-97ed-c92be7fd4189",
+  "extensionName": "learn-with-sumit-theme",
+  "publisherName": "SumitSaha",
+  "displayName": "Learn with Sumit Theme",
+  "version": "12.1.0",
+  "extractedAt": "2026-01-24T01:41:49.120Z",
+  "installCount": 154465,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Learn with Sumit Theme",
+      "label": "Learn with Sumit Theme",
+      "colors": {
+        "editor.background": "#171C2A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#11141F",
+        "titleBar.activeForeground": "#868D9C",
+        "titleBar.inactiveBackground": "#0E0E12",
+        "titleBar.inactiveForeground": "#868D9C",
+        "statusBar.background": "#11141F",
+        "statusBar.foreground": "#00B3BD",
+        "activityBar.background": "#171C2A",
+        "activityBar.foreground": "#989EB3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit Official Theme",
+      "label": "Learn with Sumit Official Theme",
+      "colors": {
+        "editor.background": "#101E2C",
+        "editor.foreground": "#BDD2E7",
+        "titleBar.activeBackground": "#101E2C",
+        "titleBar.activeForeground": "#7BA5CF",
+        "titleBar.inactiveBackground": "#101E2C",
+        "titleBar.inactiveForeground": "#305A84",
+        "statusBar.background": "#101E2C",
+        "statusBar.foreground": "#7BA5CF",
+        "activityBar.background": "#101E2C",
+        "activityBar.foreground": "#7BA5CF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Peace of the eye",
+      "label": "Learn with Sumit - Peace of the eye",
+      "colors": {
+        "editor.background": "#122033",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#101C2C",
+        "titleBar.activeForeground": "#868D9C",
+        "titleBar.inactiveBackground": "#0E0E12",
+        "titleBar.inactiveForeground": "#868D9C",
+        "statusBar.background": "#101C2C",
+        "statusBar.foreground": "#00B3BD",
+        "activityBar.background": "#122033",
+        "activityBar.foreground": "#989EB3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Simple as light",
+      "label": "Learn with Sumit - Simple as light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#455059",
+        "titleBar.activeBackground": "#F3F6F6",
+        "titleBar.activeForeground": "#8B99A7",
+        "titleBar.inactiveBackground": "#D1DADC",
+        "titleBar.inactiveForeground": "#8B99A7",
+        "statusBar.background": "#F3F6F6",
+        "statusBar.foreground": "#455059",
+        "activityBar.background": "#171C2A",
+        "activityBar.foreground": "#00B3BD"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Learn with Sumit Theme - Dracula version",
+      "label": "Learn with Sumit Theme - Dracula version",
+      "colors": {
+        "editor.background": "#171C2A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#11141F",
+        "titleBar.activeForeground": "#868D9C",
+        "titleBar.inactiveBackground": "#0E0E12",
+        "titleBar.inactiveForeground": "#868D9C",
+        "statusBar.background": "#11141F",
+        "statusBar.foreground": "#00B3BD",
+        "activityBar.background": "#171C2A",
+        "activityBar.foreground": "#989EB3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Peace of the eye - Dracula version",
+      "label": "Learn with Sumit - Peace of the eye - Dracula version",
+      "colors": {
+        "editor.background": "#122033",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#101C2C",
+        "titleBar.activeForeground": "#868D9C",
+        "titleBar.inactiveBackground": "#0E0E12",
+        "titleBar.inactiveForeground": "#868D9C",
+        "statusBar.background": "#101C2C",
+        "statusBar.foreground": "#00B3BD",
+        "activityBar.background": "#122033",
+        "activityBar.foreground": "#989EB3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Shades of Grey",
+      "label": "Learn with Sumit - Shades of Grey",
+      "colors": {
+        "editor.background": "#24292E",
+        "editor.foreground": "#E1E4E8",
+        "titleBar.activeBackground": "#24292E",
+        "titleBar.activeForeground": "#E1E4E8",
+        "titleBar.inactiveBackground": "#1F2428",
+        "titleBar.inactiveForeground": "#959DA5",
+        "statusBar.background": "#24292E",
+        "statusBar.foreground": "#D1D5DA",
+        "activityBar.background": "#24292E",
+        "activityBar.foreground": "#E1E4E8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Vintage",
+      "label": "Learn with Sumit - Vintage",
+      "colors": {
+        "editor.background": "#23272E",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#23272E",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#1E2227",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#1E2227",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#23272E",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Blue Velvet",
+      "label": "Learn with Sumit - Blue Velvet",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#404753",
+        "titleBar.activeForeground": "#ABB2BF",
+        "statusBar.background": "#37404B",
+        "statusBar.foreground": "#ABB2BF",
+        "activityBar.background": "#2D333D",
+        "activityBar.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Traditional",
+      "label": "Learn with Sumit - Traditional",
+      "colors": {
+        "editor.background": "#242424",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Professional",
+      "label": "Learn with Sumit - Professional",
+      "colors": {
+        "editor.background": "#1C1E2E",
+        "editor.foreground": "#C8D3F5",
+        "titleBar.activeBackground": "#1A1B29",
+        "titleBar.activeForeground": "#C8D3F5",
+        "titleBar.inactiveBackground": "#1A1B29",
+        "titleBar.inactiveForeground": "#828BB8",
+        "statusBar.background": "#1A1B29",
+        "statusBar.foreground": "#828BB8",
+        "activityBar.background": "#1A1B29",
+        "activityBar.foreground": "#B4C2F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Party",
+      "label": "Learn with Sumit - Party",
+      "colors": {
+        "editor.background": "#17141F",
+        "editor.foreground": "#CDCDCD",
+        "titleBar.activeBackground": "#17141F",
+        "titleBar.activeForeground": "#CDCDCD",
+        "titleBar.inactiveBackground": "#17141F",
+        "titleBar.inactiveForeground": "#888787",
+        "statusBar.background": "#1C212B",
+        "statusBar.foreground": "#CDCDCD",
+        "activityBar.background": "#17141F",
+        "activityBar.foreground": "#AE66B6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Learn with Sumit - Dark Night",
+      "label": "Learn with Sumit - Dark Night",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#B0B6BD",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#B0B6BD",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#B0B6BD"
+      },
+      "type": "dark"
+    }
+  ]
+}

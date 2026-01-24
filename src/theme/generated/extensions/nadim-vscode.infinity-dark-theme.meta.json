@@ -1,0 +1,29 @@
+{
+  "extensionId": "b84d3bf9-94a8-43ca-939c-496e7e287ea0",
+  "extensionName": "infinity-dark-theme",
+  "publisherName": "nadim-vscode",
+  "displayName": "infinity dark theme",
+  "version": "0.1.0",
+  "extractedAt": "2026-01-24T01:41:57.791Z",
+  "installCount": 134969,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Infinity Dark Theme Eye Friendly Colors",
+      "label": "Infinity Dark Theme Eye Friendly Colors",
+      "colors": {
+        "editor.background": "#15232D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#15232D",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#193549",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#15232D",
+        "statusBar.foreground": "#AAAAAA",
+        "activityBar.background": "#122738",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

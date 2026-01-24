@@ -1,0 +1,46 @@
+{
+  "extensionId": "1129678e-1c73-440c-a171-6941d28fb442",
+  "extensionName": "one-dark-theme",
+  "publisherName": "mskelton",
+  "displayName": "One Dark Theme",
+  "version": "1.14.3",
+  "extractedAt": "2026-01-24T01:42:02.023Z",
+  "installCount": 125672,
+  "stale": false,
+  "themes": [
+    {
+      "name": "One Dark",
+      "label": "One Dark",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#21252B",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "One Dark Vivid",
+      "label": "One Dark Vivid",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#21252B",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    }
+  ]
+}

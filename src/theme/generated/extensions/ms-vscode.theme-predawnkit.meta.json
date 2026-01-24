@@ -1,0 +1,39 @@
+{
+  "extensionId": "34647879-c168-49c3-8cb4-f7705064ca32",
+  "extensionName": "Theme-PredawnKit",
+  "publisherName": "ms-vscode",
+  "displayName": "Predawn Theme Kit",
+  "version": "0.1.4",
+  "extractedAt": "2026-01-24T01:42:07.904Z",
+  "installCount": 107858,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Predawn",
+      "label": "Predawn",
+      "colors": {
+        "editor.background": "#282828",
+        "editor.foreground": "#F1F1F1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Predawn GF Markdown",
+      "label": "Predawn GF Markdown",
+      "colors": {
+        "editor.background": "#282828",
+        "editor.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Predawn Markdown",
+      "label": "Predawn Markdown",
+      "colors": {
+        "editor.background": "#282828",
+        "editor.foreground": "#DDDDDD"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "extensionId": "3daf304e-79b8-4725-bbac-d3c4454904fa",
+  "extensionName": "origamid-next",
+  "publisherName": "origamid",
+  "displayName": "Origamid Next",
+  "version": "2.0.13",
+  "extractedAt": "2026-01-24T01:42:12.773Z",
+  "installCount": 95122,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Origamid Next",
+      "label": "Origamid Next",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#111111",
+        "titleBar.activeForeground": "#888888",
+        "titleBar.inactiveBackground": "#111111",
+        "titleBar.inactiveForeground": "#555555",
+        "statusBar.background": "#111111",
+        "statusBar.foreground": "#666666",
+        "activityBar.background": "#111111",
+        "activityBar.foreground": "#888888"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Origamid Next Future",
+      "label": "Origamid Next Future",
+      "colors": {
+        "editor.background": "#18181B",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#111114",
+        "titleBar.activeForeground": "#88888B",
+        "titleBar.inactiveBackground": "#111114",
+        "titleBar.inactiveForeground": "#555558",
+        "statusBar.background": "#111114",
+        "statusBar.foreground": "#666669",
+        "activityBar.background": "#111114",
+        "activityBar.foreground": "#88888B"
+      },
+      "type": "dark"
+    }
+  ]
+}

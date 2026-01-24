@@ -1,0 +1,46 @@
+{
+  "extensionId": "d3302fba-40e1-46b9-842e-9ccf7924959d",
+  "extensionName": "nebula-theme",
+  "publisherName": "ChirtleLovesDolls",
+  "displayName": "Nebula Theme",
+  "version": "1.3.3",
+  "extractedAt": "2026-01-24T01:41:53.294Z",
+  "installCount": 143401,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Nebula",
+      "label": "Nebula",
+      "colors": {
+        "editor.background": "#27273A",
+        "editor.foreground": "#FCF6FF",
+        "titleBar.activeBackground": "#1F2330",
+        "titleBar.activeForeground": "#D7D6DF",
+        "titleBar.inactiveBackground": "#1F2330",
+        "titleBar.inactiveForeground": "#919CB9",
+        "statusBar.background": "#1F2330",
+        "statusBar.foreground": "#919CB9",
+        "activityBar.background": "#1F2330",
+        "activityBar.foreground": "#F6F0FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula - Console",
+      "label": "Nebula - Console",
+      "colors": {
+        "editor.background": "#27273A",
+        "editor.foreground": "#FCF6FF",
+        "titleBar.activeBackground": "#1F2330",
+        "titleBar.activeForeground": "#D7D6DF",
+        "titleBar.inactiveBackground": "#1F2330",
+        "titleBar.inactiveForeground": "#919CB9",
+        "statusBar.background": "#27273A",
+        "statusBar.foreground": "#919CB9",
+        "activityBar.background": "#F6F0FF",
+        "activityBar.foreground": "#353551"
+      },
+      "type": "dark"
+    }
+  ]
+}

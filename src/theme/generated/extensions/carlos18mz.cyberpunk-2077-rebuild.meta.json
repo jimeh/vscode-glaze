@@ -1,0 +1,29 @@
+{
+  "extensionId": "dd018fb5-c4af-4c8e-b791-28007b48b4ae",
+  "extensionName": "cyberpunk-2077-rebuild",
+  "publisherName": "Carlos18mz",
+  "displayName": "Cyberpunk 2077 rebuild",
+  "version": "0.0.8",
+  "extractedAt": "2026-01-24T01:42:07.326Z",
+  "installCount": 108672,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cyberpunk 2077 rebuild",
+      "label": "Cyberpunk 2077 rebuild",
+      "colors": {
+        "editor.background": "#101116",
+        "editor.foreground": "#00D4B1",
+        "titleBar.activeBackground": "#08080C",
+        "titleBar.activeForeground": "#00D482",
+        "titleBar.inactiveBackground": "#0C0C13",
+        "titleBar.inactiveForeground": "#00A164",
+        "statusBar.background": "#002015",
+        "statusBar.foreground": "#00D482",
+        "activityBar.background": "#101116",
+        "activityBar.foreground": "#00D4B1"
+      },
+      "type": "dark"
+    }
+  ]
+}

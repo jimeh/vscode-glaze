@@ -1,0 +1,21 @@
+{
+  "extensionId": "e9600c1a-a380-4a4b-b00a-5a444d51edd9",
+  "extensionName": "theme",
+  "publisherName": "hassanoof",
+  "displayName": "theme",
+  "version": "0.0.1",
+  "extractedAt": "2026-01-24T01:41:41.875Z",
+  "installCount": 164811,
+  "stale": false,
+  "themes": [
+    {
+      "name": "beautiful",
+      "label": "beautiful",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

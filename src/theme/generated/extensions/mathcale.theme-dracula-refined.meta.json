@@ -1,0 +1,29 @@
+{
+  "extensionId": "566a626b-bfb5-45ca-bc03-72e33709a648",
+  "extensionName": "theme-dracula-refined",
+  "publisherName": "mathcale",
+  "displayName": "Dracula Refined",
+  "version": "2.25.2",
+  "extractedAt": "2026-01-24T01:41:44.304Z",
+  "installCount": 164138,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dracula Refined",
+      "label": "Dracula Refined",
+      "colors": {
+        "editor.background": "#282A36",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#282A36",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#21222C",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#282A36",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ]
+}

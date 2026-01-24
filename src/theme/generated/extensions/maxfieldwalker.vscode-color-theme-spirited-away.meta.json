@@ -1,0 +1,29 @@
+{
+  "extensionId": "5eecab27-edc1-46c7-89ea-ab222345de22",
+  "extensionName": "vscode-color-theme-spirited-away",
+  "publisherName": "MaxfieldWalker",
+  "displayName": "Spirited Away Color Theme",
+  "version": "1.3.2",
+  "extractedAt": "2026-01-24T01:42:11.537Z",
+  "installCount": 98339,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Spirited Away",
+      "label": "Spirited Away",
+      "colors": {
+        "editor.background": "#151515",
+        "editor.foreground": "#CFCFCF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#151515",
+        "titleBar.inactiveForeground": "#CFCFCF",
+        "statusBar.background": "#EC5151",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#151515",
+        "activityBar.foreground": "#CFCFCF"
+      },
+      "type": "dark"
+    }
+  ]
+}

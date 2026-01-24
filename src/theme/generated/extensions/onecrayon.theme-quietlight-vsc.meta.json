@@ -1,0 +1,25 @@
+{
+  "extensionId": "e7931f72-4188-4f71-b973-08019f5828ed",
+  "extensionName": "theme-quietlight-vsc",
+  "publisherName": "onecrayon",
+  "displayName": "Quiet Light for VSC",
+  "version": "1.1.0",
+  "extractedAt": "2026-01-24T01:42:02.762Z",
+  "installCount": 124959,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Quiet Light for VSC",
+      "label": "Quiet Light for VSC",
+      "colors": {
+        "editor.background": "#F5F5F5",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#C4B7D7",
+        "statusBar.background": "#4B83CD",
+        "activityBar.background": "#E0E9F6",
+        "activityBar.foreground": "#4B83CD"
+      },
+      "type": "light"
+    }
+  ]
+}

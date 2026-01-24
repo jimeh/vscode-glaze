@@ -1,0 +1,29 @@
+{
+  "extensionId": "b33f4b00-b7b4-4259-a263-eab2d86ac79b",
+  "extensionName": "atomize-atom-one-dark-theme",
+  "publisherName": "emroussel",
+  "displayName": "Atomize (Atom One Dark theme)",
+  "version": "2.0.2",
+  "extractedAt": "2026-01-24T01:42:01.502Z",
+  "installCount": 127451,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Atomize",
+      "label": "Atomize",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#21252B",
+        "titleBar.activeForeground": "#D7DAE0",
+        "titleBar.inactiveBackground": "#21252B",
+        "titleBar.inactiveForeground": "#696F7A",
+        "statusBar.background": "#21252B",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#21252B",
+        "activityBar.foreground": "#D6D9DF"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "extensionId": "dc2aed1c-833e-4c44-bcbf-1bcafebd4dee",
+  "extensionName": "delphi-themes",
+  "publisherName": "alefragnani",
+  "displayName": "Delphi Themes",
+  "version": "1.5.0",
+  "extractedAt": "2026-01-24T01:42:11.091Z",
+  "installCount": 100312,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Delphi",
+      "label": "Delphi",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F0",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Delphi (Classic)",
+      "label": "Delphi (Classic)",
+      "colors": {
+        "editor.background": "#000080",
+        "editor.foreground": "#FFFF00",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#5B5B5B"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Delphi (Twilight)",
+      "label": "Delphi (Twilight)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#5B5B5B"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Delphi (Ocean)",
+      "label": "Delphi (Ocean)",
+      "colors": {
+        "editor.background": "#00FFFF",
+        "editor.foreground": "#0000FF",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#5B5B5B"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Delphi+ (Classic)",
+      "label": "Delphi+ (Classic)",
+      "colors": {
+        "editor.background": "#000080",
+        "editor.foreground": "#FFFF00",
+        "statusBar.background": "#000080",
+        "statusBar.foreground": "#FFFF00",
+        "activityBar.background": "#000080",
+        "activityBar.foreground": "#FFFF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Delphi+ (Twilight)",
+      "label": "Delphi+ (Twilight)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Delphi+ (Ocean)",
+      "label": "Delphi+ (Ocean)",
+      "colors": {
+        "editor.background": "#00FFFF",
+        "editor.foreground": "#0000FF",
+        "statusBar.background": "#00FFFF",
+        "statusBar.foreground": "#0000FF",
+        "activityBar.background": "#00FFFF",
+        "activityBar.foreground": "#0000FF"
+      },
+      "type": "light"
+    }
+  ]
+}

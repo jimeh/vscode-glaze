@@ -3,7 +3,7 @@
  */
 export const CONFIG = {
   /** Maximum number of extensions to process */
-  maxExtensions: 150,
+  maxExtensions: 250,
   /** Page size for marketplace API queries */
   pageSize: 50,
   /** Cache TTL in milliseconds (7 days) */

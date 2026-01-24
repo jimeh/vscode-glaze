@@ -1,0 +1,26 @@
+{
+  "extensionId": "327262c5-9b97-472c-805c-4f0fe8251e57",
+  "extensionName": "tiny-light",
+  "publisherName": "luqimin",
+  "displayName": "Tiny Light",
+  "version": "2.0.9",
+  "extractedAt": "2026-01-24T01:42:09.881Z",
+  "installCount": 102217,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Tiny Light",
+      "label": "Tiny Light",
+      "colors": {
+        "editor.background": "#FFFBE8",
+        "editor.foreground": "#499504",
+        "titleBar.activeBackground": "#EEE8D5",
+        "statusBar.background": "#EEE8D5",
+        "statusBar.foreground": "#586E75",
+        "activityBar.background": "#DDD6C1",
+        "activityBar.foreground": "#584C27"
+      },
+      "type": "light"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "extensionId": "51c89949-3885-4636-8aa7-503305dd1342",
+  "extensionName": "Chromodynamics",
+  "publisherName": "magicstack",
+  "displayName": "Chromodynamics Theme",
+  "version": "0.0.14",
+  "extractedAt": "2026-01-24T01:41:55.707Z",
+  "installCount": 137204,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Chromodynamics",
+      "label": "Chromodynamics",
+      "colors": {
+        "editor.background": "#060606",
+        "editor.foreground": "#C6C6C6",
+        "statusBar.background": "#131313",
+        "statusBar.foreground": "#C6C6C6",
+        "activityBar.background": "#101010"
+      },
+      "type": "dark"
+    }
+  ]
+}

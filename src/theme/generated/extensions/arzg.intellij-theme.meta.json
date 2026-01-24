@@ -1,0 +1,92 @@
+{
+  "extensionId": "445a383f-22a2-4300-937d-3bbf3dd38ca3",
+  "extensionName": "intellij-theme",
+  "publisherName": "arzg",
+  "displayName": "IntelliJ Theme",
+  "version": "1.11.0",
+  "extractedAt": "2026-01-24T01:42:13.290Z",
+  "installCount": 94818,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Darcula IntelliJ",
+      "label": "Darcula IntelliJ",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A8B6C5",
+        "titleBar.activeBackground": "#3C3E40",
+        "titleBar.activeForeground": "#BCBCBC",
+        "titleBar.inactiveBackground": "#3C3E40",
+        "titleBar.inactiveForeground": "#BCBCBC",
+        "statusBar.background": "#3C3E40",
+        "statusBar.foreground": "#BCBCBC",
+        "activityBar.background": "#3C3E40"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Darcula GoLand",
+      "label": "Darcula GoLand",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A8B6C5",
+        "titleBar.activeBackground": "#3C3E40",
+        "titleBar.activeForeground": "#BCBCBC",
+        "titleBar.inactiveBackground": "#3C3E40",
+        "titleBar.inactiveForeground": "#BCBCBC",
+        "statusBar.background": "#3C3E40",
+        "statusBar.foreground": "#BCBCBC",
+        "activityBar.background": "#3C3E40"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Darcula CLion",
+      "label": "Darcula CLion",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A8B6C5",
+        "titleBar.activeBackground": "#3C3E40",
+        "titleBar.activeForeground": "#BCBCBC",
+        "titleBar.inactiveBackground": "#3C3E40",
+        "titleBar.inactiveForeground": "#BCBCBC",
+        "statusBar.background": "#3C3E40",
+        "statusBar.foreground": "#BCBCBC",
+        "activityBar.background": "#3C3E40"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Darcula AppCode",
+      "label": "Darcula AppCode",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A8B6C5",
+        "titleBar.activeBackground": "#3C3E40",
+        "titleBar.activeForeground": "#BCBCBC",
+        "titleBar.inactiveBackground": "#3C3E40",
+        "titleBar.inactiveForeground": "#BCBCBC",
+        "statusBar.background": "#3C3E40",
+        "statusBar.foreground": "#BCBCBC",
+        "activityBar.background": "#3C3E40"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Rider",
+      "label": "Rider",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#B4B4B4",
+        "titleBar.activeBackground": "#3E3E3D",
+        "titleBar.activeForeground": "#BCBCBC",
+        "titleBar.inactiveBackground": "#3E3E3D",
+        "titleBar.inactiveForeground": "#BCBCBC",
+        "statusBar.background": "#3E3E3D",
+        "statusBar.foreground": "#BCBCBC",
+        "activityBar.background": "#3E3E3D"
+      },
+      "type": "dark"
+    }
+  ]
+}

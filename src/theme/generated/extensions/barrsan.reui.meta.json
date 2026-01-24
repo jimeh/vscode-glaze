@@ -1,0 +1,162 @@
+{
+  "extensionId": "0eae6865-2e4d-4826-984e-2477655cce84",
+  "extensionName": "reui",
+  "publisherName": "barrsan",
+  "displayName": "ReUI",
+  "version": "1.2.5",
+  "extractedAt": "2026-01-24T01:42:04.726Z",
+  "installCount": 119817,
+  "stale": false,
+  "themes": [
+    {
+      "name": "ReUI",
+      "label": "ReUI",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.inactiveBackground": "#282C34",
+        "statusBar.background": "#282C34",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI (Italic)",
+      "label": "ReUI (Italic)",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.inactiveBackground": "#282C34",
+        "statusBar.background": "#282C34",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI Mirage",
+      "label": "ReUI Mirage",
+      "colors": {
+        "editor.background": "#18273A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#18273A",
+        "titleBar.inactiveBackground": "#18273A",
+        "statusBar.background": "#18273A",
+        "statusBar.foreground": "#5884C9",
+        "activityBar.background": "#18273A",
+        "activityBar.foreground": "#FFCB6B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI Mirage (Italic)",
+      "label": "ReUI Mirage (Italic)",
+      "colors": {
+        "editor.background": "#18273A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#18273A",
+        "titleBar.inactiveBackground": "#18273A",
+        "statusBar.background": "#18273A",
+        "statusBar.foreground": "#5884C9",
+        "activityBar.background": "#18273A",
+        "activityBar.foreground": "#FFCB6B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI II",
+      "label": "ReUI II",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.inactiveBackground": "#282C34",
+        "statusBar.background": "#282C34",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI II (Italic)",
+      "label": "ReUI II (Italic)",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.inactiveBackground": "#282C34",
+        "statusBar.background": "#282C34",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI II Mirage",
+      "label": "ReUI II Mirage",
+      "colors": {
+        "editor.background": "#18273A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#18273A",
+        "titleBar.inactiveBackground": "#18273A",
+        "statusBar.background": "#18273A",
+        "statusBar.foreground": "#5884C9",
+        "activityBar.background": "#18273A",
+        "activityBar.foreground": "#FFCB6B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI II Mirage (Italic)",
+      "label": "ReUI II Mirage (Italic)",
+      "colors": {
+        "editor.background": "#18273A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#18273A",
+        "titleBar.inactiveBackground": "#18273A",
+        "statusBar.background": "#18273A",
+        "statusBar.foreground": "#5884C9",
+        "activityBar.background": "#18273A",
+        "activityBar.foreground": "#FFCB6B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI II Dark",
+      "label": "ReUI II Dark",
+      "colors": {
+        "editor.background": "#1E232E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1E232E",
+        "titleBar.inactiveBackground": "#1E232E",
+        "statusBar.background": "#1E232E",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#1E232E",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "ReUI II Dark (Italic)",
+      "label": "ReUI II Dark (Italic)",
+      "colors": {
+        "editor.background": "#1E232E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1E232E",
+        "titleBar.inactiveBackground": "#1E232E",
+        "statusBar.background": "#1E232E",
+        "statusBar.foreground": "#DDDDDD",
+        "activityBar.background": "#1E232E",
+        "activityBar.foreground": "#788CB7"
+      },
+      "type": "dark"
+    }
+  ]
+}

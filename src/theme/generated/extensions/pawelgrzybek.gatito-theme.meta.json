@@ -1,0 +1,29 @@
+{
+  "extensionId": "218efb4e-02ec-4c6e-a668-556320c65b8e",
+  "extensionName": "gatito-theme",
+  "publisherName": "pawelgrzybek",
+  "displayName": "Gatito Theme",
+  "version": "0.2.3",
+  "extractedAt": "2026-01-24T01:41:54.949Z",
+  "installCount": 138017,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Gatito Theme",
+      "label": "Gatito Theme",
+      "colors": {
+        "editor.background": "#242B2E",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#242B2E",
+        "titleBar.activeForeground": "#7F7F7F",
+        "titleBar.inactiveBackground": "#242B2E",
+        "titleBar.inactiveForeground": "#7F7F7F",
+        "statusBar.background": "#242B2E",
+        "statusBar.foreground": "#7F7F7F",
+        "activityBar.background": "#242B2E",
+        "activityBar.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ]
+}

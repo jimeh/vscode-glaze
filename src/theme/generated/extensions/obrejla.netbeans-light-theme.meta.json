@@ -1,0 +1,21 @@
+{
+  "extensionId": "de040f22-8a86-45da-9cfe-d4f4c0c8fdc0",
+  "extensionName": "netbeans-light-theme",
+  "publisherName": "obrejla",
+  "displayName": "NetBeans Light Theme",
+  "version": "2.0.2",
+  "extractedAt": "2026-01-24T01:41:40.767Z",
+  "installCount": 168020,
+  "stale": false,
+  "themes": [
+    {
+      "name": "NetBeans Light Theme",
+      "label": "NetBeans Light Theme",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ]
+}

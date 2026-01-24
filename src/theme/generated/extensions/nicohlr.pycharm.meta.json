@@ -1,0 +1,67 @@
+{
+  "extensionId": "7b17e0ab-1f18-4d50-bb46-79c06eff826a",
+  "extensionName": "pycharm",
+  "publisherName": "nicohlr",
+  "displayName": "PyCharm Theme",
+  "version": "0.0.10",
+  "extractedAt": "2026-01-24T01:41:56.086Z",
+  "installCount": 136881,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Pycharm Original Theme",
+      "label": "Pycharm Original Theme",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#3C3F41",
+        "titleBar.inactiveBackground": "#313335",
+        "statusBar.background": "#3C3F41",
+        "statusBar.foreground": "#BBBBBB",
+        "activityBar.background": "#3C3F41",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "PyCharm Dark Theme",
+      "label": "PyCharm Dark Theme",
+      "colors": {
+        "editor.background": "#26292C",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#313437",
+        "titleBar.activeForeground": "#F8F8F8",
+        "titleBar.inactiveBackground": "#313437",
+        "titleBar.inactiveForeground": "#7A8288",
+        "statusBar.background": "#313437",
+        "statusBar.foreground": "#7A8288",
+        "activityBar.background": "#313437",
+        "activityBar.foreground": "#F8F8F8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "PyCharm Night Theme",
+      "label": "PyCharm Night Theme",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#1A1A1A",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#7E7E7E",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#7D7D7D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "PyCharm Dark+ Theme",
+      "label": "PyCharm Dark+ Theme",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#A9B7C6"
+      },
+      "type": "dark"
+    }
+  ]
+}

@@ -1,0 +1,556 @@
+{
+  "extensionId": "16317f84-7b43-43ff-acac-12cb539da2f7",
+  "extensionName": "beautiful-ui",
+  "publisherName": "swashata",
+  "displayName": "Beautiful UI",
+  "version": "1.7.0",
+  "extractedAt": "2026-01-24T01:42:04.465Z",
+  "installCount": 119870,
+  "stale": false,
+  "themes": [
+    {
+      "name": "βui - One Dark",
+      "label": "βui - One Dark",
+      "colors": {
+        "editor.background": "#262A31",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#181A1E",
+        "titleBar.activeForeground": "#D3D7DE",
+        "titleBar.inactiveBackground": "#21242A",
+        "titleBar.inactiveForeground": "#959EAF",
+        "statusBar.background": "#181A1E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E2126",
+        "activityBar.foreground": "#AAB1BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - One Light",
+      "label": "βui - One Light",
+      "colors": {
+        "editor.background": "#FAFAFA",
+        "editor.foreground": "#383942",
+        "titleBar.activeBackground": "#DCDCDC",
+        "titleBar.activeForeground": "#3B3C45",
+        "titleBar.inactiveBackground": "#E0E0E0",
+        "titleBar.inactiveForeground": "#373841",
+        "statusBar.background": "#E0E0E0",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#E0E0E0",
+        "activityBar.foreground": "#383942"
+      },
+      "type": "light"
+    },
+    {
+      "name": "βui - Tomorrow Dark",
+      "label": "βui - Tomorrow Dark",
+      "colors": {
+        "editor.background": "#1D1F20",
+        "editor.foreground": "#C5C9C6",
+        "titleBar.activeBackground": "#1D1D1D",
+        "titleBar.activeForeground": "#F8F7F6",
+        "titleBar.inactiveBackground": "#282828",
+        "titleBar.inactiveForeground": "#C1BCB1",
+        "statusBar.background": "#1D1D1D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#242424",
+        "activityBar.foreground": "#D3D0C8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Tomorrow Subliminal",
+      "label": "βui - Tomorrow Subliminal",
+      "colors": {
+        "editor.background": "#282C35",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#1D2026",
+        "titleBar.activeForeground": "#FEFEFE",
+        "titleBar.inactiveBackground": "#282C35",
+        "titleBar.inactiveForeground": "#BFBFBF",
+        "statusBar.background": "#1D2026",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#242830",
+        "activityBar.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Tomorrow Light",
+      "label": "βui - Tomorrow Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#282A2E",
+        "titleBar.activeBackground": "#DDDDDD",
+        "titleBar.activeForeground": "#2A2C30",
+        "titleBar.inactiveBackground": "#E2E2E2",
+        "titleBar.inactiveForeground": "#27292D",
+        "statusBar.background": "#E2E2E2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#E2E2E2",
+        "activityBar.foreground": "#282A2E"
+      },
+      "type": "light"
+    },
+    {
+      "name": "βui - Eighties Dark",
+      "label": "βui - Eighties Dark",
+      "colors": {
+        "editor.background": "#2E2E2E",
+        "editor.foreground": "#D4D1C9",
+        "titleBar.activeBackground": "#1D1D1D",
+        "titleBar.activeForeground": "#F8F7F6",
+        "titleBar.inactiveBackground": "#282828",
+        "titleBar.inactiveForeground": "#C1BCB1",
+        "statusBar.background": "#1D1D1D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#242424",
+        "activityBar.foreground": "#D3D0C8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Ocean Dark",
+      "label": "βui - Ocean Dark",
+      "colors": {
+        "editor.background": "#2B303B",
+        "editor.foreground": "#C0C5CE",
+        "titleBar.activeBackground": "#1B1E26",
+        "titleBar.activeForeground": "#EDEEF1",
+        "titleBar.inactiveBackground": "#252A34",
+        "titleBar.inactiveForeground": "#AAB0BD",
+        "statusBar.background": "#1B1E26",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#22262F",
+        "activityBar.foreground": "#C0C5CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Ocean Light",
+      "label": "βui - Ocean Light",
+      "colors": {
+        "editor.background": "#EFF1F5",
+        "editor.foreground": "#4E5A65",
+        "titleBar.activeBackground": "#E9ECF1",
+        "titleBar.activeForeground": "#53606B",
+        "titleBar.inactiveBackground": "#EFF1F5",
+        "titleBar.inactiveForeground": "#4D5964",
+        "statusBar.background": "#EFF1F5",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#EFF1F5",
+        "activityBar.foreground": "#4F5B66"
+      },
+      "type": "light"
+    },
+    {
+      "name": "βui - Solarized Dark",
+      "label": "βui - Solarized Dark",
+      "colors": {
+        "editor.background": "#002D38",
+        "editor.foreground": "#839495",
+        "titleBar.activeBackground": "#001F27",
+        "titleBar.activeForeground": "#A1AEB0",
+        "titleBar.inactiveBackground": "#002B36",
+        "titleBar.inactiveForeground": "#748789",
+        "statusBar.background": "#001F27",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#002731",
+        "activityBar.foreground": "#839496"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Solarized Light",
+      "label": "βui - Solarized Light",
+      "colors": {
+        "editor.background": "#FDF6E2",
+        "editor.foreground": "#506268",
+        "titleBar.activeBackground": "#FCF3DA",
+        "titleBar.activeForeground": "#6A818A",
+        "titleBar.inactiveBackground": "#FDF6E3",
+        "titleBar.inactiveForeground": "#637980",
+        "statusBar.background": "#FDF6E3",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#FDF6E3",
+        "activityBar.foreground": "#657B83"
+      },
+      "type": "light"
+    },
+    {
+      "name": "βui - Oceanic Next",
+      "label": "βui - Oceanic Next",
+      "colors": {
+        "editor.background": "#1A2A32",
+        "editor.foreground": "#CED4DE",
+        "titleBar.activeBackground": "#16222A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1E2F39",
+        "titleBar.inactiveForeground": "#B3BCCD",
+        "statusBar.background": "#16222A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1B2B34",
+        "activityBar.foreground": "#CDD3DE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Monokai Classic",
+      "label": "βui - Monokai Classic",
+      "colors": {
+        "editor.background": "#262720",
+        "editor.foreground": "#FDFFF0",
+        "titleBar.activeBackground": "#1F201A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#2B2C24",
+        "titleBar.inactiveForeground": "#F6FFBF",
+        "statusBar.background": "#1F201A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#272821",
+        "activityBar.foreground": "#FDFFF1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Monokai Machine",
+      "label": "βui - Monokai Machine",
+      "colors": {
+        "editor.background": "#273035",
+        "editor.foreground": "#F0FFFB",
+        "titleBar.activeBackground": "#1F272B",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#2B363B",
+        "titleBar.inactiveForeground": "#C0FFF1",
+        "statusBar.background": "#1F272B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#273136",
+        "activityBar.foreground": "#F2FFFC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Monokai Pro",
+      "label": "βui - Monokai Pro",
+      "colors": {
+        "editor.background": "#2C292E",
+        "editor.foreground": "#FBFBF9",
+        "titleBar.activeBackground": "#242225",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#322E33",
+        "titleBar.inactiveForeground": "#E9E9DB",
+        "statusBar.background": "#242225",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2D2A2E",
+        "activityBar.foreground": "#FCFCFA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Monokai Octagon",
+      "label": "βui - Monokai Octagon",
+      "colors": {
+        "editor.background": "#282A39",
+        "editor.foreground": "#E9F1F0",
+        "titleBar.activeBackground": "#20222E",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#2C2E40",
+        "titleBar.inactiveForeground": "#CDE0DD",
+        "statusBar.background": "#20222E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282A3A",
+        "activityBar.foreground": "#EAF2F1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Monokai Ristretto",
+      "label": "βui - Monokai Ristretto",
+      "colors": {
+        "editor.background": "#2C2525",
+        "editor.foreground": "#FFF0F2",
+        "titleBar.activeBackground": "#231E1E",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#302929",
+        "titleBar.inactiveForeground": "#FFBFC8",
+        "statusBar.background": "#231E1E",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2C2525",
+        "activityBar.foreground": "#FFF1F3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Monokai Spectrum",
+      "label": "βui - Monokai Spectrum",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#F6F0FF",
+        "titleBar.activeBackground": "#1B1B1B",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#252525",
+        "titleBar.inactiveForeground": "#DBBFFF",
+        "statusBar.background": "#1B1B1B",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#F7F1FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Material",
+      "label": "βui - Material",
+      "colors": {
+        "editor.background": "#253137",
+        "editor.foreground": "#E6FFFF",
+        "titleBar.activeBackground": "#1E282D",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#2A373E",
+        "titleBar.inactiveForeground": "#BDFFFF",
+        "statusBar.background": "#1E282D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#263238",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Material Darker",
+      "label": "βui - Material Darker",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#E6FFFF",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#242424",
+        "titleBar.inactiveForeground": "#BDFFFF",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#212121",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Material Palenight",
+      "label": "βui - Material Palenight",
+      "colors": {
+        "editor.background": "#292D3D",
+        "editor.foreground": "#C4C9E2",
+        "titleBar.activeBackground": "#212432",
+        "titleBar.activeForeground": "#C4C9E2",
+        "titleBar.inactiveBackground": "#2D3244",
+        "titleBar.inactiveForeground": "#7D87BF",
+        "statusBar.background": "#212432",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#292D3E",
+        "activityBar.foreground": "#959DCB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Zenburn",
+      "label": "βui - Zenburn",
+      "colors": {
+        "editor.background": "#383838",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#262626",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#353535",
+        "titleBar.inactiveForeground": "#C8C8C8",
+        "statusBar.background": "#262626",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#303030",
+        "activityBar.foreground": "#DEDEDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Nova",
+      "label": "βui - Nova",
+      "colors": {
+        "editor.background": "#3B4B54",
+        "editor.foreground": "#C5D4DD",
+        "titleBar.activeBackground": "#2B363D",
+        "titleBar.activeForeground": "#FAFBFC",
+        "titleBar.inactiveBackground": "#3B4B54",
+        "titleBar.inactiveForeground": "#ABC0CE",
+        "statusBar.background": "#2B363D",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#36444C",
+        "activityBar.foreground": "#C5D4DD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Nord",
+      "label": "βui - Nord",
+      "colors": {
+        "editor.background": "#2F3541",
+        "editor.foreground": "#D8DEE9",
+        "titleBar.activeBackground": "#252A33",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#333946",
+        "titleBar.inactiveForeground": "#BBC6D9",
+        "statusBar.background": "#252A33",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2E3440",
+        "activityBar.foreground": "#D8DEE9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Espresso Libre",
+      "label": "βui - Espresso Libre",
+      "colors": {
+        "editor.background": "#2B221D",
+        "editor.foreground": "#CCBFB2",
+        "titleBar.activeBackground": "#221A16",
+        "titleBar.activeForeground": "#D9D0C6",
+        "titleBar.inactiveBackground": "#2E241F",
+        "titleBar.inactiveForeground": "#AF9D88",
+        "statusBar.background": "#221A16",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2A211C",
+        "activityBar.foreground": "#BDAE9D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Espresso Soda",
+      "label": "βui - Espresso Soda",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#E1E1E1",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#E6E6E6",
+        "titleBar.inactiveForeground": "#000000",
+        "statusBar.background": "#E6E6E6",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#E6E6E6",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "βui - Ayu Dark",
+      "label": "βui - Ayu Dark",
+      "colors": {
+        "editor.background": "#0F141A",
+        "editor.foreground": "#E7E2D0",
+        "titleBar.activeBackground": "#10151A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#161D24",
+        "titleBar.inactiveForeground": "#D7CFB2",
+        "statusBar.background": "#10151A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#141A21",
+        "activityBar.foreground": "#E6E1CF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Ayu Light",
+      "label": "βui - Ayu Light",
+      "colors": {
+        "editor.background": "#FAFAFA",
+        "editor.foreground": "#5C6066",
+        "titleBar.activeBackground": "#E8E8E8",
+        "titleBar.activeForeground": "#61656B",
+        "titleBar.inactiveBackground": "#EDEDED",
+        "titleBar.inactiveForeground": "#5A5E64",
+        "statusBar.background": "#EDEDED",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#EDEDED",
+        "activityBar.foreground": "#5C6066"
+      },
+      "type": "light"
+    },
+    {
+      "name": "βui - Ayu Mirage",
+      "label": "βui - Ayu Mirage",
+      "colors": {
+        "editor.background": "#202631",
+        "editor.foreground": "#D9D7CE",
+        "titleBar.activeBackground": "#222935",
+        "titleBar.activeForeground": "#FEFEFE",
+        "titleBar.inactiveBackground": "#2F3849",
+        "titleBar.inactiveForeground": "#C7C4B6",
+        "statusBar.background": "#222935",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#2B3342",
+        "activityBar.foreground": "#D9D7CE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Minimal Blue",
+      "label": "βui - Minimal Blue",
+      "colors": {
+        "editor.background": "#282C35",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#20232A",
+        "titleBar.activeForeground": "#FEFEFE",
+        "titleBar.inactiveBackground": "#2C303A",
+        "titleBar.inactiveForeground": "#BFBFBF",
+        "statusBar.background": "#20232A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282C35",
+        "activityBar.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Minimal Yellow",
+      "label": "βui - Minimal Yellow",
+      "colors": {
+        "editor.background": "#282C35",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#20232A",
+        "titleBar.activeForeground": "#FEFEFE",
+        "titleBar.inactiveBackground": "#2C303A",
+        "titleBar.inactiveForeground": "#BFBFBF",
+        "statusBar.background": "#20232A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282C35",
+        "activityBar.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Minimal Green",
+      "label": "βui - Minimal Green",
+      "colors": {
+        "editor.background": "#282C35",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#20232A",
+        "titleBar.activeForeground": "#FEFEFE",
+        "titleBar.inactiveBackground": "#2C303A",
+        "titleBar.inactiveForeground": "#BFBFBF",
+        "statusBar.background": "#20232A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282C35",
+        "activityBar.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "βui - Minimal Purple",
+      "label": "βui - Minimal Purple",
+      "colors": {
+        "editor.background": "#282C35",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#20232A",
+        "titleBar.activeForeground": "#FEFEFE",
+        "titleBar.inactiveBackground": "#2C303A",
+        "titleBar.inactiveForeground": "#BFBFBF",
+        "statusBar.background": "#20232A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282C35",
+        "activityBar.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ]
+}

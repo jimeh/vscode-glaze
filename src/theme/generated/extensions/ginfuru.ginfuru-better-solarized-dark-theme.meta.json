@@ -1,0 +1,77 @@
+{
+  "extensionId": "c47db04d-78f4-45b5-a824-73d9f20efc78",
+  "extensionName": "ginfuru-better-solarized-dark-theme",
+  "publisherName": "ginfuru",
+  "displayName": "Better Solarized",
+  "version": "0.10.9",
+  "extractedAt": "2026-01-24T01:41:53.064Z",
+  "installCount": 143618,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Better Solarized Dark",
+      "label": "Better Solarized Dark",
+      "colors": {
+        "editor.background": "#002B36",
+        "editor.foreground": "#839496",
+        "titleBar.activeBackground": "#002B36",
+        "statusBar.background": "#00212B",
+        "statusBar.foreground": "#93A1A1",
+        "activityBar.background": "#003847"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Better Solarized Dark Italics",
+      "label": "Better Solarized Dark Italics",
+      "colors": {
+        "editor.background": "#002B36",
+        "editor.foreground": "#839496",
+        "titleBar.activeBackground": "#002C39",
+        "statusBar.background": "#00212B",
+        "statusBar.foreground": "#93A1A1",
+        "activityBar.background": "#003847"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Better Solarized Light",
+      "label": "Better Solarized Light",
+      "colors": {
+        "editor.background": "#FDF6E3",
+        "titleBar.activeBackground": "#EEE8D5",
+        "statusBar.background": "#EEE8D5",
+        "statusBar.foreground": "#586E75",
+        "activityBar.background": "#DDD6C1",
+        "activityBar.foreground": "#584C27"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Better Selenized Dark",
+      "label": "Better Selenized Dark",
+      "colors": {
+        "editor.background": "#053D48",
+        "editor.foreground": "#C8D7D8",
+        "titleBar.activeBackground": "#002B36",
+        "statusBar.background": "#00212B",
+        "statusBar.foreground": "#C8D7D8",
+        "activityBar.background": "#003847"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Better Selenized Light",
+      "label": "Better Selenized Light",
+      "colors": {
+        "editor.background": "#FEF3DA",
+        "titleBar.activeBackground": "#EEE8D5",
+        "statusBar.background": "#EEE8D5",
+        "statusBar.foreground": "#586E75",
+        "activityBar.background": "#DDD6C1",
+        "activityBar.foreground": "#584C27"
+      },
+      "type": "light"
+    }
+  ]
+}

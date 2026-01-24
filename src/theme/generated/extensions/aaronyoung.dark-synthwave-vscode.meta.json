@@ -1,0 +1,29 @@
+{
+  "extensionId": "a9933257-7143-4464-8923-90b96582a610",
+  "extensionName": "dark-synthwave-vscode",
+  "publisherName": "aaronYoung",
+  "displayName": "Dark SynthWave '84",
+  "version": "1.0.3",
+  "extractedAt": "2026-01-24T01:41:55.216Z",
+  "installCount": 137918,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dark SynthWave '84",
+      "label": "Dark SynthWave '84",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#F8F8F0",
+        "titleBar.activeBackground": "#1E1E1E",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1E1E1E",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ]
+}

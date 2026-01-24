@@ -1,0 +1,148 @@
+{
+  "extensionId": "ce0fe469-040e-4daa-9a7a-63cc063a3e73",
+  "extensionName": "night-wolf",
+  "publisherName": "MaoSantaella",
+  "displayName": "Night Wolf",
+  "version": "2.3.1",
+  "extractedAt": "2026-01-24T01:41:59.847Z",
+  "installCount": 131030,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Night Wolf (dark blue)",
+      "label": "Night Wolf (dark blue)",
+      "colors": {
+        "editor.background": "#101E2C",
+        "editor.foreground": "#BDD2E7",
+        "titleBar.activeBackground": "#101E2C",
+        "titleBar.activeForeground": "#7BA5CF",
+        "titleBar.inactiveBackground": "#101E2C",
+        "titleBar.inactiveForeground": "#305A84",
+        "statusBar.background": "#101E2C",
+        "statusBar.foreground": "#7BA5CF",
+        "activityBar.background": "#101E2C",
+        "activityBar.foreground": "#7BA5CF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (dark blue) (No Italics)",
+      "label": "Night Wolf (dark blue) (No Italics)",
+      "colors": {
+        "editor.background": "#101E2C",
+        "editor.foreground": "#BDD2E7",
+        "titleBar.activeBackground": "#101E2C",
+        "titleBar.activeForeground": "#7BA5CF",
+        "titleBar.inactiveBackground": "#101E2C",
+        "titleBar.inactiveForeground": "#305A84",
+        "statusBar.background": "#101E2C",
+        "statusBar.foreground": "#7BA5CF",
+        "activityBar.background": "#101E2C",
+        "activityBar.foreground": "#7BA5CF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (dark gray)",
+      "label": "Night Wolf (dark gray)",
+      "colors": {
+        "editor.background": "#1B1B1B",
+        "editor.foreground": "#CECECE",
+        "titleBar.activeBackground": "#1B1B1B",
+        "titleBar.activeForeground": "#9D9D9D",
+        "titleBar.inactiveBackground": "#1B1B1B",
+        "titleBar.inactiveForeground": "#525252",
+        "statusBar.background": "#1B1B1B",
+        "statusBar.foreground": "#9D9D9D",
+        "activityBar.background": "#1B1B1B",
+        "activityBar.foreground": "#9D9D9D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (dark gray) (No Italics)",
+      "label": "Night Wolf (dark gray) (No Italics)",
+      "colors": {
+        "editor.background": "#1B1B1B",
+        "editor.foreground": "#CECECE",
+        "titleBar.activeBackground": "#1B1B1B",
+        "titleBar.activeForeground": "#9D9D9D",
+        "titleBar.inactiveBackground": "#1B1B1B",
+        "titleBar.inactiveForeground": "#525252",
+        "statusBar.background": "#1B1B1B",
+        "statusBar.foreground": "#9D9D9D",
+        "activityBar.background": "#1B1B1B",
+        "activityBar.foreground": "#9D9D9D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (gray)",
+      "label": "Night Wolf (gray)",
+      "colors": {
+        "editor.background": "#252525",
+        "editor.foreground": "#CECECE",
+        "titleBar.activeBackground": "#252525",
+        "titleBar.activeForeground": "#9B9B9B",
+        "titleBar.inactiveBackground": "#252525",
+        "titleBar.inactiveForeground": "#595959",
+        "statusBar.background": "#252525",
+        "statusBar.foreground": "#9B9B9B",
+        "activityBar.background": "#252525",
+        "activityBar.foreground": "#9B9B9B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (gray) (No Italics)",
+      "label": "Night Wolf (gray) (No Italics)",
+      "colors": {
+        "editor.background": "#252525",
+        "editor.foreground": "#CECECE",
+        "titleBar.activeBackground": "#252525",
+        "titleBar.activeForeground": "#9B9B9B",
+        "titleBar.inactiveBackground": "#252525",
+        "titleBar.inactiveForeground": "#595959",
+        "statusBar.background": "#252525",
+        "statusBar.foreground": "#9B9B9B",
+        "activityBar.background": "#252525",
+        "activityBar.foreground": "#9B9B9B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (black)",
+      "label": "Night Wolf (black)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C8C8C8",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#969696",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#505050",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#969696",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#969696"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Wolf (black) (No Italics)",
+      "label": "Night Wolf (black) (No Italics)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C8C8C8",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#969696",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#505050",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#969696",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#969696"
+      },
+      "type": "dark"
+    }
+  ]
+}
