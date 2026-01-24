@@ -468,6 +468,188 @@ suite('generatePalette theme blending', () => {
   });
 });
 
+suite('generatePalette seed', () => {
+  test('different seeds produce different colors', () => {
+    const palette1 = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 0,
+    });
+    const palette2 = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 42,
+    });
+
+    assert.notStrictEqual(
+      palette1['titleBar.activeBackground'],
+      palette2['titleBar.activeBackground'],
+      'Different seeds should produce different colors'
+    );
+  });
+
+  test('same seed produces consistent colors', () => {
+    const palette1 = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 123,
+    });
+    const palette2 = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 123,
+    });
+
+    assert.deepStrictEqual(
+      palette1,
+      palette2,
+      'Same seed should produce identical palettes'
+    );
+  });
+
+  test('default seed is 0 when not specified', () => {
+    const paletteDefault = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+    });
+    const paletteZeroSeed = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 0,
+    });
+
+    assert.deepStrictEqual(
+      paletteDefault,
+      paletteZeroSeed,
+      'Default seed should be 0'
+    );
+  });
+
+  test('seed works with all theme types', () => {
+    const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+
+    for (const themeType of THEME_TYPES) {
+      const palette = generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext(themeType),
+        seed: 999,
+      });
+      for (const [key, color] of Object.entries(palette)) {
+        assert.match(
+          color,
+          hexPattern,
+          `Invalid hex for ${key} with seed in ${themeType}: ${color}`
+        );
+      }
+    }
+  });
+
+  test('seed works with all color schemes', () => {
+    const COLOR_SCHEMES: ColorScheme[] = [
+      'pastel',
+      'vibrant',
+      'muted',
+      'monochrome',
+    ];
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+
+    for (const scheme of COLOR_SCHEMES) {
+      const palette = generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: scheme,
+        seed: 456,
+      });
+      for (const [key, color] of Object.entries(palette)) {
+        assert.match(
+          color,
+          hexPattern,
+          `Invalid hex for ${key} with seed in ${scheme} scheme: ${color}`
+        );
+      }
+    }
+  });
+
+  test('seed works with theme blending', () => {
+    const paletteNoBlend = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 100,
+      themeBlendFactor: 0,
+    });
+
+    const paletteBlend = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', {
+        colors: { 'editor.background': '#282C34' },
+      }),
+      seed: 100,
+      themeBlendFactor: 0.35,
+    });
+
+    assert.notStrictEqual(
+      paletteNoBlend['titleBar.activeBackground'],
+      paletteBlend['titleBar.activeBackground'],
+      'Seed should work with theme blending'
+    );
+  });
+
+  test('negative seed values work correctly', () => {
+    const paletteNegative = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: -100,
+    });
+    const palettePositive = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 100,
+    });
+
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    for (const color of Object.values(paletteNegative)) {
+      assert.match(color, hexPattern, 'Negative seed should produce valid hex');
+    }
+
+    assert.notDeepStrictEqual(
+      paletteNegative,
+      palettePositive,
+      'Negative and positive seeds should produce different colors'
+    );
+  });
+
+  test('large seed values work correctly', () => {
+    const palette = generatePalette({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      seed: 999999999,
+    });
+
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    for (const [key, color] of Object.entries(palette)) {
+      assert.match(
+        color,
+        hexPattern,
+        `Large seed should produce valid hex for ${key}`
+      );
+    }
+  });
+});
+
 suite('generatePalette color schemes', () => {
   const COLOR_SCHEMES: ColorScheme[] = [
     'pastel',

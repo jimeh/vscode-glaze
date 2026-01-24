@@ -58,12 +58,13 @@ suite('hashString', () => {
       hues.push(hue);
     }
 
-    // Check uniqueness - with 100 samples and 360 possible hues,
-    // we should have high uniqueness
+    // Check uniqueness - with 100 samples mapping to 360 possible hues,
+    // birthday paradox means expected unique ≈ 87.5 for perfect distribution.
+    // Use 75% threshold to allow statistical variance.
     const uniqueHues = new Set(hues);
     assert.ok(
-      uniqueHues.size >= sampleSize * 0.9,
-      `Expected at least 90% unique hues, got ${uniqueHues.size}/${sampleSize}`
+      uniqueHues.size >= sampleSize * 0.75,
+      `Expected at least 75% unique hues, got ${uniqueHues.size}/${sampleSize}`
     );
 
     // Check distribution across quadrants (0-89, 90-179, 180-269, 270-359)
@@ -99,7 +100,7 @@ suite('hashString', () => {
       'project-2',
       'project-10',
       'project-100',
-      // Case variations (djb2 is case-sensitive)
+      // Case variations (SHA-256 is case-sensitive)
       'MyProject',
       'myproject',
       'MYPROJECT',
@@ -117,5 +118,27 @@ suite('hashString', () => {
       patterns.length,
       `Found collisions among ${patterns.length} common patterns`
     );
+  });
+
+  test('exhibits avalanche effect (single char change → large output change)', () => {
+    const hash1 = hashString('project-a');
+    const hash2 = hashString('project-b');
+
+    // XOR to count differing bits
+    const diff = hash1 ^ hash2;
+    const bitsChanged = diff.toString(2).split('1').length - 1;
+
+    // Good avalanche: expect roughly half the bits to change (≥8 of 32)
+    assert.ok(bitsChanged >= 8, `Expected ≥8 bits changed, got ${bitsChanged}`);
+  });
+
+  test('utilizes full 32-bit range', () => {
+    const hashes = Array.from({ length: 50 }, (_, i) =>
+      hashString(`sample-${i}`)
+    );
+
+    const max = Math.max(...hashes);
+    // Should have at least one value using upper bits (> 2^24)
+    assert.ok(max > 0x1000000, 'Hash values should span upper bits');
   });
 });

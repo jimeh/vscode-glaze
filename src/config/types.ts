@@ -60,6 +60,13 @@ export interface TintConfig {
    * Theme mode for color generation.
    */
   mode: ThemeMode;
+
+  /**
+   * Seed value used to shift the base color tint calculation.
+   * Changing this value produces completely different colors for all workspaces.
+   * Default is 0.
+   */
+  seed: number;
 }
 
 /**

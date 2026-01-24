@@ -134,7 +134,10 @@ export function getTintConfig(): TintConfig {
   const modeValue = config.get<string>('tint.mode', 'auto');
   const mode: ThemeMode = isValidThemeMode(modeValue) ? modeValue : 'auto';
 
-  return { targets, mode };
+  const seedValue = config.get<number>('tint.seed', 0);
+  const seed = Number.isInteger(seedValue) ? seedValue : 0;
+
+  return { targets, mode, seed };
 }
 
 /**

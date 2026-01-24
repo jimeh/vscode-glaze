@@ -73,6 +73,8 @@ export interface GeneratePaletteOptions {
   colorScheme?: ColorScheme;
   /** How much to blend toward theme background (0-1), default 0.35 */
   themeBlendFactor?: number;
+  /** Seed value to shift the base hue calculation, default 0 */
+  seed?: number;
 }
 
 /**
@@ -95,10 +97,13 @@ export function generatePalette(
     themeContext,
     colorScheme = 'pastel',
     themeBlendFactor = 0.35,
+    seed = 0,
   } = options;
 
-  const hash = hashString(workspaceIdentifier);
-  const baseHue = hash % 360;
+  const workspaceHash = hashString(workspaceIdentifier);
+  // Hash the seed and XOR with workspace hash for dramatic color shifts per seed
+  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
+  const baseHue = ((workspaceHash ^ seedHash) >>> 0) % 360;
 
   const keysToInclude = new Set<keyof PatinaColorPalette>();
   for (const target of targets) {

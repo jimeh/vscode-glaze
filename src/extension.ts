@@ -103,6 +103,7 @@ async function applyTint(): Promise<void> {
     themeContext,
     colorScheme,
     themeBlendFactor: themeConfig.blendFactor,
+    seed: tintConfig.seed,
   });
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
