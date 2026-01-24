@@ -104,52 +104,50 @@ suite('getThemeName', () => {
 
   test('falls back to colorTheme when preferredDark is empty', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
+    // Use empty string (falsy) to ensure fallback path is taken
     await config.update(
       'preferredDarkColorTheme',
-      undefined,
+      '',
       vscode.ConfigurationTarget.Global
     );
 
-    // VSCode always has a colorTheme set, verify it returns a non-empty string
     const result = getThemeName('dark');
-    assert.ok(result, 'Should return a theme name');
-    assert.ok(typeof result === 'string', 'Should return a string');
-    assert.ok(result.length > 0, 'Should not be empty');
+    const colorTheme = config.get<string>('colorTheme');
+    assert.strictEqual(result, colorTheme, 'Should fall back to colorTheme');
   });
 
   test('falls back to colorTheme when preferredLight is empty', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
+    // Use empty string (falsy) to ensure fallback path is taken
     await config.update(
       'preferredLightColorTheme',
-      undefined,
+      '',
       vscode.ConfigurationTarget.Global
     );
 
-    // VSCode always has a colorTheme set, verify it returns a non-empty string
     const result = getThemeName('light');
-    assert.ok(result, 'Should return a theme name');
-    assert.ok(typeof result === 'string', 'Should return a string');
-    assert.ok(result.length > 0, 'Should not be empty');
+    const colorTheme = config.get<string>('colorTheme');
+    assert.strictEqual(result, colorTheme, 'Should fall back to colorTheme');
   });
 
   test('returns colorTheme when no preferred themes are set', async () => {
     const config = vscode.workspace.getConfiguration('workbench');
+    // Use empty strings (falsy) to ensure fallback paths are taken
     await config.update(
       'preferredDarkColorTheme',
-      undefined,
+      '',
       vscode.ConfigurationTarget.Global
     );
     await config.update(
       'preferredLightColorTheme',
-      undefined,
+      '',
       vscode.ConfigurationTarget.Global
     );
 
-    // VSCode always has a default colorTheme, verify it returns a non-empty
-    // string for both dark and light theme types
+    const colorTheme = config.get<string>('colorTheme');
     const darkResult = getThemeName('dark');
     const lightResult = getThemeName('light');
-    assert.ok(darkResult, 'Should return a theme name for dark');
-    assert.ok(lightResult, 'Should return a theme name for light');
+    assert.strictEqual(darkResult, colorTheme, 'Dark should fall back');
+    assert.strictEqual(lightResult, colorTheme, 'Light should fall back');
   });
 });

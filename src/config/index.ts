@@ -52,28 +52,6 @@ export async function setWorkspaceEnabled(
   );
 }
 
-/**
- * Migrates the old 'workspace.modify' setting to 'workspace.enabled'.
- */
-export async function migrateWorkspaceModifySetting(): Promise<void> {
-  const config = vscode.workspace.getConfiguration('patina');
-  const inspection = config.inspect<boolean>('workspace.modify');
-
-  // Migrate workspace-level value if it exists
-  if (inspection?.workspaceValue !== undefined) {
-    await config.update(
-      'workspace.enabled',
-      inspection.workspaceValue,
-      vscode.ConfigurationTarget.Workspace
-    );
-    await config.update(
-      'workspace.modify',
-      undefined,
-      vscode.ConfigurationTarget.Workspace
-    );
-  }
-}
-
 const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];
 
 function isValidThemeMode(value: string): value is ThemeMode {

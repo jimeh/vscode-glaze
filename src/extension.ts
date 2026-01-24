@@ -7,7 +7,6 @@ import {
   getWorkspaceIdentifierConfig,
   getWorkspaceEnabled,
   setWorkspaceEnabled,
-  migrateWorkspaceModifySetting,
   isEnabled,
 } from './config';
 import { getThemeContext } from './theme';
@@ -18,9 +17,6 @@ import {
 } from './settings';
 
 export async function activate(context: vscode.ExtensionContext) {
-  // Migrate old workspace.modify setting to workspace.enabled
-  await migrateWorkspaceModifySetting();
-
   // Apply tint on activation
   applyTint();
 
