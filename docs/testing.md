@@ -23,3 +23,15 @@ pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
 ```
 
 The `--grep` pattern matches against suite/test names.
+
+## Test Coverage
+
+```bash
+pnpm run test:coverage
+```
+
+Generate HTML and lcov reports in `coverage/`:
+
+```bash
+pnpm run test:coverage:html
+```
