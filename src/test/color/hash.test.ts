@@ -45,4 +45,77 @@ suite('hashString', () => {
     const uniqueHashes = new Set(hashes);
     assert.strictEqual(uniqueHashes.size, hashes.length);
   });
+
+  test('produces well-distributed hue values across larger sample', () => {
+    // Generate hashes for 100 different workspace names
+    const sampleSize = 100;
+    const hues: number[] = [];
+
+    for (let i = 0; i < sampleSize; i++) {
+      const hash = hashString(`workspace-${i}`);
+      // Convert to hue (0-360) as palette.ts does
+      const hue = hash % 360;
+      hues.push(hue);
+    }
+
+    // Check uniqueness - with 100 samples and 360 possible hues,
+    // we should have high uniqueness
+    const uniqueHues = new Set(hues);
+    assert.ok(
+      uniqueHues.size >= sampleSize * 0.9,
+      `Expected at least 90% unique hues, got ${uniqueHues.size}/${sampleSize}`
+    );
+
+    // Check distribution across quadrants (0-89, 90-179, 180-269, 270-359)
+    const quadrants = [0, 0, 0, 0];
+    for (const hue of hues) {
+      quadrants[Math.floor(hue / 90)]++;
+    }
+
+    // Each quadrant should have at least 10% of samples (very loose bound)
+    for (let i = 0; i < 4; i++) {
+      assert.ok(
+        quadrants[i] >= sampleSize * 0.1,
+        `Quadrant ${i} has only ${quadrants[i]} samples, expected at least 10`
+      );
+    }
+  });
+
+  test('avoids collisions for common workspace patterns', () => {
+    // Test patterns that users commonly have
+    const patterns = [
+      // Similar prefixes
+      'my-app',
+      'my-app-v2',
+      'my-app-backend',
+      'my-app-frontend',
+      // Similar suffixes
+      'backend',
+      'frontend',
+      'api-backend',
+      'web-backend',
+      // Numbered variations
+      'project-1',
+      'project-2',
+      'project-10',
+      'project-100',
+      // Case variations (djb2 is case-sensitive)
+      'MyProject',
+      'myproject',
+      'MYPROJECT',
+      // Path-like strings
+      'Users/dev/code/project',
+      'Users/dev/code/project2',
+      '/home/user/work/app',
+    ];
+
+    const hashes = patterns.map((p) => hashString(p));
+    const uniqueHashes = new Set(hashes);
+
+    assert.strictEqual(
+      uniqueHashes.size,
+      patterns.length,
+      `Found collisions among ${patterns.length} common patterns`
+    );
+  });
 });

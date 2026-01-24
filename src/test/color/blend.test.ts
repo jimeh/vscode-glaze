@@ -37,6 +37,30 @@ suite('hexToRgb', () => {
     assert.throws(() => hexToRgb('#GGG'));
     assert.throws(() => hexToRgb('#12345'));
   });
+
+  test('throws on 3-character shorthand hex', () => {
+    // 3-char shorthand (#FFF) is not supported
+    assert.throws(() => hexToRgb('#FFF'), 'Should reject 3-char shorthand');
+    assert.throws(() => hexToRgb('FFF'), 'Should reject 3-char without hash');
+  });
+
+  test('throws on 8-character hex with alpha', () => {
+    // 8-char hex with alpha (#FF5733FF) is not supported
+    assert.throws(
+      () => hexToRgb('#FF5733FF'),
+      'Should reject 8-char hex with alpha'
+    );
+  });
+
+  test('throws on hex with spaces', () => {
+    assert.throws(() => hexToRgb(' #FF5733'), 'Should reject leading space');
+    assert.throws(() => hexToRgb('#FF5733 '), 'Should reject trailing space');
+    assert.throws(() => hexToRgb('# FF5733'), 'Should reject space after hash');
+  });
+
+  test('throws on empty string', () => {
+    assert.throws(() => hexToRgb(''), 'Should reject empty string');
+  });
 });
 
 suite('rgbToHsl', () => {
@@ -170,8 +194,8 @@ suite('blendWithTheme', () => {
     );
   });
 
-  test('blends hue with wraparound', () => {
-    // Tint at hue 350, theme at hue 10 - should blend through 0
+  test('blends hue with wraparound (350 to 0)', () => {
+    // Tint at hue 350, theme at hue 0 - should blend through 0/360
     const tint = { h: 350, s: 0.5, l: 0.4 };
     const result = blendWithTheme(tint, '#FF0000', 0.5); // Red = hue 0
     // Should blend toward 0/360, not go the long way around
@@ -181,11 +205,81 @@ suite('blendWithTheme', () => {
     );
   });
 
-  test('clamps factor to valid range', () => {
+  test('blends hue with wraparound (10 to 350)', () => {
+    // Tint at hue 10, theme at hue 350 - should blend backwards through 0
+    // Create a hex color with hue ~350 (magenta-ish)
+    const tint = { h: 10, s: 0.5, l: 0.4 };
+    // Theme with hue 350: HSL(350, 1, 0.5) -> ~#ff1a40
+    const result = blendWithTheme(tint, '#ff1a40', 0.5);
+    // Should stay near 0/360, not go through 180
+    assert.ok(
+      result.h < 20 || result.h > 340,
+      `Hue should wrap around 0, got ${result.h}`
+    );
+  });
+
+  test('blends hues near 180 boundary', () => {
+    const tint = { h: 170, s: 0.5, l: 0.4 };
+    // Theme with hue 190: cyan-ish #00bfbf is close
+    const result = blendWithTheme(tint, '#00d9ff', 0.5); // ~hue 190
+    // Should blend in a straight line, result between 170 and 190
+    assert.ok(
+      result.h >= 170 && result.h <= 200,
+      `Hue should be between 170-200, got ${result.h}`
+    );
+  });
+
+  test('blends hues at exact 0 and 180', () => {
+    const tint = { h: 0, s: 0.5, l: 0.4 };
+    // Cyan has hue 180
+    const result = blendWithTheme(tint, '#00ffff', 0.5);
+    // Should blend to 90 or 270 depending on shortest path (equal distance)
+    assert.ok(
+      (result.h >= 80 && result.h <= 100) ||
+        (result.h >= 260 && result.h <= 280),
+      `Hue should be near 90 or 270, got ${result.h}`
+    );
+  });
+
+  test('clamps factor > 1 to 1', () => {
     const tint = { h: 200, s: 0.5, l: 0.4 };
-    const result = blendWithTheme(tint, '#FFFFFF', 1.5);
+    const themeHex = '#FFFFFF';
+    const themeHsl = hexToHsl(themeHex);
+
+    // With factor > 1, should clamp to 1 (returns theme color)
+    const result = blendWithTheme(tint, themeHex, 1.5);
+
     assert.ok(result.l <= 1, 'Lightness should not exceed 1');
     assert.ok(result.s >= 0, 'Saturation should not go negative');
+    // Should match theme exactly when clamped to factor 1
+    assert.ok(
+      Math.abs(result.s - themeHsl.s) < 0.001,
+      'Saturation should match theme at clamped factor'
+    );
+    assert.ok(
+      Math.abs(result.l - themeHsl.l) < 0.001,
+      'Lightness should match theme at clamped factor'
+    );
+  });
+
+  test('clamps factor < 0 to 0', () => {
+    const tint = { h: 200, s: 0.5, l: 0.4 };
+    const themeHex = '#FFFFFF';
+
+    // With factor < 0, should clamp to 0 (returns tint unchanged)
+    const result = blendWithTheme(tint, themeHex, -0.5);
+
+    assert.strictEqual(result.h, tint.h, 'Hue should match tint at factor 0');
+    assert.strictEqual(
+      result.s,
+      tint.s,
+      'Saturation should match tint at factor 0'
+    );
+    assert.strictEqual(
+      result.l,
+      tint.l,
+      'Lightness should match tint at factor 0'
+    );
   });
 
   test('handles light themes', () => {
@@ -195,6 +289,18 @@ suite('blendWithTheme', () => {
     assert.ok(
       result.l > tint.l,
       'Lightness should increase toward light theme'
+    );
+  });
+
+  test('throws on invalid theme hex', () => {
+    const tint = { h: 200, s: 0.5, l: 0.4 };
+    assert.throws(
+      () => blendWithTheme(tint, 'invalid', 0.5),
+      'Should throw on invalid hex'
+    );
+    assert.throws(
+      () => blendWithTheme(tint, '#GGG', 0.5),
+      'Should throw on invalid hex characters'
     );
   });
 });
