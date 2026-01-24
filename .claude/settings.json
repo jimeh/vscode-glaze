@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue view:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh repo view:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git status:*)",
+      "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm run check-types:*)",
+      "Bash(pnpm run compile)",
+      "Bash(pnpm run extract-themes:*)",
+      "Bash(pnpm run extract-themes:dry-run:*)",
+      "Bash(pnpm run extract-themes:verbose:*)",
+      "Bash(pnpm run format:*)",
+      "Bash(pnpm run lint:*)",
+      "Bash(pnpm run lint:fix:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(pnpm run test:coverage:*)",
+      "Bash(pnpm run test:coverage:html:*)"
+    ]
+  }
+}
