@@ -26,7 +26,7 @@ suite('isEnabled', () => {
     );
   });
 
-  test('returns true by default', async () => {
+  test('returns false by default', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'enabled',
@@ -35,7 +35,7 @@ suite('isEnabled', () => {
     );
 
     const result = isEnabled();
-    assert.strictEqual(result, true);
+    assert.strictEqual(result, false);
   });
 
   test('returns configured value when set to false', async () => {
@@ -242,7 +242,7 @@ suite('getWorkspaceIdentifierConfig', () => {
     );
   });
 
-  test('returns default source as name when not configured', async () => {
+  test('returns default source as pathRelativeToHome when not configured', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'workspaceIdentifier.source',
@@ -251,7 +251,7 @@ suite('getWorkspaceIdentifierConfig', () => {
     );
 
     const result = getWorkspaceIdentifierConfig();
-    assert.strictEqual(result.source, 'name');
+    assert.strictEqual(result.source, 'pathRelativeToHome');
   });
 
   test('reads configured source value', async () => {
@@ -278,7 +278,7 @@ suite('getWorkspaceIdentifierConfig', () => {
     assert.strictEqual(result.customBasePath, '~/Projects');
   });
 
-  test('falls back to name for invalid source', async () => {
+  test('falls back to pathRelativeToHome for invalid source', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'workspaceIdentifier.source',
@@ -287,7 +287,7 @@ suite('getWorkspaceIdentifierConfig', () => {
     );
 
     const result = getWorkspaceIdentifierConfig();
-    assert.strictEqual(result.source, 'name');
+    assert.strictEqual(result.source, 'pathRelativeToHome');
   });
 
   test('returns empty customBasePath when not configured', async () => {

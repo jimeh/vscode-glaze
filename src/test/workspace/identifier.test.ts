@@ -155,6 +155,17 @@ suite('getWorkspaceIdentifier', () => {
       assert.strictEqual(result, 'my-app');
     });
 
+    test('expands $HOME in customBasePath', () => {
+      const homedir = os.homedir();
+      const config: WorkspaceIdentifierConfig = {
+        source: 'pathRelativeToCustom',
+        customBasePath: '$HOME/projects',
+      };
+      const folders = [mockFolder(path.join(homedir, 'projects', 'my-app'))];
+      const result = getWorkspaceIdentifier(config, folders);
+      assert.strictEqual(result, 'my-app');
+    });
+
     test('returns nested relative path', () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',

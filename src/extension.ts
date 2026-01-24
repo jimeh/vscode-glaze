@@ -59,8 +59,7 @@ export async function activate(context: vscode.ExtensionContext) {
         e.affectsConfiguration('patina.workspaceIdentifier') ||
         e.affectsConfiguration('patina.tint') ||
         e.affectsConfiguration('patina.theme') ||
-        e.affectsConfiguration('patina.elements') ||
-        e.affectsConfiguration('patina.colorScheme')
+        e.affectsConfiguration('patina.elements')
       ) {
         applyTint();
       }

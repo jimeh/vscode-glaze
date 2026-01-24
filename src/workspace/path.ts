@@ -10,11 +10,14 @@ export function normalizePath(p: string): string {
 }
 
 /**
- * Expands ~ to the home directory in a path.
+ * Expands ~ or $HOME to the home directory in a path.
  */
 export function expandTilde(p: string): string {
   if (p.startsWith('~')) {
     return path.join(os.homedir(), p.slice(1));
+  }
+  if (p.startsWith('$HOME')) {
+    return path.join(os.homedir(), p.slice(5));
   }
   return p;
 }

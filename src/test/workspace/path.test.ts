@@ -65,6 +65,27 @@ suite('expandTilde', () => {
     const expected = path.join(os.homedir(), 'a', 'b', 'c');
     assert.strictEqual(result, expected);
   });
+
+  test('expands $HOME at start of path', () => {
+    const result = expandTilde('$HOME/projects');
+    const expected = path.join(os.homedir(), 'projects');
+    assert.strictEqual(result, expected);
+  });
+
+  test('expands lone $HOME', () => {
+    const result = expandTilde('$HOME');
+    assert.strictEqual(result, os.homedir());
+  });
+
+  test('leaves $HOME in middle of path unchanged', () => {
+    assert.strictEqual(expandTilde('/path/to/$HOME'), '/path/to/$HOME');
+  });
+
+  test('expands $HOME/ with nested path', () => {
+    const result = expandTilde('$HOME/a/b/c');
+    const expected = path.join(os.homedir(), 'a', 'b', 'c');
+    assert.strictEqual(result, expected);
+  });
 });
 
 suite('getRelativePath', () => {
