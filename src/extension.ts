@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { generatePalette } from './color';
 import { getWorkspaceIdentifier } from './workspace';
 import {
+  getColorScheme,
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
@@ -58,7 +59,8 @@ export async function activate(context: vscode.ExtensionContext) {
         e.affectsConfiguration('patina.workspaceIdentifier') ||
         e.affectsConfiguration('patina.tint') ||
         e.affectsConfiguration('patina.theme') ||
-        e.affectsConfiguration('patina.elements')
+        e.affectsConfiguration('patina.elements') ||
+        e.affectsConfiguration('patina.colorScheme')
       ) {
         applyTint();
       }
@@ -94,10 +96,12 @@ async function applyTint(): Promise<void> {
   const tintConfig = getTintConfig();
   const themeConfig = getThemeConfig();
   const themeContext = getThemeContext(tintConfig.mode);
+  const colorScheme = getColorScheme();
   const colors = generatePalette({
     workspaceIdentifier: identifier,
     targets: tintConfig.targets,
     themeContext,
+    colorScheme,
     themeBlendFactor: themeConfig.blendFactor,
   });
   const config = vscode.workspace.getConfiguration();
