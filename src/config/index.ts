@@ -76,7 +76,7 @@ function isValidColorScheme(value: string): value is ColorScheme {
  */
 export function getColorScheme(): ColorScheme {
   const config = vscode.workspace.getConfiguration('patina');
-  const scheme = config.get<string>('colorScheme', 'pastel');
+  const scheme = config.get<string>('tint.colorScheme', 'pastel');
   return isValidColorScheme(scheme) ? scheme : 'pastel';
 }
 
@@ -93,14 +93,17 @@ const VALID_SOURCES: WorkspaceIdentifierSource[] = [
 export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
   const config = vscode.workspace.getConfiguration('patina');
 
-  const source = config.get<string>('workspaceIdentifier.source', 'name');
+  const source = config.get<string>(
+    'workspaceIdentifier.source',
+    'pathRelativeToHome'
+  );
   const customBasePath = config.get<string>(
     'workspaceIdentifier.customBasePath',
     ''
   );
 
   return {
-    source: isValidSource(source) ? source : 'name',
+    source: isValidSource(source) ? source : 'pathRelativeToHome',
     customBasePath,
   };
 }
