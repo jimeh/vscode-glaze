@@ -1,114 +1,20 @@
-# CLAUDE.md
+# Patina
 
-This file provides guidance to Claude Code (claude.ai/code) when working with
-code in this repository.
+VSCode extension that applies color tints to editor windows based on workspace.
 
-## Project Overview
+- **Package manager**: pnpm
+- **Commit style**: [Conventional Commits](https://conventionalcommits.org/)
+- **Pre-PR**: `pnpm run compile && pnpm run test`
 
-Patina is a VSCode extension that applies subtle color tints to editor windows
-based on the open project, helping users visually distinguish between different
-workspaces. It generates deterministic colors from workspace paths and blends
-them with the active theme.
+## Docs
 
-## Development Commands
+- [Architecture](docs/architecture.md) — Data flow, modules, concepts
+- [Testing](docs/testing.md) — Running tests, patterns
+- [Build](docs/build.md) — esbuild, output dirs
+- [Theme Extraction](docs/theme-extraction.md)
 
-```bash
-pnpm install              # Install dependencies
-pnpm run compile          # Type-check + lint + build
-pnpm run watch            # Watch mode (esbuild + tsc in parallel)
-pnpm run check-types      # Type checking only
-pnpm run lint             # ESLint
-pnpm run test             # Run tests (auto-compiles first via pretest)
-pnpm run package          # Production build
-```
+## Conventions
 
-To run the extension in development: Open project in VSCode, press F5 to launch
-Extension Development Host.
-
-## Testing
-
-Tests use `@vscode/test-cli` with Mocha. Test files live in `src/test/` and
-follow the `*.test.ts` naming convention using `suite()` and `test()` functions.
-
-Tests compile to `out/test/` and run in a VSCode instance with a fixture
-workspace at `src/test/fixtures/test-workspace/`. The `pretest` script handles
-compilation automatically.
-
-Run a single test file:
-
-```bash
-pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
-```
-
-The `--grep` pattern matches against suite/test names.
-
-## Architecture
-
-### Data Flow
-
-1. **extension.ts** — Entry point, registers commands and event listeners.
-   Calls `applyTint()` on activation and configuration/theme changes.
-
-2. **workspace/** — Derives workspace identifier from folder path/name based on
-   user config (`name`, `pathRelativeToHome`, `pathAbsolute`, or
-   `pathRelativeToCustom`).
-
-3. **config/** — Reads Patina settings from VSCode configuration API. Three
-   config groups: workspace identifier, tint targets, and theme settings.
-
-4. **color/** — Core color generation:
-   - `hash.ts` — Deterministic hash from workspace identifier
-   - `palette.ts` — Generates color palette from hash, with different
-     saturation/lightness configs per theme kind (dark/light/highContrast)
-   - `blend.ts` — Blends generated colors with theme background for integration
-
-5. **theme/** — Theme detection and background color lookup:
-   - `detect.ts` — Gets current theme context (kind, name, background)
-   - `colors.ts` — Aggregates theme colors from generated files and user config
-   - `name.ts` — Extracts theme name from VSCode
-   - `generated/` — Auto-generated theme color definitions (do not edit)
-
-6. **settings/** — Writes color customizations to VSCode settings:
-   - `colorCustomizations.ts` — Manages `workbench.colorCustomizations`
-   - `mergeColorCustomizations()` — Merges Patina colors with existing user
-     customizations, preserving non-Patina keys
-   - `removePatinaColors()` — Removes all Patina-managed keys when disabling
-
-### Key Concepts
-
-- Colors are generated from a hash of the workspace identifier, producing the
-  same hue for the same workspace
-- The `ThemeContext` carries theme type, name, and colors for blending
-- `TintTarget` determines which UI elements receive colors (titleBar, statusBar,
-  activityBar)
-- Colors are written to `.vscode/settings.json` via
-  `workbench.colorCustomizations`
-
-## Build System
-
-- **esbuild** bundles `src/extension.ts` → `dist/extension.js` (CommonJS)
-- The `vscode` module is externalized (provided by VSCode at runtime)
-- Tests compile separately via `tsc` to `out/` directory
-
-## Theme Color Extraction
-
-The `scripts/extract-theme-colors/` script fetches popular VSCode themes from
-the marketplace and extracts their background colors for theme-aware blending.
-
-```bash
-pnpm run extract-themes           # Generate theme files
-pnpm run extract-themes:dry-run   # Preview without writing
-pnpm run extract-themes:verbose   # Verbose output
-```
-
-Generated files go to `src/theme/generated/extensions/` with one TypeScript file
-per extension. These are auto-generated and should not be manually edited. Add
-themes to `scripts/extract-theme-colors/pinned.ts` to ensure specific themes
-are always included.
-
-## Commit Messages
-
-Use [Conventional Commits](https://www.conventionalcommits.org/):
-`<type>(<scope>): <description>`
-
-Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
+- Barrel exports per module—import from `src/module/`
+- Use `PATINA_MANAGED_KEYS`, don't hardcode color keys
+- Readonly/immutable patterns throughout
