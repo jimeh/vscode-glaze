@@ -1,0 +1,200 @@
+{
+  "tag": "1.108.2",
+  "extractedAt": "2026-01-24T18:14:25.417Z",
+  "themes": [
+    {
+      "name": "Abyss",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#000C18",
+        "editor.foreground": "#6688CC",
+        "titleBar.activeBackground": "#10192C",
+        "statusBar.background": "#10192C",
+        "activityBar.background": "#051336"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Default Dark+",
+      "label": "%darkPlusColorThemeLabel%",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Default Dark Modern",
+      "label": "%darkModernThemeLabel%",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#1F1F1F",
+        "titleBar.inactiveForeground": "#9D9D9D",
+        "statusBar.background": "#181818",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Default Light+",
+      "label": "%lightPlusColorThemeLabel%",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Default Light Modern",
+      "label": "%lightModernThemeLabel%",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#3B3B3B",
+        "titleBar.activeBackground": "#F8F8F8",
+        "titleBar.activeForeground": "#1E1E1E",
+        "titleBar.inactiveBackground": "#F8F8F8",
+        "titleBar.inactiveForeground": "#8B949E",
+        "statusBar.background": "#F8F8F8",
+        "statusBar.foreground": "#3B3B3B",
+        "activityBar.background": "#F8F8F8",
+        "activityBar.foreground": "#1F1F1F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Visual Studio Dark",
+      "label": "%darkColorThemeLabel%",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Visual Studio Light",
+      "label": "%lightColorThemeLabel%",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Default High Contrast",
+      "label": "%hcColorThemeLabel%",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Kimbie Dark",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#221A0F",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#423523",
+        "statusBar.background": "#423523",
+        "activityBar.background": "#221A0F",
+        "activityBar.foreground": "#D3AF86"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monokai Dimmed",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#C5C8C6",
+        "titleBar.activeBackground": "#505050",
+        "statusBar.background": "#505050",
+        "activityBar.background": "#353535",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monokai",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#272822",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F1C",
+        "statusBar.background": "#414339",
+        "activityBar.background": "#272822",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Quiet Light",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#F5F5F5",
+        "titleBar.activeBackground": "#C4B7D7",
+        "statusBar.background": "#705697",
+        "activityBar.background": "#EDEDF5",
+        "activityBar.foreground": "#705697"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Red",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#390000",
+        "editor.foreground": "#F8F8F8",
+        "titleBar.activeBackground": "#770000",
+        "titleBar.inactiveBackground": "#772222",
+        "statusBar.background": "#700000",
+        "activityBar.background": "#580000"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Solarized Dark",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#002B36",
+        "editor.foreground": "#839496",
+        "titleBar.activeBackground": "#002C39",
+        "statusBar.background": "#00212B",
+        "statusBar.foreground": "#93A1A1",
+        "activityBar.background": "#003847"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Solarized Light",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#FDF6E3",
+        "editor.foreground": "#657B83",
+        "titleBar.activeBackground": "#EEE8D5",
+        "statusBar.background": "#EEE8D5",
+        "statusBar.foreground": "#586E75",
+        "activityBar.background": "#DDD6C1",
+        "activityBar.foreground": "#584C27"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tomorrow Night Blue",
+      "label": "%themeLabel%",
+      "colors": {
+        "editor.background": "#002451",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#001126",
+        "statusBar.background": "#001126",
+        "activityBar.background": "#001733"
+      },
+      "type": "dark"
+    }
+  ]
+}

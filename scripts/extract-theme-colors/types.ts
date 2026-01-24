@@ -43,6 +43,7 @@ export interface ExtractedTheme {
   colors: ThemeColors;
   type: ThemeType;
   extensionId: string;
+  publisherName: string;
   extensionName: string;
   installCount: number;
 }

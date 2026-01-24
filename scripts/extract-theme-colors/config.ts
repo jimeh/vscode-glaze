@@ -14,10 +14,14 @@ export const CONFIG = {
   concurrency: 5,
   /** Output directory for generated files */
   outputDir: 'src/theme/generated',
-  /** Directory for per-extension theme files */
-  extensionsDir: 'src/theme/generated/extensions',
-  /** Path to the consolidated colors file */
-  colorsPath: 'src/theme/generated/colors.ts',
+  /** Path to built-in theme colors file */
+  builtinColorsPath: 'src/theme/generated/builtins.ts',
+  /** Path to extension theme colors file */
+  extensionColorsPath: 'src/theme/generated/extensions.ts',
+  /** Path to VS Code built-ins metadata file */
+  builtinsMetadataPath: 'src/theme/generated/builtins.json',
+  /** Directory for per-extension metadata files */
+  extensionsMetadataDir: 'src/theme/generated/extensions',
   /** Path to pinned extensions config */
   pinnedExtensionsPath: 'scripts/extract-theme-colors/pinned-extensions.json',
   /** Cache directory */

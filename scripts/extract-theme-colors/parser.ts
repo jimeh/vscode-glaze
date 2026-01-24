@@ -202,6 +202,7 @@ export function parseTheme(
   contribution: ThemeContribution,
   readThemeFile: ThemeFileReader,
   extensionId: string,
+  publisherName: string,
   extensionName: string,
   installCount: number
 ): ExtractedTheme | undefined {
@@ -242,6 +243,7 @@ export function parseTheme(
     colors,
     type,
     extensionId,
+    publisherName,
     extensionName,
     installCount,
   };

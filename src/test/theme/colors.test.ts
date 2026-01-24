@@ -1,63 +1,40 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
-  BUILTIN_THEMES,
   getThemeInfo,
   getColorForKey,
   type ThemeColors,
 } from '../../theme/colors';
-import { GENERATED_THEME_COLORS } from '../../theme/generated/colors';
+import { BUILTIN_THEME_COLORS } from '../../theme/generated/builtins';
+import { EXTENSION_THEME_COLORS } from '../../theme/generated/extensions';
 
-suite('BUILTIN_THEMES', () => {
+suite('BUILTIN_THEME_COLORS', () => {
   test('contains VS Code built-in themes', () => {
-    assert.ok(BUILTIN_THEMES['Default Dark Modern']);
-    assert.ok(BUILTIN_THEMES['Default Light Modern']);
-    assert.ok(BUILTIN_THEMES['Default Dark+']);
-    assert.ok(BUILTIN_THEMES['Default Light+']);
+    assert.ok(BUILTIN_THEME_COLORS['Default Dark Modern']);
+    assert.ok(BUILTIN_THEME_COLORS['Default Light Modern']);
+    assert.ok(BUILTIN_THEME_COLORS['Default Dark+']);
+    assert.ok(BUILTIN_THEME_COLORS['Default Light+']);
   });
 
-  test('contains popular dark themes', () => {
-    const popularDark = [
-      'One Dark Pro',
-      'Dracula',
-      'Night Owl',
+  test('contains classic VS Code themes', () => {
+    const classicThemes = [
       'Monokai',
-      'Nord',
+      'Monokai Dimmed',
       'Solarized Dark',
-      'GitHub Dark Default',
-      'Tokyo Night',
-      'Catppuccin Mocha',
-    ];
-    for (const theme of popularDark) {
-      assert.ok(BUILTIN_THEMES[theme], `Missing dark theme: ${theme}`);
-      assert.strictEqual(
-        BUILTIN_THEMES[theme].type,
-        'dark',
-        `${theme} should be dark`
-      );
-    }
-  });
-
-  test('contains popular light themes', () => {
-    const popularLight = [
-      'GitHub Light Default',
       'Solarized Light',
-      'Catppuccin Latte',
-      'Ayu Light',
+      'Quiet Light',
     ];
-    for (const theme of popularLight) {
-      assert.ok(BUILTIN_THEMES[theme], `Missing light theme: ${theme}`);
-      assert.strictEqual(
-        BUILTIN_THEMES[theme].type,
-        'light',
-        `${theme} should be light`
+    for (const theme of classicThemes) {
+      assert.ok(
+        BUILTIN_THEME_COLORS[theme],
+        `Missing built-in theme: ${theme}`
       );
     }
   });
 
   test('all colors are valid hex colors', () => {
     const hexPattern = /^#[0-9A-Fa-f]{6}$/;
-    for (const [name, info] of Object.entries(BUILTIN_THEMES)) {
+    for (const [name, info] of Object.entries(BUILTIN_THEME_COLORS)) {
       assert.match(
         info.colors['editor.background'],
         hexPattern,
@@ -67,8 +44,8 @@ suite('BUILTIN_THEMES', () => {
   });
 
   test('dark themes have low lightness backgrounds', () => {
-    // Dark themes should have backgrounds with lightness < 0.3
-    const darkThemes = Object.entries(BUILTIN_THEMES).filter(
+    // Dark themes should have backgrounds with lightness < 0.35
+    const darkThemes = Object.entries(BUILTIN_THEME_COLORS).filter(
       ([, info]) => info.type === 'dark' || info.type === 'hcDark'
     );
     for (const [name, info] of darkThemes) {
@@ -86,7 +63,7 @@ suite('BUILTIN_THEMES', () => {
 
   test('light themes have high lightness backgrounds', () => {
     // Light themes should have backgrounds with lightness > 0.7
-    const lightThemes = Object.entries(BUILTIN_THEMES).filter(
+    const lightThemes = Object.entries(BUILTIN_THEME_COLORS).filter(
       ([, info]) => info.type === 'light' || info.type === 'hcLight'
     );
     for (const [name, info] of lightThemes) {
@@ -104,7 +81,7 @@ suite('BUILTIN_THEMES', () => {
 });
 
 suite('getThemeInfo', () => {
-  test('returns info for known themes', () => {
+  test('returns info for known extension themes', () => {
     const result = getThemeInfo('One Dark Pro');
     assert.ok(result);
     assert.strictEqual(result.colors['editor.background'], '#282C34');
@@ -124,57 +101,56 @@ suite('getThemeInfo', () => {
 });
 
 suite('getThemeInfo priority order', () => {
-  // Verify that generated themes take precedence over built-in themes
-  test('generated themes override built-in themes', () => {
-    // Atom One Dark exists in both built-in and generated
-    // Generated has per-element colors, built-in only has editor
-    assert.ok(BUILTIN_THEMES['Atom One Dark'], 'should exist in built-in');
+  test('builtin themes take precedence over extension themes', () => {
+    // Default Dark Modern is a VS Code built-in theme
+    const themeName = 'Default Dark Modern';
+    assert.ok(BUILTIN_THEME_COLORS[themeName], 'should exist in builtin');
+
+    const result = getThemeInfo(themeName);
+    assert.ok(result);
+
+    // Verify we get the builtin version
+    assert.strictEqual(
+      result.colors['editor.background'],
+      BUILTIN_THEME_COLORS[themeName].colors['editor.background'],
+      'should use builtin colors'
+    );
+  });
+
+  test('finds themes from extension data', () => {
+    // Atom One Dark exists in extension data with per-element colors
     assert.ok(
-      GENERATED_THEME_COLORS['Atom One Dark'],
-      'should exist in generated'
+      EXTENSION_THEME_COLORS['Atom One Dark'],
+      'should exist in extensions'
     );
 
     const result = getThemeInfo('Atom One Dark');
     assert.ok(result);
 
-    // Verify we get the generated version (which has additional colors)
-    const generated = GENERATED_THEME_COLORS['Atom One Dark'];
+    // Verify we get the extension version (which has additional colors)
+    const extension = EXTENSION_THEME_COLORS['Atom One Dark'];
     assert.strictEqual(
       result.colors['editor.background'],
-      generated.colors['editor.background'],
-      'should use generated editor color'
+      extension.colors['editor.background'],
+      'should use extension editor color'
     );
     assert.strictEqual(
       result.colors['titleBar.activeBackground'],
-      generated.colors['titleBar.activeBackground'],
-      'should have titleBar from generated (not present in built-in)'
+      extension.colors['titleBar.activeBackground'],
+      'should have titleBar from extension'
     );
   });
 
-  test('built-in themes serve as fallback for themes not in generated', () => {
-    // One Dark Pro is in built-in but may not be in generated (or has same)
-    // Use a theme that's definitely only in built-in
-    const builtinOnly = 'One Dark Pro Flat';
-    assert.ok(BUILTIN_THEMES[builtinOnly], 'should exist in built-in');
-
-    const result = getThemeInfo(builtinOnly);
-    assert.ok(result, 'should fall back to built-in');
-    assert.strictEqual(
-      result.colors['editor.background'],
-      BUILTIN_THEMES[builtinOnly].colors['editor.background']
-    );
-  });
-
-  test('generated themes provide per-element colors', () => {
-    // Verify that a generated theme with all element colors returns them
+  test('extension themes provide per-element colors', () => {
+    // Verify that an extension theme with all element colors returns them
     const themeName = 'Atom One Dark';
     const result = getThemeInfo(themeName);
     assert.ok(result);
 
     // Should have editor.background at minimum
     assert.ok(result.colors['editor.background']);
-    // If generated has per-element colors, they should be present
-    if (GENERATED_THEME_COLORS[themeName].colors['titleBar.activeBackground']) {
+    // If extension has per-element colors, they should be present
+    if (EXTENSION_THEME_COLORS[themeName].colors['titleBar.activeBackground']) {
       assert.ok(result.colors['titleBar.activeBackground']);
     }
   });
@@ -197,7 +173,7 @@ suite('getThemeInfo with custom config', () => {
     );
   });
 
-  test('custom config overrides built-in theme', async () => {
+  test('custom config overrides extension theme', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'theme.colors',
@@ -235,7 +211,7 @@ suite('getThemeInfo with custom config', () => {
     assert.strictEqual(result.type, 'light');
   });
 
-  test('falls back to built-in when no custom config', async () => {
+  test('falls back to extension when no custom config', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update('theme.colors', {}, vscode.ConfigurationTarget.Global);
 
