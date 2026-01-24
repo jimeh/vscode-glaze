@@ -40,7 +40,7 @@ export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar';
 /**
  * Available color schemes for tinting.
  */
-export type ColorScheme = 'pastel' | 'vibrant';
+export type ColorScheme = 'pastel' | 'vibrant' | 'muted' | 'monochrome';
 
 /**
  * User-configurable theme mode setting.
