@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import type {
+  ColorScheme,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -9,6 +10,7 @@ import type {
 } from './types';
 
 export type {
+  ColorScheme,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -56,6 +58,21 @@ const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];
 
 function isValidThemeMode(value: string): value is ThemeMode {
   return VALID_THEME_MODES.includes(value as ThemeMode);
+}
+
+const VALID_COLOR_SCHEMES: ColorScheme[] = ['pastel', 'vibrant'];
+
+function isValidColorScheme(value: string): value is ColorScheme {
+  return VALID_COLOR_SCHEMES.includes(value as ColorScheme);
+}
+
+/**
+ * Returns the configured color scheme.
+ */
+export function getColorScheme(): ColorScheme {
+  const config = vscode.workspace.getConfiguration('patina');
+  const scheme = config.get<string>('colorScheme', 'pastel');
+  return isValidColorScheme(scheme) ? scheme : 'pastel';
 }
 
 const VALID_SOURCES: WorkspaceIdentifierSource[] = [

@@ -48,6 +48,20 @@
           "scope": "window",
           "order": 1
         },
+        "patina.colorScheme": {
+          "type": "string",
+          "enum": [
+            "pastel",
+            "vibrant"
+          ],
+          "enumDescriptions": [
+            "Soft, muted tones that blend gently with any theme",
+            "Higher saturation for bolder, more noticeable colors"
+          ],
+          "default": "pastel",
+          "description": "Color scheme for tinting. Pastel uses soft, muted tones while Vibrant uses higher saturation for bolder colors.",
+          "order": 2
+        },
         "patina.workspaceIdentifier.source": {
           "type": "string",
           "enum": [

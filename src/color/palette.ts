@@ -1,10 +1,11 @@
 import type { HSL } from './types';
-import type { TintTarget } from '../config';
-import type { ThemeContext, ThemeType } from '../theme';
+import type { ColorScheme, TintTarget } from '../config';
+import type { ThemeContext } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { hslToHex } from './convert';
 import { blendWithTheme } from './blend';
+import { getSchemeConfig } from './schemes';
 
 /**
  * Full color palette for all VSCode UI elements.
@@ -59,65 +60,6 @@ const BACKGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
 ]);
 
 /**
- * Configuration for saturation and lightness values.
- */
-type ElementConfig = { saturation: number; lightness: number };
-
-/**
- * Configuration for each UI element's color generation per theme type.
- * All elements share the same hue but vary in saturation/lightness for visual
- * hierarchy.
- *
- * Foreground colors use the same hue but with appropriate lightness and low
- * saturation to ensure readability while maintaining color harmony.
- */
-const THEME_CONFIGS: Record<
-  ThemeType,
-  Record<keyof PatinaColorPalette, ElementConfig>
-> = {
-  dark: {
-    'titleBar.activeBackground': { saturation: 0.4, lightness: 0.32 },
-    'titleBar.activeForeground': { saturation: 0.15, lightness: 0.9 },
-    'titleBar.inactiveBackground': { saturation: 0.3, lightness: 0.28 },
-    'titleBar.inactiveForeground': { saturation: 0.1, lightness: 0.7 },
-    'statusBar.background': { saturation: 0.5, lightness: 0.35 },
-    'statusBar.foreground': { saturation: 0.15, lightness: 0.9 },
-    'activityBar.background': { saturation: 0.35, lightness: 0.25 },
-    'activityBar.foreground': { saturation: 0.15, lightness: 0.85 },
-  },
-  light: {
-    'titleBar.activeBackground': { saturation: 0.45, lightness: 0.82 },
-    'titleBar.activeForeground': { saturation: 0.25, lightness: 0.05 },
-    'titleBar.inactiveBackground': { saturation: 0.35, lightness: 0.86 },
-    'titleBar.inactiveForeground': { saturation: 0.15, lightness: 0.2 },
-    'statusBar.background': { saturation: 0.5, lightness: 0.78 },
-    'statusBar.foreground': { saturation: 0.25, lightness: 0.05 },
-    'activityBar.background': { saturation: 0.4, lightness: 0.88 },
-    'activityBar.foreground': { saturation: 0.2, lightness: 0.06 },
-  },
-  hcDark: {
-    'titleBar.activeBackground': { saturation: 0.5, lightness: 0.15 },
-    'titleBar.activeForeground': { saturation: 0.1, lightness: 0.98 },
-    'titleBar.inactiveBackground': { saturation: 0.4, lightness: 0.12 },
-    'titleBar.inactiveForeground': { saturation: 0.08, lightness: 0.85 },
-    'statusBar.background': { saturation: 0.55, lightness: 0.18 },
-    'statusBar.foreground': { saturation: 0.1, lightness: 0.98 },
-    'activityBar.background': { saturation: 0.45, lightness: 0.1 },
-    'activityBar.foreground': { saturation: 0.1, lightness: 0.95 },
-  },
-  hcLight: {
-    'titleBar.activeBackground': { saturation: 0.5, lightness: 0.92 },
-    'titleBar.activeForeground': { saturation: 0.3, lightness: 0.05 },
-    'titleBar.inactiveBackground': { saturation: 0.4, lightness: 0.94 },
-    'titleBar.inactiveForeground': { saturation: 0.2, lightness: 0.2 },
-    'statusBar.background': { saturation: 0.55, lightness: 0.9 },
-    'statusBar.foreground': { saturation: 0.3, lightness: 0.05 },
-    'activityBar.background': { saturation: 0.45, lightness: 0.95 },
-    'activityBar.foreground': { saturation: 0.25, lightness: 0.08 },
-  },
-};
-
-/**
  * Options for palette generation.
  */
 export interface GeneratePaletteOptions {
@@ -127,12 +69,14 @@ export interface GeneratePaletteOptions {
   targets: TintTarget[];
   /** Theme context with type and optional colors */
   themeContext: ThemeContext;
+  /** Color scheme to use for palette generation, default 'pastel' */
+  colorScheme?: ColorScheme;
   /** How much to blend toward theme background (0-1), default 0.35 */
   themeBlendFactor?: number;
 }
 
 /**
- * Generates a harmonious pastel color palette from a workspace identifier.
+ * Generates a harmonious color palette from a workspace identifier.
  * All colors share the same hue (derived from the identifier) but vary in
  * saturation and lightness to create visual hierarchy.
  *
@@ -149,6 +93,7 @@ export function generatePalette(
     workspaceIdentifier,
     targets,
     themeContext,
+    colorScheme = 'pastel',
     themeBlendFactor = 0.35,
   } = options;
 
@@ -162,7 +107,8 @@ export function generatePalette(
     }
   }
 
-  const themeConfig = THEME_CONFIGS[themeContext.type];
+  const schemeConfig = getSchemeConfig(colorScheme);
+  const themeConfig = schemeConfig[themeContext.type];
   const palette: PartialPatinaColorPalette = {};
 
   for (const key of keysToInclude) {

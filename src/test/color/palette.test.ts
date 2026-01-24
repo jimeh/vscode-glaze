@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { generatePalette } from '../../color';
-import type { TintTarget } from '../../config';
+import type { ColorScheme, TintTarget } from '../../config';
 import type { ThemeType, ThemeContext } from '../../theme';
 import type { ThemeColors } from '../../theme/colors';
 
@@ -468,6 +468,171 @@ suite('generatePalette theme blending', () => {
   });
 });
 
+suite('generatePalette color schemes', () => {
+  const COLOR_SCHEMES: ColorScheme[] = ['pastel', 'vibrant'];
+  const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
+
+  test('generates valid colors for all color schemes', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+
+    for (const scheme of COLOR_SCHEMES) {
+      const palette = generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: scheme,
+      });
+      for (const [key, color] of Object.entries(palette)) {
+        assert.match(
+          color,
+          hexPattern,
+          `Invalid hex for ${key} with ${scheme} scheme: ${color}`
+        );
+      }
+    }
+  });
+
+  test('pastel and vibrant produce different colors', () => {
+    const pastelPalette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'pastel',
+    });
+    const vibrantPalette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'vibrant',
+    });
+
+    assert.notStrictEqual(
+      pastelPalette['titleBar.activeBackground'],
+      vibrantPalette['titleBar.activeBackground'],
+      'Pastel and vibrant should produce different background colors'
+    );
+  });
+
+  test('vibrant scheme has more saturated colors than pastel', () => {
+    const pastelPalette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'pastel',
+    });
+    const vibrantPalette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'vibrant',
+    });
+
+    const pastelSat = hexToSaturation(
+      pastelPalette['titleBar.activeBackground']!
+    );
+    const vibrantSat = hexToSaturation(
+      vibrantPalette['titleBar.activeBackground']!
+    );
+
+    assert.ok(
+      vibrantSat > pastelSat,
+      `Vibrant saturation (${vibrantSat}) should be higher than pastel (${pastelSat})`
+    );
+  });
+
+  test('default scheme is pastel when not specified', () => {
+    const defaultPalette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+    });
+    const pastelPalette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'pastel',
+    });
+
+    assert.deepStrictEqual(
+      defaultPalette,
+      pastelPalette,
+      'Default scheme should be pastel'
+    );
+  });
+
+  test('color schemes work with all theme types', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+
+    for (const scheme of COLOR_SCHEMES) {
+      for (const themeType of THEME_TYPES) {
+        const palette = generatePalette({
+          workspaceIdentifier: 'test-project',
+          targets: ALL_TARGETS,
+          themeContext: makeThemeContext(themeType),
+          colorScheme: scheme,
+        });
+        for (const [key, color] of Object.entries(palette)) {
+          assert.match(
+            color,
+            hexPattern,
+            `Invalid hex for ${key} with ${scheme} scheme in ${themeType}: ${color}`
+          );
+        }
+      }
+    }
+  });
+
+  test('same workspace + scheme produces consistent colors', () => {
+    for (const scheme of COLOR_SCHEMES) {
+      const p1 = generatePalette({
+        workspaceIdentifier: 'consistent-test',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: scheme,
+      });
+      const p2 = generatePalette({
+        workspaceIdentifier: 'consistent-test',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: scheme,
+      });
+      assert.deepStrictEqual(
+        p1,
+        p2,
+        `Palette should be consistent for scheme: ${scheme}`
+      );
+    }
+  });
+
+  test('color schemes work with theme blending', () => {
+    for (const scheme of COLOR_SCHEMES) {
+      const paletteNoBlend = generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: scheme,
+        themeBlendFactor: 0,
+      });
+
+      const paletteBlend = generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark', {
+          colors: { 'editor.background': '#282C34' },
+        }),
+        colorScheme: scheme,
+        themeBlendFactor: 0.35,
+      });
+
+      assert.notStrictEqual(
+        paletteNoBlend['titleBar.activeBackground'],
+        paletteBlend['titleBar.activeBackground'],
+        `${scheme} scheme should support theme blending`
+      );
+    }
+  });
+});
+
 /**
  * Simple luminance calculation from hex color.
  */
@@ -476,4 +641,24 @@ function hexToLuminance(hex: string): number {
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return 0.299 * r + 0.587 * g + 0.114 * b;
+}
+
+/**
+ * Calculate saturation from hex color (HSL saturation).
+ */
+function hexToSaturation(hex: string): number {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+
+  if (max === min) {
+    return 0; // achromatic
+  }
+
+  const d = max - min;
+  return l > 0.5 ? d / (2 - max - min) : d / (max + min);
 }
