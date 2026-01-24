@@ -1,0 +1,31 @@
+{
+  "extensionId": "0a086dcd-1b5e-402e-8cd7-616c428d9e43",
+  "extensionName": "vscode-color-identifiers-mode",
+  "publisherName": "MatthewNespor",
+  "displayName": "Color Identifiers",
+  "version": "1.2.0",
+  "extractedAt": "2026-01-24T21:28:54.984Z",
+  "installCount": 6940,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Color Identifiers Dark",
+      "label": "Color Identifiers Dark",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Color Identifiers Light",
+      "label": "Color Identifiers Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

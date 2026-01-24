@@ -1,0 +1,81 @@
+{
+  "extensionId": "9d231b1e-581a-43fb-9316-0a017884aacd",
+  "extensionName": "twin-vsc",
+  "publisherName": "twin-themes",
+  "displayName": "Twin Themes",
+  "version": "1.0.5",
+  "extractedAt": "2026-01-24T21:28:55.753Z",
+  "installCount": 6710,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Twin Black",
+      "label": "Twin Black",
+      "colors": {
+        "editor.background": "#2A2D2C",
+        "editor.foreground": "#BCC0CC",
+        "titleBar.activeBackground": "#232524",
+        "titleBar.activeForeground": "#BCC0CC",
+        "titleBar.inactiveBackground": "#232524",
+        "titleBar.inactiveForeground": "#BCC0CC",
+        "statusBar.background": "#232524",
+        "statusBar.foreground": "#BCC0CC",
+        "activityBar.background": "#2A2D2C",
+        "activityBar.foreground": "#BCC0CC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Twin Black Flat",
+      "label": "Twin Black Flat",
+      "colors": {
+        "editor.background": "#2A2D2C",
+        "editor.foreground": "#BCC0CC",
+        "titleBar.activeBackground": "#2A2D2C",
+        "titleBar.activeForeground": "#BCC0CC",
+        "titleBar.inactiveBackground": "#2A2D2C",
+        "titleBar.inactiveForeground": "#BCC0CC",
+        "statusBar.background": "#2A2D2C",
+        "statusBar.foreground": "#BCC0CC",
+        "activityBar.background": "#2A2D2C",
+        "activityBar.foreground": "#BCC0CC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Twin Blue",
+      "label": "Twin Blue",
+      "colors": {
+        "editor.background": "#112239",
+        "editor.foreground": "#BCC0CC",
+        "titleBar.activeBackground": "#0E1C2F",
+        "titleBar.activeForeground": "#BCC0CC",
+        "titleBar.inactiveBackground": "#0E1C2F",
+        "titleBar.inactiveForeground": "#BCC0CC",
+        "statusBar.background": "#0E1C2F",
+        "statusBar.foreground": "#BCC0CC",
+        "activityBar.background": "#112239",
+        "activityBar.foreground": "#BCC0CC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Twin Blue Flat",
+      "label": "Twin Blue Flat",
+      "colors": {
+        "editor.background": "#112239",
+        "editor.foreground": "#BCC0CC",
+        "titleBar.activeBackground": "#112239",
+        "titleBar.activeForeground": "#BCC0CC",
+        "titleBar.inactiveBackground": "#112239",
+        "titleBar.inactiveForeground": "#BCC0CC",
+        "statusBar.background": "#112239",
+        "statusBar.foreground": "#BCC0CC",
+        "activityBar.background": "#112239",
+        "activityBar.foreground": "#BCC0CC"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

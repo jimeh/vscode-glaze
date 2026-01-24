@@ -1,0 +1,30 @@
+{
+  "extensionId": "9dc3825e-b458-4e16-ba42-aca2867c1bb3",
+  "extensionName": "Neofloss",
+  "publisherName": "radiolevity",
+  "displayName": "Neofloss",
+  "version": "1.1.6",
+  "extractedAt": "2026-01-24T21:28:49.883Z",
+  "installCount": 16395,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Neofloss",
+      "label": "Neofloss",
+      "colors": {
+        "editor.background": "#1C1B1D",
+        "editor.foreground": "#D8B2DE",
+        "titleBar.activeBackground": "#1C1B1D",
+        "titleBar.activeForeground": "#695A6B",
+        "titleBar.inactiveBackground": "#1C1B1D",
+        "titleBar.inactiveForeground": "#695A6B",
+        "statusBar.background": "#1C1B1D",
+        "statusBar.foreground": "#695A6B",
+        "activityBar.background": "#1C1B1D",
+        "activityBar.foreground": "#7497E6"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

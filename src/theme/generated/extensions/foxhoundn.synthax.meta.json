@@ -1,0 +1,30 @@
+{
+  "extensionId": "e419bb4b-2f25-4d0d-b175-d6a66fbc4ca9",
+  "extensionName": "synthax",
+  "publisherName": "foxhoundn",
+  "displayName": "Synthax",
+  "version": "0.1.13",
+  "extractedAt": "2026-01-24T21:28:50.322Z",
+  "installCount": 13706,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Synthax",
+      "label": "Synthax",
+      "colors": {
+        "editor.background": "#11002E",
+        "editor.foreground": "#D0B7FF",
+        "titleBar.activeBackground": "#0D0221",
+        "titleBar.activeForeground": "#D0B7FF",
+        "titleBar.inactiveBackground": "#0D0221",
+        "titleBar.inactiveForeground": "#D0B7FF",
+        "statusBar.background": "#0D0221",
+        "statusBar.foreground": "#D0B7FF",
+        "activityBar.background": "#0D0221",
+        "activityBar.foreground": "#00FBFF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

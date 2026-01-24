@@ -1,0 +1,47 @@
+{
+  "extensionId": "a4bfb50a-4bfd-4b96-a1eb-6422ae20f49f",
+  "extensionName": "theme-aurora-borealis",
+  "publisherName": "lohsebhipolg2s",
+  "displayName": "Aurora Borealis Studio Theme",
+  "version": "1.0.2",
+  "extractedAt": "2026-01-24T21:29:03.046Z",
+  "installCount": 3957,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Aurora Borealis",
+      "label": "Aurora Borealis",
+      "colors": {
+        "editor.background": "#0B1426",
+        "editor.foreground": "#E8F4FD",
+        "titleBar.activeBackground": "#0F1B2E",
+        "titleBar.activeForeground": "#E8F4FD",
+        "titleBar.inactiveBackground": "#0B1426",
+        "titleBar.inactiveForeground": "#78909C",
+        "statusBar.background": "#0F1B2E",
+        "statusBar.foreground": "#E8F4FD",
+        "activityBar.background": "#0F1B2E",
+        "activityBar.foreground": "#64FFDA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Aurora Borealis Soft",
+      "label": "Aurora Borealis Soft",
+      "colors": {
+        "editor.background": "#1A2332",
+        "editor.foreground": "#D1E7F0",
+        "titleBar.activeBackground": "#1E2A38",
+        "titleBar.activeForeground": "#D1E7F0",
+        "titleBar.inactiveBackground": "#1A2332",
+        "titleBar.inactiveForeground": "#90A4AE",
+        "statusBar.background": "#1E2A38",
+        "statusBar.foreground": "#D1E7F0",
+        "activityBar.background": "#1E2A38",
+        "activityBar.foreground": "#81C784"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

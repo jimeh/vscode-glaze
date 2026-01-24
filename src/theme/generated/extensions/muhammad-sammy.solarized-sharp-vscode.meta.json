@@ -1,0 +1,37 @@
+{
+  "extensionId": "e97dd737-5474-43b9-860e-be1487245e2d",
+  "extensionName": "solarized-sharp-vscode",
+  "publisherName": "muhammad-sammy",
+  "displayName": "Solarized Sharp",
+  "version": "1.0.4",
+  "extractedAt": "2026-01-24T21:29:03.573Z",
+  "installCount": 3829,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Solarized Sharp Dark",
+      "label": "Solarized Sharp Dark",
+      "colors": {
+        "editor.background": "#002B36",
+        "editor.foreground": "#819090",
+        "titleBar.activeBackground": "#00222B",
+        "statusBar.background": "#00222B",
+        "activityBar.background": "#003C4B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Solarized Sharp Darker",
+      "label": "Solarized Sharp Darker",
+      "colors": {
+        "editor.background": "#042029",
+        "editor.foreground": "#819090",
+        "titleBar.activeBackground": "#031920",
+        "statusBar.background": "#031920",
+        "activityBar.background": "#052C39"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

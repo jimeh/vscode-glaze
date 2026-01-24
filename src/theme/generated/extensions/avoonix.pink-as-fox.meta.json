@@ -1,0 +1,64 @@
+{
+  "extensionId": "c50395b2-f555-496d-b824-149718ab9dc1",
+  "extensionName": "pink-as-fox",
+  "publisherName": "Avoonix",
+  "displayName": "Pink as Fox",
+  "version": "1.8.1",
+  "extractedAt": "2026-01-24T21:29:00.369Z",
+  "installCount": 4641,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Pink as Fox (black)",
+      "label": "Pink as Fox (black)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFD4F1",
+        "titleBar.activeBackground": "#FF55C8",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#FF55C8",
+        "statusBar.background": "#FF55C8",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#FFD4F1",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pink as Fox (blacker)",
+      "label": "Pink as Fox (blacker)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFD4F1",
+        "titleBar.activeBackground": "#FF55C8",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#FF55C8",
+        "statusBar.background": "#FF55C8",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FF55C8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pink as Fox (blackest)",
+      "label": "Pink as Fox (blackest)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFD4F1",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FF55C8",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#541C42",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FF55C8",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FF55C8"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

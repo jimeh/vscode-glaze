@@ -1,0 +1,25 @@
+{
+  "extensionId": "9be673da-cf39-4f71-83c3-b2ec5241813a",
+  "extensionName": "zenburn",
+  "publisherName": "ryanolsonx",
+  "displayName": "Zenburn",
+  "version": "2.2.0",
+  "extractedAt": "2026-01-24T21:29:04.968Z",
+  "installCount": 3585,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Zenburn",
+      "label": "Zenburn",
+      "colors": {
+        "editor.background": "#3F3F3F",
+        "editor.foreground": "#DEDEDE",
+        "statusBar.background": "#2E3330",
+        "statusBar.foreground": "#87AE86",
+        "activityBar.background": "#313633"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

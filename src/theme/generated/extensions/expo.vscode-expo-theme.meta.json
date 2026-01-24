@@ -1,0 +1,40 @@
+{
+  "extensionId": "86eb2bf4-7089-43b9-9ed2-2a6c0ddcd98e",
+  "extensionName": "vscode-expo-theme",
+  "publisherName": "expo",
+  "displayName": "Expo Theme",
+  "version": "1.4.2",
+  "extractedAt": "2026-01-24T21:28:59.599Z",
+  "installCount": 4925,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Expo Dark",
+      "label": "Expo Dark",
+      "colors": {
+        "editor.background": "#111113",
+        "titleBar.activeBackground": "#0C0D0E",
+        "titleBar.inactiveBackground": "#0C0D0E",
+        "statusBar.background": "#0C0D0E",
+        "activityBar.background": "#0C0D0E",
+        "activityBar.foreground": "#B0B4BA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Expo Light",
+      "label": "Expo Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "titleBar.activeBackground": "#F0F0F3",
+        "titleBar.inactiveBackground": "#F0F0F3",
+        "statusBar.background": "#FCFCFD",
+        "statusBar.foreground": "#60646C",
+        "activityBar.background": "#F9F9FB",
+        "activityBar.foreground": "#60646C"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

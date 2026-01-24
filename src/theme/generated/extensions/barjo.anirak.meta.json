@@ -1,0 +1,47 @@
+{
+  "extensionId": "8dfa4272-5718-4324-84ab-04d346ee906b",
+  "extensionName": "anirak",
+  "publisherName": "barjo",
+  "displayName": "Anirak",
+  "version": "6.4.3",
+  "extractedAt": "2026-01-24T21:28:59.377Z",
+  "installCount": 5064,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Anirak (Dark)",
+      "label": "Anirak (Dark)",
+      "colors": {
+        "editor.background": "#111127",
+        "editor.foreground": "#EBF2FF",
+        "titleBar.activeBackground": "#111127",
+        "titleBar.activeForeground": "#B3C7FF",
+        "titleBar.inactiveBackground": "#161731",
+        "titleBar.inactiveForeground": "#B3C7FF",
+        "statusBar.background": "#161731",
+        "statusBar.foreground": "#EBF2FF",
+        "activityBar.background": "#161731",
+        "activityBar.foreground": "#EBF2FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Anirak (Light)",
+      "label": "Anirak (Light)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2B2E4B",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#16216B",
+        "titleBar.inactiveBackground": "#F8F8FC",
+        "titleBar.inactiveForeground": "#16216B",
+        "statusBar.background": "#F8F8FC",
+        "statusBar.foreground": "#2B2E4B",
+        "activityBar.background": "#F8F8FC",
+        "activityBar.foreground": "#2B2E4B"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

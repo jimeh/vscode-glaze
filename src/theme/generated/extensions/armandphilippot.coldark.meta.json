@@ -1,0 +1,47 @@
+{
+  "extensionId": "4b10b624-fb27-4e90-a770-386c84bd6eff",
+  "extensionName": "coldark",
+  "publisherName": "armandphilippot",
+  "displayName": "Coldark",
+  "version": "1.2.11",
+  "extractedAt": "2026-01-24T21:28:52.745Z",
+  "installCount": 9049,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Coldark - Cold",
+      "label": "Coldark - Cold",
+      "colors": {
+        "editor.background": "#E3EAF2",
+        "editor.foreground": "#111B27",
+        "titleBar.activeBackground": "#D0DAE7",
+        "titleBar.activeForeground": "#213043",
+        "titleBar.inactiveBackground": "#D0DAE7",
+        "titleBar.inactiveForeground": "#213043",
+        "statusBar.background": "#005A8E",
+        "statusBar.foreground": "#E3EAF2",
+        "activityBar.background": "#0B121B",
+        "activityBar.foreground": "#D0DAE7"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Coldark - Dark",
+      "label": "Coldark - Dark",
+      "colors": {
+        "editor.background": "#111B27",
+        "editor.foreground": "#E3EAF2",
+        "titleBar.activeBackground": "#0B121B",
+        "titleBar.activeForeground": "#D0DAE7",
+        "titleBar.inactiveBackground": "#0B121B",
+        "titleBar.inactiveForeground": "#D0DAE7",
+        "statusBar.background": "#6CB8E6",
+        "statusBar.foreground": "#111B27",
+        "activityBar.background": "#0B121B",
+        "activityBar.foreground": "#D0DAE7"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

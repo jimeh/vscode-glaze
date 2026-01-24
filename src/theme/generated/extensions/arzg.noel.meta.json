@@ -1,0 +1,43 @@
+{
+  "extensionId": "663c0ebf-8ac5-489b-a4b2-a4e5ef9a6760",
+  "extensionName": "noel",
+  "publisherName": "arzg",
+  "displayName": "Noel",
+  "version": "2.1.0",
+  "extractedAt": "2026-01-24T21:29:03.255Z",
+  "installCount": 3914,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Noel",
+      "label": "Noel",
+      "colors": {
+        "editor.background": "#2A3235",
+        "editor.foreground": "#DEEEF3",
+        "titleBar.activeBackground": "#252B2D",
+        "titleBar.inactiveBackground": "#252B2D",
+        "statusBar.background": "#252B2D",
+        "statusBar.foreground": "#B3DCE2",
+        "activityBar.background": "#252B2D",
+        "activityBar.foreground": "#DEEEF3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Yuru",
+      "label": "Yuru",
+      "colors": {
+        "editor.background": "#292525",
+        "editor.foreground": "#E1DBD1",
+        "titleBar.activeBackground": "#252121",
+        "titleBar.inactiveBackground": "#252121",
+        "statusBar.background": "#252121",
+        "statusBar.foreground": "#C4BAA9",
+        "activityBar.background": "#252121",
+        "activityBar.foreground": "#E1DBD1"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

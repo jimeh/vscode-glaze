@@ -1,0 +1,30 @@
+{
+  "extensionId": "1e567d70-34dd-445b-b1cd-51cfa109d5d0",
+  "extensionName": "hot-emo-theme",
+  "publisherName": "Qeenon",
+  "displayName": "Hot Emo Theme",
+  "version": "0.0.5",
+  "extractedAt": "2026-01-24T21:29:06.337Z",
+  "installCount": 3351,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Hot Emo Theme",
+      "label": "Hot Emo Theme",
+      "colors": {
+        "editor.background": "#1D252C",
+        "editor.foreground": "#B7C5D3",
+        "titleBar.activeBackground": "#171D23",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1D252C",
+        "titleBar.inactiveForeground": "#F0EAED",
+        "statusBar.background": "#171D23",
+        "statusBar.foreground": "#F5EAF5",
+        "activityBar.background": "#1D252C",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

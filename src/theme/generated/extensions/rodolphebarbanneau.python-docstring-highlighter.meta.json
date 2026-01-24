@@ -1,0 +1,12 @@
+{
+  "extensionId": "da322c09-e2b8-4354-9f0c-06d0a7a8aa77",
+  "extensionName": "python-docstring-highlighter",
+  "publisherName": "rodolphebarbanneau",
+  "displayName": "Python Docstring Highlighter",
+  "version": "0.2.4",
+  "extractedAt": "2026-01-24T21:29:03.360Z",
+  "installCount": 3872,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

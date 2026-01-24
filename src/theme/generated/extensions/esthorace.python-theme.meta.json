@@ -1,0 +1,47 @@
+{
+  "extensionId": "47fac66e-d957-478d-8cb0-3e6878f769bf",
+  "extensionName": "python-theme",
+  "publisherName": "esthorace",
+  "displayName": "Esmerald",
+  "version": "2.7.5",
+  "extractedAt": "2026-01-24T21:28:55.200Z",
+  "installCount": 6864,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Esmerald",
+      "label": "Esmerald",
+      "colors": {
+        "editor.background": "#0F1724",
+        "editor.foreground": "#A4B1CD",
+        "titleBar.activeBackground": "#121C2B",
+        "titleBar.activeForeground": "#A4B1CD",
+        "titleBar.inactiveBackground": "#121C2B",
+        "titleBar.inactiveForeground": "#A4B1CD",
+        "statusBar.background": "#1A2332",
+        "statusBar.foreground": "#A4B1CD",
+        "activityBar.background": "#121C2B",
+        "activityBar.foreground": "#A4B1CD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Esmerald Light",
+      "label": "Esmerald Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1F2939",
+        "titleBar.activeBackground": "#FCFCFC",
+        "titleBar.activeForeground": "#1F2939",
+        "titleBar.inactiveBackground": "#CED4E2",
+        "titleBar.inactiveForeground": "#F4F7FD",
+        "statusBar.background": "#F4F7FD",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#FCFCFC",
+        "activityBar.foreground": "#333E4F"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

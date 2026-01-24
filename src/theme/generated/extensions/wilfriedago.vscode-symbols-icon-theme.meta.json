@@ -1,0 +1,12 @@
+{
+  "extensionId": "8e3599db-9a78-48f8-912c-a59ba972f7a4",
+  "extensionName": "vscode-symbols-icon-theme",
+  "publisherName": "wilfriedago",
+  "displayName": "Symbols  Icon Theme",
+  "version": "0.0.1",
+  "extractedAt": "2026-01-24T21:28:51.462Z",
+  "installCount": 10824,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

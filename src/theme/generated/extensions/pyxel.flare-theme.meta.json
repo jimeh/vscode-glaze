@@ -1,0 +1,27 @@
+{
+  "extensionId": "0b3ffc7d-3ee8-497f-940b-a9b46a1c15f3",
+  "extensionName": "flare-theme",
+  "publisherName": "pyxel",
+  "displayName": "Flare Theme",
+  "version": "0.1.0",
+  "extractedAt": "2026-01-24T21:29:06.233Z",
+  "installCount": 3359,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Flare Theme",
+      "label": "Flare Theme",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#BCAC8F",
+        "titleBar.activeBackground": "#1A1A1A",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#7E7E7E",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#7D7D7D"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

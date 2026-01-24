@@ -1,0 +1,81 @@
+{
+  "extensionId": "caf27366-e756-4a15-b7cc-63c70e15a40d",
+  "extensionName": "starfall-visual-studio-code",
+  "publisherName": "sndst00m",
+  "displayName": "Starfall",
+  "version": "0.5.4",
+  "extractedAt": "2026-01-24T21:28:54.072Z",
+  "installCount": 7778,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Starfall",
+      "label": "Starfall",
+      "colors": {
+        "editor.background": "#1B2636",
+        "editor.foreground": "#CACDE2",
+        "titleBar.activeBackground": "#1B2636",
+        "titleBar.activeForeground": "#D2D8E7",
+        "titleBar.inactiveBackground": "#1B2636",
+        "titleBar.inactiveForeground": "#6D88A7",
+        "statusBar.background": "#1B2636",
+        "statusBar.foreground": "#6D88A7",
+        "activityBar.background": "#1B2636",
+        "activityBar.foreground": "#CACDE2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Starfall Darker",
+      "label": "Starfall Darker",
+      "colors": {
+        "editor.background": "#212127",
+        "editor.foreground": "#CACDE2",
+        "titleBar.activeBackground": "#212127",
+        "titleBar.activeForeground": "#D2D8E7",
+        "titleBar.inactiveBackground": "#212127",
+        "titleBar.inactiveForeground": "#7E8995",
+        "statusBar.background": "#212127",
+        "statusBar.foreground": "#7E8995",
+        "activityBar.background": "#212127",
+        "activityBar.foreground": "#CACDE2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Starfall Ocean",
+      "label": "Starfall Ocean",
+      "colors": {
+        "editor.background": "#0E131B",
+        "editor.foreground": "#CACDE2",
+        "titleBar.activeBackground": "#0E131B",
+        "titleBar.activeForeground": "#D2D8E7",
+        "titleBar.inactiveBackground": "#0E131B",
+        "titleBar.inactiveForeground": "#7E8995",
+        "statusBar.background": "#0E131B",
+        "statusBar.foreground": "#7E8995",
+        "activityBar.background": "#0E131B",
+        "activityBar.foreground": "#CACDE2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Starfall Palenight",
+      "label": "Starfall Palenight",
+      "colors": {
+        "editor.background": "#202337",
+        "editor.foreground": "#CACDE2",
+        "titleBar.activeBackground": "#202337",
+        "titleBar.activeForeground": "#D2D8E7",
+        "titleBar.inactiveBackground": "#202337",
+        "titleBar.inactiveForeground": "#6D88A7",
+        "statusBar.background": "#202337",
+        "statusBar.foreground": "#6D88A7",
+        "activityBar.background": "#202337",
+        "activityBar.foreground": "#CACDE2"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

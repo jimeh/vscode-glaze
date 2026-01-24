@@ -1,0 +1,12 @@
+{
+  "extensionId": "49e65c4b-c185-40b1-acbd-c53c5f20bc02",
+  "extensionName": "jetbrains-idea-product-icon-theme",
+  "publisherName": "ardonplay",
+  "displayName": "JetBrains Idea Product Icon Theme",
+  "version": "0.0.2",
+  "extractedAt": "2026-01-24T21:28:59.937Z",
+  "installCount": 4812,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

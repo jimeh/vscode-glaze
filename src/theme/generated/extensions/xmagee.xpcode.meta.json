@@ -1,0 +1,25 @@
+{
+  "extensionId": "f4196f59-ebc1-4a63-a77f-9179c79109a6",
+  "extensionName": "xpcode",
+  "publisherName": "xmagee",
+  "displayName": null,
+  "version": "1.1.0",
+  "extractedAt": "2026-01-24T21:28:50.425Z",
+  "installCount": 13451,
+  "stale": false,
+  "themes": [
+    {
+      "name": "xpcode",
+      "label": "xpcode",
+      "colors": {
+        "editor.background": "#101010",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#0C0C0C",
+        "statusBar.background": "#0C0C0C",
+        "activityBar.background": "#161616"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,30 @@
+{
+  "extensionId": "46345d4d-e3aa-4a4f-9f60-725237757d72",
+  "extensionName": "vesper",
+  "publisherName": "raunofreiberg",
+  "displayName": "Vesper",
+  "version": "0.0.39",
+  "extractedAt": "2026-01-24T21:29:05.362Z",
+  "installCount": 3499,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Vesper",
+      "label": "Vesper",
+      "colors": {
+        "editor.background": "#101010",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#101010",
+        "titleBar.activeForeground": "#7E7E7E",
+        "titleBar.inactiveBackground": "#101010",
+        "titleBar.inactiveForeground": "#707070",
+        "statusBar.background": "#101010",
+        "statusBar.foreground": "#A0A0A0",
+        "activityBar.background": "#101010",
+        "activityBar.foreground": "#A0A0A0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

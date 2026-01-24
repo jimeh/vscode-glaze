@@ -1,0 +1,37 @@
+{
+  "extensionId": "8511a35b-1dfe-43fb-923e-cf28b1fbd899",
+  "extensionName": "opensumi-default-themes",
+  "publisherName": "opensumi",
+  "displayName": "OpenSumi Default Themes",
+  "version": "2.5.8",
+  "extractedAt": "2026-01-24T21:28:49.778Z",
+  "installCount": 16630,
+  "stale": false,
+  "themes": [
+    {
+      "name": "opensumi-dark",
+      "label": "OpenSumi Dark",
+      "colors": {
+        "editor.background": "#202224",
+        "statusBar.background": "#252729",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#35393D",
+        "activityBar.foreground": "#D7DBDE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "opensumi-light",
+      "label": "OpenSumi Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "statusBar.background": "#262626",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#ECECEC",
+        "activityBar.foreground": "#4D4D4D"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

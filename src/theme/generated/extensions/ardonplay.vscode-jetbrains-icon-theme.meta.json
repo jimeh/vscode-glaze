@@ -1,0 +1,12 @@
+{
+  "extensionId": "96b279e1-e30f-4d34-bad2-f1a5f5e314dc",
+  "extensionName": "vscode-jetbrains-icon-theme",
+  "publisherName": "ardonplay",
+  "displayName": "JetBrains Icon Theme",
+  "version": "0.0.4",
+  "extractedAt": "2026-01-24T21:28:54.289Z",
+  "installCount": 7486,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

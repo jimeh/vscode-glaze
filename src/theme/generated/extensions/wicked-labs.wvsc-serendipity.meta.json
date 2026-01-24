@@ -1,0 +1,64 @@
+{
+  "extensionId": "862488a7-312c-4b11-8171-7e281a95a268",
+  "extensionName": "wvsc-serendipity",
+  "publisherName": "wicked-labs",
+  "displayName": "Serendipity",
+  "version": "0.101.0",
+  "extractedAt": "2026-01-24T21:29:06.127Z",
+  "installCount": 3380,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Serendipity Sunset",
+      "label": "Serendipity Sunset",
+      "colors": {
+        "editor.background": "#202231",
+        "editor.foreground": "#DEE0EF",
+        "titleBar.activeBackground": "#202231",
+        "titleBar.activeForeground": "#6B6D7C",
+        "titleBar.inactiveBackground": "#272938",
+        "titleBar.inactiveForeground": "#6B6D7C",
+        "statusBar.background": "#202231",
+        "statusBar.foreground": "#6B6D7C",
+        "activityBar.background": "#202231",
+        "activityBar.foreground": "#DEE0EF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Serendipity Morning",
+      "label": "Serendipity Morning",
+      "colors": {
+        "editor.background": "#FDFDFE",
+        "editor.foreground": "#4E5377",
+        "titleBar.activeBackground": "#FDFDFE",
+        "titleBar.activeForeground": "#5F6488",
+        "titleBar.inactiveBackground": "#F1F1F4",
+        "titleBar.inactiveForeground": "#5F6488",
+        "statusBar.background": "#FDFDFE",
+        "statusBar.foreground": "#5F6488",
+        "activityBar.background": "#FDFDFE",
+        "activityBar.foreground": "#4E5377"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Serendipity Midnight",
+      "label": "Serendipity Midnight",
+      "colors": {
+        "editor.background": "#151726",
+        "editor.foreground": "#DEE0EF",
+        "titleBar.activeBackground": "#151726",
+        "titleBar.activeForeground": "#8D8F9E",
+        "titleBar.inactiveBackground": "#1C1E2D",
+        "titleBar.inactiveForeground": "#8D8F9E",
+        "statusBar.background": "#151726",
+        "statusBar.foreground": "#8D8F9E",
+        "activityBar.background": "#151726",
+        "activityBar.foreground": "#DEE0EF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

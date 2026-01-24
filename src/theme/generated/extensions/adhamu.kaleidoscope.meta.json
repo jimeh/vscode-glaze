@@ -1,0 +1,27 @@
+{
+  "extensionId": "4d9d7b9b-a899-4497-96fc-ab0a6bb78ffd",
+  "extensionName": "kaleidoscope",
+  "publisherName": "adhamu",
+  "displayName": "Kaleidoscope",
+  "version": "3.2.9",
+  "extractedAt": "2026-01-24T21:29:02.489Z",
+  "installCount": 4053,
+  "stale": false,
+  "themes": [
+    {
+      "name": "kaleidoscope",
+      "label": "kaleidoscope",
+      "colors": {
+        "editor.background": "#16202B",
+        "editor.foreground": "#DFE2E6",
+        "titleBar.activeBackground": "#8711F7",
+        "titleBar.activeForeground": "#FFFFFF",
+        "statusBar.background": "#16202B",
+        "statusBar.foreground": "#5C7B90",
+        "activityBar.background": "#16202B"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

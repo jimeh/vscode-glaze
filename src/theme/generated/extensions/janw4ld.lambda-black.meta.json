@@ -1,0 +1,42 @@
+{
+  "extensionId": "fe23d94b-4d22-49cc-9bf9-49e1e9cbb59f",
+  "extensionName": "lambda-black",
+  "publisherName": "janw4ld",
+  "displayName": "Lambda Black",
+  "version": "0.2.20",
+  "extractedAt": "2026-01-24T21:28:55.647Z",
+  "installCount": 6771,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Lambda Black",
+      "label": "Lambda Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#000000",
+        "activityBar.background": "#000000"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lambda Dark+",
+      "label": "Lambda Dark+",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#1F1F1F",
+        "titleBar.inactiveForeground": "#8B949E",
+        "statusBar.background": "#181818",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

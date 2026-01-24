@@ -1,0 +1,47 @@
+{
+  "extensionId": "167d5688-bd6f-4fdb-82bc-6223268397a7",
+  "extensionName": "theme-cosmic-nebula",
+  "publisherName": "cosmic-themes",
+  "displayName": "Cosmic Nebula Themes",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T21:28:56.437Z",
+  "installCount": 6330,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cosmic Nebula",
+      "label": "Cosmic Nebula",
+      "colors": {
+        "editor.background": "#1A0B2E",
+        "editor.foreground": "#F8F8FF",
+        "titleBar.activeBackground": "#0F061E",
+        "titleBar.activeForeground": "#F8F8FF",
+        "titleBar.inactiveBackground": "#0F061E",
+        "titleBar.inactiveForeground": "#9A92B0",
+        "statusBar.background": "#0F061E",
+        "statusBar.foreground": "#F8F8FF",
+        "activityBar.background": "#0F061E",
+        "activityBar.foreground": "#F8F8FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Cosmic Nebula Soft",
+      "label": "Cosmic Nebula Soft",
+      "colors": {
+        "editor.background": "#1F1030",
+        "editor.foreground": "#E8E8F0",
+        "titleBar.activeBackground": "#14081C",
+        "titleBar.activeForeground": "#E8E8F0",
+        "titleBar.inactiveBackground": "#14081C",
+        "titleBar.inactiveForeground": "#8A829C",
+        "statusBar.background": "#14081C",
+        "statusBar.foreground": "#E8E8F0",
+        "activityBar.background": "#14081C",
+        "activityBar.foreground": "#E8E8F0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

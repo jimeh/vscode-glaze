@@ -1,0 +1,30 @@
+{
+  "extensionId": "5f41dbe9-d65a-416e-b644-0f80a15d1045",
+  "extensionName": "moonbloom-theme",
+  "publisherName": "Moonbloom",
+  "displayName": "Moonbloom Official Theme",
+  "version": "1.1.2",
+  "extractedAt": "2026-01-24T21:29:07.286Z",
+  "installCount": 3221,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Moonbloom Official Theme",
+      "label": "Moonbloom Official Theme",
+      "colors": {
+        "editor.background": "#1D1E27",
+        "editor.foreground": "#D1D2E8",
+        "titleBar.activeBackground": "#1D1E27",
+        "titleBar.activeForeground": "#D1D2E8",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#8282A9",
+        "statusBar.background": "#1D1E27",
+        "statusBar.foreground": "#8282A9",
+        "activityBar.background": "#1D1E27",
+        "activityBar.foreground": "#8483D8"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

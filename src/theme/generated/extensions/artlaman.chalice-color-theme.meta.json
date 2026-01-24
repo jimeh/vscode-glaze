@@ -1,0 +1,73 @@
+{
+  "extensionId": "24e8a7ac-7466-43d9-8572-f735d5c97536",
+  "extensionName": "chalice-color-theme",
+  "publisherName": "artlaman",
+  "displayName": "Chalice Color Themes",
+  "version": "1.0.2",
+  "extractedAt": "2026-01-24T21:28:51.669Z",
+  "installCount": 10647,
+  "stale": false,
+  "themes": [
+    {
+      "name": "chalice-color-theme-light",
+      "label": "Light (Chalice)",
+      "colors": {
+        "editor.background": "#F7F7F7",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#DDDDDD",
+        "statusBar.background": "#CACACA",
+        "statusBar.foreground": "#545454",
+        "activityBar.background": "#DDDDDD",
+        "activityBar.foreground": "#424242"
+      },
+      "type": "light"
+    },
+    {
+      "name": "chalice-color-theme-light-mono",
+      "label": "Light Mono (Chalice)",
+      "colors": {
+        "editor.background": "#F7F7F7",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#DDDDDD",
+        "titleBar.inactiveBackground": "#DDDDDD",
+        "statusBar.background": "#CACACA",
+        "statusBar.foreground": "#545454",
+        "activityBar.background": "#DDDDDD",
+        "activityBar.foreground": "#424242"
+      },
+      "type": "light"
+    },
+    {
+      "name": "chalice-color-theme-dark",
+      "label": "Dark (Chalice)",
+      "colors": {
+        "editor.background": "#0E1415",
+        "editor.foreground": "#8DAFB2",
+        "titleBar.activeBackground": "#323738",
+        "titleBar.inactiveBackground": "#323738",
+        "statusBar.background": "#24292A",
+        "statusBar.foreground": "#B7B9B9",
+        "activityBar.background": "#323738",
+        "activityBar.foreground": "#C5C5C5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "chalice-color-theme-dark-mono",
+      "label": "Dark Mono (Chalice)",
+      "colors": {
+        "editor.background": "#0E1415",
+        "editor.foreground": "#8DAFB2",
+        "titleBar.activeBackground": "#323738",
+        "titleBar.inactiveBackground": "#323738",
+        "statusBar.background": "#24292A",
+        "statusBar.foreground": "#B7B9B9",
+        "activityBar.background": "#323738",
+        "activityBar.foreground": "#C5C5C5"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

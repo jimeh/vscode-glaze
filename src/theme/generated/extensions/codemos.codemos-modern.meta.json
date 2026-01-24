@@ -1,0 +1,47 @@
+{
+  "extensionId": "c3c10038-b578-48f2-837c-225b0bac1650",
+  "extensionName": "codemos-modern",
+  "publisherName": "Codemos",
+  "displayName": "Codemos Modern",
+  "version": "3.0.9",
+  "extractedAt": "2026-01-24T21:28:50.906Z",
+  "installCount": 12669,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Codemos Modern (Dark)",
+      "label": "Codemos Modern (Dark)",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#171717",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#171717",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#171717",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#171717",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Codemos Modern (Light)",
+      "label": "Codemos Modern (Light)",
+      "colors": {
+        "editor.background": "#F9F9F9",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#EDEDED",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#EDEDED",
+        "titleBar.inactiveForeground": "#000000",
+        "statusBar.background": "#EDEDED",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#EDEDED",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

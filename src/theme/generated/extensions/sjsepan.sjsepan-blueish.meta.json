@@ -1,0 +1,30 @@
+{
+  "extensionId": "83f4fefe-ad3e-4852-8b8b-dc86626cb775",
+  "extensionName": "sjsepan-blueish",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.blueish",
+  "version": "0.3.5",
+  "extractedAt": "2026-01-24T21:29:04.316Z",
+  "installCount": 3681,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Blueish",
+      "label": "Blueish",
+      "colors": {
+        "editor.background": "#CEE2FF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#B5D4FF",
+        "titleBar.activeForeground": "#272727",
+        "titleBar.inactiveBackground": "#B5D4FF",
+        "titleBar.inactiveForeground": "#838383",
+        "statusBar.background": "#B5D4FF",
+        "statusBar.foreground": "#272727",
+        "activityBar.background": "#B5D4FF",
+        "activityBar.foreground": "#272727"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

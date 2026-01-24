@@ -1,0 +1,302 @@
+{
+  "extensionId": "89a59f52-9322-402f-9a2c-48eff926c6cc",
+  "extensionName": "azir-vscode-theme",
+  "publisherName": "Azir-11",
+  "displayName": "Azir Theme",
+  "version": "1.2.1",
+  "extractedAt": "2026-01-24T21:29:05.153Z",
+  "installCount": 3575,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Azir Light Default",
+      "label": "Azir Light Default",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1F2328",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#59636E",
+        "titleBar.inactiveBackground": "#F6F8FA",
+        "titleBar.inactiveForeground": "#59636E",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#59636E",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#1F2328"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Azir Light High Contrast",
+      "label": "Azir Light High Contrast",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#010409",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#454C54",
+        "titleBar.inactiveBackground": "#E6EAEF",
+        "titleBar.inactiveForeground": "#454C54",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#454C54",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#010409"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Azir Dark Default",
+      "label": "Azir Dark Default",
+      "colors": {
+        "editor.background": "#0D1117",
+        "editor.foreground": "#F0F6FC",
+        "titleBar.activeBackground": "#0D1117",
+        "titleBar.activeForeground": "#9198A1",
+        "titleBar.inactiveBackground": "#151B23",
+        "titleBar.inactiveForeground": "#9198A1",
+        "statusBar.background": "#0D1117",
+        "statusBar.foreground": "#9198A1",
+        "activityBar.background": "#0D1117",
+        "activityBar.foreground": "#F0F6FC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Dark Dimmed(暗灰)",
+      "label": "Azir Dark Dimmed(暗灰)",
+      "colors": {
+        "editor.background": "#212830",
+        "editor.foreground": "#D1D7E0",
+        "titleBar.activeBackground": "#212830",
+        "titleBar.activeForeground": "#9198A1",
+        "titleBar.inactiveBackground": "#262C36",
+        "titleBar.inactiveForeground": "#9198A1",
+        "statusBar.background": "#212830",
+        "statusBar.foreground": "#9198A1",
+        "activityBar.background": "#212830",
+        "activityBar.foreground": "#D1D7E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Dark High Contrast",
+      "label": "Azir Dark High Contrast",
+      "colors": {
+        "editor.background": "#010409",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#010409",
+        "titleBar.activeForeground": "#B7BDC8",
+        "titleBar.inactiveBackground": "#151B23",
+        "titleBar.inactiveForeground": "#B7BDC8",
+        "statusBar.background": "#010409",
+        "statusBar.foreground": "#B7BDC8",
+        "activityBar.background": "#010409",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Azir Buddha Vira Carbon",
+      "label": "Azir Buddha Vira Carbon",
+      "colors": {
+        "editor.background": "#0A0A0A",
+        "editor.foreground": "#D9D9D9",
+        "titleBar.activeBackground": "#0A0A0A",
+        "titleBar.activeForeground": "#D9D9D9",
+        "titleBar.inactiveBackground": "#0A0A0A",
+        "titleBar.inactiveForeground": "#56575D",
+        "statusBar.background": "#0A0A0A",
+        "statusBar.foreground": "#494B50",
+        "activityBar.background": "#0A0A0A",
+        "activityBar.foreground": "#D9D9D9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Buddha Vira Carbon High Contrast",
+      "label": "Azir Buddha Vira Carbon High Contrast",
+      "colors": {
+        "editor.background": "#101213",
+        "editor.foreground": "#D9D9D9",
+        "titleBar.activeBackground": "#0A0A0A",
+        "titleBar.activeForeground": "#D9D9D9",
+        "titleBar.inactiveBackground": "#0A0A0A",
+        "titleBar.inactiveForeground": "#56575D",
+        "statusBar.background": "#0A0A0A",
+        "statusBar.foreground": "#494B50",
+        "activityBar.background": "#0A0A0A",
+        "activityBar.foreground": "#D9D9D9"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Azir Buddha Vira Deepforest",
+      "label": "Azir Buddha Vira Deepforest",
+      "colors": {
+        "editor.background": "#111816",
+        "editor.foreground": "#CAE5D5",
+        "titleBar.activeBackground": "#111816",
+        "titleBar.activeForeground": "#CAE5D5",
+        "titleBar.inactiveBackground": "#111816",
+        "titleBar.inactiveForeground": "#475C59",
+        "statusBar.background": "#111816",
+        "statusBar.foreground": "#446058",
+        "activityBar.background": "#111816",
+        "activityBar.foreground": "#CAE5D5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Buddha Vira Deepforest High Contrast",
+      "label": "Azir Buddha Vira Deepforest High Contrast",
+      "colors": {
+        "editor.background": "#111816",
+        "editor.foreground": "#CAE5D5",
+        "titleBar.activeBackground": "#0A0F0E",
+        "titleBar.activeForeground": "#CAE5D5",
+        "titleBar.inactiveBackground": "#0A0F0E",
+        "titleBar.inactiveForeground": "#475C59",
+        "statusBar.background": "#0A0F0E",
+        "statusBar.foreground": "#446058",
+        "activityBar.background": "#0A0F0E",
+        "activityBar.foreground": "#CAE5D5"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Azir Buddha Vira Graphene",
+      "label": "Azir Buddha Vira Graphene",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#D9D9D9",
+        "titleBar.activeBackground": "#212121",
+        "titleBar.activeForeground": "#D9D9D9",
+        "titleBar.inactiveBackground": "#212121",
+        "titleBar.inactiveForeground": "#676767",
+        "statusBar.background": "#212121",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#212121",
+        "activityBar.foreground": "#D9D9D9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Buddha Vira Graphene High Contrast",
+      "label": "Azir Buddha Vira Graphene High Contrast",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#D9D9D9",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#D9D9D9",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#848484",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#D9D9D9"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Azir Buddha Vira Ocean",
+      "label": "Azir Buddha Vira Ocean",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#CED1E3",
+        "titleBar.activeBackground": "#0F111A",
+        "titleBar.activeForeground": "#CED1E3",
+        "titleBar.inactiveBackground": "#0F111A",
+        "titleBar.inactiveForeground": "#535B79",
+        "statusBar.background": "#0F111A",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#0F111A",
+        "activityBar.foreground": "#CED1E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Buddha Vira Ocean High Contrast",
+      "label": "Azir Buddha Vira Ocean High Contrast",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#CED1E3",
+        "titleBar.activeBackground": "#090B10",
+        "titleBar.activeForeground": "#CED1E3",
+        "titleBar.inactiveBackground": "#090B10",
+        "titleBar.inactiveForeground": "#4B526D",
+        "statusBar.background": "#090B10",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#090B10",
+        "activityBar.foreground": "#CED1E3"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Azir Buddha Vira Palenight",
+      "label": "Azir Buddha Vira Palenight",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#CED1E3",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#CED1E3",
+        "titleBar.inactiveBackground": "#292D3E",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#292D3E",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#292D3E",
+        "activityBar.foreground": "#CED1E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Buddha Vira Palenight High Contrast",
+      "label": "Azir Buddha Vira Palenight High Contrast",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#CED1E3",
+        "titleBar.activeBackground": "#1B1E2B",
+        "titleBar.activeForeground": "#CED1E3",
+        "titleBar.inactiveBackground": "#1B1E2B",
+        "titleBar.inactiveForeground": "#757CA1",
+        "statusBar.background": "#1B1E2B",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#1B1E2B",
+        "activityBar.foreground": "#CED1E3"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Azir Buddha Vira Teal",
+      "label": "Azir Buddha Vira Teal",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#D8DFDF",
+        "titleBar.activeBackground": "#263238",
+        "titleBar.activeForeground": "#D8DFDF",
+        "titleBar.inactiveBackground": "#263238",
+        "titleBar.inactiveForeground": "#6C8692",
+        "statusBar.background": "#263238",
+        "statusBar.foreground": "#546E7A",
+        "activityBar.background": "#263238",
+        "activityBar.foreground": "#D8DFDF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Azir Buddha Vira Teal High Contrast",
+      "label": "Azir Buddha Vira Teal High Contrast",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#D8DFDF",
+        "titleBar.activeBackground": "#192227",
+        "titleBar.activeForeground": "#D8DFDF",
+        "titleBar.inactiveBackground": "#192227",
+        "titleBar.inactiveForeground": "#5F7A87",
+        "statusBar.background": "#192227",
+        "statusBar.foreground": "#546E7A",
+        "activityBar.background": "#192227",
+        "activityBar.foreground": "#D8DFDF"
+      },
+      "type": "hcDark"
+    }
+  ],
+  "source": "openvsx"
+}

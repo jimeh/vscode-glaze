@@ -1,0 +1,115 @@
+{
+  "extensionId": "b1ace749-f400-4989-9cd2-df500a15f54c",
+  "extensionName": "sonokai",
+  "publisherName": "sainnhe",
+  "displayName": "Sonokai",
+  "version": "0.2.9",
+  "extractedAt": "2026-01-24T21:28:50.795Z",
+  "installCount": 12829,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sonokai",
+      "label": "Sonokai",
+      "colors": {
+        "editor.background": "#2C2E34",
+        "editor.foreground": "#E2E2E3",
+        "titleBar.activeBackground": "#222327",
+        "titleBar.activeForeground": "#E2E2E3",
+        "titleBar.inactiveBackground": "#222327",
+        "titleBar.inactiveForeground": "#7F8490",
+        "statusBar.background": "#222327",
+        "statusBar.foreground": "#E2E2E3",
+        "activityBar.background": "#181819",
+        "activityBar.foreground": "#E2E2E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sonokai Shusia",
+      "label": "Sonokai Shusia",
+      "colors": {
+        "editor.background": "#2D2A2E",
+        "editor.foreground": "#E3E1E4",
+        "titleBar.activeBackground": "#242124",
+        "titleBar.activeForeground": "#E3E1E4",
+        "titleBar.inactiveBackground": "#242124",
+        "titleBar.inactiveForeground": "#848089",
+        "statusBar.background": "#242124",
+        "statusBar.foreground": "#E3E1E4",
+        "activityBar.background": "#1A181A",
+        "activityBar.foreground": "#E3E1E4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sonokai Andromeda",
+      "label": "Sonokai Andromeda",
+      "colors": {
+        "editor.background": "#2B2D3A",
+        "editor.foreground": "#E1E3E4",
+        "titleBar.activeBackground": "#21232B",
+        "titleBar.activeForeground": "#E1E3E4",
+        "titleBar.inactiveBackground": "#21232B",
+        "titleBar.inactiveForeground": "#7E8294",
+        "statusBar.background": "#21232B",
+        "statusBar.foreground": "#E1E3E4",
+        "activityBar.background": "#181A1C",
+        "activityBar.foreground": "#E1E3E4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sonokai Atlantis",
+      "label": "Sonokai Atlantis",
+      "colors": {
+        "editor.background": "#2A2F38",
+        "editor.foreground": "#E1E3E4",
+        "titleBar.activeBackground": "#21252A",
+        "titleBar.activeForeground": "#E1E3E4",
+        "titleBar.inactiveBackground": "#21252A",
+        "titleBar.inactiveForeground": "#828A9A",
+        "statusBar.background": "#21252A",
+        "statusBar.foreground": "#E1E3E4",
+        "activityBar.background": "#181A1C",
+        "activityBar.foreground": "#E1E3E4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sonokai Maia",
+      "label": "Sonokai Maia",
+      "colors": {
+        "editor.background": "#273136",
+        "editor.foreground": "#E1E2E3",
+        "titleBar.activeBackground": "#22282B",
+        "titleBar.activeForeground": "#E1E2E3",
+        "titleBar.inactiveBackground": "#22282B",
+        "titleBar.inactiveForeground": "#82878B",
+        "statusBar.background": "#22282B",
+        "statusBar.foreground": "#E1E2E3",
+        "activityBar.background": "#1C1E1F",
+        "activityBar.foreground": "#E1E2E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sonokai Espresso",
+      "label": "Sonokai Espresso",
+      "colors": {
+        "editor.background": "#312C2B",
+        "editor.foreground": "#E4E3E1",
+        "titleBar.activeBackground": "#282523",
+        "titleBar.activeForeground": "#E4E3E1",
+        "titleBar.inactiveBackground": "#282523",
+        "titleBar.inactiveForeground": "#90817B",
+        "statusBar.background": "#282523",
+        "statusBar.foreground": "#E4E3E1",
+        "activityBar.background": "#1F1E1C",
+        "activityBar.foreground": "#E4E3E1"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

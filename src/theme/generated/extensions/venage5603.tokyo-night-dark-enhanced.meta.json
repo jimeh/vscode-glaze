@@ -1,0 +1,30 @@
+{
+  "extensionId": "65d89cff-0ce2-4b39-bc1e-8357bf16fd73",
+  "extensionName": "tokyo-night-dark-enhanced",
+  "publisherName": "Venage5603",
+  "displayName": "Tokyo Night Dark Enhanced",
+  "version": "1.12.0",
+  "extractedAt": "2026-01-24T21:29:02.828Z",
+  "installCount": 3995,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Tokyo Night Dark Enhanced",
+      "label": "Tokyo Night Dark Enhanced",
+      "colors": {
+        "editor.background": "#0A0A0D",
+        "editor.foreground": "#A9B1D6",
+        "titleBar.activeBackground": "#08080B",
+        "titleBar.activeForeground": "#787C99",
+        "titleBar.inactiveBackground": "#08080B",
+        "titleBar.inactiveForeground": "#787C99",
+        "statusBar.background": "#08080B",
+        "statusBar.foreground": "#787C99",
+        "activityBar.background": "#08080B",
+        "activityBar.foreground": "#787C99"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

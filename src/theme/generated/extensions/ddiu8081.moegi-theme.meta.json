@@ -1,0 +1,148 @@
+{
+  "extensionId": "ad89b35d-addd-453b-bb3e-3b1b400e983b",
+  "extensionName": "moegi-theme",
+  "publisherName": "ddiu8081",
+  "displayName": "Moegi Theme",
+  "version": "0.7.1",
+  "extractedAt": "2026-01-24T21:28:56.968Z",
+  "installCount": 5927,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Moegi Dark",
+      "label": "Moegi Dark",
+      "colors": {
+        "editor.background": "#202020",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.inactiveBackground": "#202020",
+        "statusBar.background": "#181818",
+        "statusBar.foreground": "#999999",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Moegi Black",
+      "label": "Moegi Black",
+      "colors": {
+        "editor.background": "#0D0D0D",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#050505",
+        "titleBar.inactiveBackground": "#0D0D0D",
+        "statusBar.background": "#050505",
+        "statusBar.foreground": "#777777",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#AAAAAA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Moegi Space",
+      "label": "Moegi Space",
+      "colors": {
+        "editor.background": "#221E30",
+        "editor.foreground": "#DDD8E4",
+        "titleBar.activeBackground": "#191624",
+        "titleBar.inactiveBackground": "#221E30",
+        "statusBar.background": "#191624",
+        "statusBar.foreground": "#9892AD",
+        "activityBar.background": "#191624",
+        "activityBar.foreground": "#C8C2DD"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Moegi Iris",
+      "label": "Moegi Iris",
+      "colors": {
+        "editor.background": "#F5F2F9",
+        "editor.foreground": "#433748",
+        "titleBar.activeBackground": "#F5F2F9",
+        "titleBar.inactiveBackground": "#EFEAF5",
+        "statusBar.background": "#EFEAF5",
+        "statusBar.foreground": "#534758",
+        "activityBar.background": "#EFEAF5",
+        "activityBar.foreground": "#433748"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Moegi Dark Vitesse",
+      "label": "Moegi Dark Vitesse",
+      "colors": {
+        "editor.background": "#202020",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.inactiveBackground": "#202020",
+        "statusBar.background": "#181818",
+        "statusBar.foreground": "#999999",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Moegi Black Zen",
+      "label": "Moegi Black Zen",
+      "colors": {
+        "editor.background": "#0D0D0D",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#050505",
+        "titleBar.inactiveBackground": "#0D0D0D",
+        "statusBar.background": "#050505",
+        "statusBar.foreground": "#777777",
+        "activityBar.background": "#050505",
+        "activityBar.foreground": "#AAAAAA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Moegi Light",
+      "label": "Moegi Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#F9F9FB",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#444444",
+        "activityBar.background": "#F9F9FB",
+        "activityBar.foreground": "#333333"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Moegi Light Vitesse",
+      "label": "Moegi Light Vitesse",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#F9F9FB",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#444444",
+        "activityBar.background": "#F9F9FB",
+        "activityBar.foreground": "#333333"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Moegi Dawn",
+      "label": "Moegi Dawn",
+      "colors": {
+        "editor.background": "#FFF9F3",
+        "editor.foreground": "#483F37",
+        "titleBar.activeBackground": "#FFF9F3",
+        "titleBar.inactiveBackground": "#FAF3ED",
+        "statusBar.background": "#FAF3ED",
+        "statusBar.foreground": "#584F47",
+        "activityBar.background": "#FAF3ED",
+        "activityBar.foreground": "#483F37"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

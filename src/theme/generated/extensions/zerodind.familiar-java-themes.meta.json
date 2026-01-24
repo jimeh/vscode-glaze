@@ -1,0 +1,97 @@
+{
+  "extensionId": "e3fe11c9-03ad-4c91-93fc-d3aba5145a1e",
+  "extensionName": "familiar-java-themes",
+  "publisherName": "zerodind",
+  "displayName": "Familiar Java Themes",
+  "version": "0.1.7",
+  "extractedAt": "2026-01-24T21:28:51.773Z",
+  "installCount": 10513,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Eclipse Light",
+      "label": "Eclipse Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#E2E2E2",
+        "statusBar.background": "#E2E2E2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#E2E2E2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Eclipse Dark",
+      "label": "Eclipse Dark",
+      "colors": {
+        "editor.background": "#2F2F2F",
+        "editor.foreground": "#D9E8F7",
+        "titleBar.activeBackground": "#515658",
+        "statusBar.background": "#515658",
+        "activityBar.background": "#515658"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "IntelliJ Light",
+      "label": "IntelliJ Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F2F2F2",
+        "statusBar.background": "#F2F2F2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F2F2F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "IntelliJ Light (Classic)",
+      "label": "IntelliJ Light (Classic)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F2F2F2",
+        "statusBar.background": "#F2F2F2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F2F2F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "IntelliJ Dark",
+      "label": "IntelliJ Dark",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#3C3F41",
+        "titleBar.inactiveBackground": "#3C3F41",
+        "statusBar.background": "#3C3F41",
+        "statusBar.foreground": "#BBBBBB",
+        "activityBar.background": "#3C3F41",
+        "activityBar.foreground": "#BBBBBB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "IntelliJ+Eclipse Dark",
+      "label": "IntelliJ+Eclipse Dark",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A9B7C6",
+        "titleBar.activeBackground": "#3C3F41",
+        "titleBar.inactiveBackground": "#3C3F41",
+        "statusBar.background": "#3C3F41",
+        "statusBar.foreground": "#BBBBBB",
+        "activityBar.background": "#3C3F41",
+        "activityBar.foreground": "#BBBBBB"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,73 @@
+{
+  "extensionId": "3c0b468c-3efe-4962-ba6c-80fe9cb03e30",
+  "extensionName": "vscode-theme-aofuji",
+  "publisherName": "dsrkafuu",
+  "displayName": "Aofuji Light Theme",
+  "version": "0.3.6",
+  "extractedAt": "2026-01-24T21:29:05.478Z",
+  "installCount": 3495,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Aofuji",
+      "label": "Aofuji",
+      "colors": {
+        "editor.background": "#FFFFFD",
+        "editor.foreground": "#3F4551",
+        "titleBar.activeBackground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#F3F3F3",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#3F4551",
+        "activityBar.background": "#F3F3F3",
+        "activityBar.foreground": "#8AA2D3"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Oranji",
+      "label": "Oranji",
+      "colors": {
+        "editor.background": "#FFFFFD",
+        "editor.foreground": "#3F4551",
+        "titleBar.activeBackground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#F3F3F3",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#3F4551",
+        "activityBar.background": "#F3F3F3",
+        "activityBar.foreground": "#FF9940"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Aofuji (No Italic)",
+      "label": "Aofuji (No Italic)",
+      "colors": {
+        "editor.background": "#FFFFFD",
+        "editor.foreground": "#3F4551",
+        "titleBar.activeBackground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#F3F3F3",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#3F4551",
+        "activityBar.background": "#F3F3F3",
+        "activityBar.foreground": "#8AA2D3"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Oranji (No Italic)",
+      "label": "Oranji (No Italic)",
+      "colors": {
+        "editor.background": "#FFFFFD",
+        "editor.foreground": "#3F4551",
+        "titleBar.activeBackground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#F3F3F3",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#3F4551",
+        "activityBar.background": "#F3F3F3",
+        "activityBar.foreground": "#FF9940"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

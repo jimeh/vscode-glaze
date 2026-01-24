@@ -1,0 +1,47 @@
+{
+  "extensionId": "696d2f6e-89ea-4185-b9e3-153e8abc4e70",
+  "extensionName": "theme-charcoal-mint",
+  "publisherName": "charcoal-mint-studio",
+  "displayName": "Theme Charcoal Mint Co.",
+  "version": "1.0.1",
+  "extractedAt": "2026-01-24T21:28:52.958Z",
+  "installCount": 8859,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Charcoal Mint",
+      "label": "Charcoal Mint",
+      "colors": {
+        "editor.background": "#2C2F2C",
+        "editor.foreground": "#F0F5F0",
+        "titleBar.activeBackground": "#202220",
+        "titleBar.activeForeground": "#F0F5F0",
+        "titleBar.inactiveBackground": "#1A1C1A",
+        "titleBar.inactiveForeground": "#9AA09A",
+        "statusBar.background": "#202220",
+        "statusBar.foreground": "#C8D0C8",
+        "activityBar.background": "#202220",
+        "activityBar.foreground": "#F0F5F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Charcoal Mint Soft",
+      "label": "Charcoal Mint Soft",
+      "colors": {
+        "editor.background": "#2A2D2A",
+        "editor.foreground": "#E8EDE8",
+        "titleBar.activeBackground": "#1E201E",
+        "titleBar.activeForeground": "#E8EDE8",
+        "titleBar.inactiveBackground": "#181A18",
+        "titleBar.inactiveForeground": "#8A908A",
+        "statusBar.background": "#1E201E",
+        "statusBar.foreground": "#B8C8B8",
+        "activityBar.background": "#1E201E",
+        "activityBar.foreground": "#E8EDE8"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

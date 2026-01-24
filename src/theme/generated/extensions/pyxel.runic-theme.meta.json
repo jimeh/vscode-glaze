@@ -1,0 +1,47 @@
+{
+  "extensionId": "69b5979e-6e9a-49e5-8e58-bc55d1f1b81f",
+  "extensionName": "runic-theme",
+  "publisherName": "pyxel",
+  "displayName": "Runic Theme",
+  "version": "1.2.0",
+  "extractedAt": "2026-01-24T21:29:06.865Z",
+  "installCount": 3266,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Runic Minimal",
+      "label": "Runic Minimal",
+      "colors": {
+        "editor.background": "#181A1B",
+        "editor.foreground": "#D1D1D1",
+        "titleBar.activeBackground": "#131515",
+        "titleBar.activeForeground": "#D1D1D1",
+        "titleBar.inactiveBackground": "#131515",
+        "titleBar.inactiveForeground": "#D1D1D1",
+        "statusBar.background": "#131515",
+        "statusBar.foreground": "#D1D1D1",
+        "activityBar.background": "#131515",
+        "activityBar.foreground": "#D1D1D1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Runic Prismatic",
+      "label": "Runic Prismatic",
+      "colors": {
+        "editor.background": "#181A1B",
+        "editor.foreground": "#D1D1D1",
+        "titleBar.activeBackground": "#131515",
+        "titleBar.activeForeground": "#D1D1D1",
+        "titleBar.inactiveBackground": "#131515",
+        "titleBar.inactiveForeground": "#D1D1D1",
+        "statusBar.background": "#131515",
+        "statusBar.foreground": "#D1D1D1",
+        "activityBar.background": "#131515",
+        "activityBar.foreground": "#D1D1D1"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

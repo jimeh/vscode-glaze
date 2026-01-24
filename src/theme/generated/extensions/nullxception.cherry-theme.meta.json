@@ -1,0 +1,47 @@
+{
+  "extensionId": "3a8988d3-d0e7-4b9e-a92c-5336c9b294c6",
+  "extensionName": "cherry-theme",
+  "publisherName": "nullxception",
+  "displayName": "Cherry",
+  "version": "0.2.7",
+  "extractedAt": "2026-01-24T21:28:56.861Z",
+  "installCount": 6045,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cherry",
+      "label": "Cherry",
+      "colors": {
+        "editor.background": "#1F1F2A",
+        "editor.foreground": "#BDC3DF",
+        "titleBar.activeBackground": "#1F1F2A",
+        "titleBar.activeForeground": "#BDC3DF",
+        "titleBar.inactiveBackground": "#1F1F2A",
+        "titleBar.inactiveForeground": "#85859F",
+        "statusBar.background": "#1F1F2A",
+        "statusBar.foreground": "#AEB4D0",
+        "activityBar.background": "#1F1F2A",
+        "activityBar.foreground": "#FF568E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Cherry Midnight",
+      "label": "Cherry Midnight",
+      "colors": {
+        "editor.background": "#101017",
+        "editor.foreground": "#BDC3DF",
+        "titleBar.activeBackground": "#101017",
+        "titleBar.activeForeground": "#BDC3DF",
+        "titleBar.inactiveBackground": "#101017",
+        "titleBar.inactiveForeground": "#737380",
+        "statusBar.background": "#101017",
+        "statusBar.foreground": "#AEB4D0",
+        "activityBar.background": "#101017",
+        "activityBar.foreground": "#FF568E"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

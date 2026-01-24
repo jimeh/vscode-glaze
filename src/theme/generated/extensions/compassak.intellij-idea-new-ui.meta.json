@@ -1,0 +1,59 @@
+{
+  "extensionId": "9e07bcdf-857b-436f-b41c-d8d7f883eba4",
+  "extensionName": "intellij-idea-new-ui",
+  "publisherName": "compassak",
+  "displayName": "IntelliJ IDEA New UI",
+  "version": "1.4.0",
+  "extractedAt": "2026-01-24T21:28:56.654Z",
+  "installCount": 6149,
+  "stale": false,
+  "themes": [
+    {
+      "name": "IntelliJ IDEA New UI Dark",
+      "label": "IntelliJ IDEA New UI Dark",
+      "colors": {
+        "editor.background": "#1E1F22",
+        "editor.foreground": "#BCBEC3",
+        "titleBar.activeBackground": "#2B2D30",
+        "titleBar.inactiveBackground": "#2B2D30",
+        "statusBar.background": "#2B2D30",
+        "statusBar.foreground": "#9EA0A8",
+        "activityBar.background": "#2B2D30",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "IntelliJ IDEA New UI Light",
+      "label": "IntelliJ IDEA New UI Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#27282E",
+        "titleBar.activeForeground": "#E7EBED",
+        "titleBar.inactiveBackground": "#383A42",
+        "statusBar.background": "#F7F8FA",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F7F8FA",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "IntelliJ IDEA New UI Light with Light Header",
+      "label": "IntelliJ IDEA New UI Light with Light Header",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F7F8FA",
+        "titleBar.inactiveBackground": "#F7F8FA",
+        "statusBar.background": "#F7F8FA",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F7F8FA",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

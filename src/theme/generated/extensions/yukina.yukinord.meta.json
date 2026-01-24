@@ -1,0 +1,30 @@
+{
+  "extensionId": "cbcdfb34-9d52-4e95-9615-13754523594b",
+  "extensionName": "yukinord",
+  "publisherName": "Yukina",
+  "displayName": "Yukinord",
+  "version": "0.0.49",
+  "extractedAt": "2026-01-24T21:28:53.062Z",
+  "installCount": 8793,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Yukinord",
+      "label": "Yukinord",
+      "colors": {
+        "editor.background": "#1D2129",
+        "editor.foreground": "#D8DEE9",
+        "titleBar.activeBackground": "#1D2129",
+        "titleBar.activeForeground": "#ECEFF4",
+        "titleBar.inactiveBackground": "#1D2129",
+        "titleBar.inactiveForeground": "#D8DEE9",
+        "statusBar.background": "#1D2129",
+        "statusBar.foreground": "#D8DEE9",
+        "activityBar.background": "#1D2129",
+        "activityBar.foreground": "#ECEFF4"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

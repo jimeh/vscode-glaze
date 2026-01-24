@@ -1,0 +1,22 @@
+{
+  "extensionId": "867e1bea-db75-4816-807b-396e64b9039b",
+  "extensionName": "epsilon-eag-light-theme",
+  "publisherName": "grammarcraft",
+  "displayName": "EAG Light Theme",
+  "version": "3.1.0",
+  "extractedAt": "2026-01-24T21:28:59.060Z",
+  "installCount": 5151,
+  "stale": false,
+  "themes": [
+    {
+      "name": "EAG (light)",
+      "label": "EAG (light)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

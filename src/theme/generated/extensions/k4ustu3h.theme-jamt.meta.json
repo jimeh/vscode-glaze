@@ -1,0 +1,30 @@
+{
+  "extensionId": "2de07105-b327-4dcb-ac99-68ce5173f568",
+  "extensionName": "theme-jamt",
+  "publisherName": "k4ustu3h",
+  "displayName": "Just Another Material Theme",
+  "version": "1.1.1",
+  "extractedAt": "2026-01-24T21:29:05.694Z",
+  "installCount": 3492,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Just Another Material Theme",
+      "label": "Just Another Material Theme",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#EEEEEE",
+        "titleBar.activeBackground": "#121212",
+        "titleBar.activeForeground": "#EEEEEE",
+        "titleBar.inactiveBackground": "#080808",
+        "titleBar.inactiveForeground": "#424242",
+        "statusBar.background": "#080808",
+        "statusBar.foreground": "#EEEEEE",
+        "activityBar.background": "#212121",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

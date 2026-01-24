@@ -1,0 +1,47 @@
+{
+  "extensionId": "fcaf9cea-11a2-44ff-8609-bf9b0ba0bf8f",
+  "extensionName": "theme-forest-mist",
+  "publisherName": "TheMistProject",
+  "displayName": "Forest Mist Theme",
+  "version": "1.0.1",
+  "extractedAt": "2026-01-24T21:28:53.833Z",
+  "installCount": 8023,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Forest Mist",
+      "label": "Forest Mist",
+      "colors": {
+        "editor.background": "#2D3142",
+        "editor.foreground": "#EEF0F2",
+        "titleBar.activeBackground": "#1A1F2A",
+        "titleBar.activeForeground": "#EEF0F2",
+        "titleBar.inactiveBackground": "#1A1F2A",
+        "titleBar.inactiveForeground": "#8B9199",
+        "statusBar.background": "#1A1F2A",
+        "statusBar.foreground": "#EEF0F2",
+        "activityBar.background": "#1A1F2A",
+        "activityBar.foreground": "#EEF0F2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Forest Mist Soft",
+      "label": "Forest Mist Soft",
+      "colors": {
+        "editor.background": "#2A2F3E",
+        "editor.foreground": "#E8EAEC",
+        "titleBar.activeBackground": "#1C212C",
+        "titleBar.activeForeground": "#E8EAEC",
+        "titleBar.inactiveBackground": "#1C212C",
+        "titleBar.inactiveForeground": "#7A8088",
+        "statusBar.background": "#1C212C",
+        "statusBar.foreground": "#E8EAEC",
+        "activityBar.background": "#1C212C",
+        "activityBar.foreground": "#E8EAEC"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

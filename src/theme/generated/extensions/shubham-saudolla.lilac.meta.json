@@ -1,0 +1,27 @@
+{
+  "extensionId": "1bfca39f-30a9-45e3-8631-027297c85b5c",
+  "extensionName": "lilac",
+  "publisherName": "shubham-saudolla",
+  "displayName": "Lilac",
+  "version": "1.2.7",
+  "extractedAt": "2026-01-24T21:28:56.541Z",
+  "installCount": 6299,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Lilac",
+      "label": "Lilac",
+      "colors": {
+        "editor.background": "#080709",
+        "editor.foreground": "#E0CEED",
+        "titleBar.activeBackground": "#000000",
+        "statusBar.background": "#9D89E2",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#0D0B0F",
+        "activityBar.foreground": "#E0CEED"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

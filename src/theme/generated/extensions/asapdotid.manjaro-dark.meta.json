@@ -1,0 +1,183 @@
+{
+  "extensionId": "8dd6561b-6b17-4e0f-bb3a-de2b33cacabe",
+  "extensionName": "manjaro-dark",
+  "publisherName": "asapdotid",
+  "displayName": "Manjaro Dark",
+  "version": "0.0.13",
+  "extractedAt": "2026-01-24T21:28:58.371Z",
+  "installCount": 5443,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Manjaro OneDark Cool",
+      "label": "Manjaro OneDark Cool",
+      "colors": {
+        "editor.background": "#222D31",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#222D31",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#222D31",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#222D31",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#222D31",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro OneDark Dark",
+      "label": "Manjaro OneDark Dark",
+      "colors": {
+        "editor.background": "#1B2224",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#1B2224",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#1B2224",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#1B2224",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#1B2224",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Owl Cool",
+      "label": "Manjaro Owl Cool",
+      "colors": {
+        "editor.background": "#222D31",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#222D31",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#222D31",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#222D31",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#222D31",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Owl Dark",
+      "label": "Manjaro Owl Dark",
+      "colors": {
+        "editor.background": "#1B2224",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#1B2224",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#1B2224",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#1B2224",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#1B2224",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Nord Cool",
+      "label": "Manjaro Nord Cool",
+      "colors": {
+        "editor.background": "#222D31",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#222D31",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#222D31",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#222D31",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#222D31",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Nord Dark",
+      "label": "Manjaro Nord Dark",
+      "colors": {
+        "editor.background": "#1B2224",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#1B2224",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#1B2224",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#1B2224",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#1B2224",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Tokyo Cool",
+      "label": "Manjaro Tokyo Cool",
+      "colors": {
+        "editor.background": "#222D31",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#222D31",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#222D31",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#222D31",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#222D31",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Tokyo Dark",
+      "label": "Manjaro Tokyo Dark",
+      "colors": {
+        "editor.background": "#1B2224",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#1B2224",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#1B2224",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#1B2224",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#1B2224",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Halcyon Cool",
+      "label": "Manjaro Halcyon Cool",
+      "colors": {
+        "editor.background": "#222D31",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#222D31",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#222D31",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#222D31",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#222D31",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Manjaro Halcyon Dark",
+      "label": "Manjaro Halcyon Dark",
+      "colors": {
+        "editor.background": "#1B2224",
+        "editor.foreground": "#DDE8EA",
+        "titleBar.activeBackground": "#1B2224",
+        "titleBar.activeForeground": "#DDE8EA",
+        "titleBar.inactiveBackground": "#1B2224",
+        "titleBar.inactiveForeground": "#DDE8EA",
+        "statusBar.background": "#1B2224",
+        "statusBar.foreground": "#DDE8EA",
+        "activityBar.background": "#1B2224",
+        "activityBar.foreground": "#DDE8EA"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

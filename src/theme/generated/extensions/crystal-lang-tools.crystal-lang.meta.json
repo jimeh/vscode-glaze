@@ -1,0 +1,12 @@
+{
+  "extensionId": "5016b019-8262-4dd2-91c1-f54864d60b5f",
+  "extensionName": "crystal-lang",
+  "publisherName": "crystal-lang-tools",
+  "displayName": "Crystal Language",
+  "version": "0.9.8",
+  "extractedAt": "2026-01-24T21:28:52.508Z",
+  "installCount": 9317,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

@@ -1,0 +1,285 @@
+{
+  "extensionId": "1c64aa2c-5912-4335-b0b5-0661d8b49d19",
+  "extensionName": "monochromator",
+  "publisherName": "beem",
+  "displayName": "Monochromator",
+  "version": "0.30.0",
+  "extractedAt": "2026-01-24T21:28:51.138Z",
+  "installCount": 12146,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Monochromator Dark",
+      "label": "Monochromator Dark",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Amber",
+      "label": "Monochromator Dark Amber",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Amethyst",
+      "label": "Monochromator Dark Amethyst",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Aquamarine",
+      "label": "Monochromator Dark Aquamarine",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Emerald",
+      "label": "Monochromator Dark Emerald",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Plain",
+      "label": "Monochromator Dark Plain",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Ruby",
+      "label": "Monochromator Dark Ruby",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Dark Sulfur",
+      "label": "Monochromator Dark Sulfur",
+      "colors": {
+        "editor.background": "#0F0F12",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#202024",
+        "titleBar.activeForeground": "#D0D0D2",
+        "titleBar.inactiveBackground": "#202024",
+        "titleBar.inactiveForeground": "#808086",
+        "statusBar.background": "#202024",
+        "statusBar.foreground": "#D0D0D2",
+        "activityBar.background": "#202024",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Monochromator Light",
+      "label": "Monochromator Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Amber",
+      "label": "Monochromator Light Amber",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Amethyst",
+      "label": "Monochromator Light Amethyst",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Aquamarine",
+      "label": "Monochromator Light Aquamarine",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Emerald",
+      "label": "Monochromator Light Emerald",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Plain",
+      "label": "Monochromator Light Plain",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Ruby",
+      "label": "Monochromator Light Ruby",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monochromator Light Sulfur",
+      "label": "Monochromator Light Sulfur",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F0F0F2",
+        "titleBar.activeForeground": "#303030",
+        "titleBar.inactiveBackground": "#F0F0F2",
+        "titleBar.inactiveForeground": "#767676",
+        "statusBar.background": "#F0F0F2",
+        "statusBar.foreground": "#303030",
+        "activityBar.background": "#F0F0F2",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,302 @@
+{
+  "extensionId": "b5275737-bfed-45bb-811b-01c1d74cb971",
+  "extensionName": "g-dark-theme",
+  "publisherName": "StoneC0der",
+  "displayName": "G Dark-Themes",
+  "version": "5.0.1",
+  "extractedAt": "2026-01-24T21:29:02.940Z",
+  "installCount": 3967,
+  "stale": false,
+  "themes": [
+    {
+      "name": "G Dark (Default)",
+      "label": "G Dark (Default)",
+      "colors": {
+        "editor.background": "#00344A",
+        "editor.foreground": "#DCF2F7",
+        "titleBar.activeBackground": "#00344A",
+        "titleBar.activeForeground": "#9CC2DF",
+        "titleBar.inactiveBackground": "#024764",
+        "titleBar.inactiveForeground": "#7FA2B3",
+        "statusBar.background": "#00344A",
+        "statusBar.foreground": "#51BDF0",
+        "activityBar.background": "#00344A",
+        "activityBar.foreground": "#1C7EBB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark (Valhalla)",
+      "label": "G Dark (Valhalla)",
+      "colors": {
+        "editor.background": "#292F46",
+        "editor.foreground": "#C4D2E0",
+        "titleBar.activeBackground": "#292F46",
+        "titleBar.activeForeground": "#9CC2DF",
+        "titleBar.inactiveBackground": "#202537",
+        "titleBar.inactiveForeground": "#7FA2B3",
+        "statusBar.background": "#202537",
+        "statusBar.foreground": "#728EAC",
+        "activityBar.background": "#202537",
+        "activityBar.foreground": "#1C7EBB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark (Jacksons Purple)",
+      "label": "G Dark (Jacksons Purple)",
+      "colors": {
+        "editor.background": "#2A3A71",
+        "editor.foreground": "#C2D1DA",
+        "titleBar.activeBackground": "#2A3670",
+        "titleBar.activeForeground": "#9CC2DF",
+        "titleBar.inactiveBackground": "#2A3670",
+        "titleBar.inactiveForeground": "#7FA2B3",
+        "statusBar.background": "#2A3670",
+        "statusBar.foreground": "#8599F1",
+        "activityBar.background": "#2A3670",
+        "activityBar.foreground": "#8599F1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-shift (Vulcan)",
+      "label": "G Dark-shift (Vulcan)",
+      "colors": {
+        "editor.background": "#17181F",
+        "editor.foreground": "#E1E5E5",
+        "titleBar.activeBackground": "#17181F",
+        "titleBar.activeForeground": "#608D9C",
+        "titleBar.inactiveBackground": "#1F2029",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#12141D",
+        "statusBar.foreground": "#466470",
+        "activityBar.background": "#17181F",
+        "activityBar.foreground": "#238D82"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-one-love (Black Pearl)",
+      "label": "G Dark-one-love (Black Pearl)",
+      "colors": {
+        "editor.background": "#081A20",
+        "editor.foreground": "#CEDBDB",
+        "titleBar.activeBackground": "#081A20",
+        "titleBar.activeForeground": "#4FB5D7",
+        "titleBar.inactiveBackground": "#0C2028",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#07161B",
+        "statusBar.foreground": "#5D737C",
+        "activityBar.background": "#081A20",
+        "activityBar.foreground": "#25699D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-one-love (Mirage)",
+      "label": "G Dark-one-love (Mirage)",
+      "colors": {
+        "editor.background": "#1C1D27",
+        "editor.foreground": "#CEDBDB",
+        "titleBar.activeBackground": "#1C1D27",
+        "titleBar.activeForeground": "#79A7B6",
+        "titleBar.inactiveBackground": "#181921",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#191B22",
+        "statusBar.foreground": "#658B9B",
+        "activityBar.background": "#1C1D27",
+        "activityBar.foreground": "#3E6583"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-minimal (Midnight)",
+      "label": "G Dark-minimal (Midnight)",
+      "colors": {
+        "editor.background": "#102740",
+        "editor.foreground": "#99A7B1",
+        "titleBar.activeBackground": "#102740",
+        "titleBar.activeForeground": "#BBD2E4",
+        "titleBar.inactiveBackground": "#0C2037",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#0C2037",
+        "statusBar.foreground": "#748BA3",
+        "activityBar.background": "#0C2037",
+        "activityBar.foreground": "#0D77BE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-minimal-2 (Astronaut Blue)",
+      "label": "G Dark-minimal-2 (Astronaut Blue)",
+      "colors": {
+        "editor.background": "#18475A",
+        "editor.foreground": "#B8F2FF",
+        "titleBar.activeBackground": "#124154",
+        "titleBar.activeForeground": "#9CC2DF",
+        "titleBar.inactiveBackground": "#124154",
+        "titleBar.inactiveForeground": "#7FA2B3",
+        "statusBar.background": "#124154",
+        "statusBar.foreground": "#7AB3CE",
+        "activityBar.background": "#124154",
+        "activityBar.foreground": "#3AA6D8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-minimal-3 (Oxford Blue)",
+      "label": "G Dark-minimal-3 (Oxford Blue)",
+      "colors": {
+        "editor.background": "#263137",
+        "editor.foreground": "#DCF2F7",
+        "titleBar.activeBackground": "#232C32",
+        "titleBar.activeForeground": "#9CC2DF",
+        "titleBar.inactiveBackground": "#2B3B45",
+        "titleBar.inactiveForeground": "#7FA2B3",
+        "statusBar.background": "#232C32",
+        "statusBar.foreground": "#7D919B",
+        "activityBar.background": "#232C32",
+        "activityBar.foreground": "#40A0CC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-shader (Haiti)",
+      "label": "G Dark-shader (Haiti)",
+      "colors": {
+        "editor.background": "#270B47",
+        "editor.foreground": "#E4C8FD",
+        "titleBar.activeBackground": "#23073F",
+        "titleBar.activeForeground": "#C08AF3",
+        "titleBar.inactiveBackground": "#36125A",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#23073F",
+        "statusBar.foreground": "#9C85B1",
+        "activityBar.background": "#23073F",
+        "activityBar.foreground": "#870FFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "G Dark-light (Hint of Red)",
+      "label": "G Dark-light (Hint of Red)",
+      "colors": {
+        "editor.background": "#F9F9F9",
+        "editor.foreground": "#5F6870",
+        "titleBar.activeBackground": "#FCFBF7",
+        "titleBar.activeForeground": "#3F484E",
+        "titleBar.inactiveBackground": "#F6F6F6",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#FCFBF7",
+        "statusBar.foreground": "#64757C",
+        "activityBar.background": "#FCFBF7",
+        "activityBar.foreground": "#9D910E"
+      },
+      "type": "light"
+    },
+    {
+      "name": "G Dark-light (Glitter)",
+      "label": "G Dark-light (Glitter)",
+      "colors": {
+        "editor.background": "#E3ECFC",
+        "editor.foreground": "#546A7B",
+        "titleBar.activeBackground": "#E8F0FF",
+        "titleBar.activeForeground": "#576EA0",
+        "titleBar.inactiveBackground": "#E0EAFC",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#E8F0FF",
+        "statusBar.foreground": "#6A7275",
+        "activityBar.background": "#E8F0FF",
+        "activityBar.foreground": "#2E6086"
+      },
+      "type": "light"
+    },
+    {
+      "name": "G Dark-light (Alice Blue)",
+      "label": "G Dark-light (Alice Blue)",
+      "colors": {
+        "editor.background": "#F8FCFF",
+        "editor.foreground": "#79848F",
+        "titleBar.activeBackground": "#F0F8FE",
+        "titleBar.activeForeground": "#518EA0",
+        "titleBar.inactiveBackground": "#F0F8FE",
+        "titleBar.inactiveForeground": "#607A86",
+        "statusBar.background": "#F0F8FE",
+        "statusBar.foreground": "#6D7274",
+        "activityBar.background": "#F0F8FE",
+        "activityBar.foreground": "#2E6086"
+      },
+      "type": "light"
+    },
+    {
+      "name": "G Dark-shader (Mirage)",
+      "label": "G Dark-shader (Mirage)",
+      "colors": {
+        "editor.background": "#190B29",
+        "editor.foreground": "#DFB2DD",
+        "titleBar.activeBackground": "#171022",
+        "titleBar.activeForeground": "#F8BCE5",
+        "titleBar.inactiveBackground": "#2B1C3B",
+        "titleBar.inactiveForeground": "#B78EC4",
+        "statusBar.background": "#171022",
+        "statusBar.foreground": "#F79FDB",
+        "activityBar.background": "#171022",
+        "activityBar.foreground": "#F51AD4"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "G Dark-shift (Midnight Moss)",
+      "label": "G Dark-shift (Midnight Moss)",
+      "colors": {
+        "editor.background": "#030B0B",
+        "editor.foreground": "#E1E5E5",
+        "titleBar.activeBackground": "#001212",
+        "titleBar.activeForeground": "#8AC8DD",
+        "titleBar.inactiveBackground": "#001212",
+        "titleBar.inactiveForeground": "#7EA1B1",
+        "statusBar.background": "#001212",
+        "statusBar.foreground": "#78CDC7",
+        "activityBar.background": "#001212",
+        "activityBar.foreground": "#12B5A4"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "G Dark-shader - H@ck3r (Midnight Moss)",
+      "label": "G Dark-shader - H@ck3r (Midnight Moss)",
+      "colors": {
+        "editor.background": "#030C0C",
+        "editor.foreground": "#B5DFCA",
+        "titleBar.activeBackground": "#030C0C",
+        "titleBar.activeForeground": "#7AC2A4",
+        "titleBar.inactiveBackground": "#051515",
+        "titleBar.inactiveForeground": "#5E9E92",
+        "statusBar.background": "#030C0C",
+        "statusBar.foreground": "#6CAF77",
+        "activityBar.background": "#030C0C",
+        "activityBar.foreground": "#6DE07C"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "G Dark (Haiti)",
+      "label": "G Dark (Haiti)",
+      "colors": {
+        "editor.background": "#270B47",
+        "editor.foreground": "#DCF2F7",
+        "titleBar.activeBackground": "#23073F",
+        "titleBar.activeForeground": "#E3C7F5",
+        "titleBar.inactiveBackground": "#230E39",
+        "titleBar.inactiveForeground": "#C792EA",
+        "statusBar.background": "#23073F",
+        "statusBar.foreground": "#A47ACE",
+        "activityBar.background": "#23073F",
+        "activityBar.foreground": "#810DF5"
+      },
+      "type": "hcDark"
+    }
+  ],
+  "source": "openvsx"
+}

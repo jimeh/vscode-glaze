@@ -1,0 +1,43 @@
+{
+  "extensionId": "699b9770-32df-491a-8801-a52496c17365",
+  "extensionName": "phpstorm-theme",
+  "publisherName": "ericgomez",
+  "displayName": "PhpStorm Dark Theme",
+  "version": "1.0.17",
+  "extractedAt": "2026-01-24T21:28:54.716Z",
+  "installCount": 7071,
+  "stale": false,
+  "themes": [
+    {
+      "name": "PhpStorm Dark",
+      "label": "PhpStorm Dark",
+      "colors": {
+        "editor.background": "#1E1F22",
+        "editor.foreground": "#BCBEC4",
+        "titleBar.activeBackground": "#2B2D30",
+        "titleBar.inactiveBackground": "#2B2D30",
+        "statusBar.background": "#2B2D30",
+        "statusBar.foreground": "#9EA0A8",
+        "activityBar.background": "#2B2D30",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "PhpStorm Dark Islands",
+      "label": "PhpStorm Dark Islands",
+      "colors": {
+        "editor.background": "#191A1C",
+        "editor.foreground": "#BCBEC4",
+        "titleBar.activeBackground": "#2B2D30",
+        "titleBar.inactiveBackground": "#2B2D30",
+        "statusBar.background": "#2B2D30",
+        "statusBar.foreground": "#9EA0A8",
+        "activityBar.background": "#2B2D30",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

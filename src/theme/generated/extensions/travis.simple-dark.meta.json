@@ -1,0 +1,73 @@
+{
+  "extensionId": "4adca1e5-e656-4410-ab18-bce3bfced666",
+  "extensionName": "simple-dark",
+  "publisherName": "travis",
+  "displayName": "Simple Dark",
+  "version": "1.4.3",
+  "extractedAt": "2026-01-24T21:28:48.947Z",
+  "installCount": 24847,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Simple Dark",
+      "label": "Simple Dark",
+      "colors": {
+        "editor.background": "#24272A",
+        "editor.foreground": "#DDDDDD",
+        "titleBar.activeBackground": "#24272A",
+        "titleBar.inactiveBackground": "#202124",
+        "statusBar.background": "#202124",
+        "statusBar.foreground": "#F0F0F0",
+        "activityBar.background": "#2C2F32",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Simple Dark Soft",
+      "label": "Simple Dark Soft",
+      "colors": {
+        "editor.background": "#24272A",
+        "editor.foreground": "#DCDCDC",
+        "titleBar.activeBackground": "#24272A",
+        "titleBar.inactiveBackground": "#202124",
+        "statusBar.background": "#202124",
+        "statusBar.foreground": "#F0F0F0",
+        "activityBar.background": "#2C2F32",
+        "activityBar.foreground": "#F0F0F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Simple Light",
+      "label": "Simple Light",
+      "colors": {
+        "editor.background": "#F3F3F3",
+        "editor.foreground": "#3C4043",
+        "titleBar.activeBackground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#FAFAFA",
+        "statusBar.background": "#FAFAFA",
+        "statusBar.foreground": "#202124",
+        "activityBar.background": "#F5F5F5",
+        "activityBar.foreground": "#202124"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Simple Light Soft",
+      "label": "Simple Light Soft",
+      "colors": {
+        "editor.background": "#F8F1E3",
+        "editor.foreground": "#3C4043",
+        "titleBar.activeBackground": "#F8F1E3",
+        "titleBar.inactiveBackground": "#FAF5E8",
+        "statusBar.background": "#FAF5E8",
+        "statusBar.foreground": "#202124",
+        "activityBar.background": "#F3ECDE",
+        "activityBar.foreground": "#202124"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

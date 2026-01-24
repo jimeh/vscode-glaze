@@ -1,0 +1,132 @@
+{
+  "extensionId": "8b8a7a10-52d8-4144-8fb5-36992ad8820c",
+  "extensionName": "lynx-theme",
+  "publisherName": "bastndev",
+  "displayName": "Lynx Theme Pro",
+  "version": "3.3.3",
+  "extractedAt": "2026-01-24T21:28:50.567Z",
+  "installCount": 13062,
+  "stale": false,
+  "themes": [
+    {
+      "name": "1. DARK (Lynx Theme Pro)",
+      "label": "1. DARK (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#0E0F0E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#0D0D0D",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#080808",
+        "titleBar.inactiveForeground": "#8A9A8A",
+        "statusBar.background": "#0D0D0D",
+        "statusBar.foreground": "#8A9A8A",
+        "activityBar.background": "#0D0D0D",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "2. LIGHT (Lynx Theme Pro)",
+      "label": "2. LIGHT (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#F4F4F4",
+        "editor.foreground": "#2D2D2D",
+        "titleBar.activeBackground": "#EAEAEA",
+        "titleBar.activeForeground": "#2D2D2D",
+        "titleBar.inactiveBackground": "#F5F5F5",
+        "titleBar.inactiveForeground": "#8A9A8A",
+        "statusBar.background": "#EAEAEA",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#EAEAEA",
+        "activityBar.foreground": "#2D2D2D"
+      },
+      "type": "light"
+    },
+    {
+      "name": "3. NIGHT (Lynx Theme Pro)",
+      "label": "3. NIGHT (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#172025",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#161F24",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#0F1618",
+        "titleBar.inactiveForeground": "#678FA2",
+        "statusBar.background": "#161F24",
+        "statusBar.foreground": "#678FA2",
+        "activityBar.background": "#161F24",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "4. GHIBLI (Lynx Theme Pro)",
+      "label": "4. GHIBLI (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#F5EAD6",
+        "editor.foreground": "#4A3F35",
+        "titleBar.activeBackground": "#F2E6D3",
+        "titleBar.activeForeground": "#6B5D4F",
+        "titleBar.inactiveBackground": "#F2E6D3",
+        "titleBar.inactiveForeground": "#8A7B6D",
+        "statusBar.background": "#F2E6D3",
+        "statusBar.foreground": "#8A7B6D",
+        "activityBar.background": "#F2E6D3",
+        "activityBar.foreground": "#4A3F35"
+      },
+      "type": "light"
+    },
+    {
+      "name": "5. COFFEE (Lynx Theme Pro)",
+      "label": "5. COFFEE (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#241615",
+        "editor.foreground": "#FFD0BB",
+        "titleBar.activeBackground": "#231514",
+        "titleBar.activeForeground": "#F5D6C8",
+        "titleBar.inactiveBackground": "#170F10",
+        "titleBar.inactiveForeground": "#A0A0A0",
+        "statusBar.background": "#231514",
+        "statusBar.foreground": "#A0A0A0",
+        "activityBar.background": "#231514",
+        "activityBar.foreground": "#FFD0BB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "6. KIRO (Lynx Theme Pro)",
+      "label": "6. KIRO (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#19161E",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#19161D",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#0F0C12",
+        "titleBar.inactiveForeground": "#8A7A9A",
+        "statusBar.background": "#19161D",
+        "statusBar.foreground": "#8A7A9A",
+        "activityBar.background": "#1F1926",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "7. NVIM (Lynx Theme Pro)",
+      "label": "7. NVIM (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#181B1F",
+        "editor.foreground": "#F1F5F9",
+        "titleBar.activeBackground": "#161A1D",
+        "titleBar.activeForeground": "#E2E8F0",
+        "titleBar.inactiveBackground": "#1A1E22",
+        "titleBar.inactiveForeground": "#94A3B8",
+        "statusBar.background": "#141719",
+        "statusBar.foreground": "#94A3B8",
+        "activityBar.background": "#161A1D",
+        "activityBar.foreground": "#E2E8F0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

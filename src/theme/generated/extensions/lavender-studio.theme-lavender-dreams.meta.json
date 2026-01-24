@@ -1,0 +1,47 @@
+{
+  "extensionId": "6b6c9131-4764-491b-9e02-39e9923b6966",
+  "extensionName": "theme-lavender-dreams",
+  "publisherName": "Lavender-Studio",
+  "displayName": "Lavender Dreams Theme",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T21:28:51.348Z",
+  "installCount": 11173,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Lavender Dreams",
+      "label": "Lavender Dreams",
+      "colors": {
+        "editor.background": "#2A2438",
+        "editor.foreground": "#F8F4FF",
+        "titleBar.activeBackground": "#1F1A28",
+        "titleBar.activeForeground": "#F8F4FF",
+        "titleBar.inactiveBackground": "#1F1A28",
+        "titleBar.inactiveForeground": "#B8AEC8",
+        "statusBar.background": "#1F1A28",
+        "statusBar.foreground": "#F8F4FF",
+        "activityBar.background": "#1F1A28",
+        "activityBar.foreground": "#F8F4FF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lavender Dreams Soft",
+      "label": "Lavender Dreams Soft",
+      "colors": {
+        "editor.background": "#2D273B",
+        "editor.foreground": "#E8E4F0",
+        "titleBar.activeBackground": "#221D2A",
+        "titleBar.activeForeground": "#E8E4F0",
+        "titleBar.inactiveBackground": "#221D2A",
+        "titleBar.inactiveForeground": "#A89EB8",
+        "statusBar.background": "#221D2A",
+        "statusBar.foreground": "#E8E4F0",
+        "activityBar.background": "#221D2A",
+        "activityBar.foreground": "#E8E4F0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

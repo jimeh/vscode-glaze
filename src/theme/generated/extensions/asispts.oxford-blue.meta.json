@@ -1,0 +1,26 @@
+{
+  "extensionId": "94418346-b8bd-4504-a597-4d0410defa0f",
+  "extensionName": "oxford-blue",
+  "publisherName": "asispts",
+  "displayName": "Oxford-blue Theme",
+  "version": "0.7.0",
+  "extractedAt": "2026-01-24T21:28:57.173Z",
+  "installCount": 5748,
+  "stale": false,
+  "themes": [
+    {
+      "name": "oxford-blue",
+      "label": "oxford-blue",
+      "colors": {
+        "editor.background": "#001A39",
+        "editor.foreground": "#72ABD6",
+        "statusBar.background": "#EFFF73",
+        "statusBar.foreground": "#4B4E29",
+        "activityBar.background": "#001A39",
+        "activityBar.foreground": "#EFFF73"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

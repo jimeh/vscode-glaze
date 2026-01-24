@@ -1,0 +1,47 @@
+{
+  "extensionId": "882f52a3-35a9-4463-82f1-a15972b8bedb",
+  "extensionName": "poptheme",
+  "publisherName": "ArtisanByteCrafter",
+  "displayName": "Pop Theme",
+  "version": "1.0.3",
+  "extractedAt": "2026-01-24T21:28:57.818Z",
+  "installCount": 5649,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Pop Dark",
+      "label": "Pop Dark",
+      "colors": {
+        "editor.background": "#3F3B39",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#3B3735",
+        "titleBar.activeForeground": "#DEDEDE",
+        "titleBar.inactiveBackground": "#484441",
+        "titleBar.inactiveForeground": "#DEDEDE",
+        "statusBar.background": "#2B2928",
+        "statusBar.foreground": "#DEDEDE",
+        "activityBar.background": "#4D4643",
+        "activityBar.foreground": "#FDF6E3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pop Light",
+      "label": "Pop Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#403C3A",
+        "titleBar.activeBackground": "#574F4A",
+        "titleBar.activeForeground": "#F6F6F6",
+        "titleBar.inactiveBackground": "#655C56",
+        "titleBar.inactiveForeground": "#F6F6F6",
+        "statusBar.background": "#403C3A",
+        "statusBar.foreground": "#F6F6F6",
+        "activityBar.background": "#DDDDDD",
+        "activityBar.foreground": "#403C3A"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

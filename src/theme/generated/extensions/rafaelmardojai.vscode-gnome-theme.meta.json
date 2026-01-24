@@ -1,0 +1,29 @@
+{
+  "extensionId": "06ee3a43-84b3-4fb7-9ec3-07c4eb5859d4",
+  "extensionName": "vscode-gnome-theme",
+  "publisherName": "rafaelmardojai",
+  "displayName": "GNOME theme",
+  "version": "0.4.1",
+  "extractedAt": "2026-01-24T21:29:04.106Z",
+  "installCount": 3750,
+  "stale": false,
+  "themes": [
+    {
+      "name": "GNOME dark",
+      "label": "GNOME dark",
+      "colors": {
+        "editor.background": "#242424",
+        "titleBar.activeBackground": "#303030",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#242424",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#242424",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1E1E1E",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

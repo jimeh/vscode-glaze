@@ -1,0 +1,30 @@
+{
+  "extensionId": "95877d73-347d-4be1-8042-4743aef8c44c",
+  "extensionName": "blackboard-pro",
+  "publisherName": "croccifixio",
+  "displayName": "Blackboard Pro",
+  "version": "1.1.11",
+  "extractedAt": "2026-01-24T21:28:58.145Z",
+  "installCount": 5506,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Blackboard Pro",
+      "label": "Blackboard Pro",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C8C8FF",
+        "titleBar.activeBackground": "#13172B",
+        "titleBar.activeForeground": "#C8C8FF",
+        "titleBar.inactiveBackground": "#13172B",
+        "titleBar.inactiveForeground": "#C8C8FF",
+        "statusBar.background": "#13172B",
+        "statusBar.foreground": "#8392FF",
+        "activityBar.background": "#13172B",
+        "activityBar.foreground": "#C8C8FF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,12 @@
+{
+  "extensionId": "d2779d85-368b-4205-9b9c-cc585a446410",
+  "extensionName": "parse-tree",
+  "publisherName": "pokey",
+  "displayName": "Parse tree",
+  "version": "0.48.0",
+  "extractedAt": "2026-01-24T21:28:49.562Z",
+  "installCount": 17607,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

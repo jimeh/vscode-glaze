@@ -1,0 +1,30 @@
+{
+  "extensionId": "7eecf5b0-7491-4b7e-9b70-8e09b9f5e8c7",
+  "extensionName": "theme-panda",
+  "publisherName": "pr1sm8",
+  "displayName": "Panda Theme",
+  "version": "1.2.0",
+  "extractedAt": "2026-01-24T21:29:07.611Z",
+  "installCount": 3172,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Panda Syntax",
+      "label": "Panda Syntax",
+      "colors": {
+        "editor.background": "#292A2B",
+        "editor.foreground": "#E6E6E6",
+        "titleBar.activeBackground": "#242526",
+        "titleBar.activeForeground": "#E6E6E6",
+        "titleBar.inactiveBackground": "#242526",
+        "titleBar.inactiveForeground": "#E6E6E6",
+        "statusBar.background": "#222223",
+        "statusBar.foreground": "#E6E6E6",
+        "activityBar.background": "#222223",
+        "activityBar.foreground": "#E6E6E6"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

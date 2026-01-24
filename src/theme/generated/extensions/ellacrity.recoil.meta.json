@@ -1,0 +1,30 @@
+{
+  "extensionId": "8b97cd50-482f-469b-bc6f-720b348bf421",
+  "extensionName": "recoil",
+  "publisherName": "ellacrity",
+  "displayName": "Recoil",
+  "version": "0.7.3",
+  "extractedAt": "2026-01-24T21:28:59.486Z",
+  "installCount": 4925,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Recoil",
+      "label": "Recoil",
+      "colors": {
+        "editor.background": "#050D14",
+        "editor.foreground": "#D8D2C0",
+        "titleBar.activeBackground": "#1C2630",
+        "titleBar.activeForeground": "#D8D2C0",
+        "titleBar.inactiveBackground": "#1C2630",
+        "titleBar.inactiveForeground": "#8F99A3",
+        "statusBar.background": "#050D14",
+        "statusBar.foreground": "#DADEE2",
+        "activityBar.background": "#1C2630",
+        "activityBar.foreground": "#FBA94B"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

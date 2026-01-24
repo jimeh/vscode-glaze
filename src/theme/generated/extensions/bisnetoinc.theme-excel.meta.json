@@ -1,0 +1,43 @@
+{
+  "extensionId": "41d6581f-486b-4357-aa69-efb1f50de22b",
+  "extensionName": "theme-excel",
+  "publisherName": "BisnetoInc",
+  "displayName": "Excel Theme",
+  "version": "1.0.1",
+  "extractedAt": "2026-01-24T21:29:04.420Z",
+  "installCount": 3672,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Excel (Dark)",
+      "label": "%ExcelDark%",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#197B43",
+        "titleBar.inactiveBackground": "#197B43",
+        "statusBar.background": "#197B43",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#33C481"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Excel (Light)",
+      "label": "%ExcelLight%",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#197B43",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#197B43",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "statusBar.background": "#197B43",
+        "activityBar.background": "#EBEBEB",
+        "activityBar.foreground": "#197B43"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

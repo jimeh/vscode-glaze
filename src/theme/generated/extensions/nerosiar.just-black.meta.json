@@ -1,0 +1,30 @@
+{
+  "extensionId": "6ea6cd52-2923-4b73-b1af-dfe8e4b10315",
+  "extensionName": "just-black",
+  "publisherName": "nerosiar",
+  "displayName": "Just Black",
+  "version": "3.0.1",
+  "extractedAt": "2026-01-24T21:28:58.631Z",
+  "installCount": 5367,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Just Black",
+      "label": "Just Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#8F93A2",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#00FF62",
+        "titleBar.inactiveBackground": "#0F111A",
+        "titleBar.inactiveForeground": "#525975",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#00FFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFF7E"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

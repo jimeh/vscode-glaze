@@ -1,0 +1,30 @@
+{
+  "extensionId": "8922f7e9-24d2-45d8-8416-cc2dca15c8f7",
+  "extensionName": "dracula-2",
+  "publisherName": "Dracula-2",
+  "displayName": "Dracula Remastered",
+  "version": "0.3.8",
+  "extractedAt": "2026-01-24T21:28:49.053Z",
+  "installCount": 21284,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Darcula",
+      "label": "Darcula",
+      "colors": {
+        "editor.background": "#1E1F35",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F35",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#1E1F35",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

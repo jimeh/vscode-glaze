@@ -1,0 +1,12 @@
+{
+  "extensionId": "91a6e748-9623-4b62-a08e-d888c522b1c9",
+  "extensionName": "lazyvscode-theme",
+  "publisherName": "lazyvscode-theme",
+  "displayName": "LazyVscode Theme",
+  "version": "6.5.2",
+  "extractedAt": "2026-01-24T21:29:03.151Z",
+  "installCount": 3947,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

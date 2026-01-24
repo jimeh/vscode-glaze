@@ -1,0 +1,23 @@
+{
+  "extensionId": "57c2713c-7389-444d-aefe-e7a0d2e65caa",
+  "extensionName": "greyburst",
+  "publisherName": "zewish",
+  "displayName": "Greyburst Theme",
+  "version": "0.1.0",
+  "extractedAt": "2026-01-24T21:29:01.948Z",
+  "installCount": 4297,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Greyburst",
+      "label": "Greyburst",
+      "colors": {
+        "editor.background": "#282828",
+        "editor.foreground": "#F8F8F2",
+        "statusBar.background": "#1B1D1F"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

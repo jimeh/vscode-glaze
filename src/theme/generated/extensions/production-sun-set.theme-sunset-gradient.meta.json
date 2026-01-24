@@ -1,0 +1,47 @@
+{
+  "extensionId": "87a9caf5-02a8-480d-bf86-ed25367a8a69",
+  "extensionName": "theme-sunset-gradient",
+  "publisherName": "production-sun-set",
+  "displayName": "Sunset Gradient Theme",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T21:28:50.670Z",
+  "installCount": 12838,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sunset Gradient",
+      "label": "Sunset Gradient",
+      "colors": {
+        "editor.background": "#2D1B3D",
+        "editor.foreground": "#FFF3E0",
+        "titleBar.activeBackground": "#241530",
+        "titleBar.activeForeground": "#FFF3E0",
+        "titleBar.inactiveBackground": "#1A0F1F",
+        "titleBar.inactiveForeground": "#8E7CC3",
+        "statusBar.background": "#241530",
+        "statusBar.foreground": "#FFF3E0",
+        "activityBar.background": "#241530",
+        "activityBar.foreground": "#FFF3E0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Sunset Gradient Soft",
+      "label": "Sunset Gradient Soft",
+      "colors": {
+        "editor.background": "#2A1836",
+        "editor.foreground": "#F5EDE0",
+        "titleBar.activeBackground": "#221428",
+        "titleBar.activeForeground": "#F5EDE0",
+        "titleBar.inactiveBackground": "#1A0F1F",
+        "titleBar.inactiveForeground": "#8070B3",
+        "statusBar.background": "#221428",
+        "statusBar.foreground": "#F5EDE0",
+        "activityBar.background": "#221428",
+        "activityBar.foreground": "#F5EDE0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

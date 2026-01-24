@@ -1,0 +1,44 @@
+{
+  "extensionId": "6062044f-c34f-4006-a296-b2b81e038406",
+  "extensionName": "jetbrains-color-theme",
+  "publisherName": "fogio",
+  "displayName": "JetBrains New UI Color Theme Extended",
+  "version": "0.6.0",
+  "extractedAt": "2026-01-24T21:28:53.282Z",
+  "installCount": 8701,
+  "stale": false,
+  "themes": [
+    {
+      "name": "dark-jetbrains-color-theme",
+      "label": "| Dark | JetBrains New UI Color Theme",
+      "colors": {
+        "editor.background": "#1E1F22",
+        "titleBar.activeBackground": "#2B2D30",
+        "titleBar.inactiveBackground": "#3C3F41",
+        "statusBar.background": "#2B2D30",
+        "statusBar.foreground": "#9DA0A8",
+        "activityBar.background": "#2B2D30",
+        "activityBar.foreground": "#CED0D6"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "light-jetbrains-color-theme",
+      "label": "| Light | JetBrains New UI Color Theme",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#DDDDDD",
+        "titleBar.activeForeground": "#333333",
+        "titleBar.inactiveBackground": "#DDDDDD",
+        "titleBar.inactiveForeground": "#333333",
+        "statusBar.background": "#007ACC",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#F7F8FA",
+        "activityBar.foreground": "#47484D"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

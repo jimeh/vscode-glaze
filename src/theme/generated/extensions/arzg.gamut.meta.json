@@ -1,0 +1,26 @@
+{
+  "extensionId": "e5a53896-e98b-44d8-ad77-57bbe876df59",
+  "extensionName": "gamut",
+  "publisherName": "arzg",
+  "displayName": "Gamut",
+  "version": "1.11.0",
+  "extractedAt": "2026-01-24T21:29:00.971Z",
+  "installCount": 4421,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Gamut",
+      "label": "Gamut",
+      "colors": {
+        "editor.background": "#252730",
+        "editor.foreground": "#DCDEE5",
+        "statusBar.background": "#191A1F",
+        "statusBar.foreground": "#8990B1",
+        "activityBar.background": "#212227",
+        "activityBar.foreground": "#DCDEE5"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
