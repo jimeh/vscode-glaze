@@ -469,7 +469,12 @@ suite('generatePalette theme blending', () => {
 });
 
 suite('generatePalette color schemes', () => {
-  const COLOR_SCHEMES: ColorScheme[] = ['pastel', 'vibrant'];
+  const COLOR_SCHEMES: ColorScheme[] = [
+    'pastel',
+    'vibrant',
+    'muted',
+    'monochrome',
+  ];
   const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
   test('generates valid colors for all color schemes', () => {
@@ -630,6 +635,119 @@ suite('generatePalette color schemes', () => {
         `${scheme} scheme should support theme blending`
       );
     }
+  });
+
+  test('saturation ordering: vibrant > pastel > muted > monochrome', () => {
+    const palettes = {
+      vibrant: generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: 'vibrant',
+      }),
+      pastel: generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: 'pastel',
+      }),
+      muted: generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: 'muted',
+      }),
+      monochrome: generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: 'monochrome',
+      }),
+    };
+
+    const vibrantSat = hexToSaturation(
+      palettes.vibrant['titleBar.activeBackground']!
+    );
+    const pastelSat = hexToSaturation(
+      palettes.pastel['titleBar.activeBackground']!
+    );
+    const mutedSat = hexToSaturation(
+      palettes.muted['titleBar.activeBackground']!
+    );
+    const monoSat = hexToSaturation(
+      palettes.monochrome['titleBar.activeBackground']!
+    );
+
+    assert.ok(
+      vibrantSat > pastelSat,
+      `vibrant (${vibrantSat}) should have higher saturation than ` +
+        `pastel (${pastelSat})`
+    );
+    assert.ok(
+      pastelSat > mutedSat,
+      `pastel (${pastelSat}) should have higher saturation than ` +
+        `muted (${mutedSat})`
+    );
+    assert.ok(
+      mutedSat > monoSat,
+      `muted (${mutedSat}) should have higher saturation than ` +
+        `monochrome (${monoSat})`
+    );
+  });
+
+  test('monochrome produces grayscale output', () => {
+    const palette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'monochrome',
+    });
+
+    for (const [key, color] of Object.entries(palette)) {
+      const saturation = hexToSaturation(color);
+      assert.strictEqual(
+        saturation,
+        0,
+        `monochrome ${key} should be grayscale (saturation=0), got ${saturation}`
+      );
+    }
+  });
+
+  test('muted and monochrome produce different colors from pastel', () => {
+    const pastel = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'pastel',
+    });
+    const muted = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'muted',
+    });
+    const monochrome = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      colorScheme: 'monochrome',
+    });
+
+    assert.notStrictEqual(
+      pastel['titleBar.activeBackground'],
+      muted['titleBar.activeBackground'],
+      'muted should differ from pastel'
+    );
+    assert.notStrictEqual(
+      pastel['titleBar.activeBackground'],
+      monochrome['titleBar.activeBackground'],
+      'monochrome should differ from pastel'
+    );
+    assert.notStrictEqual(
+      muted['titleBar.activeBackground'],
+      monochrome['titleBar.activeBackground'],
+      'monochrome should differ from muted'
+    );
   });
 });
 

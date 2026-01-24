@@ -60,7 +60,12 @@ function isValidThemeMode(value: string): value is ThemeMode {
   return VALID_THEME_MODES.includes(value as ThemeMode);
 }
 
-const VALID_COLOR_SCHEMES: ColorScheme[] = ['pastel', 'vibrant'];
+const VALID_COLOR_SCHEMES: ColorScheme[] = [
+  'pastel',
+  'vibrant',
+  'muted',
+  'monochrome',
+];
 
 function isValidColorScheme(value: string): value is ColorScheme {
   return VALID_COLOR_SCHEMES.includes(value as ColorScheme);
