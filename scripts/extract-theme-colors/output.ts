@@ -4,13 +4,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { CONFIG } from './config';
-import { getExtensionMetaPath } from './scanner';
-import type {
-  ExtractedTheme,
-  ExtensionMetadata,
-  MetadataTheme,
-  ThemeColors,
-} from './types';
+import type { ExtractedTheme, MetadataTheme, ThemeColors } from './types';
 
 /**
  * Formats a ThemeColors object as TypeScript code.
@@ -60,98 +54,164 @@ interface ThemeConflict {
   discarded: ExtractedTheme;
 }
 
-interface MergeResult {
-  themes: Map<string, ExtractedTheme>;
-  conflicts: ThemeConflict[];
+/**
+ * Information needed to generate theme files.
+ */
+export interface ExtensionFileInfo {
+  publisherName: string;
+  extensionName: string;
+  installCount: number;
+  themes: ExtractedTheme[];
 }
 
 /**
- * Merges new themes with existing themes, resolving conflicts by keeping
- * the theme from the extension with more downloads.
+ * Strips the timestamp line from generated content for comparison.
  */
-function mergeThemes(
-  newThemes: ExtractedTheme[],
-  existingThemes?: Map<string, ExtractedTheme>
-): MergeResult {
-  const mergedThemes = new Map<string, ExtractedTheme>();
+function stripTimestamp(content: string): string {
+  return content.replace(/^ \* Generated: .+$/m, '');
+}
+
+/**
+ * Resolves theme conflicts and returns merged themes map.
+ */
+function resolveThemeConflicts(
+  extensionInfos: ExtensionFileInfo[]
+): Map<string, ExtractedTheme> {
+  const themeMap = new Map<string, { theme: ExtractedTheme; extKey: string }>();
   const conflicts: ThemeConflict[] = [];
 
-  if (existingThemes) {
-    for (const [name, theme] of existingThemes) {
-      mergedThemes.set(name, theme);
-    }
-  }
-
-  for (const theme of newThemes) {
-    const existing = mergedThemes.get(theme.name);
-
-    if (existing && existing.extensionId !== theme.extensionId) {
-      // Conflict: same name from different extensions
-      if (theme.installCount > existing.installCount) {
-        mergedThemes.set(theme.name, theme);
-        conflicts.push({ kept: theme, discarded: existing });
+  for (const info of extensionInfos) {
+    const extKey = `${info.publisherName}.${info.extensionName}`;
+    for (const theme of info.themes) {
+      const existing = themeMap.get(theme.name);
+      if (existing && existing.extKey !== extKey) {
+        // Conflict: same name from different extensions
+        if (theme.installCount > existing.theme.installCount) {
+          themeMap.set(theme.name, { theme, extKey });
+          conflicts.push({ kept: theme, discarded: existing.theme });
+        } else {
+          conflicts.push({ kept: existing.theme, discarded: theme });
+        }
       } else {
-        conflicts.push({ kept: existing, discarded: theme });
+        themeMap.set(theme.name, { theme, extKey });
       }
-    } else {
-      mergedThemes.set(theme.name, theme);
     }
   }
 
-  return { themes: mergedThemes, conflicts };
-}
-
-/**
- * Generates TypeScript code for the GENERATED_THEME_COLORS constant.
- */
-export function generateTypeScriptCode(
-  themes: ExtractedTheme[],
-  existingThemes?: Map<string, ExtractedTheme>
-): string {
-  const { themes: mergedThemes, conflicts } = mergeThemes(
-    themes,
-    existingThemes
-  );
-
-  // Log warnings for conflicts
+  // Log conflicts
   if (conflicts.length > 0) {
     console.warn('');
     console.warn(`Found ${conflicts.length} duplicate theme name(s):`);
     for (const { kept, discarded } of conflicts) {
+      const keptId = `${kept.publisherName}.${kept.extensionName}`;
+      const discardedId = `${discarded.publisherName}.${discarded.extensionName}`;
       console.warn(
-        `  "${kept.name}": keeping from "${kept.extensionName}" ` +
+        `  "${kept.name}": keeping from "${keptId}" ` +
           `(${kept.installCount.toLocaleString()} installs), ` +
-          `discarding from "${discarded.extensionName}" ` +
+          `discarding from "${discardedId}" ` +
           `(${discarded.installCount.toLocaleString()} installs)`
       );
     }
     console.warn('');
   }
 
-  // Sort alphabetically for stable diffs
-  const sortedNames = Array.from(mergedThemes.keys()).sort((a, b) =>
+  // Convert to simple map
+  const result = new Map<string, ExtractedTheme>();
+  for (const [name, { theme }] of themeMap) {
+    result.set(name, theme);
+  }
+  return result;
+}
+
+/**
+ * Generates theme code for a map of themes.
+ */
+function generateThemeEntries(themeMap: Map<string, ExtractedTheme>): string[] {
+  const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
     a.localeCompare(b, undefined, { sensitivity: 'base' })
   );
 
-  const timestamp = new Date().toISOString();
+  const lines: string[] = [];
+  for (const name of sortedNames) {
+    const theme = themeMap.get(name)!;
+    const formattedName = formatThemeName(name);
+    const colors = formatColors(theme.colors);
+
+    lines.push(`  ${formattedName}: {`);
+    lines.push(`    colors: ${colors},`);
+    lines.push(`    type: '${theme.type}',`);
+    lines.push('  },');
+  }
+
+  return lines;
+}
+
+/**
+ * Generates extensions.ts with EXTENSION_THEME_COLORS constant.
+ */
+export function generateExtensionColorsCode(
+  extensionInfos: ExtensionFileInfo[],
+  timestamp?: string
+): string {
+  const themeMap = resolveThemeConflicts(extensionInfos);
+
+  const ts = timestamp ?? new Date().toISOString();
   const lines: string[] = [
     '/**',
-    ' * Auto-generated theme colors.',
-    ` * Generated: ${timestamp}`,
+    ' * Auto-generated theme colors from marketplace extensions.',
+    ` * Generated: ${ts}`,
     ' *',
     ' * This file is auto-generated by scripts/extract-theme-colors.',
     ' * Do not edit manually - changes will be overwritten.',
-    ' *',
-    ' * To add custom themes, use the patina.theme.colors setting.',
     ' */',
     '',
-    "import type { ThemeInfo } from './colors';",
+    "import type { ThemeInfo } from '../colors';",
     '',
-    'export const GENERATED_THEME_COLORS: Record<string, ThemeInfo> = {',
+    'export const EXTENSION_THEME_COLORS: Record<string, ThemeInfo> = {',
+  ];
+
+  lines.push(...generateThemeEntries(themeMap));
+
+  lines.push('};');
+  lines.push('');
+
+  return lines.join('\n');
+}
+
+/**
+ * Generates builtin.ts with BUILTIN_THEME_COLORS constant.
+ */
+export function generateBuiltinColorsCode(
+  themes: MetadataTheme[],
+  timestamp?: string
+): string {
+  // Convert to map for sorting
+  const themeMap = new Map<string, MetadataTheme>();
+  for (const theme of themes) {
+    themeMap.set(theme.name, theme);
+  }
+
+  const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: 'base' })
+  );
+
+  const ts = timestamp ?? new Date().toISOString();
+  const lines: string[] = [
+    '/**',
+    ' * Auto-generated theme colors from VS Code built-in themes.',
+    ` * Generated: ${ts}`,
+    ' *',
+    ' * This file is auto-generated by scripts/extract-theme-colors.',
+    ' * Do not edit manually - changes will be overwritten.',
+    ' */',
+    '',
+    "import type { ThemeInfo } from '../colors';",
+    '',
+    'export const BUILTIN_THEME_COLORS: Record<string, ThemeInfo> = {',
   ];
 
   for (const name of sortedNames) {
-    const theme = mergedThemes.get(name)!;
+    const theme = themeMap.get(name)!;
     const formattedName = formatThemeName(name);
     const colors = formatColors(theme.colors);
 
@@ -242,154 +302,10 @@ export function toMetadataThemes(themes: ExtractedTheme[]): MetadataTheme[] {
 }
 
 /**
- * Writes an extension's metadata file (with themes data).
- */
-export function writeExtensionMetadata(
-  publisherName: string,
-  extensionName: string,
-  metadata: ExtensionMetadata
-): void {
-  // Ensure directory exists
-  if (!fs.existsSync(CONFIG.extensionsDir)) {
-    fs.mkdirSync(CONFIG.extensionsDir, { recursive: true });
-  }
-
-  const metaPath = getExtensionMetaPath(publisherName, extensionName);
-  fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2) + '\n');
-}
-
-/**
- * Deletes an extension's metadata file.
- */
-export function deleteExtensionMetadata(
-  publisherName: string,
-  extensionName: string
-): void {
-  const metaPath = getExtensionMetaPath(publisherName, extensionName);
-
-  if (fs.existsSync(metaPath)) {
-    fs.unlinkSync(metaPath);
-  }
-}
-
-/**
- * Information needed to generate the index file.
- */
-export interface ExtensionFileInfo {
-  publisherName: string;
-  extensionName: string;
-  installCount: number;
-  themes: ExtractedTheme[];
-}
-
-/**
- * Strips the timestamp line from generated content for comparison.
- */
-function stripTimestamp(content: string): string {
-  return content.replace(/^ \* Generated: .+$/m, '');
-}
-
-/**
- * Resolves theme conflicts and returns merged themes map.
- */
-function resolveThemeConflicts(
-  extensionInfos: ExtensionFileInfo[]
-): Map<string, ExtractedTheme> {
-  const themeMap = new Map<string, { theme: ExtractedTheme; extKey: string }>();
-  const conflicts: ThemeConflict[] = [];
-
-  for (const info of extensionInfos) {
-    const extKey = `${info.publisherName}.${info.extensionName}`;
-    for (const theme of info.themes) {
-      const existing = themeMap.get(theme.name);
-      if (existing && existing.extKey !== extKey) {
-        // Conflict: same name from different extensions
-        if (theme.installCount > existing.theme.installCount) {
-          themeMap.set(theme.name, { theme, extKey });
-          conflicts.push({ kept: theme, discarded: existing.theme });
-        } else {
-          conflicts.push({ kept: existing.theme, discarded: theme });
-        }
-      } else {
-        themeMap.set(theme.name, { theme, extKey });
-      }
-    }
-  }
-
-  // Log conflicts
-  if (conflicts.length > 0) {
-    console.warn('');
-    console.warn(`Found ${conflicts.length} duplicate theme name(s):`);
-    for (const { kept, discarded } of conflicts) {
-      console.warn(
-        `  "${kept.name}": keeping from "${kept.extensionName}" ` +
-          `(${kept.installCount.toLocaleString()} installs), ` +
-          `discarding from "${discarded.extensionName}" ` +
-          `(${discarded.installCount.toLocaleString()} installs)`
-      );
-    }
-    console.warn('');
-  }
-
-  // Convert to simple map
-  const result = new Map<string, ExtractedTheme>();
-  for (const [name, { theme }] of themeMap) {
-    result.set(name, theme);
-  }
-  return result;
-}
-
-/**
- * Generates consolidated colors.ts with all themes defined inline.
- */
-export function generateConsolidatedColorsCode(
-  extensionInfos: ExtensionFileInfo[],
-  timestamp?: string
-): string {
-  const themeMap = resolveThemeConflicts(extensionInfos);
-
-  // Sort alphabetically for stable diffs
-  const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: 'base' })
-  );
-
-  const ts = timestamp ?? new Date().toISOString();
-  const lines: string[] = [
-    '/**',
-    ' * Auto-generated theme colors.',
-    ` * Generated: ${ts}`,
-    ' *',
-    ' * This file is auto-generated by scripts/extract-theme-colors.',
-    ' * Do not edit manually - changes will be overwritten.',
-    ' */',
-    '',
-    "import type { ThemeInfo } from '../colors';",
-    '',
-    'export const GENERATED_THEME_COLORS: Record<string, ThemeInfo> = {',
-  ];
-
-  for (const name of sortedNames) {
-    const theme = themeMap.get(name)!;
-    const formattedName = formatThemeName(name);
-    const colors = formatColors(theme.colors);
-
-    lines.push(`  ${formattedName}: {`);
-    lines.push(`    colors: ${colors},`);
-    lines.push(`    type: '${theme.type}',`);
-    lines.push('  },');
-  }
-
-  lines.push('};');
-  lines.push('');
-
-  return lines.join('\n');
-}
-
-/**
- * Writes the consolidated colors.ts file if content has changed.
+ * Writes the extension colors file if content has changed.
  * Returns true if the file was written, false if skipped (no changes).
  */
-export function writeConsolidatedColorsFile(
+export function writeExtensionColorsFile(
   extensionInfos: ExtensionFileInfo[]
 ): boolean {
   // Ensure directory exists
@@ -397,16 +313,43 @@ export function writeConsolidatedColorsFile(
     fs.mkdirSync(CONFIG.outputDir, { recursive: true });
   }
 
-  const newContent = generateConsolidatedColorsCode(extensionInfos);
+  const newContent = generateExtensionColorsCode(extensionInfos);
 
   // Check if existing file has the same content (ignoring timestamp)
-  if (fs.existsSync(CONFIG.colorsPath)) {
-    const existingContent = fs.readFileSync(CONFIG.colorsPath, 'utf-8');
+  if (fs.existsSync(CONFIG.extensionColorsPath)) {
+    const existingContent = fs.readFileSync(
+      CONFIG.extensionColorsPath,
+      'utf-8'
+    );
     if (stripTimestamp(existingContent) === stripTimestamp(newContent)) {
       return false;
     }
   }
 
-  fs.writeFileSync(CONFIG.colorsPath, newContent);
+  fs.writeFileSync(CONFIG.extensionColorsPath, newContent);
+  return true;
+}
+
+/**
+ * Writes the builtin colors file if content has changed.
+ * Returns true if the file was written, false if skipped (no changes).
+ */
+export function writeBuiltinColorsFile(themes: MetadataTheme[]): boolean {
+  // Ensure directory exists
+  if (!fs.existsSync(CONFIG.outputDir)) {
+    fs.mkdirSync(CONFIG.outputDir, { recursive: true });
+  }
+
+  const newContent = generateBuiltinColorsCode(themes);
+
+  // Check if existing file has the same content (ignoring timestamp)
+  if (fs.existsSync(CONFIG.builtinColorsPath)) {
+    const existingContent = fs.readFileSync(CONFIG.builtinColorsPath, 'utf-8');
+    if (stripTimestamp(existingContent) === stripTimestamp(newContent)) {
+      return false;
+    }
+  }
+
+  fs.writeFileSync(CONFIG.builtinColorsPath, newContent);
   return true;
 }

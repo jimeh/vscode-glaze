@@ -2,16 +2,21 @@
 /**
  * Theme color extraction script.
  *
- * Fetches popular VS Code theme extensions from the marketplace,
- * extracts their background colors, and generates TypeScript code.
+ * Fetches VS Code built-in themes from GitHub and popular theme extensions
+ * from the marketplace, extracts their background colors, and generates
+ * TypeScript code.
  *
  * Supports incremental updates - only re-fetches extensions when their
- * version changes. Generates per-extension files with metadata sidecars.
+ * version changes.
  *
  * Usage:
- *   pnpm run extract-themes           # Generate output files
- *   pnpm run extract-themes:dry-run   # Preview without writing
+ *   pnpm run extract-themes               # Generate output files
+ *   pnpm run extract-themes:dry-run       # Preview without writing
+ *   pnpm run extract-themes -- --skip-builtin   # Skip built-in extraction
+ *   pnpm run extract-themes -- --force-builtin  # Force built-in re-extraction
  */
+import * as fs from 'fs';
+import * as path from 'path';
 import { CONFIG } from './config';
 import { clearCache } from './cache';
 import {
@@ -27,31 +32,40 @@ import {
 import { parseTheme, validateTheme } from './parser';
 import {
   generateReport,
-  writeExtensionMetadata,
-  writeConsolidatedColorsFile,
   toMetadataThemes,
+  writeExtensionColorsFile,
+  writeBuiltinColorsFile,
   type ExtensionFileInfo,
 } from './output';
 import {
   scanExistingExtensions,
   needsUpdate,
   hasThemesInMetadata,
-  getExtensionMetaPath,
-  cleanupExtensionTsFiles,
+  toExtensionData,
 } from './scanner';
 import { loadPinnedExtensions } from './pinned';
+import {
+  readBuiltinsMetadata,
+  writeBuiltinsMetadata,
+  writeExtensionsMetadata,
+  deleteOldExtensionsJson,
+  type ExtensionsMetadata,
+} from './metadata';
+import { fetchLatestVSCodeRelease, downloadVSCodeSource } from './github';
+import { extractBuiltinThemes } from './builtin';
 import type {
   ExtractedTheme,
   ExtensionMetadata,
   MarketplaceExtension,
 } from './types';
-import * as fs from 'fs';
 
 interface CliOptions {
   dryRun: boolean;
   clearCache: boolean;
   verbose: boolean;
   forceAll: boolean;
+  skipBuiltin: boolean;
+  forceBuiltin: boolean;
 }
 
 function parseArgs(): CliOptions {
@@ -61,6 +75,8 @@ function parseArgs(): CliOptions {
     clearCache: args.includes('--clear-cache'),
     verbose: args.includes('--verbose') || args.includes('-v'),
     forceAll: args.includes('--force-all'),
+    skipBuiltin: args.includes('--skip-builtin'),
+    forceBuiltin: args.includes('--force-builtin'),
   };
 }
 
@@ -135,6 +151,7 @@ async function processExtension(
         contribution,
         readThemeFile,
         extension.extensionId,
+        extension.publisherName,
         extension.extensionName,
         extension.installCount
       );
@@ -177,9 +194,138 @@ function loadExistingThemes(metadata: ExtensionMetadata): ExtractedTheme[] {
     colors: t.colors,
     type: t.type,
     extensionId: metadata.extensionId,
+    publisherName: metadata.publisherName,
     extensionName: metadata.extensionName,
     installCount: metadata.installCount,
   }));
+}
+
+/**
+ * Ensures extensions metadata directory exists.
+ */
+function ensureExtensionsDir(): void {
+  if (!fs.existsSync(CONFIG.extensionsMetadataDir)) {
+    fs.mkdirSync(CONFIG.extensionsMetadataDir, { recursive: true });
+  }
+}
+
+/**
+ * Cleans up old colors.ts file if it exists.
+ */
+function cleanupOldColorsFile(): void {
+  const oldColorsPath = path.join(CONFIG.outputDir, 'colors.ts');
+  if (fs.existsSync(oldColorsPath)) {
+    console.log('Cleaning up old colors.ts file...');
+    fs.unlinkSync(oldColorsPath);
+  }
+}
+
+/**
+ * Extracts and saves VS Code built-in themes.
+ */
+async function processBuiltinThemes(
+  options: CliOptions
+): Promise<{ themes: ExtractedTheme[]; tag: string } | null> {
+  if (options.skipBuiltin) {
+    console.log('Skipping built-in theme extraction (--skip-builtin)');
+    // Load existing if available
+    const existing = readBuiltinsMetadata();
+    if (existing) {
+      const themes = existing.themes.map((t) => ({
+        ...t,
+        extensionId: 'vscode.builtin',
+        publisherName: 'vscode',
+        extensionName: 'builtin',
+        installCount: 0,
+      }));
+      return { themes, tag: existing.tag };
+    }
+    return null;
+  }
+
+  console.log('');
+  console.log('Processing VS Code built-in themes...');
+
+  // Fetch latest release info
+  let release;
+  try {
+    release = await fetchLatestVSCodeRelease();
+    console.log(`Latest VS Code release: ${release.tag_name}`);
+  } catch (error) {
+    console.error(`Failed to fetch VS Code release info: ${error}`);
+    // Fall back to existing metadata
+    const existing = readBuiltinsMetadata();
+    if (existing) {
+      console.log(`Using cached built-in themes from ${existing.tag}`);
+      const themes = existing.themes.map((t) => ({
+        ...t,
+        extensionId: 'vscode.builtin',
+        publisherName: 'vscode',
+        extensionName: 'builtin',
+        installCount: 0,
+      }));
+      return { themes, tag: existing.tag };
+    }
+    return null;
+  }
+
+  // Check if we need to re-extract
+  const existing = readBuiltinsMetadata();
+  if (existing && existing.tag === release.tag_name && !options.forceBuiltin) {
+    console.log('Built-in themes are up to date, skipping extraction');
+    const themes = existing.themes.map((t) => ({
+      ...t,
+      extensionId: 'vscode.builtin',
+      publisherName: 'vscode',
+      extensionName: 'builtin',
+      installCount: 0,
+    }));
+    return { themes, tag: existing.tag };
+  }
+
+  // Download and extract
+  let zipBuffer;
+  try {
+    zipBuffer = await downloadVSCodeSource(release.tag_name);
+  } catch (error) {
+    console.error(`Failed to download VS Code source: ${error}`);
+    if (existing) {
+      console.log(`Using cached built-in themes from ${existing.tag}`);
+      const themes = existing.themes.map((t) => ({
+        ...t,
+        extensionId: 'vscode.builtin',
+        publisherName: 'vscode',
+        extensionName: 'builtin',
+        installCount: 0,
+      }));
+      return { themes, tag: existing.tag };
+    }
+    return null;
+  }
+
+  const themes = extractBuiltinThemes(zipBuffer);
+  console.log(`Extracted ${themes.length} built-in themes`);
+
+  // Save metadata
+  if (!options.dryRun) {
+    const metadata = {
+      tag: release.tag_name,
+      extractedAt: new Date().toISOString(),
+      themes: toMetadataThemes(themes),
+    };
+    writeBuiltinsMetadata(metadata);
+    console.log(`Saved builtins metadata: ${CONFIG.builtinsMetadataPath}`);
+
+    // Write builtin.ts
+    const written = writeBuiltinColorsFile(metadata.themes);
+    if (written) {
+      console.log(`Written built-in colors to: ${CONFIG.builtinColorsPath}`);
+    } else {
+      console.log(`Built-in colors unchanged: ${CONFIG.builtinColorsPath}`);
+    }
+  }
+
+  return { themes, tag: release.tag_name };
 }
 
 async function main(): Promise<void> {
@@ -194,21 +340,30 @@ async function main(): Promise<void> {
     clearCache();
   }
 
-  // Step 1: Scan existing extension files
-  console.log('Scanning existing extension files...');
-  const existingMetadata = scanExistingExtensions();
-  console.log(`Found ${existingMetadata.size} existing extension files`);
+  // Clean up old file structure and ensure directories exist
+  cleanupOldColorsFile();
+  ensureExtensionsDir();
 
-  // Step 2: Load pinned extensions
+  // Step 1: Process built-in themes
+  const builtinResult = await processBuiltinThemes(options);
+  const builtinThemes = builtinResult?.themes ?? [];
+
+  // Step 2: Scan existing extension files
+  console.log('');
+  console.log('Scanning existing extension metadata...');
+  const existingMetadata = scanExistingExtensions();
+  console.log(`Found ${existingMetadata.size} existing extensions`);
+
+  // Step 3: Load pinned extensions
   const pinnedIds = loadPinnedExtensions();
   if (pinnedIds.length > 0) {
     console.log(`Loaded ${pinnedIds.length} pinned extensions`);
   }
 
-  // Step 3: Fetch top N extensions from marketplace
+  // Step 4: Fetch top N extensions from marketplace
   const topExtensions = await fetchThemeExtensions();
 
-  // Step 4: Build merged set of extensions to process
+  // Step 5: Build merged set of extensions to process
   const extensionsToProcess = new Map<string, MarketplaceExtension>();
 
   // Add top extensions
@@ -231,51 +386,59 @@ async function main(): Promise<void> {
     }
   }
 
-  // Step 5: Process extensions (incremental update)
+  // Step 6: Process extensions (incremental update)
   const allExtensionInfos: ExtensionFileInfo[] = [];
+  const extensionsData: ExtensionsMetadata = {
+    extensions: {},
+  };
   let processed = 0;
   let skipped = 0;
   let updated = 0;
 
   console.log('');
-  console.log('Processing extensions...');
+  console.log('Processing marketplace extensions...');
 
-  for (const [, extension] of extensionsToProcess) {
+  for (const [extId, extension] of extensionsToProcess) {
     processed++;
-    const existing = existingMetadata.get(extension.extensionId);
+    // Use lowercase extId for lookup (filenames are lowercase)
+    const extIdLower = extId.toLowerCase();
+    const existing = existingMetadata.get(extIdLower);
 
     // Check if we need to update
     const shouldUpdate =
       options.forceAll || needsUpdate(existing, extension.version);
 
-    if (!shouldUpdate && existing && hasThemesInMetadata(existing)) {
-      // Load themes from existing metadata
-      const themes = loadExistingThemes(existing);
-
-      if (themes.length > 0) {
-        allExtensionInfos.push({
-          publisherName: existing.publisherName,
-          extensionName: existing.extensionName,
-          installCount: extension.installCount,
-          themes,
-        });
-        skipped++;
-
-        if (options.verbose) {
-          const extId = `${extension.publisherName}.${extension.extensionName}`;
-          console.log(
-            `[${processed}/${extensionsToProcess.size}] ` +
-              `${extension.displayName} [${extId}] ` +
-              `(skipped - v${extension.version})`
-          );
+    if (!shouldUpdate && existing) {
+      // Extension version unchanged - don't write metadata file
+      // Only add to output if it has themes (for conflict resolution)
+      if (hasThemesInMetadata(existing)) {
+        const themes = loadExistingThemes(existing);
+        if (themes.length > 0) {
+          allExtensionInfos.push({
+            publisherName: existing.publisherName,
+            extensionName: existing.extensionName,
+            // Use live installCount for conflict resolution
+            installCount: extension.installCount,
+            themes,
+          });
         }
-        continue;
       }
+
+      skipped++;
+
+      if (options.verbose) {
+        const hasThemes = hasThemesInMetadata(existing);
+        console.log(
+          `[${processed}/${extensionsToProcess.size}] ` +
+            `${extension.displayName} [${extId}] ` +
+            `(skipped${hasThemes ? '' : ', no themes'} - v${extension.version})`
+        );
+      }
+      continue;
     }
 
     // Process extension
     if (options.verbose) {
-      const extId = `${extension.publisherName}.${extension.extensionName}`;
       console.log(
         `[${processed}/${extensionsToProcess.size}] ` +
           `${extension.displayName} [${extId}] ` +
@@ -289,56 +452,49 @@ async function main(): Promise<void> {
 
     const themes = await processExtension(extension, options.verbose);
 
+    // Always store metadata (even with no themes) to avoid re-checking
+    const metadata: ExtensionMetadata = {
+      extensionId: extension.extensionId,
+      extensionName: extension.extensionName,
+      publisherName: extension.publisherName,
+      displayName: extension.displayName,
+      version: extension.version,
+      extractedAt: new Date().toISOString(),
+      installCount: extension.installCount,
+      stale: false,
+      themes: toMetadataThemes(themes),
+    };
+
+    extensionsData.extensions[extIdLower] = toExtensionData(metadata);
+
     if (themes.length > 0) {
-      const metadata: ExtensionMetadata = {
-        extensionId: extension.extensionId,
-        extensionName: extension.extensionName,
-        publisherName: extension.publisherName,
-        displayName: extension.displayName,
-        version: extension.version,
-        extractedAt: new Date().toISOString(),
-        installCount: extension.installCount,
-        stale: false,
-        themes: toMetadataThemes(themes),
-      };
-
-      if (!options.dryRun) {
-        writeExtensionMetadata(
-          extension.publisherName,
-          extension.extensionName,
-          metadata
-        );
-      }
-
       allExtensionInfos.push({
         publisherName: extension.publisherName,
         extensionName: extension.extensionName,
         installCount: extension.installCount,
         themes,
       });
-
-      updated++;
     }
+
+    updated++;
 
     // Small delay between VSIX downloads
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
-  // Step 6: Mark extensions not in marketplace + not pinned as stale
-  const currentIds = new Set(extensionsToProcess.keys());
+  // Step 7: Handle stale extensions (not in marketplace + not pinned)
+  // Build lowercase set for comparison
+  const currentIdsLower = new Set(
+    [...extensionsToProcess.keys()].map((k) => k.toLowerCase())
+  );
   for (const [, metadata] of existingMetadata) {
     const id = `${metadata.publisherName}.${metadata.extensionName}`;
-    if (!currentIds.has(id) && !pinnedIds.includes(id)) {
+    const idLower = id.toLowerCase();
+    if (!currentIdsLower.has(idLower) && !pinnedIds.includes(id)) {
+      const wasAlreadyStale = metadata.stale;
       if (!metadata.stale) {
         console.log(`Marking as stale: ${metadata.displayName}`);
-        if (!options.dryRun) {
-          const metaPath = getExtensionMetaPath(
-            metadata.publisherName,
-            metadata.extensionName
-          );
-          metadata.stale = true;
-          fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2) + '\n');
-        }
+        metadata.stale = true;
       }
 
       // Still include stale extensions in the output if they have themes
@@ -351,13 +507,18 @@ async function main(): Promise<void> {
             installCount: metadata.installCount,
             themes,
           });
+
+          // Only write metadata if newly marked as stale
+          if (!wasAlreadyStale) {
+            extensionsData.extensions[idLower] = toExtensionData(metadata);
+          }
         }
       }
     }
   }
 
   // Collect all themes for report
-  const allThemes: ExtractedTheme[] = [];
+  const allThemes: ExtractedTheme[] = [...builtinThemes];
   for (const info of allExtensionInfos) {
     allThemes.push(...info.themes);
   }
@@ -368,32 +529,49 @@ async function main(): Promise<void> {
       `(${updated} updated, ${skipped} skipped)`
   );
   console.log(`Total themes: ${allThemes.length}`);
+  console.log(`  - Built-in: ${builtinThemes.length}`);
+  console.log(`  - Extensions: ${allThemes.length - builtinThemes.length}`);
 
   // Generate report
   const report = generateReport(allThemes);
   console.log('');
   console.log(report);
 
-  // Step 7: Clean up old per-extension .ts files
-  if (!options.dryRun) {
-    const deletedFiles = cleanupExtensionTsFiles();
-    if (deletedFiles.length > 0) {
-      console.log(`Cleaned up ${deletedFiles.length} old extension .ts files`);
-    }
-  }
-
-  // Step 8: Generate consolidated colors file
+  // Step 8: Write output files
   if (options.dryRun) {
     console.log('');
     console.log('=== DRY RUN - Would generate output files ===');
     console.log(`Extensions included: ${allExtensionInfos.length}`);
-    console.log(`Would write to: ${CONFIG.colorsPath}`);
+    console.log(`Would write to: ${CONFIG.extensionColorsPath}`);
+    const updatedCount = Object.keys(extensionsData.extensions).length;
+    console.log(
+      `Would write ${updatedCount} updated extension metadata ` +
+        `files to: ${CONFIG.extensionsMetadataDir}/`
+    );
   } else {
-    const colorsWritten = writeConsolidatedColorsFile(allExtensionInfos);
-    if (colorsWritten) {
-      console.log(`Written colors to: ${CONFIG.colorsPath}`);
+    // Delete old consolidated extensions.json if it exists
+    if (deleteOldExtensionsJson()) {
+      console.log('Deleted old extensions.json (migrated to separate files)');
+    }
+
+    // Write extensions metadata (only updated extensions)
+    const updatedCount = Object.keys(extensionsData.extensions).length;
+    if (updatedCount > 0) {
+      writeExtensionsMetadata(extensionsData);
+      console.log(
+        `Written ${updatedCount} updated extension metadata ` +
+          `files to: ${CONFIG.extensionsMetadataDir}/`
+      );
     } else {
-      console.log(`Colors unchanged: ${CONFIG.colorsPath}`);
+      console.log('No extension metadata files needed updating');
+    }
+
+    // Write extension colors file
+    const colorsWritten = writeExtensionColorsFile(allExtensionInfos);
+    if (colorsWritten) {
+      console.log(`Written extension colors to: ${CONFIG.extensionColorsPath}`);
+    } else {
+      console.log(`Extension colors unchanged: ${CONFIG.extensionColorsPath}`);
     }
   }
 
