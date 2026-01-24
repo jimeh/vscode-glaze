@@ -332,6 +332,7 @@ suite('getTintConfig', () => {
   let originalStatusBar: boolean | undefined;
   let originalActivityBar: boolean | undefined;
   let originalMode: string | undefined;
+  let originalSeed: number | undefined;
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('patina');
@@ -339,6 +340,7 @@ suite('getTintConfig', () => {
     originalStatusBar = config.get<boolean>('elements.statusBar');
     originalActivityBar = config.get<boolean>('elements.activityBar');
     originalMode = config.get<string>('tint.mode');
+    originalSeed = config.get<number>('tint.seed');
   });
 
   suiteTeardown(async () => {
@@ -361,6 +363,11 @@ suite('getTintConfig', () => {
     await config.update(
       'tint.mode',
       originalMode,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'tint.seed',
+      originalSeed,
       vscode.ConfigurationTarget.Global
     );
   });
@@ -543,6 +550,54 @@ suite('getTintConfig', () => {
 
     const result = getTintConfig();
     assert.strictEqual(result.mode, 'auto');
+  });
+
+  test('defaults to seed 0 when not configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.seed',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.seed, 0);
+  });
+
+  test('reads configured seed value', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('tint.seed', 42, vscode.ConfigurationTarget.Global);
+
+    const result = getTintConfig();
+    assert.strictEqual(result.seed, 42);
+  });
+
+  test('accepts negative seed values', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('tint.seed', -100, vscode.ConfigurationTarget.Global);
+
+    const result = getTintConfig();
+    assert.strictEqual(result.seed, -100);
+  });
+
+  test('accepts large seed values', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.seed',
+      999999999,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.seed, 999999999);
+  });
+
+  test('falls back to 0 for non-integer seed', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('tint.seed', 3.14, vscode.ConfigurationTarget.Global);
+
+    const result = getTintConfig();
+    assert.strictEqual(result.seed, 0);
   });
 });
 

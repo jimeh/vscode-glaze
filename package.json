@@ -103,6 +103,11 @@
           "default": "auto",
           "description": "Theme mode for color generation. Auto-detects from VSCode's current theme."
         },
+        "patina.tint.seed": {
+          "type": "integer",
+          "default": 0,
+          "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces."
+        },
         "patina.elements.titleBar": {
           "type": "boolean",
           "default": true,
