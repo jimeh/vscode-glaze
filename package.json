@@ -210,6 +210,8 @@
     "lint:fix": "eslint src --fix && prettier --write .",
     "format": "prettier --write .",
     "test": "vscode-test",
+    "test:coverage": "vscode-test --coverage",
+    "test:coverage:html": "vscode-test --coverage --coverage-reporter=html --coverage-reporter=lcov --coverage-output=coverage",
     "extract-themes": "tsx scripts/extract-theme-colors/index.ts",
     "extract-themes:dry-run": "tsx scripts/extract-theme-colors/index.ts --dry-run",
     "extract-themes:verbose": "tsx scripts/extract-theme-colors/index.ts --verbose"

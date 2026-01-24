@@ -3,6 +3,7 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+coverage/
 
 # Theme extraction script cache
 scripts/extract-theme-colors/.cache/

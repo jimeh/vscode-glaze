@@ -7,4 +7,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   files: 'out/test/**/*.test.js',
   workspaceFolder: resolve(__dirname, 'src/test/fixtures/test-workspace'),
+  coverage: {
+    reporter: ['text'],
+    lines: 80,
+    functions: 80,
+    branches: 80,
+    statements: 80,
+  },
 });
