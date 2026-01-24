@@ -1,0 +1,30 @@
+{
+  "extensionId": "236239f1-c992-4512-ab9b-3d5074d37b79",
+  "extensionName": "emmess-palegreen-on-bluishcyan",
+  "publisherName": "emmess",
+  "displayName": "emmess_paleGreen_on_bluishCyan",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T21:29:01.744Z",
+  "installCount": 4338,
+  "stale": false,
+  "themes": [
+    {
+      "name": "PaleGreen on BluishCyan by emmess",
+      "label": "PaleGreen on BluishCyan by emmess",
+      "colors": {
+        "editor.background": "#0B2E32",
+        "editor.foreground": "#DEDEDE",
+        "titleBar.activeBackground": "#071E21",
+        "titleBar.activeForeground": "#AAC0AA",
+        "titleBar.inactiveBackground": "#0F3E43",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "statusBar.background": "#071E21",
+        "statusBar.foreground": "#AAC0AA",
+        "activityBar.background": "#0F3E43",
+        "activityBar.foreground": "#071E21"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

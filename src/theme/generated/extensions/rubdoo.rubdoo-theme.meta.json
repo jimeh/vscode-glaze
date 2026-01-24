@@ -1,0 +1,43 @@
+{
+  "extensionId": "e30dfac2-6824-4a05-8a77-1342cfec9d93",
+  "extensionName": "rubdoo-theme",
+  "publisherName": "rubdoo",
+  "displayName": "rubdoo-theme",
+  "version": "0.0.5",
+  "extractedAt": "2026-01-24T21:29:06.544Z",
+  "installCount": 3307,
+  "stale": false,
+  "themes": [
+    {
+      "name": "rubdoo-light",
+      "label": "rubdoo-light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1E1E1E",
+        "titleBar.activeBackground": "#E0E0E0",
+        "titleBar.inactiveBackground": "#F0F0F0",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#4080FF",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#0040FF"
+      },
+      "type": "light"
+    },
+    {
+      "name": "rubdoo-dark",
+      "label": "rubdoo-dark",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#C0C0C0",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#202020",
+        "statusBar.background": "#202020",
+        "statusBar.foreground": "#4080FF",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#0040FF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

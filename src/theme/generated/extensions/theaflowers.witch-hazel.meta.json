@@ -1,0 +1,45 @@
+{
+  "extensionId": "bda3efc0-1c97-4aef-8269-a299b9a1c0e7",
+  "extensionName": "witch-hazel",
+  "publisherName": "TheaFlowers",
+  "displayName": "Witch Hazel",
+  "version": "2021.10.16",
+  "extractedAt": "2026-01-24T21:28:54.397Z",
+  "installCount": 7263,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Witch Hazel",
+      "label": "Witch Hazel",
+      "colors": {
+        "editor.background": "#433E56",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#464258",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#3A3553",
+        "titleBar.inactiveForeground": "#B9B9B9",
+        "statusBar.background": "#716799",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#353144"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Witch Hazel Hypercolor",
+      "label": "Witch Hazel Hypercolor",
+      "colors": {
+        "editor.background": "#282634",
+        "editor.foreground": "#F8F8F0",
+        "titleBar.activeBackground": "#131218",
+        "titleBar.activeForeground": "#F8F8F0",
+        "titleBar.inactiveBackground": "#131218",
+        "titleBar.inactiveForeground": "#716799",
+        "statusBar.background": "#8864CB",
+        "statusBar.foreground": "#F8F8F0",
+        "activityBar.background": "#131218"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

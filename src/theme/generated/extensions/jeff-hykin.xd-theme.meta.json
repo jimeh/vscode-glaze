@@ -1,0 +1,81 @@
+{
+  "extensionId": "88225360-4a70-4a01-bdbd-32d7ecd8d123",
+  "extensionName": "xd-theme",
+  "publisherName": "jeff-hykin",
+  "displayName": "XD Theme",
+  "version": "0.2.32",
+  "extractedAt": "2026-01-24T21:28:57.926Z",
+  "installCount": 5589,
+  "stale": false,
+  "themes": [
+    {
+      "name": "XD Theme",
+      "label": "XD Theme",
+      "colors": {
+        "editor.background": "#242938",
+        "editor.foreground": "#BFC9D5",
+        "titleBar.activeBackground": "#184967",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#242938",
+        "titleBar.inactiveForeground": "#5E718A",
+        "statusBar.background": "#242938",
+        "statusBar.foreground": "#5E718A",
+        "activityBar.background": "#242938",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "XD Theme - Lighten",
+      "label": "XD Theme - Lighten",
+      "colors": {
+        "editor.background": "#273244",
+        "editor.foreground": "#BFC9D5",
+        "titleBar.activeBackground": "#0A5375",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#273244",
+        "titleBar.inactiveForeground": "#5E718A",
+        "statusBar.background": "#273244",
+        "statusBar.foreground": "#5E718A",
+        "activityBar.background": "#273244",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "XD Theme - MixItUp",
+      "label": "XD Theme - MixItUp",
+      "colors": {
+        "editor.background": "#273244",
+        "editor.foreground": "#BFC9D5",
+        "titleBar.activeBackground": "#0A5375",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#273244",
+        "titleBar.inactiveForeground": "#5E718A",
+        "statusBar.background": "#273244",
+        "statusBar.foreground": "#5E718A",
+        "activityBar.background": "#273244",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "XD Theme - Two Tone",
+      "label": "XD Theme - Two Tone",
+      "colors": {
+        "editor.background": "#242938",
+        "editor.foreground": "#BFC9D5",
+        "titleBar.activeBackground": "#184967",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#242938",
+        "titleBar.inactiveForeground": "#5E718A",
+        "statusBar.background": "#293342",
+        "statusBar.foreground": "#5E718A",
+        "activityBar.background": "#242938",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,29 @@
+{
+  "extensionId": "2b5cfbb8-9715-4986-9d83-8da39f59835c",
+  "extensionName": "vscode-nightsky",
+  "publisherName": "ChrisRu",
+  "displayName": "Night Sky Theme",
+  "version": "2.0.0",
+  "extractedAt": "2026-01-24T21:29:06.440Z",
+  "installCount": 3313,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Night Sky",
+      "label": "Night Sky",
+      "colors": {
+        "editor.background": "#222830",
+        "editor.foreground": "#CDD3DE",
+        "titleBar.activeBackground": "#DADADA",
+        "titleBar.activeForeground": "#222222",
+        "titleBar.inactiveBackground": "#F6F6F6",
+        "titleBar.inactiveForeground": "#B2B2B3",
+        "statusBar.background": "#1D2026",
+        "activityBar.background": "#222830",
+        "activityBar.foreground": "#D8DEE9"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

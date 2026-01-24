@@ -1,0 +1,47 @@
+{
+  "extensionId": "6480ac90-407d-4b41-837b-ca95d6c642de",
+  "extensionName": "moondusttheme",
+  "publisherName": "vanyauhalin",
+  "displayName": "Moondust Theme",
+  "version": "0.11.0",
+  "extractedAt": "2026-01-24T21:28:54.509Z",
+  "installCount": 7242,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Moondust: Near Side of the Moon",
+      "label": "Moondust: Near Side of the Moon",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#434A51",
+        "titleBar.activeBackground": "#F6F7F8",
+        "titleBar.activeForeground": "#434A51",
+        "titleBar.inactiveBackground": "#F6F7F8",
+        "titleBar.inactiveForeground": "#434A51",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#575E66",
+        "activityBar.background": "#F6F7F8",
+        "activityBar.foreground": "#575E66"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Moondust: Far Side of the Moon",
+      "label": "Moondust: Far Side of the Moon",
+      "colors": {
+        "editor.background": "#161A1D",
+        "editor.foreground": "#B1B6B9",
+        "titleBar.activeBackground": "#1E2225",
+        "titleBar.activeForeground": "#B1B6B9",
+        "titleBar.inactiveBackground": "#1E2225",
+        "titleBar.inactiveForeground": "#B1B6B9",
+        "statusBar.background": "#161A1D",
+        "statusBar.foreground": "#89949A",
+        "activityBar.background": "#1E2225",
+        "activityBar.foreground": "#89949A"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

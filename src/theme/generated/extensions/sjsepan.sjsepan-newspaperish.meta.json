@@ -1,0 +1,30 @@
+{
+  "extensionId": "7e037876-e3fe-4494-acd6-3f2a8e9d5cff",
+  "extensionName": "sjsepan-newspaperish",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.newspaperish",
+  "version": "0.3.5",
+  "extractedAt": "2026-01-24T21:29:03.895Z",
+  "installCount": 3770,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Newspaperish",
+      "label": "Newspaperish",
+      "colors": {
+        "editor.background": "#D8D8D8",
+        "editor.foreground": "#272727",
+        "titleBar.activeBackground": "#C0C0C0",
+        "titleBar.activeForeground": "#272727",
+        "titleBar.inactiveBackground": "#C0C0C0",
+        "titleBar.inactiveForeground": "#838383",
+        "statusBar.background": "#C0C0C0",
+        "statusBar.foreground": "#272727",
+        "activityBar.background": "#C0C0C0",
+        "activityBar.foreground": "#272727"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

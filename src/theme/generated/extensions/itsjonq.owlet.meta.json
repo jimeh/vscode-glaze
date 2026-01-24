@@ -1,0 +1,269 @@
+{
+  "extensionId": "8acc1386-9bcc-4dda-a809-c10f8399fb92",
+  "extensionName": "owlet",
+  "publisherName": "itsjonq",
+  "displayName": "Owlet",
+  "version": "0.1.22",
+  "extractedAt": "2026-01-24T21:28:55.980Z",
+  "installCount": 6621,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Owlet (Charcoal)",
+      "label": "Owlet (Charcoal)",
+      "colors": {
+        "editor.background": "#101010",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#101010",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#0A0A0A",
+        "statusBar.background": "#101010",
+        "statusBar.foreground": "#5D5D5D",
+        "activityBar.background": "#101010",
+        "activityBar.foreground": "#7D7D7D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Default)",
+      "label": "Owlet (Default)",
+      "colors": {
+        "editor.background": "#1E222A",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#1E222A",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#191C23",
+        "statusBar.background": "#1E222A",
+        "statusBar.foreground": "#555D61",
+        "activityBar.background": "#1E222A",
+        "activityBar.foreground": "#737E83"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Dracula)",
+      "label": "Owlet (Dracula)",
+      "colors": {
+        "editor.background": "#282A36",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#282A36",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#23242F",
+        "statusBar.background": "#282A36",
+        "statusBar.foreground": "#5E686C",
+        "activityBar.background": "#282A36",
+        "activityBar.foreground": "#7D888D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Espresso)",
+      "label": "Owlet (Espresso)",
+      "colors": {
+        "editor.background": "#1D1813",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#1D1813",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#15120E",
+        "statusBar.background": "#1D1813",
+        "statusBar.foreground": "#655F5B",
+        "activityBar.background": "#1D1813",
+        "activityBar.foreground": "#877E79"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Matcha)",
+      "label": "Owlet (Matcha)",
+      "colors": {
+        "editor.background": "#191E1E",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#191E1E",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#131717",
+        "statusBar.background": "#191E1E",
+        "statusBar.foreground": "#5E665B",
+        "activityBar.background": "#191E1E",
+        "activityBar.foreground": "#7D8879"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Material)",
+      "label": "Owlet (Material)",
+      "colors": {
+        "editor.background": "#273237",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#273237",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#222B30",
+        "statusBar.background": "#273237",
+        "statusBar.foreground": "#6B767C",
+        "activityBar.background": "#273237",
+        "activityBar.foreground": "#8B969B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Mocha)",
+      "label": "Owlet (Mocha)",
+      "colors": {
+        "editor.background": "#2C251E",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#2C251E",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#241F19",
+        "statusBar.background": "#2C251E",
+        "statusBar.foreground": "#655F5B",
+        "activityBar.background": "#2C251E",
+        "activityBar.foreground": "#877E79"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Mono)",
+      "label": "Owlet (Mono)",
+      "colors": {
+        "editor.background": "#101010",
+        "editor.foreground": "#EEEEEE",
+        "titleBar.activeBackground": "#101010",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#0A0A0A",
+        "statusBar.background": "#101010",
+        "statusBar.foreground": "#686868",
+        "activityBar.background": "#101010",
+        "activityBar.foreground": "#888888"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Night Owl)",
+      "label": "Owlet (Night Owl)",
+      "colors": {
+        "editor.background": "#011627",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#011627",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#010F1B",
+        "statusBar.background": "#011627",
+        "statusBar.foreground": "#53688B",
+        "activityBar.background": "#011627",
+        "activityBar.foreground": "#7388AB"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Oceanic Next)",
+      "label": "Owlet (Oceanic Next)",
+      "colors": {
+        "editor.background": "#1B2B34",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#1B2B34",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#17242C",
+        "statusBar.background": "#1B2B34",
+        "statusBar.foreground": "#55687F",
+        "activityBar.background": "#1B2B34",
+        "activityBar.foreground": "#7388A1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (One)",
+      "label": "Owlet (One)",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#22262D",
+        "statusBar.background": "#282C34",
+        "statusBar.foreground": "#5E686C",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#7D888D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Outrun)",
+      "label": "Owlet (Outrun)",
+      "colors": {
+        "editor.background": "#0D0221",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#0D0221",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#080115",
+        "statusBar.background": "#0D0221",
+        "statusBar.foreground": "#575164",
+        "activityBar.background": "#0D0221",
+        "activityBar.foreground": "#766D87"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Palenight)",
+      "label": "Owlet (Palenight)",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#242736",
+        "statusBar.background": "#292D3E",
+        "statusBar.foreground": "#65636B",
+        "activityBar.background": "#292D3E",
+        "activityBar.foreground": "#84828C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Purple)",
+      "label": "Owlet (Purple)",
+      "colors": {
+        "editor.background": "#221E46",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#221E46",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#1E1A3D",
+        "statusBar.background": "#221E46",
+        "statusBar.foreground": "#696072",
+        "activityBar.background": "#221E46",
+        "activityBar.foreground": "#897F93"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Slate)",
+      "label": "Owlet (Slate)",
+      "colors": {
+        "editor.background": "#141820",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#141820",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#0F1218",
+        "statusBar.background": "#141820",
+        "statusBar.foreground": "#555D61",
+        "activityBar.background": "#141820",
+        "activityBar.foreground": "#737E83"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Owlet (Solarized)",
+      "label": "Owlet (Solarized)",
+      "colors": {
+        "editor.background": "#0D2B35",
+        "editor.foreground": "#D6DEEB",
+        "titleBar.activeBackground": "#0D2B35",
+        "titleBar.activeForeground": "#EEEFFF",
+        "titleBar.inactiveBackground": "#0A232B",
+        "statusBar.background": "#0D2B35",
+        "statusBar.foreground": "#5F879A",
+        "activityBar.background": "#0D2B35",
+        "activityBar.foreground": "#85A5B4"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

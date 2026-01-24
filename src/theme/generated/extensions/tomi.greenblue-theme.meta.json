@@ -1,0 +1,24 @@
+{
+  "extensionId": "6838ffbd-cb8e-4a0f-aa28-bb5aa1672783",
+  "extensionName": "greenblue-theme",
+  "publisherName": "tomi",
+  "displayName": "GreenBlue Theme",
+  "version": "0.2.3",
+  "extractedAt": "2026-01-24T21:28:59.163Z",
+  "installCount": 5107,
+  "stale": false,
+  "themes": [
+    {
+      "name": "GreenBlue Theme",
+      "label": "GreenBlue Theme",
+      "colors": {
+        "editor.background": "#0F1413",
+        "editor.foreground": "#B2D6D6",
+        "activityBar.background": "#242929",
+        "activityBar.foreground": "#40D313"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

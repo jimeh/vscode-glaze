@@ -1,0 +1,81 @@
+{
+  "extensionId": "b5b906e6-39a9-48c0-ac1c-acaa0b916f23",
+  "extensionName": "search-lights",
+  "publisherName": "radiolevity",
+  "displayName": "Search Lights",
+  "version": "1.10.3",
+  "extractedAt": "2026-01-24T21:28:48.610Z",
+  "installCount": 36155,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Search Lights",
+      "label": "Search Lights",
+      "colors": {
+        "editor.background": "#212733",
+        "editor.foreground": "#DDD7CA",
+        "titleBar.activeBackground": "#1A1F28",
+        "titleBar.activeForeground": "#738699",
+        "titleBar.inactiveBackground": "#1A1F28",
+        "titleBar.inactiveForeground": "#5C6773",
+        "statusBar.background": "#1A1F28",
+        "statusBar.foreground": "#738699",
+        "activityBar.background": "#1A1F28",
+        "activityBar.foreground": "#738699"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Search Lights Italic",
+      "label": "Search Lights Italic",
+      "colors": {
+        "editor.background": "#212733",
+        "editor.foreground": "#DDD7CA",
+        "titleBar.activeBackground": "#1A1F28",
+        "titleBar.activeForeground": "#738699",
+        "titleBar.inactiveBackground": "#1A1F28",
+        "titleBar.inactiveForeground": "#5C6773",
+        "statusBar.background": "#1A1F28",
+        "statusBar.foreground": "#738699",
+        "activityBar.background": "#1A1F28",
+        "activityBar.foreground": "#738699"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Desert Lights",
+      "label": "Desert Lights",
+      "colors": {
+        "editor.background": "#1C1C1C",
+        "editor.foreground": "#DDD7CA",
+        "titleBar.activeBackground": "#202020",
+        "titleBar.activeForeground": "#717171",
+        "titleBar.inactiveBackground": "#202020",
+        "titleBar.inactiveForeground": "#717171",
+        "statusBar.background": "#202020",
+        "statusBar.foreground": "#717171",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#717171"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Desert Lights Italic",
+      "label": "Desert Lights Italic",
+      "colors": {
+        "editor.background": "#1C1C1C",
+        "editor.foreground": "#DDD7CA",
+        "titleBar.activeBackground": "#202020",
+        "titleBar.activeForeground": "#717171",
+        "titleBar.inactiveBackground": "#202020",
+        "titleBar.inactiveForeground": "#717171",
+        "statusBar.background": "#202020",
+        "statusBar.foreground": "#717171",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#717171"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

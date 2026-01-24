@@ -1,0 +1,22 @@
+{
+  "extensionId": "169f3216-ce69-43a7-a3ff-26034f2db385",
+  "extensionName": "dracula-for-rust-theme",
+  "publisherName": "dlahmad",
+  "displayName": "Dracula For Rust Theme",
+  "version": "0.0.4",
+  "extractedAt": "2026-01-24T21:28:51.566Z",
+  "installCount": 10765,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dracula For Rust Theme",
+      "label": "Dracula For Rust Theme",
+      "colors": {
+        "editor.background": "#212122",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,149 @@
+{
+  "extensionId": "0066fc39-b552-4f77-a717-1d1c135c181a",
+  "extensionName": "night-coder",
+  "publisherName": "a5hk",
+  "displayName": "Night Coder",
+  "version": "6.0.1",
+  "extractedAt": "2026-01-24T21:28:48.721Z",
+  "installCount": 28079,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Night Coder Ember",
+      "label": "Night Coder Ember",
+      "colors": {
+        "editor.background": "#030917",
+        "editor.foreground": "#C1C2C6",
+        "titleBar.activeBackground": "#030917",
+        "titleBar.activeForeground": "#ABADB2",
+        "titleBar.inactiveBackground": "#030917",
+        "titleBar.inactiveForeground": "#9A9DA2",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#030917",
+        "activityBar.foreground": "#ABADB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Ember Contrast",
+      "label": "Night Coder Ember Contrast",
+      "colors": {
+        "editor.background": "#030917",
+        "editor.foreground": "#C1C2C6",
+        "titleBar.activeBackground": "#030917",
+        "titleBar.activeForeground": "#ABADB2",
+        "titleBar.inactiveBackground": "#030917",
+        "titleBar.inactiveForeground": "#9A9DA2",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#030917",
+        "activityBar.foreground": "#ABADB2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Flame",
+      "label": "Night Coder Flame",
+      "colors": {
+        "editor.background": "#0F1317",
+        "editor.foreground": "#C4C5C6",
+        "titleBar.activeBackground": "#0F1317",
+        "titleBar.activeForeground": "#AFB0B2",
+        "titleBar.inactiveBackground": "#0F1317",
+        "titleBar.inactiveForeground": "#9FA1A2",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#0F1317",
+        "activityBar.foreground": "#AFB0B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Flame Contrast",
+      "label": "Night Coder Flame Contrast",
+      "colors": {
+        "editor.background": "#0F1317",
+        "editor.foreground": "#C4C5C6",
+        "titleBar.activeBackground": "#0F1317",
+        "titleBar.activeForeground": "#AFB0B2",
+        "titleBar.inactiveBackground": "#0F1317",
+        "titleBar.inactiveForeground": "#9FA1A2",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#0F1317",
+        "activityBar.foreground": "#AFB0B2"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Ash",
+      "label": "Night Coder Ash",
+      "colors": {
+        "editor.background": "#2C2C2C",
+        "editor.foreground": "#CBCBCB",
+        "titleBar.activeBackground": "#2C2C2C",
+        "titleBar.activeForeground": "#B9B9B9",
+        "titleBar.inactiveBackground": "#2C2C2C",
+        "titleBar.inactiveForeground": "#ABABAB",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#2C2C2C",
+        "activityBar.foreground": "#B9B9B9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Ash Contrast",
+      "label": "Night Coder Ash Contrast",
+      "colors": {
+        "editor.background": "#2C2C2C",
+        "editor.foreground": "#CBCBCB",
+        "titleBar.activeBackground": "#2C2C2C",
+        "titleBar.activeForeground": "#B9B9B9",
+        "titleBar.inactiveBackground": "#2C2C2C",
+        "titleBar.inactiveForeground": "#ABABAB",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#2C2C2C",
+        "activityBar.foreground": "#B9B9B9"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Charcoal",
+      "label": "Night Coder Charcoal",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C0C0C0",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#AAAAAA",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#AAAAAA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Night Coder Charcoal Contrast",
+      "label": "Night Coder Charcoal Contrast",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C0C0C0",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#AAAAAA",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#006600",
+        "statusBar.foreground": "#F5FFF5",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#AAAAAA"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

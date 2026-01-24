@@ -1,0 +1,81 @@
+{
+  "extensionId": "e7fc1901-d69c-424b-b2f5-b44c4d9fe0b3",
+  "extensionName": "fedora-gnome-light-dark",
+  "publisherName": "olifink",
+  "displayName": "Fedora GNOME light & dark themes",
+  "version": "0.0.4",
+  "extractedAt": "2026-01-24T21:29:04.652Z",
+  "installCount": 3640,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Gnome Dark (GitHub)",
+      "label": "Gnome Dark (GitHub)",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#E1E4E8",
+        "titleBar.activeBackground": "#282828",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#353535",
+        "titleBar.inactiveForeground": "#9DA5B4",
+        "statusBar.background": "#353535",
+        "statusBar.foreground": "#D1D5DA",
+        "activityBar.background": "#323232",
+        "activityBar.foreground": "#E1E4E8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gnome Light (GitHub)",
+      "label": "Gnome Light (GitHub)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#24292E",
+        "titleBar.activeBackground": "#DCD8D5",
+        "titleBar.activeForeground": "#121417",
+        "titleBar.inactiveBackground": "#F6F5F4",
+        "titleBar.inactiveForeground": "#121417",
+        "statusBar.background": "#EDECEA",
+        "statusBar.foreground": "#586069",
+        "activityBar.background": "#F6F5F4",
+        "activityBar.foreground": "#2F363D"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Gnome Dark (Atom One)",
+      "label": "Gnome Dark (Atom One)",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#282828",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#353535",
+        "titleBar.inactiveForeground": "#9DA5B4",
+        "statusBar.background": "#353535",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#323232",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gnome Light (Atom One)",
+      "label": "Gnome Light (Atom One)",
+      "colors": {
+        "editor.background": "#FAFAFA",
+        "editor.foreground": "#383A42",
+        "titleBar.activeBackground": "#DCD8D5",
+        "titleBar.activeForeground": "#121417",
+        "titleBar.inactiveBackground": "#F6F5F4",
+        "titleBar.inactiveForeground": "#121417",
+        "statusBar.background": "#EDECEA",
+        "statusBar.foreground": "#424243",
+        "activityBar.background": "#F6F5F4",
+        "activityBar.foreground": "#121417"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

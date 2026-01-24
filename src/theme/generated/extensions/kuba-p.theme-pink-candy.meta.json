@@ -1,0 +1,64 @@
+{
+  "extensionId": "36a833e6-185d-4f8c-a099-98825224297c",
+  "extensionName": "theme-pink-candy",
+  "publisherName": "kuba-p",
+  "displayName": "Pink Candy Theme",
+  "version": "1.6.0",
+  "extractedAt": "2026-01-24T21:29:02.167Z",
+  "installCount": 4240,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Pink Candy Light",
+      "label": "Pink Candy Light",
+      "colors": {
+        "editor.background": "#FAFBFC",
+        "editor.foreground": "#565869",
+        "titleBar.activeBackground": "#F3F3F3",
+        "titleBar.activeForeground": "#565869",
+        "titleBar.inactiveBackground": "#F3F3F3",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#FF1277",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#FAFBFC",
+        "activityBar.foreground": "#FF1277"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Pink Candy Dark",
+      "label": "Pink Candy Dark",
+      "colors": {
+        "editor.background": "#22222A",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#1E1D24",
+        "titleBar.activeForeground": "#ABB2BF",
+        "titleBar.inactiveBackground": "#1E1D24",
+        "titleBar.inactiveForeground": "#7C869B",
+        "statusBar.background": "#FF1277",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#22222A",
+        "activityBar.foreground": "#FF1277"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Pink Candy Dark Warm",
+      "label": "Pink Candy Dark Warm",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#BDAE93",
+        "titleBar.activeBackground": "#212526",
+        "titleBar.activeForeground": "#BDAE93",
+        "titleBar.inactiveBackground": "#212526",
+        "titleBar.inactiveForeground": "#97856B",
+        "statusBar.background": "#FB3453",
+        "statusBar.foreground": "#FBF1C7",
+        "activityBar.background": "#1D2021",
+        "activityBar.foreground": "#FB3453"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

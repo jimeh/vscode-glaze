@@ -1,0 +1,25 @@
+{
+  "extensionId": "a5149fb7-395c-4bb9-912e-179177d82d19",
+  "extensionName": "blueforest-theme",
+  "publisherName": "alonsodomin",
+  "displayName": "BlueForest Theme",
+  "version": "0.3.1",
+  "extractedAt": "2026-01-24T21:29:05.903Z",
+  "installCount": 3413,
+  "stale": false,
+  "themes": [
+    {
+      "name": "BlueForest",
+      "label": "BlueForest",
+      "colors": {
+        "editor.background": "#141F2E",
+        "editor.foreground": "#D0D0D0",
+        "titleBar.activeBackground": "#1B2B40",
+        "statusBar.background": "#1E5C1E",
+        "activityBar.background": "#1B2B40"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

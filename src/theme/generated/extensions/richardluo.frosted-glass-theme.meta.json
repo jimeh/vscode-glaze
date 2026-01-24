@@ -1,0 +1,12 @@
+{
+  "extensionId": "deb41a0f-4f06-45fb-84fd-be87e024b8ec",
+  "extensionName": "frosted-glass-theme",
+  "publisherName": "RichardLuo",
+  "displayName": "Frosted Glass Theme",
+  "version": "0.8.24",
+  "extractedAt": "2026-01-24T21:28:53.607Z",
+  "installCount": 8236,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

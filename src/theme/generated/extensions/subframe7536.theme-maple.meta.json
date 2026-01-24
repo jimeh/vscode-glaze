@@ -1,0 +1,43 @@
+{
+  "extensionId": "184386ee-186f-4d0d-b6ad-d85d4d9032fc",
+  "extensionName": "theme-maple",
+  "publisherName": "subframe7536",
+  "displayName": "Maple Theme",
+  "version": "0.7.16",
+  "extractedAt": "2026-01-24T21:28:52.188Z",
+  "installCount": 9806,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Maple Dark",
+      "label": "Maple Dark",
+      "colors": {
+        "editor.background": "#1E1E1F",
+        "editor.foreground": "#CBD5E1",
+        "titleBar.activeBackground": "#171718",
+        "titleBar.activeForeground": "#CBD5E1",
+        "statusBar.background": "#171718",
+        "statusBar.foreground": "#CBD5E1",
+        "activityBar.background": "#171718",
+        "activityBar.foreground": "#CBD5E1"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Maple Light",
+      "label": "Maple Light",
+      "colors": {
+        "editor.background": "#FFFFFE",
+        "editor.foreground": "#475569",
+        "titleBar.activeBackground": "#FAFAF9",
+        "titleBar.activeForeground": "#475569",
+        "statusBar.background": "#FAFAF9",
+        "statusBar.foreground": "#475569",
+        "activityBar.background": "#FAFAF9",
+        "activityBar.foreground": "#475569"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

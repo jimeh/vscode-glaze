@@ -1,0 +1,30 @@
+{
+  "extensionId": "815e376b-a6af-4edd-bf53-88ea0e8c6f82",
+  "extensionName": "theme-dracula-dark-plus",
+  "publisherName": "MateuszDrewniak",
+  "displayName": "Dracula Dark+",
+  "version": "2.24.4",
+  "extractedAt": "2026-01-24T21:28:51.243Z",
+  "installCount": 11226,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Dracula Dark+",
+      "label": "Dracula Dark+",
+      "colors": {
+        "editor.background": "#282A36",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#282A36",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#21222C",
+        "statusBar.foreground": "#F8F8F2",
+        "activityBar.background": "#282A36",
+        "activityBar.foreground": "#F8F8F2"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

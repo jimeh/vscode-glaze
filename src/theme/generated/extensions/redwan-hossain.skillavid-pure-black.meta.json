@@ -1,0 +1,81 @@
+{
+  "extensionId": "13059c29-0548-499e-bef4-4a2d62dc7655",
+  "extensionName": "skillavid-pure-black",
+  "publisherName": "redwan-hossain",
+  "displayName": "SkillAvid Pure Black",
+  "version": "5.0.0",
+  "extractedAt": "2026-01-24T21:28:57.291Z",
+  "installCount": 5732,
+  "stale": false,
+  "themes": [
+    {
+      "name": "SkillAvid Pure Black",
+      "label": "SkillAvid Pure Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "SkillAvid Pure Black Italic",
+      "label": "SkillAvid Pure Black Italic",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "SkillAvid Midnight Black",
+      "label": "SkillAvid Midnight Black",
+      "colors": {
+        "editor.background": "#060013",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#060013",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#070113",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#060013",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#060013",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "SkillAvid Midnight Black Italic",
+      "label": "SkillAvid Midnight Black Italic",
+      "colors": {
+        "editor.background": "#060013",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#060013",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#070113",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#060013",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#060013",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

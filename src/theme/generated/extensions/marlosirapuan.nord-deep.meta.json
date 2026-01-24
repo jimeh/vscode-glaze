@@ -1,0 +1,30 @@
+{
+  "extensionId": "eb95bb45-5fce-42e8-9fb7-694da613870a",
+  "extensionName": "nord-deep",
+  "publisherName": "marlosirapuan",
+  "displayName": "Nord Deep",
+  "version": "0.1.623",
+  "extractedAt": "2026-01-24T21:28:57.610Z",
+  "installCount": 5700,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Nord Deep",
+      "label": "Nord Deep",
+      "colors": {
+        "editor.background": "#232731",
+        "editor.foreground": "#D8DEE9",
+        "titleBar.activeBackground": "#232731",
+        "titleBar.activeForeground": "#D8DEE9",
+        "titleBar.inactiveBackground": "#232731",
+        "titleBar.inactiveForeground": "#D8DEE9",
+        "statusBar.background": "#292D38",
+        "statusBar.foreground": "#D8DEE9",
+        "activityBar.background": "#292D38",
+        "activityBar.foreground": "#D8DEE9"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

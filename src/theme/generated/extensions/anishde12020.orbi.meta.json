@@ -1,0 +1,64 @@
+{
+  "extensionId": "0fd5c31b-569b-47fa-ae17-23892fc8fc7b",
+  "extensionName": "orbi",
+  "publisherName": "AnishDe12020",
+  "displayName": "Orbi",
+  "version": "1.4.0",
+  "extractedAt": "2026-01-24T21:29:05.800Z",
+  "installCount": 3440,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Orbi Red",
+      "label": "Orbi Red",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#868690",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#575861",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#575861",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#575861",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#868690"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Orbi Green",
+      "label": "Orbi Green",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#868690",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#575861",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#575861",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#575861",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#868690"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Orbi Blue",
+      "label": "Orbi Blue",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#868690",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#575861",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#575861",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#575861",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#868690"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

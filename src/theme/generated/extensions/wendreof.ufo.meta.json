@@ -1,0 +1,39 @@
+{
+  "extensionId": "098c34b3-0d06-4b98-b7b4-0fca6848c74c",
+  "extensionName": "ufo",
+  "publisherName": "wendreof",
+  "displayName": "Ufo Theme",
+  "version": "0.0.12",
+  "extractedAt": "2026-01-24T21:28:54.880Z",
+  "installCount": 7004,
+  "stale": false,
+  "themes": [
+    {
+      "name": "dark",
+      "label": "dark",
+      "colors": {
+        "editor.background": "#121212",
+        "editor.foreground": "#B6F486",
+        "statusBar.background": "#400E63",
+        "statusBar.foreground": "#9FEE98",
+        "activityBar.background": "#121212",
+        "activityBar.foreground": "#9FEE98"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "dark-blue",
+      "label": "dark-blue",
+      "colors": {
+        "editor.background": "#0D1117",
+        "editor.foreground": "#B6F486",
+        "statusBar.background": "#400E63",
+        "statusBar.foreground": "#9FEE98",
+        "activityBar.background": "#0D1117",
+        "activityBar.foreground": "#9FEE98"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

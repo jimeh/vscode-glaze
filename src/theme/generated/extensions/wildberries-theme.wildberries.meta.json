@@ -1,0 +1,45 @@
+{
+  "extensionId": "1a4245b4-a55b-44d1-8958-f10397e5ce57",
+  "extensionName": "wildberries",
+  "publisherName": "wildberries-theme",
+  "displayName": "Wildberries",
+  "version": "0.0.1",
+  "extractedAt": "2026-01-24T21:28:51.978Z",
+  "installCount": 10034,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Wildberries",
+      "label": "Wildberries",
+      "colors": {
+        "editor.background": "#19002E",
+        "editor.foreground": "#FF0E82",
+        "titleBar.activeBackground": "#240041",
+        "titleBar.activeForeground": "#C79BFF",
+        "titleBar.inactiveBackground": "#19002E",
+        "statusBar.background": "#C79BFF",
+        "statusBar.foreground": "#19002E",
+        "activityBar.background": "#900048",
+        "activityBar.foreground": "#00FFB7"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Wildberries Darker",
+      "label": "Wildberries Darker",
+      "colors": {
+        "editor.background": "#19002E",
+        "editor.foreground": "#FF0E82",
+        "titleBar.activeBackground": "#240041",
+        "titleBar.activeForeground": "#C79BFF",
+        "titleBar.inactiveBackground": "#19002E",
+        "statusBar.background": "#C79BFF",
+        "statusBar.foreground": "#19002E",
+        "activityBar.background": "#19002E",
+        "activityBar.foreground": "#00FFB7"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

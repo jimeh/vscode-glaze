@@ -1,0 +1,217 @@
+{
+  "extensionId": "ce2f2bcc-8167-4a0c-b5ba-d72c51925ac0",
+  "extensionName": "vsc-material-theme-but-i-wont-sue-you",
+  "publisherName": "t3dotgg",
+  "displayName": "Material Theme (But I Won't Sue You)",
+  "version": "35.0.2",
+  "extractedAt": "2026-01-24T21:28:59.719Z",
+  "installCount": 4918,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Material Theme",
+      "label": "Material Theme",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#EEFFFF",
+        "titleBar.activeBackground": "#263238",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#263238",
+        "titleBar.inactiveForeground": "#6C8692",
+        "statusBar.background": "#263238",
+        "statusBar.foreground": "#546E7A",
+        "activityBar.background": "#263238",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme High Contrast",
+      "label": "Material Theme High Contrast",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#EEFFFF",
+        "titleBar.activeBackground": "#192227",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#192227",
+        "titleBar.inactiveForeground": "#5F7A87",
+        "statusBar.background": "#192227",
+        "statusBar.foreground": "#546E7A",
+        "activityBar.background": "#192227",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Darker",
+      "label": "Material Theme Darker",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#EEFFFF",
+        "titleBar.activeBackground": "#212121",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#212121",
+        "titleBar.inactiveForeground": "#676767",
+        "statusBar.background": "#212121",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#212121",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Darker High Contrast",
+      "label": "Material Theme Darker High Contrast",
+      "colors": {
+        "editor.background": "#212121",
+        "editor.foreground": "#EEFFFF",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#EEFFFF",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#848484",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#616161",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#EEFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Palenight",
+      "label": "Material Theme Palenight",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BABED8",
+        "titleBar.activeBackground": "#292D3E",
+        "titleBar.activeForeground": "#BABED8",
+        "titleBar.inactiveBackground": "#292D3E",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#292D3E",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#292D3E",
+        "activityBar.foreground": "#BABED8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Palenight High Contrast",
+      "label": "Material Theme Palenight High Contrast",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BABED8",
+        "titleBar.activeBackground": "#1B1E2B",
+        "titleBar.activeForeground": "#BABED8",
+        "titleBar.inactiveBackground": "#1B1E2B",
+        "titleBar.inactiveForeground": "#757CA1",
+        "statusBar.background": "#1B1E2B",
+        "statusBar.foreground": "#676E95",
+        "activityBar.background": "#1B1E2B",
+        "activityBar.foreground": "#BABED8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Ocean",
+      "label": "Material Theme Ocean",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#BABED8",
+        "titleBar.activeBackground": "#0F111A",
+        "titleBar.activeForeground": "#BABED8",
+        "titleBar.inactiveBackground": "#0F111A",
+        "titleBar.inactiveForeground": "#525975",
+        "statusBar.background": "#0F111A",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#0F111A",
+        "activityBar.foreground": "#BABED8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Ocean High Contrast",
+      "label": "Material Theme Ocean High Contrast",
+      "colors": {
+        "editor.background": "#0F111A",
+        "editor.foreground": "#BABED8",
+        "titleBar.activeBackground": "#090B10",
+        "titleBar.activeForeground": "#BABED8",
+        "titleBar.inactiveBackground": "#090B10",
+        "titleBar.inactiveForeground": "#4B526D",
+        "statusBar.background": "#090B10",
+        "statusBar.foreground": "#4B526D",
+        "activityBar.background": "#090B10",
+        "activityBar.foreground": "#BABED8"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Deepforest",
+      "label": "Material Theme Deepforest",
+      "colors": {
+        "editor.background": "#141F1D",
+        "editor.foreground": "#C2EDD3",
+        "titleBar.activeBackground": "#141F1D",
+        "titleBar.activeForeground": "#C2EDD3",
+        "titleBar.inactiveBackground": "#141F1D",
+        "titleBar.inactiveForeground": "#4D6457",
+        "statusBar.background": "#141F1D",
+        "statusBar.foreground": "#4D6A59",
+        "activityBar.background": "#141F1D",
+        "activityBar.foreground": "#C2EDD3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme DeepForest High Contrast",
+      "label": "Material Theme DeepForest High Contrast",
+      "colors": {
+        "editor.background": "#141F1D",
+        "editor.foreground": "#C2EDD3",
+        "titleBar.activeBackground": "#101917",
+        "titleBar.activeForeground": "#C2EDD3",
+        "titleBar.inactiveBackground": "#101917",
+        "titleBar.inactiveForeground": "#485E51",
+        "statusBar.background": "#101917",
+        "statusBar.foreground": "#4D6A59",
+        "activityBar.background": "#101917",
+        "activityBar.foreground": "#C2EDD3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Material Theme Lighter",
+      "label": "Material Theme Lighter",
+      "colors": {
+        "editor.background": "#FAFAFA",
+        "editor.foreground": "#90A4AE",
+        "titleBar.activeBackground": "#FAFAFA",
+        "titleBar.activeForeground": "#90A4AE",
+        "titleBar.inactiveBackground": "#FAFAFA",
+        "titleBar.inactiveForeground": "#758A95",
+        "statusBar.background": "#FAFAFA",
+        "statusBar.foreground": "#7E939E",
+        "activityBar.background": "#FAFAFA",
+        "activityBar.foreground": "#90A4AE"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Material Theme Lighter High Contrast",
+      "label": "Material Theme Lighter High Contrast",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#90A4AE",
+        "titleBar.activeBackground": "#FAFAFA",
+        "titleBar.activeForeground": "#90A4AE",
+        "titleBar.inactiveBackground": "#FAFAFA",
+        "titleBar.inactiveForeground": "#627883",
+        "statusBar.background": "#FAFAFA",
+        "statusBar.foreground": "#7E939E",
+        "activityBar.background": "#FAFAFA",
+        "activityBar.foreground": "#90A4AE"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

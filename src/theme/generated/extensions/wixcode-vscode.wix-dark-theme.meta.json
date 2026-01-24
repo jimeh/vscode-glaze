@@ -1,0 +1,26 @@
+{
+  "extensionId": "5a833a08-0f69-4675-b115-e6b912324d6a",
+  "extensionName": "wix-dark-theme",
+  "publisherName": "wixcode-vscode",
+  "displayName": "Wix Dark Theme",
+  "version": "0.0.4",
+  "extractedAt": "2026-01-24T21:29:02.052Z",
+  "installCount": 4278,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Wix",
+      "label": "Wix",
+      "colors": {
+        "editor.background": "#061B29",
+        "editor.foreground": "#D8E1E8",
+        "titleBar.activeBackground": "#333853",
+        "statusBar.background": "#333853",
+        "activityBar.background": "#333853",
+        "activityBar.foreground": "#D6E6FE"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

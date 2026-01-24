@@ -1,0 +1,47 @@
+{
+  "extensionId": "74a74cec-46fc-4bc7-bf27-fe44d5ddb8e6",
+  "extensionName": "theme-coca-cola-christmas",
+  "publisherName": "holiday-themes",
+  "displayName": "Coca-Cola Christmas Theme",
+  "version": "1.0.2",
+  "extractedAt": "2026-01-24T21:29:00.262Z",
+  "installCount": 4689,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Coca-Cola Christmas",
+      "label": "Coca-Cola Christmas",
+      "colors": {
+        "editor.background": "#0D0D0D",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#080808",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#D0D0D0",
+        "statusBar.background": "#080808",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#080808",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Coca-Cola Christmas Soft",
+      "label": "Coca-Cola Christmas Soft",
+      "colors": {
+        "editor.background": "#2A2A2A",
+        "editor.foreground": "#F2F2F2",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#F2F2F2",
+        "titleBar.inactiveBackground": "#2A2A2A",
+        "titleBar.inactiveForeground": "#B0B0B0",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#F2F2F2",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#F2F2F2"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

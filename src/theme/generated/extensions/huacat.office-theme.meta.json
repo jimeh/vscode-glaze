@@ -1,0 +1,143 @@
+{
+  "extensionId": "93be3aa5-b260-4caf-ab9d-8cebc9c463fd",
+  "extensionName": "office-theme",
+  "publisherName": "huacat",
+  "displayName": "Office Theme",
+  "version": "1.4.1",
+  "extractedAt": "2026-01-24T21:28:51.018Z",
+  "installCount": 12216,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Office Theme (Word)",
+      "label": "Office Theme (Word)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#2B579A",
+        "titleBar.activeForeground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#2B579A",
+        "statusBar.background": "#F1F0EF",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#2B579A",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Office Theme (PowerPoint)",
+      "label": "Office Theme (PowerPoint)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#B7472A",
+        "titleBar.activeForeground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#B7472A",
+        "statusBar.background": "#F1F0EF",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#B7472A",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Office Theme (Excel)",
+      "label": "Office Theme (Excel)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#217346",
+        "titleBar.activeForeground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#217346",
+        "statusBar.background": "#F1F0EF",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#217346",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Office Theme (OneNote)",
+      "label": "Office Theme (OneNote)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#80397B",
+        "titleBar.activeForeground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#80397B",
+        "statusBar.background": "#F1F0EF",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#80397B",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Office Theme (Access)",
+      "label": "Office Theme (Access)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#A4373A",
+        "titleBar.activeForeground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#A4373A",
+        "statusBar.background": "#F1F0EF",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#A4373A",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Office Theme (Publisher)",
+      "label": "Office Theme (Publisher)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#077568",
+        "titleBar.activeForeground": "#F3F3F3",
+        "titleBar.inactiveBackground": "#077568",
+        "statusBar.background": "#F1F0EF",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#077568",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Office Black Theme (Word) (Experimental)",
+      "label": "Office Black Theme (Word) (Experimental)",
+      "colors": {
+        "editor.background": "#262626",
+        "editor.foreground": "#F6F6F6",
+        "titleBar.activeBackground": "#0A0A0A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#262626",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#323130",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#363636",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Office Black Theme (Word)",
+      "label": "Office Black Theme (Word)",
+      "colors": {
+        "editor.background": "#262626",
+        "editor.foreground": "#F6F6F6",
+        "titleBar.activeBackground": "#0A0A0A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#262626",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#323130",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#363636",
+        "activityBar.foreground": "#EDEDED"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

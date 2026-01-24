@@ -1,0 +1,46 @@
+{
+  "extensionId": "79a9f195-16ff-4a19-8e28-15103cb1bea2",
+  "extensionName": "raspberrycandy",
+  "publisherName": "tomWritesCode",
+  "displayName": "raspberryCandy",
+  "version": "0.0.6",
+  "extractedAt": "2026-01-24T21:28:59.271Z",
+  "installCount": 5079,
+  "stale": false,
+  "themes": [
+    {
+      "name": "raspberryCandy",
+      "label": "raspberryCandy",
+      "colors": {
+        "editor.background": "#160021",
+        "editor.foreground": "#00FEFF",
+        "activityBar.background": "#160021",
+        "activityBar.foreground": "#00FEFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "raspberryCandy - Original",
+      "label": "raspberryCandy - Original",
+      "colors": {
+        "editor.background": "#16161D",
+        "editor.foreground": "#00FEFF",
+        "activityBar.background": "#16161D",
+        "activityBar.foreground": "#00FEFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "raspberryCandy - sugarFree",
+      "label": "raspberryCandy - sugarFree",
+      "colors": {
+        "editor.background": "#F6F6F6",
+        "editor.foreground": "#5D08E5",
+        "activityBar.background": "#F6F6F6",
+        "activityBar.foreground": "#16161D"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

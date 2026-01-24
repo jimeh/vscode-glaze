@@ -1,0 +1,12 @@
+{
+  "extensionId": "fa2200f6-17d8-4574-8b00-eecaeee8c37e",
+  "extensionName": "fluent-ui-vscode",
+  "publisherName": "leandro-rodrigues",
+  "displayName": "Fluent UI for VSCode",
+  "version": "0.3.12",
+  "extractedAt": "2026-01-24T21:29:05.258Z",
+  "installCount": 3524,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

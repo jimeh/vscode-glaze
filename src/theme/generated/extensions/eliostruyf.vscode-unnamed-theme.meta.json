@@ -1,0 +1,47 @@
+{
+  "extensionId": "7c1450c9-f45b-4a69-82a4-692035e8739b",
+  "extensionName": "vscode-unnamed-theme",
+  "publisherName": "eliostruyf",
+  "displayName": "The unnamed",
+  "version": "1.16.0",
+  "extractedAt": "2026-01-24T21:29:07.504Z",
+  "installCount": 3200,
+  "stale": false,
+  "themes": [
+    {
+      "name": "The unnamed",
+      "label": "The unnamed",
+      "colors": {
+        "editor.background": "#0E131F",
+        "editor.foreground": "#F3EFF5",
+        "titleBar.activeBackground": "#0E131F",
+        "titleBar.activeForeground": "#F3EFF5",
+        "titleBar.inactiveBackground": "#0C111B",
+        "titleBar.inactiveForeground": "#F3EFF5",
+        "statusBar.background": "#0E131F",
+        "statusBar.foreground": "#F3EFF5",
+        "activityBar.background": "#0E131F",
+        "activityBar.foreground": "#F3EFF5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "The unnamed (No Italics)",
+      "label": "The unnamed (No Italics)",
+      "colors": {
+        "editor.background": "#0E131F",
+        "editor.foreground": "#F3EFF5",
+        "titleBar.activeBackground": "#0E131F",
+        "titleBar.activeForeground": "#F3EFF5",
+        "titleBar.inactiveBackground": "#0C111B",
+        "titleBar.inactiveForeground": "#F3EFF5",
+        "statusBar.background": "#0E131F",
+        "statusBar.foreground": "#F3EFF5",
+        "activityBar.background": "#0E131F",
+        "activityBar.foreground": "#F3EFF5"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

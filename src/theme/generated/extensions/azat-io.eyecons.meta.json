@@ -1,0 +1,12 @@
+{
+  "extensionId": "2d8594d0-7fb8-450d-853e-a63dac08a126",
+  "extensionName": "eyecons",
+  "publisherName": "azat-io",
+  "displayName": "Eyecons",
+  "version": "1.14.0",
+  "extractedAt": "2026-01-24T21:28:58.736Z",
+  "installCount": 5358,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

@@ -1,0 +1,12 @@
+{
+  "extensionId": "912d0a2e-7ea0-4873-b8a8-ac1203b424d6",
+  "extensionName": "vscode-sql-lit",
+  "publisherName": "thebearingedge",
+  "displayName": "SQL Lit",
+  "version": "0.7.0",
+  "extractedAt": "2026-01-24T21:28:49.159Z",
+  "installCount": 19292,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

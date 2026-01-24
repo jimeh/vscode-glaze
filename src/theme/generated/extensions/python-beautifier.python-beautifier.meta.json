@@ -1,0 +1,22 @@
+{
+  "extensionId": "135f9ed2-383c-4919-86d7-fa9657e60072",
+  "extensionName": "python-beautifier",
+  "publisherName": "python-beautifier",
+  "displayName": "Python Beautifier",
+  "version": "0.0.2",
+  "extractedAt": "2026-01-24T21:28:58.524Z",
+  "installCount": 5440,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Python Beautifier",
+      "label": "Python Beautifier",
+      "colors": {
+        "editor.background": "#1B1B1B",
+        "editor.foreground": "#A4D8FF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

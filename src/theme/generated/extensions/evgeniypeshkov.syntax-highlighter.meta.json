@@ -1,11 +1,12 @@
 {
-  "extensionId": "evgeniypeshkov.syntax-highlighter",
+  "extensionId": "428c36f5-be8e-4df8-8992-233bf5aef31f",
   "extensionName": "syntax-highlighter",
   "publisherName": "evgeniypeshkov",
   "displayName": "Syntax Highlighter",
-  "version": "0.5.0",
-  "extractedAt": "2026-01-24T19:39:15.208Z",
-  "installCount": 239293,
+  "version": "0.5.1",
+  "extractedAt": "2026-01-24T21:28:48.267Z",
+  "installCount": 8918,
   "stale": false,
-  "themes": []
+  "themes": [],
+  "source": "openvsx"
 }

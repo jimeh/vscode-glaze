@@ -1,0 +1,47 @@
+{
+  "extensionId": "e9e4a5d1-6810-4e98-9522-b90ccf8c09a8",
+  "extensionName": "theme-aurora-nocturne",
+  "publisherName": "aurora-them-creator",
+  "displayName": "Aurora Nocturne Dreams Theme",
+  "version": "1.0.3",
+  "extractedAt": "2026-01-24T21:29:01.078Z",
+  "installCount": 4403,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Aurora Nocturne",
+      "label": "Aurora Nocturne",
+      "colors": {
+        "editor.background": "#0B0F1C",
+        "editor.foreground": "#E8F4FF",
+        "titleBar.activeBackground": "#070A14",
+        "titleBar.activeForeground": "#E8F4FF",
+        "titleBar.inactiveBackground": "#070A14",
+        "titleBar.inactiveForeground": "#7A8CB0",
+        "statusBar.background": "#070A14",
+        "statusBar.foreground": "#B8C8E0",
+        "activityBar.background": "#070A14",
+        "activityBar.foreground": "#00F5D4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Aurora Nocturne Soft",
+      "label": "Aurora Nocturne Soft",
+      "colors": {
+        "editor.background": "#141829",
+        "editor.foreground": "#D4E4F7",
+        "titleBar.activeBackground": "#0F1421",
+        "titleBar.activeForeground": "#D4E4F7",
+        "titleBar.inactiveBackground": "#0F1421",
+        "titleBar.inactiveForeground": "#6B7A9F",
+        "statusBar.background": "#0F1421",
+        "statusBar.foreground": "#A8B8D0",
+        "activityBar.background": "#0F1421",
+        "activityBar.foreground": "#00D4B8"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,115 @@
+{
+  "extensionId": "9fe8d7cc-1c55-4fe1-b08c-4481b4d20f1a",
+  "extensionName": "sjsepan-humanedark",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.humanedark",
+  "version": "0.3.2",
+  "extractedAt": "2026-01-24T21:29:03.794Z",
+  "installCount": 3780,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Humane-Dark",
+      "label": "Humane-Dark",
+      "colors": {
+        "editor.background": "#211D00",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#36300F",
+        "titleBar.activeForeground": "#FFD4B5",
+        "titleBar.inactiveBackground": "#36300F",
+        "titleBar.inactiveForeground": "#A2876C",
+        "statusBar.background": "#36300F",
+        "statusBar.foreground": "#FFD4B5",
+        "activityBar.background": "#36300F",
+        "activityBar.foreground": "#FFD4B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Humane-Dark-FireCrawlDark",
+      "label": "Humane-Dark-FireCrawlDark",
+      "colors": {
+        "editor.background": "#211D00",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#36300F",
+        "titleBar.activeForeground": "#FFD4B5",
+        "titleBar.inactiveBackground": "#36300F",
+        "titleBar.inactiveForeground": "#A2876C",
+        "statusBar.background": "#36300F",
+        "statusBar.foreground": "#FFD4B5",
+        "activityBar.background": "#36300F",
+        "activityBar.foreground": "#FFD4B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Humane-Dark-Greeeeen",
+      "label": "Humane-Dark-Greeeeen",
+      "colors": {
+        "editor.background": "#211D00",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#36300F",
+        "titleBar.activeForeground": "#FFD4B5",
+        "titleBar.inactiveBackground": "#36300F",
+        "titleBar.inactiveForeground": "#A2876C",
+        "statusBar.background": "#36300F",
+        "statusBar.foreground": "#FFD4B5",
+        "activityBar.background": "#36300F",
+        "activityBar.foreground": "#FFD4B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Humane-Dark-Mononoke",
+      "label": "Humane-Dark-Mononoke",
+      "colors": {
+        "editor.background": "#211D00",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#36300F",
+        "titleBar.activeForeground": "#FFD4B5",
+        "titleBar.inactiveBackground": "#36300F",
+        "titleBar.inactiveForeground": "#A2876C",
+        "statusBar.background": "#36300F",
+        "statusBar.foreground": "#FFD4B5",
+        "activityBar.background": "#36300F",
+        "activityBar.foreground": "#FFD4B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Humane-Dark-SmoothOperatorDark",
+      "label": "Humane-Dark-SmoothOperatorDark",
+      "colors": {
+        "editor.background": "#211D00",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#36300F",
+        "titleBar.activeForeground": "#FFD4B5",
+        "titleBar.inactiveBackground": "#36300F",
+        "titleBar.inactiveForeground": "#A2876C",
+        "statusBar.background": "#36300F",
+        "statusBar.foreground": "#FFD4B5",
+        "activityBar.background": "#36300F",
+        "activityBar.foreground": "#FFD4B5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Humane-Dark-OneDarkPro",
+      "label": "Humane-Dark-OneDarkPro",
+      "colors": {
+        "editor.background": "#211D00",
+        "editor.foreground": "#D3AF86",
+        "titleBar.activeBackground": "#36300F",
+        "titleBar.activeForeground": "#FFD4B5",
+        "titleBar.inactiveBackground": "#36300F",
+        "titleBar.inactiveForeground": "#A2876C",
+        "statusBar.background": "#36300F",
+        "statusBar.foreground": "#FFD4B5",
+        "activityBar.background": "#36300F",
+        "activityBar.foreground": "#FFD4B5"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

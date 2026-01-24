@@ -1,16 +1,14 @@
 /**
- * VS Code Marketplace API client.
+ * VS Code Marketplace and OpenVSX API client.
  */
 import { CONFIG } from './config';
 import { getCached, setCache } from './cache';
 import type {
   MarketplaceExtension,
   MarketplaceQueryResponse,
+  RegistrySource,
   ThemeContribution,
 } from './types';
-
-const MARKETPLACE_API =
-  'https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery';
 
 const VSIX_ASSET_TYPE = 'Microsoft.VisualStudio.Services.VSIXPackage';
 
@@ -73,12 +71,14 @@ async function fetchWithRetry(
 }
 
 /**
- * Queries the VS Code Marketplace for theme extensions.
+ * Queries a VS Code-compatible registry for theme extensions.
  */
-async function queryMarketplace(
+async function queryRegistry(
+  apiUrl: string,
+  source: RegistrySource,
   pageNumber: number
 ): Promise<MarketplaceQueryResponse> {
-  const cacheKey = `marketplace-themes-page-${pageNumber}`;
+  const cacheKey = `${source}-themes-page-${pageNumber}`;
 
   const cached = getCached<MarketplaceQueryResponse>(cacheKey);
   if (cached) {
@@ -107,7 +107,7 @@ async function queryMarketplace(
       0x100, // IncludeStatistics
   };
 
-  const response = await fetchWithRetry(MARKETPLACE_API, {
+  const response = await fetchWithRetry(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -144,20 +144,27 @@ function extractInstallCount(
 }
 
 /**
- * Fetches theme extensions from the marketplace.
+ * Fetches theme extensions from a VS Code-compatible registry.
  */
-export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
+async function fetchThemeExtensionsFrom(
+  apiUrl: string,
+  source: RegistrySource,
+  registryName: string
+): Promise<MarketplaceExtension[]> {
   const extensions: MarketplaceExtension[] = [];
   const maxPages = Math.ceil(CONFIG.maxExtensions / CONFIG.pageSize);
 
-  console.log(`Fetching up to ${CONFIG.maxExtensions} theme extensions...`);
+  console.log(
+    `Fetching up to ${CONFIG.maxExtensions} theme extensions ` +
+      `from ${registryName}...`
+  );
 
   for (let page = 1; page <= maxPages; page++) {
-    console.log(`Fetching page ${page}/${maxPages}...`);
-    const response = await queryMarketplace(page);
+    console.log(`  Fetching page ${page}/${maxPages}...`);
+    const response = await queryRegistry(apiUrl, source, page);
 
     if (!response.results?.[0]?.extensions?.length) {
-      console.log(`No more extensions found at page ${page}`);
+      console.log(`  No more extensions found at page ${page}`);
       break;
     }
 
@@ -177,6 +184,7 @@ export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
         installCount,
         vsixUrl,
         themes: [],
+        source,
       });
 
       if (extensions.length >= CONFIG.maxExtensions) {
@@ -192,8 +200,40 @@ export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
     await new Promise((resolve) => setTimeout(resolve, 200));
   }
 
-  console.log(`Found ${extensions.length} theme extensions`);
+  console.log(`  Found ${extensions.length} theme extensions`);
   return extensions;
+}
+
+/**
+ * Fetches theme extensions from VS Code Marketplace.
+ */
+export async function fetchMarketplaceThemes(): Promise<
+  MarketplaceExtension[]
+> {
+  return fetchThemeExtensionsFrom(
+    CONFIG.marketplaceApiUrl,
+    'marketplace',
+    'VS Code Marketplace'
+  );
+}
+
+/**
+ * Fetches theme extensions from OpenVSX.
+ */
+export async function fetchOpenVsxThemes(): Promise<MarketplaceExtension[]> {
+  return fetchThemeExtensionsFrom(
+    CONFIG.openvsxApiUrl,
+    'openvsx',
+    'OpenVSX Registry'
+  );
+}
+
+/**
+ * Fetches theme extensions from the marketplace.
+ * @deprecated Use fetchMarketplaceThemes() instead
+ */
+export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
+  return fetchMarketplaceThemes();
 }
 
 /**
@@ -265,7 +305,7 @@ export async function fetchExtensionById(
   };
 
   try {
-    const response = await fetchWithRetry(MARKETPLACE_API, {
+    const response = await fetchWithRetry(CONFIG.marketplaceApiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -298,6 +338,7 @@ export async function fetchExtensionById(
       installCount,
       vsixUrl,
       themes: [],
+      source: 'marketplace',
     };
 
     setCache(cacheKey, extension);

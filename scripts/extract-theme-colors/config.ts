@@ -2,7 +2,12 @@
  * Configuration constants for theme extraction script.
  */
 export const CONFIG = {
-  /** Maximum number of extensions to process */
+  /** VS Code Marketplace API URL */
+  marketplaceApiUrl:
+    'https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery',
+  /** OpenVSX Registry API URL (VS Code-compatible gallery endpoint) */
+  openvsxApiUrl: 'https://open-vsx.org/vscode/gallery/extensionquery',
+  /** Maximum number of extensions to process per registry */
   maxExtensions: 250,
   /** Page size for marketplace API queries */
   pageSize: 50,

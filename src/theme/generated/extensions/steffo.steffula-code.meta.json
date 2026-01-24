@@ -1,0 +1,25 @@
+{
+  "extensionId": "af6436f9-72a3-4d38-bf0d-af504cbca3fe",
+  "extensionName": "steffula-code",
+  "publisherName": "steffo",
+  "displayName": "Steffula Code",
+  "version": "0.15.2",
+  "extractedAt": "2026-01-24T21:29:04.758Z",
+  "installCount": 3628,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Steffula Code",
+      "label": "Steffula Code",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A9B7C6",
+        "statusBar.background": "#3C3F41",
+        "activityBar.background": "#3C3F41",
+        "activityBar.foreground": "#CACBCC"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

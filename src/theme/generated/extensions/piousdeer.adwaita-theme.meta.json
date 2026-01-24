@@ -1,0 +1,117 @@
+{
+  "extensionId": "93fbc635-4a9a-4ff1-88ba-bf017484c602",
+  "extensionName": "adwaita-theme",
+  "publisherName": "piousdeer",
+  "displayName": "Adwaita",
+  "version": "1.1.0",
+  "extractedAt": "2026-01-24T21:28:53.504Z",
+  "installCount": 8618,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Adwaita Dark",
+      "label": "Adwaita Dark",
+      "colors": {
+        "editor.background": "#1D1D1D",
+        "titleBar.activeBackground": "#303030",
+        "statusBar.background": "#242424",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#303030",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Adwaita Dark & colorful status bar",
+      "label": "Adwaita Dark & colorful status bar",
+      "colors": {
+        "editor.background": "#1D1D1D",
+        "titleBar.activeBackground": "#303030",
+        "statusBar.background": "#1C71D8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#303030",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Adwaita Dark & default syntax highlighting",
+      "label": "Adwaita Dark & default syntax highlighting",
+      "colors": {
+        "editor.background": "#1D1D1D",
+        "titleBar.activeBackground": "#303030",
+        "statusBar.background": "#242424",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#303030",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Adwaita Dark & default syntax highlighting & colorful status bar",
+      "label": "Adwaita Dark & default syntax highlighting & colorful status bar",
+      "colors": {
+        "editor.background": "#1D1D1D",
+        "titleBar.activeBackground": "#303030",
+        "statusBar.background": "#1C71D8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#303030",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Adwaita Light",
+      "label": "Adwaita Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "titleBar.activeBackground": "#EBEBEB",
+        "statusBar.background": "#FAFAFA",
+        "statusBar.foreground": "#323232",
+        "activityBar.background": "#EBEBEB",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Adwaita Light & colorful status bar",
+      "label": "Adwaita Light & colorful status bar",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "titleBar.activeBackground": "#EBEBEB",
+        "statusBar.background": "#1C71D8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#EBEBEB",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Adwaita Light & default syntax highlighting",
+      "label": "Adwaita Light & default syntax highlighting",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "titleBar.activeBackground": "#EBEBEB",
+        "statusBar.background": "#FAFAFA",
+        "statusBar.foreground": "#323232",
+        "activityBar.background": "#EBEBEB",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Adwaita Light & default syntax highlighting & colorful status bar",
+      "label": "Adwaita Light & default syntax highlighting & colorful status bar",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "titleBar.activeBackground": "#EBEBEB",
+        "statusBar.background": "#1C71D8",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#EBEBEB",
+        "activityBar.foreground": "#000000"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

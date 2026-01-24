@@ -1,0 +1,166 @@
+{
+  "extensionId": "5a78140b-7a6e-4ee8-a9b7-ff9ad45b55b5",
+  "extensionName": "sjsepan-ambercrtish",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.ambercrtish",
+  "version": "0.4.1",
+  "extractedAt": "2026-01-24T21:29:04.537Z",
+  "installCount": 3644,
+  "stale": false,
+  "themes": [
+    {
+      "name": "AmberCrtish",
+      "label": "AmberCrtish",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-AmberDelight",
+      "label": "AmberCrtish-AmberDelight",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-CRTAmber",
+      "label": "AmberCrtish-CRTAmber",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-DrkryzLegacyDarkCoffee",
+      "label": "AmberCrtish-DrkryzLegacyDarkCoffee",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-EarthboundDustyDunes",
+      "label": "AmberCrtish-EarthboundDustyDunes",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-FantasticGruvbox",
+      "label": "AmberCrtish-FantasticGruvbox",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-RetroHackerAmber",
+      "label": "AmberCrtish-RetroHackerAmber",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-ShowaRetroTwilight",
+      "label": "AmberCrtish-ShowaRetroTwilight",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "AmberCrtish-SolarFlare",
+      "label": "AmberCrtish-SolarFlare",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFBF00",
+        "titleBar.activeBackground": "#221802",
+        "titleBar.activeForeground": "#FFBF00",
+        "titleBar.inactiveBackground": "#221802",
+        "titleBar.inactiveForeground": "#B38300",
+        "statusBar.background": "#221802",
+        "statusBar.foreground": "#FFBF00",
+        "activityBar.background": "#221802",
+        "activityBar.foreground": "#FFBF00"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

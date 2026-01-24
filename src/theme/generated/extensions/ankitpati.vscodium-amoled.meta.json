@@ -1,0 +1,29 @@
+{
+  "extensionId": "ffdb79b6-2a18-43c5-9845-8212e9dbaf5c",
+  "extensionName": "vscodium-amoled",
+  "publisherName": "ankitpati",
+  "displayName": "AMOLED",
+  "version": "1.0.3",
+  "extractedAt": "2026-01-24T21:28:57.070Z",
+  "installCount": 5887,
+  "stale": false,
+  "themes": [
+    {
+      "name": "AMOLED",
+      "label": "AMOLED",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#FFFFFF",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#000000"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,30 @@
+{
+  "extensionId": "4027375b-b01a-467b-886e-5b02d2ac5d1a",
+  "extensionName": "sjsepan-humanelike",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.humanelike",
+  "version": "0.4.8",
+  "extractedAt": "2026-01-24T21:29:01.182Z",
+  "installCount": 4388,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Humane-Like",
+      "label": "Humane-Like",
+      "colors": {
+        "editor.background": "#FFE2CE",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F7C9A7",
+        "titleBar.activeForeground": "#4F3822",
+        "titleBar.inactiveBackground": "#F7C9A7",
+        "titleBar.inactiveForeground": "#9D8264",
+        "statusBar.background": "#F7C9A7",
+        "statusBar.foreground": "#4F3822",
+        "activityBar.background": "#F7C9A7",
+        "activityBar.foreground": "#4F3822"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

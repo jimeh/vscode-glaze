@@ -1,0 +1,27 @@
+{
+  "extensionId": "edb3e33e-dee6-4712-abd5-4d8e1031de25",
+  "extensionName": "vscode-theme-vlight",
+  "publisherName": "Vladeeg",
+  "displayName": "VLight Theme",
+  "version": "2.2.0",
+  "extractedAt": "2026-01-24T21:29:01.639Z",
+  "installCount": 4345,
+  "stale": false,
+  "themes": [
+    {
+      "name": "VLight",
+      "label": "VLight",
+      "colors": {
+        "editor.background": "#F9F9FA",
+        "editor.foreground": "#403F53",
+        "titleBar.activeBackground": "#F0F0F0",
+        "statusBar.background": "#F0F0F0",
+        "statusBar.foreground": "#403F53",
+        "activityBar.background": "#F0F0F0",
+        "activityBar.foreground": "#403F53"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

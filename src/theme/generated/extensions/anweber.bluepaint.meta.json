@@ -1,0 +1,29 @@
+{
+  "extensionId": "83998459-359e-4f40-b6d3-29cad3b1b8c5",
+  "extensionName": "bluepaint",
+  "publisherName": "anweber",
+  "displayName": "Blue Paint",
+  "version": "0.8.0",
+  "extractedAt": "2026-01-24T21:29:07.074Z",
+  "installCount": 3258,
+  "stale": false,
+  "themes": [
+    {
+      "name": "BluePaint",
+      "label": "BluePaint",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#E6E6E6",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#F3F3F3",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#262626",
+        "activityBar.background": "#1565C0",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

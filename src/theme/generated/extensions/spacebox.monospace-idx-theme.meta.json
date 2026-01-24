@@ -1,0 +1,47 @@
+{
+  "extensionId": "a28e22ca-09ce-4549-bb96-f088e02d8706",
+  "extensionName": "monospace-idx-theme",
+  "publisherName": "SpaceBox",
+  "displayName": "Monospace IDX Theme",
+  "version": "0.0.7",
+  "extractedAt": "2026-01-24T21:29:01.409Z",
+  "installCount": 4379,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Monospace IDX Light",
+      "label": "Monospace IDX Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1F2939",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#333E4F",
+        "titleBar.inactiveBackground": "#F4F7FD",
+        "titleBar.inactiveForeground": "#5D6A7D",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#5D6A7D",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#333E4F"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Monospace IDX Dark",
+      "label": "Monospace IDX Dark",
+      "colors": {
+        "editor.background": "#171F2B",
+        "editor.foreground": "#D9DFE7",
+        "titleBar.activeBackground": "#171F2B",
+        "titleBar.activeForeground": "#D9DFE7",
+        "titleBar.inactiveBackground": "#10151D",
+        "titleBar.inactiveForeground": "#738295",
+        "statusBar.background": "#1F2939",
+        "statusBar.foreground": "#A4AFBD",
+        "activityBar.background": "#171F2B",
+        "activityBar.foreground": "#D9DFE7"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

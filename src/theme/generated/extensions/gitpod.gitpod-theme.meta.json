@@ -1,0 +1,39 @@
+{
+  "extensionId": "088ae960-81e9-41b4-ba42-ff7498904b55",
+  "extensionName": "gitpod-theme",
+  "publisherName": "gitpod",
+  "displayName": "Gitpod Theme",
+  "version": "0.0.2",
+  "extractedAt": "2026-01-24T21:28:48.492Z",
+  "installCount": 433055,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Gitpod Dark",
+      "label": "Gitpod Dark",
+      "colors": {
+        "editor.background": "#12100C",
+        "editor.foreground": "#D4D4D4",
+        "statusBar.background": "#252526",
+        "statusBar.foreground": "#F3F3F3",
+        "activityBar.background": "#292524",
+        "activityBar.foreground": "#F3F3F3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Gitpod Light",
+      "label": "Gitpod Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#292524",
+        "activityBar.background": "#F9F9F9",
+        "activityBar.foreground": "#292524"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

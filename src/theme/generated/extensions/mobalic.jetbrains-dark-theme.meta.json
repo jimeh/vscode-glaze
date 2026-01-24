@@ -1,0 +1,22 @@
+{
+  "extensionId": "2f1f652b-198b-4411-b2bd-f8d0909fb2ae",
+  "extensionName": "jetbrains-dark-theme",
+  "publisherName": "MoBalic",
+  "displayName": "Jetbrains Dark Theme",
+  "version": "3.1.0",
+  "extractedAt": "2026-01-24T21:28:58.954Z",
+  "installCount": 5175,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Jetbrains Dark Theme",
+      "label": "Jetbrains Dark Theme",
+      "colors": {
+        "editor.background": "#2B2B2B",
+        "editor.foreground": "#A9B7C6"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

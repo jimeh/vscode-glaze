@@ -1,0 +1,47 @@
+{
+  "extensionId": "418c0a0d-6bf3-4b01-963b-30ec6c5f39d7",
+  "extensionName": "ice",
+  "publisherName": "a5hk",
+  "displayName": "Ice",
+  "version": "3.0.1",
+  "extractedAt": "2026-01-24T21:28:57.715Z",
+  "installCount": 5681,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Ice",
+      "label": "Ice",
+      "colors": {
+        "editor.background": "#012841",
+        "editor.foreground": "#C0CAD0",
+        "titleBar.activeBackground": "#012841",
+        "titleBar.activeForeground": "#AAB7C0",
+        "titleBar.inactiveBackground": "#012841",
+        "titleBar.inactiveForeground": "#99A9B3",
+        "statusBar.background": "#186D75",
+        "statusBar.foreground": "#DEE3E6",
+        "activityBar.background": "#012841",
+        "activityBar.foreground": "#AAB7C0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ice Contrast",
+      "label": "Ice Contrast",
+      "colors": {
+        "editor.background": "#012841",
+        "editor.foreground": "#C0CAD0",
+        "titleBar.activeBackground": "#012841",
+        "titleBar.activeForeground": "#AAB7C0",
+        "titleBar.inactiveBackground": "#012841",
+        "titleBar.inactiveForeground": "#99A9B3",
+        "statusBar.background": "#186D75",
+        "statusBar.foreground": "#DEE3E6",
+        "activityBar.background": "#012841",
+        "activityBar.foreground": "#AAB7C0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

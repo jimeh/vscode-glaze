@@ -1,0 +1,30 @@
+{
+  "extensionId": "22069586-6b97-4c5e-9c31-ca8e6a5667fe",
+  "extensionName": "obsidian-dark",
+  "publisherName": "Hamza-Aziane",
+  "displayName": "Obsidian Dark",
+  "version": "1.0.0",
+  "extractedAt": "2026-01-24T21:28:52.294Z",
+  "installCount": 9705,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Obsidian Dark",
+      "label": "Obsidian Dark",
+      "colors": {
+        "editor.background": "#11151A",
+        "editor.foreground": "#C9D1D9",
+        "titleBar.activeBackground": "#0D1117",
+        "titleBar.activeForeground": "#8B949E",
+        "titleBar.inactiveBackground": "#0C0E11",
+        "titleBar.inactiveForeground": "#8B949E",
+        "statusBar.background": "#0D1117",
+        "statusBar.foreground": "#D1D3D6",
+        "activityBar.background": "#141A25",
+        "activityBar.foreground": "#C9D1D9"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

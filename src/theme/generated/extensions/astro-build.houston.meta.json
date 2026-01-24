@@ -1,0 +1,30 @@
+{
+  "extensionId": "58a0769a-b0e1-4d92-89d9-1ffc9e315d96",
+  "extensionName": "houston",
+  "publisherName": "astro-build",
+  "displayName": "Houston",
+  "version": "0.1.2",
+  "extractedAt": "2026-01-24T21:29:03.682Z",
+  "installCount": 3808,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Houston",
+      "label": "Houston",
+      "colors": {
+        "editor.background": "#17191E",
+        "editor.foreground": "#EEF0F9",
+        "titleBar.activeBackground": "#17191E",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#3C3C3C",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "statusBar.background": "#17548B",
+        "statusBar.foreground": "#EEF0F9",
+        "activityBar.background": "#17191E",
+        "activityBar.foreground": "#EEF0F9"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

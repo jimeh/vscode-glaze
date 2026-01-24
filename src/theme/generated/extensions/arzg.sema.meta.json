@@ -1,0 +1,149 @@
+{
+  "extensionId": "90cd080e-9b7a-4a62-9ab9-99e3bbfbdd28",
+  "extensionName": "sema",
+  "publisherName": "arzg",
+  "displayName": "sema",
+  "version": "1.12.1",
+  "extractedAt": "2026-01-24T21:29:06.661Z",
+  "installCount": 3298,
+  "stale": false,
+  "themes": [
+    {
+      "name": "sema",
+      "label": "sema",
+      "colors": {
+        "editor.background": "#0F0F0F",
+        "editor.foreground": "#D6D6D6",
+        "titleBar.activeBackground": "#0F0F0F",
+        "titleBar.activeForeground": "#D6D6D6",
+        "titleBar.inactiveBackground": "#0F0F0F",
+        "titleBar.inactiveForeground": "#585858",
+        "statusBar.background": "#0F0F0F",
+        "statusBar.foreground": "#585858",
+        "activityBar.background": "#0F0F0F",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "sema chroma",
+      "label": "sema chroma",
+      "colors": {
+        "editor.background": "#0F0F0F",
+        "editor.foreground": "#D6D6D6",
+        "titleBar.activeBackground": "#0F0F0F",
+        "titleBar.activeForeground": "#D6D6D6",
+        "titleBar.inactiveBackground": "#0F0F0F",
+        "titleBar.inactiveForeground": "#585858",
+        "statusBar.background": "#0F0F0F",
+        "statusBar.foreground": "#585858",
+        "activityBar.background": "#0F0F0F",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "sema soft",
+      "label": "sema soft",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#222222",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#222222",
+        "titleBar.inactiveForeground": "#626262",
+        "statusBar.background": "#222222",
+        "statusBar.foreground": "#626262",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "sema soft chroma",
+      "label": "sema soft chroma",
+      "colors": {
+        "editor.background": "#222222",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#222222",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#222222",
+        "titleBar.inactiveForeground": "#626262",
+        "statusBar.background": "#222222",
+        "statusBar.foreground": "#626262",
+        "activityBar.background": "#222222",
+        "activityBar.foreground": "#EEEEEE"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "sema light",
+      "label": "sema light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#333333",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "titleBar.inactiveForeground": "#A4A4A4",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#A4A4A4",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#161616"
+      },
+      "type": "light"
+    },
+    {
+      "name": "sema light chroma",
+      "label": "sema light chroma",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#333333",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#333333",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "titleBar.inactiveForeground": "#A4A4A4",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#A4A4A4",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#161616"
+      },
+      "type": "light"
+    },
+    {
+      "name": "sema light soft",
+      "label": "sema light soft",
+      "colors": {
+        "editor.background": "#F2F2F2",
+        "editor.foreground": "#474747",
+        "titleBar.activeBackground": "#F2F2F2",
+        "titleBar.activeForeground": "#474747",
+        "titleBar.inactiveBackground": "#F2F2F2",
+        "titleBar.inactiveForeground": "#A7A7A7",
+        "statusBar.background": "#F2F2F2",
+        "statusBar.foreground": "#A7A7A7",
+        "activityBar.background": "#F2F2F2",
+        "activityBar.foreground": "#2E2E2E"
+      },
+      "type": "light"
+    },
+    {
+      "name": "sema light soft chroma",
+      "label": "sema light soft chroma",
+      "colors": {
+        "editor.background": "#F2F2F2",
+        "editor.foreground": "#474747",
+        "titleBar.activeBackground": "#F2F2F2",
+        "titleBar.activeForeground": "#474747",
+        "titleBar.inactiveBackground": "#F2F2F2",
+        "titleBar.inactiveForeground": "#A7A7A7",
+        "statusBar.background": "#F2F2F2",
+        "statusBar.foreground": "#A7A7A7",
+        "activityBar.background": "#F2F2F2",
+        "activityBar.foreground": "#2E2E2E"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

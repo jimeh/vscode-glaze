@@ -3,9 +3,9 @@
   "extensionName": "infinity-dark-theme",
   "publisherName": "nadim-vscode",
   "displayName": "infinity dark theme",
-  "version": "0.1.0",
-  "extractedAt": "2026-01-24T01:41:57.791Z",
-  "installCount": 134969,
+  "version": "1.0.2",
+  "extractedAt": "2026-01-24T21:28:48.380Z",
+  "installCount": 10685,
   "stale": false,
   "themes": [
     {
@@ -25,5 +25,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "openvsx"
 }

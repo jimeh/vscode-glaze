@@ -3,6 +3,11 @@
  */
 
 /**
+ * Extension registry source.
+ */
+export type RegistrySource = 'marketplace' | 'openvsx';
+
+/**
  * Official VSCode theme types.
  * Matches VSCode's uiTheme values and theme JSON type field.
  */
@@ -49,7 +54,7 @@ export interface ExtractedTheme {
 }
 
 /**
- * VS Code extension metadata from marketplace.
+ * VS Code extension metadata from marketplace or OpenVSX.
  */
 export interface MarketplaceExtension {
   extensionId: string;
@@ -60,6 +65,8 @@ export interface MarketplaceExtension {
   installCount: number;
   vsixUrl?: string;
   themes: ThemeContribution[];
+  /** Source registry for this extension */
+  source?: RegistrySource;
 }
 
 /**
@@ -86,6 +93,8 @@ export interface ExtensionMetadata {
   stale: boolean;
   /** Theme data extracted from extension */
   themes: MetadataTheme[];
+  /** Source registry for this extension */
+  source?: RegistrySource;
 }
 
 /**

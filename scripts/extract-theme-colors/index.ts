@@ -20,10 +20,12 @@ import * as path from 'path';
 import { CONFIG } from './config';
 import { clearCache } from './cache';
 import {
-  fetchThemeExtensions,
+  fetchMarketplaceThemes,
+  fetchOpenVsxThemes,
   fetchExtensionById,
   parseThemeContributions,
 } from './marketplace';
+import { mergeRegistryExtensions } from './registry-merge';
 import {
   downloadVsix,
   extractPackageJson,
@@ -360,8 +362,25 @@ async function main(): Promise<void> {
     console.log(`Loaded ${pinnedIds.length} pinned extensions`);
   }
 
-  // Step 4: Fetch top N extensions from marketplace
-  const topExtensions = await fetchThemeExtensions();
+  // Step 4: Fetch top N extensions from both registries
+  console.log('');
+  const marketplaceExts = await fetchMarketplaceThemes();
+  console.log('');
+  const openvsxExts = await fetchOpenVsxThemes();
+
+  // Step 4b: Merge extensions from both registries
+  const { merged: topExtensions, stats: mergeStats } = mergeRegistryExtensions(
+    marketplaceExts,
+    openvsxExts
+  );
+  console.log('');
+  console.log(
+    `Registry merge: ${mergeStats.marketplaceOnly} marketplace-only, ` +
+      `${mergeStats.openvsxOnly} openvsx-only, ` +
+      `${mergeStats.both} on both ` +
+      `(used ${mergeStats.usedMarketplace} from marketplace, ` +
+      `${mergeStats.usedOpenvsx} from openvsx)`
+  );
 
   // Step 5: Build merged set of extensions to process
   const extensionsToProcess = new Map<string, MarketplaceExtension>();
@@ -463,6 +482,7 @@ async function main(): Promise<void> {
       installCount: extension.installCount,
       stale: false,
       themes: toMetadataThemes(themes),
+      source: extension.source,
     };
 
     extensionsData.extensions[extIdLower] = toExtensionData(metadata);

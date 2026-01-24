@@ -1,0 +1,47 @@
+{
+  "extensionId": "71235fdf-75d3-4032-b730-f94ad421fb08",
+  "extensionName": "paper",
+  "publisherName": "a5hk",
+  "displayName": "Paper",
+  "version": "3.0.2",
+  "extractedAt": "2026-01-24T21:28:51.875Z",
+  "installCount": 10202,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Paper",
+      "label": "Paper",
+      "colors": {
+        "editor.background": "#FCF8E8",
+        "editor.foreground": "#3E3D39",
+        "titleBar.activeBackground": "#FCF8E8",
+        "titleBar.activeForeground": "#898883",
+        "titleBar.inactiveBackground": "#FCF8E8",
+        "titleBar.inactiveForeground": "#95938D",
+        "statusBar.background": "#0FBDA8",
+        "statusBar.foreground": "#010D0B",
+        "activityBar.background": "#FCF8E8",
+        "activityBar.foreground": "#898883"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Paper Contrast",
+      "label": "Paper Contrast",
+      "colors": {
+        "editor.background": "#FCF8E8",
+        "editor.foreground": "#3E3D39",
+        "titleBar.activeBackground": "#FCF8E8",
+        "titleBar.activeForeground": "#898883",
+        "titleBar.inactiveBackground": "#FCF8E8",
+        "titleBar.inactiveForeground": "#95938D",
+        "statusBar.background": "#0FBDA8",
+        "statusBar.foreground": "#010D0B",
+        "activityBar.background": "#FCF8E8",
+        "activityBar.foreground": "#898883"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

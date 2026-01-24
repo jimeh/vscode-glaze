@@ -1,0 +1,22 @@
+{
+  "extensionId": "0203b66d-c612-4d18-b4b0-f3ebc3e02806",
+  "extensionName": "epsilon-eag-dark-theme",
+  "publisherName": "grammarcraft",
+  "displayName": "EAG Dark Theme",
+  "version": "3.1.0",
+  "extractedAt": "2026-01-24T21:29:02.385Z",
+  "installCount": 4097,
+  "stale": false,
+  "themes": [
+    {
+      "name": "EAG (dark)",
+      "label": "EAG (dark)",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,98 @@
+{
+  "extensionId": "340fc8a3-2a3d-489f-8030-f50154a6d004",
+  "extensionName": "nebula-oni-theme",
+  "publisherName": "psudo-dev",
+  "displayName": "Nebula Oni Theme",
+  "version": "2.2.2",
+  "extractedAt": "2026-01-24T21:28:49.455Z",
+  "installCount": 17942,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Nebula Oni (Hourglass)",
+      "label": "Nebula Oni (Hourglass)",
+      "colors": {
+        "editor.background": "#262A30",
+        "editor.foreground": "#B4BBC8",
+        "titleBar.activeBackground": "#1E2126",
+        "titleBar.activeForeground": "#B4BBC8",
+        "titleBar.inactiveBackground": "#1E2126",
+        "titleBar.inactiveForeground": "#9097A0",
+        "statusBar.background": "#1E2126",
+        "statusBar.foreground": "#B4BBC8",
+        "activityBar.background": "#363C44",
+        "activityBar.foreground": "#FFE14D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula Oni (Pegasus)",
+      "label": "Nebula Oni (Pegasus)",
+      "colors": {
+        "editor.background": "#262A30",
+        "editor.foreground": "#B4BBC8",
+        "titleBar.activeBackground": "#1E2126",
+        "titleBar.activeForeground": "#B4BBC8",
+        "titleBar.inactiveBackground": "#1E2126",
+        "titleBar.inactiveForeground": "#9097A0",
+        "statusBar.background": "#1E2126",
+        "statusBar.foreground": "#B4BBC8",
+        "activityBar.background": "#363C44",
+        "activityBar.foreground": "#FFE14D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula Oni (Spirograph)",
+      "label": "Nebula Oni (Spirograph)",
+      "colors": {
+        "editor.background": "#262A30",
+        "editor.foreground": "#B4BBC8",
+        "titleBar.activeBackground": "#1E2126",
+        "titleBar.activeForeground": "#B4BBC8",
+        "titleBar.inactiveBackground": "#1E2126",
+        "titleBar.inactiveForeground": "#9097A0",
+        "statusBar.background": "#1E2126",
+        "statusBar.foreground": "#B4BBC8",
+        "activityBar.background": "#363C44",
+        "activityBar.foreground": "#FFE14D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula Oni (Cerberus)",
+      "label": "Nebula Oni (Cerberus)",
+      "colors": {
+        "editor.background": "#262A30",
+        "editor.foreground": "#B4BBC8",
+        "titleBar.activeBackground": "#1E2126",
+        "titleBar.activeForeground": "#B4BBC8",
+        "titleBar.inactiveBackground": "#1E2126",
+        "titleBar.inactiveForeground": "#9097A0",
+        "statusBar.background": "#1E2126",
+        "statusBar.foreground": "#B4BBC8",
+        "activityBar.background": "#363C44",
+        "activityBar.foreground": "#FFE14D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula Oni (Favorite)",
+      "label": "Nebula Oni (Favorite)",
+      "colors": {
+        "editor.background": "#0B2134",
+        "editor.foreground": "#A3BDCC",
+        "titleBar.activeBackground": "#091A2B",
+        "titleBar.activeForeground": "#A3BDCC",
+        "titleBar.inactiveBackground": "#091A2B",
+        "titleBar.inactiveForeground": "#5986B3",
+        "statusBar.background": "#091A2B",
+        "statusBar.foreground": "#A3BDCC",
+        "activityBar.background": "#10314F",
+        "activityBar.foreground": "#FF99E5"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,30 @@
+{
+  "extensionId": "0d06f74c-4e42-40bf-9700-77d0746f1c20",
+  "extensionName": "jetbrains-new-dark",
+  "publisherName": "MoBalic",
+  "displayName": "JetBrains New Dark",
+  "version": "0.0.1",
+  "extractedAt": "2026-01-24T21:28:53.385Z",
+  "installCount": 8618,
+  "stale": false,
+  "themes": [
+    {
+      "name": "JetBrains New Dark",
+      "label": "JetBrains New Dark",
+      "colors": {
+        "editor.background": "#1E1F22",
+        "editor.foreground": "#BCBEC4",
+        "titleBar.activeBackground": "#181818",
+        "titleBar.activeForeground": "#BCBEC4",
+        "titleBar.inactiveBackground": "#1E1F22",
+        "titleBar.inactiveForeground": "#8B949E",
+        "statusBar.background": "#181818",
+        "statusBar.foreground": "#BCBEC4",
+        "activityBar.background": "#181818",
+        "activityBar.foreground": "#D7D7D7"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

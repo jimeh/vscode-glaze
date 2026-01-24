@@ -1,0 +1,43 @@
+{
+  "extensionId": "f39dffd0-9edb-480b-8599-1d59acc1e747",
+  "extensionName": "prism",
+  "publisherName": "usernamehw",
+  "displayName": "Light Theme ( Prism )",
+  "version": "1.2.0",
+  "extractedAt": "2026-01-24T21:28:54.613Z",
+  "installCount": 7099,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Prism",
+      "label": "Prism",
+      "colors": {
+        "editor.background": "#F8F6F5",
+        "editor.foreground": "#494949",
+        "titleBar.activeBackground": "#F8F6F5",
+        "titleBar.activeForeground": "#111111",
+        "statusBar.background": "#F8F6F5",
+        "statusBar.foreground": "#090909",
+        "activityBar.background": "#F8F6F5",
+        "activityBar.foreground": "#111111"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Prism (No Bold)",
+      "label": "Prism (No Bold)",
+      "colors": {
+        "editor.background": "#F8F6F5",
+        "editor.foreground": "#494949",
+        "titleBar.activeBackground": "#F8F6F5",
+        "titleBar.activeForeground": "#111111",
+        "statusBar.background": "#F8F6F5",
+        "statusBar.foreground": "#090909",
+        "activityBar.background": "#F8F6F5",
+        "activityBar.foreground": "#111111"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

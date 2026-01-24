@@ -1,0 +1,47 @@
+{
+  "extensionId": "a07aad4f-db9e-400d-8eaf-2f5b1dcc6171",
+  "extensionName": "xcode-theme",
+  "publisherName": "arzg",
+  "displayName": "Xcode Theme",
+  "version": "0.7.15",
+  "extractedAt": "2026-01-24T21:28:56.085Z",
+  "installCount": 6606,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Xcode 11 Default Dark",
+      "label": "Xcode 11 Default Dark",
+      "colors": {
+        "editor.background": "#292A30",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#37383B",
+        "titleBar.activeForeground": "#EBEBEB",
+        "titleBar.inactiveBackground": "#27292C",
+        "titleBar.inactiveForeground": "#686A6D",
+        "statusBar.background": "#202124",
+        "statusBar.foreground": "#9A9A9C",
+        "activityBar.background": "#26282B",
+        "activityBar.foreground": "#007AFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Xcode 11 Default Light",
+      "label": "Xcode 11 Default Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F5F4F4",
+        "titleBar.activeForeground": "#4A4A4A",
+        "titleBar.inactiveBackground": "#E8E8E8",
+        "titleBar.inactiveForeground": "#A8A8A8",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#808080",
+        "activityBar.background": "#E2E1E2",
+        "activityBar.foreground": "#0070F5"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

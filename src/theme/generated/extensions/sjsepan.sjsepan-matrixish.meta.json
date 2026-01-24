@@ -1,0 +1,115 @@
+{
+  "extensionId": "fd8e281c-bf22-4bc6-9830-259114a1f132",
+  "extensionName": "sjsepan-matrixish",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.matrixish",
+  "version": "0.4.1",
+  "extractedAt": "2026-01-24T21:28:54.178Z",
+  "installCount": 7555,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Matrixish",
+      "label": "Matrixish",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#0FCF24",
+        "titleBar.activeBackground": "#031F05",
+        "titleBar.activeForeground": "#0FCF24",
+        "titleBar.inactiveBackground": "#031F05",
+        "titleBar.inactiveForeground": "#0FCF24",
+        "statusBar.background": "#031F05",
+        "statusBar.foreground": "#0FCF24",
+        "activityBar.background": "#031F05",
+        "activityBar.foreground": "#0FCF24"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matrixish-C64GreenDieOldSchool",
+      "label": "Matrixish-C64GreenDieOldSchool",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#0FCF24",
+        "titleBar.activeBackground": "#031F05",
+        "titleBar.activeForeground": "#0FCF24",
+        "titleBar.inactiveBackground": "#031F05",
+        "titleBar.inactiveForeground": "#0FCF24",
+        "statusBar.background": "#031F05",
+        "statusBar.foreground": "#0FCF24",
+        "activityBar.background": "#031F05",
+        "activityBar.foreground": "#0FCF24"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matrixish-CRTGreen",
+      "label": "Matrixish-CRTGreen",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#0FCF24",
+        "titleBar.activeBackground": "#031F05",
+        "titleBar.activeForeground": "#0FCF24",
+        "titleBar.inactiveBackground": "#031F05",
+        "titleBar.inactiveForeground": "#0FCF24",
+        "statusBar.background": "#031F05",
+        "statusBar.foreground": "#0FCF24",
+        "activityBar.background": "#031F05",
+        "activityBar.foreground": "#0FCF24"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matrixish-NeonHacker",
+      "label": "Matrixish-NeonHacker",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#0FCF24",
+        "titleBar.activeBackground": "#031F05",
+        "titleBar.activeForeground": "#0FCF24",
+        "titleBar.inactiveBackground": "#031F05",
+        "titleBar.inactiveForeground": "#0FCF24",
+        "statusBar.background": "#031F05",
+        "statusBar.foreground": "#0FCF24",
+        "activityBar.background": "#031F05",
+        "activityBar.foreground": "#0FCF24"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matrixish-RetroHackerGreen",
+      "label": "Matrixish-RetroHackerGreen",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#0FCF24",
+        "titleBar.activeBackground": "#031F05",
+        "titleBar.activeForeground": "#0FCF24",
+        "titleBar.inactiveBackground": "#031F05",
+        "titleBar.inactiveForeground": "#0FCF24",
+        "statusBar.background": "#031F05",
+        "statusBar.foreground": "#0FCF24",
+        "activityBar.background": "#031F05",
+        "activityBar.foreground": "#0FCF24"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matrixish-ToxicWaste",
+      "label": "Matrixish-ToxicWaste",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#0FCF24",
+        "titleBar.activeBackground": "#031F05",
+        "titleBar.activeForeground": "#0FCF24",
+        "titleBar.inactiveBackground": "#031F05",
+        "titleBar.inactiveForeground": "#0FCF24",
+        "statusBar.background": "#031F05",
+        "statusBar.foreground": "#0FCF24",
+        "activityBar.background": "#031F05",
+        "activityBar.foreground": "#0FCF24"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

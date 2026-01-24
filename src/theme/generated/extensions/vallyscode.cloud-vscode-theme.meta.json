@@ -1,0 +1,30 @@
+{
+  "extensionId": "d442750f-3f7c-46ca-80e4-572e13208589",
+  "extensionName": "cloud-vscode-theme",
+  "publisherName": "vallyscode",
+  "displayName": "Cloud Theme",
+  "version": "0.0.12",
+  "extractedAt": "2026-01-24T21:29:00.640Z",
+  "installCount": 4597,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Cloud",
+      "label": "Cloud",
+      "colors": {
+        "editor.background": "#F1F1F1",
+        "editor.foreground": "#454545",
+        "titleBar.activeBackground": "#F1F1F1",
+        "titleBar.activeForeground": "#454545",
+        "titleBar.inactiveBackground": "#F1F1F1",
+        "titleBar.inactiveForeground": "#6A737D",
+        "statusBar.background": "#F1F1F1",
+        "statusBar.foreground": "#454545",
+        "activityBar.background": "#F1F1F1",
+        "activityBar.foreground": "#454545"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

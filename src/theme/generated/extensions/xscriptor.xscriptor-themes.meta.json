@@ -1,0 +1,200 @@
+{
+  "extensionId": "76b98ee2-cc1b-49b3-a935-c64e9c9cbdbb",
+  "extensionName": "xscriptor-themes",
+  "publisherName": "xscriptor",
+  "displayName": "Xscriptor Themes",
+  "version": "1.0.8",
+  "extractedAt": "2026-01-24T21:28:48.841Z",
+  "installCount": 26226,
+  "stale": false,
+  "themes": [
+    {
+      "name": "X",
+      "label": "X",
+      "colors": {
+        "editor.background": "#0A0A0A",
+        "editor.foreground": "#F7F1FF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#8B888F",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#525053",
+        "statusBar.background": "#0A0A0A",
+        "statusBar.foreground": "#A8A8A8",
+        "activityBar.background": "#0A0A0A",
+        "activityBar.foreground": "#DADADA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Madrid",
+      "label": "Madrid",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#1A1A1A",
+        "titleBar.activeBackground": "#E6E6E6",
+        "titleBar.activeForeground": "#1A1A1A",
+        "titleBar.inactiveBackground": "#E6E6E6",
+        "titleBar.inactiveForeground": "#4A4A4A",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#1A1A1A",
+        "activityBar.background": "#F5F5F5",
+        "activityBar.foreground": "#1A1A1A"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Praha",
+      "label": "Praha",
+      "colors": {
+        "editor.background": "#1A1A1A",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#6272A4",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#FFFFFF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Berlin",
+      "label": "Berlin",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#0D0D0D",
+        "titleBar.inactiveForeground": "#999999",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#CCCCCC",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "London",
+      "label": "London",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#2B2B2B",
+        "titleBar.activeBackground": "#E5E5E5",
+        "titleBar.activeForeground": "#333333",
+        "titleBar.inactiveBackground": "#F2F2F2",
+        "titleBar.inactiveForeground": "#666666",
+        "statusBar.background": "#E5E5E5",
+        "statusBar.foreground": "#333333",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#333333"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Oslo",
+      "label": "Oslo",
+      "colors": {
+        "editor.background": "#0E1011",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#181A1F",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#181A1F",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#181A1F",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#181A1F",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Helsinki",
+      "label": "Helsinki",
+      "colors": {
+        "editor.background": "#F1EFEE",
+        "editor.foreground": "#544D40",
+        "titleBar.activeBackground": "#F8FAFE",
+        "titleBar.activeForeground": "#625A4B",
+        "titleBar.inactiveBackground": "#F8FAFE",
+        "titleBar.inactiveForeground": "#948E82",
+        "statusBar.background": "#F8FAFE",
+        "statusBar.foreground": "#625A4B",
+        "activityBar.background": "#F8FAFE",
+        "activityBar.foreground": "#2C2E34"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Tokio",
+      "label": "Tokio",
+      "colors": {
+        "editor.background": "#191919",
+        "editor.foreground": "#F7F1FF",
+        "titleBar.activeBackground": "#191919",
+        "titleBar.activeForeground": "#8B888F",
+        "titleBar.inactiveBackground": "#191919",
+        "titleBar.inactiveForeground": "#525053",
+        "statusBar.background": "#191919",
+        "statusBar.foreground": "#A8A8A8",
+        "activityBar.background": "#191919",
+        "activityBar.foreground": "#DADADA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Lahabana",
+      "label": "Lahabana",
+      "colors": {
+        "editor.background": "#191919",
+        "editor.foreground": "#F7F1FF",
+        "titleBar.activeBackground": "#191919",
+        "titleBar.activeForeground": "#8B888F",
+        "titleBar.inactiveBackground": "#191919",
+        "titleBar.inactiveForeground": "#525053",
+        "statusBar.background": "#191919",
+        "statusBar.foreground": "#A8A8A8",
+        "activityBar.background": "#191919",
+        "activityBar.foreground": "#DADADA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Paris",
+      "label": "Paris",
+      "colors": {
+        "editor.background": "#10081A",
+        "editor.foreground": "#F7F1FF",
+        "titleBar.activeBackground": "#11091C",
+        "titleBar.activeForeground": "#F7F1FF",
+        "titleBar.inactiveBackground": "#1A0F2A",
+        "titleBar.inactiveForeground": "#8B888F",
+        "statusBar.background": "#11091C",
+        "statusBar.foreground": "#BAB6C0",
+        "activityBar.background": "#10081A",
+        "activityBar.foreground": "#DADADA"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Bogotá",
+      "label": "Bogotá",
+      "colors": {
+        "editor.background": "#140606",
+        "editor.foreground": "#F7F1FF",
+        "titleBar.activeBackground": "#140706",
+        "titleBar.activeForeground": "#F7F1FF",
+        "titleBar.inactiveBackground": "#2A0F0F",
+        "titleBar.inactiveForeground": "#8B888F",
+        "statusBar.background": "#140706",
+        "statusBar.foreground": "#BAB6C0",
+        "activityBar.background": "#140606",
+        "activityBar.foreground": "#DADADA"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

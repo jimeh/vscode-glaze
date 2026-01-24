@@ -1,0 +1,81 @@
+{
+  "extensionId": "03babdd2-be04-48a1-a239-3791a6867a0d",
+  "extensionName": "sjsepan-ghostish",
+  "publisherName": "sjsepan",
+  "displayName": "sjsepan.ghostish",
+  "version": "0.4.1",
+  "extractedAt": "2026-01-24T21:29:02.600Z",
+  "installCount": 4053,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Ghostish",
+      "label": "Ghostish",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C4C4C4",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#C4C4C4",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#818181",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#C4C4C4",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#C4C4C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ghostish-CRTGray",
+      "label": "Ghostish-CRTGray",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C4C4C4",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#C4C4C4",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#818181",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#C4C4C4",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#C4C4C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ghostish-GothicDark",
+      "label": "Ghostish-GothicDark",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C4C4C4",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#C4C4C4",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#818181",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#C4C4C4",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#C4C4C4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ghostish-ZenbonesDark",
+      "label": "Ghostish-ZenbonesDark",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C4C4C4",
+        "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.activeForeground": "#C4C4C4",
+        "titleBar.inactiveBackground": "#1A1A1A",
+        "titleBar.inactiveForeground": "#818181",
+        "statusBar.background": "#1A1A1A",
+        "statusBar.foreground": "#C4C4C4",
+        "activityBar.background": "#1A1A1A",
+        "activityBar.foreground": "#C4C4C4"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

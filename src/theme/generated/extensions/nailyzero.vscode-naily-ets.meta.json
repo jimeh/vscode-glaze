@@ -1,0 +1,12 @@
+{
+  "extensionId": "b93ae96f-bd21-4c39-8179-57f84eec9ee9",
+  "extensionName": "vscode-naily-ets",
+  "publisherName": "NailyZero",
+  "displayName": "Naily's ArkTS Support",
+  "version": "1.2.13",
+  "extractedAt": "2026-01-24T21:28:53.953Z",
+  "installCount": 7888,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

@@ -1,0 +1,26 @@
+{
+  "extensionId": "2407eb33-6166-4707-b899-abf30c29cc4a",
+  "extensionName": "sublime-vscode-theme",
+  "publisherName": "yurihs",
+  "displayName": "Sublime VSCode Theme",
+  "version": "1.5.0",
+  "extractedAt": "2026-01-24T21:28:49.988Z",
+  "installCount": 15726,
+  "stale": false,
+  "themes": [
+    {
+      "name": "Sublime VSCode Theme",
+      "label": "Sublime VSCode Theme",
+      "colors": {
+        "editor.background": "#282923",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#1E1F1C",
+        "statusBar.background": "#414339",
+        "activityBar.background": "#EBEDEF",
+        "activityBar.foreground": "#333333"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

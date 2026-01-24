@@ -1,0 +1,12 @@
+{
+  "extensionId": "20da0370-13e1-4393-8d10-4e90c9c9e6e2",
+  "extensionName": "viper",
+  "publisherName": "viper-admin",
+  "displayName": "Viper",
+  "version": "5.1.1",
+  "extractedAt": "2026-01-24T21:29:00.535Z",
+  "installCount": 4641,
+  "stale": false,
+  "themes": [],
+  "source": "openvsx"
+}

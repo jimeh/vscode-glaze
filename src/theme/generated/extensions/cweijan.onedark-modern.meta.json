@@ -1,0 +1,46 @@
+{
+  "extensionId": "61f7566d-4354-481b-8d96-6490e749b56c",
+  "extensionName": "onedark-modern",
+  "publisherName": "cweijan",
+  "displayName": "One Dark Modern",
+  "version": "1.0.5",
+  "extractedAt": "2026-01-24T21:29:00.762Z",
+  "installCount": 4549,
+  "stale": false,
+  "themes": [
+    {
+      "name": "One Dark Modern",
+      "label": "One Dark Modern",
+      "colors": {
+        "editor.background": "#282C34",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#282C34",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#282C34",
+        "titleBar.inactiveForeground": "#9DA5B4",
+        "statusBar.background": "#343840",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#282C34",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "One Dark Modern Classic",
+      "label": "One Dark Modern Classic",
+      "colors": {
+        "editor.background": "#303845",
+        "titleBar.activeBackground": "#303845",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#303845",
+        "titleBar.inactiveForeground": "#9DA5B4",
+        "statusBar.background": "#465163",
+        "statusBar.foreground": "#FFFFFF",
+        "activityBar.background": "#303845",
+        "activityBar.foreground": "#D7DAE0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
