@@ -4,7 +4,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { CONFIG } from './config';
-import type { MetadataTheme } from './types';
+import type { MetadataTheme, RegistrySource } from './types';
 
 /**
  * Built-ins metadata stored in builtins.json.
@@ -31,6 +31,8 @@ export interface ExtensionData {
   installCount: number;
   stale: boolean;
   themes: MetadataTheme[];
+  /** Source registry for this extension */
+  source?: RegistrySource;
 }
 
 /**

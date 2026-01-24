@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      semver:
+        specifier: ^7.7.3
+        version: 7.7.3
     devDependencies:
       '@types/adm-zip':
         specifier: ^0.5.7
@@ -20,6 +24,9 @@ importers:
       '@types/plist':
         specifier: ^3.0.5
         version: 3.0.5
+      '@types/semver':
+        specifier: ^7.7.1
+        version: 7.7.1
       '@types/vscode':
         specifier: ^1.102.0
         version: 1.108.1
@@ -321,6 +328,9 @@ packages:
 
   '@types/plist@3.0.5':
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
+
+  '@types/semver@7.7.1':
+    resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
 
   '@types/vscode@1.108.1':
     resolution: {integrity: sha512-DerV0BbSzt87TbrqmZ7lRDIYaMiqvP8tmJTzW2p49ZBVtGUnGAu2RGQd1Wv4XMzEVUpaHbsemVM5nfuQJj7H6w==}
@@ -1847,6 +1857,8 @@ snapshots:
     dependencies:
       '@types/node': 22.19.7
       xmlbuilder: 15.1.1
+
+  '@types/semver@7.7.1': {}
 
   '@types/vscode@1.108.1': {}
 
