@@ -664,7 +664,10 @@ suite('generatePalette seed', () => {
       'pastel',
       'vibrant',
       'muted',
-      'monochrome',
+      'tinted',
+      'duotone',
+      'analogous',
+      'neon',
     ];
     const hexPattern = /^#[0-9a-f]{6}$/i;
 
@@ -762,7 +765,10 @@ suite('generatePalette color schemes', () => {
     'pastel',
     'vibrant',
     'muted',
-    'monochrome',
+    'tinted',
+    'duotone',
+    'analogous',
+    'neon',
   ];
   const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -924,8 +930,14 @@ suite('generatePalette color schemes', () => {
     }
   });
 
-  test('chroma ordering: vibrant > pastel > muted > monochrome', () => {
+  test('chroma ordering: neon > vibrant > pastel > muted > tinted', () => {
     const palettes = {
+      neon: generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: 'neon',
+      }),
       vibrant: generatePalette({
         workspaceIdentifier: 'test-project',
         targets: ALL_TARGETS,
@@ -944,14 +956,15 @@ suite('generatePalette color schemes', () => {
         themeContext: makeThemeContext('dark'),
         colorScheme: 'muted',
       }),
-      monochrome: generatePalette({
+      tinted: generatePalette({
         workspaceIdentifier: 'test-project',
         targets: ALL_TARGETS,
         themeContext: makeThemeContext('dark'),
-        colorScheme: 'monochrome',
+        colorScheme: 'tinted',
       }),
     };
 
+    const neonSat = hexToChroma(palettes.neon['titleBar.activeBackground']!);
     const vibrantSat = hexToChroma(
       palettes.vibrant['titleBar.activeBackground']!
     );
@@ -959,10 +972,15 @@ suite('generatePalette color schemes', () => {
       palettes.pastel['titleBar.activeBackground']!
     );
     const mutedSat = hexToChroma(palettes.muted['titleBar.activeBackground']!);
-    const monoSat = hexToChroma(
-      palettes.monochrome['titleBar.activeBackground']!
+    const tintedSat = hexToChroma(
+      palettes.tinted['titleBar.activeBackground']!
     );
 
+    assert.ok(
+      neonSat > vibrantSat,
+      `neon (${neonSat}) should have higher chroma than ` +
+        `vibrant (${vibrantSat})`
+    );
     assert.ok(
       vibrantSat > pastelSat,
       `vibrant (${vibrantSat}) should have higher chroma than ` +
@@ -974,31 +992,31 @@ suite('generatePalette color schemes', () => {
         `muted (${mutedSat})`
     );
     assert.ok(
-      mutedSat > monoSat,
+      mutedSat > tintedSat,
       `muted (${mutedSat}) should have higher chroma than ` +
-        `monochrome (${monoSat})`
+        `tinted (${tintedSat})`
     );
   });
 
-  test('monochrome produces grayscale output', () => {
+  test('tinted produces very low chroma output', () => {
     const palette = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark'),
-      colorScheme: 'monochrome',
+      colorScheme: 'tinted',
     });
 
     for (const [key, color] of Object.entries(palette)) {
       const chroma = hexToChroma(color);
-      // Allow tiny floating point tolerance
+      // Tinted has very low but non-zero chroma (0.05-0.15 chromaFactor)
       assert.ok(
-        chroma < 0.001,
-        `monochrome ${key} should be grayscale (chroma≈0), got ${chroma}`
+        chroma < 0.03,
+        `tinted ${key} should have very low chroma, got ${chroma}`
       );
     }
   });
 
-  test('muted and monochrome produce different colors from pastel', () => {
+  test('muted and tinted produce different colors from pastel', () => {
     const pastel = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
@@ -1011,11 +1029,11 @@ suite('generatePalette color schemes', () => {
       themeContext: makeThemeContext('dark'),
       colorScheme: 'muted',
     });
-    const monochrome = generatePalette({
+    const tinted = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark'),
-      colorScheme: 'monochrome',
+      colorScheme: 'tinted',
     });
 
     assert.notStrictEqual(
@@ -1025,13 +1043,13 @@ suite('generatePalette color schemes', () => {
     );
     assert.notStrictEqual(
       pastel['titleBar.activeBackground'],
-      monochrome['titleBar.activeBackground'],
-      'monochrome should differ from pastel'
+      tinted['titleBar.activeBackground'],
+      'tinted should differ from pastel'
     );
     assert.notStrictEqual(
       muted['titleBar.activeBackground'],
-      monochrome['titleBar.activeBackground'],
-      'monochrome should differ from muted'
+      tinted['titleBar.activeBackground'],
+      'tinted should differ from muted'
     );
   });
 });

@@ -234,11 +234,22 @@ suite('StatusBarManager', () => {
   });
 
   suite('all color schemes', () => {
-    const colorSchemes: Array<'pastel' | 'vibrant' | 'muted' | 'monochrome'> = [
+    const colorSchemes: Array<
+      | 'pastel'
+      | 'vibrant'
+      | 'muted'
+      | 'tinted'
+      | 'duotone'
+      | 'analogous'
+      | 'neon'
+    > = [
       'pastel',
       'vibrant',
       'muted',
-      'monochrome',
+      'tinted',
+      'duotone',
+      'analogous',
+      'neon',
     ];
 
     for (const colorScheme of colorSchemes) {

@@ -95,14 +95,18 @@ export function generatePalette(
   for (const key of keysToInclude) {
     const config = themeConfig[key];
 
+    // Apply hue offset for multi-hue schemes (duotone, analogous)
+    const elementHue =
+      (((baseHue + (config.hueOffset ?? 0)) % 360) + 360) % 360;
+
     // Calculate actual chroma using chromaFactor and max in-gamut chroma
-    const maxC = maxChroma(config.lightness, baseHue);
+    const maxC = maxChroma(config.lightness, elementHue);
     const chroma = maxC * config.chromaFactor;
 
     let oklch: OKLCH = {
       l: config.lightness,
       c: chroma,
-      h: baseHue,
+      h: elementHue,
     };
 
     // Blend with theme color when available

@@ -13,6 +13,8 @@ export type ElementConfig = {
   lightness: number;
   /** Percentage of max in-gamut chroma (0-1) */
   chromaFactor: number;
+  /** Degrees to add to base hue (0-360), for multi-hue schemes */
+  hueOffset?: number;
 };
 
 /**

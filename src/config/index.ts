@@ -66,7 +66,10 @@ const VALID_COLOR_SCHEMES: ColorScheme[] = [
   'pastel',
   'vibrant',
   'muted',
-  'monochrome',
+  'tinted',
+  'duotone',
+  'analogous',
+  'neon',
 ];
 
 function isValidColorScheme(value: string): value is ColorScheme {

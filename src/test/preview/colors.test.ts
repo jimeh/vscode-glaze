@@ -12,7 +12,10 @@ const ALL_COLOR_SCHEMES: ColorScheme[] = [
   'pastel',
   'vibrant',
   'muted',
-  'monochrome',
+  'tinted',
+  'duotone',
+  'analogous',
+  'neon',
 ];
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
@@ -134,9 +137,9 @@ suite('generateSchemePreview', () => {
 });
 
 suite('generateAllSchemePreviews', () => {
-  test('returns previews for all 4 schemes', () => {
+  test('returns previews for all 7 schemes', () => {
     const previews = generateAllSchemePreviews('dark');
-    assert.strictEqual(previews.length, 4);
+    assert.strictEqual(previews.length, 7);
   });
 
   test('schemes are in correct order', () => {
@@ -146,7 +149,10 @@ suite('generateAllSchemePreviews', () => {
       'pastel',
       'vibrant',
       'muted',
-      'monochrome',
+      'tinted',
+      'duotone',
+      'analogous',
+      'neon',
     ]);
   });
 
@@ -155,8 +161,8 @@ suite('generateAllSchemePreviews', () => {
       const previews = generateAllSchemePreviews(themeType);
       assert.strictEqual(
         previews.length,
-        4,
-        `Should return 4 previews for ${themeType}`
+        7,
+        `Should return 7 previews for ${themeType}`
       );
     }
   });

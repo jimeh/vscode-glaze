@@ -27,13 +27,31 @@ const SCHEME_LABELS: Record<ColorScheme, string> = {
   pastel: 'Pastel',
   vibrant: 'Vibrant',
   muted: 'Muted',
-  monochrome: 'Monochrome',
+  tinted: 'Tinted',
+  duotone: 'Duotone',
+  analogous: 'Analogous',
+  neon: 'Neon',
 };
 
 /**
  * All available color schemes in display order.
  */
-const ALL_SCHEMES: ColorScheme[] = ['pastel', 'vibrant', 'muted', 'monochrome'];
+const ALL_SCHEMES: ColorScheme[] = [
+  'pastel',
+  'vibrant',
+  'muted',
+  'tinted',
+  'duotone',
+  'analogous',
+  'neon',
+];
+
+/**
+ * Applies hue offset, wrapping to 0-360 range.
+ */
+function applyHueOffset(hue: number, offset?: number): number {
+  return (((hue + (offset ?? 0)) % 360) + 360) % 360;
+}
 
 /**
  * Generates element colors for a single UI element at a given hue.
@@ -51,13 +69,17 @@ function generateElementColors(
   const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
   const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
 
+  // Apply hue offset for multi-hue schemes (duotone, analogous)
+  const bgHue = applyHueOffset(hue, bgConfig.hueOffset);
+  const fgHue = applyHueOffset(hue, fgConfig.hueOffset);
+
   // Calculate chroma based on max gamut chroma and chromaFactor
-  const bgChroma = maxChroma(bgConfig.lightness, hue) * bgConfig.chromaFactor;
-  const fgChroma = maxChroma(fgConfig.lightness, hue) * fgConfig.chromaFactor;
+  const bgChroma = maxChroma(bgConfig.lightness, bgHue) * bgConfig.chromaFactor;
+  const fgChroma = maxChroma(fgConfig.lightness, fgHue) * fgConfig.chromaFactor;
 
   return {
-    background: oklchToHex({ l: bgConfig.lightness, c: bgChroma, h: hue }),
-    foreground: oklchToHex({ l: fgConfig.lightness, c: fgChroma, h: hue }),
+    background: oklchToHex({ l: bgConfig.lightness, c: bgChroma, h: bgHue }),
+    foreground: oklchToHex({ l: fgConfig.lightness, c: fgChroma, h: fgHue }),
   };
 }
 
@@ -137,13 +159,17 @@ function generateBlendedElementColors(
   const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
   const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
 
+  // Apply hue offset for multi-hue schemes (duotone, analogous)
+  const bgHue = applyHueOffset(hue, bgConfig.hueOffset);
+  const fgHue = applyHueOffset(hue, fgConfig.hueOffset);
+
   // Calculate chroma based on max gamut chroma and chromaFactor
-  const bgChroma = maxChroma(bgConfig.lightness, hue) * bgConfig.chromaFactor;
-  const fgChroma = maxChroma(fgConfig.lightness, hue) * fgConfig.chromaFactor;
+  const bgChroma = maxChroma(bgConfig.lightness, bgHue) * bgConfig.chromaFactor;
+  const fgChroma = maxChroma(fgConfig.lightness, fgHue) * fgConfig.chromaFactor;
 
   // Create base OKLCH colors
-  const bgOklch: OKLCH = { l: bgConfig.lightness, c: bgChroma, h: hue };
-  const fgOklch: OKLCH = { l: fgConfig.lightness, c: fgChroma, h: hue };
+  const bgOklch: OKLCH = { l: bgConfig.lightness, c: bgChroma, h: bgHue };
+  const fgOklch: OKLCH = { l: fgConfig.lightness, c: fgChroma, h: fgHue };
 
   // Get theme colors for blending
   const themeBgColor = getColorForKey(
