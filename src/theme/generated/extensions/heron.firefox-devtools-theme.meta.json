@@ -4,9 +4,8 @@
   "publisherName": "Heron",
   "displayName": "Firefox Theme",
   "version": "4.10.8",
-  "extractedAt": "2026-01-23T22:59:49.229Z",
-  "installCount": 180524,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.683Z",
+  "installCount": 180552,
   "themes": [
     {
       "name": "Firefox Dark",
@@ -38,5 +37,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

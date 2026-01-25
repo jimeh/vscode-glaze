@@ -4,9 +4,8 @@
   "publisherName": "tobiasalthoff",
   "displayName": "Atom Material Theme",
   "version": "1.10.9",
-  "extractedAt": "2026-01-23T22:59:39.735Z",
-  "installCount": 533953,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.990Z",
+  "installCount": 534145,
   "themes": [
     {
       "name": "Atom Material Theme",
@@ -22,5 +21,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

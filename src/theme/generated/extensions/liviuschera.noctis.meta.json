@@ -4,9 +4,8 @@
   "publisherName": "liviuschera",
   "displayName": "Noctis",
   "version": "10.43.3",
-  "extractedAt": "2026-01-23T22:59:36.766Z",
-  "installCount": 1328772,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:42.003Z",
+  "installCount": 1329188,
   "themes": [
     {
       "name": "Noctis Lux",
@@ -195,5 +194,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

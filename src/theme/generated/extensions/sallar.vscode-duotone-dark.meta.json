@@ -4,9 +4,8 @@
   "publisherName": "sallar",
   "displayName": "DuoTone Dark Themes",
   "version": "0.3.3",
-  "extractedAt": "2026-01-23T22:59:43.285Z",
-  "installCount": 327023,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:48.654Z",
+  "installCount": 327163,
   "themes": [
     {
       "name": "DuoTone Dark Sea",
@@ -53,5 +52,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

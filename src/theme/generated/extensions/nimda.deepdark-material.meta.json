@@ -4,9 +4,8 @@
   "publisherName": "Nimda",
   "displayName": "Deepdark Material Theme",
   "version": "3.3.1",
-  "extractedAt": "2026-01-23T22:59:43.803Z",
-  "installCount": 306413,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:49.174Z",
+  "installCount": 306508,
   "themes": [
     {
       "name": "Deepdark Material Theme | Default Version",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

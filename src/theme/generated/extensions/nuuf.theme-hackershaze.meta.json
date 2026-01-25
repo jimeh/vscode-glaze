@@ -4,9 +4,8 @@
   "publisherName": "Nuuf",
   "displayName": "Hackers Haze Theme",
   "version": "2.0.1",
-  "extractedAt": "2026-01-24T01:41:54.315Z",
-  "installCount": 139866,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.146Z",
+  "installCount": 139884,
   "themes": [
     {
       "name": "Hackers Haze",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

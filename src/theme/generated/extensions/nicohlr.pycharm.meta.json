@@ -4,9 +4,8 @@
   "publisherName": "nicohlr",
   "displayName": "PyCharm Theme",
   "version": "0.0.10",
-  "extractedAt": "2026-01-24T01:41:56.086Z",
-  "installCount": 136881,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.774Z",
+  "installCount": 137005,
   "themes": [
     {
       "name": "Pycharm Original Theme",
@@ -63,5 +62,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

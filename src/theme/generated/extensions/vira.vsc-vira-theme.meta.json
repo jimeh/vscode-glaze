@@ -4,9 +4,8 @@
   "publisherName": "vira",
   "displayName": "Vira Theme",
   "version": "2026.1.2",
-  "extractedAt": "2026-01-23T22:59:42.866Z",
-  "installCount": 336126,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:48.242Z",
+  "installCount": 337223,
   "themes": [
     {
       "name": "Vira Teal",
@@ -212,5 +211,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

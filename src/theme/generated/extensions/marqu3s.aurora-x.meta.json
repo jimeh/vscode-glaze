@@ -4,9 +4,8 @@
   "publisherName": "marqu3s",
   "displayName": "Aurora X",
   "version": "2.0.2",
-  "extractedAt": "2026-01-23T22:59:48.289Z",
-  "installCount": 188621,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:53.749Z",
+  "installCount": 188642,
   "themes": [
     {
       "name": "Aurora X",
@@ -23,5 +22,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

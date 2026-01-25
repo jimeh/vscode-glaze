@@ -268,26 +268,32 @@ export function parseThemeContributions(
 }
 
 /**
- * Fetches a single extension by its ID from the marketplace.
- * @param extensionId - Full extension ID (e.g., "dracula-theme.theme-dracula")
+ * Fetches a single extension by its ID from the specified registry.
+ * @param extensionId - Full extension ID in "publisher.name" format
+ *                      (e.g., "dracula-theme.theme-dracula")
+ * @param source - Registry source to query (defaults to 'marketplace')
  * @returns The extension info or undefined if not found
  */
 export async function fetchExtensionById(
-  extensionId: string
+  extensionId: string,
+  source: RegistrySource = 'marketplace'
 ): Promise<MarketplaceExtension | undefined> {
-  const cacheKey = `extension-${extensionId}`;
+  const cacheKey = `extension-${source}-${extensionId}`;
 
   const cached = getCached<MarketplaceExtension>(cacheKey);
   if (cached) {
     return cached;
   }
 
+  const apiUrl =
+    source === 'openvsx' ? CONFIG.openvsxApiUrl : CONFIG.marketplaceApiUrl;
+
   const body = {
     filters: [
       {
         criteria: [
           { filterType: 8, value: 'Microsoft.VisualStudio.Code' },
-          { filterType: 4, value: extensionId }, // Extension name filter
+          { filterType: 7, value: extensionId }, // ExtensionName (publisher.name)
         ],
         pageNumber: 1,
         pageSize: 1,
@@ -304,8 +310,10 @@ export async function fetchExtensionById(
       0x100, // IncludeStatistics
   };
 
+  const registryName = source === 'openvsx' ? 'OpenVSX' : 'Marketplace';
+
   try {
-    const response = await fetchWithRetry(CONFIG.marketplaceApiUrl, {
+    const response = await fetchWithRetry(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -338,13 +346,15 @@ export async function fetchExtensionById(
       installCount,
       vsixUrl,
       themes: [],
-      source: 'marketplace',
+      source,
     };
 
     setCache(cacheKey, extension);
     return extension;
   } catch (error) {
-    console.warn(`Failed to fetch extension ${extensionId}: ${error}`);
+    console.warn(
+      `Failed to fetch extension ${extensionId} from ${registryName}: ${error}`
+    );
     return undefined;
   }
 }

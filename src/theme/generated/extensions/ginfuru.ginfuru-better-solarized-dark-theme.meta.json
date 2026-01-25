@@ -4,9 +4,8 @@
   "publisherName": "ginfuru",
   "displayName": "Better Solarized",
   "version": "0.10.9",
-  "extractedAt": "2026-01-24T01:41:53.064Z",
-  "installCount": 143618,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.615Z",
+  "installCount": 143701,
   "themes": [
     {
       "name": "Better Solarized Dark",
@@ -73,5 +72,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

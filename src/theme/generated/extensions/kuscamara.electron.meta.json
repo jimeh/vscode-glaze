@@ -4,9 +4,8 @@
   "publisherName": "kuscamara",
   "displayName": "Electron Color Theme",
   "version": "0.2.6",
-  "extractedAt": "2026-01-23T22:59:40.816Z",
-  "installCount": 455110,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:46.090Z",
+  "installCount": 455217,
   "themes": [
     {
       "name": "Electron",
@@ -24,5 +23,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

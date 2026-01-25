@@ -4,9 +4,8 @@
   "publisherName": "naumovs",
   "displayName": "Theme - Oceanic Next",
   "version": "0.0.4",
-  "extractedAt": "2026-01-23T22:59:40.036Z",
-  "installCount": 515578,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:45.288Z",
+  "installCount": 515663,
   "themes": [
     {
       "name": "Oceanic Next",
@@ -26,5 +25,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

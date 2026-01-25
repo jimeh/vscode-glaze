@@ -1,11 +1,11 @@
 {
-  "extensionId": "ElAnandKumar.el-vsc-product-icon-theme",
+  "extensionId": "ff722812-68ff-48ff-9da4-3263cf8afa4e",
   "extensionName": "el-vsc-product-icon-theme",
   "publisherName": "ElAnandKumar",
   "displayName": "Minimalist Product Icon Theme",
   "version": "0.2.0",
-  "extractedAt": "2026-01-24T19:39:16.657Z",
-  "installCount": 130075,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:28:01.224Z",
+  "installCount": 130105,
+  "themes": [],
+  "source": "marketplace"
 }

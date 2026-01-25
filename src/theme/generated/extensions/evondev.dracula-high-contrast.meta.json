@@ -4,9 +4,8 @@
   "publisherName": "evondev",
   "displayName": "Evondev Dracula",
   "version": "0.2.89",
-  "extractedAt": "2026-01-24T01:41:49.610Z",
-  "installCount": 152208,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.189Z",
+  "installCount": 152266,
   "themes": [
     {
       "name": "Evondev Dracula New Contrast",
@@ -178,5 +177,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -1,11 +1,11 @@
 {
-  "extensionId": "spikespaz.vscode-smoothtype",
+  "extensionId": "687728d4-a337-4ea9-8a33-2297b2ce1391",
   "extensionName": "vscode-smoothtype",
   "publisherName": "spikespaz",
   "displayName": "SmoothType",
   "version": "1.2.0",
-  "extractedAt": "2026-01-24T19:39:16.446Z",
-  "installCount": 135098,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:28:00.378Z",
+  "installCount": 135128,
+  "themes": [],
+  "source": "marketplace"
 }

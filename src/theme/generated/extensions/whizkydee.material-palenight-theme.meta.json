@@ -4,9 +4,8 @@
   "publisherName": "whizkydee",
   "displayName": "Palenight Theme",
   "version": "2.0.4",
-  "extractedAt": "2026-01-23T22:59:35.478Z",
-  "installCount": 2477329,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:40.685Z",
+  "installCount": 2478537,
   "themes": [
     {
       "name": "Palenight Theme",
@@ -72,5 +71,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

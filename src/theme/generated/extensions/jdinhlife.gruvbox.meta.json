@@ -4,9 +4,8 @@
   "publisherName": "jdinhlife",
   "displayName": "Gruvbox Theme",
   "version": "1.29.0",
-  "extractedAt": "2026-01-23T22:59:37.713Z",
-  "installCount": 933355,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:42.966Z",
+  "installCount": 934316,
   "themes": [
     {
       "name": "Gruvbox Dark Medium",
@@ -104,5 +103,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

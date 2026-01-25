@@ -4,9 +4,8 @@
   "publisherName": "GulajavaMinistudio",
   "displayName": "Mayukai Theme",
   "version": "3.2.5",
-  "extractedAt": "2026-01-23T22:59:42.512Z",
-  "installCount": 353173,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:47.838Z",
+  "installCount": 353317,
   "themes": [
     {
       "name": "Mayukai Mirage",
@@ -161,5 +160,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

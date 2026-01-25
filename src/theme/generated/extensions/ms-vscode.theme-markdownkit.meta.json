@@ -4,9 +4,8 @@
   "publisherName": "ms-vscode",
   "displayName": "Markdown Theme Kit",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:59:39.219Z",
-  "installCount": 569687,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.472Z",
+  "installCount": 569823,
   "themes": [
     {
       "name": "Markdown Editor",
@@ -44,5 +43,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

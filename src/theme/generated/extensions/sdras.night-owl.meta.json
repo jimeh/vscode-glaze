@@ -4,9 +4,8 @@
   "publisherName": "sdras",
   "displayName": "Night Owl",
   "version": "2.1.1",
-  "extractedAt": "2026-01-23T22:59:35.167Z",
-  "installCount": 3385247,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:40.371Z",
+  "installCount": 3386588,
   "themes": [
     {
       "name": "Night Owl",
@@ -68,5 +67,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

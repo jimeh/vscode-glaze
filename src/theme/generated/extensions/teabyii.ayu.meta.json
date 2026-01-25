@@ -4,9 +4,8 @@
   "publisherName": "teabyii",
   "displayName": "Ayu",
   "version": "1.1.7",
-  "extractedAt": "2026-01-23T22:59:34.739Z",
-  "installCount": 3962171,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:39.928Z",
+  "installCount": 3963877,
   "themes": [
     {
       "name": "Ayu Light",
@@ -110,5 +109,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

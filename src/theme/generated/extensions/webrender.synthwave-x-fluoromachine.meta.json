@@ -4,9 +4,8 @@
   "publisherName": "webrender",
   "displayName": "Synthwave x Fluoromachine",
   "version": "0.0.14",
-  "extractedAt": "2026-01-23T22:59:47.977Z",
-  "installCount": 197956,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:53.440Z",
+  "installCount": 198008,
   "themes": [
     {
       "name": "Synthwave x Fluoromachine",
@@ -22,5 +21,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

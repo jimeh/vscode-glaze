@@ -1,11 +1,11 @@
 {
-  "extensionId": "EliverLara.sweet-vscode-icons",
+  "extensionId": "88f6d892-4381-42be-b4a7-ce6c472d6ee7",
   "extensionName": "sweet-vscode-icons",
   "publisherName": "EliverLara",
   "displayName": "Sweet vscode Icons",
   "version": "0.0.1",
-  "extractedAt": "2026-01-24T19:39:16.761Z",
-  "installCount": 116396,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:28:03.427Z",
+  "installCount": 116437,
+  "themes": [],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "ahmadawais",
   "displayName": "Shades of Purple",
   "version": "7.3.6",
-  "extractedAt": "2026-01-23T22:59:35.685Z",
-  "installCount": 2233624,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:40.896Z",
+  "installCount": 2234376,
   "themes": [
     {
       "name": "Shades of Purple",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

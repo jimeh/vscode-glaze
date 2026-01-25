@@ -4,9 +4,8 @@
   "publisherName": "will-stone",
   "displayName": "Plastic",
   "version": "9.5.0",
-  "extractedAt": "2026-01-24T01:41:54.655Z",
-  "installCount": 138532,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.250Z",
+  "installCount": 138553,
   "themes": [
     {
       "name": "Plastic",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -1,11 +1,11 @@
 {
-  "extensionId": "miguelsolorio.fluent-icons",
+  "extensionId": "41aac8eb-b4f4-408d-9708-320d033a17f8",
   "extensionName": "fluent-icons",
   "publisherName": "miguelsolorio",
   "displayName": "Fluent Icons",
   "version": "0.0.19",
-  "extractedAt": "2026-01-24T19:39:12.335Z",
-  "installCount": 1672189,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:41.332Z",
+  "installCount": 1672612,
+  "themes": [],
+  "source": "marketplace"
 }

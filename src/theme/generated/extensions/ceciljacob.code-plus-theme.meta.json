@@ -4,9 +4,8 @@
   "publisherName": "ceciljacob",
   "displayName": "Theme +",
   "version": "1.28.0",
-  "extractedAt": "2026-01-23T22:59:47.772Z",
-  "installCount": 200799,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:53.236Z",
+  "installCount": 200831,
   "themes": [
     {
       "name": "Theme + Dark Blue Theme",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

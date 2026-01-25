@@ -1,11 +1,11 @@
 {
-  "extensionId": "helgardrichard.helium-icon-theme",
+  "extensionId": "235f4502-e288-45b4-a36c-3c0825d81e1b",
   "extensionName": "helium-icon-theme",
   "publisherName": "helgardrichard",
   "displayName": "Helium Icon Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-01-24T19:39:13.924Z",
-  "installCount": 390267,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:47.273Z",
+  "installCount": 390402,
+  "themes": [],
+  "source": "marketplace"
 }

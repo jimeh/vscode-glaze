@@ -92,7 +92,6 @@ export interface ExtensionMetadata {
   version: string;
   extractedAt: string;
   installCount: number;
-  stale: boolean;
   /** Theme data extracted from extension */
   themes: MetadataTheme[];
   /** Source registry for this extension */

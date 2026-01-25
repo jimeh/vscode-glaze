@@ -4,9 +4,8 @@
   "publisherName": "AndrsDC",
   "displayName": "Base16 Themes",
   "version": "1.4.5",
-  "extractedAt": "2026-01-24T01:41:47.324Z",
-  "installCount": 157425,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.252Z",
+  "installCount": 157468,
   "themes": [
     {
       "name": "Base16 Dark 3024",
@@ -1212,5 +1211,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

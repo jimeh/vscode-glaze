@@ -4,9 +4,8 @@
   "publisherName": "ryanolsonx",
   "displayName": "Solarized",
   "version": "3.0.0",
-  "extractedAt": "2026-01-23T22:59:49.334Z",
-  "installCount": 179267,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.787Z",
+  "installCount": 179360,
   "themes": [
     {
       "name": "Solarized Dark+",
@@ -80,5 +79,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

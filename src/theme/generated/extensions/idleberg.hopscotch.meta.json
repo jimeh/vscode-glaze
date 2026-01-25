@@ -4,9 +4,8 @@
   "publisherName": "idleberg",
   "displayName": "Hopscotch",
   "version": "0.8.2",
-  "extractedAt": "2026-01-23T22:59:44.877Z",
-  "installCount": 279205,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:50.266Z",
+  "installCount": 279215,
   "themes": [
     {
       "name": "Hopscotch [proofreader]",
@@ -59,5 +58,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -1,11 +1,11 @@
 {
-  "extensionId": "BeardedBear.beardedicons",
+  "extensionId": "1b7bdcac-09ba-421c-bdde-081928177de7",
   "extensionName": "beardedicons",
   "publisherName": "BeardedBear",
   "displayName": "Bearded Icons",
   "version": "1.22.0",
-  "extractedAt": "2026-01-24T19:39:13.701Z",
-  "installCount": 412118,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:46.942Z",
+  "installCount": 412330,
+  "themes": [],
+  "source": "marketplace"
 }

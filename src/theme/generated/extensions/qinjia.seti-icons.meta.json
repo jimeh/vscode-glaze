@@ -1,11 +1,11 @@
 {
-  "extensionId": "qinjia.seti-icons",
+  "extensionId": "85e57fc6-8e21-4402-8e66-af4155fbb5d2",
   "extensionName": "seti-icons",
   "publisherName": "qinjia",
   "displayName": "seti-icons",
   "version": "0.1.3",
-  "extractedAt": "2026-01-24T19:39:15.311Z",
-  "installCount": 237381,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:51.440Z",
+  "installCount": 237420,
+  "themes": [],
+  "source": "marketplace"
 }

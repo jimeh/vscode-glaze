@@ -4,9 +4,8 @@
   "publisherName": "sveggiani",
   "displayName": "Field Lights Theme",
   "version": "0.0.11",
-  "extractedAt": "2026-01-24T01:41:56.583Z",
-  "installCount": 136607,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:00.006Z",
+  "installCount": 136658,
   "themes": [
     {
       "name": "Field Lights",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

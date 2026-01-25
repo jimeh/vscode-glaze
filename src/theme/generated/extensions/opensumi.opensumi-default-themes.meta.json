@@ -4,9 +4,8 @@
   "publisherName": "opensumi",
   "displayName": "OpenSumi Default Themes",
   "version": "2.5.8",
-  "extractedAt": "2026-01-24T21:28:49.778Z",
-  "installCount": 16630,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:08.009Z",
+  "installCount": 16631,
   "themes": [
     {
       "name": "opensumi-dark",

@@ -4,9 +4,8 @@
   "publisherName": "davidbwaters",
   "displayName": "MacOS Modern Theme",
   "version": "2.3.19",
-  "extractedAt": "2026-01-23T22:59:41.747Z",
-  "installCount": 407475,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:47.055Z",
+  "installCount": 407813,
   "themes": [
     {
       "name": "MacOS Modern Dark - Ventura Xcode Civic",
@@ -187,5 +186,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

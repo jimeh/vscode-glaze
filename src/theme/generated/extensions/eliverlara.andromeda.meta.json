@@ -4,9 +4,8 @@
   "publisherName": "EliverLara",
   "displayName": "Andromeda",
   "version": "1.10.0",
-  "extractedAt": "2026-01-23T22:59:36.202Z",
-  "installCount": 1597150,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:41.436Z",
+  "installCount": 1597937,
   "themes": [
     {
       "name": "Andromeda",
@@ -60,5 +59,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "mathcale",
   "displayName": "Dracula Refined",
   "version": "2.25.2",
-  "extractedAt": "2026-01-24T01:41:44.304Z",
-  "installCount": 164138,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.465Z",
+  "installCount": 164203,
   "themes": [
     {
       "name": "Dracula Refined",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

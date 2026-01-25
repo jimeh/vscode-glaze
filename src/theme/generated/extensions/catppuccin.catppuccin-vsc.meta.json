@@ -4,9 +4,8 @@
   "publisherName": "Catppuccin",
   "displayName": "Catppuccin for VSCode",
   "version": "3.18.1",
-  "extractedAt": "2026-01-23T22:59:37.285Z",
-  "installCount": 1032114,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:42.535Z",
+  "installCount": 1034622,
   "themes": [
     {
       "name": "Catppuccin Mocha",
@@ -76,5 +75,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

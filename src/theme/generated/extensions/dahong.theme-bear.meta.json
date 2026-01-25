@@ -4,9 +4,8 @@
   "publisherName": "dahong",
   "displayName": "Bear Theme",
   "version": "2.1.0",
-  "extractedAt": "2026-01-23T22:59:47.252Z",
-  "installCount": 214313,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:52.716Z",
+  "installCount": 214362,
   "themes": [
     {
       "name": "Bear Theme",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

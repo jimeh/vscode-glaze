@@ -4,9 +4,8 @@
   "publisherName": "mskelton",
   "displayName": "One Dark Theme",
   "version": "1.14.3",
-  "extractedAt": "2026-01-24T01:42:02.023Z",
-  "installCount": 125672,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.051Z",
+  "installCount": 125729,
   "themes": [
     {
       "name": "One Dark",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

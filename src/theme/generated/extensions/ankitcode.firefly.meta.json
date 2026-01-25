@@ -4,9 +4,8 @@
   "publisherName": "ankitcode",
   "displayName": "FireFly Pro",
   "version": "4.0.0",
-  "extractedAt": "2026-01-23T22:59:48.813Z",
-  "installCount": 182446,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.266Z",
+  "installCount": 182485,
   "themes": [
     {
       "name": "FireFly Pro",
@@ -59,5 +58,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

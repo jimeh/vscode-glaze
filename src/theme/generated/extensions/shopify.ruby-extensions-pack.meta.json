@@ -4,9 +4,8 @@
   "publisherName": "Shopify",
   "displayName": "Ruby",
   "version": "0.1.13",
-  "extractedAt": "2026-01-23T22:59:38.570Z",
-  "installCount": 677939,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:43.827Z",
+  "installCount": 678214,
   "themes": [
     {
       "name": "Spinel",
@@ -30,5 +29,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

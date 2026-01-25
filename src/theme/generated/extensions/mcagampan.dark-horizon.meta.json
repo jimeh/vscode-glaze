@@ -4,9 +4,8 @@
   "publisherName": "mcagampan",
   "displayName": "Dark Horizon",
   "version": "0.4.2",
-  "extractedAt": "2026-01-24T01:41:59.355Z",
-  "installCount": 131911,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:00.795Z",
+  "installCount": 131993,
   "themes": [
     {
       "name": "Dark Horizon",
@@ -22,5 +21,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

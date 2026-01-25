@@ -1,11 +1,11 @@
 {
-  "extensionId": "eppz.eppz-code",
+  "extensionId": "fa63aa30-e63a-48b1-876d-562a57da717f",
   "extensionName": "eppz-code",
   "publisherName": "eppz",
   "displayName": "eppz! (C# theme for Unity)",
   "version": "1.2.52",
-  "extractedAt": "2026-01-24T19:39:13.819Z",
-  "installCount": 400099,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:47.168Z",
+  "installCount": 400139,
+  "themes": [],
+  "source": "marketplace"
 }

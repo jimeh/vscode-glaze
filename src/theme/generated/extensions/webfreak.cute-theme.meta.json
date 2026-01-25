@@ -4,9 +4,8 @@
   "publisherName": "webfreak",
   "displayName": "Cute Pink Light Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-01-23T22:59:47.875Z",
-  "installCount": 199527,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:53.338Z",
+  "installCount": 199716,
   "themes": [
     {
       "name": "Cute",
@@ -24,5 +23,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

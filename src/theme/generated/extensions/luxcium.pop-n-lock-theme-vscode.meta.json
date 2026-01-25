@@ -4,9 +4,8 @@
   "publisherName": "Luxcium",
   "displayName": "Pop N' Lock Theme by Luxcium ✨",
   "version": "3.32.188",
-  "extractedAt": "2026-01-24T01:42:02.549Z",
-  "installCount": 125590,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.163Z",
+  "installCount": 125607,
   "themes": [
     {
       "name": "Pop N' Lock Theme by Luxcium ✨",
@@ -59,5 +58,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

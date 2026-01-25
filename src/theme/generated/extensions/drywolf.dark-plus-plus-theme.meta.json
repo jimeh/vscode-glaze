@@ -1,11 +1,11 @@
 {
-  "extensionId": "DryWolf.dark-plus-plus-theme",
+  "extensionId": "7d2bf703-0963-4178-9626-9312d13a5b85",
   "extensionName": "dark-plus-plus-theme",
   "publisherName": "DryWolf",
   "displayName": "Dark++ Theme",
   "version": "0.0.9",
-  "extractedAt": "2026-01-24T19:39:16.554Z",
-  "installCount": 133025,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:28:00.591Z",
+  "installCount": 133038,
+  "themes": [],
+  "source": "marketplace"
 }

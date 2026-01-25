@@ -4,9 +4,8 @@
   "publisherName": "felipe-mendes",
   "displayName": "Slack Theme",
   "version": "1.9.17",
-  "extractedAt": "2026-01-23T22:59:40.175Z",
-  "installCount": 509805,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:45.448Z",
+  "installCount": 509915,
   "themes": [
     {
       "name": "Slack Theme Aubergine",
@@ -193,5 +192,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "taniarascia",
   "displayName": "New Moon Syntax Theme",
   "version": "1.8.8",
-  "extractedAt": "2026-01-24T01:42:05.271Z",
-  "installCount": 116997,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:03.220Z",
+  "installCount": 117019,
   "themes": [
     {
       "name": "New Moon",
@@ -19,5 +18,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

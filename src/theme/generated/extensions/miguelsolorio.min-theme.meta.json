@@ -4,9 +4,8 @@
   "publisherName": "miguelsolorio",
   "displayName": "Min Theme",
   "version": "1.5.0",
-  "extractedAt": "2026-01-23T22:59:39.425Z",
-  "installCount": 556689,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.681Z",
+  "installCount": 557152,
   "themes": [
     {
       "name": "Min Dark",
@@ -36,5 +35,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

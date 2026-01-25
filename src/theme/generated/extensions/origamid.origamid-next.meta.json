@@ -4,9 +4,8 @@
   "publisherName": "origamid",
   "displayName": "Origamid Next",
   "version": "2.0.13",
-  "extractedAt": "2026-01-24T01:42:12.773Z",
-  "installCount": 95122,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.382Z",
+  "installCount": 95174,
   "themes": [
     {
       "name": "Origamid Next",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

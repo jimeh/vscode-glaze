@@ -4,9 +4,8 @@
   "publisherName": "Rajeshwaran",
   "displayName": "Developer's theme",
   "version": "5.0.0",
-  "extractedAt": "2026-01-24T01:41:47.018Z",
-  "installCount": 157494,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.998Z",
+  "installCount": 157624,
   "themes": [
     {
       "name": "Developers Theme - Aubergine",
@@ -125,5 +124,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

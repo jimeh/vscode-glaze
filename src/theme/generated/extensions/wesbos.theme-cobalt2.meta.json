@@ -4,9 +4,8 @@
   "publisherName": "wesbos",
   "displayName": "Cobalt2 Theme Official",
   "version": "2.5.0",
-  "extractedAt": "2026-01-23T22:59:35.892Z",
-  "installCount": 1819978,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:41.114Z",
+  "installCount": 1820571,
   "themes": [
     {
       "name": "Cobalt2",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

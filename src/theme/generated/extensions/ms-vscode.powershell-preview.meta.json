@@ -1,11 +1,11 @@
 {
-  "extensionId": "ms-vscode.PowerShell-Preview",
+  "extensionId": "880475da-a140-4fc5-a99f-6d1210d88559",
   "extensionName": "PowerShell-Preview",
   "publisherName": "ms-vscode",
   "displayName": "PowerShell Preview",
   "version": "2023.3.0",
-  "extractedAt": "2026-01-24T19:39:14.476Z",
+  "extractedAt": "2026-01-25T15:27:49.389Z",
   "installCount": 298675,
-  "stale": false,
-  "themes": []
+  "themes": [],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "ms-vscode",
   "displayName": "1337 Theme",
   "version": "0.1.4",
-  "extractedAt": "2026-01-24T01:42:03.783Z",
-  "installCount": 124316,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.583Z",
+  "installCount": 124343,
   "themes": [
     {
       "name": "1337",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

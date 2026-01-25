@@ -4,9 +4,8 @@
   "publisherName": "raashida",
   "displayName": "Sea Green Theme",
   "version": "1.1.2",
-  "extractedAt": "2026-01-24T01:42:11.773Z",
-  "installCount": 97065,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:05.968Z",
+  "installCount": 97094,
   "themes": [
     {
       "name": "Sea Green Theme",
@@ -21,5 +20,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

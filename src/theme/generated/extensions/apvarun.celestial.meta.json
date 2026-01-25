@@ -4,9 +4,8 @@
   "publisherName": "apvarun",
   "displayName": "Celestial",
   "version": "0.3.0",
-  "extractedAt": "2026-01-24T01:42:12.019Z",
-  "installCount": 96857,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.071Z",
+  "installCount": 96888,
   "themes": [
     {
       "name": "Celestial",
@@ -22,5 +21,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

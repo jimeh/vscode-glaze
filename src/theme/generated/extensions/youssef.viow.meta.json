@@ -4,9 +4,8 @@
   "publisherName": "Youssef",
   "displayName": "Viow Color Themes",
   "version": "0.3.3",
-  "extractedAt": "2026-01-23T22:59:45.083Z",
-  "installCount": 273937,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:50.484Z",
+  "installCount": 274075,
   "themes": [
     {
       "name": "Viow Darker",
@@ -102,5 +101,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

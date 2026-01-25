@@ -4,9 +4,8 @@
   "publisherName": "jolaleye",
   "displayName": "Horizon Theme",
   "version": "2.0.2",
-  "extractedAt": "2026-01-23T22:59:41.025Z",
+  "extractedAt": "2026-01-25T15:27:46.296Z",
   "installCount": 447868,
-  "stale": false,
   "themes": [
     {
       "name": "Horizon",
@@ -92,5 +91,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

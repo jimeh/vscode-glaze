@@ -4,9 +4,8 @@
   "publisherName": "luqimin",
   "displayName": "Tiny Light",
   "version": "2.0.9",
-  "extractedAt": "2026-01-24T01:42:09.881Z",
-  "installCount": 102217,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:05.094Z",
+  "installCount": 102247,
   "themes": [
     {
       "name": "Tiny Light",
@@ -22,5 +21,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

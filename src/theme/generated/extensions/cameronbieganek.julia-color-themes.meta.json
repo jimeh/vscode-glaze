@@ -4,9 +4,8 @@
   "publisherName": "cameronbieganek",
   "displayName": "Julia Color Themes",
   "version": "0.1.1",
-  "extractedAt": "2026-01-24T01:42:03.574Z",
-  "installCount": 124515,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.477Z",
+  "installCount": 124590,
   "themes": [
     {
       "name": "Julia (Monokai Classic)",
@@ -38,5 +37,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

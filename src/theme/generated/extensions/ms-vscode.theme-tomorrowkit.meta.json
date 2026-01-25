@@ -4,9 +4,8 @@
   "publisherName": "ms-vscode",
   "displayName": "Tomorrow and Tomorrow Night Theme Kit",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:59:47.462Z",
-  "installCount": 208507,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:52.924Z",
+  "installCount": 208573,
   "themes": [
     {
       "name": "Tomorrow",
@@ -44,5 +43,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

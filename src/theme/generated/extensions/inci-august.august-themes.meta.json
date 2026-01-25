@@ -4,9 +4,8 @@
   "publisherName": "inci-august",
   "displayName": "August Themes",
   "version": "2.8.0",
-  "extractedAt": "2026-01-24T01:41:54.096Z",
-  "installCount": 141729,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.939Z",
+  "installCount": 141859,
   "themes": [
     {
       "name": "August - Arstotzka",
@@ -516,5 +515,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

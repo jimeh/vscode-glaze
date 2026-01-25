@@ -4,9 +4,8 @@
   "publisherName": "Jaakko",
   "displayName": "Black",
   "version": "0.15.0",
-  "extractedAt": "2026-01-23T22:59:47.357Z",
-  "installCount": 212194,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:52.820Z",
+  "installCount": 212350,
   "themes": [
     {
       "name": "Black",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

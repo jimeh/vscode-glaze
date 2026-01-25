@@ -4,9 +4,8 @@
   "publisherName": "JoeyYiZhao",
   "displayName": "Mongo Runner",
   "version": "0.6.4",
-  "extractedAt": "2026-01-24T01:42:10.866Z",
-  "installCount": 101172,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:05.556Z",
+  "installCount": 101201,
   "themes": [
     {
       "name": "mongodbRunnerTheme",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

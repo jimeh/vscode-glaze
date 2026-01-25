@@ -1,11 +1,11 @@
 {
-  "extensionId": "s-nlf-fh.glassit",
+  "extensionId": "7f4f553c-204c-42fe-9b4d-7a3f11f7335b",
   "extensionName": "glassit",
   "publisherName": "s-nlf-fh",
   "displayName": "GlassIt-VSC",
   "version": "0.2.6",
-  "extractedAt": "2026-01-24T19:39:13.061Z",
-  "installCount": 634639,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:43.930Z",
+  "installCount": 634821,
+  "themes": [],
+  "source": "marketplace"
 }

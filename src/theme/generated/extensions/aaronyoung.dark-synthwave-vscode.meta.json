@@ -4,9 +4,8 @@
   "publisherName": "aaronYoung",
   "displayName": "Dark SynthWave '84",
   "version": "1.0.3",
-  "extractedAt": "2026-01-24T01:41:55.216Z",
-  "installCount": 137918,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.459Z",
+  "installCount": 137999,
   "themes": [
     {
       "name": "Dark SynthWave '84",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

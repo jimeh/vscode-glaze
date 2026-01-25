@@ -4,9 +4,8 @@
   "publisherName": "freeCodeCamp",
   "displayName": "freeCodeCamp Dark Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-01-24T01:41:58.280Z",
-  "installCount": 132258,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:00.693Z",
+  "installCount": 132308,
   "themes": [
     {
       "name": "freeCodeCamp Dark Theme",
@@ -24,5 +23,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

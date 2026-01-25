@@ -4,9 +4,8 @@
   "publisherName": "fabiospampinato",
   "displayName": "Monokai Night Theme",
   "version": "1.7.1",
-  "extractedAt": "2026-01-23T22:59:38.981Z",
-  "installCount": 606663,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.238Z",
+  "installCount": 606873,
   "themes": [
     {
       "name": "Monokai Night",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

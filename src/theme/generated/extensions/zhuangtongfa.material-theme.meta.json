@@ -4,9 +4,8 @@
   "publisherName": "zhuangtongfa",
   "displayName": "One Dark Pro",
   "version": "3.19.0",
-  "extractedAt": "2026-01-23T22:59:34.106Z",
-  "installCount": 11841986,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:39.277Z",
+  "installCount": 11847038,
   "themes": [
     {
       "name": "One Dark Pro",
@@ -93,5 +92,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

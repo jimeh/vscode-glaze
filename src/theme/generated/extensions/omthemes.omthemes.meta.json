@@ -4,9 +4,8 @@
   "publisherName": "omthemes",
   "displayName": "Om Theme (A Darker Dracula Theme)",
   "version": "1.0.17",
-  "extractedAt": "2026-01-23T22:59:46.224Z",
-  "installCount": 233721,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:51.648Z",
+  "installCount": 233937,
   "themes": [
     {
       "name": "OM Theme (Default Dracula Italic)",
@@ -59,5 +58,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

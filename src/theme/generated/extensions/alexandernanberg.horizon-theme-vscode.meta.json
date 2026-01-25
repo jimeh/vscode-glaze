@@ -4,9 +4,8 @@
   "publisherName": "alexandernanberg",
   "displayName": "Horizon Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-01-24T01:41:47.626Z",
-  "installCount": 157101,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.356Z",
+  "installCount": 157184,
   "themes": [
     {
       "name": "Horizon",
@@ -92,5 +91,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

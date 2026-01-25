@@ -4,9 +4,8 @@
   "publisherName": "pmndrs",
   "displayName": "poimandres",
   "version": "0.3.7",
-  "extractedAt": "2026-01-24T01:41:53.641Z",
-  "installCount": 142577,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.824Z",
+  "installCount": 142747,
   "themes": [
     {
       "name": "poimandres",
@@ -76,5 +75,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

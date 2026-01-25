@@ -4,9 +4,8 @@
   "publisherName": "nicolasdschmidt",
   "displayName": "Lunar Pink Theme",
   "version": "1.4.0",
-  "extractedAt": "2026-01-23T22:59:49.125Z",
-  "installCount": 180806,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.369Z",
+  "installCount": 181034,
   "themes": [
     {
       "name": "Lunar Pink",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

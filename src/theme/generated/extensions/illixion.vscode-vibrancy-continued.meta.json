@@ -1,11 +1,11 @@
 {
-  "extensionId": "illixion.vscode-vibrancy-continued",
+  "extensionId": "da69820f-32f2-49c6-915b-aa8e49455529",
   "extensionName": "vscode-vibrancy-continued",
   "publisherName": "illixion",
   "displayName": "Vibrancy Continued",
   "version": "1.1.62",
-  "extractedAt": "2026-01-24T19:39:13.598Z",
-  "installCount": 454907,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:46.193Z",
+  "installCount": 455070,
+  "themes": [],
+  "source": "marketplace"
 }

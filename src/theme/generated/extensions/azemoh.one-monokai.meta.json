@@ -4,9 +4,8 @@
   "publisherName": "azemoh",
   "displayName": "One Monokai Theme",
   "version": "0.5.2",
-  "extractedAt": "2026-01-23T22:59:35.269Z",
-  "installCount": 2803777,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:40.476Z",
+  "installCount": 2804759,
   "themes": [
     {
       "name": "One Monokai",
@@ -24,5 +23,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

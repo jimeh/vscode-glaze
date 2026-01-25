@@ -1,11 +1,11 @@
 {
-  "extensionId": "AtomMaterial.a-file-icon-vscode",
+  "extensionId": "31d413c3-ee2a-4bac-882e-bead93a22a20",
   "extensionName": "a-file-icon-vscode",
   "publisherName": "AtomMaterial",
   "displayName": "Atom Material Icons",
   "version": "2.0.1",
-  "extractedAt": "2026-01-24T19:39:14.043Z",
-  "installCount": 355483,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:47.727Z",
+  "installCount": 355737,
+  "themes": [],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "Darkempire78",
   "displayName": "Discord Tools",
   "version": "1.5.0",
-  "extractedAt": "2026-01-24T01:41:41.341Z",
-  "installCount": 166825,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:55.945Z",
+  "installCount": 166899,
   "themes": [
     {
       "name": "Discord Theme (Dark)",
@@ -21,5 +20,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

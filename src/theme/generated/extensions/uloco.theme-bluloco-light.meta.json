@@ -4,9 +4,8 @@
   "publisherName": "uloco",
   "displayName": "Bluloco Light Theme",
   "version": "3.7.5",
-  "extractedAt": "2026-01-23T22:59:40.489Z",
-  "installCount": 479220,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:45.759Z",
+  "installCount": 479348,
   "themes": [
     {
       "name": "Bluloco Light",
@@ -42,5 +41,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

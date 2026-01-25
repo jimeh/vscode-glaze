@@ -4,9 +4,8 @@
   "publisherName": "magicstack",
   "displayName": "Chromodynamics Theme",
   "version": "0.0.14",
-  "extractedAt": "2026-01-24T01:41:55.707Z",
-  "installCount": 137204,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.666Z",
+  "installCount": 137281,
   "themes": [
     {
       "name": "Chromodynamics",
@@ -20,5 +19,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

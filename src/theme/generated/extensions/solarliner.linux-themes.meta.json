@@ -4,9 +4,8 @@
   "publisherName": "SolarLiner",
   "displayName": "Linux Themes for VS Code",
   "version": "1.0.1",
-  "extractedAt": "2026-01-23T22:59:38.363Z",
-  "installCount": 726925,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:43.622Z",
+  "installCount": 727128,
   "themes": [
     {
       "name": "Arc Dark",
@@ -72,5 +71,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

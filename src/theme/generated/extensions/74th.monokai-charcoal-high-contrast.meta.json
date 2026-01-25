@@ -4,9 +4,8 @@
   "publisherName": "74th",
   "displayName": "Monokai Charcoal high contrast",
   "version": "3.5.0",
-  "extractedAt": "2026-01-23T22:59:49.545Z",
-  "installCount": 176652,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.996Z",
+  "installCount": 176717,
   "themes": [
     {
       "name": "monokai-charcoal",
@@ -144,5 +143,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

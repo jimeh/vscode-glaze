@@ -4,9 +4,8 @@
   "publisherName": "uloco",
   "displayName": "Bluloco Dark Theme",
   "version": "3.7.6",
-  "extractedAt": "2026-01-23T22:59:40.282Z",
-  "installCount": 503765,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:45.553Z",
+  "installCount": 503936,
   "themes": [
     {
       "name": "Bluloco Dark",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

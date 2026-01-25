@@ -4,9 +4,8 @@
   "publisherName": "be5invis",
   "displayName": "Verdandi Theme",
   "version": "2.0.1",
-  "extractedAt": "2026-01-24T01:42:12.497Z",
-  "installCount": 95301,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.279Z",
+  "installCount": 95318,
   "themes": [
     {
       "name": "Verdandi",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

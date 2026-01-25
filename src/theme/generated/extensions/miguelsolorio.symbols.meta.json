@@ -1,11 +1,11 @@
 {
-  "extensionId": "miguelsolorio.symbols",
+  "extensionId": "cb54c3b9-1c64-4c4a-8b5a-887270ffe4b6",
   "extensionName": "symbols",
   "publisherName": "miguelsolorio",
   "displayName": "Symbols",
   "version": "0.0.25",
-  "extractedAt": "2026-01-24T19:39:12.959Z",
-  "installCount": 763397,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:43.513Z",
+  "installCount": 763880,
+  "themes": [],
+  "source": "marketplace"
 }

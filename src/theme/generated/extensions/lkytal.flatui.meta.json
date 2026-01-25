@@ -4,9 +4,8 @@
   "publisherName": "lkytal",
   "displayName": "Flat UI",
   "version": "1.4.9",
-  "extractedAt": "2026-01-23T22:59:45.401Z",
-  "installCount": 262664,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:50.808Z",
+  "installCount": 262701,
   "themes": [
     {
       "name": "FlatUI",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

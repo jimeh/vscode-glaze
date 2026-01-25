@@ -4,9 +4,8 @@
   "publisherName": "ms-vscode",
   "displayName": "Material Theme Kit",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:59:41.533Z",
-  "installCount": 423522,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:46.836Z",
+  "installCount": 423782,
   "themes": [
     {
       "name": "Material",
@@ -35,5 +34,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

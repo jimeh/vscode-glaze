@@ -4,9 +4,8 @@
   "publisherName": "antfu",
   "displayName": "Vitesse Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-01-24T01:42:08.885Z",
-  "installCount": 105840,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.677Z",
+  "installCount": 105921,
   "themes": [
     {
       "name": "Vitesse Light",
@@ -93,5 +92,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

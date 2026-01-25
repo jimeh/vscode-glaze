@@ -1,11 +1,11 @@
 {
-  "extensionId": "vscode-icons-team.vscode-icons",
+  "extensionId": "9ccc1dd7-7ec4-4a46-bd4f-7d7b8b9d322a",
   "extensionName": "vscode-icons",
   "publisherName": "vscode-icons-team",
   "displayName": "vscode-icons",
   "version": "12.17.0",
-  "extractedAt": "2026-01-24T19:39:11.708Z",
-  "installCount": 23151452,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:38.946Z",
+  "installCount": 23154803,
+  "themes": [],
+  "source": "marketplace"
 }

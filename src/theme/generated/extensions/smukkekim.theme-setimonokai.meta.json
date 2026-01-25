@@ -4,9 +4,8 @@
   "publisherName": "SmukkeKim",
   "displayName": "Theme - Seti-Monokai",
   "version": "0.0.2",
-  "extractedAt": "2026-01-24T01:42:01.808Z",
-  "installCount": 126942,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:01.846Z",
+  "installCount": 126961,
   "themes": [
     {
       "name": "Seti Monokai: Original",
@@ -53,5 +52,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

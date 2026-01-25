@@ -4,9 +4,8 @@
   "publisherName": "loilo",
   "displayName": "Snazzy Light",
   "version": "1.4.1",
-  "extractedAt": "2026-01-24T01:41:44.839Z",
-  "installCount": 159556,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.672Z",
+  "installCount": 159611,
   "themes": [
     {
       "name": "Snazzy Light",
@@ -21,5 +20,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

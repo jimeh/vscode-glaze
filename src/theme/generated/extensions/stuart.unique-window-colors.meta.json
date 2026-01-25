@@ -1,11 +1,11 @@
 {
-  "extensionId": "stuart.unique-window-colors",
+  "extensionId": "85e93d09-9c05-4473-867f-8daaf1bc9e75",
   "extensionName": "unique-window-colors",
   "publisherName": "stuart",
   "displayName": "Window Colors",
   "version": "1.0.51",
-  "extractedAt": "2026-01-24T19:39:15.106Z",
-  "installCount": 243723,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:51.122Z",
+  "installCount": 243759,
+  "themes": [],
+  "source": "marketplace"
 }

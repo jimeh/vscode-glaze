@@ -4,9 +4,8 @@
   "publisherName": "fehey",
   "displayName": "Brackets Light Pro",
   "version": "0.4.6",
-  "extractedAt": "2026-01-24T01:41:48.175Z",
-  "installCount": 156259,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.562Z",
+  "installCount": 156308,
   "themes": [
     {
       "name": "Brackets Light Pro",
@@ -38,5 +37,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

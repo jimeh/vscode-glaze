@@ -4,9 +4,8 @@
   "publisherName": "sainnhe",
   "displayName": "Gruvbox Material",
   "version": "6.5.2",
-  "extractedAt": "2026-01-23T22:59:43.391Z",
-  "installCount": 324921,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:48.759Z",
+  "installCount": 325028,
   "themes": [
     {
       "name": "Gruvbox Material Dark",
@@ -42,5 +41,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

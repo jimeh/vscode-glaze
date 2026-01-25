@@ -1,11 +1,11 @@
 {
-  "extensionId": "mightbesimon.emoji-icons",
+  "extensionId": "e5365a62-80a6-4943-b7c7-b448e69349d8",
   "extensionName": "emoji-icons",
   "publisherName": "mightbesimon",
   "displayName": "👉 Emoji File Icons 👈",
   "version": "1.6.1",
-  "extractedAt": "2026-01-24T19:39:16.138Z",
-  "installCount": 158456,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:56.773Z",
+  "installCount": 158519,
+  "themes": [],
+  "source": "marketplace"
 }

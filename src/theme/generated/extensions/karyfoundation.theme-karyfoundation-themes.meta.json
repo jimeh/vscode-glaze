@@ -4,9 +4,8 @@
   "publisherName": "karyfoundation",
   "displayName": "Kary Pro Colors",
   "version": "37.0.0",
-  "extractedAt": "2026-01-24T01:41:46.699Z",
-  "installCount": 157531,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.113Z",
+  "installCount": 157557,
   "themes": [
     {
       "name": "Kary Pro Colors － Light",
@@ -41,5 +40,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "mgwg",
   "displayName": "Light Pink Theme",
   "version": "0.6.0",
-  "extractedAt": "2026-01-24T01:41:55.497Z",
-  "installCount": 137554,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.563Z",
+  "installCount": 137711,
   "themes": [
     {
       "name": "Light Pink",
@@ -31,5 +30,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

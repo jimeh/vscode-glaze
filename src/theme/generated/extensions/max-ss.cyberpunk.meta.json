@@ -4,9 +4,8 @@
   "publisherName": "max-SS",
   "displayName": "Cyberpunk",
   "version": "1.2.14",
-  "extractedAt": "2026-01-23T22:59:41.425Z",
-  "installCount": 427871,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:46.730Z",
+  "installCount": 428148,
   "themes": [
     {
       "name": "Cyberpunk",
@@ -57,5 +56,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

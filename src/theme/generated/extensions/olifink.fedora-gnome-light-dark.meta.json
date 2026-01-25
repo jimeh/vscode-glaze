@@ -4,9 +4,8 @@
   "publisherName": "olifink",
   "displayName": "Fedora GNOME light & dark themes",
   "version": "0.0.4",
-  "extractedAt": "2026-01-24T21:29:04.652Z",
-  "installCount": 3640,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:22.592Z",
+  "installCount": 3642,
   "themes": [
     {
       "name": "Gnome Dark (GitHub)",

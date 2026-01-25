@@ -4,9 +4,8 @@
   "publisherName": "hiteshchoudharycode",
   "displayName": "chai theme",
   "version": "0.2.0",
-  "extractedAt": "2026-01-24T01:41:45.528Z",
-  "installCount": 157806,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.878Z",
+  "installCount": 158085,
   "themes": [
     {
       "name": "Dark Chai",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

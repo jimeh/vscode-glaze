@@ -4,9 +4,8 @@
   "publisherName": "Avetis",
   "displayName": "tokyo-night",
   "version": "1.0.2",
-  "extractedAt": "2026-01-24T01:42:08.380Z",
-  "installCount": 106221,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.470Z",
+  "installCount": 106359,
   "themes": [
     {
       "name": "Tokyo Storm Gogh",
@@ -76,5 +75,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

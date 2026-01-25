@@ -23,7 +23,6 @@ export function scanExistingExtensions(): Map<string, ExtensionMetadata> {
       version: data.version,
       extractedAt: data.extractedAt,
       installCount: data.installCount,
-      stale: data.stale,
       themes: data.themes,
       source: data.source,
     };
@@ -66,7 +65,6 @@ export function toExtensionData(metadata: ExtensionMetadata): ExtensionData {
     version: metadata.version,
     extractedAt: metadata.extractedAt,
     installCount: metadata.installCount,
-    stale: metadata.stale,
     themes: metadata.themes,
     source: metadata.source,
   };

@@ -4,9 +4,8 @@
   "publisherName": "swashata",
   "displayName": "Beautiful UI",
   "version": "1.7.0",
-  "extractedAt": "2026-01-24T01:42:04.465Z",
-  "installCount": 119870,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.908Z",
+  "installCount": 119898,
   "themes": [
     {
       "name": "βui - One Dark",
@@ -552,5 +551,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

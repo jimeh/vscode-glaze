@@ -4,9 +4,8 @@
   "publisherName": "DaltonMenezes",
   "displayName": "Aura Theme",
   "version": "2.1.2",
-  "extractedAt": "2026-01-23T22:59:39.632Z",
-  "installCount": 536961,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.887Z",
+  "installCount": 537435,
   "themes": [
     {
       "name": "Aura Dark (Soft Text)",
@@ -68,5 +67,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

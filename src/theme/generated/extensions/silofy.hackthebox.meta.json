@@ -4,9 +4,8 @@
   "publisherName": "silofy",
   "displayName": "HackTheBox",
   "version": "0.2.9",
-  "extractedAt": "2026-01-23T22:59:46.534Z",
-  "installCount": 219566,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:51.959Z",
+  "installCount": 219655,
   "themes": [
     {
       "name": "Hack The Box",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

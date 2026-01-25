@@ -4,9 +4,8 @@
   "publisherName": "garytyler",
   "displayName": "Darcula PyCharm Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-01-23T22:59:42.973Z",
-  "installCount": 334573,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:48.344Z",
+  "installCount": 334745,
   "themes": [
     {
       "name": "Darcula Pycharm with Dark GUI",
@@ -36,5 +35,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

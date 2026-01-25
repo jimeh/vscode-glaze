@@ -4,9 +4,8 @@
   "publisherName": "monokai",
   "displayName": "Monokai Pro",
   "version": "2.0.12",
-  "extractedAt": "2026-01-23T22:59:34.847Z",
-  "installCount": 3869093,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:40.041Z",
+  "installCount": 3871085,
   "themes": [
     {
       "name": "Monokai Pro",
@@ -144,5 +143,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -68,6 +68,7 @@ interface CliOptions {
   forceAll: boolean;
   skipBuiltin: boolean;
   forceBuiltin: boolean;
+  skipStaleUpdates: boolean;
 }
 
 function parseArgs(): CliOptions {
@@ -79,6 +80,7 @@ function parseArgs(): CliOptions {
     forceAll: args.includes('--force-all'),
     skipBuiltin: args.includes('--skip-builtin'),
     forceBuiltin: args.includes('--force-builtin'),
+    skipStaleUpdates: args.includes('--skip-stale-updates'),
   };
 }
 
@@ -480,7 +482,6 @@ async function main(): Promise<void> {
       version: extension.version,
       extractedAt: new Date().toISOString(),
       installCount: extension.installCount,
-      stale: false,
       themes: toMetadataThemes(themes),
       source: extension.source,
     };
@@ -502,39 +503,134 @@ async function main(): Promise<void> {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
-  // Step 7: Handle stale extensions (not in marketplace + not pinned)
-  // Build lowercase set for comparison
+  // Step 7: Handle extensions not in current top results (and not pinned)
+  // These extensions still exist in metadata but fell off the top X list
   const currentIdsLower = new Set(
     [...extensionsToProcess.keys()].map((k) => k.toLowerCase())
   );
+  let staleChecked = 0;
+  let staleUpdated = 0;
+
   for (const [, metadata] of existingMetadata) {
     const id = `${metadata.publisherName}.${metadata.extensionName}`;
     const idLower = id.toLowerCase();
     if (!currentIdsLower.has(idLower) && !pinnedIds.includes(id)) {
-      const wasAlreadyStale = metadata.stale;
-      if (!metadata.stale) {
-        console.log(`Marking as stale: ${metadata.displayName}`);
-        metadata.stale = true;
+      let themes: ExtractedTheme[] = [];
+      let needsWrite = false;
+
+      if (!options.skipStaleUpdates) {
+        staleChecked++;
+
+        // Fetch current version from registry
+        // If source is known, use it; otherwise try both registries
+        let registryExt: MarketplaceExtension | undefined;
+        let foundSource = metadata.source;
+
+        try {
+          if (metadata.source) {
+            // Source is known, query that registry only
+            if (options.verbose) {
+              const registryName =
+                metadata.source === 'openvsx' ? 'OpenVSX' : 'Marketplace';
+              console.log(`  Checking ${registryName} for: ${id}`);
+            }
+            registryExt = await fetchExtensionById(id, metadata.source);
+          } else {
+            // Source unknown, try marketplace first then OpenVSX
+            if (options.verbose) {
+              console.log(`  Checking Marketplace for: ${id}`);
+            }
+            registryExt = await fetchExtensionById(id, 'marketplace');
+            if (registryExt) {
+              foundSource = 'marketplace';
+            } else {
+              if (options.verbose) {
+                console.log(`  Checking OpenVSX for: ${id}`);
+              }
+              registryExt = await fetchExtensionById(id, 'openvsx');
+              if (registryExt) {
+                foundSource = 'openvsx';
+              }
+            }
+          }
+
+          if (
+            registryExt &&
+            (options.forceAll || needsUpdate(metadata, registryExt.version))
+          ) {
+            // Download and extract updated themes
+            if (options.verbose) {
+              console.log(
+                `  Updating extension: ${metadata.displayName} ` +
+                  `(${metadata.version} → ${registryExt.version})`
+              );
+            }
+            themes = await processExtension(registryExt, options.verbose);
+            metadata.version = registryExt.version;
+            metadata.extractedAt = new Date().toISOString();
+            metadata.installCount = registryExt.installCount;
+            metadata.themes = toMetadataThemes(themes);
+            metadata.source = foundSource;
+            needsWrite = true;
+            staleUpdated++;
+          } else if (registryExt) {
+            // No update needed, load existing themes
+            // But update source if we discovered it
+            if (!metadata.source && foundSource) {
+              metadata.source = foundSource;
+              needsWrite = true;
+            }
+            themes = loadExistingThemes(metadata);
+          } else {
+            // No longer in registry — keep existing themes
+            if (options.verbose) {
+              const checked = metadata.source
+                ? metadata.source === 'openvsx'
+                  ? 'OpenVSX'
+                  : 'Marketplace'
+                : 'Marketplace and OpenVSX';
+              console.log(
+                `  Extension not found in ${checked}: ${id} ` +
+                  `(keeping existing themes)`
+              );
+            }
+            themes = loadExistingThemes(metadata);
+          }
+        } catch (error) {
+          // Network failure — fall back to existing themes
+          if (options.verbose) {
+            console.log(
+              `  Failed to check extension ${id}: ${error} ` +
+                `(keeping existing themes)`
+            );
+          }
+          themes = loadExistingThemes(metadata);
+        }
+      } else {
+        // Skip stale updates flag set — load from disk
+        themes = loadExistingThemes(metadata);
       }
 
-      // Still include stale extensions in the output if they have themes
-      if (hasThemesInMetadata(metadata)) {
-        const themes = loadExistingThemes(metadata);
-        if (themes.length > 0) {
-          allExtensionInfos.push({
-            publisherName: metadata.publisherName,
-            extensionName: metadata.extensionName,
-            installCount: metadata.installCount,
-            themes,
-          });
+      // Include in output if it has themes
+      if (themes.length > 0) {
+        allExtensionInfos.push({
+          publisherName: metadata.publisherName,
+          extensionName: metadata.extensionName,
+          installCount: metadata.installCount,
+          themes,
+        });
 
-          // Only write metadata if newly marked as stale
-          if (!wasAlreadyStale) {
-            extensionsData.extensions[idLower] = toExtensionData(metadata);
-          }
+        if (needsWrite) {
+          extensionsData.extensions[idLower] = toExtensionData(metadata);
         }
       }
     }
+  }
+
+  if (staleChecked > 0) {
+    console.log(
+      `Checked ${staleChecked} off-list extensions (${staleUpdated} updated)`
+    );
   }
 
   // Collect all themes for report

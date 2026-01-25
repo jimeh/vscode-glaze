@@ -4,9 +4,8 @@
   "publisherName": "MateoCERQUETELLA",
   "displayName": "Xcode Theme",
   "version": "5.0.1",
-  "extractedAt": "2026-01-24T01:41:42.177Z",
-  "installCount": 164391,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.258Z",
+  "installCount": 164518,
   "themes": [
     {
       "name": "Xcode Classic (Dark)",
@@ -68,5 +67,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "wart",
   "displayName": "Ariake Dark",
   "version": "0.2.2",
-  "extractedAt": "2026-01-23T22:59:48.082Z",
-  "installCount": 193262,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:53.543Z",
+  "installCount": 193333,
   "themes": [
     {
       "name": "Ariake Dark",
@@ -22,5 +21,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

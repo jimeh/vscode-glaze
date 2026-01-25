@@ -4,9 +4,8 @@
   "publisherName": "BenjaminBenais",
   "displayName": "Copilot Theme",
   "version": "1.1.0",
-  "extractedAt": "2026-01-23T22:59:39.528Z",
-  "installCount": 555939,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.785Z",
+  "installCount": 556345,
   "themes": [
     {
       "name": "Copilot Theme",
@@ -40,5 +39,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }
