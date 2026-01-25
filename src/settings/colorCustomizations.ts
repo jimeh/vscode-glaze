@@ -1,4 +1,4 @@
-import { PATINA_MANAGED_KEYS } from '../color';
+import { PATINA_MANAGED_KEYS } from '../theme';
 
 /**
  * Type for VSCode's workbench.colorCustomizations setting.
