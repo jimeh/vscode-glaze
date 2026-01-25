@@ -141,11 +141,22 @@ export class PalettePreviewPanel {
     switch (message.type) {
       case 'selectScheme': {
         const config = vscode.workspace.getConfiguration('patina');
-        await config.update(
-          'tint.colorScheme',
-          message.scheme,
-          vscode.ConfigurationTarget.Global
-        );
+        const inspection = config.inspect('tint.colorScheme');
+
+        // Determine target: respect existing scope, default to workspace
+        let target: vscode.ConfigurationTarget;
+        if (inspection?.workspaceValue !== undefined) {
+          target = vscode.ConfigurationTarget.Workspace;
+        } else if (inspection?.globalValue !== undefined) {
+          target = vscode.ConfigurationTarget.Global;
+        } else {
+          // Neither defined: prefer workspace if available
+          target = vscode.workspace.workspaceFolders
+            ? vscode.ConfigurationTarget.Workspace
+            : vscode.ConfigurationTarget.Global;
+        }
+
+        await config.update('tint.colorScheme', message.scheme, target);
         // Update will happen via config change listener
         break;
       }
