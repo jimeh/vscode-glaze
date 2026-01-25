@@ -20,14 +20,57 @@ import { StatusBarManager, StatusBarState } from './statusBar';
 import { PalettePreviewPanel } from './preview';
 
 let statusBar: StatusBarManager;
-let themeChangeTimeout: ReturnType<typeof setTimeout> | undefined;
+let applyTintTimeout: ReturnType<typeof setTimeout> | undefined;
+let removeTintTimeout: ReturnType<typeof setTimeout> | undefined;
+
+function debouncedApplyTint(): void {
+  if (removeTintTimeout) {
+    clearTimeout(removeTintTimeout);
+    removeTintTimeout = undefined;
+  }
+  if (applyTintTimeout) {
+    clearTimeout(applyTintTimeout);
+  }
+  applyTintTimeout = setTimeout(() => {
+    applyTintTimeout = undefined;
+    applyTint();
+  }, 150);
+}
+
+function debouncedRemoveTint(): void {
+  if (applyTintTimeout) {
+    clearTimeout(applyTintTimeout);
+    applyTintTimeout = undefined;
+  }
+  if (removeTintTimeout) {
+    clearTimeout(removeTintTimeout);
+  }
+  removeTintTimeout = setTimeout(() => {
+    removeTintTimeout = undefined;
+    removeTint();
+  }, 150);
+}
+
+function debouncedRemoveTintPreservingFlag(): void {
+  if (applyTintTimeout) {
+    clearTimeout(applyTintTimeout);
+    applyTintTimeout = undefined;
+  }
+  if (removeTintTimeout) {
+    clearTimeout(removeTintTimeout);
+  }
+  removeTintTimeout = setTimeout(() => {
+    removeTintTimeout = undefined;
+    removeTintPreservingFlag();
+  }, 150);
+}
 
 export async function activate(context: vscode.ExtensionContext) {
   statusBar = new StatusBarManager();
   context.subscriptions.push(statusBar);
 
   // Apply tint on activation
-  applyTint();
+  debouncedApplyTint();
 
   context.subscriptions.push(
     vscode.commands.registerCommand('patina.enableGlobally', async () => {
@@ -48,19 +91,13 @@ export async function activate(context: vscode.ExtensionContext) {
       PalettePreviewPanel.show(context.extensionUri);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
-      // Handle VS Code theme changes (debounced with theme event)
+      // Handle VS Code theme changes
       if (
         e.affectsConfiguration('workbench.colorTheme') ||
         e.affectsConfiguration('workbench.preferredDarkColorTheme') ||
         e.affectsConfiguration('workbench.preferredLightColorTheme')
       ) {
-        if (themeChangeTimeout) {
-          clearTimeout(themeChangeTimeout);
-        }
-        themeChangeTimeout = setTimeout(() => {
-          themeChangeTimeout = undefined;
-          applyTint();
-        }, 150);
+        debouncedApplyTint();
         return;
       }
       if (e.affectsConfiguration('patina.statusBar.enabled')) {
@@ -71,17 +108,17 @@ export async function activate(context: vscode.ExtensionContext) {
         const workspaceEnabled = getWorkspaceEnabled();
         if (workspaceEnabled === false) {
           // User opted out - remove colors without clearing the flag
-          removeTintPreservingFlag();
+          debouncedRemoveTintPreservingFlag();
         } else if (workspaceEnabled === true && isEnabled()) {
-          applyTint();
+          debouncedApplyTint();
         }
         return;
       }
       if (e.affectsConfiguration('patina.enabled')) {
         if (isEnabled()) {
-          applyTint();
+          debouncedApplyTint();
         } else {
-          removeTint();
+          debouncedRemoveTint();
         }
         return;
       }
@@ -91,19 +128,13 @@ export async function activate(context: vscode.ExtensionContext) {
         e.affectsConfiguration('patina.theme') ||
         e.affectsConfiguration('patina.elements')
       ) {
-        applyTint();
+        debouncedApplyTint();
       }
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
-      // Debounce with config change events to handle race condition where
-      // activeColorTheme fires before workbench.colorTheme config is updated
-      if (themeChangeTimeout) {
-        clearTimeout(themeChangeTimeout);
-      }
-      themeChangeTimeout = setTimeout(() => {
-        themeChangeTimeout = undefined;
-        applyTint();
-      }, 150);
+      // Debounce handles race condition where activeColorTheme fires before
+      // workbench.colorTheme config is updated
+      debouncedApplyTint();
     })
   );
 }
