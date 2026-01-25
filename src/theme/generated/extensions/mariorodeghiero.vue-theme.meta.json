@@ -4,9 +4,8 @@
   "publisherName": "mariorodeghiero",
   "displayName": "Vue Theme",
   "version": "2.0.3",
-  "extractedAt": "2026-01-23T22:59:38.467Z",
-  "installCount": 682435,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:43.725Z",
+  "installCount": 682611,
   "themes": [
     {
       "name": "Vue Theme",
@@ -42,5 +41,6 @@
       },
       "type": "hcDark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

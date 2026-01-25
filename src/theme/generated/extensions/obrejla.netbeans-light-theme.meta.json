@@ -4,9 +4,8 @@
   "publisherName": "obrejla",
   "displayName": "NetBeans Light Theme",
   "version": "2.0.2",
-  "extractedAt": "2026-01-24T01:41:40.767Z",
-  "installCount": 168020,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:55.718Z",
+  "installCount": 168071,
   "themes": [
     {
       "name": "NetBeans Light Theme",
@@ -17,5 +16,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

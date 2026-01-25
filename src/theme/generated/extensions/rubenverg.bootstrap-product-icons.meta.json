@@ -1,11 +1,11 @@
 {
-  "extensionId": "RubenVerg.bootstrap-product-icons",
+  "extensionId": "5f945770-8d36-41b3-9782-0379c08335f7",
   "extensionName": "bootstrap-product-icons",
   "publisherName": "RubenVerg",
   "displayName": "Bootstrap Product Icons",
   "version": "1.0.2",
-  "extractedAt": "2026-01-24T19:39:15.830Z",
-  "installCount": 183556,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:54.161Z",
+  "installCount": 183602,
+  "themes": [],
+  "source": "marketplace"
 }

@@ -1,11 +1,11 @@
 {
-  "extensionId": "Equinusocio.vsc-material-theme-icons",
+  "extensionId": "e5499680-9246-4a50-9124-297f9d563ea3",
   "extensionName": "vsc-material-theme-icons",
   "publisherName": "Equinusocio",
   "displayName": "Material Theme Icons — Deprecated",
   "version": "3.9.2",
-  "extractedAt": "2026-01-24T19:39:12.028Z",
-  "installCount": 5816001,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:39.698Z",
+  "installCount": 5816327,
+  "themes": [],
+  "source": "marketplace"
 }

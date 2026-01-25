@@ -4,9 +4,8 @@
   "publisherName": "sainnhe",
   "displayName": "Everforest",
   "version": "0.3.0",
-  "extractedAt": "2026-01-24T01:42:05.507Z",
-  "installCount": 116437,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:03.325Z",
+  "installCount": 116676,
   "themes": [
     {
       "name": "Everforest Dark",
@@ -42,5 +41,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

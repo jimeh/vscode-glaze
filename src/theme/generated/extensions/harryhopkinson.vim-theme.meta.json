@@ -4,9 +4,8 @@
   "publisherName": "HarryHopkinson",
   "displayName": "Vim Theme",
   "version": "1.1.8",
-  "extractedAt": "2026-01-23T22:59:49.651Z",
-  "installCount": 175809,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:55.102Z",
+  "installCount": 175925,
   "themes": [
     {
       "name": "Vim Dark Medium",
@@ -120,5 +119,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

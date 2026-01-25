@@ -1,11 +1,11 @@
 {
-  "extensionId": "JonathanHarty.gruvbox-material-icon-theme",
+  "extensionId": "8b7b553c-f741-437c-adf5-cc494eb7d4d8",
   "extensionName": "gruvbox-material-icon-theme",
   "publisherName": "JonathanHarty",
   "displayName": "Gruvbox Material Icon Theme",
   "version": "1.1.5",
-  "extractedAt": "2026-01-24T19:39:16.867Z",
-  "installCount": 110802,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:28:03.946Z",
+  "installCount": 110888,
+  "themes": [],
+  "source": "marketplace"
 }

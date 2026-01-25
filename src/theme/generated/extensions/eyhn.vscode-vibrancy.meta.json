@@ -1,11 +1,11 @@
 {
-  "extensionId": "eyhn.vscode-vibrancy",
+  "extensionId": "d25a53a9-3c49-45b7-8751-ad426ccda154",
   "extensionName": "vscode-vibrancy",
   "publisherName": "eyhn",
   "displayName": "Vibrancy",
   "version": "1.0.17",
-  "extractedAt": "2026-01-24T19:39:15.620Z",
-  "installCount": 189931,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:53.647Z",
+  "installCount": 189933,
+  "themes": [],
+  "source": "marketplace"
 }

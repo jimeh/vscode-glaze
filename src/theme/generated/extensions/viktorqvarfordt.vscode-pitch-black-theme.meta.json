@@ -4,9 +4,8 @@
   "publisherName": "viktorqvarfordt",
   "displayName": "Pitch Black Theme",
   "version": "1.3.0",
-  "extractedAt": "2026-01-24T01:41:44.604Z",
-  "installCount": 162372,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.569Z",
+  "installCount": 162460,
   "themes": [
     {
       "name": "Pitch Black",
@@ -24,5 +23,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "dline",
   "displayName": "Cobalt Next",
   "version": "0.4.5",
-  "extractedAt": "2026-01-24T01:42:03.323Z",
-  "installCount": 124584,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.372Z",
+  "installCount": 124609,
   "themes": [
     {
       "name": "Cobalt Next",
@@ -59,5 +58,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

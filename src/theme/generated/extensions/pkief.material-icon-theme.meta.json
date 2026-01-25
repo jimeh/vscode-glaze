@@ -1,11 +1,11 @@
 {
-  "extensionId": "PKief.material-icon-theme",
+  "extensionId": "5db78037-f674-459f-a236-db622c427c5b",
   "extensionName": "material-icon-theme",
   "publisherName": "PKief",
   "displayName": "Material Icon Theme",
   "version": "5.31.0",
-  "extractedAt": "2026-01-24T19:39:11.595Z",
-  "installCount": 32507991,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:38.829Z",
+  "installCount": 32514988,
+  "themes": [],
+  "source": "marketplace"
 }

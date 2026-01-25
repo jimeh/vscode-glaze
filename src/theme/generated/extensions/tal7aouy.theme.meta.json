@@ -4,9 +4,8 @@
   "publisherName": "tal7aouy",
   "displayName": "Theme",
   "version": "3.1.0",
-  "extractedAt": "2026-01-23T22:59:36.309Z",
-  "installCount": 1471596,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:41.550Z",
+  "installCount": 1472676,
   "themes": [
     {
       "name": "Theme",
@@ -76,5 +75,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

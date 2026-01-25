@@ -4,9 +4,8 @@
   "publisherName": "s3gf4ult",
   "displayName": "Monokai Vibrant",
   "version": "0.5.3",
-  "extractedAt": "2026-01-24T01:41:47.900Z",
-  "installCount": 156991,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.459Z",
+  "installCount": 157054,
   "themes": [
     {
       "name": "Monokai Vibrant",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

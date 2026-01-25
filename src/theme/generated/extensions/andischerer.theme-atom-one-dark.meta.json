@@ -4,9 +4,8 @@
   "publisherName": "andischerer",
   "displayName": "Atom One Dark Syntax Theme",
   "version": "0.0.1",
-  "extractedAt": "2026-01-23T22:59:48.392Z",
-  "installCount": 187238,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:53.851Z",
+  "installCount": 187279,
   "themes": [
     {
       "name": "Atom One Dark",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

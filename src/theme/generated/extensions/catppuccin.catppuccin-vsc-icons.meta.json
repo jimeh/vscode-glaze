@@ -1,11 +1,11 @@
 {
-  "extensionId": "Catppuccin.catppuccin-vsc-icons",
+  "extensionId": "625b9abd-dfac-405b-bf34-e65f46e2f22f",
   "extensionName": "catppuccin-vsc-icons",
   "publisherName": "Catppuccin",
   "displayName": "Catppuccin Icons for VSCode",
   "version": "1.26.0",
-  "extractedAt": "2026-01-24T19:39:13.392Z",
-  "installCount": 465639,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:45.884Z",
+  "installCount": 466154,
+  "themes": [],
+  "source": "marketplace"
 }

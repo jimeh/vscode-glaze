@@ -4,9 +4,8 @@
   "publisherName": "qufiwefefwoyn",
   "displayName": "Kanagawa",
   "version": "1.5.1",
-  "extractedAt": "2026-01-23T22:59:45.810Z",
-  "installCount": 240682,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:51.232Z",
+  "installCount": 240945,
   "themes": [
     {
       "name": "Kanagawa",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

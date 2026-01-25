@@ -4,9 +4,8 @@
   "publisherName": "Hyzeta",
   "displayName": "Github Light Theme",
   "version": "7.14.2",
-  "extractedAt": "2026-01-23T22:59:42.614Z",
-  "installCount": 351116,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:47.940Z",
+  "installCount": 351229,
   "themes": [
     {
       "name": "Github Light Theme",
@@ -42,5 +41,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

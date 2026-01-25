@@ -4,9 +4,8 @@
   "publisherName": "GokturkSM",
   "displayName": "Nebula Pandas",
   "version": "0.0.4",
-  "extractedAt": "2026-01-24T01:41:42.451Z",
-  "installCount": 164165,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.360Z",
+  "installCount": 164308,
   "themes": [
     {
       "name": "Nebula Pandas Theme",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

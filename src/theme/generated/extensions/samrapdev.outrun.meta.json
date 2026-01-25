@@ -4,9 +4,8 @@
   "publisherName": "samrapdev",
   "displayName": "Outrun",
   "version": "0.2.2",
-  "extractedAt": "2026-01-24T01:42:07.705Z",
-  "installCount": 108113,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.157Z",
+  "installCount": 108147,
   "themes": [
     {
       "name": "Outrun Night",
@@ -36,5 +35,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

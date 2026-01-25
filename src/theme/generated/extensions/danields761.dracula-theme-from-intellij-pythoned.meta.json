@@ -4,9 +4,8 @@
   "publisherName": "danields761",
   "displayName": "Darcula 2.0 Python Adapted",
   "version": "0.1.4",
-  "extractedAt": "2026-01-23T22:59:49.436Z",
-  "installCount": 176762,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.889Z",
+  "installCount": 176789,
   "themes": [
     {
       "name": "Darcula Theme 2.0",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

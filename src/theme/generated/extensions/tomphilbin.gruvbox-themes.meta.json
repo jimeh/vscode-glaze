@@ -4,9 +4,8 @@
   "publisherName": "tomphilbin",
   "displayName": "Gruvbox Themes",
   "version": "1.0.0",
-  "extractedAt": "2026-01-23T22:59:44.775Z",
-  "installCount": 282860,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:50.156Z",
+  "installCount": 282994,
   "themes": [
     {
       "name": "Gruvbox Dark (Hard)",
@@ -62,5 +61,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

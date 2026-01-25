@@ -4,9 +4,8 @@
   "publisherName": "ajshortt",
   "displayName": "Tokyo Hack",
   "version": "0.3.2",
-  "extractedAt": "2026-01-24T01:42:08.654Z",
-  "installCount": 106093,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.573Z",
+  "installCount": 106134,
   "themes": [
     {
       "name": "Tokyo Hack",
@@ -23,5 +22,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

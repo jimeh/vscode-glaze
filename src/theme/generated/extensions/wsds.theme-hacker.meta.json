@@ -4,9 +4,8 @@
   "publisherName": "wsds",
   "displayName": "Hacker Style Themes",
   "version": "0.2.0",
-  "extractedAt": "2026-01-24T01:42:03.980Z",
-  "installCount": 124222,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.686Z",
+  "installCount": 124275,
   "themes": [
     {
       "name": "Hacker",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

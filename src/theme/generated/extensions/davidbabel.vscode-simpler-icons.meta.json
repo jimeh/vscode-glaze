@@ -1,11 +1,11 @@
 {
-  "extensionId": "davidbabel.vscode-simpler-icons",
+  "extensionId": "8bfd87ec-2032-4a0e-a630-71eed81a027e",
   "extensionName": "vscode-simpler-icons",
   "publisherName": "davidbabel",
   "displayName": "VSCode simpler Icons with Angular",
   "version": "1.6.7",
-  "extractedAt": "2026-01-24T19:39:13.495Z",
-  "installCount": 459244,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:45.987Z",
+  "installCount": 459263,
+  "themes": [],
+  "source": "marketplace"
 }

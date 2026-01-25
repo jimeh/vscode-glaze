@@ -4,9 +4,8 @@
   "publisherName": "codestackr",
   "displayName": "codeSTACKr Theme",
   "version": "0.0.9",
-  "extractedAt": "2026-01-23T22:59:49.021Z",
-  "installCount": 180809,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:54.578Z",
+  "installCount": 180867,
   "themes": [
     {
       "name": "codeSTACKr Theme",
@@ -32,5 +31,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

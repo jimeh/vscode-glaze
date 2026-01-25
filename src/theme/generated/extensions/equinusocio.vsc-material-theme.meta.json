@@ -4,9 +4,8 @@
   "publisherName": "Equinusocio",
   "displayName": "Material Theme — Deprecated",
   "version": "34.7.16",
-  "extractedAt": "2026-01-23T22:59:34.632Z",
-  "installCount": 4194412,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:39.818Z",
+  "installCount": 4195051,
   "themes": [
     {
       "name": "Material Theme",
@@ -212,5 +211,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

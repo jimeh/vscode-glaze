@@ -4,9 +4,8 @@
   "publisherName": "gerane",
   "displayName": "Dracula Theme",
   "version": "0.0.5",
-  "extractedAt": "2026-01-24T01:41:49.335Z",
-  "installCount": 152856,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.081Z",
+  "installCount": 152918,
   "themes": [
     {
       "name": "Dracula",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

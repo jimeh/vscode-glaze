@@ -4,9 +4,8 @@
   "publisherName": "dracula-theme",
   "displayName": "Dracula Theme Official",
   "version": "2.25.1",
-  "extractedAt": "2026-01-23T22:59:34.210Z",
-  "installCount": 9940846,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:39.382Z",
+  "installCount": 9946600,
   "themes": [
     {
       "name": "Dracula Theme",
@@ -42,5 +41,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "Sujan",
   "displayName": "Code Blue",
   "version": "0.9.12",
-  "extractedAt": "2026-01-24T01:41:48.671Z",
-  "installCount": 154989,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.767Z",
+  "installCount": 155036,
   "themes": [
     {
       "name": "Code Blue",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

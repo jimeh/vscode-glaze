@@ -1,11 +1,11 @@
 {
-  "extensionId": "XuangeAha.vsmarketplace-badges",
+  "extensionId": "32eef90a-622b-4c0f-9c7e-4578a4dd867d",
   "extensionName": "vsmarketplace-badges",
   "publisherName": "XuangeAha",
   "displayName": "VSMarketplace Badges",
   "version": "2026.1.0",
-  "extractedAt": "2026-01-24T19:39:16.035Z",
-  "installCount": 170548,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:55.511Z",
+  "installCount": 170643,
+  "themes": [],
+  "source": "marketplace"
 }

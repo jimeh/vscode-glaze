@@ -1,11 +1,11 @@
 {
-  "extensionId": "jzmstrjp.color-the-tag-name",
+  "extensionId": "d7cee1e2-46d5-4fb9-891e-277a9454f384",
   "extensionName": "color-the-tag-name",
   "publisherName": "jzmstrjp",
   "displayName": "Color the tag name（タグに色つけ太郎）",
   "version": "0.24.0",
-  "extractedAt": "2026-01-24T19:39:15.001Z",
-  "installCount": 260684,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:50.910Z",
+  "installCount": 260769,
+  "themes": [],
+  "source": "marketplace"
 }

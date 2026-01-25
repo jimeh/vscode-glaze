@@ -4,9 +4,8 @@
   "publisherName": "tinaciousdesign",
   "displayName": "Tinacious Design theme",
   "version": "2.4.0",
-  "extractedAt": "2026-01-24T01:41:50.085Z",
-  "installCount": 149429,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.295Z",
+  "installCount": 149496,
   "themes": [
     {
       "name": "Tinacious Design",
@@ -75,5 +74,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

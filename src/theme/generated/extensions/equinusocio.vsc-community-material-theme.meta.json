@@ -4,9 +4,8 @@
   "publisherName": "Equinusocio",
   "displayName": "Community Material Theme",
   "version": "1.4.7",
-  "extractedAt": "2026-01-23T22:59:34.957Z",
+  "extractedAt": "2026-01-25T15:27:40.146Z",
   "installCount": 3728631,
-  "stale": false,
   "themes": [
     {
       "name": "Community Material Theme",
@@ -178,5 +177,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

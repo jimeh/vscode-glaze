@@ -4,9 +4,8 @@
   "publisherName": "rocketseat",
   "displayName": "Omni Theme",
   "version": "1.0.12",
-  "extractedAt": "2026-01-23T22:59:37.605Z",
-  "installCount": 955268,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:42.855Z",
+  "installCount": 955665,
   "themes": [
     {
       "name": "Omni",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

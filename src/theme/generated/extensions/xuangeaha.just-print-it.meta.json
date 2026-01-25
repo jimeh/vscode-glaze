@@ -1,11 +1,11 @@
 {
-  "extensionId": "XuangeAha.just-print-it",
+  "extensionId": "08ecac25-90c3-4cbb-b38a-d191758a8c80",
   "extensionName": "just-print-it",
   "publisherName": "XuangeAha",
   "displayName": "Just Print It",
   "version": "2026.1.1",
-  "extractedAt": "2026-01-24T19:39:15.516Z",
-  "installCount": 200954,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:53.130Z",
+  "installCount": 201019,
+  "themes": [],
+  "source": "marketplace"
 }

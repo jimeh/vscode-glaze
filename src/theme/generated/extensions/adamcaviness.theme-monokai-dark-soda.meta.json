@@ -4,9 +4,8 @@
   "publisherName": "AdamCaviness",
   "displayName": "Monokai Dark Soda",
   "version": "1.2.0",
-  "extractedAt": "2026-01-23T22:59:43.178Z",
-  "installCount": 329249,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:48.549Z",
+  "installCount": 329313,
   "themes": [
     {
       "name": "Monokai Dark Soda",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

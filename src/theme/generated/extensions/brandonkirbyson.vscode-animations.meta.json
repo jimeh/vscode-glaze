@@ -1,11 +1,11 @@
 {
-  "extensionId": "BrandonKirbyson.vscode-animations",
+  "extensionId": "7d7c0d21-6653-4c11-9310-75b7180bbf81",
   "extensionName": "vscode-animations",
   "publisherName": "BrandonKirbyson",
   "displayName": "VSCode Animations",
   "version": "2.0.7",
-  "extractedAt": "2026-01-24T19:39:14.691Z",
-  "installCount": 294781,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:49.721Z",
+  "installCount": 295006,
+  "themes": [],
+  "source": "marketplace"
 }

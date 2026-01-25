@@ -1,11 +1,11 @@
 {
-  "extensionId": "LaurentTreguier.vscode-simple-icons",
+  "extensionId": "23d65a8c-fcd4-4897-86da-7fe55088e2c6",
   "extensionName": "vscode-simple-icons",
   "publisherName": "LaurentTreguier",
   "displayName": "Simple icons",
   "version": "1.16.0",
-  "extractedAt": "2026-01-24T19:39:14.797Z",
+  "extractedAt": "2026-01-25T15:27:49.829Z",
   "installCount": 289086,
-  "stale": false,
-  "themes": []
+  "themes": [],
+  "source": "marketplace"
 }

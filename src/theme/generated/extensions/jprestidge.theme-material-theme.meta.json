@@ -4,9 +4,8 @@
   "publisherName": "jprestidge",
   "displayName": "Sublime Material Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-01-23T22:59:37.500Z",
-  "installCount": 1005274,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:42.752Z",
+  "installCount": 1005519,
   "themes": [
     {
       "name": "Sublime Material Theme - Dark",
@@ -26,5 +25,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

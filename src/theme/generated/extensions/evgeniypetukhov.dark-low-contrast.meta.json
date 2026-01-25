@@ -4,9 +4,8 @@
   "publisherName": "EvgeniyPetukhov",
   "displayName": "Dark Low Contrast Themes",
   "version": "0.6.0",
-  "extractedAt": "2026-01-24T01:41:41.646Z",
-  "installCount": 166039,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.052Z",
+  "installCount": 166125,
   "themes": [
     {
       "name": "Dark Low Contrast",
@@ -93,5 +92,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

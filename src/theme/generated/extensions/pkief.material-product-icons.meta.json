@@ -1,11 +1,11 @@
 {
-  "extensionId": "PKief.material-product-icons",
+  "extensionId": "f797dacd-4e80-4f33-8b63-d665c0956013",
   "extensionName": "material-product-icons",
   "publisherName": "PKief",
   "displayName": "Material Product Icons",
   "version": "1.7.1",
-  "extractedAt": "2026-01-24T19:39:13.163Z",
-  "installCount": 623924,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:44.032Z",
+  "installCount": 624089,
+  "themes": [],
+  "source": "marketplace"
 }

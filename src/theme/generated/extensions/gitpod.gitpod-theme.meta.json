@@ -4,9 +4,8 @@
   "publisherName": "gitpod",
   "displayName": "Gitpod Theme",
   "version": "0.0.2",
-  "extractedAt": "2026-01-24T21:28:48.492Z",
-  "installCount": 433055,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.794Z",
+  "installCount": 433101,
   "themes": [
     {
       "name": "Gitpod Dark",

@@ -4,9 +4,8 @@
   "publisherName": "BeardedBear",
   "displayName": "Bearded Theme",
   "version": "10.1.0",
-  "extractedAt": "2026-01-23T22:59:36.651Z",
-  "installCount": 1337630,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:41.893Z",
+  "installCount": 1338795,
   "themes": [
     {
       "name": "Bearded Theme Monokai Metallian",
@@ -1079,5 +1078,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "dhedgecock",
   "displayName": "Radical",
   "version": "3.3.1",
-  "extractedAt": "2026-01-24T01:41:52.367Z",
-  "installCount": 146853,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.401Z",
+  "installCount": 146892,
   "themes": [
     {
       "name": "Radical",
@@ -23,5 +22,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

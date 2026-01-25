@@ -4,9 +4,8 @@
   "publisherName": "daylerees",
   "displayName": "Rainglow",
   "version": "1.5.2",
-  "extractedAt": "2026-01-23T22:59:39.932Z",
-  "installCount": 522002,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:45.184Z",
+  "installCount": 522151,
   "themes": [
     {
       "name": "Absent Contrast (rainglow)",
@@ -4666,5 +4665,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

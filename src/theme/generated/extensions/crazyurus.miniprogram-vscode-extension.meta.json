@@ -4,9 +4,8 @@
   "publisherName": "crazyurus",
   "displayName": "微信小程序开发工具",
   "version": "1.5.1",
-  "extractedAt": "2026-01-23T22:59:47.148Z",
-  "installCount": 217558,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:52.610Z",
+  "installCount": 217636,
   "themes": [
     {
       "name": "WeChat Dark",
@@ -34,5 +33,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

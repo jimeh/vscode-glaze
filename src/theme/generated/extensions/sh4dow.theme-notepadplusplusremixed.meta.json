@@ -4,9 +4,8 @@
   "publisherName": "sh4dow",
   "displayName": "NotepadPlusPlus Remixed Theme",
   "version": "1.0.3",
-  "extractedAt": "2026-01-24T01:42:12.238Z",
-  "installCount": 96104,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.174Z",
+  "installCount": 96128,
   "themes": [
     {
       "name": "NotepadPlusPlus Remixed Theme",
@@ -17,5 +16,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

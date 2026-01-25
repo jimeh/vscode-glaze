@@ -4,9 +4,8 @@
   "publisherName": "sam-the-programmer",
   "displayName": "Jupyter Theme",
   "version": "0.1.3",
-  "extractedAt": "2026-01-24T01:42:13.539Z",
-  "installCount": 93988,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.691Z",
+  "installCount": 94078,
   "themes": [
     {
       "name": "Jupyter Theme",
@@ -46,5 +45,6 @@
       },
       "type": "hcDark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

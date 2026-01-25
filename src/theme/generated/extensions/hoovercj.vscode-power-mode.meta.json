@@ -1,11 +1,11 @@
 {
-  "extensionId": "hoovercj.vscode-power-mode",
+  "extensionId": "a27ff63d-ff11-478d-b1ab-19aa1ef19882",
   "extensionName": "vscode-power-mode",
   "publisherName": "hoovercj",
   "displayName": "Power Mode",
   "version": "3.0.2",
-  "extractedAt": "2026-01-24T19:39:12.439Z",
-  "installCount": 1377409,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:41.653Z",
+  "installCount": 1377544,
+  "themes": [],
+  "source": "marketplace"
 }

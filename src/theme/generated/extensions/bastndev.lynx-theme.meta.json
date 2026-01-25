@@ -2,11 +2,10 @@
   "extensionId": "8b8a7a10-52d8-4144-8fb5-36992ad8820c",
   "extensionName": "lynx-theme",
   "publisherName": "bastndev",
-  "displayName": "Lynx Theme Pro",
-  "version": "3.3.3",
-  "extractedAt": "2026-01-24T21:28:50.567Z",
-  "installCount": 13062,
-  "stale": false,
+  "displayName": "Lynx Icon Theme Pro | 2026",
+  "version": "3.3.25",
+  "extractedAt": "2026-01-25T15:28:08.770Z",
+  "installCount": 13189,
   "themes": [
     {
       "name": "1. DARK (Lynx Theme Pro)",
@@ -124,6 +123,23 @@
         "statusBar.foreground": "#94A3B8",
         "activityBar.background": "#161A1D",
         "activityBar.foreground": "#E2E8F0"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "8. TEST (Lynx Theme Pro)",
+      "label": "8. TEST (Lynx Theme Pro)",
+      "colors": {
+        "editor.background": "#111113",
+        "editor.foreground": "#EDEEF0",
+        "titleBar.activeBackground": "#0C0D0E",
+        "titleBar.activeForeground": "#B0B4BA",
+        "titleBar.inactiveBackground": "#0C0D0E",
+        "titleBar.inactiveForeground": "#777B84",
+        "statusBar.background": "#0C0D0E",
+        "statusBar.foreground": "#777B84",
+        "activityBar.background": "#0C0D0E",
+        "activityBar.foreground": "#B0B4BA"
       },
       "type": "dark"
     }

@@ -4,9 +4,8 @@
   "publisherName": "ms-vscode",
   "displayName": "C/C++ Themes",
   "version": "2.0.0",
-  "extractedAt": "2026-01-23T22:59:33.548Z",
-  "installCount": 51916016,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:38.717Z",
+  "installCount": 51960146,
   "themes": [
     {
       "name": "Visual Studio Dark - C++",
@@ -44,5 +43,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

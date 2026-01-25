@@ -4,9 +4,8 @@
   "publisherName": "ftsamoyed",
   "displayName": "Pink-Cat-Boo Theme",
   "version": "1.3.0",
-  "extractedAt": "2026-01-23T22:59:46.326Z",
-  "installCount": 227778,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:51.750Z",
+  "installCount": 227929,
   "themes": [
     {
       "name": "Pink Cat Boo",
@@ -21,5 +20,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

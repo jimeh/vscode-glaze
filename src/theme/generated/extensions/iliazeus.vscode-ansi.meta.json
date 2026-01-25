@@ -1,11 +1,11 @@
 {
-  "extensionId": "iliazeus.vscode-ansi",
+  "extensionId": "166e6c60-18b8-41fd-8f55-2067f667acc2",
   "extensionName": "vscode-ansi",
   "publisherName": "iliazeus",
   "displayName": "ANSI Colors",
   "version": "1.1.7",
-  "extractedAt": "2026-01-24T19:39:16.240Z",
-  "installCount": 155777,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:57.665Z",
+  "installCount": 155845,
+  "themes": [],
+  "source": "marketplace"
 }

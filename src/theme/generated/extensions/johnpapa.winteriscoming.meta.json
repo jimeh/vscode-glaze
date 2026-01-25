@@ -4,9 +4,8 @@
   "publisherName": "johnpapa",
   "displayName": "Winter is Coming Theme",
   "version": "1.4.4",
-  "extractedAt": "2026-01-23T22:59:35.061Z",
-  "installCount": 3561597,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:40.258Z",
+  "installCount": 3562748,
   "themes": [
     {
       "name": "Winter is Coming (Dark Blue)",
@@ -96,5 +95,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

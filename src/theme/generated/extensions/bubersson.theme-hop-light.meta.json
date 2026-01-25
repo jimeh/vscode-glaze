@@ -4,9 +4,8 @@
   "publisherName": "bubersson",
   "displayName": "Hop Light",
   "version": "0.0.4",
-  "extractedAt": "2026-01-24T01:41:52.576Z",
-  "installCount": 145019,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:58.504Z",
+  "installCount": 145059,
   "themes": [
     {
       "name": "Hop Light",
@@ -17,5 +16,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

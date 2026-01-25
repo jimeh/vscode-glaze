@@ -4,9 +4,8 @@
   "publisherName": "lintangwisesa",
   "displayName": "Arduino",
   "version": "0.3.4",
-  "extractedAt": "2026-01-23T22:59:50.168Z",
-  "installCount": 168757,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:55.615Z",
+  "installCount": 168926,
   "themes": [
     {
       "name": "Arduino Light",
@@ -40,5 +39,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

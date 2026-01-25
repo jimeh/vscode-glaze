@@ -1,11 +1,11 @@
 {
-  "extensionId": "nextbook.file-and-folder-icons",
+  "extensionId": "733d4ea0-f370-41c9-aa68-66cb5a4d5f26",
   "extensionName": "file-and-folder-icons",
   "publisherName": "nextbook",
   "displayName": "File & Folder Icons",
   "version": "1.0.4",
-  "extractedAt": "2026-01-24T19:39:14.899Z",
-  "installCount": 278751,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:50.369Z",
+  "installCount": 278887,
+  "themes": [],
+  "source": "marketplace"
 }

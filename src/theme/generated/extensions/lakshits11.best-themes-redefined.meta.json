@@ -4,9 +4,8 @@
   "publisherName": "lakshits11",
   "displayName": "Best Themes Redefined 🚀",
   "version": "0.4.6",
-  "extractedAt": "2026-01-24T01:41:57.270Z",
-  "installCount": 135908,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:00.275Z",
+  "installCount": 136167,
   "themes": [
     {
       "name": "Best Themes - Andromeda Mariana",
@@ -1396,5 +1395,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

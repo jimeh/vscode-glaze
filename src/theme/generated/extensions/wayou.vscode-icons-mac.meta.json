@@ -1,11 +1,11 @@
 {
-  "extensionId": "wayou.vscode-icons-mac",
+  "extensionId": "53c3207b-73df-433b-90ad-785b5023f403",
   "extensionName": "vscode-icons-mac",
   "publisherName": "wayou",
   "displayName": "vscode-icons-mac",
   "version": "7.25.3",
-  "extractedAt": "2026-01-24T19:39:14.158Z",
-  "installCount": 341098,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:48.058Z",
+  "installCount": 341161,
+  "themes": [],
+  "source": "marketplace"
 }

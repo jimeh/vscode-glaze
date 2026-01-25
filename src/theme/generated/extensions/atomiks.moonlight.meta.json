@@ -4,9 +4,8 @@
   "publisherName": "atomiks",
   "displayName": "Moonlight",
   "version": "0.11.1",
-  "extractedAt": "2026-01-23T22:59:44.237Z",
-  "installCount": 295092,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:49.611Z",
+  "installCount": 295210,
   "themes": [
     {
       "name": "Moonlight II",
@@ -76,5 +75,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

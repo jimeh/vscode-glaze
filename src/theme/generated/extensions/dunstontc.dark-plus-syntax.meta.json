@@ -4,9 +4,8 @@
   "publisherName": "dunstontc",
   "displayName": "dark-plus-syntax",
   "version": "0.2.11",
-  "extractedAt": "2026-01-23T22:59:45.190Z",
-  "installCount": 270208,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:50.599Z",
+  "installCount": 270246,
   "themes": [
     {
       "name": "dark-plus-syntax",
@@ -54,5 +53,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

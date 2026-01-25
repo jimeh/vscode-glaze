@@ -4,9 +4,8 @@
   "publisherName": "hassanoof",
   "displayName": "theme",
   "version": "0.0.1",
-  "extractedAt": "2026-01-24T01:41:41.875Z",
-  "installCount": 164811,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:56.155Z",
+  "installCount": 164916,
   "themes": [
     {
       "name": "beautiful",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

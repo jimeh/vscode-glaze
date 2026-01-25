@@ -4,9 +4,8 @@
   "publisherName": "GitHub",
   "displayName": "GitHub Theme",
   "version": "6.3.5",
-  "extractedAt": "2026-01-23T22:59:33.885Z",
-  "installCount": 18040396,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:39.052Z",
+  "installCount": 18052331,
   "themes": [
     {
       "name": "GitHub Light Default",
@@ -161,5 +160,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

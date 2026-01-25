@@ -4,9 +4,8 @@
   "publisherName": "dcasella",
   "displayName": "Monokai++",
   "version": "2.0.4",
-  "extractedAt": "2026-01-23T22:59:45.605Z",
-  "installCount": 244916,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:51.018Z",
+  "installCount": 244956,
   "themes": [
     {
       "name": "Monokai++",
@@ -28,5 +27,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

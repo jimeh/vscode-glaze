@@ -4,9 +4,8 @@
   "publisherName": "bceskavich",
   "displayName": "Dracula At Night",
   "version": "2.7.1",
-  "extractedAt": "2026-01-23T22:59:39.322Z",
-  "installCount": 557565,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:44.578Z",
+  "installCount": 557807,
   "themes": [
     {
       "name": "Dracula At Night",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

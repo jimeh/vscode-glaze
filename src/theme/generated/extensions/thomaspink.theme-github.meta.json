@@ -4,9 +4,8 @@
   "publisherName": "thomaspink",
   "displayName": "Github Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-01-24T01:42:00.837Z",
-  "installCount": 129739,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:01.434Z",
+  "installCount": 129784,
   "themes": [
     {
       "name": "Github",
@@ -20,5 +19,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

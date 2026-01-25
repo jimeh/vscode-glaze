@@ -4,9 +4,8 @@
   "publisherName": "jaredkent",
   "displayName": "LaserWave",
   "version": "1.3.3",
-  "extractedAt": "2026-01-24T01:42:06.591Z",
-  "installCount": 113630,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:03.737Z",
+  "installCount": 113661,
   "themes": [
     {
       "name": "LaserWave",
@@ -53,5 +52,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

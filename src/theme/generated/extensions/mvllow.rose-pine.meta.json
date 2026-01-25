@@ -4,9 +4,8 @@
   "publisherName": "mvllow",
   "displayName": "Rosé Pine",
   "version": "2.15.0",
-  "extractedAt": "2026-01-23T22:59:44.554Z",
-  "installCount": 286820,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:49.937Z",
+  "installCount": 287121,
   "themes": [
     {
       "name": "Rosé Pine",
@@ -110,5 +109,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

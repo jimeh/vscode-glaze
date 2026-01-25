@@ -4,9 +4,8 @@
   "publisherName": "ilich8086",
   "displayName": "coldfusion",
   "version": "1.0.1",
-  "extractedAt": "2026-01-24T01:42:10.137Z",
-  "installCount": 101999,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:05.204Z",
+  "installCount": 102019,
   "themes": [
     {
       "name": "CFML Light",
@@ -26,5 +25,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

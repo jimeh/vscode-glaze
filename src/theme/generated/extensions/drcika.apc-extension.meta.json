@@ -1,11 +1,11 @@
 {
-  "extensionId": "drcika.apc-extension",
+  "extensionId": "c445982f-a615-472b-a90e-0a9edd88b8e8",
   "extensionName": "apc-extension",
   "publisherName": "drcika",
   "displayName": "Apc Customize UI++",
   "version": "0.4.1",
-  "extractedAt": "2026-01-24T19:39:14.363Z",
-  "installCount": 314949,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:49.067Z",
+  "installCount": 315110,
+  "themes": [],
+  "source": "marketplace"
 }

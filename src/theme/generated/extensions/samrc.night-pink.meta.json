@@ -4,9 +4,8 @@
   "publisherName": "SamRC",
   "displayName": "Night Pink",
   "version": "0.5.0",
-  "extractedAt": "2026-01-24T01:42:06.817Z",
-  "installCount": 113111,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:03.840Z",
+  "installCount": 113339,
   "themes": [
     {
       "name": "Night Pink",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

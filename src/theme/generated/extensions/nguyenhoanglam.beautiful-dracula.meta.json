@@ -4,9 +4,8 @@
   "publisherName": "NguyenHoangLam",
   "displayName": "Beautiful Dracula",
   "version": "0.1.4",
-  "extractedAt": "2026-01-24T01:42:04.229Z",
-  "installCount": 122138,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:02.790Z",
+  "installCount": 122212,
   "themes": [
     {
       "name": "Beautiful Dracula Normal",
@@ -76,5 +75,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "pawelgrzybek",
   "displayName": "Gatito Theme",
   "version": "0.2.3",
-  "extractedAt": "2026-01-24T01:41:54.949Z",
-  "installCount": 138017,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.352Z",
+  "installCount": 138050,
   "themes": [
     {
       "name": "Gatito Theme",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

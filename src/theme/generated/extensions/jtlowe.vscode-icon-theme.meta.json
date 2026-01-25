@@ -1,11 +1,11 @@
 {
-  "extensionId": "jtlowe.vscode-icon-theme",
+  "extensionId": "0c39b1dc-26df-4737-bb73-a98913b3ddad",
   "extensionName": "vscode-icon-theme",
   "publisherName": "jtlowe",
   "displayName": "Studio Icons",
   "version": "1.6.6",
-  "extractedAt": "2026-01-24T19:39:15.933Z",
-  "installCount": 172180,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:55.408Z",
+  "installCount": 172199,
+  "themes": [],
+  "source": "marketplace"
 }

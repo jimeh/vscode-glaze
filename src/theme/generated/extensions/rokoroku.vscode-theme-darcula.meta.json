@@ -4,9 +4,8 @@
   "publisherName": "rokoroku",
   "displayName": "Darcula Theme",
   "version": "1.2.3",
-  "extractedAt": "2026-01-23T22:59:37.917Z",
-  "installCount": 883713,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:43.170Z",
+  "installCount": 884028,
   "themes": [
     {
       "name": "Darcula",
@@ -23,5 +22,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

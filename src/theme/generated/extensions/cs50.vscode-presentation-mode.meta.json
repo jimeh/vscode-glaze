@@ -1,11 +1,11 @@
 {
-  "extensionId": "CS50.vscode-presentation-mode",
+  "extensionId": "43843a91-c394-4d38-8afe-c1403a4399f8",
   "extensionName": "vscode-presentation-mode",
   "publisherName": "CS50",
   "displayName": "Presentation Mode",
   "version": "1.0.5",
-  "extractedAt": "2026-01-24T19:39:12.851Z",
-  "installCount": 927279,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:43.068Z",
+  "installCount": 927294,
+  "themes": [],
+  "source": "marketplace"
 }

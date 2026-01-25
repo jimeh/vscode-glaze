@@ -4,9 +4,8 @@
   "publisherName": "dustinsanders",
   "displayName": "An Old Hope Theme",
   "version": "4.4.0",
-  "extractedAt": "2026-01-24T01:42:09.654Z",
-  "installCount": 102462,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.992Z",
+  "installCount": 102471,
   "themes": [
     {
       "name": "An Old Hope",
@@ -54,5 +53,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

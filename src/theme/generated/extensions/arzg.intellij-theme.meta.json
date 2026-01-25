@@ -4,9 +4,8 @@
   "publisherName": "arzg",
   "displayName": "IntelliJ Theme",
   "version": "1.11.0",
-  "extractedAt": "2026-01-24T01:42:13.290Z",
-  "installCount": 94818,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:06.589Z",
+  "installCount": 94888,
   "themes": [
     {
       "name": "Darcula IntelliJ",
@@ -88,5 +87,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

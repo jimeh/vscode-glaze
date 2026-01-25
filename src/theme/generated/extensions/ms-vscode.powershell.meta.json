@@ -1,11 +1,11 @@
 {
-  "extensionId": "ms-vscode.PowerShell",
+  "extensionId": "40d39ce9-c381-47a0-80c8-a6661f731eab",
   "extensionName": "PowerShell",
   "publisherName": "ms-vscode",
   "displayName": "PowerShell",
   "version": "2025.5.0",
-  "extractedAt": "2026-01-24T19:39:11.818Z",
-  "installCount": 17604644,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:39.165Z",
+  "installCount": 17610174,
+  "themes": [],
+  "source": "marketplace"
 }

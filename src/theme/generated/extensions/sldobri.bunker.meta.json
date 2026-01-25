@@ -4,9 +4,8 @@
   "publisherName": "sldobri",
   "displayName": "Dobri Next - Themes and Icons",
   "version": "1.1.6",
-  "extractedAt": "2026-01-23T22:59:42.182Z",
-  "installCount": 372392,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:47.502Z",
+  "installCount": 372508,
   "themes": [
     {
       "name": "Dobri Next -A00- Black",
@@ -353,5 +352,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

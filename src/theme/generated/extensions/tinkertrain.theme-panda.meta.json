@@ -4,9 +4,8 @@
   "publisherName": "tinkertrain",
   "displayName": "Panda Theme",
   "version": "1.4.0",
-  "extractedAt": "2026-01-23T22:59:36.870Z",
-  "installCount": 1220413,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:42.108Z",
+  "installCount": 1220804,
   "themes": [
     {
       "name": "Panda Syntax",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

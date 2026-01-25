@@ -4,9 +4,8 @@
   "publisherName": "PawelBorkar",
   "displayName": "JellyFish Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-01-23T22:59:38.021Z",
-  "installCount": 833288,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:43.273Z",
+  "installCount": 834042,
   "themes": [
     {
       "name": "JellyFish",
@@ -24,5 +23,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

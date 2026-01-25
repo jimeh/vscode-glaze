@@ -4,9 +4,8 @@
   "publisherName": "Tyriar",
   "displayName": "Sapphire Theme",
   "version": "0.9.4",
-  "extractedAt": "2026-01-24T01:42:06.321Z",
-  "installCount": 115390,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:03.633Z",
+  "installCount": 115447,
   "themes": [
     {
       "name": "Sapphire",
@@ -44,5 +43,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

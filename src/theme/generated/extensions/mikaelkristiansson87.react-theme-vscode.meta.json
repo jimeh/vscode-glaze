@@ -4,9 +4,8 @@
   "publisherName": "mikaelkristiansson87",
   "displayName": "React Theme",
   "version": "2.0.0",
-  "extractedAt": "2026-01-24T01:42:09.423Z",
-  "installCount": 103771,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.885Z",
+  "installCount": 103863,
   "themes": [
     {
       "name": "React Theme",
@@ -55,5 +54,6 @@
       },
       "type": "light"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

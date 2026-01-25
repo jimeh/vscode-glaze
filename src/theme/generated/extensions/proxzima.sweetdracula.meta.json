@@ -4,9 +4,8 @@
   "publisherName": "PROxZIMA",
   "displayName": "Sweet Dracula",
   "version": "1.0.9",
-  "extractedAt": "2026-01-24T01:42:08.146Z",
-  "installCount": 107694,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.364Z",
+  "installCount": 107888,
   "themes": [
     {
       "name": "Sweet Dracula",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

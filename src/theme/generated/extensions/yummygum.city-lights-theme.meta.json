@@ -4,9 +4,8 @@
   "publisherName": "Yummygum",
   "displayName": "City Lights theme",
   "version": "1.1.9",
-  "extractedAt": "2026-01-23T22:59:43.905Z",
-  "installCount": 303723,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:49.276Z",
+  "installCount": 303785,
   "themes": [
     {
       "name": "City Lights",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

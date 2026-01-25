@@ -4,9 +4,8 @@
   "publisherName": "gerane",
   "displayName": "azure Theme",
   "version": "0.0.5",
-  "extractedAt": "2026-01-24T01:41:53.829Z",
-  "installCount": 141817,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:59.042Z",
+  "installCount": 141828,
   "themes": [
     {
       "name": "azure",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

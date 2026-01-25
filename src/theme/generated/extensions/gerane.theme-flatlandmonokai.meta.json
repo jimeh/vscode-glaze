@@ -4,9 +4,8 @@
   "publisherName": "gerane",
   "displayName": "Flatland Monokai Theme",
   "version": "0.0.6",
-  "extractedAt": "2026-01-23T22:59:42.284Z",
-  "installCount": 365360,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:47.604Z",
+  "installCount": 365424,
   "themes": [
     {
       "name": "Flatland Monokai",
@@ -17,5 +16,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

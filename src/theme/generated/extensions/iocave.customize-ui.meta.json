@@ -1,11 +1,11 @@
 {
-  "extensionId": "iocave.customize-ui",
+  "extensionId": "ac44dd75-bdb7-433b-9d86-23f9f070c07a",
   "extensionName": "customize-ui",
   "publisherName": "iocave",
   "displayName": "Customize UI",
   "version": "0.1.65",
-  "extractedAt": "2026-01-24T19:39:15.413Z",
-  "installCount": 223100,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:51.852Z",
+  "installCount": 223118,
+  "themes": [],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "MaxfieldWalker",
   "displayName": "Spirited Away Color Theme",
   "version": "1.3.2",
-  "extractedAt": "2026-01-24T01:42:11.537Z",
-  "installCount": 98339,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:05.865Z",
+  "installCount": 98362,
   "themes": [
     {
       "name": "Spirited Away",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -4,9 +4,8 @@
   "publisherName": "vangware",
   "displayName": "Dark+ Material",
   "version": "3.2.1",
-  "extractedAt": "2026-01-23T22:59:41.319Z",
+  "extractedAt": "2026-01-25T15:27:46.624Z",
   "installCount": 437797,
-  "stale": false,
   "themes": [
     {
       "name": "Dark+ Material",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

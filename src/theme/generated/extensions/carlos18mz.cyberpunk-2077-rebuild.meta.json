@@ -4,9 +4,8 @@
   "publisherName": "Carlos18mz",
   "displayName": "Cyberpunk 2077 rebuild",
   "version": "0.0.8",
-  "extractedAt": "2026-01-24T01:42:07.326Z",
-  "installCount": 108672,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:28:04.053Z",
+  "installCount": 108728,
   "themes": [
     {
       "name": "Cyberpunk 2077 rebuild",
@@ -25,5 +24,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

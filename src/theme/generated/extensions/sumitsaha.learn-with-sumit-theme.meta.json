@@ -4,9 +4,8 @@
   "publisherName": "SumitSaha",
   "displayName": "Learn with Sumit Theme",
   "version": "12.1.0",
-  "extractedAt": "2026-01-24T01:41:49.120Z",
-  "installCount": 154465,
-  "stale": false,
+  "extractedAt": "2026-01-25T15:27:57.979Z",
+  "installCount": 154564,
   "themes": [
     {
       "name": "Learn with Sumit Theme",
@@ -222,5 +221,6 @@
       },
       "type": "dark"
     }
-  ]
+  ],
+  "source": "marketplace"
 }

@@ -1,11 +1,11 @@
 {
-  "extensionId": "chadalen.vscode-jetbrains-icon-theme",
+  "extensionId": "641f0c25-0eca-440e-bcf8-8d36d9f23044",
   "extensionName": "vscode-jetbrains-icon-theme",
   "publisherName": "chadalen",
   "displayName": "JetBrains Icon Theme",
   "version": "2.37.0",
-  "extractedAt": "2026-01-24T19:39:14.581Z",
-  "installCount": 297221,
-  "stale": false,
-  "themes": []
+  "extractedAt": "2026-01-25T15:27:49.493Z",
+  "installCount": 297438,
+  "themes": [],
+  "source": "marketplace"
 }
