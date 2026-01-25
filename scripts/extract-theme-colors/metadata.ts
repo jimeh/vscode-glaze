@@ -29,7 +29,6 @@ export interface ExtensionData {
   version: string;
   extractedAt: string;
   installCount: number;
-  stale: boolean;
   themes: MetadataTheme[];
   /** Source registry for this extension */
   source?: RegistrySource;
