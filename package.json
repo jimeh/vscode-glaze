@@ -70,6 +70,7 @@
             "muted",
             "tinted",
             "duotone",
+            "undercurrent",
             "analogous"
           ],
           "enumItemLabels": [
@@ -79,6 +80,7 @@
             "Muted",
             "Tinted",
             "Duotone",
+            "Undercurrent",
             "Analogous"
           ],
           "enumDescriptions": [
@@ -88,10 +90,11 @@
             "Desaturated, subtle tones for minimal visual impact",
             "Very subtle color hints while retaining hue variation",
             "Base hue + complementary hue split across UI elements",
+            "Base hue + complementary accent on status bar",
             "Three adjacent hues for harmonious color transitions"
           ],
           "default": "pastel",
-          "description": "Color scheme for tinting: pastel (soft tones), vibrant (bold colors), muted (subtle), tinted (barely-there tints), duotone (complementary split), analogous (adjacent hues), or neon (maximum glow).",
+          "description": "Color scheme for tinting: pastel (soft tones), vibrant (bold colors), muted (subtle), tinted (barely-there tints), duotone (complementary split), undercurrent (complementary accent on status bar), analogous (adjacent hues), or neon (maximum glow).",
           "order": 1
         },
         "patina.workspaceIdentifier.source": {
