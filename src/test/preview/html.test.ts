@@ -298,10 +298,12 @@ suite('generatePreviewHtml', () => {
 
     assert.ok(html.includes('hue-header'), 'Should have hue headers');
     assert.ok(html.includes('Red'), 'Should have Red label');
+    assert.ok(html.includes('Orange'), 'Should have Orange label');
     assert.ok(html.includes('Yellow'), 'Should have Yellow label');
     assert.ok(html.includes('Green'), 'Should have Green label');
+    assert.ok(html.includes('Teal'), 'Should have Teal label');
     assert.ok(html.includes('Cyan'), 'Should have Cyan label');
     assert.ok(html.includes('Blue'), 'Should have Blue label');
-    assert.ok(html.includes('Magenta'), 'Should have Magenta label');
+    assert.ok(html.includes('Purple'), 'Should have Purple label');
   });
 });

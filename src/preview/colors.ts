@@ -14,10 +14,11 @@ import { getColorForKey } from '../theme/colors';
 import type { OKLCH } from '../color/types';
 
 /**
- * Sample hues for preview display (ROYGBIV spread).
- * 0=Red, 60=Yellow, 120=Green, 180=Cyan, 240=Blue, 300=Magenta
+ * Sample hues for preview display (OKLCH-calibrated).
+ * Red=29, Orange=55, Yellow=100, Green=145, Teal=185, Cyan=210, Blue=265,
+ * Purple=305
  */
-export const SAMPLE_HUES = [0, 60, 120, 180, 240, 300];
+export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 
 /**
  * Display labels for color schemes.

@@ -24,12 +24,13 @@ function isValidHexColor(color: string): boolean {
 }
 
 suite('SAMPLE_HUES', () => {
-  test('contains 6 sample hues', () => {
-    assert.strictEqual(SAMPLE_HUES.length, 6);
+  test('contains 8 sample hues', () => {
+    assert.strictEqual(SAMPLE_HUES.length, 8);
   });
 
-  test('hues are evenly distributed (60 degree intervals)', () => {
-    const expected = [0, 60, 120, 180, 240, 300];
+  test('hues are OKLCH-calibrated for accurate color names', () => {
+    // Red, Orange, Yellow, Green, Teal, Cyan, Blue, Purple
+    const expected = [29, 55, 100, 145, 185, 235, 265, 305];
     assert.deepStrictEqual(SAMPLE_HUES, expected);
   });
 
