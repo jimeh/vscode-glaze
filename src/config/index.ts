@@ -155,3 +155,11 @@ export function getThemeConfig(): ThemeConfig {
 
   return { blendFactor };
 }
+
+/**
+ * Returns whether the status bar item is enabled.
+ */
+export function getStatusBarEnabled(): boolean {
+  const config = vscode.workspace.getConfiguration('patina');
+  return config.get<boolean>('statusBar.enabled', false);
+}

@@ -16,8 +16,14 @@ import {
   removePatinaColors,
   ColorCustomizations,
 } from './settings';
+import { StatusBarManager, StatusBarState } from './statusBar';
+
+let statusBar: StatusBarManager;
 
 export async function activate(context: vscode.ExtensionContext) {
+  statusBar = new StatusBarManager();
+  context.subscriptions.push(statusBar);
+
   // Apply tint on activation
   applyTint();
 
@@ -37,6 +43,10 @@ export async function activate(context: vscode.ExtensionContext) {
       await setWorkspaceEnabled(false);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration('patina.statusBar.enabled')) {
+        statusBar.updateVisibility();
+        return;
+      }
       if (e.affectsConfiguration('patina.workspace.enabled')) {
         const workspaceEnabled = getWorkspaceEnabled();
         if (workspaceEnabled === false) {
@@ -75,6 +85,7 @@ async function applyTint(): Promise<void> {
   // Check for per-workspace opt-out first
   const workspaceEnabled = getWorkspaceEnabled();
   if (workspaceEnabled === false) {
+    updateStatusBar(undefined, undefined);
     return;
   }
 
@@ -86,6 +97,7 @@ async function applyTint(): Promise<void> {
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
+    updateStatusBar(undefined, undefined);
     return;
   }
 
@@ -116,6 +128,9 @@ async function applyTint(): Promise<void> {
   if (workspaceEnabled !== true) {
     await setWorkspaceEnabled(true);
   }
+
+  // Update status bar with current state
+  updateStatusBar(identifier, colors['titleBar.activeBackground']);
 }
 
 async function removeTint(): Promise<void> {
@@ -123,6 +138,7 @@ async function removeTint(): Promise<void> {
 
   // Only remove if Patina has actually modified this workspace
   if (workspaceEnabled !== true) {
+    updateStatusBar(undefined, undefined);
     return;
   }
 
@@ -139,6 +155,8 @@ async function removeTint(): Promise<void> {
 
   // Clear the enabled marker
   await setWorkspaceEnabled(undefined);
+
+  updateStatusBar(undefined, undefined);
 }
 
 async function removeTintPreservingFlag(): Promise<void> {
@@ -152,6 +170,28 @@ async function removeTintPreservingFlag(): Promise<void> {
     remaining,
     vscode.ConfigurationTarget.Workspace
   );
+
+  updateStatusBar(undefined, undefined);
+}
+
+function updateStatusBar(
+  workspaceIdentifier: string | undefined,
+  tintColor: string | undefined
+): void {
+  const tintConfig = getTintConfig();
+  const themeContext = getThemeContext(tintConfig.mode);
+
+  const state: StatusBarState = {
+    globalEnabled: isEnabled(),
+    workspaceEnabled: getWorkspaceEnabled(),
+    workspaceIdentifier,
+    themeType: themeContext.type,
+    themeAutoDetected: themeContext.isAutoDetected,
+    colorScheme: getColorScheme(),
+    tintColor,
+  };
+
+  statusBar.update(state);
 }
 
 export function deactivate() {}
