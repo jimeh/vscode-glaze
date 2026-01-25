@@ -811,15 +811,26 @@ suite('getColorScheme', () => {
     assert.strictEqual(result, 'muted');
   });
 
-  test('returns monochrome when configured', async () => {
+  test('returns tinted when configured', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'tint.colorScheme',
-      'monochrome',
+      'tinted',
       vscode.ConfigurationTarget.Global
     );
     const result = getColorScheme();
-    assert.strictEqual(result, 'monochrome');
+    assert.strictEqual(result, 'tinted');
+  });
+
+  test('returns neon when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      'neon',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'neon');
   });
 
   test('falls back to pastel for invalid scheme', async () => {

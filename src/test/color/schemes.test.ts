@@ -1,15 +1,7 @@
 import * as assert from 'assert';
-import { getSchemeConfig } from '../../color/schemes';
+import { ALL_COLOR_SCHEMES, getSchemeConfig } from '../../color/schemes';
 import type { SchemeConfig } from '../../color/schemes';
-import type { ColorScheme } from '../../config';
 import type { ThemeType } from '../../theme';
-
-const ALL_COLOR_SCHEMES: ColorScheme[] = [
-  'pastel',
-  'vibrant',
-  'muted',
-  'monochrome',
-];
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -69,16 +61,16 @@ suite('getSchemeConfig', () => {
     }
   });
 
-  test('saturation values within valid range (0-1)', () => {
+  test('chromaFactor values within valid range (0-1)', () => {
     for (const scheme of ALL_COLOR_SCHEMES) {
       const config = getSchemeConfig(scheme);
       for (const themeType of ALL_THEME_TYPES) {
         const themeConfig = config[themeType];
         for (const key of ALL_PALETTE_KEYS) {
-          const { saturation } = themeConfig[key];
+          const { chromaFactor } = themeConfig[key];
           assert.ok(
-            saturation >= 0 && saturation <= 1,
-            `${scheme}.${themeType}.${key}.saturation (${saturation}) ` +
+            chromaFactor >= 0 && chromaFactor <= 1,
+            `${scheme}.${themeType}.${key}.chromaFactor (${chromaFactor}) ` +
               `should be between 0 and 1`
           );
         }
@@ -102,13 +94,32 @@ suite('getSchemeConfig', () => {
       }
     }
   });
+
+  test('hueOffset values within valid range (-360 to 360) when defined', () => {
+    for (const scheme of ALL_COLOR_SCHEMES) {
+      const config = getSchemeConfig(scheme);
+      for (const themeType of ALL_THEME_TYPES) {
+        const themeConfig = config[themeType];
+        for (const key of ALL_PALETTE_KEYS) {
+          const { hueOffset } = themeConfig[key];
+          if (hueOffset !== undefined) {
+            assert.ok(
+              hueOffset >= -360 && hueOffset <= 360,
+              `${scheme}.${themeType}.${key}.hueOffset (${hueOffset}) ` +
+                `should be between -360 and 360`
+            );
+          }
+        }
+      }
+    }
+  });
 });
 
-suite('color scheme saturation ordering', () => {
+suite('color scheme chromaFactor ordering', () => {
   /**
-   * Helper to get average background saturation for a scheme's dark theme.
+   * Helper to get average background chromaFactor for a scheme's dark theme.
    */
-  function getAverageBackgroundSaturation(config: SchemeConfig): number {
+  function getAverageBackgroundChromaFactor(config: SchemeConfig): number {
     const backgroundKeys = [
       'titleBar.activeBackground',
       'statusBar.background',
@@ -116,85 +127,90 @@ suite('color scheme saturation ordering', () => {
     ] as const;
 
     const darkConfig = config.dark;
-    const saturations = backgroundKeys.map((key) => darkConfig[key].saturation);
-    return saturations.reduce((a, b) => a + b, 0) / saturations.length;
+    const factors = backgroundKeys.map((key) => darkConfig[key].chromaFactor);
+    return factors.reduce((a, b) => a + b, 0) / factors.length;
   }
 
-  test('vibrant has higher saturation than pastel', () => {
-    const pastelSat = getAverageBackgroundSaturation(getSchemeConfig('pastel'));
-    const vibrantSat = getAverageBackgroundSaturation(
+  test('vibrant has higher chromaFactor than pastel', () => {
+    const pastelFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('pastel')
+    );
+    const vibrantFactor = getAverageBackgroundChromaFactor(
       getSchemeConfig('vibrant')
     );
 
     assert.ok(
-      vibrantSat > pastelSat,
-      `vibrant (${vibrantSat}) should have higher saturation than ` +
-        `pastel (${pastelSat})`
+      vibrantFactor > pastelFactor,
+      `vibrant (${vibrantFactor}) should have higher chromaFactor than ` +
+        `pastel (${pastelFactor})`
     );
   });
 
-  test('pastel has higher saturation than muted', () => {
-    const pastelSat = getAverageBackgroundSaturation(getSchemeConfig('pastel'));
-    const mutedSat = getAverageBackgroundSaturation(getSchemeConfig('muted'));
-
-    assert.ok(
-      pastelSat > mutedSat,
-      `pastel (${pastelSat}) should have higher saturation than ` +
-        `muted (${mutedSat})`
+  test('pastel has higher chromaFactor than muted', () => {
+    const pastelFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('pastel')
     );
-  });
-
-  test('muted has higher saturation than monochrome', () => {
-    const mutedSat = getAverageBackgroundSaturation(getSchemeConfig('muted'));
-    const monoSat = getAverageBackgroundSaturation(
-      getSchemeConfig('monochrome')
+    const mutedFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('muted')
     );
 
     assert.ok(
-      mutedSat > monoSat,
-      `muted (${mutedSat}) should have higher saturation than ` +
-        `monochrome (${monoSat})`
+      pastelFactor > mutedFactor,
+      `pastel (${pastelFactor}) should have higher chromaFactor than ` +
+        `muted (${mutedFactor})`
     );
   });
 
-  test('saturation ordering: vibrant > pastel > muted > monochrome', () => {
-    const vibrantSat = getAverageBackgroundSaturation(
+  test('muted has higher chromaFactor than tinted', () => {
+    const mutedFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('muted')
+    );
+    const tintedFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('tinted')
+    );
+
+    assert.ok(
+      mutedFactor > tintedFactor,
+      `muted (${mutedFactor}) should have higher chromaFactor than ` +
+        `tinted (${tintedFactor})`
+    );
+  });
+
+  test('neon has highest chromaFactor', () => {
+    const neonFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('neon')
+    );
+    const vibrantFactor = getAverageBackgroundChromaFactor(
       getSchemeConfig('vibrant')
     );
-    const pastelSat = getAverageBackgroundSaturation(getSchemeConfig('pastel'));
-    const mutedSat = getAverageBackgroundSaturation(getSchemeConfig('muted'));
-    const monoSat = getAverageBackgroundSaturation(
-      getSchemeConfig('monochrome')
-    );
 
     assert.ok(
-      vibrantSat > pastelSat && pastelSat > mutedSat && mutedSat > monoSat,
-      `Expected ordering vibrant (${vibrantSat}) > pastel (${pastelSat}) > ` +
-        `muted (${mutedSat}) > monochrome (${monoSat})`
+      neonFactor > vibrantFactor,
+      `neon (${neonFactor}) should have higher chromaFactor than ` +
+        `vibrant (${vibrantFactor})`
     );
   });
 });
 
-suite('monochrome scheme', () => {
-  test('has zero saturation for all elements in all themes', () => {
-    const config = getSchemeConfig('monochrome');
+suite('tinted scheme', () => {
+  test('has very low chromaFactor for all elements (0.05-0.15)', () => {
+    const config = getSchemeConfig('tinted');
 
     for (const themeType of ALL_THEME_TYPES) {
       const themeConfig = config[themeType];
       for (const key of ALL_PALETTE_KEYS) {
-        const { saturation } = themeConfig[key];
-        assert.strictEqual(
-          saturation,
-          0,
-          `monochrome.${themeType}.${key}.saturation should be 0, ` +
-            `got ${saturation}`
+        const { chromaFactor } = themeConfig[key];
+        assert.ok(
+          chromaFactor >= 0.05 && chromaFactor <= 0.15,
+          `tinted.${themeType}.${key}.chromaFactor (${chromaFactor}) ` +
+            `should be between 0.05 and 0.15`
         );
       }
     }
   });
 
   test('has non-zero lightness values', () => {
-    const config = getSchemeConfig('monochrome');
+    const config = getSchemeConfig('tinted');
 
     for (const themeType of ALL_THEME_TYPES) {
       const themeConfig = config[themeType];
@@ -202,8 +218,173 @@ suite('monochrome scheme', () => {
         const { lightness } = themeConfig[key];
         assert.ok(
           lightness > 0,
-          `monochrome.${themeType}.${key}.lightness should be > 0, ` +
+          `tinted.${themeType}.${key}.lightness should be > 0, ` +
             `got ${lightness}`
+        );
+      }
+    }
+  });
+});
+
+suite('duotone scheme', () => {
+  test('activity bar has 180° hue offset (complementary)', () => {
+    const config = getSchemeConfig('duotone');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['activityBar.background'].hueOffset,
+        180,
+        `duotone.${themeType}.activityBar.background should have hueOffset=180`
+      );
+      assert.strictEqual(
+        themeConfig['activityBar.foreground'].hueOffset,
+        180,
+        `duotone.${themeType}.activityBar.foreground should have hueOffset=180`
+      );
+    }
+  });
+
+  test('title bar and status bar have no hue offset', () => {
+    const config = getSchemeConfig('duotone');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['titleBar.activeBackground'].hueOffset,
+        undefined,
+        `duotone.${themeType}.titleBar.activeBackground should have no offset`
+      );
+      assert.strictEqual(
+        themeConfig['statusBar.background'].hueOffset,
+        undefined,
+        `duotone.${themeType}.statusBar.background should have no offset`
+      );
+    }
+  });
+});
+
+suite('undercurrent scheme', () => {
+  test('status bar has 180° hue offset (complementary)', () => {
+    const config = getSchemeConfig('undercurrent');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['statusBar.background'].hueOffset,
+        180,
+        `undercurrent.${themeType}.statusBar.background should have ` +
+          `hueOffset=180`
+      );
+      assert.strictEqual(
+        themeConfig['statusBar.foreground'].hueOffset,
+        180,
+        `undercurrent.${themeType}.statusBar.foreground should have ` +
+          `hueOffset=180`
+      );
+    }
+  });
+
+  test('title bar and activity bar have no hue offset', () => {
+    const config = getSchemeConfig('undercurrent');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['titleBar.activeBackground'].hueOffset,
+        undefined,
+        `undercurrent.${themeType}.titleBar.activeBackground should have ` +
+          `no offset`
+      );
+      assert.strictEqual(
+        themeConfig['activityBar.background'].hueOffset,
+        undefined,
+        `undercurrent.${themeType}.activityBar.background should have no offset`
+      );
+    }
+  });
+});
+
+suite('analogous scheme', () => {
+  test('title bar has -25° hue offset', () => {
+    const config = getSchemeConfig('analogous');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['titleBar.activeBackground'].hueOffset,
+        -25,
+        `analogous.${themeType}.titleBar.activeBackground should have ` +
+          `hueOffset=-25`
+      );
+    }
+  });
+
+  test('status bar has +25° hue offset', () => {
+    const config = getSchemeConfig('analogous');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['statusBar.background'].hueOffset,
+        25,
+        `analogous.${themeType}.statusBar.background should have hueOffset=25`
+      );
+    }
+  });
+
+  test('activity bar has no hue offset (base hue)', () => {
+    const config = getSchemeConfig('analogous');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['activityBar.background'].hueOffset,
+        undefined,
+        `analogous.${themeType}.activityBar.background should have no offset`
+      );
+    }
+  });
+});
+
+suite('neon scheme', () => {
+  test('has maximum chromaFactor (0.85-1.0) for backgrounds', () => {
+    const config = getSchemeConfig('neon');
+    const backgroundKeys = [
+      'titleBar.activeBackground',
+      'statusBar.background',
+      'activityBar.background',
+    ] as const;
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      for (const key of backgroundKeys) {
+        const { chromaFactor } = themeConfig[key];
+        assert.ok(
+          chromaFactor >= 0.85,
+          `neon.${themeType}.${key}.chromaFactor (${chromaFactor}) ` +
+            `should be >= 0.85`
+        );
+      }
+    }
+  });
+
+  test('has elevated lightness for glow effect (0.45-0.85)', () => {
+    const config = getSchemeConfig('neon');
+    const backgroundKeys = [
+      'titleBar.activeBackground',
+      'statusBar.background',
+      'activityBar.background',
+    ] as const;
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      for (const key of backgroundKeys) {
+        const { lightness } = themeConfig[key];
+        assert.ok(
+          lightness >= 0.4 && lightness <= 0.85,
+          `neon.${themeType}.${key}.lightness (${lightness}) ` +
+            `should be between 0.4 and 0.85`
         );
       }
     }

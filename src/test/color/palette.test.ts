@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import { generatePalette } from '../../color';
+import { hexToOklch } from '../../color/convert';
 import type { ColorScheme, TintTarget } from '../../config';
 import type { ThemeType, ThemeContext, ThemeColors } from '../../theme';
 
@@ -663,7 +664,10 @@ suite('generatePalette seed', () => {
       'pastel',
       'vibrant',
       'muted',
-      'monochrome',
+      'tinted',
+      'duotone',
+      'analogous',
+      'neon',
     ];
     const hexPattern = /^#[0-9a-f]{6}$/i;
 
@@ -761,7 +765,10 @@ suite('generatePalette color schemes', () => {
     'pastel',
     'vibrant',
     'muted',
-    'monochrome',
+    'tinted',
+    'duotone',
+    'analogous',
+    'neon',
   ];
   const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -806,7 +813,7 @@ suite('generatePalette color schemes', () => {
     );
   });
 
-  test('vibrant scheme has more saturated colors than pastel', () => {
+  test('vibrant scheme has higher chroma than pastel', () => {
     const pastelPalette = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
@@ -820,16 +827,14 @@ suite('generatePalette color schemes', () => {
       colorScheme: 'vibrant',
     });
 
-    const pastelSat = hexToSaturation(
-      pastelPalette['titleBar.activeBackground']!
-    );
-    const vibrantSat = hexToSaturation(
+    const pastelSat = hexToChroma(pastelPalette['titleBar.activeBackground']!);
+    const vibrantSat = hexToChroma(
       vibrantPalette['titleBar.activeBackground']!
     );
 
     assert.ok(
       vibrantSat > pastelSat,
-      `Vibrant saturation (${vibrantSat}) should be higher than pastel (${pastelSat})`
+      `Vibrant chroma (${vibrantSat}) should be higher than pastel (${pastelSat})`
     );
   });
 
@@ -925,8 +930,14 @@ suite('generatePalette color schemes', () => {
     }
   });
 
-  test('saturation ordering: vibrant > pastel > muted > monochrome', () => {
+  test('chroma ordering: neon > vibrant > pastel > muted > tinted', () => {
     const palettes = {
+      neon: generatePalette({
+        workspaceIdentifier: 'test-project',
+        targets: ALL_TARGETS,
+        themeContext: makeThemeContext('dark'),
+        colorScheme: 'neon',
+      }),
       vibrant: generatePalette({
         workspaceIdentifier: 'test-project',
         targets: ALL_TARGETS,
@@ -945,63 +956,67 @@ suite('generatePalette color schemes', () => {
         themeContext: makeThemeContext('dark'),
         colorScheme: 'muted',
       }),
-      monochrome: generatePalette({
+      tinted: generatePalette({
         workspaceIdentifier: 'test-project',
         targets: ALL_TARGETS,
         themeContext: makeThemeContext('dark'),
-        colorScheme: 'monochrome',
+        colorScheme: 'tinted',
       }),
     };
 
-    const vibrantSat = hexToSaturation(
+    const neonSat = hexToChroma(palettes.neon['titleBar.activeBackground']!);
+    const vibrantSat = hexToChroma(
       palettes.vibrant['titleBar.activeBackground']!
     );
-    const pastelSat = hexToSaturation(
+    const pastelSat = hexToChroma(
       palettes.pastel['titleBar.activeBackground']!
     );
-    const mutedSat = hexToSaturation(
-      palettes.muted['titleBar.activeBackground']!
-    );
-    const monoSat = hexToSaturation(
-      palettes.monochrome['titleBar.activeBackground']!
+    const mutedSat = hexToChroma(palettes.muted['titleBar.activeBackground']!);
+    const tintedSat = hexToChroma(
+      palettes.tinted['titleBar.activeBackground']!
     );
 
     assert.ok(
+      neonSat > vibrantSat,
+      `neon (${neonSat}) should have higher chroma than ` +
+        `vibrant (${vibrantSat})`
+    );
+    assert.ok(
       vibrantSat > pastelSat,
-      `vibrant (${vibrantSat}) should have higher saturation than ` +
+      `vibrant (${vibrantSat}) should have higher chroma than ` +
         `pastel (${pastelSat})`
     );
     assert.ok(
       pastelSat > mutedSat,
-      `pastel (${pastelSat}) should have higher saturation than ` +
+      `pastel (${pastelSat}) should have higher chroma than ` +
         `muted (${mutedSat})`
     );
     assert.ok(
-      mutedSat > monoSat,
-      `muted (${mutedSat}) should have higher saturation than ` +
-        `monochrome (${monoSat})`
+      mutedSat > tintedSat,
+      `muted (${mutedSat}) should have higher chroma than ` +
+        `tinted (${tintedSat})`
     );
   });
 
-  test('monochrome produces grayscale output', () => {
+  test('tinted produces very low chroma output', () => {
     const palette = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark'),
-      colorScheme: 'monochrome',
+      colorScheme: 'tinted',
     });
 
     for (const [key, color] of Object.entries(palette)) {
-      const saturation = hexToSaturation(color);
-      assert.strictEqual(
-        saturation,
-        0,
-        `monochrome ${key} should be grayscale (saturation=0), got ${saturation}`
+      const chroma = hexToChroma(color);
+      // Tinted has very low but non-zero chroma (0.05-0.15 chromaFactor)
+      assert.ok(
+        chroma < 0.03,
+        `tinted ${key} should have very low chroma, got ${chroma}`
       );
     }
   });
 
-  test('muted and monochrome produce different colors from pastel', () => {
+  test('muted and tinted produce different colors from pastel', () => {
     const pastel = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
@@ -1014,11 +1029,11 @@ suite('generatePalette color schemes', () => {
       themeContext: makeThemeContext('dark'),
       colorScheme: 'muted',
     });
-    const monochrome = generatePalette({
+    const tinted = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark'),
-      colorScheme: 'monochrome',
+      colorScheme: 'tinted',
     });
 
     assert.notStrictEqual(
@@ -1028,13 +1043,13 @@ suite('generatePalette color schemes', () => {
     );
     assert.notStrictEqual(
       pastel['titleBar.activeBackground'],
-      monochrome['titleBar.activeBackground'],
-      'monochrome should differ from pastel'
+      tinted['titleBar.activeBackground'],
+      'tinted should differ from pastel'
     );
     assert.notStrictEqual(
       muted['titleBar.activeBackground'],
-      monochrome['titleBar.activeBackground'],
-      'monochrome should differ from muted'
+      tinted['titleBar.activeBackground'],
+      'tinted should differ from muted'
     );
   });
 });
@@ -1050,21 +1065,10 @@ function hexToLuminance(hex: string): number {
 }
 
 /**
- * Calculate saturation from hex color (HSL saturation).
+ * Calculate chroma from hex color using OKLCH.
+ * This is now the proper measure of colorfulness in our OKLCH-based system.
  */
-function hexToSaturation(hex: string): number {
-  const r = parseInt(hex.slice(1, 3), 16) / 255;
-  const g = parseInt(hex.slice(3, 5), 16) / 255;
-  const b = parseInt(hex.slice(5, 7), 16) / 255;
-
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  const l = (max + min) / 2;
-
-  if (max === min) {
-    return 0; // achromatic
-  }
-
-  const d = max - min;
-  return l > 0.5 ? d / (2 - max - min) : d / (max + min);
+function hexToChroma(hex: string): number {
+  const oklch = hexToOklch(hex);
+  return oklch.c;
 }

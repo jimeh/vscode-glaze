@@ -1,9 +1,21 @@
 import type { ThemeType, PaletteKey } from '../../theme';
 
 /**
- * Configuration for saturation and lightness values.
+ * Configuration for OKLCH color generation per UI element.
+ *
+ * Uses lightness and chromaFactor instead of HSL saturation/lightness.
+ * chromaFactor is a percentage (0-1) of the maximum in-gamut chroma
+ * for the given hue and lightness, ensuring consistent perceived
+ * saturation across all hues.
  */
-export type ElementConfig = { saturation: number; lightness: number };
+export type ElementConfig = {
+  /** OKLCH lightness (0-1), perceptually uniform */
+  lightness: number;
+  /** Percentage of max in-gamut chroma (0-1) */
+  chromaFactor: number;
+  /** Degrees to add to base hue (0-360), for multi-hue schemes */
+  hueOffset?: number;
+};
 
 /**
  * Configuration for each UI element's color generation per theme type.

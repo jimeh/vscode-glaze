@@ -3,15 +3,17 @@ import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
 
 /**
- * Hue labels for column headers.
+ * Hue labels for column headers (OKLCH-calibrated hue angles).
  */
 const HUE_LABELS: Record<number, string> = {
-  0: 'Red',
-  60: 'Yellow',
-  120: 'Green',
-  180: 'Cyan',
-  240: 'Blue',
-  300: 'Magenta',
+  29: 'Red',
+  55: 'Orange',
+  100: 'Yellow',
+  145: 'Green',
+  185: 'Teal',
+  235: 'Cyan',
+  265: 'Blue',
+  305: 'Purple',
 };
 
 /**

@@ -1,4 +1,3 @@
-import type { ColorScheme } from '../config';
 import type { ThemeType, ThemeColors } from '../theme';
 import type {
   ElementColors,
@@ -6,33 +5,31 @@ import type {
   SchemePreviewColors,
   WorkspacePreview,
 } from './types';
-import { getSchemeConfig } from '../color/schemes';
-import { hslToHex } from '../color/convert';
+import type { ColorScheme } from '../color/schemes';
+import {
+  ALL_COLOR_SCHEMES,
+  COLOR_SCHEME_LABELS,
+  getSchemeConfig,
+} from '../color/schemes';
+import { oklchToHex, maxChroma } from '../color/convert';
 import { hashString } from '../color/hash';
-import { blendWithTheme } from '../color/blend';
+import { blendWithThemeOklch } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
-import type { HSL } from '../color/types';
+import type { OKLCH } from '../color/types';
 
 /**
- * Sample hues for preview display (ROYGBIV spread).
- * 0=Red, 60=Yellow, 120=Green, 180=Cyan, 240=Blue, 300=Magenta
+ * Sample hues for preview display (OKLCH-calibrated).
+ * Red=29, Orange=55, Yellow=100, Green=145, Teal=185, Cyan=210, Blue=265,
+ * Purple=305
  */
-export const SAMPLE_HUES = [0, 60, 120, 180, 240, 300];
+export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 
 /**
- * Display labels for color schemes.
+ * Applies hue offset, wrapping to 0-360 range.
  */
-const SCHEME_LABELS: Record<ColorScheme, string> = {
-  pastel: 'Pastel',
-  vibrant: 'Vibrant',
-  muted: 'Muted',
-  monochrome: 'Monochrome',
-};
-
-/**
- * All available color schemes in display order.
- */
-const ALL_SCHEMES: ColorScheme[] = ['pastel', 'vibrant', 'muted', 'monochrome'];
+function applyHueOffset(hue: number, offset?: number): number {
+  return (((hue + (offset ?? 0)) % 360) + 360) % 360;
+}
 
 /**
  * Generates element colors for a single UI element at a given hue.
@@ -50,17 +47,17 @@ function generateElementColors(
   const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
   const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
 
+  // Apply hue offset for multi-hue schemes (duotone, analogous)
+  const bgHue = applyHueOffset(hue, bgConfig.hueOffset);
+  const fgHue = applyHueOffset(hue, fgConfig.hueOffset);
+
+  // Calculate chroma based on max gamut chroma and chromaFactor
+  const bgChroma = maxChroma(bgConfig.lightness, bgHue) * bgConfig.chromaFactor;
+  const fgChroma = maxChroma(fgConfig.lightness, fgHue) * fgConfig.chromaFactor;
+
   return {
-    background: hslToHex({
-      h: hue,
-      s: bgConfig.saturation,
-      l: bgConfig.lightness,
-    }),
-    foreground: hslToHex({
-      h: hue,
-      s: fgConfig.saturation,
-      l: fgConfig.lightness,
-    }),
+    background: oklchToHex({ l: bgConfig.lightness, c: bgChroma, h: bgHue }),
+    foreground: oklchToHex({ l: fgConfig.lightness, c: fgChroma, h: fgHue }),
   };
 }
 
@@ -106,7 +103,7 @@ export function generateSchemePreview(
 ): SchemePreview {
   return {
     scheme,
-    label: SCHEME_LABELS[scheme],
+    label: COLOR_SCHEME_LABELS[scheme],
     hueColors: SAMPLE_HUES.map((hue) =>
       generateColorsAtHue(scheme, themeType, hue)
     ),
@@ -119,7 +116,9 @@ export function generateSchemePreview(
 export function generateAllSchemePreviews(
   themeType: ThemeType
 ): SchemePreview[] {
-  return ALL_SCHEMES.map((scheme) => generateSchemePreview(scheme, themeType));
+  return ALL_COLOR_SCHEMES.map((scheme) =>
+    generateSchemePreview(scheme, themeType)
+  );
 }
 
 /**
@@ -140,9 +139,17 @@ function generateBlendedElementColors(
   const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
   const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
 
-  // Create base HSL colors
-  const bgHsl: HSL = { h: hue, s: bgConfig.saturation, l: bgConfig.lightness };
-  const fgHsl: HSL = { h: hue, s: fgConfig.saturation, l: fgConfig.lightness };
+  // Apply hue offset for multi-hue schemes (duotone, analogous)
+  const bgHue = applyHueOffset(hue, bgConfig.hueOffset);
+  const fgHue = applyHueOffset(hue, fgConfig.hueOffset);
+
+  // Calculate chroma based on max gamut chroma and chromaFactor
+  const bgChroma = maxChroma(bgConfig.lightness, bgHue) * bgConfig.chromaFactor;
+  const fgChroma = maxChroma(fgConfig.lightness, fgHue) * fgConfig.chromaFactor;
+
+  // Create base OKLCH colors
+  const bgOklch: OKLCH = { l: bgConfig.lightness, c: bgChroma, h: bgHue };
+  const fgOklch: OKLCH = { l: fgConfig.lightness, c: fgChroma, h: fgHue };
 
   // Get theme colors for blending
   const themeBgColor = getColorForKey(
@@ -156,15 +163,15 @@ function generateBlendedElementColors(
 
   // Apply blending
   const blendedBg = themeBgColor
-    ? blendWithTheme(bgHsl, themeBgColor, blendFactor)
-    : bgHsl;
+    ? blendWithThemeOklch(bgOklch, themeBgColor, blendFactor)
+    : bgOklch;
   const blendedFg = themeFgColor
-    ? blendWithTheme(fgHsl, themeFgColor, blendFactor)
-    : fgHsl;
+    ? blendWithThemeOklch(fgOklch, themeFgColor, blendFactor)
+    : fgOklch;
 
   return {
-    background: hslToHex(blendedBg),
-    foreground: hslToHex(blendedFg),
+    background: oklchToHex(blendedBg),
+    foreground: oklchToHex(blendedFg),
   };
 }
 

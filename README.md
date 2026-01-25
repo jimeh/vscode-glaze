@@ -64,20 +64,23 @@ Search for "Patina" in the VS Code Extensions view (`Cmd+Shift+X` /
 
 ### Settings
 
-| Setting              | Default        | Description                                                  |
-| -------------------- | -------------- | ------------------------------------------------------------ |
-| `patina.enabled`     | `true`         | Enable or disable Patina                                     |
-| `patina.colorScheme` | `"pastel"`     | Color palette: `pastel`, `vibrant`, `muted`, or `monochrome` |
-| `patina.elements`    | `["titleBar"]` | UI elements to tint                                          |
-| `patina.intensity`   | `0.5`          | How strongly the tint is applied (0.0–1.0)                   |
-| `patina.saturation`  | `0.5`          | Color saturation level (0.0–1.0)                             |
+| Setting              | Default        | Description                                                                              |
+| -------------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| `patina.enabled`     | `true`         | Enable or disable Patina                                                                 |
+| `patina.colorScheme` | `"pastel"`     | Color palette: `pastel`, `vibrant`, `muted`, `tinted`, `duotone`, `analogous`, or `neon` |
+| `patina.elements`    | `["titleBar"]` | UI elements to tint                                                                      |
+| `patina.intensity`   | `0.5`          | How strongly the tint is applied (0.0–1.0)                                               |
+| `patina.saturation`  | `0.5`          | Color saturation level (0.0–1.0)                                                         |
 
 ### Color Schemes
 
 - **Pastel** (default) — Soft, muted tones that blend gently with any theme
 - **Vibrant** — Higher saturation for bolder, more noticeable colors
 - **Muted** — Desaturated, subtle tones for minimal visual impact
-- **Monochrome** — Grayscale tints only, for a uniform look
+- **Tinted** — Very subtle color hints while retaining hue variation
+- **Duotone** — Base hue + complementary hue split across UI elements
+- **Analogous** — Three adjacent hues for harmonious color transitions
+- **Neon** — Maximum chroma with elevated lightness for vivid glow
 
 ## Supported UI Elements
 

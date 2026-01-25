@@ -53,10 +53,7 @@ export interface WorkspaceIdentifierConfig {
  */
 export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar';
 
-/**
- * Available color schemes for tinting.
- */
-export type ColorScheme = 'pastel' | 'vibrant' | 'muted' | 'monochrome';
+export type { ColorScheme } from '../color/schemes';
 
 /**
  * User-configurable theme mode setting.

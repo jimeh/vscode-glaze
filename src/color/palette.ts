@@ -1,11 +1,11 @@
-import type { HSL } from './types';
+import type { OKLCH } from './types';
 import type { ColorScheme, TintTarget } from '../config';
 import type { ThemeContext, PaletteKey, PatinaColorPalette } from '../theme';
 import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
-import { hslToHex } from './convert';
-import { blendWithTheme } from './blend';
+import { oklchToHex, maxChroma } from './convert';
+import { blendWithThemeOklch } from './blend';
 import { getSchemeConfig } from './schemes';
 
 /**
@@ -51,7 +51,12 @@ export interface GeneratePaletteOptions {
 /**
  * Generates a harmonious color palette from a workspace identifier.
  * All colors share the same hue (derived from the identifier) but vary in
- * saturation and lightness to create visual hierarchy.
+ * lightness and chroma to create visual hierarchy.
+ *
+ * Uses OKLCH color space for perceptually uniform color generation.
+ * Chroma is calculated as a percentage of the maximum in-gamut chroma
+ * for the given hue and lightness, ensuring consistent perceived
+ * saturation across all hues.
  *
  * When theme colors are available, colors are blended toward them for better
  * visual integration with the active theme.
@@ -89,21 +94,30 @@ export function generatePalette(
 
   for (const key of keysToInclude) {
     const config = themeConfig[key];
-    let hsl: HSL = {
-      h: baseHue,
-      s: config.saturation,
+
+    // Apply hue offset for multi-hue schemes (duotone, analogous)
+    const elementHue =
+      (((baseHue + (config.hueOffset ?? 0)) % 360) + 360) % 360;
+
+    // Calculate actual chroma using chromaFactor and max in-gamut chroma
+    const maxC = maxChroma(config.lightness, elementHue);
+    const chroma = maxC * config.chromaFactor;
+
+    let oklch: OKLCH = {
       l: config.lightness,
+      c: chroma,
+      h: elementHue,
     };
 
     // Blend with theme color when available
     if (themeContext.colors) {
       const themeColor = getColorForKey(key, themeContext.colors);
       if (themeColor) {
-        hsl = blendWithTheme(hsl, themeColor, themeBlendFactor);
+        oklch = blendWithThemeOklch(oklch, themeColor, themeBlendFactor);
       }
     }
 
-    palette[key] = hslToHex(hsl);
+    palette[key] = oklchToHex(oklch);
   }
 
   return palette;

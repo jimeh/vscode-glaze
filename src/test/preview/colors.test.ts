@@ -5,15 +5,8 @@ import {
   generateAllSchemePreviews,
   generateWorkspacePreview,
 } from '../../preview/colors';
-import type { ColorScheme } from '../../config';
+import { ALL_COLOR_SCHEMES } from '../../color/schemes';
 import type { ThemeType } from '../../theme';
-
-const ALL_COLOR_SCHEMES: ColorScheme[] = [
-  'pastel',
-  'vibrant',
-  'muted',
-  'monochrome',
-];
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -24,12 +17,13 @@ function isValidHexColor(color: string): boolean {
 }
 
 suite('SAMPLE_HUES', () => {
-  test('contains 6 sample hues', () => {
-    assert.strictEqual(SAMPLE_HUES.length, 6);
+  test('contains 8 sample hues', () => {
+    assert.strictEqual(SAMPLE_HUES.length, 8);
   });
 
-  test('hues are evenly distributed (60 degree intervals)', () => {
-    const expected = [0, 60, 120, 180, 240, 300];
+  test('hues are OKLCH-calibrated for accurate color names', () => {
+    // Red, Orange, Yellow, Green, Teal, Cyan, Blue, Purple
+    const expected = [29, 55, 100, 145, 185, 235, 265, 305];
     assert.deepStrictEqual(SAMPLE_HUES, expected);
   });
 
@@ -133,20 +127,15 @@ suite('generateSchemePreview', () => {
 });
 
 suite('generateAllSchemePreviews', () => {
-  test('returns previews for all 4 schemes', () => {
+  test('returns previews for all 8 schemes', () => {
     const previews = generateAllSchemePreviews('dark');
-    assert.strictEqual(previews.length, 4);
+    assert.strictEqual(previews.length, 8);
   });
 
   test('schemes are in correct order', () => {
     const previews = generateAllSchemePreviews('dark');
     const schemeNames = previews.map((p) => p.scheme);
-    assert.deepStrictEqual(schemeNames, [
-      'pastel',
-      'vibrant',
-      'muted',
-      'monochrome',
-    ]);
+    assert.deepStrictEqual(schemeNames, [...ALL_COLOR_SCHEMES]);
   });
 
   test('works with all theme types', () => {
@@ -154,8 +143,8 @@ suite('generateAllSchemePreviews', () => {
       const previews = generateAllSchemePreviews(themeType);
       assert.strictEqual(
         previews.length,
-        4,
-        `Should return 4 previews for ${themeType}`
+        8,
+        `Should return 8 previews for ${themeType}`
       );
     }
   });
