@@ -218,6 +218,21 @@ suite('blendWithTheme', () => {
     );
   });
 
+  test('normalizes negative hue result', () => {
+    // Blend from hue 5 toward hue 350 produces negative intermediate
+    // diff = 350 - 5 = 345 > 180, so diff = 345 - 360 = -15
+    // result = 5 + (-15 * 0.5) = -2.5 → should normalize to 357.5
+    const tint = { h: 5, s: 0.5, l: 0.4 };
+    const result = blendWithTheme(tint, '#ff1a40', 0.5); // hue ~350
+    assert.ok(result.h >= 0, `Hue should be non-negative, got ${result.h}`);
+    assert.ok(result.h < 360, `Hue should be < 360, got ${result.h}`);
+    // Should be near 357-358 range (blending 5 toward 350)
+    assert.ok(
+      result.h > 350 || result.h < 10,
+      `Hue should be near 0/360, got ${result.h}`
+    );
+  });
+
   test('blends hues near 180 boundary', () => {
     const tint = { h: 170, s: 0.5, l: 0.4 };
     // Theme with hue 190: cyan-ish #00bfbf is close

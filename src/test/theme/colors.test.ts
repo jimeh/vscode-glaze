@@ -325,6 +325,57 @@ suite('getThemeInfo with custom config', () => {
     assert.ok(hcLight);
     assert.strictEqual(hcLight.type, 'hcLight');
   });
+
+  test('skips non-object config entries', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.colors',
+      {
+        'String Entry': 'not an object',
+        'Null Entry': null,
+      },
+      vscode.ConfigurationTarget.Global
+    );
+
+    assert.strictEqual(getThemeInfo('String Entry'), undefined);
+    assert.strictEqual(getThemeInfo('Null Entry'), undefined);
+  });
+
+  test('skips entries with invalid hex in optional keys', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.colors',
+      {
+        'Bad Optional Theme': {
+          colors: {
+            'editor.background': '#282C34',
+            'titleBar.activeBackground': 'not-hex',
+          },
+          type: 'dark',
+        },
+      },
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeInfo('Bad Optional Theme');
+    assert.strictEqual(result, undefined);
+  });
+
+  test('skips entries missing type field', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.colors',
+      {
+        'No Type Theme': {
+          colors: { 'editor.background': '#282C34' },
+        },
+      },
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeInfo('No Type Theme');
+    assert.strictEqual(result, undefined);
+  });
 });
 
 suite('getColorForKey', () => {
