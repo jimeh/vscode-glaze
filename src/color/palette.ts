@@ -48,18 +48,6 @@ export const PATINA_MANAGED_KEYS: readonly (keyof PatinaColorPalette)[] =
   Object.values(TARGET_KEYS).flat();
 
 /**
- * Keys that represent background colors and should be blended with theme.
- * Note: VSCode uses inconsistent casing (titleBar.activeBackground vs
- * statusBar.background), so we explicitly list all background keys.
- */
-const BACKGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
-  'titleBar.activeBackground',
-  'titleBar.inactiveBackground',
-  'statusBar.background',
-  'activityBar.background',
-]);
-
-/**
  * Options for palette generation.
  */
 export interface GeneratePaletteOptions {
@@ -124,10 +112,12 @@ export function generatePalette(
       l: config.lightness,
     };
 
-    // Only blend background colors, not foreground colors
-    if (BACKGROUND_KEYS.has(key) && themeContext.colors) {
-      const bgColor = getColorForKey(key, themeContext.colors);
-      hsl = blendWithTheme(hsl, bgColor, themeBlendFactor);
+    // Blend with theme color when available
+    if (themeContext.colors) {
+      const themeColor = getColorForKey(key, themeContext.colors);
+      if (themeColor) {
+        hsl = blendWithTheme(hsl, themeColor, themeBlendFactor);
+      }
     }
 
     palette[key] = hslToHex(hsl);
