@@ -5,18 +5,8 @@ import {
   generateAllSchemePreviews,
   generateWorkspacePreview,
 } from '../../preview/colors';
-import type { ColorScheme } from '../../config';
+import { ALL_COLOR_SCHEMES } from '../../color/schemes';
 import type { ThemeType } from '../../theme';
-
-const ALL_COLOR_SCHEMES: ColorScheme[] = [
-  'pastel',
-  'vibrant',
-  'muted',
-  'tinted',
-  'duotone',
-  'analogous',
-  'neon',
-];
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -145,15 +135,7 @@ suite('generateAllSchemePreviews', () => {
   test('schemes are in correct order', () => {
     const previews = generateAllSchemePreviews('dark');
     const schemeNames = previews.map((p) => p.scheme);
-    assert.deepStrictEqual(schemeNames, [
-      'pastel',
-      'vibrant',
-      'muted',
-      'tinted',
-      'duotone',
-      'analogous',
-      'neon',
-    ]);
+    assert.deepStrictEqual(schemeNames, [...ALL_COLOR_SCHEMES]);
   });
 
   test('works with all theme types', () => {

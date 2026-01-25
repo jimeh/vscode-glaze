@@ -64,31 +64,31 @@
         "patina.tint.colorScheme": {
           "type": "string",
           "enum": [
-            "pastel",
+            "neon",
             "vibrant",
+            "pastel",
             "muted",
             "tinted",
             "duotone",
-            "analogous",
-            "neon"
+            "analogous"
           ],
           "enumItemLabels": [
-            "Pastel",
+            "Neon",
             "Vibrant",
+            "Pastel",
             "Muted",
             "Tinted",
             "Duotone",
-            "Analogous",
-            "Neon"
+            "Analogous"
           ],
           "enumDescriptions": [
-            "Soft, muted tones that blend gently with any theme",
+            "Maximum chroma with elevated lightness for vivid glow",
             "Higher saturation for bolder, more noticeable colors",
+            "Soft, muted tones that blend gently with any theme",
             "Desaturated, subtle tones for minimal visual impact",
             "Very subtle color hints while retaining hue variation",
             "Base hue + complementary hue split across UI elements",
-            "Three adjacent hues for harmonious color transitions",
-            "Maximum chroma with elevated lightness for vivid glow"
+            "Three adjacent hues for harmonious color transitions"
           ],
           "default": "pastel",
           "description": "Color scheme for tinting: pastel (soft tones), vibrant (bold colors), muted (subtle), tinted (barely-there tints), duotone (complementary split), analogous (adjacent hues), or neon (maximum glow).",

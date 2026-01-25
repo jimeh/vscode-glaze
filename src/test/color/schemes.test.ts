@@ -1,18 +1,7 @@
 import * as assert from 'assert';
-import { getSchemeConfig } from '../../color/schemes';
+import { ALL_COLOR_SCHEMES, getSchemeConfig } from '../../color/schemes';
 import type { SchemeConfig } from '../../color/schemes';
-import type { ColorScheme } from '../../config';
 import type { ThemeType } from '../../theme';
-
-const ALL_COLOR_SCHEMES: ColorScheme[] = [
-  'pastel',
-  'vibrant',
-  'muted',
-  'tinted',
-  'duotone',
-  'analogous',
-  'neon',
-];
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 

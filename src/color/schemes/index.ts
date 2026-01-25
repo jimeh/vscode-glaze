@@ -1,4 +1,14 @@
-import type { ColorScheme } from '../../config';
+export type { ColorScheme } from './definitions';
+export {
+  ALL_COLOR_SCHEMES,
+  COLOR_SCHEME_DEFINITIONS,
+  COLOR_SCHEME_LABELS,
+  DEFAULT_COLOR_SCHEME,
+  isValidColorScheme,
+} from './definitions';
+export type { SchemeConfig, ElementConfig } from './types';
+
+import type { ColorScheme } from './definitions';
 import type { SchemeConfig } from './types';
 import { analogousScheme } from './analogous';
 import { duotoneScheme } from './duotone';
@@ -7,8 +17,6 @@ import { neonScheme } from './neon';
 import { pastelScheme } from './pastel';
 import { tintedScheme } from './tinted';
 import { vibrantScheme } from './vibrant';
-
-export type { SchemeConfig, ElementConfig } from './types';
 
 /**
  * Map of color scheme names to their configurations.

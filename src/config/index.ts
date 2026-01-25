@@ -9,6 +9,7 @@ import type {
   WorkspaceIdentifierConfig,
   WorkspaceIdentifierSource,
 } from './types';
+import { DEFAULT_COLOR_SCHEME, isValidColorScheme } from '../color/schemes';
 
 export type {
   ColorScheme,
@@ -62,27 +63,13 @@ function isValidThemeMode(value: string): value is ThemeMode {
   return VALID_THEME_MODES.includes(value as ThemeMode);
 }
 
-const VALID_COLOR_SCHEMES: ColorScheme[] = [
-  'pastel',
-  'vibrant',
-  'muted',
-  'tinted',
-  'duotone',
-  'analogous',
-  'neon',
-];
-
-function isValidColorScheme(value: string): value is ColorScheme {
-  return VALID_COLOR_SCHEMES.includes(value as ColorScheme);
-}
-
 /**
  * Returns the configured color scheme.
  */
 export function getColorScheme(): ColorScheme {
   const config = vscode.workspace.getConfiguration('patina');
-  const scheme = config.get<string>('tint.colorScheme', 'pastel');
-  return isValidColorScheme(scheme) ? scheme : 'pastel';
+  const scheme = config.get<string>('tint.colorScheme', DEFAULT_COLOR_SCHEME);
+  return isValidColorScheme(scheme) ? scheme : DEFAULT_COLOR_SCHEME;
 }
 
 const VALID_SOURCES: WorkspaceIdentifierSource[] = [

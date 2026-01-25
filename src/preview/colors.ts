@@ -1,4 +1,3 @@
-import type { ColorScheme } from '../config';
 import type { ThemeType, ThemeColors } from '../theme';
 import type {
   ElementColors,
@@ -6,7 +5,12 @@ import type {
   SchemePreviewColors,
   WorkspacePreview,
 } from './types';
-import { getSchemeConfig } from '../color/schemes';
+import type { ColorScheme } from '../color/schemes';
+import {
+  ALL_COLOR_SCHEMES,
+  COLOR_SCHEME_LABELS,
+  getSchemeConfig,
+} from '../color/schemes';
 import { oklchToHex, maxChroma } from '../color/convert';
 import { hashString } from '../color/hash';
 import { blendWithThemeOklch } from '../color/blend';
@@ -19,32 +23,6 @@ import type { OKLCH } from '../color/types';
  * Purple=305
  */
 export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
-
-/**
- * Display labels for color schemes.
- */
-const SCHEME_LABELS: Record<ColorScheme, string> = {
-  pastel: 'Pastel',
-  vibrant: 'Vibrant',
-  muted: 'Muted',
-  tinted: 'Tinted',
-  duotone: 'Duotone',
-  analogous: 'Analogous',
-  neon: 'Neon',
-};
-
-/**
- * All available color schemes in display order.
- */
-const ALL_SCHEMES: ColorScheme[] = [
-  'pastel',
-  'vibrant',
-  'muted',
-  'tinted',
-  'duotone',
-  'analogous',
-  'neon',
-];
 
 /**
  * Applies hue offset, wrapping to 0-360 range.
@@ -125,7 +103,7 @@ export function generateSchemePreview(
 ): SchemePreview {
   return {
     scheme,
-    label: SCHEME_LABELS[scheme],
+    label: COLOR_SCHEME_LABELS[scheme],
     hueColors: SAMPLE_HUES.map((hue) =>
       generateColorsAtHue(scheme, themeType, hue)
     ),
@@ -138,7 +116,9 @@ export function generateSchemePreview(
 export function generateAllSchemePreviews(
   themeType: ThemeType
 ): SchemePreview[] {
-  return ALL_SCHEMES.map((scheme) => generateSchemePreview(scheme, themeType));
+  return ALL_COLOR_SCHEMES.map((scheme) =>
+    generateSchemePreview(scheme, themeType)
+  );
 }
 
 /**
