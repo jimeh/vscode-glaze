@@ -7,11 +7,11 @@ import type {
   WorkspacePreview,
 } from './types';
 import { getSchemeConfig } from '../color/schemes';
-import { hslToHex } from '../color/convert';
+import { oklchToHex, maxChroma } from '../color/convert';
 import { hashString } from '../color/hash';
-import { blendWithTheme } from '../color/blend';
+import { blendWithThemeOklch } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
-import type { HSL } from '../color/types';
+import type { OKLCH } from '../color/types';
 
 /**
  * Sample hues for preview display (ROYGBIV spread).
@@ -50,17 +50,13 @@ function generateElementColors(
   const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
   const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
 
+  // Calculate chroma based on max gamut chroma and chromaFactor
+  const bgChroma = maxChroma(bgConfig.lightness, hue) * bgConfig.chromaFactor;
+  const fgChroma = maxChroma(fgConfig.lightness, hue) * fgConfig.chromaFactor;
+
   return {
-    background: hslToHex({
-      h: hue,
-      s: bgConfig.saturation,
-      l: bgConfig.lightness,
-    }),
-    foreground: hslToHex({
-      h: hue,
-      s: fgConfig.saturation,
-      l: fgConfig.lightness,
-    }),
+    background: oklchToHex({ l: bgConfig.lightness, c: bgChroma, h: hue }),
+    foreground: oklchToHex({ l: fgConfig.lightness, c: fgChroma, h: hue }),
   };
 }
 
@@ -140,9 +136,13 @@ function generateBlendedElementColors(
   const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
   const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
 
-  // Create base HSL colors
-  const bgHsl: HSL = { h: hue, s: bgConfig.saturation, l: bgConfig.lightness };
-  const fgHsl: HSL = { h: hue, s: fgConfig.saturation, l: fgConfig.lightness };
+  // Calculate chroma based on max gamut chroma and chromaFactor
+  const bgChroma = maxChroma(bgConfig.lightness, hue) * bgConfig.chromaFactor;
+  const fgChroma = maxChroma(fgConfig.lightness, hue) * fgConfig.chromaFactor;
+
+  // Create base OKLCH colors
+  const bgOklch: OKLCH = { l: bgConfig.lightness, c: bgChroma, h: hue };
+  const fgOklch: OKLCH = { l: fgConfig.lightness, c: fgChroma, h: hue };
 
   // Get theme colors for blending
   const themeBgColor = getColorForKey(
@@ -156,15 +156,15 @@ function generateBlendedElementColors(
 
   // Apply blending
   const blendedBg = themeBgColor
-    ? blendWithTheme(bgHsl, themeBgColor, blendFactor)
-    : bgHsl;
+    ? blendWithThemeOklch(bgOklch, themeBgColor, blendFactor)
+    : bgOklch;
   const blendedFg = themeFgColor
-    ? blendWithTheme(fgHsl, themeFgColor, blendFactor)
-    : fgHsl;
+    ? blendWithThemeOklch(fgOklch, themeFgColor, blendFactor)
+    : fgOklch;
 
   return {
-    background: hslToHex(blendedBg),
-    foreground: hslToHex(blendedFg),
+    background: oklchToHex(blendedBg),
+    foreground: oklchToHex(blendedFg),
   };
 }
 

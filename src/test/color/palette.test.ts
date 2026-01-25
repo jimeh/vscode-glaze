@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import { generatePalette } from '../../color';
+import { hexToOklch } from '../../color/convert';
 import type { ColorScheme, TintTarget } from '../../config';
 import type { ThemeType, ThemeContext, ThemeColors } from '../../theme';
 
@@ -806,7 +807,7 @@ suite('generatePalette color schemes', () => {
     );
   });
 
-  test('vibrant scheme has more saturated colors than pastel', () => {
+  test('vibrant scheme has higher chroma than pastel', () => {
     const pastelPalette = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
@@ -820,16 +821,14 @@ suite('generatePalette color schemes', () => {
       colorScheme: 'vibrant',
     });
 
-    const pastelSat = hexToSaturation(
-      pastelPalette['titleBar.activeBackground']!
-    );
-    const vibrantSat = hexToSaturation(
+    const pastelSat = hexToChroma(pastelPalette['titleBar.activeBackground']!);
+    const vibrantSat = hexToChroma(
       vibrantPalette['titleBar.activeBackground']!
     );
 
     assert.ok(
       vibrantSat > pastelSat,
-      `Vibrant saturation (${vibrantSat}) should be higher than pastel (${pastelSat})`
+      `Vibrant chroma (${vibrantSat}) should be higher than pastel (${pastelSat})`
     );
   });
 
@@ -925,7 +924,7 @@ suite('generatePalette color schemes', () => {
     }
   });
 
-  test('saturation ordering: vibrant > pastel > muted > monochrome', () => {
+  test('chroma ordering: vibrant > pastel > muted > monochrome', () => {
     const palettes = {
       vibrant: generatePalette({
         workspaceIdentifier: 'test-project',
@@ -953,32 +952,30 @@ suite('generatePalette color schemes', () => {
       }),
     };
 
-    const vibrantSat = hexToSaturation(
+    const vibrantSat = hexToChroma(
       palettes.vibrant['titleBar.activeBackground']!
     );
-    const pastelSat = hexToSaturation(
+    const pastelSat = hexToChroma(
       palettes.pastel['titleBar.activeBackground']!
     );
-    const mutedSat = hexToSaturation(
-      palettes.muted['titleBar.activeBackground']!
-    );
-    const monoSat = hexToSaturation(
+    const mutedSat = hexToChroma(palettes.muted['titleBar.activeBackground']!);
+    const monoSat = hexToChroma(
       palettes.monochrome['titleBar.activeBackground']!
     );
 
     assert.ok(
       vibrantSat > pastelSat,
-      `vibrant (${vibrantSat}) should have higher saturation than ` +
+      `vibrant (${vibrantSat}) should have higher chroma than ` +
         `pastel (${pastelSat})`
     );
     assert.ok(
       pastelSat > mutedSat,
-      `pastel (${pastelSat}) should have higher saturation than ` +
+      `pastel (${pastelSat}) should have higher chroma than ` +
         `muted (${mutedSat})`
     );
     assert.ok(
       mutedSat > monoSat,
-      `muted (${mutedSat}) should have higher saturation than ` +
+      `muted (${mutedSat}) should have higher chroma than ` +
         `monochrome (${monoSat})`
     );
   });
@@ -992,11 +989,11 @@ suite('generatePalette color schemes', () => {
     });
 
     for (const [key, color] of Object.entries(palette)) {
-      const saturation = hexToSaturation(color);
-      assert.strictEqual(
-        saturation,
-        0,
-        `monochrome ${key} should be grayscale (saturation=0), got ${saturation}`
+      const chroma = hexToChroma(color);
+      // Allow tiny floating point tolerance
+      assert.ok(
+        chroma < 0.001,
+        `monochrome ${key} should be grayscale (chroma≈0), got ${chroma}`
       );
     }
   });
@@ -1050,21 +1047,10 @@ function hexToLuminance(hex: string): number {
 }
 
 /**
- * Calculate saturation from hex color (HSL saturation).
+ * Calculate chroma from hex color using OKLCH.
+ * This is now the proper measure of colorfulness in our OKLCH-based system.
  */
-function hexToSaturation(hex: string): number {
-  const r = parseInt(hex.slice(1, 3), 16) / 255;
-  const g = parseInt(hex.slice(3, 5), 16) / 255;
-  const b = parseInt(hex.slice(5, 7), 16) / 255;
-
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  const l = (max + min) / 2;
-
-  if (max === min) {
-    return 0; // achromatic
-  }
-
-  const d = max - min;
-  return l > 0.5 ? d / (2 - max - min) : d / (max + min);
+function hexToChroma(hex: string): number {
+  const oklch = hexToOklch(hex);
+  return oklch.c;
 }

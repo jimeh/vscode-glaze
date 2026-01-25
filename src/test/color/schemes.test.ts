@@ -69,16 +69,16 @@ suite('getSchemeConfig', () => {
     }
   });
 
-  test('saturation values within valid range (0-1)', () => {
+  test('chromaFactor values within valid range (0-1)', () => {
     for (const scheme of ALL_COLOR_SCHEMES) {
       const config = getSchemeConfig(scheme);
       for (const themeType of ALL_THEME_TYPES) {
         const themeConfig = config[themeType];
         for (const key of ALL_PALETTE_KEYS) {
-          const { saturation } = themeConfig[key];
+          const { chromaFactor } = themeConfig[key];
           assert.ok(
-            saturation >= 0 && saturation <= 1,
-            `${scheme}.${themeType}.${key}.saturation (${saturation}) ` +
+            chromaFactor >= 0 && chromaFactor <= 1,
+            `${scheme}.${themeType}.${key}.chromaFactor (${chromaFactor}) ` +
               `should be between 0 and 1`
           );
         }
@@ -104,11 +104,11 @@ suite('getSchemeConfig', () => {
   });
 });
 
-suite('color scheme saturation ordering', () => {
+suite('color scheme chromaFactor ordering', () => {
   /**
-   * Helper to get average background saturation for a scheme's dark theme.
+   * Helper to get average background chromaFactor for a scheme's dark theme.
    */
-  function getAverageBackgroundSaturation(config: SchemeConfig): number {
+  function getAverageBackgroundChromaFactor(config: SchemeConfig): number {
     const backgroundKeys = [
       'titleBar.activeBackground',
       'statusBar.background',
@@ -116,78 +116,92 @@ suite('color scheme saturation ordering', () => {
     ] as const;
 
     const darkConfig = config.dark;
-    const saturations = backgroundKeys.map((key) => darkConfig[key].saturation);
-    return saturations.reduce((a, b) => a + b, 0) / saturations.length;
+    const factors = backgroundKeys.map((key) => darkConfig[key].chromaFactor);
+    return factors.reduce((a, b) => a + b, 0) / factors.length;
   }
 
-  test('vibrant has higher saturation than pastel', () => {
-    const pastelSat = getAverageBackgroundSaturation(getSchemeConfig('pastel'));
-    const vibrantSat = getAverageBackgroundSaturation(
+  test('vibrant has higher chromaFactor than pastel', () => {
+    const pastelFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('pastel')
+    );
+    const vibrantFactor = getAverageBackgroundChromaFactor(
       getSchemeConfig('vibrant')
     );
 
     assert.ok(
-      vibrantSat > pastelSat,
-      `vibrant (${vibrantSat}) should have higher saturation than ` +
-        `pastel (${pastelSat})`
+      vibrantFactor > pastelFactor,
+      `vibrant (${vibrantFactor}) should have higher chromaFactor than ` +
+        `pastel (${pastelFactor})`
     );
   });
 
-  test('pastel has higher saturation than muted', () => {
-    const pastelSat = getAverageBackgroundSaturation(getSchemeConfig('pastel'));
-    const mutedSat = getAverageBackgroundSaturation(getSchemeConfig('muted'));
+  test('pastel has higher chromaFactor than muted', () => {
+    const pastelFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('pastel')
+    );
+    const mutedFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('muted')
+    );
 
     assert.ok(
-      pastelSat > mutedSat,
-      `pastel (${pastelSat}) should have higher saturation than ` +
-        `muted (${mutedSat})`
+      pastelFactor > mutedFactor,
+      `pastel (${pastelFactor}) should have higher chromaFactor than ` +
+        `muted (${mutedFactor})`
     );
   });
 
-  test('muted has higher saturation than monochrome', () => {
-    const mutedSat = getAverageBackgroundSaturation(getSchemeConfig('muted'));
-    const monoSat = getAverageBackgroundSaturation(
+  test('muted has higher chromaFactor than monochrome', () => {
+    const mutedFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('muted')
+    );
+    const monoFactor = getAverageBackgroundChromaFactor(
       getSchemeConfig('monochrome')
     );
 
     assert.ok(
-      mutedSat > monoSat,
-      `muted (${mutedSat}) should have higher saturation than ` +
-        `monochrome (${monoSat})`
+      mutedFactor > monoFactor,
+      `muted (${mutedFactor}) should have higher chromaFactor than ` +
+        `monochrome (${monoFactor})`
     );
   });
 
-  test('saturation ordering: vibrant > pastel > muted > monochrome', () => {
-    const vibrantSat = getAverageBackgroundSaturation(
+  test('chromaFactor ordering: vibrant > pastel > muted > monochrome', () => {
+    const vibrantFactor = getAverageBackgroundChromaFactor(
       getSchemeConfig('vibrant')
     );
-    const pastelSat = getAverageBackgroundSaturation(getSchemeConfig('pastel'));
-    const mutedSat = getAverageBackgroundSaturation(getSchemeConfig('muted'));
-    const monoSat = getAverageBackgroundSaturation(
+    const pastelFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('pastel')
+    );
+    const mutedFactor = getAverageBackgroundChromaFactor(
+      getSchemeConfig('muted')
+    );
+    const monoFactor = getAverageBackgroundChromaFactor(
       getSchemeConfig('monochrome')
     );
 
     assert.ok(
-      vibrantSat > pastelSat && pastelSat > mutedSat && mutedSat > monoSat,
-      `Expected ordering vibrant (${vibrantSat}) > pastel (${pastelSat}) > ` +
-        `muted (${mutedSat}) > monochrome (${monoSat})`
+      vibrantFactor > pastelFactor &&
+        pastelFactor > mutedFactor &&
+        mutedFactor > monoFactor,
+      `Expected ordering vibrant (${vibrantFactor}) > pastel (${pastelFactor}) > ` +
+        `muted (${mutedFactor}) > monochrome (${monoFactor})`
     );
   });
 });
 
 suite('monochrome scheme', () => {
-  test('has zero saturation for all elements in all themes', () => {
+  test('has zero chromaFactor for all elements in all themes', () => {
     const config = getSchemeConfig('monochrome');
 
     for (const themeType of ALL_THEME_TYPES) {
       const themeConfig = config[themeType];
       for (const key of ALL_PALETTE_KEYS) {
-        const { saturation } = themeConfig[key];
+        const { chromaFactor } = themeConfig[key];
         assert.strictEqual(
-          saturation,
+          chromaFactor,
           0,
-          `monochrome.${themeType}.${key}.saturation should be 0, ` +
-            `got ${saturation}`
+          `monochrome.${themeType}.${key}.chromaFactor should be 0, ` +
+            `got ${chromaFactor}`
         );
       }
     }
