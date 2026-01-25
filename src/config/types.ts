@@ -16,6 +16,14 @@ export type WorkspaceIdentifierSource =
   | 'pathRelativeToCustom';
 
 /**
+ * Determines the identifier base for multi-root workspaces.
+ */
+export type MultiRootIdentifierSource =
+  | 'workspaceFile'
+  | 'allFolders'
+  | 'firstFolder';
+
+/**
  * Configuration for workspace identifier generation.
  */
 export interface WorkspaceIdentifierConfig {
@@ -30,6 +38,14 @@ export interface WorkspaceIdentifierConfig {
    * is outside this path.
    */
   customBasePath: string;
+
+  /**
+   * Determines the identifier base for multi-root workspaces.
+   * - 'workspaceFile': Use the .code-workspace file path
+   * - 'allFolders': Combine all workspace folder paths
+   * - 'firstFolder': Use only the first folder (backward compatible)
+   */
+  multiRootSource: MultiRootIdentifierSource;
 }
 
 /**

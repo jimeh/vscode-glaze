@@ -3,6 +3,7 @@ import { getStatusBarEnabled } from '../config';
 import {
   capitalizeFirst,
   colorSwatch,
+  formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
   isStatusBarActive,
@@ -84,9 +85,10 @@ export class StatusBarManager implements vscode.Disposable {
     if (isActive) {
       // Workspace ID
       if (state.workspaceIdentifier) {
-        md.appendMarkdown(
-          `**Workspace ID:** \`${state.workspaceIdentifier}\`\n\n`
+        const displayId = formatWorkspaceIdForDisplay(
+          state.workspaceIdentifier
         );
+        md.appendMarkdown(`**Workspace ID:** ${displayId}\n\n`);
       }
 
       // Theme mode

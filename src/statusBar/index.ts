@@ -3,6 +3,7 @@ export { StatusBarManager } from './manager';
 export {
   capitalizeFirst,
   colorSwatch,
+  formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
   isStatusBarActive,

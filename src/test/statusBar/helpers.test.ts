@@ -2,6 +2,7 @@ import * as assert from 'assert';
 import {
   capitalizeFirst,
   colorSwatch,
+  formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
   isStatusBarActive,
@@ -149,5 +150,27 @@ suite('capitalizeFirst', () => {
   test('only capitalizes first character', () => {
     const result = capitalizeFirst('hELLO');
     assert.strictEqual(result, 'HELLO');
+  });
+});
+
+suite('formatWorkspaceIdForDisplay', () => {
+  test('wraps single folder in backticks inline', () => {
+    const result = formatWorkspaceIdForDisplay('my-project');
+    assert.strictEqual(result, '`my-project`');
+  });
+
+  test('formats two folders on separate lines', () => {
+    const result = formatWorkspaceIdForDisplay('backend\nfrontend');
+    assert.strictEqual(result, '<br>`backend`<br>`frontend`');
+  });
+
+  test('formats three or more folders on separate lines', () => {
+    const result = formatWorkspaceIdForDisplay('api\nweb\nshared\ntools');
+    assert.strictEqual(result, '<br>`api`<br>`web`<br>`shared`<br>`tools`');
+  });
+
+  test('handles empty string', () => {
+    const result = formatWorkspaceIdForDisplay('');
+    assert.strictEqual(result, '``');
   });
 });

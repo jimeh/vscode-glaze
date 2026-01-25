@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import type {
   ColorScheme,
+  MultiRootIdentifierSource,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -11,6 +12,7 @@ import type {
 
 export type {
   ColorScheme,
+  MultiRootIdentifierSource,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -87,6 +89,22 @@ const VALID_SOURCES: WorkspaceIdentifierSource[] = [
   'pathRelativeToCustom',
 ];
 
+function isValidSource(value: string): value is WorkspaceIdentifierSource {
+  return VALID_SOURCES.includes(value as WorkspaceIdentifierSource);
+}
+
+const VALID_MULTI_ROOT_SOURCES: MultiRootIdentifierSource[] = [
+  'workspaceFile',
+  'allFolders',
+  'firstFolder',
+];
+
+function isValidMultiRootSource(
+  value: string
+): value is MultiRootIdentifierSource {
+  return VALID_MULTI_ROOT_SOURCES.includes(value as MultiRootIdentifierSource);
+}
+
 /**
  * Reads the workspace identifier configuration from VSCode settings.
  */
@@ -101,15 +119,18 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
     'workspaceIdentifier.customBasePath',
     ''
   );
+  const multiRootSource = config.get<string>(
+    'workspaceIdentifier.multiRootSource',
+    'workspaceFile'
+  );
 
   return {
     source: isValidSource(source) ? source : 'pathRelativeToHome',
     customBasePath,
+    multiRootSource: isValidMultiRootSource(multiRootSource)
+      ? multiRootSource
+      : 'workspaceFile',
   };
-}
-
-function isValidSource(value: string): value is WorkspaceIdentifierSource {
-  return VALID_SOURCES.includes(value as WorkspaceIdentifierSource);
 }
 
 /**

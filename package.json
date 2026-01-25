@@ -105,23 +105,44 @@
           "description": "Determines what value is used to generate the workspace color.",
           "order": 2
         },
+        "patina.workspaceIdentifier.multiRootSource": {
+          "type": "string",
+          "enum": [
+            "workspaceFile",
+            "allFolders",
+            "firstFolder"
+          ],
+          "enumItemLabels": [
+            "Workspace File",
+            "All Folders",
+            "First Folder"
+          ],
+          "enumDescriptions": [
+            "Use the .code-workspace file path as the identifier base",
+            "Combine all workspace folder paths into the identifier",
+            "Use only the first workspace folder (backward compatible)"
+          ],
+          "default": "workspaceFile",
+          "markdownDescription": "Determines the identifier base for multi-root workspaces. Combined with `source` to format the final identifier. Only applies when a `.code-workspace` file is open.",
+          "order": 3
+        },
         "patina.elements.titleBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the window title bar.",
-          "order": 3
+          "order": 4
         },
         "patina.elements.activityBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the left side activity bar.",
-          "order": 4
+          "order": 5
         },
         "patina.elements.statusBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the bottom status bar.",
-          "order": 5
+          "order": 6
         },
         "patina.theme.blendFactor": {
           "type": "number",
@@ -129,13 +150,13 @@
           "maximum": 1,
           "default": 0.35,
           "description": "How much to blend tint colors toward the theme's background. 0 = full tint (no blending), 1 = theme colors only (no tinting). Only applies to known themes.",
-          "order": 6
+          "order": 7
         },
         "patina.workspaceIdentifier.customBasePath": {
           "type": "string",
           "default": "",
           "description": "Base path for 'pathRelativeToCustom' source. Supports ~ and $HOME for home directory. Falls back to absolute path if workspace is outside this path.",
-          "order": 7
+          "order": 8
         },
         "patina.tint.mode": {
           "type": "string",
@@ -156,19 +177,19 @@
           ],
           "default": "auto",
           "description": "Theme mode for color generation. Auto-detects from VSCode's current theme.",
-          "order": 8
+          "order": 9
         },
         "patina.tint.seed": {
           "type": "integer",
           "default": 0,
           "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces.",
-          "order": 9
+          "order": 10
         },
         "patina.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 10,
+          "order": 11,
           "additionalProperties": {
             "type": "object",
             "required": [
