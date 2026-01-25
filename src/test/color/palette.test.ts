@@ -419,7 +419,7 @@ suite('generatePalette theme blending', () => {
     );
   });
 
-  test('foreground colors are not blended with theme background', () => {
+  test('foreground colors are blended with theme foreground', () => {
     // Generate palette without theme colors
     const paletteNoColors = generatePalette({
       workspaceIdentifier: 'test-project',
@@ -427,8 +427,54 @@ suite('generatePalette theme blending', () => {
       themeContext: makeThemeContext('dark'),
     });
 
-    // Generate palette with theme colors and blending
+    // Generate palette with theme foreground colors and blending
     const paletteWithColors = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', {
+        colors: {
+          'editor.background': '#282C34',
+          'editor.foreground': '#ABB2BF',
+        },
+      }),
+      themeBlendFactor: 0.5,
+    });
+
+    // Foreground colors should be blended when theme foreground is available
+    assert.notStrictEqual(
+      paletteNoColors['titleBar.activeForeground'],
+      paletteWithColors['titleBar.activeForeground'],
+      'titleBar.activeForeground should be blended'
+    );
+    assert.notStrictEqual(
+      paletteNoColors['statusBar.foreground'],
+      paletteWithColors['statusBar.foreground'],
+      'statusBar.foreground should be blended'
+    );
+    assert.notStrictEqual(
+      paletteNoColors['activityBar.foreground'],
+      paletteWithColors['activityBar.foreground'],
+      'activityBar.foreground should be blended'
+    );
+
+    // Background colors should also be blended
+    assert.notStrictEqual(
+      paletteNoColors['titleBar.activeBackground'],
+      paletteWithColors['titleBar.activeBackground'],
+      'titleBar.activeBackground should be blended'
+    );
+  });
+
+  test('foreground not blended when theme has no foreground color', () => {
+    // Generate palette without theme colors
+    const paletteNoColors = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+    });
+
+    // Generate palette with only background theme colors (no foreground)
+    const paletteWithBgOnly = generatePalette({
       workspaceIdentifier: 'test-project',
       targets: ALL_TARGETS,
       themeContext: makeThemeContext('dark', {
@@ -437,33 +483,94 @@ suite('generatePalette theme blending', () => {
       themeBlendFactor: 0.5,
     });
 
-    // Foreground colors should remain unchanged regardless of colors
+    // Foreground colors should remain unchanged when no theme foreground
     assert.strictEqual(
       paletteNoColors['titleBar.activeForeground'],
-      paletteWithColors['titleBar.activeForeground'],
-      'titleBar.activeForeground should not be blended'
-    );
-    assert.strictEqual(
-      paletteNoColors['titleBar.inactiveForeground'],
-      paletteWithColors['titleBar.inactiveForeground'],
-      'titleBar.inactiveForeground should not be blended'
+      paletteWithBgOnly['titleBar.activeForeground'],
+      'titleBar.activeForeground should not be blended without theme foreground'
     );
     assert.strictEqual(
       paletteNoColors['statusBar.foreground'],
-      paletteWithColors['statusBar.foreground'],
-      'statusBar.foreground should not be blended'
-    );
-    assert.strictEqual(
-      paletteNoColors['activityBar.foreground'],
-      paletteWithColors['activityBar.foreground'],
-      'activityBar.foreground should not be blended'
+      paletteWithBgOnly['statusBar.foreground'],
+      'statusBar.foreground should not be blended without theme foreground'
     );
 
-    // Background colors should be blended (different from no-colors)
+    // Background colors should still be blended
     assert.notStrictEqual(
       paletteNoColors['titleBar.activeBackground'],
-      paletteWithColors['titleBar.activeBackground'],
+      paletteWithBgOnly['titleBar.activeBackground'],
       'titleBar.activeBackground should be blended'
+    );
+  });
+
+  test('at themeBlendFactor=1, colors match theme exactly', () => {
+    const themeBg = '#1E1E1E';
+    const themeFg = '#D4D4D4';
+
+    const palette = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', {
+        colors: {
+          'editor.background': themeBg,
+          'editor.foreground': themeFg,
+        },
+      }),
+      themeBlendFactor: 1.0,
+    });
+
+    // Background should match theme background exactly (case-insensitive)
+    assert.strictEqual(
+      palette['titleBar.activeBackground']!.toUpperCase(),
+      themeBg.toUpperCase(),
+      'At blend factor 1, background should match theme exactly'
+    );
+    assert.strictEqual(
+      palette['statusBar.background']!.toUpperCase(),
+      themeBg.toUpperCase(),
+      'At blend factor 1, statusBar background should match theme exactly'
+    );
+
+    // Foreground should match theme foreground exactly (case-insensitive)
+    assert.strictEqual(
+      palette['titleBar.activeForeground']!.toUpperCase(),
+      themeFg.toUpperCase(),
+      'At blend factor 1, foreground should match theme exactly'
+    );
+    assert.strictEqual(
+      palette['statusBar.foreground']!.toUpperCase(),
+      themeFg.toUpperCase(),
+      'At blend factor 1, statusBar foreground should match theme exactly'
+    );
+  });
+
+  test('at themeBlendFactor=0, colors use generated values', () => {
+    const themeBg = '#FF0000'; // Bright red - very different from generated
+    const themeFg = '#00FF00'; // Bright green - very different from generated
+
+    const paletteNoColors = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+    });
+
+    const paletteZeroFactor = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', {
+        colors: {
+          'editor.background': themeBg,
+          'editor.foreground': themeFg,
+        },
+      }),
+      themeBlendFactor: 0,
+    });
+
+    // With factor 0, should produce same results as no colors
+    assert.deepStrictEqual(
+      paletteNoColors,
+      paletteZeroFactor,
+      'Zero blend factor should produce same results as no colors'
     );
   });
 });

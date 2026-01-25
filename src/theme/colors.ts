@@ -185,27 +185,48 @@ export function getThemeInfo(themeName: string): ThemeInfo | undefined {
 const PALETTE_KEY_TO_COLOR_KEY: Partial<
   Record<keyof PatinaColorPalette, ThemeColorKey>
 > = {
+  // Background keys
   'titleBar.activeBackground': 'titleBar.activeBackground',
   'titleBar.inactiveBackground': 'titleBar.activeBackground',
   'statusBar.background': 'statusBar.background',
   'activityBar.background': 'activityBar.background',
+  // Foreground keys
+  'titleBar.activeForeground': 'titleBar.activeForeground',
+  'titleBar.inactiveForeground': 'titleBar.inactiveForeground',
+  'statusBar.foreground': 'statusBar.foreground',
+  'activityBar.foreground': 'activityBar.foreground',
 };
 
 /**
+ * Keys that represent foreground colors (for fallback to editor.foreground).
+ */
+const FOREGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
+  'titleBar.activeForeground',
+  'titleBar.inactiveForeground',
+  'statusBar.foreground',
+  'activityBar.foreground',
+]);
+
+/**
  * Gets the appropriate color for a specific palette key.
- * Falls back to editor background if the element-specific color is not defined.
+ * Falls back to editor.background for background keys, editor.foreground for
+ * foreground keys. Returns undefined if no suitable color is found.
  *
  * @param key - The palette key to get color for
  * @param colors - The theme colors
- * @returns The hex color string for the appropriate element
+ * @returns The hex color string for the appropriate element, or undefined
  */
 export function getColorForKey(
   key: keyof PatinaColorPalette,
   colors: ThemeColors
-): string {
+): string | undefined {
   const colorKey = PALETTE_KEY_TO_COLOR_KEY[key];
   if (colorKey && colors[colorKey]) {
     return colors[colorKey]!;
+  }
+  // Fallback based on key type
+  if (FOREGROUND_KEYS.has(key)) {
+    return colors['editor.foreground'];
   }
   return colors['editor.background'];
 }

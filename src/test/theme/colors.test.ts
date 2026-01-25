@@ -330,13 +330,22 @@ suite('getThemeInfo with custom config', () => {
 suite('getColorForKey', () => {
   const fullColors: ThemeColors = {
     'editor.background': '#282C34',
+    'editor.foreground': '#ABB2BF',
     'titleBar.activeBackground': '#21252B',
+    'titleBar.activeForeground': '#CCCCCC',
     'statusBar.background': '#3E4451',
+    'statusBar.foreground': '#FFFFFF',
     'activityBar.background': '#2C313A',
+    'activityBar.foreground': '#EEEEEE',
   };
 
   const editorOnlyColors: ThemeColors = {
     'editor.background': '#282C34',
+  };
+
+  const bgOnlyColors: ThemeColors = {
+    'editor.background': '#282C34',
+    'editor.foreground': '#ABB2BF',
   };
 
   test('returns titleBar background for titleBar keys', () => {
@@ -364,15 +373,43 @@ suite('getColorForKey', () => {
     );
   });
 
-  test('returns editor background for foreground keys', () => {
-    // Foreground keys are not in the map, so they return editor
+  test('returns foreground color for foreground keys', () => {
+    // Foreground keys return their specific colors when available
     assert.strictEqual(
       getColorForKey('titleBar.activeForeground', fullColors),
-      '#282C34'
+      '#CCCCCC'
     );
     assert.strictEqual(
       getColorForKey('statusBar.foreground', fullColors),
-      '#282C34'
+      '#FFFFFF'
+    );
+    assert.strictEqual(
+      getColorForKey('activityBar.foreground', fullColors),
+      '#EEEEEE'
+    );
+  });
+
+  test('foreground keys fall back to editor.foreground', () => {
+    // When specific foreground not defined, falls back to editor.foreground
+    assert.strictEqual(
+      getColorForKey('titleBar.activeForeground', bgOnlyColors),
+      '#ABB2BF'
+    );
+    assert.strictEqual(
+      getColorForKey('statusBar.foreground', bgOnlyColors),
+      '#ABB2BF'
+    );
+  });
+
+  test('foreground keys return undefined when no foreground defined', () => {
+    // When no editor.foreground defined, returns undefined
+    assert.strictEqual(
+      getColorForKey('titleBar.activeForeground', editorOnlyColors),
+      undefined
+    );
+    assert.strictEqual(
+      getColorForKey('statusBar.foreground', editorOnlyColors),
+      undefined
     );
   });
 
