@@ -57,7 +57,7 @@ suite('StatusBarManager', () => {
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
-        tintColor: '#ff0000',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
       };
 
       manager.update(state);
@@ -81,7 +81,7 @@ suite('StatusBarManager', () => {
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
-        tintColor: '#ff0000',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
       };
 
       manager.update(state);
@@ -103,14 +103,14 @@ suite('StatusBarManager', () => {
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
-        tintColor: '#ff0000',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
       };
 
       manager.update(state);
       assert.ok(true, 'update completed without error');
     });
 
-    test('handles undefined tintColor', async () => {
+    test('handles undefined tintColors', async () => {
       const config = vscode.workspace.getConfiguration('patina');
       await config.update(
         'statusBar.enabled',
@@ -125,7 +125,7 @@ suite('StatusBarManager', () => {
         themeType: 'light',
         themeAutoDetected: false,
         colorScheme: 'vibrant',
-        tintColor: undefined,
+        tintColors: undefined,
       };
 
       manager.update(state);
@@ -147,7 +147,7 @@ suite('StatusBarManager', () => {
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'muted',
-        tintColor: '#00ff00',
+        tintColors: { baseTint: '#00ff00', titleBar: '#00ff00' },
       };
 
       manager.update(state);
@@ -224,7 +224,7 @@ suite('StatusBarManager', () => {
           themeType,
           themeAutoDetected: true,
           colorScheme: 'pastel',
-          tintColor: '#123456',
+          tintColors: { baseTint: '#123456', titleBar: '#123456' },
         };
 
         manager.update(state);
@@ -240,6 +240,7 @@ suite('StatusBarManager', () => {
       | 'muted'
       | 'tinted'
       | 'duotone'
+      | 'undercurrent'
       | 'analogous'
       | 'neon'
     > = [
@@ -248,6 +249,7 @@ suite('StatusBarManager', () => {
       'muted',
       'tinted',
       'duotone',
+      'undercurrent',
       'analogous',
       'neon',
     ];
@@ -268,7 +270,7 @@ suite('StatusBarManager', () => {
           themeType: 'dark',
           themeAutoDetected: false,
           colorScheme,
-          tintColor: '#abcdef',
+          tintColors: { baseTint: '#abcdef', titleBar: '#abcdef' },
         };
 
         manager.update(state);

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { generatePalette } from '../../color';
+import { generatePalette, calculateBaseTint } from '../../color';
 import { hexToOklch } from '../../color/convert';
 import type { ColorScheme, TintTarget } from '../../config';
 import type { ThemeType, ThemeContext, ThemeColors } from '../../theme';
@@ -666,6 +666,7 @@ suite('generatePalette seed', () => {
       'muted',
       'tinted',
       'duotone',
+      'undercurrent',
       'analogous',
       'neon',
     ];
@@ -767,6 +768,7 @@ suite('generatePalette color schemes', () => {
     'muted',
     'tinted',
     'duotone',
+    'undercurrent',
     'analogous',
     'neon',
   ];
@@ -1050,6 +1052,119 @@ suite('generatePalette color schemes', () => {
       muted['titleBar.activeBackground'],
       tinted['titleBar.activeBackground'],
       'tinted should differ from muted'
+    );
+  });
+});
+
+suite('calculateBaseTint', () => {
+  test('returns valid hex color', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    const result = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'dark',
+    });
+    assert.match(result, hexPattern);
+  });
+
+  test('same workspace produces same color', () => {
+    const c1 = calculateBaseTint({
+      workspaceIdentifier: 'my-project',
+      themeType: 'dark',
+    });
+    const c2 = calculateBaseTint({
+      workspaceIdentifier: 'my-project',
+      themeType: 'dark',
+    });
+    assert.strictEqual(c1, c2);
+  });
+
+  test('different workspaces produce different colors', () => {
+    const c1 = calculateBaseTint({
+      workspaceIdentifier: 'project-a',
+      themeType: 'dark',
+    });
+    const c2 = calculateBaseTint({
+      workspaceIdentifier: 'project-b',
+      themeType: 'dark',
+    });
+    assert.notStrictEqual(c1, c2);
+  });
+
+  test('light theme produces lighter colors than dark', () => {
+    const darkColor = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'dark',
+    });
+    const lightColor = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'light',
+    });
+    const darkLum = hexToLuminance(darkColor);
+    const lightLum = hexToLuminance(lightColor);
+    assert.ok(
+      lightLum > darkLum,
+      `Light (${lightLum}) should be brighter than dark (${darkLum})`
+    );
+  });
+
+  test('seed changes the resulting color', () => {
+    const c1 = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'dark',
+      seed: 0,
+    });
+    const c2 = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'dark',
+      seed: 42,
+    });
+    assert.notStrictEqual(c1, c2);
+  });
+
+  test('same seed produces same color', () => {
+    const c1 = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'dark',
+      seed: 123,
+    });
+    const c2 = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'dark',
+      seed: 123,
+    });
+    assert.strictEqual(c1, c2);
+  });
+
+  test('works with all theme types', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    const themeTypes: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
+    for (const themeType of themeTypes) {
+      const result = calculateBaseTint({
+        workspaceIdentifier: 'test-project',
+        themeType,
+      });
+      assert.match(
+        result,
+        hexPattern,
+        `Invalid hex for ${themeType}: ${result}`
+      );
+    }
+  });
+
+  test('hcLight produces lighter colors than hcDark', () => {
+    const hcDarkColor = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'hcDark',
+    });
+    const hcLightColor = calculateBaseTint({
+      workspaceIdentifier: 'test-project',
+      themeType: 'hcLight',
+    });
+    const hcDarkLum = hexToLuminance(hcDarkColor);
+    const hcLightLum = hexToLuminance(hcLightColor);
+    assert.ok(
+      hcLightLum > hcDarkLum,
+      `hcLight (${hcLightLum}) should be brighter than hcDark (${hcDarkLum})`
     );
   });
 });

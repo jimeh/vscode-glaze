@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { getStatusBarEnabled } from '../config';
 import {
   capitalizeFirst,
-  colorSwatch,
+  clickableColorSwatch,
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
@@ -92,15 +92,37 @@ export class StatusBarManager implements vscode.Disposable {
       }
 
       // Theme mode
-      const { themeType, themeAutoDetected, colorScheme, tintColor } = state;
+      const { themeType, themeAutoDetected, colorScheme, tintColors } = state;
       const themeLabel = getThemeModeLabel(themeType, themeAutoDetected);
       const schemeLabel = capitalizeFirst(colorScheme);
       md.appendMarkdown(`**Theme:** ${themeLabel} · ${schemeLabel}\n\n`);
 
-      // Tint color with preview swatch
-      if (tintColor) {
-        const swatch = colorSwatch(tintColor);
-        md.appendMarkdown(`**Tint:** ${swatch} \`${tintColor}\``);
+      // Colors section with clickable swatches
+      if (tintColors) {
+        md.appendMarkdown('---\n\n');
+        md.appendMarkdown('**Colors**\n\n');
+
+        // Base tint (always shown)
+        md.appendMarkdown(
+          `Base: ${clickableColorSwatch(tintColors.baseTint)}\n\n`
+        );
+
+        // Per-element colors (only if enabled)
+        if (tintColors.titleBar) {
+          md.appendMarkdown(
+            `Title Bar: ${clickableColorSwatch(tintColors.titleBar)}\n\n`
+          );
+        }
+        if (tintColors.activityBar) {
+          md.appendMarkdown(
+            `Activity Bar: ${clickableColorSwatch(tintColors.activityBar)}\n\n`
+          );
+        }
+        if (tintColors.statusBar) {
+          md.appendMarkdown(
+            `Status Bar: ${clickableColorSwatch(tintColors.statusBar)}\n\n`
+          );
+        }
       }
     }
 

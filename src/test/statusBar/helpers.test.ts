@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import {
   capitalizeFirst,
+  clickableColorSwatch,
   colorSwatch,
   formatWorkspaceIdForDisplay,
   getStatusText,
@@ -123,6 +124,29 @@ suite('colorSwatch', () => {
     const upper = colorSwatch('#ABC123');
     assert.ok(lower.includes('#abc123'));
     assert.ok(upper.includes('#ABC123'));
+  });
+});
+
+suite('clickableColorSwatch', () => {
+  test('generates swatch with copy icon command link', () => {
+    const result = clickableColorSwatch('#ff0000');
+    assert.ok(result.includes('background-color:#ff0000'));
+    assert.ok(result.includes('`#ff0000`'));
+    assert.ok(result.includes('[$(copy)]'));
+    assert.ok(result.includes('command:patina.copyColor'));
+  });
+
+  test('includes encoded hex in command args', () => {
+    const result = clickableColorSwatch('#AABBCC');
+    const expectedArgs = encodeURIComponent(JSON.stringify('#AABBCC'));
+    assert.ok(result.includes(expectedArgs));
+  });
+
+  test('preserves hex format in display', () => {
+    const lower = clickableColorSwatch('#abc123');
+    const upper = clickableColorSwatch('#ABC123');
+    assert.ok(lower.includes('`#abc123`'));
+    assert.ok(upper.includes('`#ABC123`'));
   });
 });
 
