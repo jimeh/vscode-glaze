@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
+  getColorScheme,
   getThemeConfig,
   getWorkspaceIdentifierConfig,
   getWorkspaceEnabled,
@@ -688,5 +689,89 @@ suite('getThemeConfig', () => {
 
     const result = getThemeConfig();
     assert.strictEqual(result.blendFactor, 1);
+  });
+});
+
+suite('getColorScheme', () => {
+  let originalColorScheme: string | undefined;
+
+  suiteSetup(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    originalColorScheme = config.get<string>('tint.colorScheme');
+  });
+
+  suiteTeardown(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      originalColorScheme,
+      vscode.ConfigurationTarget.Global
+    );
+  });
+
+  test('defaults to pastel when not configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'pastel');
+  });
+
+  test('returns pastel when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      'pastel',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'pastel');
+  });
+
+  test('returns vibrant when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      'vibrant',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'vibrant');
+  });
+
+  test('returns muted when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      'muted',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'muted');
+  });
+
+  test('returns monochrome when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      'monochrome',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'monochrome');
+  });
+
+  test('falls back to pastel for invalid scheme', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorScheme',
+      'invalid',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorScheme();
+    assert.strictEqual(result, 'pastel');
   });
 });

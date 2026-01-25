@@ -26,6 +26,12 @@ suite('getThemeTypeFromColorThemeKind', () => {
     );
     assert.strictEqual(result, 'hcLight');
   });
+
+  test('defaults to dark for unknown ColorThemeKind', () => {
+    // Pass an unknown value that doesn't match any enum case
+    const result = getThemeTypeFromColorThemeKind(99 as vscode.ColorThemeKind);
+    assert.strictEqual(result, 'dark');
+  });
 });
 
 suite('getThemeContext', () => {
