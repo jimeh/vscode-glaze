@@ -2,6 +2,25 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 
 /**
+ * Polls until a condition is met or timeout is reached.
+ */
+async function pollUntil(
+  condition: () => boolean,
+  errorMessage: string,
+  timeoutMs = 2000,
+  intervalMs = 50
+): Promise<void> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    if (condition()) {
+      return;
+    }
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+  }
+  throw new Error(errorMessage);
+}
+
+/**
  * Waits for a configuration change to propagate, with timeout.
  * Uses onDidChangeConfiguration event instead of fixed delay.
  */
@@ -26,45 +45,100 @@ async function waitForConfigChange(
 }
 
 /**
+ * Gets current colorCustomizations from config.
+ */
+function getColorCustomizations(): Record<string, string> | undefined {
+  const config = vscode.workspace.getConfiguration();
+  return config.get<Record<string, string>>('workbench.colorCustomizations');
+}
+
+/**
+ * Checks if a key is a Patina-managed color key.
+ */
+function isPatinaKey(key: string): boolean {
+  return (
+    key.startsWith('titleBar.') ||
+    key.startsWith('statusBar.') ||
+    key.startsWith('activityBar.')
+  );
+}
+
+/**
  * Waits for colorCustomizations to be set, polling with timeout.
  */
 async function waitForColorCustomizations(
   timeoutMs = 2000,
   intervalMs = 50
 ): Promise<Record<string, string>> {
-  const start = Date.now();
-  while (Date.now() - start < timeoutMs) {
-    const config = vscode.workspace.getConfiguration();
-    const colors = config.get<Record<string, string>>(
-      'workbench.colorCustomizations'
-    );
-    if (colors && Object.keys(colors).length > 0) {
-      return colors;
-    }
-    await new Promise((resolve) => setTimeout(resolve, intervalMs));
-  }
-  throw new Error('Timeout waiting for colorCustomizations');
+  let colors: Record<string, string> | undefined;
+  await pollUntil(
+    () => {
+      colors = getColorCustomizations();
+      return colors !== undefined && Object.keys(colors).length > 0;
+    },
+    'Timeout waiting for colorCustomizations',
+    timeoutMs,
+    intervalMs
+  );
+  return colors!;
 }
 
 /**
- * Waits for patina.workspace.enabled to be set to the expected value, polling with timeout.
- * This is needed because applyTint() sets colors first, then sets workspace.enabled async.
+ * Waits for patina.workspace.enabled to be set to the expected value.
+ * This is needed because applyTint() sets colors first, then workspace.enabled.
  */
 async function waitForWorkspaceEnabled(
   expected: boolean | undefined,
   timeoutMs = 2000,
   intervalMs = 50
 ): Promise<void> {
-  const start = Date.now();
-  while (Date.now() - start < timeoutMs) {
-    const config = vscode.workspace.getConfiguration('patina');
-    const inspection = config.inspect<boolean>('workspace.enabled');
-    if (inspection?.workspaceValue === expected) {
-      return;
-    }
-    await new Promise((resolve) => setTimeout(resolve, intervalMs));
-  }
-  throw new Error(`Timeout waiting for workspace.enabled to be ${expected}`);
+  await pollUntil(
+    () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      const inspection = config.inspect<boolean>('workspace.enabled');
+      return inspection?.workspaceValue === expected;
+    },
+    `Timeout waiting for workspace.enabled to be ${expected}`,
+    timeoutMs,
+    intervalMs
+  );
+}
+
+/**
+ * Waits for colorCustomizations to be cleared (empty or undefined).
+ */
+async function waitForColorsCleared(
+  timeoutMs = 3000,
+  intervalMs = 50
+): Promise<void> {
+  await pollUntil(
+    () => {
+      const colors = getColorCustomizations();
+      return !colors || Object.keys(colors).length === 0;
+    },
+    'Timeout waiting for colorCustomizations to be cleared',
+    timeoutMs,
+    intervalMs
+  );
+}
+
+/**
+ * Waits for colorCustomizations to contain only non-Patina keys.
+ */
+async function waitForPatinaColorsCleared(
+  timeoutMs = 3000,
+  intervalMs = 50
+): Promise<void> {
+  await pollUntil(
+    () => {
+      const colors = getColorCustomizations();
+      if (!colors) return true;
+      return !Object.keys(colors).some(isPatinaKey);
+    },
+    'Timeout waiting for Patina colors to be cleared',
+    timeoutMs,
+    intervalMs
+  );
 }
 
 suite('Extension Test Suite', () => {
@@ -490,6 +564,450 @@ suite('Extension Test Suite', () => {
         inspection?.workspaceValue,
         false,
         'workspace.enabled should be false'
+      );
+    });
+  });
+
+  suite('Workspace opt-out flow', () => {
+    let originalEnabled: boolean | undefined;
+    let originalWorkspaceEnabled: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const inspection = patinaConfig.inspect<boolean>('workspace.enabled');
+      originalWorkspaceEnabled = inspection?.workspaceValue;
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'workspace.enabled',
+        originalWorkspaceEnabled,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('removes colors when workspace.enabled set to false', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Enable globally first
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      await waitForColorCustomizations();
+      await waitForWorkspaceEnabled(true);
+
+      // Set workspace.enabled to false via config (simulates opt-out)
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'workspace.enabled',
+        false,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Wait for colors to be cleared
+      await waitForPatinaColorsCleared();
+
+      // Verify workspace.enabled flag is preserved as false
+      const inspection = patinaConfig.inspect<boolean>('workspace.enabled');
+      assert.strictEqual(
+        inspection?.workspaceValue,
+        false,
+        'workspace.enabled should remain false'
+      );
+    });
+
+    test('re-applies colors when workspace.enabled set back to true', async function () {
+      this.timeout(8000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Reset state: disable globally first to ensure clean start
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'workspace.enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Clear any existing colors
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Now enable globally - this triggers applyTint via config change
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      await waitForColorCustomizations();
+      await waitForWorkspaceEnabled(true);
+
+      // Opt out workspace
+      await patinaConfig.update(
+        'workspace.enabled',
+        false,
+        vscode.ConfigurationTarget.Workspace
+      );
+      await waitForPatinaColorsCleared();
+
+      // Re-enable workspace - wait for config change to trigger re-apply
+      const changePromise = waitForConfigChange(
+        'workbench.colorCustomizations',
+        5000
+      );
+      await patinaConfig.update(
+        'workspace.enabled',
+        true,
+        vscode.ConfigurationTarget.Workspace
+      );
+      await changePromise;
+
+      // Verify colors were re-applied
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.ok(colors, 'colorCustomizations should be set');
+      assert.ok(
+        'titleBar.activeBackground' in colors,
+        'should have titleBar.activeBackground'
+      );
+    });
+  });
+
+  suite('patina.enabled config change listener', () => {
+    let originalEnabled: boolean | undefined;
+    let originalWorkspaceEnabled: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const inspection = patinaConfig.inspect<boolean>('workspace.enabled');
+      originalWorkspaceEnabled = inspection?.workspaceValue;
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'workspace.enabled',
+        originalWorkspaceEnabled,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('removes tint when enabled changed to false via config', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Enable via command first
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      await waitForColorCustomizations();
+      await waitForWorkspaceEnabled(true);
+
+      // Disable via config change (not command)
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Wait for colors to be cleared
+      await waitForColorsCleared();
+
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.ok(
+        colors === undefined || Object.keys(colors).length === 0,
+        'colorCustomizations should be cleared'
+      );
+    });
+
+    test('re-applies tint when enabled changed to true via config', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Start disabled
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Clear any existing workspace.enabled flag
+      await patinaConfig.update(
+        'workspace.enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Clear any existing colors
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Enable via config change
+      await patinaConfig.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Wait for colors to be applied
+      const colors = await waitForColorCustomizations();
+      assert.ok(colors, 'colorCustomizations should be set');
+      assert.ok(
+        'titleBar.activeBackground' in colors,
+        'should have titleBar.activeBackground'
+      );
+    });
+  });
+
+  suite('Element config changes', () => {
+    let originalEnabled: boolean | undefined;
+    let originalStatusBar: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+      originalStatusBar = patinaConfig.get<boolean>('elements.statusBar');
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'elements.statusBar',
+        originalStatusBar,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('statusBar keys appear when elements.statusBar enabled', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Start with statusBar disabled
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'elements.statusBar',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Enable globally
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      let colors = await waitForColorCustomizations();
+
+      // Verify no statusBar keys
+      assert.ok(
+        !('statusBar.background' in colors),
+        'should not have statusBar.background initially'
+      );
+
+      // Enable statusBar element
+      const changePromise = waitForConfigChange(
+        'workbench.colorCustomizations'
+      );
+      await patinaConfig.update(
+        'elements.statusBar',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+      await changePromise;
+
+      // Get fresh colors
+      const config = vscode.workspace.getConfiguration();
+      colors =
+        config.get<Record<string, string>>('workbench.colorCustomizations') ??
+        {};
+
+      assert.ok(
+        'statusBar.background' in colors,
+        'should have statusBar.background after enabling'
+      );
+      assert.ok(
+        'statusBar.foreground' in colors,
+        'should have statusBar.foreground after enabling'
+      );
+    });
+  });
+
+  suite('Tint seed changes', () => {
+    let originalEnabled: boolean | undefined;
+    let originalSeed: number | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+      originalSeed = patinaConfig.get<number>('tint.seed');
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'tint.seed',
+        originalSeed,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('colors change when tint.seed changes', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Set seed to 0 and enable
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'tint.seed',
+        0,
+        vscode.ConfigurationTarget.Global
+      );
+      await vscode.commands.executeCommand('patina.enableGlobally');
+
+      const initialColors = await waitForColorCustomizations();
+      const initialTitleBar = initialColors['titleBar.activeBackground'];
+
+      // Change seed
+      const changePromise = waitForConfigChange(
+        'workbench.colorCustomizations'
+      );
+      await patinaConfig.update(
+        'tint.seed',
+        42,
+        vscode.ConfigurationTarget.Global
+      );
+      await changePromise;
+
+      // Get fresh colors
+      const config = vscode.workspace.getConfiguration();
+      const newColors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+
+      assert.ok(newColors, 'colorCustomizations should still be set');
+      assert.notStrictEqual(
+        newColors['titleBar.activeBackground'],
+        initialTitleBar,
+        'titleBar color should change when seed changes'
       );
     });
   });
