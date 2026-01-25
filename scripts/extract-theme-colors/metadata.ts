@@ -25,7 +25,7 @@ export interface ExtensionData {
   extensionId: string;
   extensionName: string;
   publisherName: string;
-  displayName: string;
+  displayName: string | null;
   version: string;
   extractedAt: string;
   installCount: number;
@@ -158,7 +158,8 @@ export function readExtensionsMetadata(): ExtensionsMetadata {
           // Basic validation
           if (
             typeof data.version === 'string' &&
-            typeof data.displayName === 'string' &&
+            (typeof data.displayName === 'string' ||
+              data.displayName === null) &&
             Array.isArray(data.themes)
           ) {
             result.extensions[extensionId] = data;

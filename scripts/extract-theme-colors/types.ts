@@ -61,7 +61,7 @@ export interface ExtractedTheme {
 export interface MarketplaceExtension {
   extensionId: string;
   extensionName: string;
-  displayName: string;
+  displayName: string | null;
   publisherName: string;
   version: string;
   installCount: number;
@@ -88,7 +88,7 @@ export interface ExtensionMetadata {
   extensionId: string;
   extensionName: string;
   publisherName: string;
-  displayName: string;
+  displayName: string | null;
   version: string;
   extractedAt: string;
   installCount: number;
