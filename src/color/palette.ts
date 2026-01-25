@@ -1,6 +1,7 @@
 import type { OKLCH } from './types';
 import type { ColorScheme, TintTarget } from '../config';
 import type { ThemeContext, PaletteKey, PatinaColorPalette } from '../theme';
+import type { ThemeType } from '../theme';
 import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
@@ -121,4 +122,38 @@ export function generatePalette(
   }
 
   return palette;
+}
+
+/**
+ * Options for calculating the base tint color.
+ */
+export interface CalculateBaseTintOptions {
+  /** A string identifying the workspace */
+  workspaceIdentifier: string;
+  /** The theme type (light/dark/hcLight/hcDark) */
+  themeType: ThemeType;
+  /** Seed value to shift the base hue calculation, default 0 */
+  seed?: number;
+}
+
+/**
+ * Calculates the base tint color for a workspace before per-element tweaks.
+ * Uses a neutral lightness/chroma that represents the "source" hue.
+ *
+ * @param options - Base tint calculation options
+ * @returns Hex color string representing the base tint
+ */
+export function calculateBaseTint(options: CalculateBaseTintOptions): string {
+  const { workspaceIdentifier, themeType, seed = 0 } = options;
+
+  const workspaceHash = hashString(workspaceIdentifier);
+  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
+  const hue = ((workspaceHash ^ seedHash) >>> 0) % 360;
+
+  // Use neutral L/C values for display (no scheme-specific tweaks)
+  const lightness =
+    themeType === 'light' || themeType === 'hcLight' ? 0.65 : 0.5;
+  const chroma = maxChroma(lightness, hue) * 0.7;
+
+  return oklchToHex({ l: lightness, c: chroma, h: hue });
 }

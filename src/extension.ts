@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { generatePalette } from './color';
+import { generatePalette, calculateBaseTint } from './color';
 import { getWorkspaceIdentifier } from './workspace';
 import {
   getColorScheme,
@@ -16,7 +16,7 @@ import {
   removePatinaColors,
   ColorCustomizations,
 } from './settings';
-import { StatusBarManager, StatusBarState } from './statusBar';
+import { StatusBarManager, StatusBarState, TintColors } from './statusBar';
 import { PalettePreviewPanel } from './preview';
 
 let statusBar: StatusBarManager;
@@ -73,6 +73,10 @@ export async function activate(context: vscode.ExtensionContext) {
   debouncedApplyTint();
 
   context.subscriptions.push(
+    vscode.commands.registerCommand('patina.copyColor', (hex: string) => {
+      vscode.env.clipboard.writeText(hex);
+      vscode.window.showInformationMessage(`Copied ${hex} to clipboard`);
+    }),
     vscode.commands.registerCommand('patina.enableGlobally', async () => {
       const config = vscode.workspace.getConfiguration('patina');
       await config.update('enabled', true, vscode.ConfigurationTarget.Global);
@@ -187,8 +191,20 @@ async function applyTint(): Promise<void> {
     await setWorkspaceEnabled(true);
   }
 
+  // Build tint colors for status bar display
+  const tintColors: TintColors = {
+    baseTint: calculateBaseTint({
+      workspaceIdentifier: identifier,
+      themeType: themeContext.type,
+      seed: tintConfig.seed,
+    }),
+    titleBar: colors['titleBar.activeBackground'],
+    activityBar: colors['activityBar.background'],
+    statusBar: colors['statusBar.background'],
+  };
+
   // Update status bar with current state
-  updateStatusBar(identifier, colors['titleBar.activeBackground']);
+  updateStatusBar(identifier, tintColors);
 }
 
 async function removeTint(): Promise<void> {
@@ -234,7 +250,7 @@ async function removeTintPreservingFlag(): Promise<void> {
 
 function updateStatusBar(
   workspaceIdentifier: string | undefined,
-  tintColor: string | undefined
+  tintColors: TintColors | undefined
 ): void {
   const tintConfig = getTintConfig();
   const themeContext = getThemeContext(tintConfig.mode);
@@ -246,7 +262,7 @@ function updateStatusBar(
     themeType: themeContext.type,
     themeAutoDetected: themeContext.isAutoDetected,
     colorScheme: getColorScheme(),
-    tintColor,
+    tintColors,
   };
 
   statusBar.update(state);

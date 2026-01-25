@@ -1,5 +1,6 @@
-export { generatePalette } from './palette';
+export { generatePalette, calculateBaseTint } from './palette';
 export type {
+  CalculateBaseTintOptions,
   GeneratePaletteOptions,
   PartialPatinaColorPalette,
 } from './palette';
