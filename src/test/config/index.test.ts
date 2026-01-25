@@ -2,6 +2,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
   getColorScheme,
+  getStatusBarEnabled,
   getThemeConfig,
   getWorkspaceIdentifierConfig,
   getWorkspaceEnabled,
@@ -773,5 +774,56 @@ suite('getColorScheme', () => {
     );
     const result = getColorScheme();
     assert.strictEqual(result, 'pastel');
+  });
+});
+
+suite('getStatusBarEnabled', () => {
+  let originalValue: boolean | undefined;
+
+  suiteSetup(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    originalValue = config.get<boolean>('statusBar.enabled');
+  });
+
+  suiteTeardown(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'statusBar.enabled',
+      originalValue,
+      vscode.ConfigurationTarget.Global
+    );
+  });
+
+  test('returns false by default', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'statusBar.enabled',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getStatusBarEnabled();
+    assert.strictEqual(result, false);
+  });
+
+  test('returns true when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'statusBar.enabled',
+      true,
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getStatusBarEnabled();
+    assert.strictEqual(result, true);
+  });
+
+  test('returns false when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'statusBar.enabled',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getStatusBarEnabled();
+    assert.strictEqual(result, false);
   });
 });

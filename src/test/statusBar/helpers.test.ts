@@ -1,0 +1,153 @@
+import * as assert from 'assert';
+import {
+  capitalizeFirst,
+  colorSwatch,
+  getStatusText,
+  getThemeModeLabel,
+  isStatusBarActive,
+} from '../../statusBar';
+
+suite('isStatusBarActive', () => {
+  test('returns false when globalEnabled is false', () => {
+    const result = isStatusBarActive(false, undefined);
+    assert.strictEqual(result, false);
+  });
+
+  test('returns false when workspaceEnabled is false', () => {
+    const result = isStatusBarActive(true, false);
+    assert.strictEqual(result, false);
+  });
+
+  test('returns true when globalEnabled and workspaceEnabled undefined', () => {
+    const result = isStatusBarActive(true, undefined);
+    assert.strictEqual(result, true);
+  });
+
+  test('returns true when both globalEnabled and workspaceEnabled true', () => {
+    const result = isStatusBarActive(true, true);
+    assert.strictEqual(result, true);
+  });
+
+  test('returns false when globalEnabled false and workspaceEnabled true', () => {
+    const result = isStatusBarActive(false, true);
+    assert.strictEqual(result, false);
+  });
+});
+
+suite('getStatusText', () => {
+  test('returns "Disabled globally" when globalEnabled is false', () => {
+    const result = getStatusText(false, undefined);
+    assert.strictEqual(result, 'Disabled globally');
+  });
+
+  test('returns "Disabled for this workspace" when workspaceEnabled is false', () => {
+    const result = getStatusText(true, false);
+    assert.strictEqual(result, 'Disabled for this workspace');
+  });
+
+  test('returns "Enabled (Global + Workspace)" when workspaceEnabled is true', () => {
+    const result = getStatusText(true, true);
+    assert.strictEqual(result, 'Enabled (Global + Workspace)');
+  });
+
+  test('returns "Enabled globally" when workspaceEnabled is undefined', () => {
+    const result = getStatusText(true, undefined);
+    assert.strictEqual(result, 'Enabled globally');
+  });
+});
+
+suite('getThemeModeLabel', () => {
+  test('returns "Auto (Dark)" for dark theme with auto-detection', () => {
+    const result = getThemeModeLabel('dark', true);
+    assert.strictEqual(result, 'Auto (Dark)');
+  });
+
+  test('returns "Auto (Light)" for light theme with auto-detection', () => {
+    const result = getThemeModeLabel('light', true);
+    assert.strictEqual(result, 'Auto (Light)');
+  });
+
+  test('returns "Dark" for dark theme without auto-detection', () => {
+    const result = getThemeModeLabel('dark', false);
+    assert.strictEqual(result, 'Dark');
+  });
+
+  test('returns "Light" for light theme without auto-detection', () => {
+    const result = getThemeModeLabel('light', false);
+    assert.strictEqual(result, 'Light');
+  });
+
+  test('returns "Auto (HcDark)" for hcDark theme with auto-detection', () => {
+    const result = getThemeModeLabel('hcDark', true);
+    assert.strictEqual(result, 'Auto (HcDark)');
+  });
+
+  test('returns "HcDark" for hcDark theme without auto-detection', () => {
+    const result = getThemeModeLabel('hcDark', false);
+    assert.strictEqual(result, 'HcDark');
+  });
+
+  test('returns "Auto (HcLight)" for hcLight theme with auto-detection', () => {
+    const result = getThemeModeLabel('hcLight', true);
+    assert.strictEqual(result, 'Auto (HcLight)');
+  });
+
+  test('returns "HcLight" for hcLight theme without auto-detection', () => {
+    const result = getThemeModeLabel('hcLight', false);
+    assert.strictEqual(result, 'HcLight');
+  });
+});
+
+suite('colorSwatch', () => {
+  test('generates HTML span with background color', () => {
+    const result = colorSwatch('#ff0000');
+    assert.strictEqual(
+      result,
+      '<span style="background-color:#ff0000;border-radius:2px;">' +
+        '&nbsp;&nbsp;&nbsp;</span>'
+    );
+  });
+
+  test('handles uppercase hex colors', () => {
+    const result = colorSwatch('#AABBCC');
+    assert.strictEqual(
+      result,
+      '<span style="background-color:#AABBCC;border-radius:2px;">' +
+        '&nbsp;&nbsp;&nbsp;</span>'
+    );
+  });
+
+  test('preserves hex format exactly as provided', () => {
+    const lower = colorSwatch('#abc123');
+    const upper = colorSwatch('#ABC123');
+    assert.ok(lower.includes('#abc123'));
+    assert.ok(upper.includes('#ABC123'));
+  });
+});
+
+suite('capitalizeFirst', () => {
+  test('capitalizes normal string', () => {
+    const result = capitalizeFirst('hello');
+    assert.strictEqual(result, 'Hello');
+  });
+
+  test('returns empty string for empty input', () => {
+    const result = capitalizeFirst('');
+    assert.strictEqual(result, '');
+  });
+
+  test('handles single character', () => {
+    const result = capitalizeFirst('a');
+    assert.strictEqual(result, 'A');
+  });
+
+  test('leaves already capitalized string unchanged', () => {
+    const result = capitalizeFirst('Hello');
+    assert.strictEqual(result, 'Hello');
+  });
+
+  test('only capitalizes first character', () => {
+    const result = capitalizeFirst('hELLO');
+    assert.strictEqual(result, 'HELLO');
+  });
+});

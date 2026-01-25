@@ -234,6 +234,12 @@
             "additionalProperties": false
           }
         },
+        "patina.statusBar.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show Patina status in the status bar.",
+          "order": 11
+        },
         "patina.workspace.enabled": {
           "type": "boolean",
           "default": null,
