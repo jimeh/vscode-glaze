@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as os from 'os';
+import * as path from 'path';
 import type { WorkspaceIdentifierConfig } from '../config';
 import { normalizePath, expandTilde, getRelativePath } from './path';
 
@@ -12,47 +13,127 @@ export interface WorkspaceFolder {
 }
 
 /**
+ * Minimal URI interface for testing.
+ */
+export interface WorkspaceFileUri {
+  readonly fsPath: string;
+}
+
+/**
+ * Formats a path based on the source configuration.
+ */
+function formatPath(
+  fsPath: string,
+  source: WorkspaceIdentifierConfig['source'],
+  customBasePath: string
+): string {
+  switch (source) {
+    case 'name':
+      return path.basename(fsPath);
+
+    case 'pathRelativeToHome': {
+      const homedir = os.homedir();
+      const relative = getRelativePath(homedir, fsPath);
+      return relative ?? normalizePath(fsPath);
+    }
+
+    case 'pathAbsolute':
+      return normalizePath(fsPath);
+
+    case 'pathRelativeToCustom': {
+      if (!customBasePath) {
+        return normalizePath(fsPath);
+      }
+      const basePath = expandTilde(customBasePath);
+      const relative = getRelativePath(basePath, fsPath);
+      return relative ?? normalizePath(fsPath);
+    }
+
+    default:
+      return path.basename(fsPath);
+  }
+}
+
+/**
+ * Formats a folder based on the source configuration.
+ * Special handling for 'name' source to use the folder's custom name if set.
+ */
+function formatFolder(
+  folder: WorkspaceFolder,
+  source: WorkspaceIdentifierConfig['source'],
+  customBasePath: string
+): string {
+  // For 'name' source, use the folder's name property (may be customized)
+  if (source === 'name') {
+    return folder.name;
+  }
+  return formatPath(folder.uri.fsPath, source, customBasePath);
+}
+
+/**
  * Extracts a suitable identifier from the current workspace based on config.
  *
  * @param config - Configuration specifying how to generate the identifier
  * @param folders - Optional workspace folders (defaults to vscode.workspace)
+ * @param workspaceFile - Optional workspace file URI (defaults to
+ *   vscode.workspace.workspaceFile)
  * @returns The workspace identifier, or undefined if no workspace is open
  */
 export function getWorkspaceIdentifier(
   config: WorkspaceIdentifierConfig,
-  folders?: readonly WorkspaceFolder[]
+  folders?: readonly WorkspaceFolder[],
+  workspaceFile?: WorkspaceFileUri
 ): string | undefined {
   const workspaceFolders = folders ?? vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
     return undefined;
   }
 
-  const folder = workspaceFolders[0];
-  const folderPath = folder.uri.fsPath;
+  const resolvedWorkspaceFile = workspaceFile ?? vscode.workspace.workspaceFile;
+  const isMultiRoot = workspaceFolders.length > 1;
 
-  switch (config.source) {
-    case 'name':
-      return folder.name;
+  // Single folder workspace: use existing behavior
+  if (!isMultiRoot) {
+    return formatFolder(
+      workspaceFolders[0],
+      config.source,
+      config.customBasePath
+    );
+  }
 
-    case 'pathRelativeToHome': {
-      const homedir = os.homedir();
-      const relative = getRelativePath(homedir, folderPath);
-      return relative ?? normalizePath(folderPath);
-    }
-
-    case 'pathAbsolute':
-      return normalizePath(folderPath);
-
-    case 'pathRelativeToCustom': {
-      if (!config.customBasePath) {
-        return normalizePath(folderPath);
+  // Multi-root workspace: use multiRootSource to determine base
+  switch (config.multiRootSource) {
+    case 'workspaceFile': {
+      // Use workspace file if available
+      if (resolvedWorkspaceFile?.fsPath) {
+        return formatPath(
+          resolvedWorkspaceFile.fsPath,
+          config.source,
+          config.customBasePath
+        );
       }
-      const basePath = expandTilde(config.customBasePath);
-      const relative = getRelativePath(basePath, folderPath);
-      return relative ?? normalizePath(folderPath);
+      // Fall back to allFolders if workspace file unavailable
+      const formattedAll = workspaceFolders
+        .map((f) => formatFolder(f, config.source, config.customBasePath))
+        .sort()
+        .join('\n');
+      return formattedAll;
     }
 
+    case 'allFolders': {
+      const formattedAll = workspaceFolders
+        .map((f) => formatFolder(f, config.source, config.customBasePath))
+        .sort()
+        .join('\n');
+      return formattedAll;
+    }
+
+    case 'firstFolder':
     default:
-      return folder.name;
+      return formatFolder(
+        workspaceFolders[0],
+        config.source,
+        config.customBasePath
+      );
   }
 }

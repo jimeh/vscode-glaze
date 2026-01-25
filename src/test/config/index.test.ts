@@ -221,12 +221,16 @@ suite('getWorkspaceIdentifierConfig', () => {
   // Store original config values to restore after tests
   let originalSource: string | undefined;
   let originalCustomBasePath: string | undefined;
+  let originalMultiRootSource: string | undefined;
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('patina');
     originalSource = config.get<string>('workspaceIdentifier.source');
     originalCustomBasePath = config.get<string>(
       'workspaceIdentifier.customBasePath'
+    );
+    originalMultiRootSource = config.get<string>(
+      'workspaceIdentifier.multiRootSource'
     );
   });
 
@@ -240,6 +244,11 @@ suite('getWorkspaceIdentifierConfig', () => {
     await config.update(
       'workspaceIdentifier.customBasePath',
       originalCustomBasePath,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'workspaceIdentifier.multiRootSource',
+      originalMultiRootSource,
       vscode.ConfigurationTarget.Global
     );
   });
@@ -326,6 +335,54 @@ suite('getWorkspaceIdentifierConfig', () => {
 
     const result = getWorkspaceIdentifierConfig();
     assert.strictEqual(result.source, 'pathRelativeToCustom');
+  });
+
+  test('returns default multiRootSource as workspaceFile when not configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'workspaceIdentifier.multiRootSource',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getWorkspaceIdentifierConfig();
+    assert.strictEqual(result.multiRootSource, 'workspaceFile');
+  });
+
+  test('reads configured multiRootSource value (allFolders)', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'workspaceIdentifier.multiRootSource',
+      'allFolders',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getWorkspaceIdentifierConfig();
+    assert.strictEqual(result.multiRootSource, 'allFolders');
+  });
+
+  test('reads configured multiRootSource value (firstFolder)', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'workspaceIdentifier.multiRootSource',
+      'firstFolder',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getWorkspaceIdentifierConfig();
+    assert.strictEqual(result.multiRootSource, 'firstFolder');
+  });
+
+  test('falls back to workspaceFile for invalid multiRootSource', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'workspaceIdentifier.multiRootSource',
+      'invalidValue',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getWorkspaceIdentifierConfig();
+    assert.strictEqual(result.multiRootSource, 'workspaceFile');
   });
 });
 

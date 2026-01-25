@@ -57,3 +57,16 @@ export function colorSwatch(hex: string): string {
 export function capitalizeFirst(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+/**
+ * Formats workspace ID for tooltip display.
+ * Single values stay inline; multi-line values get formatted as a list.
+ */
+export function formatWorkspaceIdForDisplay(id: string): string {
+  if (!id.includes('\n')) {
+    return `\`${id}\``;
+  }
+  // Multi-folder: each on its own line with HTML line breaks
+  const folders = id.split('\n');
+  return '<br>' + folders.map((f) => `\`${f}\``).join('<br>');
+}
