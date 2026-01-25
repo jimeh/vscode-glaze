@@ -1,25 +1,12 @@
 import type { HSL } from './types';
 import type { ColorScheme, TintTarget } from '../config';
-import type { ThemeContext } from '../theme';
+import type { ThemeContext, PaletteKey, PatinaColorPalette } from '../theme';
+import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { hslToHex } from './convert';
 import { blendWithTheme } from './blend';
 import { getSchemeConfig } from './schemes';
-
-/**
- * Full color palette for all VSCode UI elements.
- */
-export interface PatinaColorPalette {
-  'titleBar.activeBackground': string;
-  'titleBar.activeForeground': string;
-  'titleBar.inactiveBackground': string;
-  'titleBar.inactiveForeground': string;
-  'statusBar.background': string;
-  'statusBar.foreground': string;
-  'activityBar.background': string;
-  'activityBar.foreground': string;
-}
 
 /**
  * Partial palette containing only the requested tint targets.
@@ -28,24 +15,20 @@ export type PartialPatinaColorPalette = Partial<PatinaColorPalette>;
 
 /**
  * Maps tint targets to their corresponding palette keys.
+ * Derived from COLOR_KEY_DEFINITIONS by grouping palette keys by element.
  */
-const TARGET_KEYS: Record<TintTarget, (keyof PatinaColorPalette)[]> = {
-  titleBar: [
-    'titleBar.activeBackground',
-    'titleBar.activeForeground',
-    'titleBar.inactiveBackground',
-    'titleBar.inactiveForeground',
-  ],
-  statusBar: ['statusBar.background', 'statusBar.foreground'],
-  activityBar: ['activityBar.background', 'activityBar.foreground'],
-};
-
-/**
- * All keys that Patina manages in workbench.colorCustomizations.
- * Used to preserve user customizations when applying/removing tints.
- */
-export const PATINA_MANAGED_KEYS: readonly (keyof PatinaColorPalette)[] =
-  Object.values(TARGET_KEYS).flat();
+const TARGET_KEYS: Record<TintTarget, PaletteKey[]> = (() => {
+  const result: Record<TintTarget, PaletteKey[]> = {
+    titleBar: [],
+    statusBar: [],
+    activityBar: [],
+  };
+  for (const key of PATINA_MANAGED_KEYS) {
+    const def = COLOR_KEY_DEFINITIONS[key];
+    result[def.element as TintTarget].push(key);
+  }
+  return result;
+})();
 
 /**
  * Options for palette generation.

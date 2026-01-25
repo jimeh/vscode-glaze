@@ -1,5 +1,7 @@
 /**
  * Types for theme extraction script.
+ * Note: These types are intentionally duplicated from src/theme/colorKeys.ts
+ * because the script has its own tsconfig that can't import from src/.
  */
 
 /**

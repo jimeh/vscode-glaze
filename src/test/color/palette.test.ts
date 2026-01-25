@@ -1,8 +1,7 @@
 import * as assert from 'assert';
 import { generatePalette } from '../../color';
 import type { ColorScheme, TintTarget } from '../../config';
-import type { ThemeType, ThemeContext } from '../../theme';
-import type { ThemeColors } from '../../theme/colors';
+import type { ThemeType, ThemeContext, ThemeColors } from '../../theme';
 
 const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
 

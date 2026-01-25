@@ -1,36 +1,18 @@
 import * as vscode from 'vscode';
-import type { PatinaColorPalette } from '../color/palette';
 import { BUILTIN_THEME_COLORS } from './generated/builtins';
 import { EXTENSION_THEME_COLORS } from './generated/extensions';
+import {
+  OPTIONAL_THEME_COLOR_KEYS,
+  PALETTE_KEY_TO_COLOR_KEY,
+  FOREGROUND_KEYS,
+  type ThemeColors,
+  type PaletteKey,
+} from './colorKeys';
 
 /**
  * Official VSCode theme types.
  */
 export type ThemeType = 'dark' | 'light' | 'hcDark' | 'hcLight';
-
-/**
- * All color keys supported by theme info.
- * Uses native VSCode color keys (matching workbench.colorCustomizations).
- */
-export type ThemeColorKey =
-  | 'editor.background'
-  | 'editor.foreground'
-  | 'titleBar.activeBackground'
-  | 'titleBar.activeForeground'
-  | 'titleBar.inactiveBackground'
-  | 'titleBar.inactiveForeground'
-  | 'statusBar.background'
-  | 'statusBar.foreground'
-  | 'activityBar.background'
-  | 'activityBar.foreground';
-
-/**
- * Theme colors using native VSCode keys.
- * editor.background is required; all others are optional.
- */
-export type ThemeColors = {
-  'editor.background': string;
-} & Partial<Record<Exclude<ThemeColorKey, 'editor.background'>, string>>;
 
 /**
  * Information about a theme's colors.
@@ -41,11 +23,6 @@ export interface ThemeInfo {
   /** Theme type (dark, light, hcDark, hcLight) */
   type: ThemeType;
 }
-
-/**
- * Element identifier for color lookup.
- */
-export type ElementType = 'editor' | 'titleBar' | 'statusBar' | 'activityBar';
 
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 const VALID_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
@@ -67,18 +44,7 @@ function isValidThemeColors(value: unknown): value is ThemeColors {
     return false;
   }
   // Optional keys must be valid hex if present
-  const optionalKeys = [
-    'editor.foreground',
-    'titleBar.activeBackground',
-    'titleBar.activeForeground',
-    'titleBar.inactiveBackground',
-    'titleBar.inactiveForeground',
-    'statusBar.background',
-    'statusBar.foreground',
-    'activityBar.background',
-    'activityBar.foreground',
-  ];
-  for (const key of optionalKeys) {
+  for (const key of OPTIONAL_THEME_COLOR_KEYS) {
     if (obj[key] !== undefined && !isValidHexColor(obj[key])) {
       return false;
     }
@@ -114,19 +80,7 @@ function normalizeThemeInfo(value: ThemeInfo): ThemeInfo {
     'editor.background': value.colors['editor.background'].toUpperCase(),
   };
 
-  const optionalKeys = [
-    'editor.foreground',
-    'titleBar.activeBackground',
-    'titleBar.activeForeground',
-    'titleBar.inactiveBackground',
-    'titleBar.inactiveForeground',
-    'statusBar.background',
-    'statusBar.foreground',
-    'activityBar.background',
-    'activityBar.foreground',
-  ] as const;
-
-  for (const key of optionalKeys) {
+  for (const key of OPTIONAL_THEME_COLOR_KEYS) {
     if (value.colors[key]) {
       colors[key] = value.colors[key]!.toUpperCase();
     }
@@ -180,34 +134,6 @@ export function getThemeInfo(themeName: string): ThemeInfo | undefined {
 }
 
 /**
- * Maps palette keys to their corresponding color keys for lookup.
- */
-const PALETTE_KEY_TO_COLOR_KEY: Partial<
-  Record<keyof PatinaColorPalette, ThemeColorKey>
-> = {
-  // Background keys
-  'titleBar.activeBackground': 'titleBar.activeBackground',
-  'titleBar.inactiveBackground': 'titleBar.activeBackground',
-  'statusBar.background': 'statusBar.background',
-  'activityBar.background': 'activityBar.background',
-  // Foreground keys
-  'titleBar.activeForeground': 'titleBar.activeForeground',
-  'titleBar.inactiveForeground': 'titleBar.inactiveForeground',
-  'statusBar.foreground': 'statusBar.foreground',
-  'activityBar.foreground': 'activityBar.foreground',
-};
-
-/**
- * Keys that represent foreground colors (for fallback to editor.foreground).
- */
-const FOREGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
-  'titleBar.activeForeground',
-  'titleBar.inactiveForeground',
-  'statusBar.foreground',
-  'activityBar.foreground',
-]);
-
-/**
  * Gets the appropriate color for a specific palette key.
  * Falls back to editor.background for background keys, editor.foreground for
  * foreground keys. Returns undefined if no suitable color is found.
@@ -217,11 +143,11 @@ const FOREGROUND_KEYS: ReadonlySet<keyof PatinaColorPalette> = new Set([
  * @returns The hex color string for the appropriate element, or undefined
  */
 export function getColorForKey(
-  key: keyof PatinaColorPalette,
+  key: PaletteKey,
   colors: ThemeColors
 ): string | undefined {
   const colorKey = PALETTE_KEY_TO_COLOR_KEY[key];
-  if (colorKey && colors[colorKey]) {
+  if (colors[colorKey]) {
     return colors[colorKey]!;
   }
   // Fallback based on key type

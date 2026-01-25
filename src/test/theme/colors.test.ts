@@ -1,10 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import {
-  getThemeInfo,
-  getColorForKey,
-  type ThemeColors,
-} from '../../theme/colors';
+import { getThemeInfo, getColorForKey } from '../../theme/colors';
+import type { ThemeColors } from '../../theme';
 import { BUILTIN_THEME_COLORS } from '../../theme/generated/builtins';
 import { EXTENSION_THEME_COLORS } from '../../theme/generated/extensions';
 

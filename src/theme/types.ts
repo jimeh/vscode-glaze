@@ -9,7 +9,7 @@ export type ThemeType = 'dark' | 'light' | 'hcDark' | 'hcLight';
  */
 export type ThemeMode = 'auto' | 'light' | 'dark';
 
-import type { ThemeColors } from './colors';
+import type { ThemeColors } from './colorKeys';
 
 /**
  * Context information about the current theme.
