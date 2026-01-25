@@ -16,6 +16,7 @@ import { mutedScheme } from './muted';
 import { neonScheme } from './neon';
 import { pastelScheme } from './pastel';
 import { tintedScheme } from './tinted';
+import { undercurrentScheme } from './undercurrent';
 import { vibrantScheme } from './vibrant';
 
 /**
@@ -27,6 +28,7 @@ const SCHEME_CONFIGS: Record<ColorScheme, SchemeConfig> = {
   muted: mutedScheme,
   tinted: tintedScheme,
   duotone: duotoneScheme,
+  undercurrent: undercurrentScheme,
   analogous: analogousScheme,
   neon: neonScheme,
 };

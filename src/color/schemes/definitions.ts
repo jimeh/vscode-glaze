@@ -44,13 +44,18 @@ export const COLOR_SCHEME_DEFINITIONS = {
   },
   duotone: {
     label: 'Duotone',
-    description: 'Base hue + complementary hue split across UI elements',
+    description: 'Base hue + complementary accent on activity bar',
     order: 5,
+  },
+  undercurrent: {
+    label: 'Undercurrent',
+    description: 'Base hue + complementary accent on status bar',
+    order: 6,
   },
   analogous: {
     label: 'Analogous',
     description: 'Three adjacent hues for harmonious color transitions',
-    order: 6,
+    order: 7,
   },
 } as const satisfies Record<string, ColorSchemeDefinition>;
 

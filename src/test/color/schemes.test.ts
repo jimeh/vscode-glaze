@@ -227,25 +227,25 @@ suite('tinted scheme', () => {
 });
 
 suite('duotone scheme', () => {
-  test('status bar has 180° hue offset (complementary)', () => {
+  test('activity bar has 180° hue offset (complementary)', () => {
     const config = getSchemeConfig('duotone');
 
     for (const themeType of ALL_THEME_TYPES) {
       const themeConfig = config[themeType];
       assert.strictEqual(
-        themeConfig['statusBar.background'].hueOffset,
+        themeConfig['activityBar.background'].hueOffset,
         180,
-        `duotone.${themeType}.statusBar.background should have hueOffset=180`
+        `duotone.${themeType}.activityBar.background should have hueOffset=180`
       );
       assert.strictEqual(
-        themeConfig['statusBar.foreground'].hueOffset,
+        themeConfig['activityBar.foreground'].hueOffset,
         180,
-        `duotone.${themeType}.statusBar.foreground should have hueOffset=180`
+        `duotone.${themeType}.activityBar.foreground should have hueOffset=180`
       );
     }
   });
 
-  test('title bar and activity bar have no hue offset', () => {
+  test('title bar and status bar have no hue offset', () => {
     const config = getSchemeConfig('duotone');
 
     for (const themeType of ALL_THEME_TYPES) {
@@ -256,9 +256,50 @@ suite('duotone scheme', () => {
         `duotone.${themeType}.titleBar.activeBackground should have no offset`
       );
       assert.strictEqual(
+        themeConfig['statusBar.background'].hueOffset,
+        undefined,
+        `duotone.${themeType}.statusBar.background should have no offset`
+      );
+    }
+  });
+});
+
+suite('undercurrent scheme', () => {
+  test('status bar has 180° hue offset (complementary)', () => {
+    const config = getSchemeConfig('undercurrent');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['statusBar.background'].hueOffset,
+        180,
+        `undercurrent.${themeType}.statusBar.background should have ` +
+          `hueOffset=180`
+      );
+      assert.strictEqual(
+        themeConfig['statusBar.foreground'].hueOffset,
+        180,
+        `undercurrent.${themeType}.statusBar.foreground should have ` +
+          `hueOffset=180`
+      );
+    }
+  });
+
+  test('title bar and activity bar have no hue offset', () => {
+    const config = getSchemeConfig('undercurrent');
+
+    for (const themeType of ALL_THEME_TYPES) {
+      const themeConfig = config[themeType];
+      assert.strictEqual(
+        themeConfig['titleBar.activeBackground'].hueOffset,
+        undefined,
+        `undercurrent.${themeType}.titleBar.activeBackground should have ` +
+          `no offset`
+      );
+      assert.strictEqual(
         themeConfig['activityBar.background'].hueOffset,
         undefined,
-        `duotone.${themeType}.activityBar.background should have no offset`
+        `undercurrent.${themeType}.activityBar.background should have no offset`
       );
     }
   });
