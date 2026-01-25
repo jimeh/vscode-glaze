@@ -95,16 +95,16 @@
           "description": "Apply color tint to the window title bar.",
           "order": 3
         },
-        "patina.elements.statusBar": {
-          "type": "boolean",
-          "default": false,
-          "description": "Apply color tint to the bottom status bar.",
-          "order": 4
-        },
         "patina.elements.activityBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the left side activity bar.",
+          "order": 4
+        },
+        "patina.elements.statusBar": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply color tint to the bottom status bar.",
           "order": 5
         },
         "patina.workspaceIdentifier.customBasePath": {
