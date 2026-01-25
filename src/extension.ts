@@ -20,6 +20,7 @@ import { StatusBarManager, StatusBarState } from './statusBar';
 import { PalettePreviewPanel } from './preview';
 
 let statusBar: StatusBarManager;
+let themeChangeTimeout: ReturnType<typeof setTimeout> | undefined;
 
 export async function activate(context: vscode.ExtensionContext) {
   statusBar = new StatusBarManager();
@@ -47,6 +48,21 @@ export async function activate(context: vscode.ExtensionContext) {
       PalettePreviewPanel.show(context.extensionUri);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
+      // Handle VS Code theme changes (debounced with theme event)
+      if (
+        e.affectsConfiguration('workbench.colorTheme') ||
+        e.affectsConfiguration('workbench.preferredDarkColorTheme') ||
+        e.affectsConfiguration('workbench.preferredLightColorTheme')
+      ) {
+        if (themeChangeTimeout) {
+          clearTimeout(themeChangeTimeout);
+        }
+        themeChangeTimeout = setTimeout(() => {
+          themeChangeTimeout = undefined;
+          applyTint();
+        }, 150);
+        return;
+      }
       if (e.affectsConfiguration('patina.statusBar.enabled')) {
         statusBar.updateVisibility();
         return;
@@ -79,8 +95,15 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
-      // Defer to next tick to ensure config is updated before we read it
-      setTimeout(() => applyTint(), 0);
+      // Debounce with config change events to handle race condition where
+      // activeColorTheme fires before workbench.colorTheme config is updated
+      if (themeChangeTimeout) {
+        clearTimeout(themeChangeTimeout);
+      }
+      themeChangeTimeout = setTimeout(() => {
+        themeChangeTimeout = undefined;
+        applyTint();
+      }, 150);
     })
   );
 }
