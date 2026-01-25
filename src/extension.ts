@@ -17,6 +17,7 @@ import {
   ColorCustomizations,
 } from './settings';
 import { StatusBarManager, StatusBarState } from './statusBar';
+import { PalettePreviewPanel } from './preview';
 
 let statusBar: StatusBarManager;
 
@@ -41,6 +42,9 @@ export async function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand('patina.disableWorkspace', async () => {
       await setWorkspaceEnabled(false);
+    }),
+    vscode.commands.registerCommand('patina.showColorPreview', () => {
+      PalettePreviewPanel.show(context.extensionUri);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration('patina.statusBar.enabled')) {

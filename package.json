@@ -46,6 +46,10 @@
       {
         "command": "patina.disableWorkspace",
         "title": "Patina: Disable for This Workspace"
+      },
+      {
+        "command": "patina.showColorPreview",
+        "title": "Patina: Show Color Palette Preview"
       }
     ],
     "configuration": {
