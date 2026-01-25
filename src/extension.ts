@@ -65,11 +65,8 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
-      // Re-apply tint when theme changes (only matters if mode is 'auto')
-      const tintConfig = getTintConfig();
-      if (tintConfig.mode === 'auto') {
-        applyTint();
-      }
+      // Defer to next tick to ensure config is updated before we read it
+      setTimeout(() => applyTint(), 0);
     })
   );
 }
