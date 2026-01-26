@@ -17,9 +17,39 @@ import BoxControl from './BoxControl.astro';
 
   <section class="control-group">
     <label>
+      Box Width:
+      <input type="range" id="box-width" min="200" max="700" value="510" />
+      <span id="box-width-value">510</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>
+      Box Height:
+      <input type="range" id="box-height" min="150" max="550" value="368" />
+      <span id="box-height-value">368</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>Dimension Presets:</label>
+    <div class="preset-toggle" id="dimension-presets">
+      <button data-width="400" data-height="400">Square</button>
+      <button data-width="550" data-height="350">Wide</button>
+      <button data-width="350" data-height="500">Tall</button>
+      <button data-width="510" data-height="368" class="active">Default</button>
+    </div>
+  </section>
+
+  <section class="control-group">
+    <label>
       Rounding:
       <input type="range" id="rounding" min="0" max="184" value="123" />
-      <span id="rounding-value">123</span>px
+      <span id="rounding-value">123</span>
+      <div class="unit-toggle" id="rounding-unit">
+        <button data-unit="px" class="active">px</button>
+        <button data-unit="%">%</button>
+      </div>
     </label>
   </section>
 

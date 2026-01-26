@@ -13,6 +13,8 @@
     ".vscode-test/",
     ".vscode/settings.json",
     "dist/",
+    "logo-builder/.astro/",
+    "logo-builder/dist/",
     "node_modules/",
     "out/",
     "package.json",

@@ -14,8 +14,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
   background: var(--bg);
   color: var(--fg);
   line-height: 1.5;
@@ -42,7 +43,6 @@ header h1 {
   font-size: 1.25rem;
   font-weight: 500;
 }
-
 
 .export-btns {
   display: flex;
@@ -149,6 +149,42 @@ main {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
+}
+
+.preset-toggle,
+.unit-toggle {
+  display: inline-flex;
+  gap: 2px;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.preset-toggle button,
+.unit-toggle button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.preset-toggle button:hover,
+.unit-toggle button:hover {
+  border-color: var(--accent);
+}
+
+.preset-toggle button.active,
+.unit-toggle button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.unit-toggle {
+  margin-top: 0;
+  margin-left: 0.5rem;
 }
 
 .hue-preview {

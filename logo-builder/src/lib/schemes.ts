@@ -13,8 +13,8 @@ export const SCHEMES: Schemes = {
     description: 'Same hue, varying lightness and chroma',
     boxes: [
       { hueOffset: 0, l: 0.92, cFactor: 0.15 }, // Back - light
-      { hueOffset: 0, l: 0.55, cFactor: 0.70 }, // Front - saturated
-      { hueOffset: 0, l: 0.70, cFactor: 0.45 }, // Middle - medium
+      { hueOffset: 0, l: 0.55, cFactor: 0.7 }, // Front - saturated
+      { hueOffset: 0, l: 0.7, cFactor: 0.45 }, // Middle - medium
     ],
   },
 

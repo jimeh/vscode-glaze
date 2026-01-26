@@ -46,8 +46,14 @@ export interface BoxState {
 export interface AppState {
   /** Spacing between boxes in pixels */
   spacing: number;
-  /** Corner rounding radius in pixels */
+  /** Corner rounding radius (px or %) */
   rounding: number;
+  /** Rounding unit: pixels or percentage */
+  roundingUnit: 'px' | '%';
+  /** Box width in pixels */
+  boxWidth: number;
+  /** Box height in pixels */
+  boxHeight: number;
   /** Active color mode */
   colorMode: string;
   /** Base hue for non-custom modes */

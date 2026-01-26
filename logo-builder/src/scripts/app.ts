@@ -6,20 +6,21 @@ import { oklchToHex, hexToOklch, maxChroma } from '../lib/color';
 import { SCHEMES, normalizeHue } from '../lib/schemes';
 import type { AppState } from '../lib/types';
 
-// SVG dimensions
-const BOX_WIDTH = 510.4;
-const BOX_HEIGHT = 368.4;
-const DEFAULT_RADIUS = 123;
+// SVG container size
 const SVG_SIZE = 800;
 
-// Center position for the front box (box3)
-const CENTER_X = (SVG_SIZE - BOX_WIDTH) / 2;
-const CENTER_Y = (SVG_SIZE - BOX_HEIGHT) / 2;
+// Default dimensions
+const DEFAULT_BOX_WIDTH = 510;
+const DEFAULT_BOX_HEIGHT = 368;
+const DEFAULT_RADIUS = 123;
 
 // State
 const state: AppState = {
   spacing: 70,
   rounding: DEFAULT_RADIUS,
+  roundingUnit: 'px',
+  boxWidth: DEFAULT_BOX_WIDTH,
+  boxHeight: DEFAULT_BOX_HEIGHT,
   colorMode: 'custom',
   baseHue: 195,
   boxes: [
@@ -28,6 +29,40 @@ const state: AppState = {
     { l: 0.65, cFactor: 0.45, h: 195 }, // Box 3 (middle)
   ],
 };
+
+/**
+ * Computes center X position for box placement.
+ */
+function getCenterX(): number {
+  return (SVG_SIZE - state.boxWidth) / 2;
+}
+
+/**
+ * Computes center Y position for box placement.
+ */
+function getCenterY(): number {
+  return (SVG_SIZE - state.boxHeight) / 2;
+}
+
+/**
+ * Gets maximum allowed rounding in pixels (half of smallest dimension).
+ */
+function getMaxRounding(): number {
+  return Math.floor(Math.min(state.boxWidth, state.boxHeight) / 2);
+}
+
+/**
+ * Converts current rounding value to pixels based on unit.
+ * For percentage mode, uses the larger dimension as reference.
+ */
+function getRoundingPx(): number {
+  if (state.roundingUnit === 'px') {
+    return state.rounding;
+  }
+  // Percentage mode: use larger dimension as reference
+  const ref = Math.max(state.boxWidth, state.boxHeight);
+  return Math.round((state.rounding / 100) * ref);
+}
 
 // DOM elements - select all boxes from both SVGs
 const boxes1 = document.querySelectorAll('.box1') as NodeListOf<SVGRectElement>;
@@ -38,15 +73,27 @@ const spacingSlider = document.getElementById('spacing') as HTMLInputElement;
 const spacingValue = document.getElementById('spacing-value') as HTMLElement;
 const roundingSlider = document.getElementById('rounding') as HTMLInputElement;
 const roundingValue = document.getElementById('rounding-value') as HTMLElement;
+const roundingUnitContainer = document.getElementById(
+  'rounding-unit'
+) as HTMLElement;
+const boxWidthSlider = document.getElementById('box-width') as HTMLInputElement;
+const boxWidthValue = document.getElementById('box-width-value') as HTMLElement;
+const boxHeightSlider = document.getElementById(
+  'box-height'
+) as HTMLInputElement;
+const boxHeightValue = document.getElementById(
+  'box-height-value'
+) as HTMLElement;
+const dimensionPresetsContainer = document.getElementById(
+  'dimension-presets'
+) as HTMLElement;
 const baseHueSlider = document.getElementById('base-hue') as HTMLInputElement;
 const baseHueValue = document.getElementById('base-hue-value') as HTMLElement;
 const baseHuePreview = document.getElementById(
   'base-hue-preview'
 ) as HTMLElement;
 const baseHueGroup = document.getElementById('base-hue-group') as HTMLElement;
-const colorModeContainer = document.getElementById(
-  'color-mode'
-) as HTMLElement;
+const colorModeContainer = document.getElementById('color-mode') as HTMLElement;
 const copySvgBtn = document.getElementById('copy-svg') as HTMLButtonElement;
 const downloadSvgBtn = document.getElementById(
   'download-svg'
@@ -79,36 +126,46 @@ function getBoxColor(boxIndex: number): string {
 }
 
 /**
- * Updates SVG positions based on spacing.
+ * Updates SVG positions and dimensions based on spacing and box size.
  * Box3 (front) is centered, box1 offset up-left, box2 offset down-right.
  */
 function updatePositions(): void {
   const spacing = state.spacing;
+  const centerX = getCenterX();
+  const centerY = getCenterY();
+  const width = String(state.boxWidth);
+  const height = String(state.boxHeight);
 
   // Box3 (front): centered
-  const box3X = CENTER_X;
-  const box3Y = CENTER_Y;
+  const box3X = centerX;
+  const box3Y = centerY;
 
   // Box1 (back): offset up-left from center
-  const box1X = CENTER_X - spacing;
-  const box1Y = CENTER_Y - spacing;
+  const box1X = centerX - spacing;
+  const box1Y = centerY - spacing;
 
   // Box2 (back): offset down-right from center
-  const box2X = CENTER_X + spacing;
-  const box2Y = CENTER_Y + spacing;
+  const box2X = centerX + spacing;
+  const box2Y = centerY + spacing;
 
   // Apply to all SVG instances
   boxes1.forEach((box) => {
     box.setAttribute('x', String(box1X));
     box.setAttribute('y', String(box1Y));
+    box.setAttribute('width', width);
+    box.setAttribute('height', height);
   });
   boxes2.forEach((box) => {
     box.setAttribute('x', String(box2X));
     box.setAttribute('y', String(box2Y));
+    box.setAttribute('width', width);
+    box.setAttribute('height', height);
   });
   boxes3.forEach((box) => {
     box.setAttribute('x', String(box3X));
     box.setAttribute('y', String(box3Y));
+    box.setAttribute('width', width);
+    box.setAttribute('height', height);
   });
 }
 
@@ -129,7 +186,7 @@ function updateColors(): void {
  * Updates SVG corner rounding for all preview instances.
  */
 function updateRounding(): void {
-  const rx = String(state.rounding);
+  const rx = String(getRoundingPx());
   boxes1.forEach((box) => box.setAttribute('rx', rx));
   boxes2.forEach((box) => box.setAttribute('rx', rx));
   boxes3.forEach((box) => box.setAttribute('rx', rx));
@@ -143,9 +200,35 @@ function updateUI(): void {
   spacingSlider.value = String(state.spacing);
   spacingValue.textContent = String(state.spacing);
 
-  // Rounding
+  // Box dimensions
+  boxWidthSlider.value = String(state.boxWidth);
+  boxWidthValue.textContent = String(state.boxWidth);
+  boxHeightSlider.value = String(state.boxHeight);
+  boxHeightValue.textContent = String(state.boxHeight);
+
+  // Dimension presets
+  dimensionPresetsContainer.querySelectorAll('button').forEach((btn) => {
+    const w = parseInt((btn as HTMLButtonElement).dataset.width || '0', 10);
+    const h = parseInt((btn as HTMLButtonElement).dataset.height || '0', 10);
+    btn.classList.toggle(
+      'active',
+      w === state.boxWidth && h === state.boxHeight
+    );
+  });
+
+  // Rounding - update slider max and value display
+  const maxRounding = state.roundingUnit === 'px' ? getMaxRounding() : 50;
+  roundingSlider.max = String(maxRounding);
   roundingSlider.value = String(state.rounding);
   roundingValue.textContent = String(state.rounding);
+
+  // Rounding unit toggle
+  roundingUnitContainer.querySelectorAll('button').forEach((btn) => {
+    btn.classList.toggle(
+      'active',
+      (btn as HTMLButtonElement).dataset.unit === state.roundingUnit
+    );
+  });
 
   // Base hue
   baseHueSlider.value = String(state.baseHue);
@@ -244,24 +327,28 @@ function render(): void {
  */
 function generateSvg(): string {
   const spacing = state.spacing;
+  const centerX = getCenterX();
+  const centerY = getCenterY();
   const color1 = getBoxColor(0);
   const color2 = getBoxColor(1);
   const color3 = getBoxColor(2);
+  const width = state.boxWidth;
+  const height = state.boxHeight;
 
   // Box positions: box3 centered, box1 up-left, box2 down-right
-  const box1X = CENTER_X - spacing;
-  const box1Y = CENTER_Y - spacing;
-  const box2X = CENTER_X + spacing;
-  const box2Y = CENTER_Y + spacing;
-  const box3X = CENTER_X;
-  const box3Y = CENTER_Y;
+  const box1X = centerX - spacing;
+  const box1Y = centerY - spacing;
+  const box2X = centerX + spacing;
+  const box2Y = centerY + spacing;
+  const box3X = centerX;
+  const box3Y = centerY;
 
-  const rx = state.rounding;
+  const rx = getRoundingPx();
 
   return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-  <rect x="${box1X}" y="${box1Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${rx}" fill="${color1}"/>
-  <rect x="${box2X}" y="${box2Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${rx}" fill="${color2}"/>
-  <rect x="${box3X}" y="${box3Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${rx}" fill="${color3}"/>
+  <rect x="${box1X}" y="${box1Y}" width="${width}" height="${height}" rx="${rx}" fill="${color1}"/>
+  <rect x="${box2X}" y="${box2Y}" width="${width}" height="${height}" rx="${rx}" fill="${color2}"/>
+  <rect x="${box3X}" y="${box3Y}" width="${width}" height="${height}" rx="${rx}" fill="${color3}"/>
 </svg>`;
 }
 
@@ -274,6 +361,79 @@ spacingSlider.addEventListener('input', (e) => {
 
 roundingSlider.addEventListener('input', (e) => {
   state.rounding = parseInt((e.target as HTMLInputElement).value, 10);
+  render();
+});
+
+// Rounding unit toggle
+roundingUnitContainer.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.tagName !== 'BUTTON') return;
+  const unit = (target as HTMLButtonElement).dataset.unit as 'px' | '%';
+  if (!unit || unit === state.roundingUnit) return;
+
+  // Convert current value between units
+  if (unit === '%') {
+    // px -> %: convert current px to percentage of larger dimension
+    const ref = Math.max(state.boxWidth, state.boxHeight);
+    state.rounding = Math.round((state.rounding / ref) * 100);
+    // Clamp to 0-50
+    state.rounding = Math.min(50, Math.max(0, state.rounding));
+  } else {
+    // % -> px: convert percentage to pixels
+    const ref = Math.max(state.boxWidth, state.boxHeight);
+    state.rounding = Math.round((state.rounding / 100) * ref);
+    // Clamp to max rounding
+    const maxRounding = getMaxRounding();
+    state.rounding = Math.min(maxRounding, state.rounding);
+  }
+  state.roundingUnit = unit;
+  render();
+});
+
+// Box dimension sliders
+boxWidthSlider.addEventListener('input', (e) => {
+  state.boxWidth = parseInt((e.target as HTMLInputElement).value, 10);
+  // Clamp rounding if in px mode and exceeds new max
+  if (state.roundingUnit === 'px') {
+    const maxRounding = getMaxRounding();
+    if (state.rounding > maxRounding) {
+      state.rounding = maxRounding;
+    }
+  }
+  render();
+});
+
+boxHeightSlider.addEventListener('input', (e) => {
+  state.boxHeight = parseInt((e.target as HTMLInputElement).value, 10);
+  // Clamp rounding if in px mode and exceeds new max
+  if (state.roundingUnit === 'px') {
+    const maxRounding = getMaxRounding();
+    if (state.rounding > maxRounding) {
+      state.rounding = maxRounding;
+    }
+  }
+  render();
+});
+
+// Dimension presets
+dimensionPresetsContainer.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.tagName !== 'BUTTON') return;
+  const btn = target as HTMLButtonElement;
+  const width = parseInt(btn.dataset.width || '0', 10);
+  const height = parseInt(btn.dataset.height || '0', 10);
+  if (!width || !height) return;
+
+  state.boxWidth = width;
+  state.boxHeight = height;
+
+  // Clamp rounding if in px mode and exceeds new max
+  if (state.roundingUnit === 'px') {
+    const maxRounding = getMaxRounding();
+    if (state.rounding > maxRounding) {
+      state.rounding = maxRounding;
+    }
+  }
   render();
 });
 
