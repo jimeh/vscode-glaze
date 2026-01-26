@@ -243,7 +243,9 @@ main {
   position: relative;
 }
 
-.hue-row.disabled {
+.hue-row.disabled,
+.l-row.disabled,
+.c-row.disabled {
   opacity: 0.5;
   pointer-events: none;
 }

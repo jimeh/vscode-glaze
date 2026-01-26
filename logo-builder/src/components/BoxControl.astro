@@ -18,7 +18,7 @@ const { boxIndex, title, defaultL, defaultC, defaultH, defaultHex } =
 
 <div class="box-control" data-box={boxIndex}>
   <h3>{title}</h3>
-  <label>
+  <label class="l-row">
     L:
     <input
       type="range"
@@ -30,7 +30,7 @@ const { boxIndex, title, defaultL, defaultC, defaultH, defaultHex } =
     />
     <span class="l-value">{(defaultL / 100).toFixed(2)}</span>
   </label>
-  <label>
+  <label class="c-row">
     C:
     <input
       type="range"

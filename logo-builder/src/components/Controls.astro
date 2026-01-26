@@ -74,30 +74,53 @@ import BoxControl from './BoxControl.astro';
     <div class="hue-preview" id="base-hue-preview"></div>
   </section>
 
+  <section class="control-group">
+    <label>Balance Mode:</label>
+    <div class="mode-btns" id="balance-mode">
+      <button data-mode="uniform">Uniform</button>
+      <button data-mode="layered">Layered</button>
+      <button data-mode="contrast">Contrast</button>
+      <button data-mode="custom" class="active">Custom</button>
+    </div>
+  </section>
+
+  <section class="control-group" id="base-lc-group">
+    <label>
+      Base Luminance:
+      <input type="range" id="base-luminance" min="0" max="100" value="70" />
+      <span id="base-luminance-value">0.70</span>
+    </label>
+    <label>
+      Base Chroma:
+      <input type="range" id="base-chroma" min="0" max="100" value="50" />
+      <span id="base-chroma-value">0.50</span>
+    </label>
+  </section>
+
   <section class="box-controls">
     <BoxControl
       boxIndex={1}
-      title="Box 1 (Back)"
+      title="Highlight"
       defaultL={95}
       defaultC={54}
       defaultH={34}
       defaultHex="#f7ebe8"
     />
     <BoxControl
-      boxIndex={2}
-      title="Box 2 (Red)"
-      defaultL={63}
-      defaultC={75}
-      defaultH={24}
-      defaultHex="#e54b4b"
-    />
-    <BoxControl
       boxIndex={3}
-      title="Box 3 (Teal)"
+      title="Center"
       defaultL={67}
       defaultC={49}
       defaultH={205}
       defaultHex="#6b9fa5"
+    />
+    <BoxControl
+      boxIndex={2}
+      title="Shadow"
+      defaultL={63}
+      defaultC={75}
+      defaultH={24}
+      defaultHex="#e54b4b"
     />
   </section>
 </div>

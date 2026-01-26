@@ -3,7 +3,7 @@
  */
 
 import { oklchToHex, hexToOklch, maxChroma } from '../lib/color';
-import { SCHEMES, normalizeHue } from '../lib/schemes';
+import { SCHEMES, BALANCE_SCHEMES, normalizeHue, clamp } from '../lib/schemes';
 import type { AppState } from '../lib/types';
 
 // SVG container size
@@ -23,6 +23,9 @@ const state: AppState = {
   boxHeight: DEFAULT_BOX_HEIGHT,
   colorMode: 'custom',
   baseHue: 195,
+  balanceMode: 'custom',
+  baseLuminance: 0.7,
+  baseChromaFactor: 0.5,
   boxes: [
     { l: 0.95, cFactor: 0.54, h: 34 }, // Box 1 (back) - #f7ebe8
     { l: 0.63, cFactor: 0.75, h: 24 }, // Box 2 (red) - #e54b4b
@@ -94,6 +97,22 @@ const baseHuePreview = document.getElementById(
 ) as HTMLElement;
 const baseHueGroup = document.getElementById('base-hue-group') as HTMLElement;
 const colorModeContainer = document.getElementById('color-mode') as HTMLElement;
+const balanceModeContainer = document.getElementById(
+  'balance-mode'
+) as HTMLElement;
+const baseLCGroup = document.getElementById('base-lc-group') as HTMLElement;
+const baseLuminanceSlider = document.getElementById(
+  'base-luminance'
+) as HTMLInputElement;
+const baseLuminanceValue = document.getElementById(
+  'base-luminance-value'
+) as HTMLElement;
+const baseChromaSlider = document.getElementById(
+  'base-chroma'
+) as HTMLInputElement;
+const baseChromaValue = document.getElementById(
+  'base-chroma-value'
+) as HTMLElement;
 const copySvgBtn = document.getElementById('copy-svg') as HTMLButtonElement;
 const downloadSvgBtn = document.getElementById(
   'download-svg'
@@ -107,7 +126,10 @@ const boxControls = document.querySelectorAll('.box-control');
 function getBoxColor(boxIndex: number): string {
   const box = state.boxes[boxIndex];
   let hue: number;
+  let l: number;
+  let cFactor: number;
 
+  // Compute hue from color mode
   if (state.colorMode === 'custom') {
     hue = box.h;
   } else {
@@ -119,10 +141,26 @@ function getBoxColor(boxIndex: number): string {
     }
   }
 
-  const mc = maxChroma(box.l, hue);
-  const c = mc * box.cFactor;
+  // Compute L/cFactor from balance mode
+  if (state.balanceMode === 'custom') {
+    l = box.l;
+    cFactor = box.cFactor;
+  } else {
+    const balanceScheme = BALANCE_SCHEMES[state.balanceMode];
+    if (balanceScheme && balanceScheme.boxes) {
+      const preset = balanceScheme.boxes[boxIndex];
+      l = clamp(state.baseLuminance + preset.lOffset, 0, 1);
+      cFactor = clamp(state.baseChromaFactor * preset.cMultiplier, 0, 1);
+    } else {
+      l = box.l;
+      cFactor = box.cFactor;
+    }
+  }
 
-  return oklchToHex({ l: box.l, c, h: hue });
+  const mc = maxChroma(l, hue);
+  const c = mc * cFactor;
+
+  return oklchToHex({ l, c, h: hue });
 }
 
 /**
@@ -257,9 +295,33 @@ function updateUI(): void {
     );
   });
 
+  // Balance mode buttons
+  balanceModeContainer.querySelectorAll('button').forEach((btn) => {
+    btn.classList.toggle(
+      'active',
+      (btn as HTMLButtonElement).dataset.mode === state.balanceMode
+    );
+  });
+
+  // Base L/C sliders
+  baseLuminanceSlider.value = String(Math.round(state.baseLuminance * 100));
+  baseLuminanceValue.textContent = state.baseLuminance.toFixed(2);
+  baseChromaSlider.value = String(Math.round(state.baseChromaFactor * 100));
+  baseChromaValue.textContent = state.baseChromaFactor.toFixed(2);
+
+  // Show/hide base L/C based on balance mode
+  if (state.balanceMode === 'custom') {
+    baseLCGroup.style.opacity = '0.5';
+    baseLCGroup.style.pointerEvents = 'none';
+  } else {
+    baseLCGroup.style.opacity = '1';
+    baseLCGroup.style.pointerEvents = 'auto';
+  }
+
   // Box controls
-  boxControls.forEach((ctrl, i) => {
-    const box = state.boxes[i];
+  boxControls.forEach((ctrl) => {
+    const boxIndex = parseInt(ctrl.getAttribute('data-box') || '1', 10) - 1;
+    const box = state.boxes[boxIndex];
     const lSlider = ctrl.querySelector('.l-slider') as HTMLInputElement;
     const cSlider = ctrl.querySelector('.c-slider') as HTMLInputElement;
     const hSlider = ctrl.querySelector('.h-slider') as HTMLInputElement;
@@ -269,11 +331,35 @@ function updateUI(): void {
     const hexInput = ctrl.querySelector('.hex-input') as HTMLInputElement;
     const swatch = ctrl.querySelector('.color-swatch') as HTMLElement;
     const hueRow = ctrl.querySelector('.hue-row') as HTMLElement;
+    const lRow = ctrl.querySelector('.l-row') as HTMLElement;
+    const cRow = ctrl.querySelector('.c-row') as HTMLElement;
 
-    lSlider.value = String(Math.round(box.l * 100));
-    cSlider.value = String(Math.round(box.cFactor * 100));
-    lValueEl.textContent = box.l.toFixed(2);
-    cValueEl.textContent = box.cFactor.toFixed(2);
+    // L/C handling based on balance mode
+    if (state.balanceMode === 'custom') {
+      lSlider.value = String(Math.round(box.l * 100));
+      cSlider.value = String(Math.round(box.cFactor * 100));
+      lValueEl.textContent = box.l.toFixed(2);
+      cValueEl.textContent = box.cFactor.toFixed(2);
+      lRow.classList.remove('disabled');
+      cRow.classList.remove('disabled');
+    } else {
+      const balanceScheme = BALANCE_SCHEMES[state.balanceMode];
+      if (balanceScheme && balanceScheme.boxes) {
+        const preset = balanceScheme.boxes[boxIndex];
+        const computedL = clamp(state.baseLuminance + preset.lOffset, 0, 1);
+        const computedC = clamp(
+          state.baseChromaFactor * preset.cMultiplier,
+          0,
+          1
+        );
+        lSlider.value = String(Math.round(computedL * 100));
+        cSlider.value = String(Math.round(computedC * 100));
+        lValueEl.textContent = computedL.toFixed(2);
+        cValueEl.textContent = computedC.toFixed(2);
+      }
+      lRow.classList.add('disabled');
+      cRow.classList.add('disabled');
+    }
 
     // Hue handling
     if (state.colorMode === 'custom') {
@@ -284,7 +370,7 @@ function updateUI(): void {
       const scheme = SCHEMES[state.colorMode];
       if (scheme && scheme.boxes) {
         const computedHue = normalizeHue(
-          state.baseHue + scheme.boxes[i].hueOffset
+          state.baseHue + scheme.boxes[boxIndex].hueOffset
         );
         hSlider.value = String(computedHue);
         hValueEl.textContent = String(Math.round(computedHue));
@@ -292,7 +378,7 @@ function updateUI(): void {
       hueRow.classList.add('disabled');
     }
 
-    const color = getBoxColor(i);
+    const color = getBoxColor(boxIndex);
     hexInput.value = color;
     swatch.style.backgroundColor = color;
   });
@@ -309,6 +395,20 @@ function applySchemeDefaults(schemeName: string): void {
     state.boxes[i].l = preset.l;
     state.boxes[i].cFactor = preset.cFactor;
   });
+}
+
+/**
+ * Sets base L/C values from current box averages when switching to
+ * non-custom balance mode.
+ */
+function applyBalanceDefaults(): void {
+  const avgL =
+    state.boxes.reduce((sum, box) => sum + box.l, 0) / state.boxes.length;
+  const avgC =
+    state.boxes.reduce((sum, box) => sum + box.cFactor, 0) / state.boxes.length;
+
+  state.baseLuminance = clamp(avgL, 0.1, 0.9);
+  state.baseChromaFactor = clamp(avgC, 0.1, 0.9);
 }
 
 /**
@@ -455,6 +555,31 @@ colorModeContainer.addEventListener('click', (e) => {
   render();
 });
 
+balanceModeContainer.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.tagName !== 'BUTTON') return;
+  const mode = (target as HTMLButtonElement).dataset.mode;
+  if (!mode || mode === state.balanceMode) return;
+
+  state.balanceMode = mode;
+  if (mode !== 'custom') {
+    applyBalanceDefaults();
+  }
+  render();
+});
+
+baseLuminanceSlider.addEventListener('input', (e) => {
+  state.baseLuminance =
+    parseInt((e.target as HTMLInputElement).value, 10) / 100;
+  render();
+});
+
+baseChromaSlider.addEventListener('input', (e) => {
+  state.baseChromaFactor =
+    parseInt((e.target as HTMLInputElement).value, 10) / 100;
+  render();
+});
+
 copySvgBtn.addEventListener('click', async () => {
   const svg = generateSvg();
   try {
@@ -481,26 +606,33 @@ downloadSvgBtn.addEventListener('click', () => {
 });
 
 // Box control event handlers
-boxControls.forEach((ctrl, i) => {
+boxControls.forEach((ctrl) => {
+  const boxIndex = parseInt(ctrl.getAttribute('data-box') || '1', 10) - 1;
   const lSlider = ctrl.querySelector('.l-slider') as HTMLInputElement;
   const cSlider = ctrl.querySelector('.c-slider') as HTMLInputElement;
   const hSlider = ctrl.querySelector('.h-slider') as HTMLInputElement;
   const hexInput = ctrl.querySelector('.hex-input') as HTMLInputElement;
 
   lSlider.addEventListener('input', (e) => {
-    state.boxes[i].l = parseInt((e.target as HTMLInputElement).value, 10) / 100;
-    render();
+    if (state.balanceMode === 'custom') {
+      state.boxes[boxIndex].l =
+        parseInt((e.target as HTMLInputElement).value, 10) / 100;
+      render();
+    }
   });
 
   cSlider.addEventListener('input', (e) => {
-    state.boxes[i].cFactor =
-      parseInt((e.target as HTMLInputElement).value, 10) / 100;
-    render();
+    if (state.balanceMode === 'custom') {
+      state.boxes[boxIndex].cFactor =
+        parseInt((e.target as HTMLInputElement).value, 10) / 100;
+      render();
+    }
   });
 
   hSlider.addEventListener('input', (e) => {
     if (state.colorMode === 'custom') {
-      state.boxes[i].h = parseInt((e.target as HTMLInputElement).value, 10);
+      state.boxes[boxIndex].h =
+        parseInt((e.target as HTMLInputElement).value, 10);
       render();
     }
   });
@@ -514,16 +646,19 @@ boxControls.forEach((ctrl, i) => {
 
     try {
       const oklch = hexToOklch(hex);
-      state.boxes[i].l = oklch.l;
-      state.boxes[i].h = oklch.h;
+      state.boxes[boxIndex].l = oklch.l;
+      state.boxes[boxIndex].h = oklch.h;
 
       // Estimate cFactor from actual chroma
       const mc = maxChroma(oklch.l, oklch.h);
-      state.boxes[i].cFactor = mc > 0 ? Math.min(1, oklch.c / mc) : 0;
+      state.boxes[boxIndex].cFactor = mc > 0 ? Math.min(1, oklch.c / mc) : 0;
 
-      // Switch to custom mode if not already
+      // Switch to custom modes if not already
       if (state.colorMode !== 'custom') {
         state.colorMode = 'custom';
+      }
+      if (state.balanceMode !== 'custom') {
+        state.balanceMode = 'custom';
       }
       render();
     } catch (err) {

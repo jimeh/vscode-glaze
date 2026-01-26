@@ -58,6 +58,12 @@ export interface AppState {
   colorMode: string;
   /** Base hue for non-custom modes */
   baseHue: number;
+  /** Active balance mode */
+  balanceMode: string;
+  /** Base luminance for non-custom balance modes */
+  baseLuminance: number;
+  /** Base chroma factor for non-custom balance modes */
+  baseChromaFactor: number;
   /** State for each of the 3 boxes */
   boxes: [BoxState, BoxState, BoxState];
 }
@@ -87,3 +93,27 @@ export interface ColorScheme {
  * All available color schemes.
  */
 export type Schemes = Record<string, ColorScheme>;
+
+/**
+ * Preset for a single box in a balance scheme.
+ */
+export interface BalanceBoxPreset {
+  /** Luminance offset from base (-1 to 1) */
+  lOffset: number;
+  /** Chroma multiplier applied to base (0-2) */
+  cMultiplier: number;
+}
+
+/**
+ * Balance scheme definition.
+ */
+export interface BalanceScheme {
+  name: string;
+  description: string;
+  boxes: [BalanceBoxPreset, BalanceBoxPreset, BalanceBoxPreset] | null;
+}
+
+/**
+ * All available balance schemes.
+ */
+export type BalanceSchemes = Record<string, BalanceScheme>;

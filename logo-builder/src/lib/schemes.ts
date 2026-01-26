@@ -5,7 +5,7 @@
  * plus default lightness and chroma factors.
  */
 
-import type { Schemes } from './types';
+import type { Schemes, BalanceSchemes } from './types';
 
 export const SCHEMES: Schemes = {
   monochromatic: {
@@ -71,3 +71,53 @@ export const SCHEMES: Schemes = {
 export function normalizeHue(hue: number): number {
   return ((hue % 360) + 360) % 360;
 }
+
+/**
+ * Clamps a value to the specified range.
+ */
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+/**
+ * Balance (luminance/chroma) presets for logo colors.
+ *
+ * Each scheme defines how box L/C values relate to the base values.
+ */
+export const BALANCE_SCHEMES: BalanceSchemes = {
+  uniform: {
+    name: 'Uniform',
+    description: 'All boxes same luminance and chroma',
+    boxes: [
+      { lOffset: 0, cMultiplier: 1 }, // Highlight
+      { lOffset: 0, cMultiplier: 1 }, // Shadow
+      { lOffset: 0, cMultiplier: 1 }, // Center
+    ],
+  },
+
+  layered: {
+    name: 'Layered',
+    description: 'Back light/muted, front dark/vibrant',
+    boxes: [
+      { lOffset: 0.25, cMultiplier: 0.4 }, // Highlight - lighter, muted
+      { lOffset: -0.1, cMultiplier: 1.2 }, // Shadow - darker, vibrant
+      { lOffset: 0, cMultiplier: 0.8 }, // Center - base, slightly muted
+    ],
+  },
+
+  contrast: {
+    name: 'Contrast',
+    description: 'Varied luminance, uniform chroma',
+    boxes: [
+      { lOffset: 0.2, cMultiplier: 1 }, // Highlight - lighter
+      { lOffset: -0.15, cMultiplier: 1 }, // Shadow - darker
+      { lOffset: 0, cMultiplier: 1 }, // Center - base
+    ],
+  },
+
+  custom: {
+    name: 'Custom',
+    description: 'Full manual control over each box',
+    boxes: null, // No preset - uses individual slider values
+  },
+};
