@@ -16,6 +16,14 @@ import BoxControl from './BoxControl.astro';
   </section>
 
   <section class="control-group">
+    <label>
+      Rounding:
+      <input type="range" id="rounding" min="0" max="184" value="123" />
+      <span id="rounding-value">123</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
     <label>Color Mode:</label>
     <div class="mode-btns" id="color-mode">
       <button data-mode="monochromatic">Mono</button>

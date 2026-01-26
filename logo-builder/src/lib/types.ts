@@ -46,6 +46,8 @@ export interface BoxState {
 export interface AppState {
   /** Spacing between boxes in pixels */
   spacing: number;
+  /** Corner rounding radius in pixels */
+  rounding: number;
   /** Active color mode */
   colorMode: string;
   /** Base hue for non-custom modes */

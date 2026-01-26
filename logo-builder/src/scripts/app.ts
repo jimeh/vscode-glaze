@@ -9,7 +9,7 @@ import type { AppState } from '../lib/types';
 // SVG dimensions
 const BOX_WIDTH = 510.4;
 const BOX_HEIGHT = 368.4;
-const BOX_RADIUS = 122.8;
+const DEFAULT_RADIUS = 123;
 const SVG_SIZE = 800;
 
 // Center position for the front box (box3)
@@ -19,6 +19,7 @@ const CENTER_Y = (SVG_SIZE - BOX_HEIGHT) / 2;
 // State
 const state: AppState = {
   spacing: 70,
+  rounding: DEFAULT_RADIUS,
   colorMode: 'custom',
   baseHue: 195,
   boxes: [
@@ -35,6 +36,8 @@ const boxes3 = document.querySelectorAll('.box3') as NodeListOf<SVGRectElement>;
 
 const spacingSlider = document.getElementById('spacing') as HTMLInputElement;
 const spacingValue = document.getElementById('spacing-value') as HTMLElement;
+const roundingSlider = document.getElementById('rounding') as HTMLInputElement;
+const roundingValue = document.getElementById('rounding-value') as HTMLElement;
 const baseHueSlider = document.getElementById('base-hue') as HTMLInputElement;
 const baseHueValue = document.getElementById('base-hue-value') as HTMLElement;
 const baseHuePreview = document.getElementById(
@@ -123,12 +126,26 @@ function updateColors(): void {
 }
 
 /**
+ * Updates SVG corner rounding for all preview instances.
+ */
+function updateRounding(): void {
+  const rx = String(state.rounding);
+  boxes1.forEach((box) => box.setAttribute('rx', rx));
+  boxes2.forEach((box) => box.setAttribute('rx', rx));
+  boxes3.forEach((box) => box.setAttribute('rx', rx));
+}
+
+/**
  * Updates UI controls to match state.
  */
 function updateUI(): void {
   // Spacing
   spacingSlider.value = String(state.spacing);
   spacingValue.textContent = String(state.spacing);
+
+  // Rounding
+  roundingSlider.value = String(state.rounding);
+  roundingValue.textContent = String(state.rounding);
 
   // Base hue
   baseHueSlider.value = String(state.baseHue);
@@ -217,6 +234,7 @@ function applySchemeDefaults(schemeName: string): void {
 function render(): void {
   updatePositions();
   updateColors();
+  updateRounding();
   updateUI();
 }
 
@@ -238,10 +256,12 @@ function generateSvg(): string {
   const box3X = CENTER_X;
   const box3Y = CENTER_Y;
 
+  const rx = state.rounding;
+
   return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-  <rect x="${box1X}" y="${box1Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color1}"/>
-  <rect x="${box2X}" y="${box2Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color2}"/>
-  <rect x="${box3X}" y="${box3Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color3}"/>
+  <rect x="${box1X}" y="${box1Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${rx}" fill="${color1}"/>
+  <rect x="${box2X}" y="${box2Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${rx}" fill="${color2}"/>
+  <rect x="${box3X}" y="${box3Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${rx}" fill="${color3}"/>
 </svg>`;
 }
 
@@ -249,6 +269,11 @@ function generateSvg(): string {
 
 spacingSlider.addEventListener('input', (e) => {
   state.spacing = parseInt((e.target as HTMLInputElement).value, 10);
+  render();
+});
+
+roundingSlider.addEventListener('input', (e) => {
+  state.rounding = parseInt((e.target as HTMLInputElement).value, 10);
   render();
 });
 
