@@ -24,9 +24,9 @@ const state: AppState = {
   colorMode: 'custom',
   baseHue: 195,
   boxes: [
-    { l: 0.92, cFactor: 0.15, h: 30 }, // Box 1 (back)
-    { l: 0.55, cFactor: 0.5, h: 25 }, // Box 2 (front)
-    { l: 0.65, cFactor: 0.45, h: 195 }, // Box 3 (middle)
+    { l: 0.95, cFactor: 0.54, h: 34 }, // Box 1 (back) - #f7ebe8
+    { l: 0.63, cFactor: 0.75, h: 24 }, // Box 2 (red) - #e54b4b
+    { l: 0.67, cFactor: 0.49, h: 205 }, // Box 3 (teal) - #6b9fa5
   ],
 };
 
