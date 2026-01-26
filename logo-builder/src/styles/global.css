@@ -7,7 +7,7 @@
   --preview-bg: #f0f0f0;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg: #1e1e1e;
   --fg: #e0e0e0;
   --border: #444;
@@ -23,7 +23,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
   background: var(--bg);
   color: var(--fg);
@@ -71,10 +71,18 @@ header h1 {
   background: var(--control-bg);
 }
 
-.light-icon { display: inline; }
-.dark-icon { display: none; }
-[data-theme="dark"] .light-icon { display: none; }
-[data-theme="dark"] .dark-icon { display: inline; }
+.light-icon {
+  display: inline;
+}
+.dark-icon {
+  display: none;
+}
+[data-theme='dark'] .light-icon {
+  display: none;
+}
+[data-theme='dark'] .dark-icon {
+  display: inline;
+}
 
 .export-btns {
   display: flex;
@@ -136,7 +144,7 @@ main {
   font-size: 0.875rem;
 }
 
-.control-group input[type="range"] {
+.control-group input[type='range'] {
   flex: 1;
   max-width: 300px;
 }
@@ -207,7 +215,7 @@ main {
   margin-bottom: 0.5rem;
 }
 
-.box-control input[type="range"] {
+.box-control input[type='range'] {
   flex: 1;
 }
 
@@ -255,7 +263,7 @@ main {
 }
 
 /* Range slider styling */
-input[type="range"] {
+input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
   height: 6px;
@@ -264,7 +272,7 @@ input[type="range"] {
   cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
@@ -276,7 +284,7 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-input[type="range"]::-moz-range-thumb {
+input[type='range']::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;

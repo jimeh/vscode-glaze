@@ -1,5 +1,10 @@
-import { oklchToHex, hexToOklch, maxChroma } from './color.js';
-import { SCHEMES, normalizeHue } from './schemes.js';
+/**
+ * Client-side interactivity for the Logo Builder.
+ */
+
+import { oklchToHex, hexToOklch, maxChroma } from '../lib/color';
+import { SCHEMES, normalizeHue } from '../lib/schemes';
+import type { AppState } from '../lib/types';
 
 // SVG dimensions
 const BOX_WIDTH = 510.4;
@@ -9,41 +14,47 @@ const BASE_X = 74.8;
 const BASE_Y = 145.8;
 
 // State
-let state = {
+const state: AppState = {
   spacing: 70,
   colorMode: 'custom',
   baseHue: 195,
   boxes: [
-    { l: 0.92, cFactor: 0.15, h: 30 },  // Box 1 (back)
-    { l: 0.55, cFactor: 0.50, h: 25 },  // Box 2 (front)
+    { l: 0.92, cFactor: 0.15, h: 30 }, // Box 1 (back)
+    { l: 0.55, cFactor: 0.5, h: 25 }, // Box 2 (front)
     { l: 0.65, cFactor: 0.45, h: 195 }, // Box 3 (middle)
   ],
 };
 
 // DOM elements
-const box1 = document.getElementById('box1');
-const box2 = document.getElementById('box2');
-const box3 = document.getElementById('box3');
+const box1 = document.getElementById('box1') as unknown as SVGRectElement;
+const box2 = document.getElementById('box2') as unknown as SVGRectElement;
+const box3 = document.getElementById('box3') as unknown as SVGRectElement;
 
-const spacingSlider = document.getElementById('spacing');
-const spacingValue = document.getElementById('spacing-value');
-const baseHueSlider = document.getElementById('base-hue');
-const baseHueValue = document.getElementById('base-hue-value');
-const baseHuePreview = document.getElementById('base-hue-preview');
-const baseHueGroup = document.getElementById('base-hue-group');
-const colorModeContainer = document.getElementById('color-mode');
-const themeToggle = document.getElementById('theme-toggle');
-const copySvgBtn = document.getElementById('copy-svg');
-const downloadSvgBtn = document.getElementById('download-svg');
+const spacingSlider = document.getElementById('spacing') as HTMLInputElement;
+const spacingValue = document.getElementById('spacing-value') as HTMLElement;
+const baseHueSlider = document.getElementById('base-hue') as HTMLInputElement;
+const baseHueValue = document.getElementById('base-hue-value') as HTMLElement;
+const baseHuePreview = document.getElementById(
+  'base-hue-preview'
+) as HTMLElement;
+const baseHueGroup = document.getElementById('base-hue-group') as HTMLElement;
+const colorModeContainer = document.getElementById(
+  'color-mode'
+) as HTMLElement;
+const themeToggle = document.getElementById('theme-toggle') as HTMLElement;
+const copySvgBtn = document.getElementById('copy-svg') as HTMLButtonElement;
+const downloadSvgBtn = document.getElementById(
+  'download-svg'
+) as HTMLButtonElement;
 
 const boxControls = document.querySelectorAll('.box-control');
 
 /**
  * Gets computed color for a box based on current mode.
  */
-function getBoxColor(boxIndex) {
+function getBoxColor(boxIndex: number): string {
   const box = state.boxes[boxIndex];
-  let hue;
+  let hue: number;
 
   if (state.colorMode === 'custom') {
     hue = box.h;
@@ -65,26 +76,26 @@ function getBoxColor(boxIndex) {
 /**
  * Updates SVG positions based on spacing.
  */
-function updatePositions() {
+function updatePositions(): void {
   const spacing = state.spacing;
 
   // Box 1 (back) - base position
-  box1.setAttribute('x', BASE_X);
-  box1.setAttribute('y', BASE_Y);
+  box1.setAttribute('x', String(BASE_X));
+  box1.setAttribute('y', String(BASE_Y));
 
   // Box 3 (middle) - 1x spacing
-  box3.setAttribute('x', BASE_X + spacing);
-  box3.setAttribute('y', BASE_Y + spacing);
+  box3.setAttribute('x', String(BASE_X + spacing));
+  box3.setAttribute('y', String(BASE_Y + spacing));
 
   // Box 2 (front) - 2x spacing
-  box2.setAttribute('x', BASE_X + spacing * 2);
-  box2.setAttribute('y', BASE_Y + spacing * 2);
+  box2.setAttribute('x', String(BASE_X + spacing * 2));
+  box2.setAttribute('y', String(BASE_Y + spacing * 2));
 }
 
 /**
  * Updates SVG colors.
  */
-function updateColors() {
+function updateColors(): void {
   box1.setAttribute('fill', getBoxColor(0));
   box2.setAttribute('fill', getBoxColor(1));
   box3.setAttribute('fill', getBoxColor(2));
@@ -93,14 +104,14 @@ function updateColors() {
 /**
  * Updates UI controls to match state.
  */
-function updateUI() {
+function updateUI(): void {
   // Spacing
-  spacingSlider.value = state.spacing;
-  spacingValue.textContent = state.spacing;
+  spacingSlider.value = String(state.spacing);
+  spacingValue.textContent = String(state.spacing);
 
   // Base hue
-  baseHueSlider.value = state.baseHue;
-  baseHueValue.textContent = state.baseHue;
+  baseHueSlider.value = String(state.baseHue);
+  baseHueValue.textContent = String(state.baseHue);
   const mc = maxChroma(0.6, state.baseHue);
   baseHuePreview.style.backgroundColor = oklchToHex({
     l: 0.6,
@@ -119,31 +130,34 @@ function updateUI() {
 
   // Color mode buttons
   colorModeContainer.querySelectorAll('button').forEach((btn) => {
-    btn.classList.toggle('active', btn.dataset.mode === state.colorMode);
+    btn.classList.toggle(
+      'active',
+      (btn as HTMLButtonElement).dataset.mode === state.colorMode
+    );
   });
 
   // Box controls
   boxControls.forEach((ctrl, i) => {
     const box = state.boxes[i];
-    const lSlider = ctrl.querySelector('.l-slider');
-    const cSlider = ctrl.querySelector('.c-slider');
-    const hSlider = ctrl.querySelector('.h-slider');
-    const lValueEl = ctrl.querySelector('.l-value');
-    const cValueEl = ctrl.querySelector('.c-value');
-    const hValueEl = ctrl.querySelector('.h-value');
-    const hexInput = ctrl.querySelector('.hex-input');
-    const swatch = ctrl.querySelector('.color-swatch');
-    const hueRow = ctrl.querySelector('.hue-row');
+    const lSlider = ctrl.querySelector('.l-slider') as HTMLInputElement;
+    const cSlider = ctrl.querySelector('.c-slider') as HTMLInputElement;
+    const hSlider = ctrl.querySelector('.h-slider') as HTMLInputElement;
+    const lValueEl = ctrl.querySelector('.l-value') as HTMLElement;
+    const cValueEl = ctrl.querySelector('.c-value') as HTMLElement;
+    const hValueEl = ctrl.querySelector('.h-value') as HTMLElement;
+    const hexInput = ctrl.querySelector('.hex-input') as HTMLInputElement;
+    const swatch = ctrl.querySelector('.color-swatch') as HTMLElement;
+    const hueRow = ctrl.querySelector('.hue-row') as HTMLElement;
 
-    lSlider.value = Math.round(box.l * 100);
-    cSlider.value = Math.round(box.cFactor * 100);
+    lSlider.value = String(Math.round(box.l * 100));
+    cSlider.value = String(Math.round(box.cFactor * 100));
     lValueEl.textContent = box.l.toFixed(2);
     cValueEl.textContent = box.cFactor.toFixed(2);
 
     // Hue handling
     if (state.colorMode === 'custom') {
-      hSlider.value = box.h;
-      hValueEl.textContent = Math.round(box.h);
+      hSlider.value = String(box.h);
+      hValueEl.textContent = String(Math.round(box.h));
       hueRow.classList.remove('disabled');
     } else {
       const scheme = SCHEMES[state.colorMode];
@@ -151,8 +165,8 @@ function updateUI() {
         const computedHue = normalizeHue(
           state.baseHue + scheme.boxes[i].hueOffset
         );
-        hSlider.value = computedHue;
-        hValueEl.textContent = Math.round(computedHue);
+        hSlider.value = String(computedHue);
+        hValueEl.textContent = String(Math.round(computedHue));
       }
       hueRow.classList.add('disabled');
     }
@@ -166,7 +180,7 @@ function updateUI() {
 /**
  * Applies scheme defaults to boxes.
  */
-function applySchemeDefaults(schemeName) {
+function applySchemeDefaults(schemeName: string): void {
   const scheme = SCHEMES[schemeName];
   if (!scheme || !scheme.boxes) return;
 
@@ -179,7 +193,7 @@ function applySchemeDefaults(schemeName) {
 /**
  * Full render update.
  */
-function render() {
+function render(): void {
   updatePositions();
   updateColors();
   updateUI();
@@ -188,7 +202,7 @@ function render() {
 /**
  * Generates clean SVG string for export.
  */
-function generateSvg() {
+function generateSvg(): string {
   const spacing = state.spacing;
   const color1 = getBoxColor(0);
   const color2 = getBoxColor(1);
@@ -204,18 +218,19 @@ function generateSvg() {
 // Event handlers
 
 spacingSlider.addEventListener('input', (e) => {
-  state.spacing = parseInt(e.target.value, 10);
+  state.spacing = parseInt((e.target as HTMLInputElement).value, 10);
   render();
 });
 
 baseHueSlider.addEventListener('input', (e) => {
-  state.baseHue = parseInt(e.target.value, 10);
+  state.baseHue = parseInt((e.target as HTMLInputElement).value, 10);
   render();
 });
 
 colorModeContainer.addEventListener('click', (e) => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const mode = e.target.dataset.mode;
+  const target = e.target as HTMLElement;
+  if (target.tagName !== 'BUTTON') return;
+  const mode = (target as HTMLButtonElement).dataset.mode;
   if (!mode || mode === state.colorMode) return;
 
   state.colorMode = mode;
@@ -257,30 +272,31 @@ downloadSvgBtn.addEventListener('click', () => {
 
 // Box control event handlers
 boxControls.forEach((ctrl, i) => {
-  const lSlider = ctrl.querySelector('.l-slider');
-  const cSlider = ctrl.querySelector('.c-slider');
-  const hSlider = ctrl.querySelector('.h-slider');
-  const hexInput = ctrl.querySelector('.hex-input');
+  const lSlider = ctrl.querySelector('.l-slider') as HTMLInputElement;
+  const cSlider = ctrl.querySelector('.c-slider') as HTMLInputElement;
+  const hSlider = ctrl.querySelector('.h-slider') as HTMLInputElement;
+  const hexInput = ctrl.querySelector('.hex-input') as HTMLInputElement;
 
   lSlider.addEventListener('input', (e) => {
-    state.boxes[i].l = parseInt(e.target.value, 10) / 100;
+    state.boxes[i].l = parseInt((e.target as HTMLInputElement).value, 10) / 100;
     render();
   });
 
   cSlider.addEventListener('input', (e) => {
-    state.boxes[i].cFactor = parseInt(e.target.value, 10) / 100;
+    state.boxes[i].cFactor =
+      parseInt((e.target as HTMLInputElement).value, 10) / 100;
     render();
   });
 
   hSlider.addEventListener('input', (e) => {
     if (state.colorMode === 'custom') {
-      state.boxes[i].h = parseInt(e.target.value, 10);
+      state.boxes[i].h = parseInt((e.target as HTMLInputElement).value, 10);
       render();
     }
   });
 
   hexInput.addEventListener('change', (e) => {
-    const hex = e.target.value.trim();
+    const hex = (e.target as HTMLInputElement).value.trim();
     if (!/^#[0-9a-fA-F]{6}$/.test(hex)) {
       render(); // Reset to current value
       return;

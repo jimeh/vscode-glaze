@@ -5,7 +5,9 @@
  * plus default lightness and chroma factors.
  */
 
-export const SCHEMES = {
+import type { Schemes } from './types';
+
+export const SCHEMES: Schemes = {
   monochromatic: {
     name: 'Monochromatic',
     description: 'Same hue, varying lightness and chroma',
@@ -20,9 +22,9 @@ export const SCHEMES = {
     name: 'Duotone',
     description: 'Base hue + 180 degree complement',
     boxes: [
-      { hueOffset: 0, l: 0.90, cFactor: 0.20 },   // Back - base, light
+      { hueOffset: 0, l: 0.9, cFactor: 0.2 }, // Back - base, light
       { hueOffset: 180, l: 0.55, cFactor: 0.65 }, // Front - complement
-      { hueOffset: 0, l: 0.60, cFactor: 0.55 },   // Middle - base
+      { hueOffset: 0, l: 0.6, cFactor: 0.55 }, // Middle - base
     ],
   },
 
@@ -31,8 +33,8 @@ export const SCHEMES = {
     description: 'Three adjacent hues (base, -30, +30)',
     boxes: [
       { hueOffset: -30, l: 0.88, cFactor: 0.25 }, // Back
-      { hueOffset: 30, l: 0.55, cFactor: 0.60 },  // Front
-      { hueOffset: 0, l: 0.65, cFactor: 0.50 },   // Middle
+      { hueOffset: 30, l: 0.55, cFactor: 0.6 }, // Front
+      { hueOffset: 0, l: 0.65, cFactor: 0.5 }, // Middle
     ],
   },
 
@@ -40,9 +42,9 @@ export const SCHEMES = {
     name: 'Triadic',
     description: 'Three hues 120 degrees apart',
     boxes: [
-      { hueOffset: 0, l: 0.88, cFactor: 0.25 },   // Back - base
-      { hueOffset: 120, l: 0.55, cFactor: 0.60 }, // Front
-      { hueOffset: 240, l: 0.65, cFactor: 0.50 }, // Middle
+      { hueOffset: 0, l: 0.88, cFactor: 0.25 }, // Back - base
+      { hueOffset: 120, l: 0.55, cFactor: 0.6 }, // Front
+      { hueOffset: 240, l: 0.65, cFactor: 0.5 }, // Middle
     ],
   },
 
@@ -50,9 +52,9 @@ export const SCHEMES = {
     name: 'Split-complementary',
     description: 'Base + 150 and 210 degree offsets',
     boxes: [
-      { hueOffset: 0, l: 0.88, cFactor: 0.25 },   // Back - base
-      { hueOffset: 150, l: 0.55, cFactor: 0.60 }, // Front
-      { hueOffset: 210, l: 0.65, cFactor: 0.50 }, // Middle
+      { hueOffset: 0, l: 0.88, cFactor: 0.25 }, // Back - base
+      { hueOffset: 150, l: 0.55, cFactor: 0.6 }, // Front
+      { hueOffset: 210, l: 0.65, cFactor: 0.5 }, // Middle
     ],
   },
 
@@ -64,19 +66,8 @@ export const SCHEMES = {
 };
 
 /**
- * Default custom values (matches original logo colors approximately)
- */
-export const DEFAULT_CUSTOM = {
-  boxes: [
-    { h: 30, l: 0.92, cFactor: 0.15 },  // Back - light pink #f7ebe8
-    { h: 25, l: 0.55, cFactor: 0.50 },  // Front - red #e54b4b
-    { h: 195, l: 0.65, cFactor: 0.45 }, // Middle - teal #6b9fa5
-  ],
-};
-
-/**
  * Normalizes a hue to 0-360 range.
  */
-export function normalizeHue(hue) {
+export function normalizeHue(hue: number): number {
   return ((hue % 360) + 360) % 360;
 }

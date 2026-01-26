@@ -1,0 +1,65 @@
+---
+/**
+ * Main controls panel with spacing, color mode, and box controls.
+ */
+
+import BoxControl from './BoxControl.astro';
+---
+
+<div class="controls">
+  <section class="control-group">
+    <label>
+      Spacing:
+      <input type="range" id="spacing" min="0" max="200" value="70" />
+      <span id="spacing-value">70</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>Color Mode:</label>
+    <div class="mode-btns" id="color-mode">
+      <button data-mode="monochromatic">Mono</button>
+      <button data-mode="duotone">Duo</button>
+      <button data-mode="analogous">Analog</button>
+      <button data-mode="triadic">Triad</button>
+      <button data-mode="split">Split</button>
+      <button data-mode="custom" class="active">Custom</button>
+    </div>
+  </section>
+
+  <section class="control-group" id="base-hue-group">
+    <label>
+      Base Hue:
+      <input type="range" id="base-hue" min="0" max="360" value="195" />
+      <span id="base-hue-value">195</span>&deg;
+    </label>
+    <div class="hue-preview" id="base-hue-preview"></div>
+  </section>
+
+  <section class="box-controls">
+    <BoxControl
+      boxIndex={1}
+      title="Box 1 (Back)"
+      defaultL={92}
+      defaultC={15}
+      defaultH={30}
+      defaultHex="#f7ebe8"
+    />
+    <BoxControl
+      boxIndex={2}
+      title="Box 2 (Front)"
+      defaultL={55}
+      defaultC={50}
+      defaultH={25}
+      defaultHex="#e54b4b"
+    />
+    <BoxControl
+      boxIndex={3}
+      title="Box 3 (Middle)"
+      defaultL={65}
+      defaultC={45}
+      defaultH={195}
+      defaultHex="#6b9fa5"
+    />
+  </section>
+</div>

@@ -1,12 +1,13 @@
 /**
  * OKLCH Color Space Utilities
- * Ported from src/color/convert.ts
  */
+
+import type { OKLCH, Oklab, LinearRGB } from './types';
 
 /**
  * Converts OKLCH to Oklab color space.
  */
-function oklchToOklab(oklch) {
+function oklchToOklab(oklch: OKLCH): Oklab {
   const { l, c, h } = oklch;
   const hRad = (h * Math.PI) / 180;
   return {
@@ -19,7 +20,7 @@ function oklchToOklab(oklch) {
 /**
  * Converts Oklab to OKLCH color space.
  */
-function oklabToOklch(oklab) {
+function oklabToOklch(oklab: Oklab): OKLCH {
   const { L, a, b } = oklab;
   const c = Math.sqrt(a * a + b * b);
   let h = (Math.atan2(b, a) * 180) / Math.PI;
@@ -32,7 +33,7 @@ function oklabToOklch(oklab) {
 /**
  * Converts Oklab to linear RGB.
  */
-function oklabToLinearRgb(oklab) {
+function oklabToLinearRgb(oklab: Oklab): LinearRGB {
   const { L, a, b } = oklab;
 
   // Oklab to LMS (cone response)
@@ -56,7 +57,7 @@ function oklabToLinearRgb(oklab) {
 /**
  * Converts linear RGB to Oklab.
  */
-function linearRgbToOklab(rgb) {
+function linearRgbToOklab(rgb: LinearRGB): Oklab {
   const { r, g, b } = rgb;
 
   // Linear RGB to LMS
@@ -80,7 +81,7 @@ function linearRgbToOklab(rgb) {
 /**
  * Applies sRGB gamma correction (linear to sRGB).
  */
-function linearToSrgb(c) {
+function linearToSrgb(c: number): number {
   if (c <= 0.0031308) {
     return 12.92 * c;
   }
@@ -90,7 +91,7 @@ function linearToSrgb(c) {
 /**
  * Removes sRGB gamma correction (sRGB to linear).
  */
-function srgbToLinear(c) {
+function srgbToLinear(c: number): number {
   if (c <= 0.04045) {
     return c / 12.92;
   }
@@ -100,7 +101,7 @@ function srgbToLinear(c) {
 /**
  * Checks if a linear RGB value is within the sRGB gamut (0-1 range).
  */
-function isInGamut(rgb) {
+function isInGamut(rgb: LinearRGB): boolean {
   const epsilon = 0.0001;
   return (
     rgb.r >= -epsilon &&
@@ -115,14 +116,14 @@ function isInGamut(rgb) {
 /**
  * Clamps a value to the 0-1 range.
  */
-function clamp01(v) {
+function clamp01(v: number): number {
   return Math.max(0, Math.min(1, v));
 }
 
 /**
  * Clamps an OKLCH color to the sRGB gamut by reducing chroma.
  */
-export function clampToGamut(oklch) {
+export function clampToGamut(oklch: OKLCH): OKLCH {
   const { l, c, h } = oklch;
 
   // Edge cases
@@ -166,7 +167,7 @@ export function clampToGamut(oklch) {
 /**
  * Converts an OKLCH color to a hex string.
  */
-export function oklchToHex(oklch) {
+export function oklchToHex(oklch: OKLCH): string {
   const clamped = clampToGamut(oklch);
   const oklab = oklchToOklab(clamped);
   const linearRgb = oklabToLinearRgb(oklab);
@@ -175,7 +176,7 @@ export function oklchToHex(oklch) {
   const g = clamp01(linearToSrgb(linearRgb.g));
   const b = clamp01(linearToSrgb(linearRgb.b));
 
-  const toHex = (n) =>
+  const toHex = (n: number): string =>
     Math.round(n * 255)
       .toString(16)
       .padStart(2, '0');
@@ -186,7 +187,7 @@ export function oklchToHex(oklch) {
 /**
  * Converts a hex color string to OKLCH.
  */
-export function hexToOklch(hex) {
+export function hexToOklch(hex: string): OKLCH {
   const cleaned = hex.replace(/^#/, '');
   if (!/^[0-9a-fA-F]{6}$/.test(cleaned)) {
     throw new Error(`Invalid hex color: ${hex}`);
@@ -207,7 +208,7 @@ export function hexToOklch(hex) {
 /**
  * Finds the maximum in-gamut chroma for a given lightness and hue.
  */
-export function maxChroma(lightness, hue) {
+export function maxChroma(lightness: number, hue: number): number {
   // Edge cases: at L=0 (black) or L=1 (white), chroma must be 0
   if (lightness <= 0 || lightness >= 1) {
     return 0;
