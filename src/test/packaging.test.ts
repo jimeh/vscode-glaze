@@ -28,6 +28,7 @@ const EXPECTED_FILES = [
   'LICENSE',
   'README.md',
   'dist/extension.js',
+  'img/icon.png',
   'package.json',
 ];
 

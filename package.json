@@ -15,18 +15,46 @@
     "url": "https://github.com/jimeh/vscode-patina/issues"
   },
   "qna": false,
+  "icon": "img/icon.png",
   "categories": [
     "Other"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": true
+    }
+  },
+  "galleryBanner": {
+    "color": "#1E1E24",
+    "theme": "dark"
+  },
+  "keywords": [
+    "color",
+    "colorize",
+    "tint",
+    "theme",
+    "workspace",
+    "window",
+    "customization",
+    "project",
+    "visual"
   ],
   "activationEvents": [
     "onStartupFinished"
   ],
   "files": [
-    "package.json",
-    "README.md",
-    "LICENSE",
     "CHANGELOG.md",
-    "dist/extension.js"
+    "LICENSE",
+    "README.md",
+    "dist/extension.js",
+    "img/icon.png",
+    "package.json"
   ],
   "main": "./dist/extension.js",
   "contributes": {
