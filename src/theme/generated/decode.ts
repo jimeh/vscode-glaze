@@ -8,10 +8,10 @@ import type { ThemeColors, ThemeColorKey } from '../colorKeys';
 
 /**
  * Compact theme entry format: [colorsArray, typeIndex]
- * - colorsArray: Ordered hex values (without #), empty string for undefined
+ * - colorsArray: Sparse array with hex values (without #), 3 or 6 chars
  * - typeIndex: 0=dark, 1=light, 2=hcDark, 3=hcLight
  */
-export type CompactThemeEntry = readonly [readonly string[], number];
+export type CompactThemeEntry = readonly [readonly (string | undefined)[], number];
 
 /**
  * Compact theme data: Record mapping theme name to compact entry.
@@ -45,20 +45,34 @@ const THEME_TYPE_ORDER: readonly ThemeType[] = [
 ] as const;
 
 /**
+ * Expands a 3-character hex to 6 characters.
+ * E.g., "ABC" -> "AABBCC", "1E1E1E" stays as "1E1E1E"
+ */
+function expandHex(hex: string): string {
+  if (hex.length === 3) {
+    return hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  return hex;
+}
+
+/**
  * Decodes a compact theme entry to ThemeInfo.
  */
 function decodeThemeEntry(entry: CompactThemeEntry): ThemeInfo {
   const [colorArray, typeIndex] = entry;
   const colors: ThemeColors = {
-    'editor.background': '#' + colorArray[0],
+    'editor.background': '#' + expandHex(colorArray[0]!),
   };
 
   // Add optional colors (indices 1-9)
   for (let i = 1; i < COLOR_KEY_ORDER.length; i++) {
     const value = colorArray[i];
     if (value) {
-      const key = COLOR_KEY_ORDER[i] as Exclude<ThemeColorKey, 'editor.background'>;
-      colors[key] = '#' + value;
+      const key = COLOR_KEY_ORDER[i] as Exclude<
+        ThemeColorKey,
+        'editor.background'
+      >;
+      colors[key] = '#' + expandHex(value);
     }
   }
 

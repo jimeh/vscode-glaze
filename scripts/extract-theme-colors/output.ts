@@ -40,14 +40,34 @@ const THEME_TYPE_ORDER: readonly ThemeType[] = [
 ] as const;
 
 /**
+ * Compresses a 6-character hex color to 3 characters if possible.
+ * E.g., "AABBCC" -> "ABC", "1E1E1E" stays as "1E1E1E"
+ */
+function compressHex(hex: string): string {
+  if (hex.length !== 6) return hex;
+  const r1 = hex[0],
+    r2 = hex[1];
+  const g1 = hex[2],
+    g2 = hex[3];
+  const b1 = hex[4],
+    b2 = hex[5];
+  if (r1 === r2 && g1 === g2 && b1 === b2) {
+    return r1 + g1 + b1;
+  }
+  return hex;
+}
+
+/**
  * Converts a ThemeColors object to compact array format.
- * Returns [colorArray, typeIndex] where colorArray has hex values without #.
+ * Returns [colorArray, typeIndex] where:
+ * - colorArray uses sparse elements for undefined values
+ * - hex values are compressed to 3 chars when possible
  */
 function toCompactEntry(
   colors: ThemeColors,
   type: ThemeType
-): [string[], number] {
-  const colorArray: string[] = [];
+): [(string | undefined)[], number] {
+  const colorArray: (string | undefined)[] = [];
 
   // Find last non-empty index to trim trailing empty values
   let lastNonEmpty = 0;
@@ -63,12 +83,34 @@ function toCompactEntry(
   for (let i = 0; i <= lastNonEmpty; i++) {
     const key = COLOR_KEY_ORDER[i];
     const value = colors[key as keyof ThemeColors];
-    // Strip # prefix from hex colors
-    colorArray.push(value ? value.replace(/^#/, '') : '');
+    if (value) {
+      // Strip # prefix and compress hex
+      colorArray.push(compressHex(value.replace(/^#/, '')));
+    } else {
+      // Use undefined for sparse array
+      colorArray.push(undefined);
+    }
   }
 
   const typeIndex = THEME_TYPE_ORDER.indexOf(type);
   return [colorArray, typeIndex];
+}
+
+/**
+ * Formats a sparse array as JavaScript code.
+ * E.g., ["A", undefined, "B"] -> '["A",,"B"]'
+ */
+function formatSparseArray(arr: (string | undefined)[]): string {
+  const parts: string[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    const val = arr[i];
+    if (val === undefined) {
+      parts.push('');
+    } else {
+      parts.push(JSON.stringify(val));
+    }
+  }
+  return '[' + parts.join(',') + ']';
 }
 
 /**
@@ -169,7 +211,7 @@ function generateCompactThemeEntries(
     const theme = themeMap.get(name)!;
     const formattedName = formatThemeName(name);
     const [colorArray, typeIndex] = toCompactEntry(theme.colors, theme.type);
-    const colorArrayStr = JSON.stringify(colorArray);
+    const colorArrayStr = formatSparseArray(colorArray);
     lines.push(`${formattedName}:[${colorArrayStr},${typeIndex}],`);
   }
 
