@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patina Logo Builder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button id="theme-toggle" class="icon-btn" title="Toggle background">
+        <span class="light-icon">&#9728;</span>
+        <span class="dark-icon">&#9790;</span>
+      </button>
+      <h1>Patina Logo Builder</h1>
+      <div class="export-btns">
+        <button id="copy-svg">Copy SVG</button>
+        <button id="download-svg">Download SVG</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="preview-area">
+        <svg id="logo-svg" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+          <rect id="box1" x="74.8" y="145.8" width="510.4" height="368.4"
+                rx="122.8" fill="#f7ebe8"/>
+          <rect id="box3" x="144.8" y="215.8" width="510.4" height="368.4"
+                rx="122.8" fill="#6b9fa5"/>
+          <rect id="box2" x="214.8" y="285.8" width="510.4" height="368.4"
+                rx="122.8" fill="#e54b4b"/>
+        </svg>
+      </div>
+
+      <div class="controls">
+        <section class="control-group">
+          <label>
+            Spacing:
+            <input type="range" id="spacing" min="0" max="200" value="70">
+            <span id="spacing-value">70</span>px
+          </label>
+        </section>
+
+        <section class="control-group">
+          <label>Color Mode:</label>
+          <div class="mode-btns" id="color-mode">
+            <button data-mode="monochromatic">Mono</button>
+            <button data-mode="duotone">Duo</button>
+            <button data-mode="analogous">Analog</button>
+            <button data-mode="triadic">Triad</button>
+            <button data-mode="split">Split</button>
+            <button data-mode="custom" class="active">Custom</button>
+          </div>
+        </section>
+
+        <section class="control-group" id="base-hue-group">
+          <label>
+            Base Hue:
+            <input type="range" id="base-hue" min="0" max="360" value="195">
+            <span id="base-hue-value">195</span>&deg;
+          </label>
+          <div class="hue-preview" id="base-hue-preview"></div>
+        </section>
+
+        <section class="box-controls">
+          <div class="box-control" data-box="1">
+            <h3>Box 1 (Back)</h3>
+            <label>L: <input type="range" class="l-slider" min="0" max="100"
+              value="92" step="1"><span class="l-value">0.92</span></label>
+            <label>C: <input type="range" class="c-slider" min="0" max="100"
+              value="15" step="1"><span class="c-value">0.15</span></label>
+            <label class="hue-row">H: <input type="range" class="h-slider"
+              min="0" max="360" value="30"><span class="h-value">30</span>&deg;
+            </label>
+            <input type="text" class="hex-input" value="#f7ebe8" maxlength="7">
+            <div class="color-swatch"></div>
+          </div>
+
+          <div class="box-control" data-box="2">
+            <h3>Box 2 (Front)</h3>
+            <label>L: <input type="range" class="l-slider" min="0" max="100"
+              value="55" step="1"><span class="l-value">0.55</span></label>
+            <label>C: <input type="range" class="c-slider" min="0" max="100"
+              value="50" step="1"><span class="c-value">0.50</span></label>
+            <label class="hue-row">H: <input type="range" class="h-slider"
+              min="0" max="360" value="25"><span class="h-value">25</span>&deg;
+            </label>
+            <input type="text" class="hex-input" value="#e54b4b" maxlength="7">
+            <div class="color-swatch"></div>
+          </div>
+
+          <div class="box-control" data-box="3">
+            <h3>Box 3 (Middle)</h3>
+            <label>L: <input type="range" class="l-slider" min="0" max="100"
+              value="65" step="1"><span class="l-value">0.65</span></label>
+            <label>C: <input type="range" class="c-slider" min="0" max="100"
+              value="45" step="1"><span class="c-value">0.45</span></label>
+            <label class="hue-row">H: <input type="range" class="h-slider"
+              min="0" max="360" value="195"><span class="h-value">195</span>&deg;
+            </label>
+            <input type="text" class="hex-input" value="#6b9fa5" maxlength="7">
+            <div class="color-swatch"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
