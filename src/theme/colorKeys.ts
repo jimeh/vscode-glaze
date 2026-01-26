@@ -173,3 +173,74 @@ export const PALETTE_KEY_TO_COLOR_KEY: Record<PaletteKey, ThemeColorKey> =
       return [key, key];
     })
   ) as Record<PaletteKey, ThemeColorKey>;
+
+// ============================================================================
+// Compact Theme Data Format
+// ============================================================================
+
+/**
+ * Theme type codes for compact storage.
+ * Maps numeric index to ThemeType string.
+ */
+export const THEME_TYPE_CODES = ['dark', 'light', 'hcDark', 'hcLight'] as const;
+
+/**
+ * Numeric theme type code (0-3).
+ */
+export type ThemeTypeCode = 0 | 1 | 2 | 3;
+
+/**
+ * Compact theme data format for efficient storage.
+ * Array structure: [typeCode, editorBg, editorFg, ...other colors]
+ *
+ * Index 0: Theme type code (0=dark, 1=light, 2=hcDark, 3=hcLight)
+ * Index 1-10: Color values without # prefix, empty string if not present
+ *   1: editor.background (required)
+ *   2: editor.foreground
+ *   3: titleBar.activeBackground
+ *   4: titleBar.activeForeground
+ *   5: titleBar.inactiveBackground
+ *   6: titleBar.inactiveForeground
+ *   7: statusBar.background
+ *   8: statusBar.foreground
+ *   9: activityBar.background
+ *   10: activityBar.foreground
+ */
+export type CompactThemeData = readonly [
+  ThemeTypeCode,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+];
+
+/**
+ * Compact theme colors storage format.
+ */
+export type CompactThemeColors = Record<string, CompactThemeData>;
+
+/**
+ * Expands a compact theme data array into a ThemeColors object.
+ */
+export function expandThemeColors(data: CompactThemeData): ThemeColors {
+  const colors: ThemeColors = {
+    'editor.background': '#' + data[1],
+  };
+
+  // Map indices to optional keys (indices 2-10 correspond to optional keys)
+  const optionalKeys = OPTIONAL_THEME_COLOR_KEYS;
+  for (let i = 0; i < optionalKeys.length; i++) {
+    const value = data[i + 2];
+    if (value) {
+      colors[optionalKeys[i]] = '#' + value;
+    }
+  }
+
+  return colors;
+}

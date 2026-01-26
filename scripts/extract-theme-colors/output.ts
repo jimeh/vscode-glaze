@@ -7,37 +7,55 @@ import { CONFIG } from './config';
 import type { ExtractedTheme, MetadataTheme, ThemeColors } from './types';
 
 /**
- * Formats a ThemeColors object as TypeScript code.
+ * Theme type to numeric code mapping (matches THEME_TYPE_CODES in colorKeys.ts).
  */
-function formatColors(colors: ThemeColors): string {
-  const parts: string[] = [
-    `'editor.background': '${colors['editor.background']}'`,
-  ];
+const THEME_TYPE_TO_CODE: Record<string, number> = {
+  dark: 0,
+  light: 1,
+  hcDark: 2,
+  hcLight: 3,
+};
 
-  // Add optional color keys in a consistent order
-  const optionalKeys = [
-    'editor.foreground',
-    'titleBar.activeBackground',
-    'titleBar.activeForeground',
-    'titleBar.inactiveBackground',
-    'titleBar.inactiveForeground',
-    'statusBar.background',
-    'statusBar.foreground',
-    'activityBar.background',
-    'activityBar.foreground',
-  ] as const;
+/**
+ * Optional color keys in fixed order for compact format.
+ * This order MUST match OPTIONAL_THEME_COLOR_KEYS in colorKeys.ts.
+ */
+const OPTIONAL_COLOR_KEYS = [
+  'editor.foreground',
+  'titleBar.activeBackground',
+  'titleBar.activeForeground',
+  'titleBar.inactiveBackground',
+  'titleBar.inactiveForeground',
+  'statusBar.background',
+  'statusBar.foreground',
+  'activityBar.background',
+  'activityBar.foreground',
+] as const;
 
-  for (const key of optionalKeys) {
-    if (colors[key]) {
-      parts.push(`'${key}': '${colors[key]}'`);
-    }
+/**
+ * Strips the # prefix from a hex color.
+ */
+function stripHashPrefix(color: string): string {
+  return color.startsWith('#') ? color.slice(1) : color;
+}
+
+/**
+ * Formats theme data as a compact array for minimal storage size.
+ * Format: [typeCode, editorBg, editorFg, ...optional colors]
+ * Missing colors are represented as empty strings.
+ */
+function formatCompactTheme(colors: ThemeColors, type: string): string {
+  const typeCode = THEME_TYPE_TO_CODE[type] ?? 0;
+  const editorBg = stripHashPrefix(colors['editor.background']);
+
+  const values: string[] = [String(typeCode), `"${editorBg}"`];
+
+  for (const key of OPTIONAL_COLOR_KEYS) {
+    const color = colors[key];
+    values.push(color ? `"${stripHashPrefix(color)}"` : '""');
   }
 
-  if (parts.length === 1) {
-    return `{ ${parts[0]} }`;
-  }
-
-  return `{\n      ${parts.join(',\n      ')},\n    }`;
+  return `[${values.join(',')}]`;
 }
 
 /**
@@ -124,9 +142,12 @@ function resolveThemeConflicts(
 }
 
 /**
- * Generates theme code for a map of themes.
+ * Generates compact theme entries for a map of themes.
+ * Each entry is a single line: "themeName": [typeCode, colors...]
  */
-function generateThemeEntries(themeMap: Map<string, ExtractedTheme>): string[] {
+function generateCompactThemeEntries(
+  themeMap: Map<string, ExtractedTheme>
+): string[] {
   const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
     a.localeCompare(b, undefined, { sensitivity: 'base' })
   );
@@ -135,19 +156,15 @@ function generateThemeEntries(themeMap: Map<string, ExtractedTheme>): string[] {
   for (const name of sortedNames) {
     const theme = themeMap.get(name)!;
     const formattedName = formatThemeName(name);
-    const colors = formatColors(theme.colors);
-
-    lines.push(`  ${formattedName}: {`);
-    lines.push(`    colors: ${colors},`);
-    lines.push(`    type: '${theme.type}',`);
-    lines.push('  },');
+    const compactData = formatCompactTheme(theme.colors, theme.type);
+    lines.push(`  ${formattedName}: ${compactData},`);
   }
 
   return lines;
 }
 
 /**
- * Generates extensions.ts with EXTENSION_THEME_COLORS constant.
+ * Generates extensions.ts with compact EXTENSION_THEME_COLORS constant.
  */
 export function generateExtensionColorsCode(
   extensionInfos: ExtensionFileInfo[],
@@ -165,12 +182,12 @@ export function generateExtensionColorsCode(
     ' * Do not edit manually - changes will be overwritten.',
     ' */',
     '',
-    "import type { ThemeInfo } from '../colors';",
+    "import type { CompactThemeColors } from '../colorKeys';",
     '',
-    'export const EXTENSION_THEME_COLORS: Record<string, ThemeInfo> = {',
+    'export const EXTENSION_THEME_COLORS: CompactThemeColors = {',
   ];
 
-  lines.push(...generateThemeEntries(themeMap));
+  lines.push(...generateCompactThemeEntries(themeMap));
 
   lines.push('};');
   lines.push('');
@@ -179,7 +196,7 @@ export function generateExtensionColorsCode(
 }
 
 /**
- * Generates builtin.ts with BUILTIN_THEME_COLORS constant.
+ * Generates builtin.ts with compact BUILTIN_THEME_COLORS constant.
  */
 export function generateBuiltinColorsCode(
   themes: MetadataTheme[],
@@ -205,20 +222,16 @@ export function generateBuiltinColorsCode(
     ' * Do not edit manually - changes will be overwritten.',
     ' */',
     '',
-    "import type { ThemeInfo } from '../colors';",
+    "import type { CompactThemeColors } from '../colorKeys';",
     '',
-    'export const BUILTIN_THEME_COLORS: Record<string, ThemeInfo> = {',
+    'export const BUILTIN_THEME_COLORS: CompactThemeColors = {',
   ];
 
   for (const name of sortedNames) {
     const theme = themeMap.get(name)!;
     const formattedName = formatThemeName(name);
-    const colors = formatColors(theme.colors);
-
-    lines.push(`  ${formattedName}: {`);
-    lines.push(`    colors: ${colors},`);
-    lines.push(`    type: '${theme.type}',`);
-    lines.push('  },');
+    const compactData = formatCompactTheme(theme.colors, theme.type);
+    lines.push(`  ${formattedName}: ${compactData},`);
   }
 
   lines.push('};');

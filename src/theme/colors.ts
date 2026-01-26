@@ -5,8 +5,12 @@ import {
   OPTIONAL_THEME_COLOR_KEYS,
   PALETTE_KEY_TO_COLOR_KEY,
   FOREGROUND_KEYS,
+  THEME_TYPE_CODES,
+  expandThemeColors,
   type ThemeColors,
   type PaletteKey,
+  type CompactThemeColors,
+  type CompactThemeData,
 } from './colorKeys';
 
 /**
@@ -23,6 +27,45 @@ export interface ThemeInfo {
   /** Theme type (dark, light, hcDark, hcLight) */
   type: ThemeType;
 }
+
+/**
+ * Expands a compact theme data array into a ThemeInfo object.
+ */
+function expandCompactTheme(data: CompactThemeData): ThemeInfo {
+  return {
+    colors: expandThemeColors(data),
+    type: THEME_TYPE_CODES[data[0]],
+  };
+}
+
+/**
+ * Expands a compact theme colors record into a ThemeInfo record.
+ */
+function expandCompactThemeColors(
+  compact: CompactThemeColors
+): Record<string, ThemeInfo> {
+  const result: Record<string, ThemeInfo> = {};
+  for (const name of Object.keys(compact)) {
+    result[name] = expandCompactTheme(compact[name]);
+  }
+  return result;
+}
+
+// Expand compact theme data at module load time
+const expandedBuiltinThemes = expandCompactThemeColors(BUILTIN_THEME_COLORS);
+const expandedExtensionThemes = expandCompactThemeColors(
+  EXTENSION_THEME_COLORS
+);
+
+/**
+ * Expanded built-in theme colors (for testing).
+ */
+export { expandedBuiltinThemes as EXPANDED_BUILTIN_THEME_COLORS };
+
+/**
+ * Expanded extension theme colors (for testing).
+ */
+export { expandedExtensionThemes as EXPANDED_EXTENSION_THEME_COLORS };
 
 const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}$/;
 const VALID_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
@@ -126,11 +169,11 @@ export function getThemeInfo(themeName: string): ThemeInfo | undefined {
     return custom[themeName];
   }
   // VS Code built-in themes
-  if (BUILTIN_THEME_COLORS[themeName]) {
-    return BUILTIN_THEME_COLORS[themeName];
+  if (expandedBuiltinThemes[themeName]) {
+    return expandedBuiltinThemes[themeName];
   }
   // Marketplace extension themes as fallback
-  return EXTENSION_THEME_COLORS[themeName];
+  return expandedExtensionThemes[themeName];
 }
 
 /**

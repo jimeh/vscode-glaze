@@ -1,16 +1,19 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { getThemeInfo, getColorForKey } from '../../theme/colors';
+import {
+  getThemeInfo,
+  getColorForKey,
+  EXPANDED_BUILTIN_THEME_COLORS,
+  EXPANDED_EXTENSION_THEME_COLORS,
+} from '../../theme/colors';
 import type { ThemeColors } from '../../theme';
-import { BUILTIN_THEME_COLORS } from '../../theme/generated/builtins';
-import { EXTENSION_THEME_COLORS } from '../../theme/generated/extensions';
 
-suite('BUILTIN_THEME_COLORS', () => {
+suite('EXPANDED_BUILTIN_THEME_COLORS', () => {
   test('contains VS Code built-in themes', () => {
-    assert.ok(BUILTIN_THEME_COLORS['Default Dark Modern']);
-    assert.ok(BUILTIN_THEME_COLORS['Default Light Modern']);
-    assert.ok(BUILTIN_THEME_COLORS['Default Dark+']);
-    assert.ok(BUILTIN_THEME_COLORS['Default Light+']);
+    assert.ok(EXPANDED_BUILTIN_THEME_COLORS['Default Dark Modern']);
+    assert.ok(EXPANDED_BUILTIN_THEME_COLORS['Default Light Modern']);
+    assert.ok(EXPANDED_BUILTIN_THEME_COLORS['Default Dark+']);
+    assert.ok(EXPANDED_BUILTIN_THEME_COLORS['Default Light+']);
   });
 
   test('contains classic VS Code themes', () => {
@@ -23,7 +26,7 @@ suite('BUILTIN_THEME_COLORS', () => {
     ];
     for (const theme of classicThemes) {
       assert.ok(
-        BUILTIN_THEME_COLORS[theme],
+        EXPANDED_BUILTIN_THEME_COLORS[theme],
         `Missing built-in theme: ${theme}`
       );
     }
@@ -31,7 +34,7 @@ suite('BUILTIN_THEME_COLORS', () => {
 
   test('all colors are valid hex colors', () => {
     const hexPattern = /^#[0-9A-Fa-f]{6}$/;
-    for (const [name, info] of Object.entries(BUILTIN_THEME_COLORS)) {
+    for (const [name, info] of Object.entries(EXPANDED_BUILTIN_THEME_COLORS)) {
       assert.match(
         info.colors['editor.background'],
         hexPattern,
@@ -42,7 +45,7 @@ suite('BUILTIN_THEME_COLORS', () => {
 
   test('dark themes have low lightness backgrounds', () => {
     // Dark themes should have backgrounds with lightness < 0.35
-    const darkThemes = Object.entries(BUILTIN_THEME_COLORS).filter(
+    const darkThemes = Object.entries(EXPANDED_BUILTIN_THEME_COLORS).filter(
       ([, info]) => info.type === 'dark' || info.type === 'hcDark'
     );
     for (const [name, info] of darkThemes) {
@@ -60,7 +63,7 @@ suite('BUILTIN_THEME_COLORS', () => {
 
   test('light themes have high lightness backgrounds', () => {
     // Light themes should have backgrounds with lightness > 0.7
-    const lightThemes = Object.entries(BUILTIN_THEME_COLORS).filter(
+    const lightThemes = Object.entries(EXPANDED_BUILTIN_THEME_COLORS).filter(
       ([, info]) => info.type === 'light' || info.type === 'hcLight'
     );
     for (const [name, info] of lightThemes) {
@@ -101,7 +104,10 @@ suite('getThemeInfo priority order', () => {
   test('builtin themes take precedence over extension themes', () => {
     // Default Dark Modern is a VS Code built-in theme
     const themeName = 'Default Dark Modern';
-    assert.ok(BUILTIN_THEME_COLORS[themeName], 'should exist in builtin');
+    assert.ok(
+      EXPANDED_BUILTIN_THEME_COLORS[themeName],
+      'should exist in builtin'
+    );
 
     const result = getThemeInfo(themeName);
     assert.ok(result);
@@ -109,7 +115,7 @@ suite('getThemeInfo priority order', () => {
     // Verify we get the builtin version
     assert.strictEqual(
       result.colors['editor.background'],
-      BUILTIN_THEME_COLORS[themeName].colors['editor.background'],
+      EXPANDED_BUILTIN_THEME_COLORS[themeName].colors['editor.background'],
       'should use builtin colors'
     );
   });
@@ -117,7 +123,7 @@ suite('getThemeInfo priority order', () => {
   test('finds themes from extension data', () => {
     // Atom One Dark exists in extension data with per-element colors
     assert.ok(
-      EXTENSION_THEME_COLORS['Atom One Dark'],
+      EXPANDED_EXTENSION_THEME_COLORS['Atom One Dark'],
       'should exist in extensions'
     );
 
@@ -125,7 +131,7 @@ suite('getThemeInfo priority order', () => {
     assert.ok(result);
 
     // Verify we get the extension version (which has additional colors)
-    const extension = EXTENSION_THEME_COLORS['Atom One Dark'];
+    const extension = EXPANDED_EXTENSION_THEME_COLORS['Atom One Dark'];
     assert.strictEqual(
       result.colors['editor.background'],
       extension.colors['editor.background'],
@@ -147,7 +153,11 @@ suite('getThemeInfo priority order', () => {
     // Should have editor.background at minimum
     assert.ok(result.colors['editor.background']);
     // If extension has per-element colors, they should be present
-    if (EXTENSION_THEME_COLORS[themeName].colors['titleBar.activeBackground']) {
+    if (
+      EXPANDED_EXTENSION_THEME_COLORS[themeName].colors[
+        'titleBar.activeBackground'
+      ]
+    ) {
       assert.ok(result.colors['titleBar.activeBackground']);
     }
   });
