@@ -10,8 +10,11 @@ import type { AppState } from '../lib/types';
 const BOX_WIDTH = 510.4;
 const BOX_HEIGHT = 368.4;
 const BOX_RADIUS = 122.8;
-const BASE_X = 74.8;
-const BASE_Y = 145.8;
+const SVG_SIZE = 800;
+
+// Center position for the front box (box3)
+const CENTER_X = (SVG_SIZE - BOX_WIDTH) / 2;
+const CENTER_Y = (SVG_SIZE - BOX_HEIGHT) / 2;
 
 // State
 const state: AppState = {
@@ -25,10 +28,10 @@ const state: AppState = {
   ],
 };
 
-// DOM elements
-const box1 = document.getElementById('box1') as unknown as SVGRectElement;
-const box2 = document.getElementById('box2') as unknown as SVGRectElement;
-const box3 = document.getElementById('box3') as unknown as SVGRectElement;
+// DOM elements - select all boxes from both SVGs
+const boxes1 = document.querySelectorAll('.box1') as NodeListOf<SVGRectElement>;
+const boxes2 = document.querySelectorAll('.box2') as NodeListOf<SVGRectElement>;
+const boxes3 = document.querySelectorAll('.box3') as NodeListOf<SVGRectElement>;
 
 const spacingSlider = document.getElementById('spacing') as HTMLInputElement;
 const spacingValue = document.getElementById('spacing-value') as HTMLElement;
@@ -41,7 +44,6 @@ const baseHueGroup = document.getElementById('base-hue-group') as HTMLElement;
 const colorModeContainer = document.getElementById(
   'color-mode'
 ) as HTMLElement;
-const themeToggle = document.getElementById('theme-toggle') as HTMLElement;
 const copySvgBtn = document.getElementById('copy-svg') as HTMLButtonElement;
 const downloadSvgBtn = document.getElementById(
   'download-svg'
@@ -75,30 +77,49 @@ function getBoxColor(boxIndex: number): string {
 
 /**
  * Updates SVG positions based on spacing.
+ * Box3 (front) is centered, box1 offset up-left, box2 offset down-right.
  */
 function updatePositions(): void {
   const spacing = state.spacing;
 
-  // Box 1 (back) - base position
-  box1.setAttribute('x', String(BASE_X));
-  box1.setAttribute('y', String(BASE_Y));
+  // Box3 (front): centered
+  const box3X = CENTER_X;
+  const box3Y = CENTER_Y;
 
-  // Box 3 (middle) - 1x spacing
-  box3.setAttribute('x', String(BASE_X + spacing));
-  box3.setAttribute('y', String(BASE_Y + spacing));
+  // Box1 (back): offset up-left from center
+  const box1X = CENTER_X - spacing;
+  const box1Y = CENTER_Y - spacing;
 
-  // Box 2 (front) - 2x spacing
-  box2.setAttribute('x', String(BASE_X + spacing * 2));
-  box2.setAttribute('y', String(BASE_Y + spacing * 2));
+  // Box2 (back): offset down-right from center
+  const box2X = CENTER_X + spacing;
+  const box2Y = CENTER_Y + spacing;
+
+  // Apply to all SVG instances
+  boxes1.forEach((box) => {
+    box.setAttribute('x', String(box1X));
+    box.setAttribute('y', String(box1Y));
+  });
+  boxes2.forEach((box) => {
+    box.setAttribute('x', String(box2X));
+    box.setAttribute('y', String(box2Y));
+  });
+  boxes3.forEach((box) => {
+    box.setAttribute('x', String(box3X));
+    box.setAttribute('y', String(box3Y));
+  });
 }
 
 /**
- * Updates SVG colors.
+ * Updates SVG colors for all preview instances.
  */
 function updateColors(): void {
-  box1.setAttribute('fill', getBoxColor(0));
-  box2.setAttribute('fill', getBoxColor(1));
-  box3.setAttribute('fill', getBoxColor(2));
+  const color1 = getBoxColor(0);
+  const color2 = getBoxColor(1);
+  const color3 = getBoxColor(2);
+
+  boxes1.forEach((box) => box.setAttribute('fill', color1));
+  boxes2.forEach((box) => box.setAttribute('fill', color2));
+  boxes3.forEach((box) => box.setAttribute('fill', color3));
 }
 
 /**
@@ -201,6 +222,7 @@ function render(): void {
 
 /**
  * Generates clean SVG string for export.
+ * Order: box1 (back), box2 (back), box3 (front) - last rendered = on top.
  */
 function generateSvg(): string {
   const spacing = state.spacing;
@@ -208,10 +230,18 @@ function generateSvg(): string {
   const color2 = getBoxColor(1);
   const color3 = getBoxColor(2);
 
+  // Box positions: box3 centered, box1 up-left, box2 down-right
+  const box1X = CENTER_X - spacing;
+  const box1Y = CENTER_Y - spacing;
+  const box2X = CENTER_X + spacing;
+  const box2Y = CENTER_Y + spacing;
+  const box3X = CENTER_X;
+  const box3Y = CENTER_Y;
+
   return `<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-  <rect x="${BASE_X}" y="${BASE_Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color1}"/>
-  <rect x="${BASE_X + spacing}" y="${BASE_Y + spacing}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color3}"/>
-  <rect x="${BASE_X + spacing * 2}" y="${BASE_Y + spacing * 2}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color2}"/>
+  <rect x="${box1X}" y="${box1Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color1}"/>
+  <rect x="${box2X}" y="${box2Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color2}"/>
+  <rect x="${box3X}" y="${box3Y}" width="${BOX_WIDTH}" height="${BOX_HEIGHT}" rx="${BOX_RADIUS}" fill="${color3}"/>
 </svg>`;
 }
 
@@ -238,11 +268,6 @@ colorModeContainer.addEventListener('click', (e) => {
     applySchemeDefaults(mode);
   }
   render();
-});
-
-themeToggle.addEventListener('click', () => {
-  const isDark = document.body.dataset.theme === 'dark';
-  document.body.dataset.theme = isDark ? 'light' : 'dark';
 });
 
 copySvgBtn.addEventListener('click', async () => {
@@ -322,5 +347,6 @@ boxControls.forEach((ctrl, i) => {
   });
 });
 
-// Initialize
+// Initialize - always dark mode
+document.body.dataset.theme = 'dark';
 render();

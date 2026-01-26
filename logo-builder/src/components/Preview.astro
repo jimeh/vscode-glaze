@@ -1,41 +1,79 @@
 ---
 /**
- * Preview component containing the logo SVG.
+ * Preview component containing dual logo SVG previews (light and dark backgrounds).
+ * Box order: box1 (back), box2 (back), box3 (front/centered) - rendered last = on top.
  */
 ---
 
-<div id="preview-area">
-  <svg
-    id="logo-svg"
-    viewBox="0 0 800 800"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      id="box1"
-      x="74.8"
-      y="145.8"
-      width="510.4"
-      height="368.4"
-      rx="122.8"
-      fill="#f7ebe8"
-    />
-    <rect
-      id="box3"
-      x="144.8"
-      y="215.8"
-      width="510.4"
-      height="368.4"
-      rx="122.8"
-      fill="#6b9fa5"
-    />
-    <rect
-      id="box2"
-      x="214.8"
-      y="285.8"
-      width="510.4"
-      height="368.4"
-      rx="122.8"
-      fill="#e54b4b"
-    />
-  </svg>
+<div class="preview-container">
+  <div class="preview-panel light-preview">
+    <svg
+      id="logo-light"
+      viewBox="0 0 800 800"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        class="box1"
+        x="74.8"
+        y="145.8"
+        width="510.4"
+        height="368.4"
+        rx="122.8"
+        fill="#f7ebe8"
+      />
+      <rect
+        class="box2"
+        x="214.8"
+        y="285.8"
+        width="510.4"
+        height="368.4"
+        rx="122.8"
+        fill="#e54b4b"
+      />
+      <rect
+        class="box3"
+        x="144.8"
+        y="215.8"
+        width="510.4"
+        height="368.4"
+        rx="122.8"
+        fill="#6b9fa5"
+      />
+    </svg>
+  </div>
+  <div class="preview-panel dark-preview">
+    <svg
+      id="logo-dark"
+      viewBox="0 0 800 800"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        class="box1"
+        x="74.8"
+        y="145.8"
+        width="510.4"
+        height="368.4"
+        rx="122.8"
+        fill="#f7ebe8"
+      />
+      <rect
+        class="box2"
+        x="214.8"
+        y="285.8"
+        width="510.4"
+        height="368.4"
+        rx="122.8"
+        fill="#e54b4b"
+      />
+      <rect
+        class="box3"
+        x="144.8"
+        y="215.8"
+        width="510.4"
+        height="368.4"
+        rx="122.8"
+        fill="#6b9fa5"
+      />
+    </svg>
+  </div>
 </div>
