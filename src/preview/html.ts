@@ -1,6 +1,7 @@
 import type { ThemeType } from '../theme';
 import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
+import { getColorName } from '../color';
 
 /**
  * Hue labels for column headers (OKLCH-calibrated hue angles).
@@ -33,21 +34,22 @@ const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
 /**
  * Generates an inline color swatch with stacked elements.
+ * Each element has a title attribute showing the color name on hover.
  */
 function generateSwatch(colors: SchemePreviewColors): string {
   const { titleBar, activityBar, statusBar } = colors;
 
   return `
     <div class="swatch">
-      <div class="element" style="background: ${titleBar.background}; color: ${titleBar.foreground};">
+      <div class="element" style="background: ${titleBar.background}; color: ${titleBar.foreground};" title="${escapeHtml(getColorName(titleBar.background))}">
         <span class="label">TB</span>
         <span class="sample">Aa</span>
       </div>
-      <div class="element" style="background: ${activityBar.background}; color: ${activityBar.foreground};">
+      <div class="element" style="background: ${activityBar.background}; color: ${activityBar.foreground};" title="${escapeHtml(getColorName(activityBar.background))}">
         <span class="label">AB</span>
         <span class="sample">Aa</span>
       </div>
-      <div class="element" style="background: ${statusBar.background}; color: ${statusBar.foreground};">
+      <div class="element" style="background: ${statusBar.background}; color: ${statusBar.foreground};" title="${escapeHtml(getColorName(statusBar.background))}">
         <span class="label">SB</span>
         <span class="sample">Aa</span>
       </div>
@@ -100,13 +102,17 @@ function generateWorkspaceSection(state: PreviewState): string {
   const { identifier, colors, isBlended, blendFactor } = state.workspacePreview;
   const swatch = generateSwatch(colors);
   const blendInfo = generateBlendInfo(isBlended, blendFactor);
+  const colorName = getColorName(colors.titleBar.background);
 
   return `
     <div class="workspace-section">
       <div class="workspace-header">
         <span class="workspace-label">Your Workspace:</span>
         ${swatch}
-        <span class="workspace-name">"${escapeHtml(identifier)}"</span>
+        <div class="workspace-info">
+          <span class="workspace-id"><span class="info-label">ID:</span> ${escapeHtml(identifier)}</span>
+          <span class="workspace-color-name"><span class="info-label">Color:</span> ${escapeHtml(colorName)}</span>
+        </div>
         ${blendInfo}
       </div>
     </div>
@@ -246,9 +252,18 @@ export function generatePreviewHtml(
       color: var(--vscode-foreground);
     }
 
-    .workspace-name {
+    .workspace-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .workspace-id {
+      color: var(--vscode-foreground);
+    }
+
+    .info-label {
       color: var(--vscode-descriptionForeground);
-      font-style: italic;
     }
 
     .blend-info {
@@ -258,6 +273,11 @@ export function generatePreviewHtml(
       padding: 2px 8px;
       border-radius: 4px;
       margin-left: auto;
+    }
+
+    .workspace-color-name {
+      font-size: 12px;
+      color: var(--vscode-foreground);
     }
 
     .schemes-table {

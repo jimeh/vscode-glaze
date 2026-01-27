@@ -245,8 +245,9 @@ suite('generatePreviewHtml', () => {
 
     // Find the first swatch and check label order within it
     const swatchStart = html.indexOf('class="swatch"');
-    // Get a chunk of HTML after the swatch start (enough to capture the labels)
-    const chunk = html.slice(swatchStart, swatchStart + 500);
+    // Get a chunk of HTML after the swatch start (enough to capture all labels,
+    // including title attributes with color names)
+    const chunk = html.slice(swatchStart, swatchStart + 1000);
 
     const tbIndex = chunk.indexOf('>TB<');
     const abIndex = chunk.indexOf('>AB<');

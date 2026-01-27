@@ -1,4 +1,5 @@
 import type { ThemeType } from '../theme';
+import { getColorName } from '../color';
 
 /**
  * Determines if the status bar should show as active.
@@ -55,12 +56,13 @@ export function colorSwatch(hex: string): string {
 }
 
 /**
- * Creates a color swatch with hex code and a clickable copy icon.
+ * Creates a color swatch with hex code, color name, and a clickable copy icon.
  */
 export function clickableColorSwatch(hex: string): string {
   const swatch = colorSwatch(hex);
+  const name = getColorName(hex);
   const args = encodeURIComponent(JSON.stringify(hex));
-  return `${swatch} \`${hex}\` [$(copy)](command:patina.copyColor?${args})`;
+  return `${swatch} "${name}" \`${hex}\` [$(copy)](command:patina.copyColor?${args})`;
 }
 
 /**
