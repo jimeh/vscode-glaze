@@ -352,9 +352,11 @@
     "test:coverage:html": "vscode-test --coverage --coverage-reporter=html --coverage-reporter=lcov --coverage-output=coverage",
     "extract-themes": "tsx scripts/extract-theme-colors/index.ts",
     "extract-themes:dry-run": "tsx scripts/extract-theme-colors/index.ts --dry-run",
-    "extract-themes:verbose": "tsx scripts/extract-theme-colors/index.ts --verbose"
+    "extract-themes:verbose": "tsx scripts/extract-theme-colors/index.ts --verbose",
+    "generate-images": "tsx scripts/generate-images.ts"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@types/adm-zip": "^0.5.7",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
