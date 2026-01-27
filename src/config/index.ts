@@ -25,36 +25,47 @@ export type {
 /**
  * Returns whether Patina is globally enabled.
  */
-export function isEnabled(): boolean {
+export function isGloballyEnabled(): boolean {
   const config = vscode.workspace.getConfiguration('patina');
-  return config.get<boolean>('enabled', true);
+  const inspection = config.inspect<boolean>('enabled');
+  return inspection?.globalValue ?? false;
 }
 
 /**
- * Returns the workspace enabled state.
- * - undefined: Patina has never modified this workspace
- * - true: Patina has applied colors to this workspace
- * - false: User opted out of Patina for this workspace
+ * Returns whether Patina is enabled for the current workspace.
+ * Workspace-level patina.enabled takes precedence over global.
  */
-export function getWorkspaceEnabled(): boolean | undefined {
+export function isEnabledForWorkspace(): boolean {
   const config = vscode.workspace.getConfiguration('patina');
-  const inspection = config.inspect<boolean>('workspace.enabled');
-  // Only read workspace-level value, ignore global
+  const inspection = config.inspect<boolean>('enabled');
+  // Workspace value takes precedence if set
+  if (inspection?.workspaceValue !== undefined) {
+    return inspection.workspaceValue;
+  }
+  // Fall back to global
+  return inspection?.globalValue ?? false;
+}
+
+/**
+ * Returns the workspace-level enabled override.
+ * - undefined: No workspace override (inherits global)
+ * - true: Workspace override enables Patina
+ * - false: Workspace override disables Patina
+ */
+export function getWorkspaceEnabledOverride(): boolean | undefined {
+  const config = vscode.workspace.getConfiguration('patina');
+  const inspection = config.inspect<boolean>('enabled');
   return inspection?.workspaceValue;
 }
 
 /**
- * Sets the workspace enabled state at Workspace scope.
+ * Sets patina.enabled at Workspace scope.
  */
-export async function setWorkspaceEnabled(
+export async function setEnabledForWorkspace(
   value: boolean | undefined
 ): Promise<void> {
   const config = vscode.workspace.getConfiguration('patina');
-  await config.update(
-    'workspace.enabled',
-    value,
-    vscode.ConfigurationTarget.Workspace
-  );
+  await config.update('enabled', value, vscode.ConfigurationTarget.Workspace);
 }
 
 const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];

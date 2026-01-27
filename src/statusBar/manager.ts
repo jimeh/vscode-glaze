@@ -7,7 +7,7 @@ import {
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
-  isStatusBarActive,
+  isEffectivelyEnabled,
 } from './helpers';
 import type { StatusBarState } from './types';
 
@@ -80,8 +80,8 @@ export class StatusBarManager implements vscode.Disposable {
 
   private isActive(): boolean {
     // state is guaranteed to be set before render() is called
-    const { globalEnabled, workspaceEnabled } = this.state!;
-    return isStatusBarActive(globalEnabled, workspaceEnabled);
+    const { globalEnabled, workspaceEnabledOverride } = this.state!;
+    return isEffectivelyEnabled(globalEnabled, workspaceEnabledOverride);
   }
 
   private buildTooltip(isActive: boolean): vscode.MarkdownString {
@@ -98,11 +98,11 @@ export class StatusBarManager implements vscode.Disposable {
 
     // state is guaranteed to be set before render() is called
     const state = this.state!;
-    const { globalEnabled, workspaceEnabled } = state;
+    const { globalEnabled, workspaceEnabledOverride } = state;
 
     // Status line
     md.appendMarkdown(
-      `**Status:** ${getStatusText(globalEnabled, workspaceEnabled)}\n\n`
+      `**Status:** ${getStatusText(globalEnabled, workspaceEnabledOverride)}\n\n`
     );
 
     if (isActive) {

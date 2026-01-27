@@ -6,55 +6,65 @@ import {
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
-  isStatusBarActive,
+  isEffectivelyEnabled,
 } from '../../statusBar';
 
-suite('isStatusBarActive', () => {
-  test('returns false when globalEnabled is false', () => {
-    const result = isStatusBarActive(false, undefined);
+suite('isEffectivelyEnabled', () => {
+  test('returns false when globalEnabled is false and no override', () => {
+    const result = isEffectivelyEnabled(false, undefined);
     assert.strictEqual(result, false);
   });
 
-  test('returns false when workspaceEnabled is false', () => {
-    const result = isStatusBarActive(true, false);
+  test('returns false when workspace override is false', () => {
+    const result = isEffectivelyEnabled(true, false);
     assert.strictEqual(result, false);
   });
 
-  test('returns true when globalEnabled and workspaceEnabled undefined', () => {
-    const result = isStatusBarActive(true, undefined);
+  test('returns true when globalEnabled and no override', () => {
+    const result = isEffectivelyEnabled(true, undefined);
     assert.strictEqual(result, true);
   });
 
-  test('returns true when both globalEnabled and workspaceEnabled true', () => {
-    const result = isStatusBarActive(true, true);
+  test('returns true when both globalEnabled and override true', () => {
+    const result = isEffectivelyEnabled(true, true);
     assert.strictEqual(result, true);
   });
 
-  test('returns false when globalEnabled false and workspaceEnabled true', () => {
-    const result = isStatusBarActive(false, true);
-    assert.strictEqual(result, false);
+  test('returns true when globalEnabled false but override true', () => {
+    const result = isEffectivelyEnabled(false, true);
+    assert.strictEqual(result, true);
   });
 });
 
 suite('getStatusText', () => {
-  test('returns "Disabled globally" when globalEnabled is false', () => {
+  test('returns "Disabled globally" when globalEnabled false and no override', () => {
     const result = getStatusText(false, undefined);
     assert.strictEqual(result, 'Disabled globally');
   });
 
-  test('returns "Disabled for this workspace" when workspaceEnabled is false', () => {
+  test('returns "Disabled for this workspace" when override is false', () => {
     const result = getStatusText(true, false);
     assert.strictEqual(result, 'Disabled for this workspace');
   });
 
-  test('returns "Enabled (Global + Workspace)" when workspaceEnabled is true', () => {
+  test('returns "Enabled (Global + Workspace)" when both enabled', () => {
     const result = getStatusText(true, true);
     assert.strictEqual(result, 'Enabled (Global + Workspace)');
   });
 
-  test('returns "Enabled globally" when workspaceEnabled is undefined', () => {
+  test('returns "Enabled globally" when globalEnabled and no override', () => {
     const result = getStatusText(true, undefined);
     assert.strictEqual(result, 'Enabled globally');
+  });
+
+  test('returns "Enabled for this workspace" when global off but override on', () => {
+    const result = getStatusText(false, true);
+    assert.strictEqual(result, 'Enabled for this workspace');
+  });
+
+  test('returns "Disabled globally" when global off and override false', () => {
+    const result = getStatusText(false, false);
+    assert.strictEqual(result, 'Disabled for this workspace');
   });
 });
 

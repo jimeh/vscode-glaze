@@ -326,13 +326,6 @@
           "default": false,
           "description": "Show Patina status in the status bar.",
           "order": 11
-        },
-        "patina.workspace.enabled": {
-          "type": "boolean",
-          "default": null,
-          "description": "Enable or disable Patina for specific workspace. Only effective when set in workspace settings (.vscode/settings.json); has no effect in user settings. Set to false to disable Patina for this workspace when Patina is globally enabled.",
-          "scope": "window",
-          "order": 999
         }
       }
     }

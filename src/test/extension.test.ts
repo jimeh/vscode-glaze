@@ -84,45 +84,6 @@ async function waitForColorCustomizations(
 }
 
 /**
- * Waits for patina.workspace.enabled to be set to the expected value.
- * This is needed because applyTint() sets colors first, then workspace.enabled.
- */
-async function waitForWorkspaceEnabled(
-  expected: boolean | undefined,
-  timeoutMs = 2000,
-  intervalMs = 50
-): Promise<void> {
-  await pollUntil(
-    () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      const inspection = config.inspect<boolean>('workspace.enabled');
-      return inspection?.workspaceValue === expected;
-    },
-    `Timeout waiting for workspace.enabled to be ${expected}`,
-    timeoutMs,
-    intervalMs
-  );
-}
-
-/**
- * Waits for colorCustomizations to be cleared (empty or undefined).
- */
-async function waitForColorsCleared(
-  timeoutMs = 3000,
-  intervalMs = 50
-): Promise<void> {
-  await pollUntil(
-    () => {
-      const colors = getColorCustomizations();
-      return !colors || Object.keys(colors).length === 0;
-    },
-    'Timeout waiting for colorCustomizations to be cleared',
-    timeoutMs,
-    intervalMs
-  );
-}
-
-/**
  * Waits for colorCustomizations to contain only non-Patina keys.
  */
 async function waitForPatinaColorsCleared(
@@ -305,7 +266,7 @@ suite('Extension Test Suite', () => {
       assert.strictEqual(enabled, false, 'patina.enabled should be false');
     });
 
-    test('clears workbench.colorCustomizations', async function () {
+    test('clears Patina colors from workbench.colorCustomizations', async function () {
       // Extend timeout for this test as it involves multiple async operations
       this.timeout(5000);
 
@@ -319,40 +280,22 @@ suite('Extension Test Suite', () => {
       // Wait for colors to be set
       await waitForColorCustomizations();
 
-      // Also wait for workspace.enabled flag to be set (applyTint sets this after colors)
-      // This is critical: removeTint() checks this flag and skips removal if not set
-      await waitForWorkspaceEnabled(true);
-
       // Then disable
       await vscode.commands.executeCommand('patina.disableGlobally');
 
-      // Poll for colors to be cleared (with timeout)
-      const start = Date.now();
-      const timeoutMs = 3000;
-      const intervalMs = 50;
-      while (Date.now() - start < timeoutMs) {
-        const config = vscode.workspace.getConfiguration();
-        const colors = config.get('workbench.colorCustomizations');
-        if (
-          colors === undefined ||
-          (typeof colors === 'object' &&
-            Object.keys(colors as object).length === 0)
-        ) {
-          // Colors cleared successfully
-          return;
-        }
-        await new Promise((resolve) => setTimeout(resolve, intervalMs));
-      }
+      // Wait for Patina colors to be cleared
+      await waitForPatinaColorsCleared();
 
-      // Final assertion if we timed out
+      // Verify no Patina keys remain
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get('workbench.colorCustomizations');
-      assert.ok(
-        colors === undefined ||
-          (typeof colors === 'object' &&
-            Object.keys(colors as object).length === 0),
-        'colorCustomizations should be cleared'
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
       );
+      if (colors) {
+        for (const key of Object.keys(colors)) {
+          assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
+        }
+      }
     });
   });
 
@@ -445,7 +388,7 @@ suite('Extension Test Suite', () => {
   });
 
   suite('patina.enableWorkspace', () => {
-    let originalEnabled: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
@@ -453,8 +396,8 @@ suite('Extension Test Suite', () => {
         return;
       }
       const config = vscode.workspace.getConfiguration('patina');
-      const inspection = config.inspect<boolean>('workspace.enabled');
-      originalEnabled = inspection?.workspaceValue;
+      const inspection = config.inspect<boolean>('enabled');
+      originalEnabledWorkspace = inspection?.workspaceValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -468,8 +411,8 @@ suite('Extension Test Suite', () => {
       }
       const config = vscode.workspace.getConfiguration('patina');
       await config.update(
-        'workspace.enabled',
-        originalEnabled,
+        'enabled',
+        originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
       );
 
@@ -481,15 +424,15 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets workspace.enabled to true', async function () {
+    test('sets patina.enabled at workspace scope to true', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
-      // First disable to ensure we're testing the change
+      // First disable at workspace scope to ensure we're testing the change
       const config = vscode.workspace.getConfiguration('patina');
       await config.update(
-        'workspace.enabled',
+        'enabled',
         false,
         vscode.ConfigurationTarget.Workspace
       );
@@ -497,17 +440,17 @@ suite('Extension Test Suite', () => {
       await vscode.commands.executeCommand('patina.enableWorkspace');
 
       // Get fresh config after command
-      const inspection = config.inspect<boolean>('workspace.enabled');
+      const inspection = config.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         true,
-        'workspace.enabled should be true'
+        'patina.enabled at workspace scope should be true'
       );
     });
   });
 
   suite('patina.disableWorkspace', () => {
-    let originalEnabled: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
@@ -515,8 +458,8 @@ suite('Extension Test Suite', () => {
         return;
       }
       const config = vscode.workspace.getConfiguration('patina');
-      const inspection = config.inspect<boolean>('workspace.enabled');
-      originalEnabled = inspection?.workspaceValue;
+      const inspection = config.inspect<boolean>('enabled');
+      originalEnabledWorkspace = inspection?.workspaceValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -530,8 +473,8 @@ suite('Extension Test Suite', () => {
       }
       const config = vscode.workspace.getConfiguration('patina');
       await config.update(
-        'workspace.enabled',
-        originalEnabled,
+        'enabled',
+        originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
       );
 
@@ -543,15 +486,15 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets workspace.enabled to false', async function () {
+    test('sets patina.enabled at workspace scope to false', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
-      // First enable to ensure we're testing the change
+      // First enable at workspace scope to ensure we're testing the change
       const config = vscode.workspace.getConfiguration('patina');
       await config.update(
-        'workspace.enabled',
+        'enabled',
         true,
         vscode.ConfigurationTarget.Workspace
       );
@@ -559,18 +502,18 @@ suite('Extension Test Suite', () => {
       await vscode.commands.executeCommand('patina.disableWorkspace');
 
       // Get fresh config after command
-      const inspection = config.inspect<boolean>('workspace.enabled');
+      const inspection = config.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         false,
-        'workspace.enabled should be false'
+        'patina.enabled at workspace scope should be false'
       );
     });
   });
 
-  suite('Workspace opt-out flow', () => {
-    let originalEnabled: boolean | undefined;
-    let originalWorkspaceEnabled: boolean | undefined;
+  suite('Workspace enable/disable override flow', () => {
+    let originalEnabledGlobal: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
@@ -578,9 +521,9 @@ suite('Extension Test Suite', () => {
         return;
       }
       const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
-      const inspection = patinaConfig.inspect<boolean>('workspace.enabled');
-      originalWorkspaceEnabled = inspection?.workspaceValue;
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      originalEnabledGlobal = inspection?.globalValue;
+      originalEnabledWorkspace = inspection?.workspaceValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -595,12 +538,12 @@ suite('Extension Test Suite', () => {
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
         'enabled',
-        originalEnabled,
+        originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
       await patinaConfig.update(
-        'workspace.enabled',
-        originalWorkspaceEnabled,
+        'enabled',
+        originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
       );
 
@@ -612,7 +555,7 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('removes colors when workspace.enabled set to false', async function () {
+    test('removes colors when workspace override set to false', async function () {
       this.timeout(5000);
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
@@ -621,12 +564,11 @@ suite('Extension Test Suite', () => {
       // Enable globally first
       await vscode.commands.executeCommand('patina.enableGlobally');
       await waitForColorCustomizations();
-      await waitForWorkspaceEnabled(true);
 
-      // Set workspace.enabled to false via config (simulates opt-out)
+      // Set workspace override to false (simulates workspace disable)
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
-        'workspace.enabled',
+        'enabled',
         false,
         vscode.ConfigurationTarget.Workspace
       );
@@ -634,22 +576,22 @@ suite('Extension Test Suite', () => {
       // Wait for colors to be cleared
       await waitForPatinaColorsCleared();
 
-      // Verify workspace.enabled flag is preserved as false
-      const inspection = patinaConfig.inspect<boolean>('workspace.enabled');
+      // Verify workspace enabled override is false
+      const inspection = patinaConfig.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         false,
-        'workspace.enabled should remain false'
+        'patina.enabled at workspace scope should be false'
       );
     });
 
-    test('re-applies colors when workspace.enabled set back to true', async function () {
+    test('applies colors when workspace override enables globally disabled', async function () {
       this.timeout(8000);
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
-      // Reset state: disable globally first to ensure clean start
+      // Start with global disabled
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
         'enabled',
@@ -657,7 +599,7 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
       await patinaConfig.update(
-        'workspace.enabled',
+        'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
@@ -670,47 +612,37 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Workspace
       );
 
-      // Now enable globally - this triggers applyTint via config change
-      await vscode.commands.executeCommand('patina.enableGlobally');
-      await waitForColorCustomizations();
-      await waitForWorkspaceEnabled(true);
+      // Enable at workspace scope (overrides global disabled)
+      await vscode.commands.executeCommand('patina.enableWorkspace');
 
-      // Opt out workspace
-      await patinaConfig.update(
-        'workspace.enabled',
-        false,
-        vscode.ConfigurationTarget.Workspace
-      );
-      await waitForPatinaColorsCleared();
+      // Wait for colors to be applied
+      const colors = await waitForColorCustomizations();
 
-      // Re-enable workspace - wait for config change to trigger re-apply
-      const changePromise = waitForConfigChange(
-        'workbench.colorCustomizations',
-        5000
-      );
-      await patinaConfig.update(
-        'workspace.enabled',
-        true,
-        vscode.ConfigurationTarget.Workspace
-      );
-      await changePromise;
-
-      // Verify colors were re-applied
-      const config = vscode.workspace.getConfiguration();
-      const colors = config.get<Record<string, string>>(
-        'workbench.colorCustomizations'
-      );
+      // Verify colors were applied
       assert.ok(colors, 'colorCustomizations should be set');
       assert.ok(
         'titleBar.activeBackground' in colors,
         'should have titleBar.activeBackground'
       );
+
+      // Verify global is still disabled
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      assert.strictEqual(
+        inspection?.globalValue,
+        false,
+        'global enabled should still be false'
+      );
+      assert.strictEqual(
+        inspection?.workspaceValue,
+        true,
+        'workspace override should be true'
+      );
     });
   });
 
   suite('patina.enabled config change listener', () => {
-    let originalEnabled: boolean | undefined;
-    let originalWorkspaceEnabled: boolean | undefined;
+    let originalEnabledGlobal: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
@@ -718,9 +650,9 @@ suite('Extension Test Suite', () => {
         return;
       }
       const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
-      const inspection = patinaConfig.inspect<boolean>('workspace.enabled');
-      originalWorkspaceEnabled = inspection?.workspaceValue;
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      originalEnabledGlobal = inspection?.globalValue;
+      originalEnabledWorkspace = inspection?.workspaceValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -735,12 +667,12 @@ suite('Extension Test Suite', () => {
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
         'enabled',
-        originalEnabled,
+        originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
       await patinaConfig.update(
-        'workspace.enabled',
-        originalWorkspaceEnabled,
+        'enabled',
+        originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
       );
 
@@ -761,7 +693,6 @@ suite('Extension Test Suite', () => {
       // Enable via command first
       await vscode.commands.executeCommand('patina.enableGlobally');
       await waitForColorCustomizations();
-      await waitForWorkspaceEnabled(true);
 
       // Disable via config change (not command)
       const patinaConfig = vscode.workspace.getConfiguration('patina');
@@ -771,17 +702,19 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Wait for colors to be cleared
-      await waitForColorsCleared();
+      // Wait for Patina colors to be cleared
+      await waitForPatinaColorsCleared();
 
+      // Verify no Patina keys remain
       const config = vscode.workspace.getConfiguration();
       const colors = config.get<Record<string, string>>(
         'workbench.colorCustomizations'
       );
-      assert.ok(
-        colors === undefined || Object.keys(colors).length === 0,
-        'colorCustomizations should be cleared'
-      );
+      if (colors) {
+        for (const key of Object.keys(colors)) {
+          assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
+        }
+      }
     });
 
     test('re-applies tint when enabled changed to true via config', async function () {
@@ -798,9 +731,9 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Clear any existing workspace.enabled flag
+      // Clear any existing workspace enabled override
       await patinaConfig.update(
-        'workspace.enabled',
+        'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
       );

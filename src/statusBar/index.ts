@@ -7,5 +7,5 @@ export {
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
-  isStatusBarActive,
+  isEffectivelyEnabled,
 } from './helpers';

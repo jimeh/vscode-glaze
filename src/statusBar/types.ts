@@ -22,8 +22,8 @@ export interface StatusBarState {
   /** Whether Patina is globally enabled. */
   globalEnabled: boolean;
 
-  /** Workspace-level enabled state (undefined = not set). */
-  workspaceEnabled: boolean | undefined;
+  /** Workspace-level enabled override (undefined = inherits global). */
+  workspaceEnabledOverride: boolean | undefined;
 
   /** The workspace identifier used for color generation. */
   workspaceIdentifier: string | undefined;
