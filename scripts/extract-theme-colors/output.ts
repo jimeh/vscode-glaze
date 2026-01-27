@@ -4,40 +4,118 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { CONFIG } from './config';
-import type { ExtractedTheme, MetadataTheme, ThemeColors } from './types';
+import type {
+  ExtractedTheme,
+  MetadataTheme,
+  ThemeColors,
+  ThemeType,
+} from './types';
 
 /**
- * Formats a ThemeColors object as TypeScript code.
+ * Color keys in order matching compact array indices.
+ * Must match the order in src/theme/decode.ts
  */
-function formatColors(colors: ThemeColors): string {
-  const parts: string[] = [
-    `'editor.background': '${colors['editor.background']}'`,
-  ];
+const COLOR_KEY_ORDER = [
+  'editor.background',
+  'editor.foreground',
+  'titleBar.activeBackground',
+  'titleBar.activeForeground',
+  'titleBar.inactiveBackground',
+  'titleBar.inactiveForeground',
+  'statusBar.background',
+  'statusBar.foreground',
+  'activityBar.background',
+  'activityBar.foreground',
+] as const;
 
-  // Add optional color keys in a consistent order
-  const optionalKeys = [
-    'editor.foreground',
-    'titleBar.activeBackground',
-    'titleBar.activeForeground',
-    'titleBar.inactiveBackground',
-    'titleBar.inactiveForeground',
-    'statusBar.background',
-    'statusBar.foreground',
-    'activityBar.background',
-    'activityBar.foreground',
-  ] as const;
+/**
+ * Theme types in order matching compact type indices.
+ * Must match the order in src/theme/decode.ts
+ */
+const THEME_TYPE_ORDER: readonly ThemeType[] = [
+  'dark',
+  'light',
+  'hcDark',
+  'hcLight',
+] as const;
 
-  for (const key of optionalKeys) {
-    if (colors[key]) {
-      parts.push(`'${key}': '${colors[key]}'`);
+/**
+ * Compresses a 6-character hex color to 3 characters if possible.
+ * E.g., "AABBCC" -> "ABC", "1E1E1E" stays as "1E1E1E"
+ */
+function compressHex(hex: string): string {
+  if (hex.length !== 6) return hex;
+  const r1 = hex[0],
+    r2 = hex[1];
+  const g1 = hex[2],
+    g2 = hex[3];
+  const b1 = hex[4],
+    b2 = hex[5];
+  if (r1 === r2 && g1 === g2 && b1 === b2) {
+    return r1 + g1 + b1;
+  }
+  return hex;
+}
+
+/**
+ * Converts a ThemeColors object to compact flat array format.
+ * Returns [typeIndex, ...colors] where:
+ * - typeIndex is first for extensibility
+ * - colors use sparse elements for undefined values
+ * - hex values are compressed to 3 chars when possible
+ */
+function toCompactEntry(
+  colors: ThemeColors,
+  type: ThemeType
+): (string | number | undefined)[] {
+  const result: (string | number | undefined)[] = [];
+
+  // Type index first
+  result.push(THEME_TYPE_ORDER.indexOf(type));
+
+  // Find last non-empty color index to trim trailing empty values
+  let lastNonEmpty = 0;
+  for (let i = 0; i < COLOR_KEY_ORDER.length; i++) {
+    const key = COLOR_KEY_ORDER[i];
+    const value = colors[key as keyof ThemeColors];
+    if (value) {
+      lastNonEmpty = i;
     }
   }
 
-  if (parts.length === 1) {
-    return `{ ${parts[0]} }`;
+  // Add colors up to last non-empty value
+  for (let i = 0; i <= lastNonEmpty; i++) {
+    const key = COLOR_KEY_ORDER[i];
+    const value = colors[key as keyof ThemeColors];
+    if (value) {
+      // Strip # prefix and compress hex
+      result.push(compressHex(value.replace(/^#/, '')));
+    } else {
+      // Use undefined for sparse array
+      result.push(undefined);
+    }
   }
 
-  return `{\n      ${parts.join(',\n      ')},\n    }`;
+  return result;
+}
+
+/**
+ * Formats a sparse array as JavaScript code.
+ * E.g., [0, "A", undefined, "B"] -> '[0,"A",,"B"]'
+ */
+function formatSparseArray(arr: (string | number | undefined)[]): string {
+  const parts: string[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    const val = arr[i];
+    if (val === undefined) {
+      parts.push('');
+    } else if (typeof val === 'number') {
+      parts.push(String(val));
+    } else {
+      parts.push(JSON.stringify(val));
+    }
+  }
+  return '[' + parts.join(',') + ']';
 }
 
 /**
@@ -124,9 +202,11 @@ function resolveThemeConflicts(
 }
 
 /**
- * Generates theme code for a map of themes.
+ * Generates compact theme entries for a map of themes.
  */
-function generateThemeEntries(themeMap: Map<string, ExtractedTheme>): string[] {
+function generateCompactThemeEntries(
+  themeMap: Map<string, ExtractedTheme | MetadataTheme>
+): string[] {
   const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
     a.localeCompare(b, undefined, { sensitivity: 'base' })
   );
@@ -135,19 +215,15 @@ function generateThemeEntries(themeMap: Map<string, ExtractedTheme>): string[] {
   for (const name of sortedNames) {
     const theme = themeMap.get(name)!;
     const formattedName = formatThemeName(name);
-    const colors = formatColors(theme.colors);
-
-    lines.push(`  ${formattedName}: {`);
-    lines.push(`    colors: ${colors},`);
-    lines.push(`    type: '${theme.type}',`);
-    lines.push('  },');
+    const entry = toCompactEntry(theme.colors, theme.type);
+    lines.push(`${formattedName}:${formatSparseArray(entry)},`);
   }
 
   return lines;
 }
 
 /**
- * Generates extensions.ts with EXTENSION_THEME_COLORS constant.
+ * Generates extensions.ts with EXTENSION_THEME_COLORS constant (compact format).
  */
 export function generateExtensionColorsCode(
   extensionInfos: ExtensionFileInfo[],
@@ -158,28 +234,37 @@ export function generateExtensionColorsCode(
   const ts = timestamp ?? new Date().toISOString();
   const lines: string[] = [
     '/**',
-    ' * Auto-generated theme colors from marketplace extensions.',
+    ' * Auto-generated theme colors from marketplace extensions (compact format).',
     ` * Generated: ${ts}`,
     ' *',
     ' * This file is auto-generated by scripts/extract-theme-colors.',
     ' * Do not edit manually - changes will be overwritten.',
+    ' *',
+    ' * Format: { "themeName": [typeIndex, ...colors], ... }',
+    ' * - typeIndex: 0=dark, 1=light, 2=hcDark, 3=hcLight',
+    ' * - colors: hex values without # prefix, sparse for undefined',
     ' */',
     '',
+    "import { createThemeLookup, type CompactThemeData } from '../decode';",
     "import type { ThemeInfo } from '../colors';",
     '',
-    'export const EXTENSION_THEME_COLORS: Record<string, ThemeInfo> = {',
+    'const DATA: CompactThemeData = {',
   ];
 
-  lines.push(...generateThemeEntries(themeMap));
+  lines.push(...generateCompactThemeEntries(themeMap));
 
   lines.push('};');
+  lines.push('');
+  lines.push(
+    'export const EXTENSION_THEME_COLORS: Record<string, ThemeInfo> = createThemeLookup(DATA);'
+  );
   lines.push('');
 
   return lines.join('\n');
 }
 
 /**
- * Generates builtin.ts with BUILTIN_THEME_COLORS constant.
+ * Generates builtin.ts with BUILTIN_THEME_COLORS constant (compact format).
  */
 export function generateBuiltinColorsCode(
   themes: MetadataTheme[],
@@ -191,37 +276,33 @@ export function generateBuiltinColorsCode(
     themeMap.set(theme.name, theme);
   }
 
-  const sortedNames = Array.from(themeMap.keys()).sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: 'base' })
-  );
-
   const ts = timestamp ?? new Date().toISOString();
   const lines: string[] = [
     '/**',
-    ' * Auto-generated theme colors from VS Code built-in themes.',
+    ' * Auto-generated theme colors from VS Code built-in themes (compact format).',
     ` * Generated: ${ts}`,
     ' *',
     ' * This file is auto-generated by scripts/extract-theme-colors.',
     ' * Do not edit manually - changes will be overwritten.',
+    ' *',
+    ' * Format: { "themeName": [typeIndex, ...colors], ... }',
+    ' * - typeIndex: 0=dark, 1=light, 2=hcDark, 3=hcLight',
+    ' * - colors: hex values without # prefix, sparse for undefined',
     ' */',
     '',
+    "import { createThemeLookup, type CompactThemeData } from '../decode';",
     "import type { ThemeInfo } from '../colors';",
     '',
-    'export const BUILTIN_THEME_COLORS: Record<string, ThemeInfo> = {',
+    'const DATA: CompactThemeData = {',
   ];
 
-  for (const name of sortedNames) {
-    const theme = themeMap.get(name)!;
-    const formattedName = formatThemeName(name);
-    const colors = formatColors(theme.colors);
-
-    lines.push(`  ${formattedName}: {`);
-    lines.push(`    colors: ${colors},`);
-    lines.push(`    type: '${theme.type}',`);
-    lines.push('  },');
-  }
+  lines.push(...generateCompactThemeEntries(themeMap));
 
   lines.push('};');
+  lines.push('');
+  lines.push(
+    'export const BUILTIN_THEME_COLORS: Record<string, ThemeInfo> = createThemeLookup(DATA);'
+  );
   lines.push('');
 
   return lines.join('\n');
