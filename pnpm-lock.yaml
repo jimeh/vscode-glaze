@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      color-name-list:
-        specifier: ^14.29.0
-        version: 14.29.0
       nearest-color:
         specifier: ^0.4.4
         version: 0.4.4
@@ -54,6 +51,9 @@ importers:
       adm-zip:
         specifier: ^0.5.16
         version: 0.5.16
+      color-name-list:
+        specifier: ^14.29.0
+        version: 14.29.0
       esbuild:
         specifier: ^0.27.2
         version: 0.27.2

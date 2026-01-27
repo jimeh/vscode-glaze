@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { getColorName } from '../color';
 import { getStatusBarEnabled } from '../config';
 import {
   capitalizeFirst,
@@ -49,10 +50,32 @@ export class StatusBarManager implements vscode.Disposable {
     const isActive = this.isActive();
 
     // Set icon and text
-    this.item.text = isActive ? '$(paintcan) Patina' : '$(paintcan)';
+    if (isActive) {
+      const colorName = this.getActiveColorName();
+      this.item.text = `$(paintcan) ${colorName}`;
+    } else {
+      this.item.text = '$(paintcan)';
+    }
 
     // Build tooltip
     this.item.tooltip = this.buildTooltip(isActive);
+  }
+
+  private getActiveColorName(): string {
+    const tintColors = this.state?.tintColors;
+    if (!tintColors) {
+      return 'Patina';
+    }
+
+    // Check elements in priority order: titleBar, activityBar, statusBar
+    const activeColor =
+      tintColors.titleBar ?? tintColors.activityBar ?? tintColors.statusBar;
+
+    if (activeColor) {
+      return getColorName(activeColor);
+    }
+
+    return 'Patina';
   }
 
   private isActive(): boolean {

@@ -109,8 +109,10 @@ function generateWorkspaceSection(state: PreviewState): string {
       <div class="workspace-header">
         <span class="workspace-label">Your Workspace:</span>
         ${swatch}
-        <span class="workspace-name">"${escapeHtml(identifier)}"</span>
-        <span class="color-name">${escapeHtml(colorName)}</span>
+        <div class="workspace-info">
+          <span class="workspace-id"><span class="info-label">ID:</span> ${escapeHtml(identifier)}</span>
+          <span class="workspace-color-name"><span class="info-label">Color:</span> ${escapeHtml(colorName)}</span>
+        </div>
         ${blendInfo}
       </div>
     </div>
@@ -250,9 +252,18 @@ export function generatePreviewHtml(
       color: var(--vscode-foreground);
     }
 
-    .workspace-name {
+    .workspace-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .workspace-id {
+      color: var(--vscode-foreground);
+    }
+
+    .info-label {
       color: var(--vscode-descriptionForeground);
-      font-style: italic;
     }
 
     .blend-info {
@@ -264,10 +275,9 @@ export function generatePreviewHtml(
       margin-left: auto;
     }
 
-    .color-name {
-      font-size: 13px;
+    .workspace-color-name {
+      font-size: 12px;
       color: var(--vscode-foreground);
-      font-weight: 500;
     }
 
     .schemes-table {
