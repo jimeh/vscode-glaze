@@ -332,6 +332,7 @@
     }
   },
   "scripts": {
+    "postinstall": "cp node_modules/color-name-list/dist/colornames.bestof.min.json src/color/colornames.json",
     "vscode:prepublish": "pnpm run bundle",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
@@ -359,6 +360,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "@types/adm-zip": "^0.5.7",
     "@types/mocha": "^10.0.10",
+    "@types/nearest-color": "^0.4.1",
     "@types/node": "22.x",
     "@types/plist": "^3.0.5",
     "@types/semver": "^7.7.1",
@@ -367,6 +369,7 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
     "adm-zip": "^0.5.16",
+    "color-name-list": "^14.29.0",
     "esbuild": "^0.27.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
@@ -380,6 +383,7 @@
     "typescript-eslint": "^8.52.0"
   },
   "dependencies": {
+    "nearest-color": "^0.4.4",
     "semver": "^7.7.3"
   }
 }

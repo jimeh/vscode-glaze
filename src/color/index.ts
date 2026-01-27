@@ -11,3 +11,4 @@ export {
   DEFAULT_COLOR_SCHEME,
   isValidColorScheme,
 } from './schemes';
+export { getColorName } from './naming';
