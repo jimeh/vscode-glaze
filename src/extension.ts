@@ -164,6 +164,11 @@ async function applyTint(): Promise<void> {
   }
 
   const tintConfig = getTintConfig();
+  if (tintConfig.targets.length === 0) {
+    await removeTint();
+    return;
+  }
+
   const themeConfig = getThemeConfig();
   const themeContext = getThemeContext(tintConfig.mode);
   const colorScheme = getColorScheme();
