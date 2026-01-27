@@ -5,13 +5,16 @@ import {
   getStatusBarEnabled,
   getThemeConfig,
   getWorkspaceIdentifierConfig,
-  getWorkspaceEnabled,
-  setWorkspaceEnabled,
+  getWorkspaceActive,
+  setWorkspaceActive,
   getTintConfig,
-  isEnabled,
+  isGloballyEnabled,
+  isEnabledForWorkspace,
+  getWorkspaceEnabledOverride,
+  setEnabledForWorkspace,
 } from '../../config';
 
-suite('isEnabled', () => {
+suite('isGloballyEnabled', () => {
   let originalEnabled: boolean | undefined;
 
   suiteSetup(async () => {
@@ -36,7 +39,7 @@ suite('isEnabled', () => {
       vscode.ConfigurationTarget.Global
     );
 
-    const result = isEnabled();
+    const result = isGloballyEnabled();
     assert.strictEqual(result, false);
   });
 
@@ -44,7 +47,7 @@ suite('isEnabled', () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update('enabled', false, vscode.ConfigurationTarget.Global);
 
-    const result = isEnabled();
+    const result = isGloballyEnabled();
     assert.strictEqual(result, false);
   });
 
@@ -52,12 +55,199 @@ suite('isEnabled', () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update('enabled', true, vscode.ConfigurationTarget.Global);
 
-    const result = isEnabled();
+    const result = isGloballyEnabled();
     assert.strictEqual(result, true);
   });
 });
 
-suite('getWorkspaceEnabled', () => {
+suite('isEnabledForWorkspace', () => {
+  let originalGlobalEnabled: boolean | undefined;
+  let originalWorkspaceEnabled: boolean | undefined;
+
+  suiteSetup(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('enabled');
+    originalGlobalEnabled = inspection?.globalValue;
+    originalWorkspaceEnabled = inspection?.workspaceValue;
+  });
+
+  suiteTeardown(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'enabled',
+      originalGlobalEnabled,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'enabled',
+      originalWorkspaceEnabled,
+      vscode.ConfigurationTarget.Workspace
+    );
+  });
+
+  test('returns global value when no workspace override', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('enabled', true, vscode.ConfigurationTarget.Global);
+    await config.update(
+      'enabled',
+      undefined,
+      vscode.ConfigurationTarget.Workspace
+    );
+
+    const result = isEnabledForWorkspace();
+    assert.strictEqual(result, true);
+  });
+
+  test('workspace override takes precedence (true over false)', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('enabled', false, vscode.ConfigurationTarget.Global);
+    await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
+
+    const result = isEnabledForWorkspace();
+    assert.strictEqual(result, true);
+  });
+
+  test('workspace override takes precedence (false over true)', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('enabled', true, vscode.ConfigurationTarget.Global);
+    await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
+
+    const result = isEnabledForWorkspace();
+    assert.strictEqual(result, false);
+  });
+});
+
+suite('getWorkspaceEnabledOverride', () => {
+  let originalWorkspaceEnabled: boolean | undefined;
+
+  suiteSetup(async () => {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('enabled');
+    originalWorkspaceEnabled = inspection?.workspaceValue;
+  });
+
+  suiteTeardown(async () => {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'enabled',
+      originalWorkspaceEnabled,
+      vscode.ConfigurationTarget.Workspace
+    );
+  });
+
+  test('returns undefined when no workspace override', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'enabled',
+      undefined,
+      vscode.ConfigurationTarget.Workspace
+    );
+
+    const result = getWorkspaceEnabledOverride();
+    assert.strictEqual(result, undefined);
+  });
+
+  test('returns true when workspace override is true', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
+
+    const result = getWorkspaceEnabledOverride();
+    assert.strictEqual(result, true);
+  });
+
+  test('returns false when workspace override is false', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
+
+    const result = getWorkspaceEnabledOverride();
+    assert.strictEqual(result, false);
+  });
+});
+
+suite('setEnabledForWorkspace', () => {
+  let originalWorkspaceEnabled: boolean | undefined;
+
+  suiteSetup(async () => {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('enabled');
+    originalWorkspaceEnabled = inspection?.workspaceValue;
+  });
+
+  suiteTeardown(async () => {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'enabled',
+      originalWorkspaceEnabled,
+      vscode.ConfigurationTarget.Workspace
+    );
+  });
+
+  test('writes true to workspace scope', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    await setEnabledForWorkspace(true);
+
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('enabled');
+    assert.strictEqual(inspection?.workspaceValue, true);
+  });
+
+  test('writes false to workspace scope', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    await setEnabledForWorkspace(false);
+
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('enabled');
+    assert.strictEqual(inspection?.workspaceValue, false);
+  });
+
+  test('clears workspace scope when undefined', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    await setEnabledForWorkspace(true);
+    await setEnabledForWorkspace(undefined);
+
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<boolean>('enabled');
+    assert.strictEqual(inspection?.workspaceValue, undefined);
+  });
+});
+
+suite('getWorkspaceActive', () => {
   let originalValue: boolean | undefined;
 
   suiteSetup(async () => {
@@ -65,7 +255,7 @@ suite('getWorkspaceEnabled', () => {
       return;
     }
     const config = vscode.workspace.getConfiguration('patina');
-    const inspection = config.inspect<boolean>('workspace.enabled');
+    const inspection = config.inspect<boolean>('workspace.active');
     originalValue = inspection?.workspaceValue;
   });
 
@@ -75,7 +265,7 @@ suite('getWorkspaceEnabled', () => {
     }
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       originalValue,
       vscode.ConfigurationTarget.Workspace
     );
@@ -87,12 +277,12 @@ suite('getWorkspaceEnabled', () => {
     }
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       undefined,
       vscode.ConfigurationTarget.Workspace
     );
 
-    const result = getWorkspaceEnabled();
+    const result = getWorkspaceActive();
     assert.strictEqual(result, undefined);
   });
 
@@ -102,28 +292,13 @@ suite('getWorkspaceEnabled', () => {
     }
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       true,
       vscode.ConfigurationTarget.Workspace
     );
 
-    const result = getWorkspaceEnabled();
+    const result = getWorkspaceActive();
     assert.strictEqual(result, true);
-  });
-
-  test('returns false when set to false', async function () {
-    if (!vscode.workspace.workspaceFolders?.length) {
-      return this.skip();
-    }
-    const config = vscode.workspace.getConfiguration('patina');
-    await config.update(
-      'workspace.enabled',
-      false,
-      vscode.ConfigurationTarget.Workspace
-    );
-
-    const result = getWorkspaceEnabled();
-    assert.strictEqual(result, false);
   });
 
   test('ignores global-level settings', async function () {
@@ -133,30 +308,30 @@ suite('getWorkspaceEnabled', () => {
     const config = vscode.workspace.getConfiguration('patina');
     // Clear workspace-level value
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       undefined,
       vscode.ConfigurationTarget.Workspace
     );
     // Set global-level value
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       true,
       vscode.ConfigurationTarget.Global
     );
 
-    const result = getWorkspaceEnabled();
+    const result = getWorkspaceActive();
     assert.strictEqual(result, undefined);
 
     // Clean up global setting
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       undefined,
       vscode.ConfigurationTarget.Global
     );
   });
 });
 
-suite('setWorkspaceEnabled', () => {
+suite('setWorkspaceActive', () => {
   let originalValue: boolean | undefined;
 
   suiteSetup(async () => {
@@ -164,7 +339,7 @@ suite('setWorkspaceEnabled', () => {
       return;
     }
     const config = vscode.workspace.getConfiguration('patina');
-    const inspection = config.inspect<boolean>('workspace.enabled');
+    const inspection = config.inspect<boolean>('workspace.active');
     originalValue = inspection?.workspaceValue;
   });
 
@@ -174,7 +349,7 @@ suite('setWorkspaceEnabled', () => {
     }
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
-      'workspace.enabled',
+      'workspace.active',
       originalValue,
       vscode.ConfigurationTarget.Workspace
     );
@@ -184,22 +359,11 @@ suite('setWorkspaceEnabled', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    await setWorkspaceEnabled(true);
+    await setWorkspaceActive(true);
 
     const config = vscode.workspace.getConfiguration('patina');
-    const inspection = config.inspect<boolean>('workspace.enabled');
+    const inspection = config.inspect<boolean>('workspace.active');
     assert.strictEqual(inspection?.workspaceValue, true);
-  });
-
-  test('writes false to workspace scope', async function () {
-    if (!vscode.workspace.workspaceFolders?.length) {
-      return this.skip();
-    }
-    await setWorkspaceEnabled(false);
-
-    const config = vscode.workspace.getConfiguration('patina');
-    const inspection = config.inspect<boolean>('workspace.enabled');
-    assert.strictEqual(inspection?.workspaceValue, false);
   });
 
   test('writes undefined to workspace scope', async function () {
@@ -207,12 +371,12 @@ suite('setWorkspaceEnabled', () => {
       return this.skip();
     }
     // First set a value
-    await setWorkspaceEnabled(true);
+    await setWorkspaceActive(true);
     // Then clear it
-    await setWorkspaceEnabled(undefined);
+    await setWorkspaceActive(undefined);
 
     const config = vscode.workspace.getConfiguration('patina');
-    const inspection = config.inspect<boolean>('workspace.enabled');
+    const inspection = config.inspect<boolean>('workspace.active');
     assert.strictEqual(inspection?.workspaceValue, undefined);
   });
 });

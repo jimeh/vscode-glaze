@@ -52,7 +52,7 @@ suite('StatusBarManager', () => {
 
       const state: StatusBarState = {
         globalEnabled: false,
-        workspaceEnabled: undefined,
+        workspaceEnabledOverride: undefined,
         workspaceIdentifier: 'test-workspace',
         themeType: 'dark',
         themeAutoDetected: true,
@@ -76,7 +76,7 @@ suite('StatusBarManager', () => {
 
       const state: StatusBarState = {
         globalEnabled: true,
-        workspaceEnabled: undefined,
+        workspaceEnabledOverride: undefined,
         workspaceIdentifier: 'test-workspace',
         themeType: 'dark',
         themeAutoDetected: true,
@@ -88,7 +88,7 @@ suite('StatusBarManager', () => {
       assert.ok(true, 'update completed without error');
     });
 
-    test('handles workspaceEnabled false', async () => {
+    test('handles workspaceEnabledOverride false', async () => {
       const config = vscode.workspace.getConfiguration('patina');
       await config.update(
         'statusBar.enabled',
@@ -98,7 +98,7 @@ suite('StatusBarManager', () => {
 
       const state: StatusBarState = {
         globalEnabled: true,
-        workspaceEnabled: false,
+        workspaceEnabledOverride: false,
         workspaceIdentifier: 'test-workspace',
         themeType: 'dark',
         themeAutoDetected: true,
@@ -120,7 +120,7 @@ suite('StatusBarManager', () => {
 
       const state: StatusBarState = {
         globalEnabled: true,
-        workspaceEnabled: true,
+        workspaceEnabledOverride: true,
         workspaceIdentifier: 'test-workspace',
         themeType: 'light',
         themeAutoDetected: false,
@@ -142,7 +142,7 @@ suite('StatusBarManager', () => {
 
       const state: StatusBarState = {
         globalEnabled: true,
-        workspaceEnabled: undefined,
+        workspaceEnabledOverride: undefined,
         workspaceIdentifier: undefined,
         themeType: 'dark',
         themeAutoDetected: true,
@@ -219,7 +219,7 @@ suite('StatusBarManager', () => {
 
         const state: StatusBarState = {
           globalEnabled: true,
-          workspaceEnabled: undefined,
+          workspaceEnabledOverride: undefined,
           workspaceIdentifier: 'test',
           themeType,
           themeAutoDetected: true,
@@ -265,7 +265,7 @@ suite('StatusBarManager', () => {
 
         const state: StatusBarState = {
           globalEnabled: true,
-          workspaceEnabled: undefined,
+          workspaceEnabledOverride: undefined,
           workspaceIdentifier: 'test',
           themeType: 'dark',
           themeAutoDetected: false,

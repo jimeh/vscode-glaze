@@ -2,13 +2,17 @@ import type { ThemeType } from '../theme';
 import { getColorName } from '../color';
 
 /**
- * Determines if the status bar should show as active.
+ * Determines if Patina is effectively enabled for the current workspace.
+ * Workspace override takes precedence over global.
  */
-export function isStatusBarActive(
+export function isEffectivelyEnabled(
   globalEnabled: boolean,
-  workspaceEnabled: boolean | undefined
+  workspaceEnabledOverride: boolean | undefined
 ): boolean {
-  return globalEnabled && workspaceEnabled !== false;
+  if (workspaceEnabledOverride !== undefined) {
+    return workspaceEnabledOverride;
+  }
+  return globalEnabled;
 }
 
 /**
@@ -16,18 +20,21 @@ export function isStatusBarActive(
  */
 export function getStatusText(
   globalEnabled: boolean,
-  workspaceEnabled: boolean | undefined
+  workspaceEnabledOverride: boolean | undefined
 ): string {
-  if (!globalEnabled) {
-    return 'Disabled globally';
+  if (workspaceEnabledOverride === true) {
+    if (globalEnabled) {
+      return 'Enabled (Global + Workspace)';
+    }
+    return 'Enabled for this workspace';
   }
-  if (workspaceEnabled === false) {
+  if (workspaceEnabledOverride === false) {
     return 'Disabled for this workspace';
   }
-  if (workspaceEnabled === true) {
-    return 'Enabled (Global + Workspace)';
+  if (globalEnabled) {
+    return 'Enabled globally';
   }
-  return 'Enabled globally';
+  return 'Disabled globally';
 }
 
 /**
