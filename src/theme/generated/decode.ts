@@ -7,11 +7,11 @@ import type { ThemeType, ThemeInfo } from '../colors';
 import type { ThemeColors, ThemeColorKey } from '../colorKeys';
 
 /**
- * Compact theme entry format: [colorsArray, typeIndex]
- * - colorsArray: Sparse array with hex values (without #), 3 or 6 chars
+ * Compact theme entry format: [typeIndex, ...colors]
  * - typeIndex: 0=dark, 1=light, 2=hcDark, 3=hcLight
+ * - colors: Sparse array with hex values (without #), 3 or 6 chars
  */
-export type CompactThemeEntry = readonly [readonly (string | undefined)[], number];
+export type CompactThemeEntry = readonly [number, ...(string | undefined)[]];
 
 /**
  * Compact theme data: Record mapping theme name to compact entry.
@@ -57,14 +57,15 @@ function expandHex(hex: string): string {
 
 /**
  * Decodes a compact theme entry to ThemeInfo.
+ * Entry format: [typeIndex, ...colors]
  */
 function decodeThemeEntry(entry: CompactThemeEntry): ThemeInfo {
-  const [colorArray, typeIndex] = entry;
+  const [typeIndex, ...colorArray] = entry;
   const colors: ThemeColors = {
     'editor.background': '#' + expandHex(colorArray[0]!),
   };
 
-  // Add optional colors (indices 1-9)
+  // Add optional colors (indices 1-9 in colorArray)
   for (let i = 1; i < COLOR_KEY_ORDER.length; i++) {
     const value = colorArray[i];
     if (value) {
