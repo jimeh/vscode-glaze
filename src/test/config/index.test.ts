@@ -431,7 +431,7 @@ suite('getTintConfig', () => {
     );
   });
 
-  test('defaults to titleBar when all targets disabled', async () => {
+  test('returns empty targets when all elements disabled', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'elements.titleBar',
@@ -450,7 +450,7 @@ suite('getTintConfig', () => {
     );
 
     const result = getTintConfig();
-    assert.deepStrictEqual(result.targets, ['titleBar']);
+    assert.deepStrictEqual(result.targets, []);
   });
 
   test('returns only titleBar when only titleBar enabled', async () => {

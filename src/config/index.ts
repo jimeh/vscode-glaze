@@ -140,11 +140,6 @@ export function getTintConfig(): TintConfig {
     targets.push('activityBar');
   }
 
-  // Default to titleBar if nothing is enabled
-  if (targets.length === 0) {
-    targets.push('titleBar');
-  }
-
   const modeValue = config.get<string>('tint.mode', 'auto');
   const mode: ThemeMode = isValidThemeMode(modeValue) ? modeValue : 'auto';
 
