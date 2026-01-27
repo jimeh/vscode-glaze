@@ -68,32 +68,6 @@ export async function setEnabledForWorkspace(
   await config.update('enabled', value, vscode.ConfigurationTarget.Workspace);
 }
 
-/**
- * Returns the workspace active state.
- * - undefined: Patina has never applied colors to this workspace
- * - true: Patina has applied colors to this workspace
- */
-export function getWorkspaceActive(): boolean | undefined {
-  const config = vscode.workspace.getConfiguration('patina');
-  const inspection = config.inspect<boolean>('workspace.active');
-  // Only read workspace-level value, ignore global
-  return inspection?.workspaceValue;
-}
-
-/**
- * Sets the workspace active state at Workspace scope.
- */
-export async function setWorkspaceActive(
-  value: boolean | undefined
-): Promise<void> {
-  const config = vscode.workspace.getConfiguration('patina');
-  await config.update(
-    'workspace.active',
-    value,
-    vscode.ConfigurationTarget.Workspace
-  );
-}
-
 const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];
 
 function isValidThemeMode(value: string): value is ThemeMode {

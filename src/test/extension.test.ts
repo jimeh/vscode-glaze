@@ -84,65 +84,6 @@ async function waitForColorCustomizations(
 }
 
 /**
- * Waits for patina.workspace.active to be set to the expected value.
- * This is needed because applyTint() sets colors first, then workspace.active.
- */
-async function waitForWorkspaceActive(
-  expected: boolean | undefined,
-  timeoutMs = 2000,
-  intervalMs = 50
-): Promise<void> {
-  await pollUntil(
-    () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      const inspection = config.inspect<boolean>('workspace.active');
-      return inspection?.workspaceValue === expected;
-    },
-    `Timeout waiting for workspace.active to be ${expected}`,
-    timeoutMs,
-    intervalMs
-  );
-}
-
-/**
- * Waits for patina.enabled at workspace scope to be set to the expected value.
- */
-async function waitForWorkspaceEnabledOverride(
-  expected: boolean | undefined,
-  timeoutMs = 2000,
-  intervalMs = 50
-): Promise<void> {
-  await pollUntil(
-    () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      const inspection = config.inspect<boolean>('enabled');
-      return inspection?.workspaceValue === expected;
-    },
-    `Timeout waiting for workspace enabled override to be ${expected}`,
-    timeoutMs,
-    intervalMs
-  );
-}
-
-/**
- * Waits for colorCustomizations to be cleared (empty or undefined).
- */
-async function waitForColorsCleared(
-  timeoutMs = 3000,
-  intervalMs = 50
-): Promise<void> {
-  await pollUntil(
-    () => {
-      const colors = getColorCustomizations();
-      return !colors || Object.keys(colors).length === 0;
-    },
-    'Timeout waiting for colorCustomizations to be cleared',
-    timeoutMs,
-    intervalMs
-  );
-}
-
-/**
  * Waits for colorCustomizations to contain only non-Patina keys.
  */
 async function waitForPatinaColorsCleared(
@@ -325,7 +266,7 @@ suite('Extension Test Suite', () => {
       assert.strictEqual(enabled, false, 'patina.enabled should be false');
     });
 
-    test('clears workbench.colorCustomizations', async function () {
+    test('clears Patina colors from workbench.colorCustomizations', async function () {
       // Extend timeout for this test as it involves multiple async operations
       this.timeout(5000);
 
@@ -339,40 +280,22 @@ suite('Extension Test Suite', () => {
       // Wait for colors to be set
       await waitForColorCustomizations();
 
-      // Also wait for workspace.active flag to be set (applyTint sets this after colors)
-      // This is critical: removeTint() checks this flag and skips removal if not set
-      await waitForWorkspaceActive(true);
-
       // Then disable
       await vscode.commands.executeCommand('patina.disableGlobally');
 
-      // Poll for colors to be cleared (with timeout)
-      const start = Date.now();
-      const timeoutMs = 3000;
-      const intervalMs = 50;
-      while (Date.now() - start < timeoutMs) {
-        const config = vscode.workspace.getConfiguration();
-        const colors = config.get('workbench.colorCustomizations');
-        if (
-          colors === undefined ||
-          (typeof colors === 'object' &&
-            Object.keys(colors as object).length === 0)
-        ) {
-          // Colors cleared successfully
-          return;
-        }
-        await new Promise((resolve) => setTimeout(resolve, intervalMs));
-      }
+      // Wait for Patina colors to be cleared
+      await waitForPatinaColorsCleared();
 
-      // Final assertion if we timed out
+      // Verify no Patina keys remain
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get('workbench.colorCustomizations');
-      assert.ok(
-        colors === undefined ||
-          (typeof colors === 'object' &&
-            Object.keys(colors as object).length === 0),
-        'colorCustomizations should be cleared'
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
       );
+      if (colors) {
+        for (const key of Object.keys(colors)) {
+          assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
+        }
+      }
     });
   });
 
@@ -641,7 +564,6 @@ suite('Extension Test Suite', () => {
       // Enable globally first
       await vscode.commands.executeCommand('patina.enableGlobally');
       await waitForColorCustomizations();
-      await waitForWorkspaceActive(true);
 
       // Set workspace override to false (simulates workspace disable)
       const patinaConfig = vscode.workspace.getConfiguration('patina');
@@ -771,7 +693,6 @@ suite('Extension Test Suite', () => {
       // Enable via command first
       await vscode.commands.executeCommand('patina.enableGlobally');
       await waitForColorCustomizations();
-      await waitForWorkspaceActive(true);
 
       // Disable via config change (not command)
       const patinaConfig = vscode.workspace.getConfiguration('patina');
@@ -781,17 +702,19 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Wait for colors to be cleared
-      await waitForColorsCleared();
+      // Wait for Patina colors to be cleared
+      await waitForPatinaColorsCleared();
 
+      // Verify no Patina keys remain
       const config = vscode.workspace.getConfiguration();
       const colors = config.get<Record<string, string>>(
         'workbench.colorCustomizations'
       );
-      assert.ok(
-        colors === undefined || Object.keys(colors).length === 0,
-        'colorCustomizations should be cleared'
-      );
+      if (colors) {
+        for (const key of Object.keys(colors)) {
+          assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
+        }
+      }
     });
 
     test('re-applies tint when enabled changed to true via config', async function () {

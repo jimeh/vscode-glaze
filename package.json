@@ -326,13 +326,6 @@
           "default": false,
           "description": "Show Patina status in the status bar.",
           "order": 11
-        },
-        "patina.workspace.active": {
-          "type": "boolean",
-          "default": null,
-          "description": "Internal flag. Tracks if Patina applied colors to this workspace.",
-          "scope": "window",
-          "order": 999
         }
       }
     }

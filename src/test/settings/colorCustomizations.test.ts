@@ -96,6 +96,7 @@ suite('mergeColorCustomizations', () => {
 
     const result = mergeColorCustomizations(existing, patinaColors);
 
+    // 2 keys: titleBar.activeBackground, editor.background
     assert.strictEqual(Object.keys(result).length, 2);
     assert.strictEqual(result['titleBar.activeBackground'], '#newcolor');
     assert.strictEqual(result['editor.background'], '#aabbcc');

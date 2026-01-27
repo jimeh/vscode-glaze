@@ -6,8 +6,6 @@ import {
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
-  getWorkspaceActive,
-  setWorkspaceActive,
   isEnabledForWorkspace,
   isGloballyEnabled,
   getWorkspaceEnabledOverride,
@@ -97,10 +95,6 @@ export async function activate(context: vscode.ExtensionContext) {
         statusBar.updateVisibility();
         return;
       }
-      if (e.affectsConfiguration('patina.workspace.active')) {
-        // Internal flag change - no action needed, just update status bar
-        return;
-      }
       if (e.affectsConfiguration('patina.enabled')) {
         if (isEnabledForWorkspace()) {
           debouncedApplyTint();
@@ -162,12 +156,6 @@ async function applyTint(): Promise<void> {
     vscode.ConfigurationTarget.Workspace
   );
 
-  // Mark workspace as active (only if not already true)
-  const workspaceActive = getWorkspaceActive();
-  if (workspaceActive !== true) {
-    await setWorkspaceActive(true);
-  }
-
   // Build tint colors for status bar display
   const tintColors: TintColors = {
     baseTint: calculateBaseTint({
@@ -185,27 +173,17 @@ async function applyTint(): Promise<void> {
 }
 
 async function removeTint(): Promise<void> {
-  const workspaceActive = getWorkspaceActive();
-
-  // Only remove if Patina has actually applied colors to this workspace
-  if (workspaceActive !== true) {
-    updateStatusBar(undefined, undefined);
-    return;
-  }
-
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
+
   const remaining = removePatinaColors(existing);
   await config.update(
     'workbench.colorCustomizations',
     remaining,
     vscode.ConfigurationTarget.Workspace
   );
-
-  // Clear the active marker
-  await setWorkspaceActive(undefined);
 
   updateStatusBar(undefined, undefined);
 }
