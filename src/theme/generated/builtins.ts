@@ -10,7 +10,7 @@
  * - colors: hex values without # prefix, sparse for undefined
  */
 
-import { createThemeLookup, type CompactThemeData } from './decode';
+import { createThemeLookup, type CompactThemeData } from '../decode';
 import type { ThemeInfo } from '../colors';
 
 const DATA: CompactThemeData = {

@@ -13,7 +13,7 @@ import type {
 
 /**
  * Color keys in order matching compact array indices.
- * Must match the order in src/theme/generated/decode.ts
+ * Must match the order in src/theme/decode.ts
  */
 const COLOR_KEY_ORDER = [
   'editor.background',
@@ -30,7 +30,7 @@ const COLOR_KEY_ORDER = [
 
 /**
  * Theme types in order matching compact type indices.
- * Must match the order in src/theme/generated/decode.ts
+ * Must match the order in src/theme/decode.ts
  */
 const THEME_TYPE_ORDER: readonly ThemeType[] = [
   'dark',
@@ -245,7 +245,7 @@ export function generateExtensionColorsCode(
     ' * - colors: hex values without # prefix, sparse for undefined',
     ' */',
     '',
-    "import { createThemeLookup, type CompactThemeData } from './decode';",
+    "import { createThemeLookup, type CompactThemeData } from '../decode';",
     "import type { ThemeInfo } from '../colors';",
     '',
     'const DATA: CompactThemeData = {',
@@ -290,7 +290,7 @@ export function generateBuiltinColorsCode(
     ' * - colors: hex values without # prefix, sparse for undefined',
     ' */',
     '',
-    "import { createThemeLookup, type CompactThemeData } from './decode';",
+    "import { createThemeLookup, type CompactThemeData } from '../decode';",
     "import type { ThemeInfo } from '../colors';",
     '',
     'const DATA: CompactThemeData = {',
