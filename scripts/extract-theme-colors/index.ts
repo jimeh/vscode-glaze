@@ -29,8 +29,10 @@ import { mergeRegistryExtensions } from './registry-merge';
 import {
   downloadVsix,
   extractPackageJson,
+  extractNlsJson,
   createVsixThemeReader,
 } from './vsix';
+import { resolveNlsPlaceholders } from './nls';
 import { parseTheme, validateTheme } from './parser';
 import {
   generateReport,
@@ -124,7 +126,11 @@ async function processExtension(
     return themes;
   }
 
-  const contributions = parseThemeContributions(packageJson);
+  // Resolve NLS placeholders (e.g., %ExcelDark% → "Excel Theme (Dark)")
+  const nlsData = extractNlsJson(vsixBuffer);
+  const resolvedPackageJson = resolveNlsPlaceholders(packageJson, nlsData);
+
+  const contributions = parseThemeContributions(resolvedPackageJson);
   if (contributions.length === 0) {
     if (verbose) {
       console.log(

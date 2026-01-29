@@ -4,6 +4,7 @@
 import AdmZip from 'adm-zip';
 import { parse as parseJsonc } from 'jsonc-parser';
 import { parseThemeContributions } from './marketplace';
+import { resolveNlsPlaceholders } from './nls';
 import { parseTheme, validateTheme, type ThemeFileReader } from './parser';
 import { isTmThemeContent, isTmThemePath, parseTmTheme } from './tmtheme';
 import type { ExtractedTheme, ThemeJson } from './types';
@@ -33,10 +34,22 @@ function findThemeExtensions(zip: AdmZip): ThemeExtensionInfo[] {
     if (packageJsonPattern.test(entry.entryName)) {
       try {
         const content = zip.readAsText(entry);
-        const packageJson = JSON.parse(content) as Record<string, unknown>;
+        let packageJson = JSON.parse(content) as Record<string, unknown>;
 
         // Extract base path (without package.json)
         const basePath = entry.entryName.replace(/\/package\.json$/, '');
+
+        // Resolve NLS placeholders if package.nls.json exists
+        const nlsEntry = zip.getEntry(`${basePath}/package.nls.json`);
+        if (nlsEntry) {
+          try {
+            const nlsContent = zip.readAsText(nlsEntry);
+            const nlsData = JSON.parse(nlsContent) as Record<string, string>;
+            packageJson = resolveNlsPlaceholders(packageJson, nlsData);
+          } catch {
+            // Ignore invalid NLS files
+          }
+        }
 
         extensions.push({ basePath, packageJson });
       } catch {
