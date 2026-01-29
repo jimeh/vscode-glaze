@@ -1,7 +1,10 @@
 import * as assert from 'assert';
 import {
+  PATINA_ACTIVE_KEY,
+  PATINA_ACTIVE_VALUE,
   mergeColorCustomizations,
   removePatinaColors,
+  hasPatinaColorsWithoutMarker,
 } from '../../settings/colorCustomizations';
 
 suite('mergeColorCustomizations', () => {
@@ -13,7 +16,10 @@ suite('mergeColorCustomizations', () => {
 
     const result = mergeColorCustomizations(undefined, patinaColors);
 
-    assert.deepStrictEqual(result, patinaColors);
+    assert.deepStrictEqual(result, {
+      ...patinaColors,
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+    });
   });
 
   test('returns Patina colors when existing is empty', () => {
@@ -23,7 +29,10 @@ suite('mergeColorCustomizations', () => {
 
     const result = mergeColorCustomizations({}, patinaColors);
 
-    assert.deepStrictEqual(result, patinaColors);
+    assert.deepStrictEqual(result, {
+      ...patinaColors,
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+    });
   });
 
   test('preserves non-Patina keys', () => {
@@ -41,6 +50,7 @@ suite('mergeColorCustomizations', () => {
       'editor.background': '#aabbcc',
       'sideBar.border': '#ddeeff',
       'titleBar.activeBackground': '#112233',
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
     });
   });
 
@@ -57,6 +67,7 @@ suite('mergeColorCustomizations', () => {
 
     assert.strictEqual(result['titleBar.activeBackground'], '#new222');
     assert.strictEqual(result['editor.background'], '#aabbcc');
+    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
   });
 
   test('removes old Patina keys not in new palette', () => {
@@ -76,6 +87,7 @@ suite('mergeColorCustomizations', () => {
     assert.strictEqual(result['editor.background'], '#aabbcc');
     assert.strictEqual(result['titleBar.activeForeground'], undefined);
     assert.strictEqual(result['statusBar.background'], undefined);
+    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
   });
 
   test('handles all Patina-managed keys', () => {
@@ -96,10 +108,11 @@ suite('mergeColorCustomizations', () => {
 
     const result = mergeColorCustomizations(existing, patinaColors);
 
-    // 2 keys: titleBar.activeBackground, editor.background
-    assert.strictEqual(Object.keys(result).length, 2);
+    // 3 keys: titleBar.activeBackground, editor.background, patina.active
+    assert.strictEqual(Object.keys(result).length, 3);
     assert.strictEqual(result['titleBar.activeBackground'], '#newcolor');
     assert.strictEqual(result['editor.background'], '#aabbcc');
+    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
   });
 });
 
@@ -160,5 +173,73 @@ suite('removePatinaColors', () => {
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
     });
+  });
+
+  test('removes patina.active marker key', () => {
+    const existing = {
+      'titleBar.activeBackground': '#111111',
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      'editor.background': '#aabbcc',
+    };
+
+    const result = removePatinaColors(existing);
+
+    assert.deepStrictEqual(result, {
+      'editor.background': '#aabbcc',
+    });
+  });
+
+  test('returns undefined when only marker and managed keys exist', () => {
+    const existing = {
+      'titleBar.activeBackground': '#111111',
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+    };
+
+    const result = removePatinaColors(existing);
+
+    assert.strictEqual(result, undefined);
+  });
+});
+
+suite('hasPatinaColorsWithoutMarker', () => {
+  test('returns false for undefined', () => {
+    assert.strictEqual(hasPatinaColorsWithoutMarker(undefined), false);
+  });
+
+  test('returns false for empty object', () => {
+    assert.strictEqual(hasPatinaColorsWithoutMarker({}), false);
+  });
+
+  test('returns false for non-Patina-only keys', () => {
+    const existing = {
+      'editor.background': '#aabbcc',
+      'sideBar.border': '#ddeeff',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
+  });
+
+  test('returns false when marker present alongside managed keys', () => {
+    const existing = {
+      'titleBar.activeBackground': '#111111',
+      'statusBar.background': '#222222',
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
+  });
+
+  test('returns true when managed keys present without marker', () => {
+    const existing = {
+      'titleBar.activeBackground': '#111111',
+      'statusBar.background': '#222222',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+  });
+
+  test('returns true when managed keys mixed with non-Patina keys without marker', () => {
+    const existing = {
+      'titleBar.activeBackground': '#111111',
+      'editor.background': '#aabbcc',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
   });
 });

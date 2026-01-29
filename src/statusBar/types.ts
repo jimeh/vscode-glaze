@@ -45,4 +45,7 @@ export interface StatusBarState {
 
   /** Tint colors for tooltip display. */
   tintColors: TintColors | undefined;
+
+  /** Whether managed colors were modified outside of Patina. */
+  customizedOutsidePatina: boolean;
 }

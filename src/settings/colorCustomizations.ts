@@ -1,6 +1,20 @@
 import { PATINA_MANAGED_KEYS } from '../theme';
 
 /**
+ * Invisible marker key written into colorCustomizations to indicate
+ * Patina owns the current set of managed colors. If managed keys are
+ * present but this marker is absent, an external tool or user has
+ * modified the settings and Patina will refuse to overwrite them.
+ */
+export const PATINA_ACTIVE_KEY = 'patina.active';
+
+/**
+ * Fixed value written for the marker key.
+ * VSCode ignores unknown keys, so this has no visual effect.
+ */
+export const PATINA_ACTIVE_VALUE = '#ef5ec7';
+
+/**
  * Type for VSCode's workbench.colorCustomizations setting.
  */
 export type ColorCustomizations = Record<string, string>;
@@ -36,6 +50,9 @@ export function mergeColorCustomizations(
     }
   }
 
+  // Inject ownership marker
+  result[PATINA_ACTIVE_KEY] = PATINA_ACTIVE_VALUE;
+
   return result;
 }
 
@@ -65,8 +82,34 @@ export function removePatinaColors(
 }
 
 /**
- * Checks if a key is managed by Patina.
+ * Checks if a key is managed by Patina (including the marker key).
  */
 function isPatinaKey(key: string): boolean {
-  return (PATINA_MANAGED_KEYS as readonly string[]).includes(key);
+  return (
+    key === PATINA_ACTIVE_KEY ||
+    (PATINA_MANAGED_KEYS as readonly string[]).includes(key)
+  );
+}
+
+/**
+ * Detects external modification: returns true when Patina-managed color
+ * keys exist in the customizations but the ownership marker is absent.
+ *
+ * @param existing - Current colorCustomizations value (may be undefined)
+ * @returns true if managed keys are present without the marker
+ */
+export function hasPatinaColorsWithoutMarker(
+  existing: ColorCustomizations | undefined
+): boolean {
+  if (!existing) {
+    return false;
+  }
+
+  const hasMarker = existing[PATINA_ACTIVE_KEY] !== undefined;
+  if (hasMarker) {
+    return false;
+  }
+
+  const managedKeys = PATINA_MANAGED_KEYS as readonly string[];
+  return Object.keys(existing).some((key) => managedKeys.includes(key));
 }

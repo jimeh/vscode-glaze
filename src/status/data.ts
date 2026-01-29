@@ -21,6 +21,11 @@ import {
   isGloballyEnabled,
   getWorkspaceEnabledOverride,
 } from '../config';
+import * as vscode from 'vscode';
+import {
+  hasPatinaColorsWithoutMarker,
+  type ColorCustomizations,
+} from '../settings';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
 import { detectOsColorScheme } from '../theme/osColorScheme';
@@ -155,6 +160,12 @@ export function buildStatusState(): StatusState {
     targets: tintConfig.targets,
   });
 
+  const wbConfig = vscode.workspace.getConfiguration();
+  const existing = wbConfig.get<ColorCustomizations>(
+    'workbench.colorCustomizations'
+  );
+  const customizedOutsidePatina = hasPatinaColorsWithoutMarker(existing);
+
   const general: StatusGeneralInfo = {
     active: isActive,
     globalEnabled,
@@ -171,6 +182,7 @@ export function buildStatusState(): StatusState {
     seed: tintConfig.seed,
     baseHue,
     targets: tintConfig.targets,
+    customizedOutsidePatina,
   };
 
   return { general, colors };

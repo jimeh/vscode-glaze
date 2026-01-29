@@ -57,6 +57,7 @@ function getColorCustomizations(): Record<string, string> | undefined {
  */
 function isPatinaKey(key: string): boolean {
   return (
+    key === 'patina.active' ||
     key.startsWith('titleBar.') ||
     key.startsWith('statusBar.') ||
     key.startsWith('activityBar.')
@@ -499,6 +500,86 @@ suite('Extension Test Suite', () => {
     test('patina.disableWorkspace command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
       assert.ok(commands.includes('patina.disableWorkspace'));
+    });
+
+    test('patina.forceApply command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('patina.forceApply'));
+    });
+  });
+
+  suite('patina.active marker', () => {
+    let originalColorCustomizations: unknown;
+    let originalEnabled: boolean | undefined;
+
+    suiteSetup(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      originalColorCustomizations = config.get('workbench.colorCustomizations');
+    });
+
+    suiteTeardown(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('patina.active exists after enable', async function () {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      const colors = await waitForColorCustomizations();
+
+      assert.ok('patina.active' in colors, 'should have patina.active marker');
+      assert.strictEqual(
+        colors['patina.active'],
+        '#ef5ec7',
+        'marker should have expected value'
+      );
+    });
+
+    test('patina.active removed after disable', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      await waitForColorCustomizations();
+
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await waitForPatinaColorsCleared();
+
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      if (colors) {
+        assert.ok(
+          !('patina.active' in colors),
+          'patina.active should be removed after disable'
+        );
+      }
     });
   });
 

@@ -13,8 +13,11 @@ import {
 } from './config';
 import { getThemeContext } from './theme';
 import {
+  PATINA_ACTIVE_KEY,
+  PATINA_ACTIVE_VALUE,
   mergeColorCustomizations,
   removePatinaColors,
+  hasPatinaColorsWithoutMarker,
   ColorCustomizations,
 } from './settings';
 import { StatusBarManager, StatusBarState, TintColors } from './statusBar';
@@ -60,6 +63,9 @@ function debouncedRemoveTint(): void {
 export async function activate(context: vscode.ExtensionContext) {
   statusBar = new StatusBarManager();
   context.subscriptions.push(statusBar);
+
+  // Migrate pre-marker Patina colors by injecting the ownership marker.
+  await migratePatinaMarker();
 
   // Apply tint on activation
   debouncedApplyTint();
@@ -136,6 +142,23 @@ export async function activate(context: vscode.ExtensionContext) {
       );
       refreshStatusBar();
     }),
+    vscode.commands.registerCommand('patina.forceApply', async () => {
+      // Inject the ownership marker into existing colors, then re-apply.
+      const config = vscode.workspace.getConfiguration();
+      const existing = config.get<ColorCustomizations>(
+        'workbench.colorCustomizations'
+      );
+      if (existing) {
+        const updated = { ...existing };
+        updated[PATINA_ACTIVE_KEY] = PATINA_ACTIVE_VALUE;
+        await config.update(
+          'workbench.colorCustomizations',
+          updated,
+          vscode.ConfigurationTarget.Workspace
+        );
+      }
+      debouncedApplyTint();
+    }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       // Handle VS Code theme changes
       if (
@@ -211,6 +234,15 @@ async function applyTint(): Promise<void> {
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
+
+  // Guard: if managed colors exist but marker is absent, an external
+  // tool or user has modified settings — refuse to overwrite.
+  if (hasPatinaColorsWithoutMarker(existing)) {
+    lastCustomizedOutsidePatina = true;
+    refreshStatusBar();
+    return;
+  }
+
   const merged = mergeColorCustomizations(existing, colors);
   await config.update(
     'workbench.colorCustomizations',
@@ -233,6 +265,7 @@ async function applyTint(): Promise<void> {
   // Update status bar with current state
   lastWorkspaceIdentifier = identifier;
   lastTintColors = tintColors;
+  lastCustomizedOutsidePatina = false;
   refreshStatusBar();
 }
 
@@ -251,8 +284,12 @@ async function removeTint(): Promise<void> {
 
   lastWorkspaceIdentifier = undefined;
   lastTintColors = undefined;
+  lastCustomizedOutsidePatina = false;
   refreshStatusBar();
 }
+
+/** Whether colors were externally modified (cached for status bar refreshes). */
+let lastCustomizedOutsidePatina = false;
 
 /**
  * Re-reads config and updates the status bar using cached
@@ -272,9 +309,38 @@ function refreshStatusBar(): void {
     colorScheme: getColorScheme(),
     seed: tintConfig.seed,
     tintColors: lastTintColors,
+    customizedOutsidePatina: lastCustomizedOutsidePatina,
   };
 
   statusBar.update(state);
+}
+
+/**
+ * Silently adds the ownership marker to pre-existing Patina colors
+ * during activation (upgrade migration).
+ */
+async function migratePatinaMarker(): Promise<void> {
+  if (!isEnabledForWorkspace()) {
+    return;
+  }
+
+  const config = vscode.workspace.getConfiguration();
+  const existing = config.get<ColorCustomizations>(
+    'workbench.colorCustomizations'
+  );
+
+  if (!hasPatinaColorsWithoutMarker(existing)) {
+    return;
+  }
+
+  // Pre-existing Patina colors without marker — inject it silently.
+  const updated = { ...existing };
+  updated[PATINA_ACTIVE_KEY] = PATINA_ACTIVE_VALUE;
+  await config.update(
+    'workbench.colorCustomizations',
+    updated,
+    vscode.ConfigurationTarget.Workspace
+  );
 }
 
 export function deactivate() {}

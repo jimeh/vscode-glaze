@@ -60,6 +60,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'pastel',
         seed: 0,
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -86,6 +87,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'pastel',
         seed: 0,
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -110,6 +112,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'pastel',
         seed: 0,
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -134,6 +137,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'vibrant',
         seed: 0,
         tintColors: undefined,
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -158,6 +162,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'muted',
         seed: 0,
         tintColors: { baseTint: '#00ff00', titleBar: '#00ff00' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -182,6 +187,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'pastel',
         seed: 0,
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -209,10 +215,39 @@ suite('StatusBarManager', () => {
         colorScheme: 'pastel',
         seed: 0,
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
       assert.ok(true, 'update with themeName completed without error');
+    });
+
+    test('handles customizedOutsidePatina true', async () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'statusBar.enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: undefined,
+        customizedOutsidePatina: true,
+      };
+
+      manager.update(state);
+      assert.ok(
+        true,
+        'update with customizedOutsidePatina true completed without error'
+      );
     });
   });
 
@@ -280,6 +315,7 @@ suite('StatusBarManager', () => {
         colorScheme: 'pastel',
         seed: 12345,
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        customizedOutsidePatina: false,
       };
 
       manager.update(state);
@@ -314,6 +350,7 @@ suite('StatusBarManager', () => {
           colorScheme: 'pastel',
           seed: 0,
           tintColors: { baseTint: '#123456', titleBar: '#123456' },
+          customizedOutsidePatina: false,
         };
 
         manager.update(state);
@@ -362,6 +399,7 @@ suite('StatusBarManager', () => {
           colorScheme,
           seed: 0,
           tintColors: { baseTint: '#abcdef', titleBar: '#abcdef' },
+          customizedOutsidePatina: false,
         };
 
         manager.update(state);

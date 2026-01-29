@@ -90,7 +90,15 @@ function generateGeneralInfo(state: StatusState): string {
         <tr>
           <td class="info-label">Status</td>
           <td>${statusBadge}</td>
-        </tr>
+        </tr>${
+          g.customizedOutsidePatina
+            ? `
+        <tr>
+          <td class="info-label"></td>
+          <td><span class="badge warning">Colors modified outside Patina</span></td>
+        </tr>`
+            : ''
+        }
         <tr>
           <td class="info-label">Global Enabled</td>
           <td>${globalEnabled}</td>
@@ -287,6 +295,11 @@ export function generateStatusHtml(
     .badge.inactive {
       background: var(--vscode-descriptionForeground);
       color: var(--vscode-editor-background);
+    }
+
+    .badge.warning {
+      background: var(--vscode-editorWarning-foreground, #cca700);
+      color: #000;
     }
 
     .na {
