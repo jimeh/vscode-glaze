@@ -4,150 +4,196 @@ import { getThemeName } from '../../theme/name';
 
 suite('getThemeName', () => {
   // Store original config values to restore after tests
+  let originalAutoDetect: boolean | undefined;
   let originalPreferredDark: string | undefined;
   let originalPreferredLight: string | undefined;
   let originalColorTheme: string | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    originalPreferredDark = config.get<string>('preferredDarkColorTheme');
-    originalPreferredLight = config.get<string>('preferredLightColorTheme');
-    originalColorTheme = config.get<string>('colorTheme');
+    const windowConfig = vscode.workspace.getConfiguration('window');
+    const workbenchConfig = vscode.workspace.getConfiguration('workbench');
+    originalAutoDetect = windowConfig.get<boolean>('autoDetectColorScheme');
+    originalPreferredDark = workbenchConfig.get<string>(
+      'preferredDarkColorTheme'
+    );
+    originalPreferredLight = workbenchConfig.get<string>(
+      'preferredLightColorTheme'
+    );
+    originalColorTheme = workbenchConfig.get<string>('colorTheme');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    await config.update(
+    const windowConfig = vscode.workspace.getConfiguration('window');
+    const workbenchConfig = vscode.workspace.getConfiguration('workbench');
+    await windowConfig.update(
+      'autoDetectColorScheme',
+      originalAutoDetect,
+      vscode.ConfigurationTarget.Global
+    );
+    await workbenchConfig.update(
       'preferredDarkColorTheme',
       originalPreferredDark,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await workbenchConfig.update(
       'preferredLightColorTheme',
       originalPreferredLight,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await workbenchConfig.update(
       'colorTheme',
       originalColorTheme,
       vscode.ConfigurationTarget.Global
     );
   });
 
-  test('returns preferredDarkColorTheme for dark theme type', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    await config.update(
-      'preferredDarkColorTheme',
-      'One Dark Pro',
-      vscode.ConfigurationTarget.Global
-    );
-    await config.update(
-      'colorTheme',
-      'Default Dark+',
-      vscode.ConfigurationTarget.Global
-    );
+  // Helper to set config values for tests
+  async function setConfig(opts: {
+    autoDetect?: boolean;
+    darkTheme?: string;
+    lightTheme?: string;
+    colorTheme?: string;
+  }): Promise<void> {
+    const windowConfig = vscode.workspace.getConfiguration('window');
+    const workbenchConfig = vscode.workspace.getConfiguration('workbench');
 
-    const result = getThemeName('dark');
-    assert.strictEqual(result, 'One Dark Pro');
+    if (opts.autoDetect !== undefined) {
+      await windowConfig.update(
+        'autoDetectColorScheme',
+        opts.autoDetect,
+        vscode.ConfigurationTarget.Global
+      );
+    }
+    if (opts.darkTheme !== undefined) {
+      await workbenchConfig.update(
+        'preferredDarkColorTheme',
+        opts.darkTheme,
+        vscode.ConfigurationTarget.Global
+      );
+    }
+    if (opts.lightTheme !== undefined) {
+      await workbenchConfig.update(
+        'preferredLightColorTheme',
+        opts.lightTheme,
+        vscode.ConfigurationTarget.Global
+      );
+    }
+    if (opts.colorTheme !== undefined) {
+      await workbenchConfig.update(
+        'colorTheme',
+        opts.colorTheme,
+        vscode.ConfigurationTarget.Global
+      );
+    }
+  }
+
+  suite('autoDetectColorScheme disabled', () => {
+    test('returns colorTheme regardless of preferred settings', async () => {
+      await setConfig({
+        autoDetect: false,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
+
+      assert.strictEqual(getThemeName('dark'), 'Monokai');
+      assert.strictEqual(getThemeName('light'), 'Monokai');
+    });
+
+    test('returns colorTheme when no preferred themes set', async () => {
+      await setConfig({
+        autoDetect: false,
+        darkTheme: '',
+        lightTheme: '',
+        colorTheme: 'Default Dark+',
+      });
+
+      assert.strictEqual(getThemeName('dark'), 'Default Dark+');
+      assert.strictEqual(getThemeName('light'), 'Default Dark+');
+    });
   });
 
-  test('returns preferredDarkColorTheme for hcDark theme type', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    await config.update(
-      'preferredDarkColorTheme',
-      'Dracula',
-      vscode.ConfigurationTarget.Global
-    );
-    await config.update(
-      'colorTheme',
-      'Default Dark+',
-      vscode.ConfigurationTarget.Global
-    );
+  suite('autoDetectColorScheme enabled', () => {
+    test('resolves dark theme via quick check with distinct types', async () => {
+      // Default Dark Modern = type dark, Default Light Modern = type light
+      // Quick check: for themeType 'dark', dark matches and light doesn't
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
 
-    const result = getThemeName('hcDark');
-    assert.strictEqual(result, 'Dracula');
-  });
+      assert.strictEqual(getThemeName('dark'), 'Default Dark Modern');
+    });
 
-  test('returns preferredLightColorTheme for light theme type', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    await config.update(
-      'preferredLightColorTheme',
-      'Solarized Light',
-      vscode.ConfigurationTarget.Global
-    );
-    await config.update(
-      'colorTheme',
-      'Default Light+',
-      vscode.ConfigurationTarget.Global
-    );
+    test('resolves light theme via quick check with distinct types', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
 
-    const result = getThemeName('light');
-    assert.strictEqual(result, 'Solarized Light');
-  });
+      assert.strictEqual(getThemeName('light'), 'Default Light Modern');
+    });
 
-  test('returns preferredLightColorTheme for hcLight type', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    await config.update(
-      'preferredLightColorTheme',
-      'GitHub Light',
-      vscode.ConfigurationTarget.Global
-    );
-    await config.update(
-      'colorTheme',
-      'Default Light+',
-      vscode.ConfigurationTarget.Global
-    );
+    test('falls back to colorTheme when both preferred are empty', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: '',
+        lightTheme: '',
+        colorTheme: 'Monokai',
+      });
 
-    const result = getThemeName('hcLight');
-    assert.strictEqual(result, 'GitHub Light');
-  });
+      assert.strictEqual(getThemeName('dark'), 'Monokai');
+      assert.strictEqual(getThemeName('light'), 'Monokai');
+    });
 
-  test('falls back to colorTheme when preferredDark is empty', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    // Use empty string (falsy) to ensure fallback path is taken
-    await config.update(
-      'preferredDarkColorTheme',
-      '',
-      vscode.ConfigurationTarget.Global
-    );
+    test('handles only dark preferred theme set', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: '',
+        colorTheme: 'Monokai',
+      });
 
-    const result = getThemeName('dark');
-    const colorTheme = config.get<string>('colorTheme');
-    assert.strictEqual(result, colorTheme, 'Should fall back to colorTheme');
-  });
+      // For dark themeType: darkInfo matches (type=dark), lightInfo
+      // is undefined (empty name → no lookup). Only dark matches.
+      assert.strictEqual(getThemeName('dark'), 'Default Dark Modern');
+    });
 
-  test('falls back to colorTheme when preferredLight is empty', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    // Use empty string (falsy) to ensure fallback path is taken
-    await config.update(
-      'preferredLightColorTheme',
-      '',
-      vscode.ConfigurationTarget.Global
-    );
+    test('handles only light preferred theme set', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: '',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
 
-    const result = getThemeName('light');
-    const colorTheme = config.get<string>('colorTheme');
-    assert.strictEqual(result, colorTheme, 'Should fall back to colorTheme');
-  });
+      // For light themeType: lightInfo matches (type=light),
+      // darkInfo is undefined. Only light matches.
+      assert.strictEqual(getThemeName('light'), 'Default Light Modern');
+    });
 
-  test('returns colorTheme when no preferred themes are set', async () => {
-    const config = vscode.workspace.getConfiguration('workbench');
-    // Use empty strings (falsy) to ensure fallback paths are taken
-    await config.update(
-      'preferredDarkColorTheme',
-      '',
-      vscode.ConfigurationTarget.Global
-    );
-    await config.update(
-      'preferredLightColorTheme',
-      '',
-      vscode.ConfigurationTarget.Global
-    );
+    test('returns a string for any themeType', async () => {
+      // Regardless of configuration, should always return something
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
 
-    const colorTheme = config.get<string>('colorTheme');
-    const darkResult = getThemeName('dark');
-    const lightResult = getThemeName('light');
-    assert.strictEqual(darkResult, colorTheme, 'Dark should fall back');
-    assert.strictEqual(lightResult, colorTheme, 'Light should fall back');
+      const darkResult = getThemeName('dark');
+      const lightResult = getThemeName('light');
+      const hcDarkResult = getThemeName('hcDark');
+      const hcLightResult = getThemeName('hcLight');
+
+      assert.strictEqual(typeof darkResult, 'string');
+      assert.strictEqual(typeof lightResult, 'string');
+      assert.strictEqual(typeof hcDarkResult, 'string');
+      assert.strictEqual(typeof hcLightResult, 'string');
+    });
   });
 });

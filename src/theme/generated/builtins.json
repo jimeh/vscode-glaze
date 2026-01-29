@@ -1,10 +1,10 @@
 {
   "tag": "1.108.2",
-  "extractedAt": "2026-01-24T18:14:25.417Z",
+  "extractedAt": "2026-01-29T02:35:16.268Z",
   "themes": [
     {
       "name": "Abyss",
-      "label": "%themeLabel%",
+      "label": "Abyss",
       "colors": {
         "editor.background": "#000C18",
         "editor.foreground": "#6688CC",
@@ -16,7 +16,7 @@
     },
     {
       "name": "Default Dark+",
-      "label": "%darkPlusColorThemeLabel%",
+      "label": "Dark+",
       "colors": {
         "editor.background": "#1E1E1E",
         "editor.foreground": "#D4D4D4"
@@ -25,7 +25,7 @@
     },
     {
       "name": "Default Dark Modern",
-      "label": "%darkModernThemeLabel%",
+      "label": "Dark Modern",
       "colors": {
         "editor.background": "#1F1F1F",
         "editor.foreground": "#CCCCCC",
@@ -42,7 +42,7 @@
     },
     {
       "name": "Default Light+",
-      "label": "%lightPlusColorThemeLabel%",
+      "label": "Light+",
       "colors": {
         "editor.background": "#FFFFFF",
         "editor.foreground": "#000000"
@@ -51,7 +51,7 @@
     },
     {
       "name": "Default Light Modern",
-      "label": "%lightModernThemeLabel%",
+      "label": "Light Modern",
       "colors": {
         "editor.background": "#FFFFFF",
         "editor.foreground": "#3B3B3B",
@@ -68,7 +68,7 @@
     },
     {
       "name": "Visual Studio Dark",
-      "label": "%darkColorThemeLabel%",
+      "label": "Dark (Visual Studio)",
       "colors": {
         "editor.background": "#1E1E1E",
         "editor.foreground": "#D4D4D4"
@@ -77,7 +77,7 @@
     },
     {
       "name": "Visual Studio Light",
-      "label": "%lightColorThemeLabel%",
+      "label": "Light (Visual Studio)",
       "colors": {
         "editor.background": "#FFFFFF",
         "editor.foreground": "#000000"
@@ -86,7 +86,7 @@
     },
     {
       "name": "Default High Contrast",
-      "label": "%hcColorThemeLabel%",
+      "label": "Dark High Contrast",
       "colors": {
         "editor.background": "#000000",
         "editor.foreground": "#FFFFFF"
@@ -95,7 +95,7 @@
     },
     {
       "name": "Kimbie Dark",
-      "label": "%themeLabel%",
+      "label": "Kimbie Dark",
       "colors": {
         "editor.background": "#221A0F",
         "editor.foreground": "#D3AF86",
@@ -108,7 +108,7 @@
     },
     {
       "name": "Monokai Dimmed",
-      "label": "%themeLabel%",
+      "label": "Monokai Dimmed",
       "colors": {
         "editor.background": "#1E1E1E",
         "editor.foreground": "#C5C8C6",
@@ -121,7 +121,7 @@
     },
     {
       "name": "Monokai",
-      "label": "%themeLabel%",
+      "label": "Monokai",
       "colors": {
         "editor.background": "#272822",
         "editor.foreground": "#F8F8F2",
@@ -134,7 +134,7 @@
     },
     {
       "name": "Quiet Light",
-      "label": "%themeLabel%",
+      "label": "Quiet Light",
       "colors": {
         "editor.background": "#F5F5F5",
         "titleBar.activeBackground": "#C4B7D7",
@@ -146,7 +146,7 @@
     },
     {
       "name": "Red",
-      "label": "%themeLabel%",
+      "label": "Red",
       "colors": {
         "editor.background": "#390000",
         "editor.foreground": "#F8F8F8",
@@ -159,7 +159,7 @@
     },
     {
       "name": "Solarized Dark",
-      "label": "%themeLabel%",
+      "label": "Solarized Dark",
       "colors": {
         "editor.background": "#002B36",
         "editor.foreground": "#839496",
@@ -172,7 +172,7 @@
     },
     {
       "name": "Solarized Light",
-      "label": "%themeLabel%",
+      "label": "Solarized Light",
       "colors": {
         "editor.background": "#FDF6E3",
         "editor.foreground": "#657B83",
@@ -186,7 +186,7 @@
     },
     {
       "name": "Tomorrow Night Blue",
-      "label": "%themeLabel%",
+      "label": "Tomorrow Night Blue",
       "colors": {
         "editor.background": "#002451",
         "editor.foreground": "#FFFFFF",

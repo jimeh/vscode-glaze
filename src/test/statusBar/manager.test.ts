@@ -54,7 +54,8 @@ suite('StatusBarManager', () => {
         globalEnabled: false,
         workspaceEnabledOverride: undefined,
         workspaceIdentifier: 'test-workspace',
-        themeType: 'dark',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
@@ -78,7 +79,8 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: undefined,
         workspaceIdentifier: 'test-workspace',
-        themeType: 'dark',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
@@ -100,7 +102,8 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: false,
         workspaceIdentifier: 'test-workspace',
-        themeType: 'dark',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
         tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
@@ -122,7 +125,8 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: true,
         workspaceIdentifier: 'test-workspace',
-        themeType: 'light',
+        themeName: 'Solarized Light',
+        tintType: 'light',
         themeAutoDetected: false,
         colorScheme: 'vibrant',
         tintColors: undefined,
@@ -144,7 +148,8 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: undefined,
         workspaceIdentifier: undefined,
-        themeType: 'dark',
+        themeName: undefined,
+        tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'muted',
         tintColors: { baseTint: '#00ff00', titleBar: '#00ff00' },
@@ -152,6 +157,55 @@ suite('StatusBarManager', () => {
 
       manager.update(state);
       assert.ok(true, 'update completed without error');
+    });
+
+    test('handles undefined themeName', async () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'statusBar.enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: undefined,
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+      };
+
+      manager.update(state);
+      assert.ok(
+        true,
+        'update with undefined themeName completed without error'
+      );
+    });
+
+    test('handles themeName with value', async () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'statusBar.enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+      };
+
+      manager.update(state);
+      assert.ok(true, 'update with themeName completed without error');
     });
   });
 
@@ -208,8 +262,8 @@ suite('StatusBarManager', () => {
       'hcLight',
     ];
 
-    for (const themeType of themeTypes) {
-      test(`handles ${themeType} theme type`, async () => {
+    for (const tintType of themeTypes) {
+      test(`handles ${tintType} theme type`, async () => {
         const config = vscode.workspace.getConfiguration('patina');
         await config.update(
           'statusBar.enabled',
@@ -221,14 +275,15 @@ suite('StatusBarManager', () => {
           globalEnabled: true,
           workspaceEnabledOverride: undefined,
           workspaceIdentifier: 'test',
-          themeType,
+          themeName: 'Default Dark+',
+          tintType,
           themeAutoDetected: true,
           colorScheme: 'pastel',
           tintColors: { baseTint: '#123456', titleBar: '#123456' },
         };
 
         manager.update(state);
-        assert.ok(true, `${themeType} theme handled without error`);
+        assert.ok(true, `${tintType} theme handled without error`);
       });
     }
   });
@@ -267,7 +322,8 @@ suite('StatusBarManager', () => {
           globalEnabled: true,
           workspaceEnabledOverride: undefined,
           workspaceIdentifier: 'test',
-          themeType: 'dark',
+          themeName: 'Default Dark+',
+          tintType: 'dark',
           themeAutoDetected: false,
           colorScheme,
           tintColors: { baseTint: '#abcdef', titleBar: '#abcdef' },

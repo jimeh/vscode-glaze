@@ -108,7 +108,7 @@ export class PalettePreviewPanel {
     const currentScheme = getColorScheme();
 
     // Use manual selection if set, otherwise use detected theme type
-    const themeType = this.selectedThemeType ?? themeContext.type;
+    const themeType = this.selectedThemeType ?? themeContext.tintType;
     const schemes = generateAllSchemePreviews(themeType);
 
     // Generate workspace preview if available

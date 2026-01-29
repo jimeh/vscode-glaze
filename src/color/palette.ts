@@ -90,7 +90,7 @@ export function generatePalette(
   }
 
   const schemeConfig = getSchemeConfig(colorScheme);
-  const themeConfig = schemeConfig[themeContext.type];
+  const themeConfig = schemeConfig[themeContext.tintType];
   const palette: PartialPatinaColorPalette = {};
 
   for (const key of keysToInclude) {

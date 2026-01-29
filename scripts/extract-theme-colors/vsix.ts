@@ -94,6 +94,26 @@ export function extractPackageJson(
 }
 
 /**
+ * Extracts and parses package.nls.json from a VSIX buffer.
+ * Returns the NLS data for placeholder resolution, or
+ * undefined if not present.
+ */
+export function extractNlsJson(
+  vsixBuffer: Buffer
+): Record<string, string> | undefined {
+  try {
+    const zip = new AdmZip(vsixBuffer);
+    const entry = zip.getEntry('extension/package.nls.json');
+    if (!entry) return undefined;
+
+    const content = zip.readAsText(entry);
+    return JSON.parse(content) as Record<string, string>;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
  * Creates a theme file reader function for a VSIX buffer.
  * Returns a function that can read theme files from the VSIX.
  */

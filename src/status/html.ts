@@ -1,0 +1,392 @@
+import type { StatusState, StatusColorDetail } from './types';
+import type { ElementType } from '../theme';
+import { capitalizeFirst } from '../statusBar/helpers';
+
+/**
+ * Element groups in display order with their labels.
+ */
+const ELEMENT_GROUPS: { element: ElementType; label: string }[] = [
+  { element: 'titleBar', label: 'Title Bar' },
+  { element: 'activityBar', label: 'Activity Bar' },
+  { element: 'statusBar', label: 'Status Bar' },
+];
+
+/**
+ * Escapes HTML special characters.
+ */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/**
+ * Generates an inline color swatch span.
+ */
+function colorSwatch(hex: string): string {
+  return `<span class="color-swatch"` + ` style="background:${hex};"></span>`;
+}
+
+/**
+ * Generates a color cell with swatch and hex code.
+ */
+function colorCell(hex: string | undefined): string {
+  if (hex === undefined) {
+    return '<span class="na">N/A</span>';
+  }
+  return `${colorSwatch(hex)} <code>${hex}</code>`;
+}
+
+/**
+ * Generates the general info section.
+ */
+function generateGeneralInfo(state: StatusState): string {
+  const g = state.general;
+
+  const statusBadge = g.active
+    ? '<span class="badge active">Active</span>'
+    : '<span class="badge inactive">Inactive</span>';
+
+  const globalEnabled = g.globalEnabled ? 'Yes' : 'No';
+
+  let workspaceOverride: string;
+  if (g.workspaceEnabled === undefined) {
+    workspaceOverride = 'Not set (inherits global)';
+  } else {
+    workspaceOverride = g.workspaceEnabled ? 'Enabled' : 'Disabled';
+  }
+
+  const workspaceId = g.workspaceIdentifier
+    ? escapeHtml(g.workspaceIdentifier)
+    : '<span class="na">No workspace</span>';
+
+  const themeName = g.themeName
+    ? escapeHtml(g.themeName)
+    : '<span class="na">Unknown</span>';
+  const themeTypeLabel = g.themeType;
+  const tintModeLabel = g.themeAutoDetected
+    ? `Auto (${capitalizeFirst(g.tintType)})`
+    : capitalizeFirst(g.tintType);
+
+  const themeColors = g.themeColorsAvailable
+    ? 'Available'
+    : '<span class="na">Unknown theme</span>';
+
+  const blendPct = Math.round(g.blendFactor * 100);
+  const baseHueSwatch = g.workspaceIdentifier
+    ? ` ${colorSwatch(hueToSwatchColor(g.baseHue))}`
+    : '';
+
+  const targetLabels =
+    g.targets.length > 0
+      ? g.targets.join(', ')
+      : '<span class="na">None</span>';
+
+  return `
+    <div class="info-card">
+      <table class="info-table">
+        <tr>
+          <td class="info-label">Status</td>
+          <td>${statusBadge}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Global Enabled</td>
+          <td>${globalEnabled}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Workspace Override</td>
+          <td>${workspaceOverride}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Workspace ID</td>
+          <td class="mono">${workspaceId}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Theme (detected)</td>
+          <td>${themeName}${themeTypeLabel ? ` (${themeTypeLabel})` : ''}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Tint Mode</td>
+          <td>${tintModeLabel}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Theme Colors</td>
+          <td>${themeColors}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Color Scheme</td>
+          <td>${escapeHtml(g.colorScheme)}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Blend Factor</td>
+          <td>${blendPct}%</td>
+        </tr>
+        <tr>
+          <td class="info-label">Seed</td>
+          <td>${g.seed}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Base Hue</td>
+          <td>${g.baseHue}&deg;${baseHueSwatch}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Tint Targets</td>
+          <td>${targetLabels}</td>
+        </tr>
+      </table>
+    </div>
+  `;
+}
+
+/**
+ * Converts a hue angle to a visible swatch color.
+ * Uses a fixed lightness/chroma for display purposes only.
+ */
+function hueToSwatchColor(hue: number): string {
+  // Simple HSL approximation for a visible swatch
+  return `hsl(${hue}, 70%, 50%)`;
+}
+
+/**
+ * Generates the color pipeline table.
+ */
+function generateColorTable(colors: StatusColorDetail[]): string {
+  const rows: string[] = [];
+
+  for (const group of ELEMENT_GROUPS) {
+    const groupColors = colors.filter((c) => c.element === group.element);
+    if (groupColors.length === 0) {
+      continue;
+    }
+
+    // Group header row
+    rows.push(
+      `<tr class="group-header">` +
+        `<td colspan="4">${group.label}</td>` +
+        `</tr>`
+    );
+
+    // Color rows
+    for (const color of groupColors) {
+      const disabledClass = color.enabled ? '' : ' disabled';
+      rows.push(
+        `<tr class="color-row${disabledClass}">` +
+          `<td class="key-cell mono">${escapeHtml(color.key)}</td>` +
+          `<td class="color-cell">${colorCell(color.themeColor)}</td>` +
+          `<td class="color-cell">${colorCell(color.tintColor)}</td>` +
+          `<td class="color-cell">${colorCell(color.finalColor)}</td>` +
+          `</tr>`
+      );
+    }
+  }
+
+  return `
+    <table class="color-table">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Theme Color</th>
+          <th>Tint Color</th>
+          <th>Final Color</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.join('\n        ')}
+      </tbody>
+    </table>
+  `;
+}
+
+/**
+ * Generates the complete status HTML document.
+ *
+ * @param state - The current status state
+ * @param nonce - CSP nonce for inline scripts
+ * @param cspSource - CSP source for styles
+ * @returns Complete HTML document string
+ */
+export function generateStatusHtml(
+  state: StatusState,
+  nonce: string,
+  cspSource: string
+): string {
+  const generalInfo = generateGeneralInfo(state);
+  const colorTable = generateColorTable(state.colors);
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
+  <title>Patina Status</title>
+  <style>
+    body {
+      font-family: var(--vscode-font-family);
+      font-size: var(--vscode-font-size);
+      color: var(--vscode-foreground);
+      background: var(--vscode-editor-background);
+      padding: 16px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      color: var(--vscode-foreground);
+    }
+
+    .info-card {
+      background: var(--vscode-editor-inactiveSelectionBackground);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table td {
+      padding: 4px 8px 4px 0;
+      vertical-align: top;
+    }
+
+    .info-label {
+      color: var(--vscode-descriptionForeground);
+      white-space: nowrap;
+      width: 140px;
+    }
+
+    .mono {
+      font-family: var(--vscode-editor-font-family);
+      font-size: var(--vscode-editor-font-size);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge.active {
+      background: var(--vscode-testing-iconPassed, #388a34);
+      color: #fff;
+    }
+
+    .badge.inactive {
+      background: var(--vscode-descriptionForeground);
+      color: var(--vscode-editor-background);
+    }
+
+    .na {
+      color: var(--vscode-descriptionForeground);
+      font-style: italic;
+    }
+
+    .color-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+
+    .color-table th {
+      text-align: left;
+      padding: 6px 8px;
+      font-size: 12px;
+      color: var(--vscode-descriptionForeground);
+      border-bottom: 1px solid var(--vscode-widget-border);
+    }
+
+    .color-table td {
+      padding: 5px 8px;
+      border-bottom: 1px solid
+        var(--vscode-widget-border);
+    }
+
+    .group-header td {
+      font-weight: 600;
+      padding-top: 12px;
+      color: var(--vscode-foreground);
+      border-bottom: none;
+    }
+
+    .color-row.disabled {
+      opacity: 0.4;
+    }
+
+    .key-cell {
+      font-family: var(--vscode-editor-font-family);
+      font-size: var(--vscode-editor-font-size);
+    }
+
+    .color-cell {
+      white-space: nowrap;
+    }
+
+    .color-cell code {
+      font-family: var(--vscode-editor-font-family);
+      font-size: var(--vscode-editor-font-size);
+    }
+
+    .color-swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 1px solid var(--vscode-widget-border);
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .refresh-btn {
+      background: var(--vscode-button-secondaryBackground);
+      color: var(--vscode-button-secondaryForeground);
+      border: 1px solid var(--vscode-button-border, transparent);
+      padding: 4px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .refresh-btn:hover {
+      background: var(--vscode-button-secondaryHoverBackground);
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="refresh-btn" id="refreshBtn">Refresh</button>
+  </div>
+
+  <h2>General Info</h2>
+  ${generalInfo}
+
+  <h2>Color Pipeline</h2>
+  ${colorTable}
+
+  <script nonce="${nonce}">
+    (function() {
+      const vscode = acquireVsCodeApi();
+
+      document.getElementById('refreshBtn')
+        .addEventListener('click', () => {
+          vscode.postMessage({ type: 'refresh' });
+        });
+    })();
+  </script>
+</body>
+</html>`;
+}

@@ -38,26 +38,26 @@ suite('getThemeContext', () => {
   test('returns auto-detected context when mode is auto', () => {
     const result = getThemeContext('auto');
     assert.strictEqual(result.isAutoDetected, true);
-    // Should return a valid theme type based on current VSCode theme
-    assert.ok(['dark', 'light', 'hcDark', 'hcLight'].includes(result.type));
+    // tintType should be a valid theme type based on current VSCode theme
+    assert.ok(['dark', 'light', 'hcDark', 'hcLight'].includes(result.tintType));
   });
 
-  test('returns light type when mode is light', () => {
+  test('returns light tintType when mode is light', () => {
     const result = getThemeContext('light');
-    assert.strictEqual(result.type, 'light');
+    assert.strictEqual(result.tintType, 'light');
     assert.strictEqual(result.isAutoDetected, false);
   });
 
-  test('returns dark type when mode is dark', () => {
+  test('returns dark tintType when mode is dark', () => {
     const result = getThemeContext('dark');
-    assert.strictEqual(result.type, 'dark');
+    assert.strictEqual(result.tintType, 'dark');
     assert.strictEqual(result.isAutoDetected, false);
   });
 
   test('returns valid context structure', () => {
     const result = getThemeContext('auto');
     // Should have all required properties
-    assert.ok('type' in result, 'Should have type property');
+    assert.ok('tintType' in result, 'Should have tintType property');
     assert.ok('name' in result, 'Should have name property');
     assert.ok('colors' in result, 'Should have colors property');
     assert.ok(
@@ -93,18 +93,48 @@ suite('getThemeContext', () => {
     // Name may be empty if no theme is active, but typically isn't
   });
 
-  test('type is consistent with isAutoDetected flag', () => {
-    // When auto-detected, type comes from VSCode's active theme
+  test('tintType is consistent with isAutoDetected flag', () => {
+    // When auto-detected, tintType comes from VSCode's active theme
     const autoResult = getThemeContext('auto');
     assert.strictEqual(autoResult.isAutoDetected, true);
 
-    // When manually set, type matches the mode
+    // When manually set, tintType matches the mode
     const darkResult = getThemeContext('dark');
     assert.strictEqual(darkResult.isAutoDetected, false);
-    assert.strictEqual(darkResult.type, 'dark');
+    assert.strictEqual(darkResult.tintType, 'dark');
 
     const lightResult = getThemeContext('light');
     assert.strictEqual(lightResult.isAutoDetected, false);
-    assert.strictEqual(lightResult.type, 'light');
+    assert.strictEqual(lightResult.tintType, 'light');
+  });
+
+  test('type reflects theme DB type, not tint mode', () => {
+    // type comes from the theme database, so may differ from tintType
+    const result = getThemeContext('auto');
+    // type is optional — undefined if theme not in DB
+    if (result.type !== undefined) {
+      assert.ok(
+        ['dark', 'light', 'hcDark', 'hcLight'].includes(result.type),
+        'type should be a valid ThemeType when defined'
+      );
+    }
+  });
+
+  test('colors available even when tintType differs from type', () => {
+    // Force a manual tint mode that may differ from theme's DB type
+    const lightResult = getThemeContext('light');
+    const darkResult = getThemeContext('dark');
+
+    // At least one should have colors if the theme is in the DB,
+    // and colors should be present regardless of tint mode mismatch
+    if (lightResult.colors || darkResult.colors) {
+      // Whichever has colors, the other should too — the type-match
+      // gate has been removed so both should get colors
+      assert.strictEqual(
+        lightResult.colors !== undefined,
+        darkResult.colors !== undefined,
+        'Colors should be available regardless of tint mode'
+      );
+    }
   });
 });

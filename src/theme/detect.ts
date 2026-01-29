@@ -31,31 +31,30 @@ export function getThemeTypeFromColorThemeKind(
  * @returns Theme context with the resolved type and detection status
  */
 export function getThemeContext(themeMode: ThemeMode): ThemeContext {
-  let type: ThemeType;
+  let tintType: ThemeType;
   let isAutoDetected: boolean;
 
+  const vsCodeKind = getThemeTypeFromColorThemeKind(
+    vscode.window.activeColorTheme.kind
+  );
+
   if (themeMode === 'auto') {
-    const vsCodeKind = vscode.window.activeColorTheme.kind;
-    type = getThemeTypeFromColorThemeKind(vsCodeKind);
+    tintType = vsCodeKind;
     isAutoDetected = true;
   } else {
-    type = themeMode;
+    tintType = themeMode;
     isAutoDetected = false;
   }
 
   // Get the theme name, then look up its colors
-  const name = getThemeName(type);
+  const name = getThemeName(vsCodeKind);
   const themeInfo = name ? getThemeInfo(name) : undefined;
 
-  // Validate that stored theme type matches detected type.
-  // If mismatch, don't trust the colors - fall back to generic.
-  const validatedThemeInfo =
-    themeInfo && themeInfo.type === type ? themeInfo : undefined;
-
   return {
-    type,
+    type: themeInfo?.type,
+    tintType,
     isAutoDetected,
     name,
-    colors: validatedThemeInfo?.colors,
+    colors: themeInfo?.colors,
   };
 }

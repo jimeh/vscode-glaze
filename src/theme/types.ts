@@ -16,12 +16,21 @@ import type { ThemeColors } from './colorKeys';
  */
 export interface ThemeContext {
   /**
-   * The detected or configured theme type.
+   * The theme's own type from the database (e.g., a dark theme is
+   * always 'dark' regardless of tint mode). Undefined if the theme
+   * is not found in the database.
    */
-  type: ThemeType;
+  type?: ThemeType;
 
   /**
-   * Whether the type was auto-detected (true) or manually configured (false).
+   * The resolved tint type — auto-detected from VSCode's active
+   * theme kind, or manually set by the user.
+   */
+  tintType: ThemeType;
+
+  /**
+   * Whether tintType was auto-detected (true) or manually
+   * configured (false).
    */
   isAutoDetected: boolean;
 

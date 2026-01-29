@@ -19,6 +19,7 @@ import {
 } from './settings';
 import { StatusBarManager, StatusBarState, TintColors } from './statusBar';
 import { PalettePreviewPanel } from './preview';
+import { StatusPanel } from './status';
 
 let statusBar: StatusBarManager;
 let applyTintTimeout: ReturnType<typeof setTimeout> | undefined;
@@ -80,6 +81,9 @@ export async function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand('patina.showColorPreview', () => {
       PalettePreviewPanel.show(context.extensionUri);
+    }),
+    vscode.commands.registerCommand('patina.showStatus', () => {
+      StatusPanel.show(context.extensionUri);
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       // Handle VS Code theme changes
@@ -165,7 +169,7 @@ async function applyTint(): Promise<void> {
   const tintColors: TintColors = {
     baseTint: calculateBaseTint({
       workspaceIdentifier: identifier,
-      themeType: themeContext.type,
+      themeType: themeContext.tintType,
       seed: tintConfig.seed,
     }),
     titleBar: colors['titleBar.activeBackground'],
@@ -204,7 +208,8 @@ function updateStatusBar(
     globalEnabled: isGloballyEnabled(),
     workspaceEnabledOverride: getWorkspaceEnabledOverride(),
     workspaceIdentifier,
-    themeType: themeContext.type,
+    themeName: themeContext.name,
+    tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     colorScheme: getColorScheme(),
     tintColors,

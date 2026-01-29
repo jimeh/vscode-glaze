@@ -10,11 +10,11 @@ const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
  * Helper to create a ThemeContext for testing.
  */
 function makeThemeContext(
-  type: ThemeType,
+  tintType: ThemeType,
   options?: { colors?: ThemeColors }
 ): ThemeContext {
   return {
-    type,
+    tintType,
     isAutoDetected: true,
     colors: options?.colors,
   };
