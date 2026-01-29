@@ -55,6 +55,8 @@ export interface StatusGeneralInfo {
   baseHue: number;
   /** Active tint targets */
   targets: TintTarget[];
+  /** Whether managed colors were modified outside of Patina. */
+  customizedOutsidePatina: boolean;
 }
 
 /**

@@ -49,9 +49,12 @@ export class StatusBarManager implements vscode.Disposable {
 
   private render(): void {
     const isActive = this.isActive();
+    const customized = this.state?.customizedOutsidePatina ?? false;
 
     // Set icon and text
-    if (isActive) {
+    if (customized) {
+      this.item.text = '$(paintcan) $(warning) Modified';
+    } else if (isActive) {
       const colorName = this.getActiveColorName();
       this.item.text = `$(paintcan) ${colorName}`;
     } else {
@@ -99,6 +102,16 @@ export class StatusBarManager implements vscode.Disposable {
 
     // state is guaranteed to be set before render() is called
     const state = this.state!;
+
+    // Warning when colors were modified outside Patina
+    if (state.customizedOutsidePatina) {
+      md.appendMarkdown(
+        '$(warning) **Colors modified outside Patina.** ' +
+          'Patina will not overwrite external changes.\n\n' +
+          '[Force Apply](command:patina.forceApply) ' +
+          'to reclaim ownership.\n\n'
+      );
+    }
     const { globalEnabled, workspaceEnabledOverride } = state;
 
     // Status line

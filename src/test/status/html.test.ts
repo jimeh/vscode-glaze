@@ -37,6 +37,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       seed: 0,
       baseHue: 180,
       targets: ['titleBar', 'statusBar', 'activityBar'],
+      customizedOutsidePatina: false,
     },
     colors: createMockColors(),
     ...overrides,
@@ -449,6 +450,32 @@ suite('generateStatusHtml', () => {
     assert.ok(
       html.includes('>Unknown<'),
       'Should show Unknown for undefined OS color scheme'
+    );
+  });
+
+  test('shows warning badge when customizedOutsidePatina is true', () => {
+    const state = createMockState();
+    state.general.customizedOutsidePatina = true;
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('badge warning'),
+      'Should have warning badge class'
+    );
+    assert.ok(
+      html.includes('Colors modified outside Patina'),
+      'Should show warning text'
+    );
+  });
+
+  test('no warning badge when customizedOutsidePatina is false', () => {
+    const state = createMockState();
+    state.general.customizedOutsidePatina = false;
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      !html.includes('badge warning'),
+      'Should not have warning badge class'
     );
   });
 });
