@@ -11,8 +11,10 @@ suite('detectOsColorScheme', () => {
   });
 
   test('returns a string on supported platforms', function () {
-    // Only meaningful on macOS, Windows, or Linux
-    const supported = ['darwin', 'win32', 'linux'];
+    // Only macOS is guaranteed: `defaults` always resolves to
+    // 'dark' or 'light'. Linux/Windows can legitimately return
+    // undefined in headless or non-standard desktop environments.
+    const supported = ['darwin'];
     if (!supported.includes(process.platform)) {
       this.skip();
     }
