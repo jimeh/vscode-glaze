@@ -204,6 +204,7 @@ function updateStatusBar(
     globalEnabled: isGloballyEnabled(),
     workspaceEnabledOverride: getWorkspaceEnabledOverride(),
     workspaceIdentifier,
+    themeName: themeContext.name,
     themeType: themeContext.type,
     themeAutoDetected: themeContext.isAutoDetected,
     colorScheme: getColorScheme(),

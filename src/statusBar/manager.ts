@@ -114,11 +114,26 @@ export class StatusBarManager implements vscode.Disposable {
         md.appendMarkdown(`**Workspace ID:** ${displayId}\n\n`);
       }
 
-      // Theme mode
-      const { themeType, themeAutoDetected, colorScheme, tintColors } = state;
+      const {
+        themeName,
+        themeType,
+        themeAutoDetected,
+        colorScheme,
+        tintColors,
+      } = state;
+
+      // Theme name
+      if (themeName) {
+        md.appendMarkdown(`**Theme:** ${themeName}\n\n`);
+      }
+
+      // Tint mode
       const themeLabel = getThemeModeLabel(themeType, themeAutoDetected);
+      md.appendMarkdown(`**Tint Mode:** ${themeLabel}\n\n`);
+
+      // Color scheme
       const schemeLabel = capitalizeFirst(colorScheme);
-      md.appendMarkdown(`**Theme:** ${themeLabel} · ${schemeLabel}\n\n`);
+      md.appendMarkdown(`**Color Scheme:** ${schemeLabel}\n\n`);
 
       // Colors section with clickable swatches
       if (tintColors) {

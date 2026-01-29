@@ -28,6 +28,9 @@ export interface StatusBarState {
   /** The workspace identifier used for color generation. */
   workspaceIdentifier: string | undefined;
 
+  /** The name of the active VS Code color theme. */
+  themeName: string | undefined;
+
   /** The detected/configured theme type. */
   themeType: ThemeType;
 

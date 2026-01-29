@@ -54,6 +54,7 @@ suite('StatusBarManager', () => {
         globalEnabled: false,
         workspaceEnabledOverride: undefined,
         workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
@@ -78,6 +79,7 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: undefined,
         workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
@@ -100,6 +102,7 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: false,
         workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
@@ -122,6 +125,7 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: true,
         workspaceIdentifier: 'test-workspace',
+        themeName: 'Solarized Light',
         themeType: 'light',
         themeAutoDetected: false,
         colorScheme: 'vibrant',
@@ -144,6 +148,7 @@ suite('StatusBarManager', () => {
         globalEnabled: true,
         workspaceEnabledOverride: undefined,
         workspaceIdentifier: undefined,
+        themeName: undefined,
         themeType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'muted',
@@ -152,6 +157,55 @@ suite('StatusBarManager', () => {
 
       manager.update(state);
       assert.ok(true, 'update completed without error');
+    });
+
+    test('handles undefined themeName', async () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'statusBar.enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: undefined,
+        themeType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+      };
+
+      manager.update(state);
+      assert.ok(
+        true,
+        'update with undefined themeName completed without error'
+      );
+    });
+
+    test('handles themeName with value', async () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'statusBar.enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        themeType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+      };
+
+      manager.update(state);
+      assert.ok(true, 'update with themeName completed without error');
     });
   });
 
@@ -221,6 +275,7 @@ suite('StatusBarManager', () => {
           globalEnabled: true,
           workspaceEnabledOverride: undefined,
           workspaceIdentifier: 'test',
+          themeName: 'Default Dark+',
           themeType,
           themeAutoDetected: true,
           colorScheme: 'pastel',
@@ -267,6 +322,7 @@ suite('StatusBarManager', () => {
           globalEnabled: true,
           workspaceEnabledOverride: undefined,
           workspaceIdentifier: 'test',
+          themeName: 'Default Dark+',
           themeType: 'dark',
           themeAutoDetected: false,
           colorScheme,
