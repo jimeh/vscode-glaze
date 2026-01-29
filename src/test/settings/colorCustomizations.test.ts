@@ -242,4 +242,12 @@ suite('hasPatinaColorsWithoutMarker', () => {
     };
     assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
   });
+
+  test('returns true when marker key exists with wrong value', () => {
+    const existing = {
+      [PATINA_ACTIVE_KEY]: '#000000',
+      'titleBar.activeBackground': '#111111',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+  });
 });

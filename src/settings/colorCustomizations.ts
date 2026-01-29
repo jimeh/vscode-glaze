@@ -105,7 +105,7 @@ export function hasPatinaColorsWithoutMarker(
     return false;
   }
 
-  const hasMarker = existing[PATINA_ACTIVE_KEY] !== undefined;
+  const hasMarker = existing[PATINA_ACTIVE_KEY] === PATINA_ACTIVE_VALUE;
   if (hasMarker) {
     return false;
   }

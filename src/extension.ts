@@ -64,9 +64,6 @@ export async function activate(context: vscode.ExtensionContext) {
   statusBar = new StatusBarManager();
   context.subscriptions.push(statusBar);
 
-  // Migrate pre-marker Patina colors by injecting the ownership marker.
-  await migratePatinaMarker();
-
   // Apply tint on activation
   debouncedApplyTint();
 
@@ -313,34 +310,6 @@ function refreshStatusBar(): void {
   };
 
   statusBar.update(state);
-}
-
-/**
- * Silently adds the ownership marker to pre-existing Patina colors
- * during activation (upgrade migration).
- */
-async function migratePatinaMarker(): Promise<void> {
-  if (!isEnabledForWorkspace()) {
-    return;
-  }
-
-  const config = vscode.workspace.getConfiguration();
-  const existing = config.get<ColorCustomizations>(
-    'workbench.colorCustomizations'
-  );
-
-  if (!hasPatinaColorsWithoutMarker(existing)) {
-    return;
-  }
-
-  // Pre-existing Patina colors without marker — inject it silently.
-  const updated = { ...existing };
-  updated[PATINA_ACTIVE_KEY] = PATINA_ACTIVE_VALUE;
-  await config.update(
-    'workbench.colorCustomizations',
-    updated,
-    vscode.ConfigurationTarget.Workspace
-  );
 }
 
 export function deactivate() {}
