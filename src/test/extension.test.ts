@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
+import { PATINA_ACTIVE_KEY } from '../settings';
 
 /**
  * Polls until a condition is met or timeout is reached.
@@ -57,7 +58,7 @@ function getColorCustomizations(): Record<string, string> | undefined {
  */
 function isPatinaKey(key: string): boolean {
   return (
-    key === 'patina.active' ||
+    key === PATINA_ACTIVE_KEY ||
     key.startsWith('titleBar.') ||
     key.startsWith('statusBar.') ||
     key.startsWith('activityBar.')

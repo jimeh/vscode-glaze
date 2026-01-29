@@ -154,7 +154,7 @@ export async function activate(context: vscode.ExtensionContext) {
           vscode.ConfigurationTarget.Workspace
         );
       }
-      debouncedApplyTint();
+      await applyTint();
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       // Handle VS Code theme changes
