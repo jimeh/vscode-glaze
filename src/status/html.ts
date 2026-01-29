@@ -1,5 +1,6 @@
 import type { StatusState, StatusColorDetail } from './types';
 import type { ElementType } from '../theme';
+import { capitalizeFirst } from '../statusBar/helpers';
 
 /**
  * Element groups in display order with their labels.
@@ -65,7 +66,9 @@ function generateGeneralInfo(state: StatusState): string {
     ? escapeHtml(g.themeName)
     : '<span class="na">Unknown</span>';
   const themeTypeLabel = g.themeType;
-  const themeAutoLabel = g.themeAutoDetected ? 'auto' : 'manual';
+  const tintModeLabel = g.themeAutoDetected
+    ? `Auto (${capitalizeFirst(g.tintType)})`
+    : capitalizeFirst(g.tintType);
 
   const themeColors = g.themeColorsAvailable
     ? 'Available'
@@ -101,8 +104,12 @@ function generateGeneralInfo(state: StatusState): string {
           <td class="mono">${workspaceId}</td>
         </tr>
         <tr>
-          <td class="info-label">Theme</td>
-          <td>${themeName} (${themeTypeLabel}, ${themeAutoLabel})</td>
+          <td class="info-label">Theme (detected)</td>
+          <td>${themeName}${themeTypeLabel ? ` (${themeTypeLabel})` : ''}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Tint Mode</td>
+          <td>${tintModeLabel}</td>
         </tr>
         <tr>
           <td class="info-label">Theme Colors</td>

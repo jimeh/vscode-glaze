@@ -169,7 +169,7 @@ async function applyTint(): Promise<void> {
   const tintColors: TintColors = {
     baseTint: calculateBaseTint({
       workspaceIdentifier: identifier,
-      themeType: themeContext.type,
+      themeType: themeContext.tintType,
       seed: tintConfig.seed,
     }),
     titleBar: colors['titleBar.activeBackground'],
@@ -209,7 +209,7 @@ function updateStatusBar(
     workspaceEnabledOverride: getWorkspaceEnabledOverride(),
     workspaceIdentifier,
     themeName: themeContext.name,
-    themeType: themeContext.type,
+    tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     colorScheme: getColorScheme(),
     tintColors,

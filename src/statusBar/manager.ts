@@ -116,7 +116,7 @@ export class StatusBarManager implements vscode.Disposable {
 
       const {
         themeName,
-        themeType,
+        tintType,
         themeAutoDetected,
         colorScheme,
         tintColors,
@@ -128,7 +128,7 @@ export class StatusBarManager implements vscode.Disposable {
       }
 
       // Tint mode
-      const themeLabel = getThemeModeLabel(themeType, themeAutoDetected);
+      const themeLabel = getThemeModeLabel(tintType, themeAutoDetected);
       md.appendMarkdown(`**Tint Mode:** ${themeLabel}\n\n`);
 
       // Color scheme

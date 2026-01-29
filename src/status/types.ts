@@ -35,9 +35,11 @@ export interface StatusGeneralInfo {
   workspaceIdentifier: string | undefined;
   /** Active theme name */
   themeName: string | undefined;
-  /** Resolved theme type */
-  themeType: ThemeType;
-  /** Whether theme type was auto-detected */
+  /** The theme's own type from the database. */
+  themeType: ThemeType | undefined;
+  /** The resolved tint type (auto-detected or manually configured). */
+  tintType: ThemeType;
+  /** Whether tint type was auto-detected */
   themeAutoDetected: boolean;
   /** Whether theme colors are available from the database */
   themeColorsAvailable: boolean;

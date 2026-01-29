@@ -148,7 +148,7 @@ export function buildStatusState(): StatusState {
   const colors = computeStatusColors({
     baseHue,
     colorScheme,
-    themeType: themeContext.type,
+    themeType: themeContext.tintType,
     themeColors: themeContext.colors,
     blendFactor: themeConfig.blendFactor,
     targets: tintConfig.targets,
@@ -161,6 +161,7 @@ export function buildStatusState(): StatusState {
     workspaceIdentifier: identifier,
     themeName: themeContext.name,
     themeType: themeContext.type,
+    tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     themeColorsAvailable: themeContext.colors !== undefined,
     colorScheme,

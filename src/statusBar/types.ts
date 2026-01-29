@@ -31,8 +31,8 @@ export interface StatusBarState {
   /** The name of the active VS Code color theme. */
   themeName: string | undefined;
 
-  /** The detected/configured theme type. */
-  themeType: ThemeType;
+  /** The resolved tint type (auto-detected or manually configured). */
+  tintType: ThemeType;
 
   /** Whether the theme type was auto-detected. */
   themeAutoDetected: boolean;

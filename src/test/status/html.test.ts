@@ -28,6 +28,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       workspaceIdentifier: 'my-project',
       themeName: 'One Dark Pro',
       themeType: 'dark',
+      tintType: 'dark',
       themeAutoDetected: true,
       themeColorsAvailable: true,
       colorScheme: 'pastel',
@@ -140,26 +141,59 @@ suite('generateStatusHtml', () => {
     assert.ok(html.includes('&lt;script&gt;'), 'Should escape < and >');
   });
 
-  test('shows theme info', () => {
+  test('shows theme info with detected label', () => {
     const state = createMockState();
     state.general.themeName = 'Monokai Pro';
     state.general.themeType = 'dark';
+    state.general.tintType = 'dark';
     state.general.themeAutoDetected = true;
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(html.includes('Monokai Pro'), 'Should show theme name');
-    assert.ok(html.includes('dark'), 'Should show theme type');
-    assert.ok(html.includes('auto'), 'Should show auto-detected label');
+    assert.ok(
+      html.includes('Theme (detected)'),
+      'Should show "Theme (detected)" label'
+    );
+    assert.ok(
+      html.includes('Monokai Pro (dark)'),
+      'Should show theme name with DB type'
+    );
   });
 
-  test('shows manual theme mode label', () => {
+  test('shows theme without type when themeType is undefined', () => {
     const state = createMockState();
-    state.general.themeAutoDetected = false;
+    state.general.themeName = 'Unknown Theme';
+    state.general.themeType = undefined;
     const html = generateStatusHtml(state, nonce, cspSource);
 
+    assert.ok(html.includes('Unknown Theme'), 'Should show theme name');
+    // Should NOT show parenthesized type
     assert.ok(
-      html.includes('manual'),
-      'Should show manual label when not auto-detected'
+      !html.includes('Unknown Theme ('),
+      'Should not show type parenthetical when undefined'
+    );
+  });
+
+  test('shows manual tint mode label', () => {
+    const state = createMockState();
+    state.general.themeAutoDetected = false;
+    state.general.tintType = 'light';
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(html.includes('Tint Mode'), 'Should show Tint Mode label');
+    assert.ok(html.includes('Light'), 'Should show capitalized tint type');
+  });
+
+  test('shows auto tint mode label', () => {
+    const state = createMockState();
+    state.general.themeAutoDetected = true;
+    state.general.tintType = 'dark';
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(html.includes('Tint Mode'), 'Should show Tint Mode label');
+    assert.ok(
+      html.includes('Auto (Dark)'),
+      'Should show auto tint mode format'
     );
   });
 
