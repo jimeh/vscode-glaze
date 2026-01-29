@@ -34,9 +34,12 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
   let type: ThemeType;
   let isAutoDetected: boolean;
 
+  const vsCodeKind = getThemeTypeFromColorThemeKind(
+    vscode.window.activeColorTheme.kind
+  );
+
   if (themeMode === 'auto') {
-    const vsCodeKind = vscode.window.activeColorTheme.kind;
-    type = getThemeTypeFromColorThemeKind(vsCodeKind);
+    type = vsCodeKind;
     isAutoDetected = true;
   } else {
     type = themeMode;
@@ -44,7 +47,7 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
   }
 
   // Get the theme name, then look up its colors
-  const name = getThemeName(type);
+  const name = getThemeName(vsCodeKind);
   const themeInfo = name ? getThemeInfo(name) : undefined;
 
   // Validate that stored theme type matches detected type.
