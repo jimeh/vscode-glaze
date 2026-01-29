@@ -43,6 +43,8 @@ export interface StatusGeneralInfo {
   themeAutoDetected: boolean;
   /** Whether theme colors are available from the database */
   themeColorsAvailable: boolean;
+  /** OS color scheme (dark/light mode) */
+  osColorScheme: 'dark' | 'light' | undefined;
   /** Active color scheme */
   colorScheme: ColorScheme;
   /** Theme blend factor (0-1) */

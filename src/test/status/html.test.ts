@@ -31,6 +31,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       tintType: 'dark',
       themeAutoDetected: true,
       themeColorsAvailable: true,
+      osColorScheme: 'dark',
       colorScheme: 'pastel',
       blendFactor: 0.35,
       seed: 0,
@@ -421,6 +422,33 @@ suite('generateStatusHtml', () => {
     assert.ok(
       html.includes('Not set'),
       'Should show Not set for undefined workspace override'
+    );
+  });
+
+  test('shows OS color scheme value', () => {
+    const state = createMockState();
+    state.general.osColorScheme = 'dark';
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('OS Color Scheme'),
+      'Should show OS Color Scheme label'
+    );
+    assert.ok(html.includes('>Dark<'), 'Should show capitalized dark value');
+  });
+
+  test('shows Unknown when OS color scheme is undefined', () => {
+    const state = createMockState();
+    state.general.osColorScheme = undefined;
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('OS Color Scheme'),
+      'Should show OS Color Scheme label'
+    );
+    assert.ok(
+      html.includes('>Unknown<'),
+      'Should show Unknown for undefined OS color scheme'
     );
   });
 });

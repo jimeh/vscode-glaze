@@ -23,6 +23,7 @@ import {
 } from '../config';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
+import { detectOsColorScheme } from '../theme/osColorScheme';
 
 /**
  * Computes the base hue from a workspace identifier and seed.
@@ -164,6 +165,7 @@ export function buildStatusState(): StatusState {
     tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     themeColorsAvailable: themeContext.colors !== undefined,
+    osColorScheme: detectOsColorScheme(),
     colorScheme,
     blendFactor: themeConfig.blendFactor,
     seed: tintConfig.seed,
