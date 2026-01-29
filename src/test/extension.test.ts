@@ -375,6 +375,121 @@ suite('Extension Test Suite', () => {
     });
   });
 
+  suite('Command Registration (seed)', () => {
+    test('patina.seedMenu command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('patina.seedMenu'));
+    });
+
+    test('patina.randomizeSeed command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('patina.randomizeSeed'));
+    });
+
+    test('patina.resetSeed command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('patina.resetSeed'));
+    });
+  });
+
+  suite('patina.randomizeSeed', () => {
+    let originalSeedWorkspace: number | undefined;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration('patina');
+      const inspection = config.inspect<number>('tint.seed');
+      originalSeedWorkspace = inspection?.workspaceValue;
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'tint.seed',
+        originalSeedWorkspace,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('sets tint.seed to a non-zero value', async function () {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Clear workspace seed first
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'tint.seed',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await vscode.commands.executeCommand('patina.randomizeSeed');
+
+      // Get fresh config
+      const inspection = config.inspect<number>('tint.seed');
+      assert.ok(
+        inspection?.workspaceValue !== undefined &&
+          inspection.workspaceValue !== 0,
+        'tint.seed workspace value should be set to a non-zero value'
+      );
+    });
+  });
+
+  suite('patina.resetSeed', () => {
+    let originalSeedWorkspace: number | undefined;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration('patina');
+      const inspection = config.inspect<number>('tint.seed');
+      originalSeedWorkspace = inspection?.workspaceValue;
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'tint.seed',
+        originalSeedWorkspace,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('clears workspace seed override', async function () {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Set a workspace seed first
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'tint.seed',
+        42,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await vscode.commands.executeCommand('patina.resetSeed');
+
+      // Get fresh config
+      const inspection = config.inspect<number>('tint.seed');
+      assert.strictEqual(
+        inspection?.workspaceValue,
+        undefined,
+        'tint.seed workspace value should be cleared'
+      );
+    });
+  });
+
   suite('Command Registration (workspace)', () => {
     test('patina.enableWorkspace command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);

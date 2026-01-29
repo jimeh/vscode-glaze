@@ -23,6 +23,7 @@ export class StatusBarManager implements vscode.Disposable {
       vscode.StatusBarAlignment.Right,
       100
     );
+    this.item.command = 'patina.seedMenu';
     this.updateVisibility();
   }
 
@@ -134,6 +135,9 @@ export class StatusBarManager implements vscode.Disposable {
       // Color scheme
       const schemeLabel = capitalizeFirst(colorScheme);
       md.appendMarkdown(`**Color Scheme:** ${schemeLabel}\n\n`);
+
+      // Seed
+      md.appendMarkdown(`**Seed:** \`${state.seed}\`\n\n`);
 
       // Colors section with clickable swatches
       if (tintColors) {

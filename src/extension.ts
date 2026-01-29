@@ -25,6 +25,10 @@ let statusBar: StatusBarManager;
 let applyTintTimeout: ReturnType<typeof setTimeout> | undefined;
 let removeTintTimeout: ReturnType<typeof setTimeout> | undefined;
 
+/** Cached values from the last applyTint/removeTint for cheap status bar refreshes. */
+let lastWorkspaceIdentifier: string | undefined;
+let lastTintColors: TintColors | undefined;
+
 function debouncedApplyTint(): void {
   if (removeTintTimeout) {
     clearTimeout(removeTintTimeout);
@@ -85,6 +89,53 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('patina.showStatus', () => {
       StatusPanel.show(context.extensionUri);
     }),
+    vscode.commands.registerCommand('patina.seedMenu', async () => {
+      const { seed } = getTintConfig();
+      const items: vscode.QuickPickItem[] = [
+        {
+          label: '$(refresh) Randomize Seed',
+          description: 'Generate a new random seed',
+        },
+      ];
+      if (seed !== 0) {
+        items.push({
+          label: '$(discard) Reset Seed',
+          description: 'Reset seed to default (0)',
+        });
+      }
+      const selected = await vscode.window.showQuickPick(items, {
+        placeHolder: `Seed: ${seed}`,
+      });
+      if (!selected) {
+        return;
+      }
+      if (selected.label === '$(refresh) Randomize Seed') {
+        await vscode.commands.executeCommand('patina.randomizeSeed');
+      } else if (selected.label === '$(discard) Reset Seed') {
+        await vscode.commands.executeCommand('patina.resetSeed');
+      }
+    }),
+    vscode.commands.registerCommand('patina.randomizeSeed', async () => {
+      const seed = Math.floor(Math.random() * 2 ** 31);
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'tint.seed',
+        seed,
+        vscode.ConfigurationTarget.Workspace
+      );
+      // Refresh status bar immediately so the tooltip reflects the
+      // new seed without waiting for the debounced config listener.
+      refreshStatusBar();
+    }),
+    vscode.commands.registerCommand('patina.resetSeed', async () => {
+      const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'tint.seed',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+      refreshStatusBar();
+    }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       // Handle VS Code theme changes
       if (
@@ -133,7 +184,9 @@ async function applyTint(): Promise<void> {
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
-    updateStatusBar(undefined, undefined);
+    lastWorkspaceIdentifier = undefined;
+    lastTintColors = undefined;
+    refreshStatusBar();
     return;
   }
 
@@ -178,7 +231,9 @@ async function applyTint(): Promise<void> {
   };
 
   // Update status bar with current state
-  updateStatusBar(identifier, tintColors);
+  lastWorkspaceIdentifier = identifier;
+  lastTintColors = tintColors;
+  refreshStatusBar();
 }
 
 async function removeTint(): Promise<void> {
@@ -194,25 +249,29 @@ async function removeTint(): Promise<void> {
     vscode.ConfigurationTarget.Workspace
   );
 
-  updateStatusBar(undefined, undefined);
+  lastWorkspaceIdentifier = undefined;
+  lastTintColors = undefined;
+  refreshStatusBar();
 }
 
-function updateStatusBar(
-  workspaceIdentifier: string | undefined,
-  tintColors: TintColors | undefined
-): void {
+/**
+ * Re-reads config and updates the status bar using cached
+ * workspace identifier and tint colors from the last apply/remove.
+ */
+function refreshStatusBar(): void {
   const tintConfig = getTintConfig();
   const themeContext = getThemeContext(tintConfig.mode);
 
   const state: StatusBarState = {
     globalEnabled: isGloballyEnabled(),
     workspaceEnabledOverride: getWorkspaceEnabledOverride(),
-    workspaceIdentifier,
+    workspaceIdentifier: lastWorkspaceIdentifier,
     themeName: themeContext.name,
     tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     colorScheme: getColorScheme(),
-    tintColors,
+    seed: tintConfig.seed,
+    tintColors: lastTintColors,
   };
 
   statusBar.update(state);

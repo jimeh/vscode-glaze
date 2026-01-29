@@ -88,6 +88,18 @@
       {
         "command": "patina.showStatus",
         "title": "Patina: Show Status"
+      },
+      {
+        "command": "patina.seedMenu",
+        "title": "Patina: Seed Menu"
+      },
+      {
+        "command": "patina.randomizeSeed",
+        "title": "Patina: Randomize Tint Seed"
+      },
+      {
+        "command": "patina.resetSeed",
+        "title": "Patina: Reset Tint Seed"
       }
     ],
     "configuration": {

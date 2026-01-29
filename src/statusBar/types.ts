@@ -40,6 +40,9 @@ export interface StatusBarState {
   /** The active color scheme. */
   colorScheme: ColorScheme;
 
+  /** Seed value used for tint calculation. */
+  seed: number;
+
   /** Tint colors for tooltip display. */
   tintColors: TintColors | undefined;
 }
