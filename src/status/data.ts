@@ -58,6 +58,8 @@ export interface ComputeStatusColorsOptions {
   themeColors: ThemeColors | undefined;
   /** Theme blend factor (0-1) */
   blendFactor: number;
+  /** Per-target blend factor overrides */
+  targetBlendFactors?: Partial<Record<TintTarget, number>>;
   /** Active tint targets */
   targets: TintTarget[];
 }
@@ -77,8 +79,15 @@ export interface ComputeStatusColorsOptions {
 export function computeStatusColors(
   options: ComputeStatusColorsOptions
 ): StatusColorDetail[] {
-  const { baseHue, colorScheme, themeType, themeColors, blendFactor, targets } =
-    options;
+  const {
+    baseHue,
+    colorScheme,
+    themeType,
+    themeColors,
+    blendFactor,
+    targetBlendFactors,
+    targets,
+  } = options;
 
   const targetSet = new Set<string>(targets);
   const schemeConfig = getSchemeConfig(colorScheme);
@@ -107,13 +116,17 @@ export function computeStatusColors(
       ? getColorForKey(key, themeColors)
       : undefined;
 
+    // Resolve effective blend factor for this element
+    const effectiveBlend =
+      targetBlendFactors?.[def.element as TintTarget] ?? blendFactor;
+
     // Compute final color (blend with theme if available)
     let finalColor: string;
-    if (themeColor && blendFactor > 0) {
+    if (themeColor && effectiveBlend > 0) {
       const blendedOklch = blendWithThemeOklch(
         tintOklch,
         themeColor,
-        blendFactor
+        effectiveBlend
       );
       finalColor = oklchToHex(blendedOklch);
     } else {
@@ -157,6 +170,7 @@ export function buildStatusState(): StatusState {
     themeType: themeContext.tintType,
     themeColors: themeContext.colors,
     blendFactor: themeConfig.blendFactor,
+    targetBlendFactors: themeConfig.targetBlendFactors,
     targets: tintConfig.targets,
   });
 
@@ -179,6 +193,7 @@ export function buildStatusState(): StatusState {
     osColorScheme: detectOsColorScheme(),
     colorScheme,
     blendFactor: themeConfig.blendFactor,
+    targetBlendFactors: themeConfig.targetBlendFactors,
     seed: tintConfig.seed,
     baseHue,
     targets: tintConfig.targets,

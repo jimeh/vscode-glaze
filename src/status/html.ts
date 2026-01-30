@@ -1,5 +1,10 @@
-import type { StatusState, StatusColorDetail } from './types';
+import type {
+  StatusState,
+  StatusColorDetail,
+  StatusGeneralInfo,
+} from './types';
 import type { ElementType } from '../theme';
+import type { TintTarget } from '../config';
 import { capitalizeFirst } from '../statusBar/helpers';
 
 /**
@@ -75,6 +80,7 @@ function generateGeneralInfo(state: StatusState): string {
     : '<span class="na">Unknown theme</span>';
 
   const blendPct = Math.round(g.blendFactor * 100);
+  const blendOverrideRows = generateBlendOverrideRows(g);
   const baseHueSwatch = g.workspaceIdentifier
     ? ` ${colorSwatch(hueToSwatchColor(g.baseHue))}`
     : '';
@@ -134,7 +140,7 @@ function generateGeneralInfo(state: StatusState): string {
         <tr>
           <td class="info-label">Blend Factor</td>
           <td>${blendPct}%</td>
-        </tr>
+        </tr>${blendOverrideRows}
         <tr>
           <td class="info-label">Seed</td>
           <td>${g.seed}</td>
@@ -150,6 +156,40 @@ function generateGeneralInfo(state: StatusState): string {
       </table>
     </div>
   `;
+}
+
+/**
+ * Display labels for tint targets in blend override rows.
+ */
+const TARGET_LABELS: Record<TintTarget, string> = {
+  titleBar: 'Title Bar',
+  activityBar: 'Activity Bar',
+  statusBar: 'Status Bar',
+};
+
+/**
+ * Generates blend factor override rows for the general info table.
+ * Only shows rows for targets that have an explicit override.
+ */
+function generateBlendOverrideRows(g: StatusGeneralInfo): string {
+  const overrides = g.targetBlendFactors;
+  if (!overrides || Object.keys(overrides).length === 0) {
+    return '';
+  }
+
+  const rows: string[] = [];
+  for (const [target, factor] of Object.entries(overrides)) {
+    const label = TARGET_LABELS[target as TintTarget];
+    const pct = Math.round(factor * 100);
+    rows.push(
+      `\n        <tr>` +
+        `\n          <td class="info-label blend-override">` +
+        `\u00a0\u00a0${label}</td>` +
+        `\n          <td>${pct}% (override)</td>` +
+        `\n        </tr>`
+    );
+  }
+  return rows.join('');
 }
 
 /**

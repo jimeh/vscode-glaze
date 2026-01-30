@@ -49,6 +49,8 @@ export interface StatusGeneralInfo {
   colorScheme: ColorScheme;
   /** Theme blend factor (0-1) */
   blendFactor: number;
+  /** Per-target blend factor overrides */
+  targetBlendFactors: Partial<Record<TintTarget, number>>;
   /** Seed value for hue calculation */
   seed: number;
   /** Computed base hue angle (0-359) */

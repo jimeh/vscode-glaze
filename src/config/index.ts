@@ -161,6 +161,15 @@ export function getTintConfig(): TintConfig {
 }
 
 /**
+ * Mapping of tint targets to their blend factor setting keys.
+ */
+const TARGET_BLEND_FACTOR_KEYS: Record<TintTarget, string> = {
+  titleBar: 'theme.titleBarBlendFactor',
+  activityBar: 'theme.activityBarBlendFactor',
+  statusBar: 'theme.statusBarBlendFactor',
+};
+
+/**
  * Reads the theme configuration from VSCode settings.
  */
 export function getThemeConfig(): ThemeConfig {
@@ -170,7 +179,18 @@ export function getThemeConfig(): ThemeConfig {
   // Clamp to valid range
   const blendFactor = Math.max(0, Math.min(1, blendFactorValue));
 
-  return { blendFactor };
+  const targetBlendFactors: Partial<Record<TintTarget, number>> = {};
+  for (const [target, key] of Object.entries(TARGET_BLEND_FACTOR_KEYS)) {
+    const value = config.get<number | null>(key, null);
+    if (value !== null && typeof value === 'number') {
+      targetBlendFactors[target as TintTarget] = Math.max(
+        0,
+        Math.min(1, value)
+      );
+    }
+  }
+
+  return { blendFactor, targetBlendFactors };
 }
 
 /**

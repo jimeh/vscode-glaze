@@ -123,6 +123,7 @@ export class PalettePreviewPanel {
           seed: tintConfig.seed,
           themeColors: themeContext.colors,
           blendFactor: themeConfig.blendFactor,
+          targetBlendFactors: themeConfig.targetBlendFactors,
         })
       : undefined;
 

@@ -1,4 +1,4 @@
-import type { ColorScheme } from '../config';
+import type { ColorScheme, TintTarget } from '../config';
 import type { ThemeType } from '../theme';
 
 /**
@@ -42,6 +42,8 @@ export interface WorkspacePreview {
   blendFactor?: number;
   /** Whether theme blending is active (theme colors available) */
   isBlended: boolean;
+  /** Per-target blend factor overrides, if any */
+  targetBlendFactors?: Partial<Record<TintTarget, number>>;
 }
 
 /**

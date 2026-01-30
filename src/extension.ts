@@ -225,6 +225,7 @@ async function applyTint(): Promise<void> {
     themeContext,
     colorScheme,
     themeBlendFactor: themeConfig.blendFactor,
+    targetBlendFactors: themeConfig.targetBlendFactors,
     seed: tintConfig.seed,
   });
   const config = vscode.workspace.getConfiguration();

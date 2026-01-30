@@ -336,4 +336,76 @@ suite('computeStatusColors', () => {
       assert.strictEqual(c1[i].finalColor, c2[i].finalColor);
     }
   });
+
+  test('per-target blend factor overrides change specific elements', () => {
+    const themeColors: ThemeColors = {
+      'editor.background': '#282C34',
+    };
+    const colorsDefault = computeStatusColors(
+      makeColorsOptions({
+        themeColors,
+        blendFactor: 0.35,
+      })
+    );
+    const colorsOverride = computeStatusColors(
+      makeColorsOptions({
+        themeColors,
+        blendFactor: 0.35,
+        targetBlendFactors: { statusBar: 0.8 },
+      })
+    );
+
+    // titleBar should be unchanged (no override)
+    const titleBgDefault = colorsDefault.find(
+      (c) => c.key === 'titleBar.activeBackground'
+    )!;
+    const titleBgOverride = colorsOverride.find(
+      (c) => c.key === 'titleBar.activeBackground'
+    )!;
+    assert.strictEqual(
+      titleBgDefault.finalColor,
+      titleBgOverride.finalColor,
+      'titleBar should use default blend factor'
+    );
+
+    // statusBar should differ (override to 0.8)
+    const statusBgDefault = colorsDefault.find(
+      (c) => c.key === 'statusBar.background'
+    )!;
+    const statusBgOverride = colorsOverride.find(
+      (c) => c.key === 'statusBar.background'
+    )!;
+    assert.notStrictEqual(
+      statusBgDefault.finalColor,
+      statusBgOverride.finalColor,
+      'statusBar should use overridden blend factor'
+    );
+  });
+
+  test('per-target blend factors fall back to default', () => {
+    const themeColors: ThemeColors = {
+      'editor.background': '#282C34',
+    };
+    const colorsDefault = computeStatusColors(
+      makeColorsOptions({
+        themeColors,
+        blendFactor: 0.35,
+      })
+    );
+    const colorsEmpty = computeStatusColors(
+      makeColorsOptions({
+        themeColors,
+        blendFactor: 0.35,
+        targetBlendFactors: {},
+      })
+    );
+
+    for (let i = 0; i < colorsDefault.length; i++) {
+      assert.strictEqual(
+        colorsDefault[i].finalColor,
+        colorsEmpty[i].finalColor,
+        `${colorsDefault[i].key}: empty overrides should match default`
+      );
+    }
+  });
 });
