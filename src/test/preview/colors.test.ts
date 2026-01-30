@@ -335,4 +335,107 @@ suite('generateWorkspacePreview', () => {
       'Higher blend factor should produce darker colors when blending toward black'
     );
   });
+
+  test('targetBlendFactors override per-element blend', () => {
+    const themeColors = { 'editor.background': '#000000' };
+
+    const previewDefault = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+      themeColors,
+      blendFactor: 0.35,
+    });
+
+    const previewOverride = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+      themeColors,
+      blendFactor: 0.35,
+      targetBlendFactors: { statusBar: 0.9 },
+    });
+
+    // titleBar should be the same (no override)
+    assert.strictEqual(
+      previewDefault.colors.titleBar.background,
+      previewOverride.colors.titleBar.background,
+      'titleBar should use default blend factor'
+    );
+
+    // statusBar should differ (override to 0.9)
+    assert.notStrictEqual(
+      previewDefault.colors.statusBar.background,
+      previewOverride.colors.statusBar.background,
+      'statusBar should use overridden blend factor'
+    );
+  });
+
+  test('targetBlendFactors included in result when set', () => {
+    const preview = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+      themeColors: { 'editor.background': '#1e1e1e' },
+      blendFactor: 0.35,
+      targetBlendFactors: { titleBar: 0.5 },
+    });
+
+    assert.deepStrictEqual(preview.targetBlendFactors, {
+      titleBar: 0.5,
+    });
+  });
+
+  test('targetBlendFactors undefined when empty', () => {
+    const preview = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+      themeColors: { 'editor.background': '#1e1e1e' },
+      blendFactor: 0.35,
+      targetBlendFactors: {},
+    });
+
+    assert.strictEqual(preview.targetBlendFactors, undefined);
+  });
+
+  test('blends when blendFactor is 0 but target override is non-zero', () => {
+    const themeColors = { 'editor.background': '#1e1e1e' };
+
+    const previewNoBlend = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+      themeColors,
+      blendFactor: 0,
+    });
+
+    const previewOverride = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+      themeColors,
+      blendFactor: 0,
+      targetBlendFactors: { titleBar: 0.5 },
+    });
+
+    assert.strictEqual(previewNoBlend.isBlended, false);
+    assert.strictEqual(previewOverride.isBlended, true);
+    // titleBar should differ due to override blend
+    assert.notStrictEqual(
+      previewNoBlend.colors.titleBar.background,
+      previewOverride.colors.titleBar.background,
+      'titleBar should blend with target override even when global is 0'
+    );
+  });
+
+  test('targetBlendFactors undefined when not provided', () => {
+    const preview = generateWorkspacePreview({
+      identifier: 'my-project',
+      scheme: 'pastel',
+      themeType: 'dark',
+    });
+
+    assert.strictEqual(preview.targetBlendFactors, undefined);
+  });
 });

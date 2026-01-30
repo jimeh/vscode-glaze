@@ -690,10 +690,22 @@ suite('getTintConfig', () => {
 
 suite('getThemeConfig', () => {
   let originalBlendFactor: number | undefined;
+  let originalTitleBarBlendFactor: number | null | undefined;
+  let originalActivityBarBlendFactor: number | null | undefined;
+  let originalStatusBarBlendFactor: number | null | undefined;
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('patina');
     originalBlendFactor = config.get<number>('theme.blendFactor');
+    originalTitleBarBlendFactor = config.get<number | null>(
+      'theme.titleBarBlendFactor'
+    );
+    originalActivityBarBlendFactor = config.get<number | null>(
+      'theme.activityBarBlendFactor'
+    );
+    originalStatusBarBlendFactor = config.get<number | null>(
+      'theme.statusBarBlendFactor'
+    );
   });
 
   suiteTeardown(async () => {
@@ -701,6 +713,21 @@ suite('getThemeConfig', () => {
     await config.update(
       'theme.blendFactor',
       originalBlendFactor,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.titleBarBlendFactor',
+      originalTitleBarBlendFactor,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.activityBarBlendFactor',
+      originalActivityBarBlendFactor,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.statusBarBlendFactor',
+      originalStatusBarBlendFactor,
       vscode.ConfigurationTarget.Global
     );
   });
@@ -775,6 +802,99 @@ suite('getThemeConfig', () => {
 
     const result = getThemeConfig();
     assert.strictEqual(result.blendFactor, 1);
+  });
+
+  test('returns empty targetBlendFactors when none set', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.titleBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.activityBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.statusBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.deepStrictEqual(result.targetBlendFactors, {});
+  });
+
+  test('reads titleBarBlendFactor when set', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.titleBarBlendFactor',
+      0.5,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.activityBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.statusBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.strictEqual(result.targetBlendFactors.titleBar, 0.5);
+    assert.strictEqual(result.targetBlendFactors.activityBar, undefined);
+    assert.strictEqual(result.targetBlendFactors.statusBar, undefined);
+  });
+
+  test('reads all target blend factors when set', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.titleBarBlendFactor',
+      0.2,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.activityBarBlendFactor',
+      0.5,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.statusBarBlendFactor',
+      0.8,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.strictEqual(result.targetBlendFactors.titleBar, 0.2);
+    assert.strictEqual(result.targetBlendFactors.activityBar, 0.5);
+    assert.strictEqual(result.targetBlendFactors.statusBar, 0.8);
+  });
+
+  test('clamps target blend factors to [0,1]', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.titleBarBlendFactor',
+      -0.5,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.statusBarBlendFactor',
+      1.5,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.activityBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.strictEqual(result.targetBlendFactors.titleBar, 0);
+    assert.strictEqual(result.targetBlendFactors.statusBar, 1);
   });
 });
 

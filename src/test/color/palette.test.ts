@@ -575,6 +575,129 @@ suite('generatePalette theme blending', () => {
   });
 });
 
+suite('generatePalette targetBlendFactors', () => {
+  test('uses per-target blend factor when provided', () => {
+    const themeColors = { 'editor.background': '#282C34' };
+
+    // Default blend for all
+    const paletteDefault = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', { colors: themeColors }),
+      themeBlendFactor: 0.35,
+    });
+
+    // Override statusBar blend to 0.8
+    const paletteOverride = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', { colors: themeColors }),
+      themeBlendFactor: 0.35,
+      targetBlendFactors: { statusBar: 0.8 },
+    });
+
+    // titleBar should be the same (no override)
+    assert.strictEqual(
+      paletteDefault['titleBar.activeBackground'],
+      paletteOverride['titleBar.activeBackground'],
+      'titleBar should use default blend factor'
+    );
+
+    // statusBar should differ (override)
+    assert.notStrictEqual(
+      paletteDefault['statusBar.background'],
+      paletteOverride['statusBar.background'],
+      'statusBar should use overridden blend factor'
+    );
+  });
+
+  test('falls back to default when target not in overrides', () => {
+    const themeColors = { 'editor.background': '#282C34' };
+
+    const paletteDefault = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', { colors: themeColors }),
+      themeBlendFactor: 0.35,
+    });
+
+    const paletteWithUnrelatedOverride = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', { colors: themeColors }),
+      themeBlendFactor: 0.35,
+      targetBlendFactors: { activityBar: 0.9 },
+    });
+
+    // titleBar has no override, should match default
+    assert.strictEqual(
+      paletteDefault['titleBar.activeBackground'],
+      paletteWithUnrelatedOverride['titleBar.activeBackground'],
+      'titleBar should fall back to default blend factor'
+    );
+    // statusBar has no override, should match default
+    assert.strictEqual(
+      paletteDefault['statusBar.background'],
+      paletteWithUnrelatedOverride['statusBar.background'],
+      'statusBar should fall back to default blend factor'
+    );
+    // activityBar has override, should differ
+    assert.notStrictEqual(
+      paletteDefault['activityBar.background'],
+      paletteWithUnrelatedOverride['activityBar.background'],
+      'activityBar should use overridden blend factor'
+    );
+  });
+
+  test('empty targetBlendFactors acts as no override', () => {
+    const themeColors = { 'editor.background': '#282C34' };
+
+    const paletteDefault = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', { colors: themeColors }),
+      themeBlendFactor: 0.35,
+    });
+
+    const paletteEmpty = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark', { colors: themeColors }),
+      themeBlendFactor: 0.35,
+      targetBlendFactors: {},
+    });
+
+    assert.deepStrictEqual(
+      paletteDefault,
+      paletteEmpty,
+      'Empty targetBlendFactors should be same as no override'
+    );
+  });
+
+  test('no effect without theme colors', () => {
+    const paletteDefault = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      themeBlendFactor: 0.35,
+    });
+
+    const paletteOverride = generatePalette({
+      workspaceIdentifier: 'test-project',
+      targets: ALL_TARGETS,
+      themeContext: makeThemeContext('dark'),
+      themeBlendFactor: 0.35,
+      targetBlendFactors: { statusBar: 0.8 },
+    });
+
+    assert.deepStrictEqual(
+      paletteDefault,
+      paletteOverride,
+      'Overrides should have no effect without theme colors'
+    );
+  });
+});
+
 suite('generatePalette seed', () => {
   test('different seeds produce different colors', () => {
     const palette1 = generatePalette({

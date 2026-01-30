@@ -1,4 +1,5 @@
 import type { ThemeType, ThemeColors } from '../theme';
+import type { TintTarget } from '../config';
 import type {
   ElementColors,
   SchemePreview,
@@ -183,7 +184,8 @@ function generateBlendedColorsAtHue(
   themeType: ThemeType,
   hue: number,
   themeColors: ThemeColors,
-  blendFactor: number
+  blendFactor: number,
+  targetBlendFactors?: Partial<Record<TintTarget, number>>
 ): SchemePreviewColors {
   return {
     titleBar: generateBlendedElementColors(
@@ -193,7 +195,7 @@ function generateBlendedColorsAtHue(
       'titleBar.activeBackground',
       'titleBar.activeForeground',
       themeColors,
-      blendFactor
+      targetBlendFactors?.titleBar ?? blendFactor
     ),
     statusBar: generateBlendedElementColors(
       scheme,
@@ -202,7 +204,7 @@ function generateBlendedColorsAtHue(
       'statusBar.background',
       'statusBar.foreground',
       themeColors,
-      blendFactor
+      targetBlendFactors?.statusBar ?? blendFactor
     ),
     activityBar: generateBlendedElementColors(
       scheme,
@@ -211,7 +213,7 @@ function generateBlendedColorsAtHue(
       'activityBar.background',
       'activityBar.foreground',
       themeColors,
-      blendFactor
+      targetBlendFactors?.activityBar ?? blendFactor
     ),
   };
 }
@@ -226,6 +228,7 @@ export interface WorkspacePreviewOptions {
   seed?: number;
   themeColors?: ThemeColors;
   blendFactor?: number;
+  targetBlendFactors?: Partial<Record<TintTarget, number>>;
 }
 
 /**
@@ -241,13 +244,18 @@ export function generateWorkspacePreview(
     seed = 0,
     themeColors,
     blendFactor = 0.35,
+    targetBlendFactors,
   } = options;
 
   const workspaceHash = hashString(identifier);
   const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
   const hue = ((workspaceHash ^ seedHash) >>> 0) % 360;
 
-  const isBlended = themeColors !== undefined && blendFactor > 0;
+  const hasAnyBlend =
+    blendFactor > 0 ||
+    (targetBlendFactors !== undefined &&
+      Object.values(targetBlendFactors).some((f) => f > 0));
+  const isBlended = themeColors !== undefined && hasAnyBlend;
 
   const colors = isBlended
     ? generateBlendedColorsAtHue(
@@ -255,7 +263,8 @@ export function generateWorkspacePreview(
         themeType,
         hue,
         themeColors!,
-        blendFactor
+        blendFactor,
+        targetBlendFactors
       )
     : generateColorsAtHue(scheme, themeType, hue);
 
@@ -264,5 +273,9 @@ export function generateWorkspacePreview(
     colors,
     blendFactor: isBlended ? blendFactor : undefined,
     isBlended,
+    targetBlendFactors:
+      targetBlendFactors && Object.keys(targetBlendFactors).length > 0
+        ? targetBlendFactors
+        : undefined,
   };
 }

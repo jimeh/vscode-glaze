@@ -1,4 +1,5 @@
 import type { ThemeType } from '../theme';
+import type { TintTarget } from '../config';
 import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
@@ -71,17 +72,42 @@ function generateThemeTabs(currentType: ThemeType): string {
 }
 
 /**
+ * Short labels for per-target blend factor display.
+ */
+const TARGET_SHORT_LABELS: Record<TintTarget, string> = {
+  titleBar: 'TB',
+  activityBar: 'AB',
+  statusBar: 'SB',
+};
+
+/**
  * Generates the blend info text.
  */
 function generateBlendInfo(
   isBlended: boolean,
-  blendFactor: number | undefined
+  blendFactor: number | undefined,
+  targetBlendFactors?: Partial<Record<TintTarget, number>>
 ): string {
   if (!isBlended || blendFactor === undefined) {
     return '<span class="blend-info">No theme blending</span>';
   }
   const percentage = Math.round(blendFactor * 100);
-  return `<span class="blend-info">Blended ${percentage}% with theme</span>`;
+
+  const overrides = targetBlendFactors
+    ? Object.entries(targetBlendFactors)
+    : [];
+  if (overrides.length === 0) {
+    return `<span class="blend-info">Blended ${percentage}% with theme</span>`;
+  }
+
+  const parts = overrides.map(
+    ([t, f]) =>
+      `${TARGET_SHORT_LABELS[t as TintTarget]}: ` + `${Math.round(f * 100)}%`
+  );
+  return (
+    `<span class="blend-info">Blended ${percentage}% with theme` +
+    ` (${parts.join(', ')})</span>`
+  );
 }
 
 /**
@@ -99,9 +125,14 @@ function generateWorkspaceSection(state: PreviewState): string {
     `;
   }
 
-  const { identifier, colors, isBlended, blendFactor } = state.workspacePreview;
+  const { identifier, colors, isBlended, blendFactor, targetBlendFactors } =
+    state.workspacePreview;
   const swatch = generateSwatch(colors);
-  const blendInfo = generateBlendInfo(isBlended, blendFactor);
+  const blendInfo = generateBlendInfo(
+    isBlended,
+    blendFactor,
+    targetBlendFactors
+  );
   const colorName = getColorName(colors.titleBar.background);
 
   return `

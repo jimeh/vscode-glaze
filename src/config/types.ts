@@ -92,4 +92,11 @@ export interface ThemeConfig {
    * Default is 0.35.
    */
   blendFactor: number;
+
+  /**
+   * Per-target blend factor overrides.
+   * Only populated for targets that have an explicit override.
+   * When set, overrides blendFactor for the specified element.
+   */
+  targetBlendFactors: Partial<Record<TintTarget, number>>;
 }

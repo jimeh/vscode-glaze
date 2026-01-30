@@ -34,6 +34,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       osColorScheme: 'dark',
       colorScheme: 'pastel',
       blendFactor: 0.35,
+      targetBlendFactors: {},
       seed: 0,
       baseHue: 180,
       targets: ['titleBar', 'statusBar', 'activityBar'],
@@ -476,6 +477,62 @@ suite('generateStatusHtml', () => {
     assert.ok(
       !html.includes('badge warning'),
       'Should not have warning badge class'
+    );
+  });
+
+  test('shows blend override rows when targetBlendFactors set', () => {
+    const state = createMockState();
+    state.general.targetBlendFactors = {
+      titleBar: 0.5,
+      statusBar: 0.2,
+    };
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('50% (override)'),
+      'Should show title bar override'
+    );
+    assert.ok(
+      html.includes('20% (override)'),
+      'Should show status bar override'
+    );
+    assert.ok(
+      html.includes('Title Bar'),
+      'Should show Title Bar label in override row'
+    );
+    assert.ok(
+      html.includes('Status Bar'),
+      'Should show Status Bar label in override row'
+    );
+  });
+
+  test('no blend override rows when targetBlendFactors empty', () => {
+    const state = createMockState();
+    state.general.targetBlendFactors = {};
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      !html.includes('(override)'),
+      'Should not show override rows when empty'
+    );
+  });
+
+  test('only shows override rows for set targets', () => {
+    const state = createMockState();
+    state.general.targetBlendFactors = {
+      activityBar: 0.7,
+    };
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('70% (override)'),
+      'Should show activity bar override'
+    );
+    assert.ok(html.includes('Activity Bar'), 'Should show Activity Bar label');
+    // Should not show rows for unset targets
+    assert.ok(
+      !html.includes('50% (override)'),
+      'Should not show rows for unset targets'
     );
   });
 });

@@ -45,6 +45,8 @@ export interface GeneratePaletteOptions {
   colorScheme?: ColorScheme;
   /** How much to blend toward theme background (0-1), default 0.35 */
   themeBlendFactor?: number;
+  /** Per-target blend factor overrides */
+  targetBlendFactors?: Partial<Record<TintTarget, number>>;
   /** Seed value to shift the base hue calculation, default 0 */
   seed?: number;
 }
@@ -74,6 +76,7 @@ export function generatePalette(
     themeContext,
     colorScheme = 'pastel',
     themeBlendFactor = 0.35,
+    targetBlendFactors,
     seed = 0,
   } = options;
 
@@ -95,6 +98,7 @@ export function generatePalette(
 
   for (const key of keysToInclude) {
     const config = themeConfig[key];
+    const element = COLOR_KEY_DEFINITIONS[key].element as TintTarget;
 
     // Apply hue offset for multi-hue schemes (duotone, analogous)
     const elementHue =
@@ -114,7 +118,9 @@ export function generatePalette(
     if (themeContext.colors) {
       const themeColor = getColorForKey(key, themeContext.colors);
       if (themeColor) {
-        oklch = blendWithThemeOklch(oklch, themeColor, themeBlendFactor);
+        const effectiveBlend =
+          targetBlendFactors?.[element] ?? themeBlendFactor;
+        oklch = blendWithThemeOklch(oklch, themeColor, effectiveBlend);
       }
     }
 
