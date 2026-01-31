@@ -12,3 +12,12 @@ export {
   isValidColorScheme,
 } from './schemes';
 export { getColorName } from './naming';
+export {
+  computeBaseHue,
+  applyHueOffset,
+  computeBaseTintHex,
+  computeTint,
+  tintResultToPalette,
+  tintResultToStatusBarColors,
+} from './tint';
+export type { TintKeyDetail, TintResult, ComputeTintOptions } from './tint';

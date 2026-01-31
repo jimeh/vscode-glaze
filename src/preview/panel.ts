@@ -11,6 +11,7 @@ import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
 import { generateAllSchemePreviews, generateWorkspacePreview } from './colors';
 import { generatePreviewHtml } from './html';
+import { generateNonce } from '../webview';
 
 /**
  * Manages the color palette preview webview panel.
@@ -92,7 +93,7 @@ export class PalettePreviewPanel {
    */
   public update(): void {
     const state = this.buildState();
-    const nonce = this.generateNonce();
+    const nonce = generateNonce();
     const cspSource = this.panel.webview.cspSource;
 
     this.panel.webview.html = generatePreviewHtml(state, nonce, cspSource);
@@ -167,19 +168,6 @@ export class PalettePreviewPanel {
         break;
       }
     }
-  }
-
-  /**
-   * Generates a random nonce for CSP.
-   */
-  private generateNonce(): string {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let nonce = '';
-    for (let i = 0; i < 32; i++) {
-      nonce += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return nonce;
   }
 
   /**

@@ -1,35 +1,17 @@
-import type { OKLCH } from './types';
 import type { ColorScheme, TintTarget } from '../config';
-import type { ThemeContext, PaletteKey, PatinaColorPalette } from '../theme';
+import type { ThemeContext, PatinaColorPalette } from '../theme';
 import type { ThemeType } from '../theme';
-import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
-import { getColorForKey } from '../theme/colors';
-import { hashString } from './hash';
-import { oklchToHex, maxChroma } from './convert';
-import { blendWithThemeOklch } from './blend';
-import { getSchemeConfig } from './schemes';
+import {
+  computeBaseHue,
+  computeBaseTintHex,
+  computeTint,
+  tintResultToPalette,
+} from './tint';
 
 /**
  * Partial palette containing only the requested tint targets.
  */
 export type PartialPatinaColorPalette = Partial<PatinaColorPalette>;
-
-/**
- * Maps tint targets to their corresponding palette keys.
- * Derived from COLOR_KEY_DEFINITIONS by grouping palette keys by element.
- */
-const TARGET_KEYS: Record<TintTarget, PaletteKey[]> = (() => {
-  const result: Record<TintTarget, PaletteKey[]> = {
-    titleBar: [],
-    statusBar: [],
-    activityBar: [],
-  };
-  for (const key of PATINA_MANAGED_KEYS) {
-    const def = COLOR_KEY_DEFINITIONS[key];
-    result[def.element as TintTarget].push(key);
-  }
-  return result;
-})();
 
 /**
  * Options for palette generation.
@@ -80,54 +62,18 @@ export function generatePalette(
     seed = 0,
   } = options;
 
-  const workspaceHash = hashString(workspaceIdentifier);
-  // Hash the seed and XOR with workspace hash for dramatic color shifts per seed
-  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
-  const baseHue = ((workspaceHash ^ seedHash) >>> 0) % 360;
+  const result = computeTint({
+    workspaceIdentifier,
+    targets,
+    themeType: themeContext.tintType,
+    colorScheme,
+    themeColors: themeContext.colors,
+    themeBlendFactor,
+    targetBlendFactors,
+    seed,
+  });
 
-  const keysToInclude = new Set<keyof PatinaColorPalette>();
-  for (const target of targets) {
-    for (const key of TARGET_KEYS[target]) {
-      keysToInclude.add(key);
-    }
-  }
-
-  const schemeConfig = getSchemeConfig(colorScheme);
-  const themeConfig = schemeConfig[themeContext.tintType];
-  const palette: PartialPatinaColorPalette = {};
-
-  for (const key of keysToInclude) {
-    const config = themeConfig[key];
-    const element = COLOR_KEY_DEFINITIONS[key].element as TintTarget;
-
-    // Apply hue offset for multi-hue schemes (duotone, analogous)
-    const elementHue =
-      (((baseHue + (config.hueOffset ?? 0)) % 360) + 360) % 360;
-
-    // Calculate actual chroma using chromaFactor and max in-gamut chroma
-    const maxC = maxChroma(config.lightness, elementHue);
-    const chroma = maxC * config.chromaFactor;
-
-    let oklch: OKLCH = {
-      l: config.lightness,
-      c: chroma,
-      h: elementHue,
-    };
-
-    // Blend with theme color when available
-    if (themeContext.colors) {
-      const themeColor = getColorForKey(key, themeContext.colors);
-      if (themeColor) {
-        const effectiveBlend =
-          targetBlendFactors?.[element] ?? themeBlendFactor;
-        oklch = blendWithThemeOklch(oklch, themeColor, effectiveBlend);
-      }
-    }
-
-    palette[key] = oklchToHex(oklch);
-  }
-
-  return palette;
+  return tintResultToPalette(result);
 }
 
 /**
@@ -146,20 +92,12 @@ export interface CalculateBaseTintOptions {
  * Calculates the base tint color for a workspace before per-element tweaks.
  * Uses a neutral lightness/chroma that represents the "source" hue.
  *
+ * @deprecated Use computeTint() directly — it includes baseTintHex.
  * @param options - Base tint calculation options
  * @returns Hex color string representing the base tint
  */
 export function calculateBaseTint(options: CalculateBaseTintOptions): string {
   const { workspaceIdentifier, themeType, seed = 0 } = options;
-
-  const workspaceHash = hashString(workspaceIdentifier);
-  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
-  const hue = ((workspaceHash ^ seedHash) >>> 0) % 360;
-
-  // Use neutral L/C values for display (no scheme-specific tweaks)
-  const lightness =
-    themeType === 'light' || themeType === 'hcLight' ? 0.65 : 0.5;
-  const chroma = maxChroma(lightness, hue) * 0.7;
-
-  return oklchToHex({ l: lightness, c: chroma, h: hue });
+  const hue = computeBaseHue(workspaceIdentifier, seed);
+  return computeBaseTintHex(hue, themeType);
 }

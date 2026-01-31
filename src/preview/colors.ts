@@ -13,10 +13,10 @@ import {
   getSchemeConfig,
 } from '../color/schemes';
 import { oklchToHex, maxChroma } from '../color/convert';
-import { hashString } from '../color/hash';
 import { blendWithThemeOklch } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
 import type { OKLCH } from '../color/types';
+import { applyHueOffset, computeBaseHue } from '../color/tint';
 
 /**
  * Sample hues for preview display (OKLCH-calibrated).
@@ -24,13 +24,6 @@ import type { OKLCH } from '../color/types';
  * Purple=305
  */
 export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
-
-/**
- * Applies hue offset, wrapping to 0-360 range.
- */
-function applyHueOffset(hue: number, offset?: number): number {
-  return (((hue + (offset ?? 0)) % 360) + 360) % 360;
-}
 
 /**
  * Generates element colors for a single UI element at a given hue.
@@ -247,9 +240,7 @@ export function generateWorkspacePreview(
     targetBlendFactors,
   } = options;
 
-  const workspaceHash = hashString(identifier);
-  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
-  const hue = ((workspaceHash ^ seedHash) >>> 0) % 360;
+  const hue = computeBaseHue(identifier, seed);
 
   const hasAnyBlend =
     blendFactor > 0 ||
