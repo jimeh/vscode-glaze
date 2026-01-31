@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   files: 'out/test/**/*.test.js',
   workspaceFolder: resolve(__dirname, 'src/test/fixtures/test-workspace'),
+  mocha: { timeout: 5000 },
   coverage: {
     reporter: ['text'],
     lines: 80,

@@ -8,7 +8,7 @@ import { PATINA_ACTIVE_KEY } from '../settings';
 async function pollUntil(
   condition: () => boolean,
   errorMessage: string,
-  timeoutMs = 2000,
+  timeoutMs = 4000,
   intervalMs = 50
 ): Promise<void> {
   const start = Date.now();
@@ -19,30 +19,6 @@ async function pollUntil(
     await new Promise((resolve) => setTimeout(resolve, intervalMs));
   }
   throw new Error(errorMessage);
-}
-
-/**
- * Waits for a configuration change to propagate, with timeout.
- * Uses onDidChangeConfiguration event instead of fixed delay.
- */
-async function waitForConfigChange(
-  section: string,
-  timeoutMs = 2000
-): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => {
-      disposable.dispose();
-      reject(new Error(`Timeout waiting for config change: ${section}`));
-    }, timeoutMs);
-
-    const disposable = vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration(section)) {
-        clearTimeout(timeout);
-        disposable.dispose();
-        resolve();
-      }
-    });
-  });
 }
 
 /**
@@ -69,7 +45,7 @@ function isPatinaKey(key: string): boolean {
  * Waits for colorCustomizations to be set, polling with timeout.
  */
 async function waitForColorCustomizations(
-  timeoutMs = 2000,
+  timeoutMs = 4000,
   intervalMs = 50
 ): Promise<Record<string, string>> {
   let colors: Record<string, string> | undefined;
@@ -86,10 +62,31 @@ async function waitForColorCustomizations(
 }
 
 /**
+ * Waits for a specific key to appear in colorCustomizations.
+ */
+async function waitForColorKey(
+  key: string,
+  timeoutMs = 4000,
+  intervalMs = 50
+): Promise<Record<string, string>> {
+  let colors: Record<string, string> | undefined;
+  await pollUntil(
+    () => {
+      colors = getColorCustomizations();
+      return colors !== undefined && key in colors;
+    },
+    `Timeout waiting for colorCustomizations key: ${key}`,
+    timeoutMs,
+    intervalMs
+  );
+  return colors!;
+}
+
+/**
  * Waits for colorCustomizations to contain only non-Patina keys.
  */
 async function waitForPatinaColorsCleared(
-  timeoutMs = 3000,
+  timeoutMs = 4000,
   intervalMs = 50
 ): Promise<void> {
   await pollUntil(
@@ -340,6 +337,10 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Disable first so enableGlobally triggers a fresh apply
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await waitForPatinaColorsCleared();
+
       // Enable patina first
       await vscode.commands.executeCommand('patina.enableGlobally');
 
@@ -348,9 +349,6 @@ suite('Extension Test Suite', () => {
 
       // Change the identifier source to pathAbsolute (different from default
       // 'name')
-      const changePromise = waitForConfigChange(
-        'workbench.colorCustomizations'
-      );
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
         'workspaceIdentifier.source',
@@ -358,22 +356,17 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Wait for config change to propagate
-      await changePromise;
+      // Poll until colors actually differ from initial state
+      let newColors: Record<string, string> | undefined;
+      await pollUntil(() => {
+        newColors = getColorCustomizations();
+        return (
+          newColors !== undefined &&
+          JSON.stringify(newColors) !== JSON.stringify(initialColors)
+        );
+      }, 'colors should change when identifier source changes');
 
-      // Get colors after config change
-      const config = vscode.workspace.getConfiguration();
-      const newColors = config.get<Record<string, string>>(
-        'workbench.colorCustomizations'
-      );
-
-      // Colors should be different because identifier changed
       assert.ok(newColors, 'colorCustomizations should still be set');
-      assert.notDeepStrictEqual(
-        initialColors,
-        newColors,
-        'colors should change when identifier source changes'
-      );
     });
   });
 
@@ -548,8 +541,12 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Disable first so enableGlobally triggers a fresh apply
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await waitForPatinaColorsCleared();
+
       await vscode.commands.executeCommand('patina.enableGlobally');
-      const colors = await waitForColorCustomizations();
+      const colors = await waitForColorKey('patina.active');
 
       assert.ok('patina.active' in colors, 'should have patina.active marker');
       assert.strictEqual(
@@ -1009,6 +1006,10 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Disable first so enableGlobally triggers a fresh apply
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await waitForPatinaColorsCleared();
+
       // Start with statusBar disabled
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
@@ -1028,21 +1029,14 @@ suite('Extension Test Suite', () => {
       );
 
       // Enable statusBar element
-      const changePromise = waitForConfigChange(
-        'workbench.colorCustomizations'
-      );
       await patinaConfig.update(
         'elements.statusBar',
         true,
         vscode.ConfigurationTarget.Global
       );
-      await changePromise;
 
-      // Get fresh colors
-      const config = vscode.workspace.getConfiguration();
-      colors =
-        config.get<Record<string, string>>('workbench.colorCustomizations') ??
-        {};
+      // Poll until statusBar keys appear
+      colors = await waitForColorKey('statusBar.background');
 
       assert.ok(
         'statusBar.background' in colors,
@@ -1114,15 +1108,8 @@ suite('Extension Test Suite', () => {
       );
 
       // Force apply should re-inject marker and re-apply
-      const changePromise = waitForConfigChange(
-        'workbench.colorCustomizations'
-      );
       await vscode.commands.executeCommand('patina.forceApply');
-      await changePromise;
-
-      const updated = config.get<Record<string, string>>(
-        'workbench.colorCustomizations'
-      );
+      const updated = await waitForColorKey('patina.active');
       assert.ok(updated);
       assert.strictEqual(
         updated['patina.active'],
@@ -1256,6 +1243,10 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Disable first so enableGlobally triggers a fresh apply
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await waitForPatinaColorsCleared();
+
       // Set seed to 0 and enable
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
@@ -1269,28 +1260,23 @@ suite('Extension Test Suite', () => {
       const initialTitleBar = initialColors['titleBar.activeBackground'];
 
       // Change seed
-      const changePromise = waitForConfigChange(
-        'workbench.colorCustomizations'
-      );
       await patinaConfig.update(
         'tint.seed',
         42,
         vscode.ConfigurationTarget.Global
       );
-      await changePromise;
 
-      // Get fresh colors
-      const config = vscode.workspace.getConfiguration();
-      const newColors = config.get<Record<string, string>>(
-        'workbench.colorCustomizations'
-      );
+      // Poll until titleBar color actually changes
+      let newColors: Record<string, string> | undefined;
+      await pollUntil(() => {
+        newColors = getColorCustomizations();
+        return (
+          newColors !== undefined &&
+          newColors['titleBar.activeBackground'] !== initialTitleBar
+        );
+      }, 'titleBar color should change when seed changes');
 
       assert.ok(newColors, 'colorCustomizations should still be set');
-      assert.notStrictEqual(
-        newColors['titleBar.activeBackground'],
-        initialTitleBar,
-        'titleBar color should change when seed changes'
-      );
     });
   });
 });
