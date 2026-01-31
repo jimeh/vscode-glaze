@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { DEFAULT_BLEND_FACTOR } from './types';
 import type {
   ColorScheme,
   MultiRootIdentifierSource,
@@ -11,6 +12,7 @@ import type {
 } from './types';
 import { DEFAULT_COLOR_SCHEME, isValidColorScheme } from '../color/schemes';
 
+export { DEFAULT_BLEND_FACTOR } from './types';
 export type {
   ColorScheme,
   MultiRootIdentifierSource,
@@ -174,7 +176,10 @@ const TARGET_BLEND_FACTOR_KEYS: Record<TintTarget, string> = {
 export function getThemeConfig(): ThemeConfig {
   const config = vscode.workspace.getConfiguration('patina');
 
-  const blendFactorValue = config.get<number>('theme.blendFactor', 0.35);
+  const blendFactorValue = config.get<number>(
+    'theme.blendFactor',
+    DEFAULT_BLEND_FACTOR
+  );
   // Clamp to valid range
   const blendFactor = Math.max(0, Math.min(1, blendFactorValue));
 

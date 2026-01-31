@@ -1,4 +1,5 @@
 import type { OKLCH } from './types';
+import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { ColorScheme, TintTarget } from '../config';
 import type {
   ThemeColors,
@@ -74,7 +75,7 @@ export interface ComputeTintOptions {
   colorScheme?: ColorScheme;
   /** Theme colors for blending, if available */
   themeColors?: ThemeColors;
-  /** How much to blend toward theme background (0-1), default 0.35 */
+  /** How much to blend toward theme background (0-1) */
   themeBlendFactor?: number;
   /** Per-target blend factor overrides */
   targetBlendFactors?: Partial<Record<TintTarget, number>>;
@@ -163,7 +164,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     themeType,
     colorScheme = 'pastel',
     themeColors,
-    themeBlendFactor = 0.35,
+    themeBlendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
     seed = 0,
   } = options;

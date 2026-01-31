@@ -36,9 +36,24 @@ let statusBar: StatusBarManager;
 let applyTintTimeout: ReturnType<typeof setTimeout> | undefined;
 let removeTintTimeout: ReturnType<typeof setTimeout> | undefined;
 
-/** Cached values from the last applyTint/removeTint for cheap status bar refreshes. */
-let lastWorkspaceIdentifier: string | undefined;
-let lastTintColors: TintColors | undefined;
+/** Debounce delay in ms for apply/remove tint operations. */
+const DEBOUNCE_MS = 150;
+
+/**
+ * Cached values from the last applyTint/removeTint for cheap
+ * status bar refreshes.
+ */
+interface CachedTintState {
+  workspaceIdentifier: string | undefined;
+  tintColors: TintColors | undefined;
+  customizedOutsidePatina: boolean;
+}
+
+let cached: CachedTintState = {
+  workspaceIdentifier: undefined,
+  tintColors: undefined,
+  customizedOutsidePatina: false,
+};
 
 function debouncedApplyTint(): void {
   if (removeTintTimeout) {
@@ -51,7 +66,7 @@ function debouncedApplyTint(): void {
   applyTintTimeout = setTimeout(() => {
     applyTintTimeout = undefined;
     applyTint();
-  }, 150);
+  }, DEBOUNCE_MS);
 }
 
 function debouncedRemoveTint(): void {
@@ -65,7 +80,7 @@ function debouncedRemoveTint(): void {
   removeTintTimeout = setTimeout(() => {
     removeTintTimeout = undefined;
     removeTint();
-  }, 150);
+  }, DEBOUNCE_MS);
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -212,8 +227,11 @@ async function applyTint(): Promise<void> {
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
-    lastWorkspaceIdentifier = undefined;
-    lastTintColors = undefined;
+    cached = {
+      workspaceIdentifier: undefined,
+      tintColors: undefined,
+      customizedOutsidePatina: false,
+    };
     refreshStatusBar();
     return;
   }
@@ -243,25 +261,36 @@ async function applyTint(): Promise<void> {
     'workbench.colorCustomizations'
   );
 
-  // Guard: if managed colors exist but marker is absent, an external
-  // tool or user has modified settings — refuse to overwrite.
+  // Guard: if managed colors exist but marker is absent, an
+  // external tool or user has modified settings — refuse to
+  // overwrite.
   if (hasPatinaColorsWithoutMarker(existing)) {
-    lastCustomizedOutsidePatina = true;
+    cached = {
+      ...cached,
+      customizedOutsidePatina: true,
+    };
     refreshStatusBar();
     return;
   }
 
   const merged = mergeColorCustomizations(existing, colors);
-  await config.update(
-    'workbench.colorCustomizations',
-    merged,
-    vscode.ConfigurationTarget.Workspace
-  );
+  try {
+    await config.update(
+      'workbench.colorCustomizations',
+      merged,
+      vscode.ConfigurationTarget.Workspace
+    );
+  } catch (err) {
+    console.error('[Patina] Failed to update color customizations:', err);
+    return;
+  }
 
-  // Update status bar with current state
-  lastWorkspaceIdentifier = identifier;
-  lastTintColors = tintResultToStatusBarColors(tintResult);
-  lastCustomizedOutsidePatina = false;
+  // Only update cached state after successful write
+  cached = {
+    workspaceIdentifier: identifier,
+    tintColors: tintResultToStatusBarColors(tintResult),
+    customizedOutsidePatina: false,
+  };
   refreshStatusBar();
 }
 
@@ -272,24 +301,29 @@ async function removeTint(): Promise<void> {
   );
 
   const remaining = removePatinaColors(existing);
-  await config.update(
-    'workbench.colorCustomizations',
-    remaining,
-    vscode.ConfigurationTarget.Workspace
-  );
+  try {
+    await config.update(
+      'workbench.colorCustomizations',
+      remaining,
+      vscode.ConfigurationTarget.Workspace
+    );
+  } catch (err) {
+    console.error('[Patina] Failed to remove color customizations:', err);
+    return;
+  }
 
-  lastWorkspaceIdentifier = undefined;
-  lastTintColors = undefined;
-  lastCustomizedOutsidePatina = false;
+  cached = {
+    workspaceIdentifier: undefined,
+    tintColors: undefined,
+    customizedOutsidePatina: false,
+  };
   refreshStatusBar();
 }
 
-/** Whether colors were externally modified (cached for status bar refreshes). */
-let lastCustomizedOutsidePatina = false;
-
 /**
  * Re-reads config and updates the status bar using cached
- * workspace identifier and tint colors from the last apply/remove.
+ * workspace identifier and tint colors from the last
+ * apply/remove.
  */
 function refreshStatusBar(): void {
   const tintConfig = getTintConfig();
@@ -298,14 +332,14 @@ function refreshStatusBar(): void {
   const state: StatusBarState = {
     globalEnabled: isGloballyEnabled(),
     workspaceEnabledOverride: getWorkspaceEnabledOverride(),
-    workspaceIdentifier: lastWorkspaceIdentifier,
+    workspaceIdentifier: cached.workspaceIdentifier,
     themeName: themeContext.name,
     tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     colorScheme: getColorScheme(),
     seed: tintConfig.seed,
-    tintColors: lastTintColors,
-    customizedOutsidePatina: lastCustomizedOutsidePatina,
+    tintColors: cached.tintColors,
+    customizedOutsidePatina: cached.customizedOutsidePatina,
   };
 
   statusBar.update(state);

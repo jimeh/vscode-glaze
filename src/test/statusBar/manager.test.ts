@@ -3,6 +3,9 @@ import * as vscode from 'vscode';
 import { StatusBarManager } from '../../statusBar';
 import type { StatusBarState } from '../../statusBar';
 
+/** Icon prefix used in all status bar text. */
+const ICON = '$(paintcan)';
+
 suite('StatusBarManager', () => {
   let manager: StatusBarManager;
   let originalStatusBarEnabled: boolean | undefined;
@@ -29,26 +32,35 @@ suite('StatusBarManager', () => {
     manager.dispose();
   });
 
+  /** Enable the status bar item for test visibility. */
+  async function enableStatusBar(): Promise<void> {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'statusBar.enabled',
+      true,
+      vscode.ConfigurationTarget.Global
+    );
+  }
+
+  /** Cast tooltip to MarkdownString and return its value. */
+  function tooltipValue(): string {
+    const tooltip = manager.item.tooltip as vscode.MarkdownString;
+    return tooltip.value;
+  }
+
   suite('lifecycle', () => {
     test('constructor creates status bar item', () => {
-      // If constructor didn't throw, item was created successfully
-      assert.ok(manager, 'StatusBarManager should be instantiated');
+      assert.ok(manager.item, 'StatusBarManager should expose item');
     });
 
     test('dispose does not throw', () => {
-      // Dispose should clean up without errors
       assert.doesNotThrow(() => manager.dispose());
     });
   });
 
   suite('update', () => {
-    test('sets text to icon only when inactive (globalEnabled false)', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows icon only when inactive', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: false,
@@ -59,23 +71,25 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'pastel',
         seed: 0,
-        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
-      // Note: We can't directly access item.text, but update should complete
-      // without error. This is a smoke test.
-      assert.ok(true, 'update completed without error');
+      assert.strictEqual(manager.item.text, ICON);
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Inactive'),
+        `tooltip should indicate inactive, got: ${tip}`
+      );
     });
 
-    test('sets text to icon and name when active', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows icon + color name when active', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -86,21 +100,37 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'pastel',
         seed: 0,
-        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
-      assert.ok(true, 'update completed without error');
+
+      assert.ok(
+        manager.item.text.startsWith(`${ICON} `),
+        `expected icon prefix, got: ${manager.item.text}`
+      );
+      assert.ok(
+        manager.item.text.length > `${ICON} `.length,
+        'expected color name after icon'
+      );
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Active'),
+        `tooltip should indicate active, got: ${tip}`
+      );
+      assert.ok(
+        tip.includes('test-workspace'),
+        `tooltip should show workspace ID, got: ${tip}`
+      );
     });
 
-    test('handles workspaceEnabledOverride false', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows icon only when workspace override disables', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -111,21 +141,25 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'pastel',
         seed: 0,
-        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
-      assert.ok(true, 'update completed without error');
+      assert.strictEqual(manager.item.text, ICON);
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Inactive'),
+        `tooltip should indicate inactive, got: ${tip}`
+      );
     });
 
-    test('handles undefined tintColors', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows "Patina" when active with no tint colors', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -141,16 +175,11 @@ suite('StatusBarManager', () => {
       };
 
       manager.update(state);
-      assert.ok(true, 'update completed without error');
+      assert.strictEqual(manager.item.text, `${ICON} Patina`);
     });
 
-    test('handles undefined workspaceIdentifier', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows icon + color name with undefined workspace ID', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -161,21 +190,22 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'muted',
         seed: 0,
-        tintColors: { baseTint: '#00ff00', titleBar: '#00ff00' },
+        tintColors: {
+          baseTint: '#00ff00',
+          titleBar: '#00ff00',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
-      assert.ok(true, 'update completed without error');
+      assert.ok(
+        manager.item.text.startsWith(`${ICON} `),
+        `expected icon prefix, got: ${manager.item.text}`
+      );
     });
 
-    test('handles undefined themeName', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows icon + color name with undefined theme name', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -186,24 +216,22 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'pastel',
         seed: 0,
-        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
       assert.ok(
-        true,
-        'update with undefined themeName completed without error'
+        manager.item.text.startsWith(`${ICON} `),
+        `expected icon prefix, got: ${manager.item.text}`
       );
     });
 
-    test('handles themeName with value', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows icon + color name with theme name set', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -214,21 +242,28 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'pastel',
         seed: 0,
-        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
-      assert.ok(true, 'update with themeName completed without error');
+      assert.ok(
+        manager.item.text.startsWith(`${ICON} `),
+        `expected icon prefix, got: ${manager.item.text}`
+      );
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('One Dark Pro'),
+        `tooltip should include theme name, got: ${tip}`
+      );
     });
 
-    test('handles customizedOutsidePatina true', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('shows modified warning when customized outside Patina', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -244,9 +279,12 @@ suite('StatusBarManager', () => {
       };
 
       manager.update(state);
+      assert.strictEqual(manager.item.text, `${ICON} $(warning) Modified`);
+
+      const tip = tooltipValue();
       assert.ok(
-        true,
-        'update with customizedOutsidePatina true completed without error'
+        tip.includes('modified outside Patina'),
+        `tooltip should warn about external changes, got: ${tip}`
       );
     });
   });
@@ -297,13 +335,8 @@ suite('StatusBarManager', () => {
   });
 
   suite('seed display', () => {
-    test('handles non-zero seed without error', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
-      await config.update(
-        'statusBar.enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+    test('includes seed in tooltip for non-zero seed', async () => {
+      await enableStatusBar();
 
       const state: StatusBarState = {
         globalEnabled: true,
@@ -314,12 +347,24 @@ suite('StatusBarManager', () => {
         themeAutoDetected: true,
         colorScheme: 'pastel',
         seed: 12345,
-        tintColors: { baseTint: '#ff0000', titleBar: '#ff0000' },
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
         customizedOutsidePatina: false,
       };
 
       manager.update(state);
-      assert.ok(true, 'update with non-zero seed completed without error');
+      assert.ok(
+        manager.item.text.startsWith(`${ICON} `),
+        `expected icon prefix, got: ${manager.item.text}`
+      );
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('12345'),
+        `tooltip should include seed value, got: ${tip}`
+      );
     });
   });
 
@@ -332,13 +377,8 @@ suite('StatusBarManager', () => {
     ];
 
     for (const tintType of themeTypes) {
-      test(`handles ${tintType} theme type`, async () => {
-        const config = vscode.workspace.getConfiguration('patina');
-        await config.update(
-          'statusBar.enabled',
-          true,
-          vscode.ConfigurationTarget.Global
-        );
+      test(`shows color name for ${tintType} theme`, async () => {
+        await enableStatusBar();
 
         const state: StatusBarState = {
           globalEnabled: true,
@@ -349,12 +389,18 @@ suite('StatusBarManager', () => {
           themeAutoDetected: true,
           colorScheme: 'pastel',
           seed: 0,
-          tintColors: { baseTint: '#123456', titleBar: '#123456' },
+          tintColors: {
+            baseTint: '#123456',
+            titleBar: '#123456',
+          },
           customizedOutsidePatina: false,
         };
 
         manager.update(state);
-        assert.ok(true, `${tintType} theme handled without error`);
+        assert.ok(
+          manager.item.text.startsWith(`${ICON} `),
+          `expected icon prefix for ${tintType}, ` + `got: ${manager.item.text}`
+        );
       });
     }
   });
@@ -381,13 +427,8 @@ suite('StatusBarManager', () => {
     ];
 
     for (const colorScheme of colorSchemes) {
-      test(`handles ${colorScheme} color scheme`, async () => {
-        const config = vscode.workspace.getConfiguration('patina');
-        await config.update(
-          'statusBar.enabled',
-          true,
-          vscode.ConfigurationTarget.Global
-        );
+      test(`shows color name for ${colorScheme} scheme`, async () => {
+        await enableStatusBar();
 
         const state: StatusBarState = {
           globalEnabled: true,
@@ -398,12 +439,19 @@ suite('StatusBarManager', () => {
           themeAutoDetected: false,
           colorScheme,
           seed: 0,
-          tintColors: { baseTint: '#abcdef', titleBar: '#abcdef' },
+          tintColors: {
+            baseTint: '#abcdef',
+            titleBar: '#abcdef',
+          },
           customizedOutsidePatina: false,
         };
 
         manager.update(state);
-        assert.ok(true, `${colorScheme} scheme handled without error`);
+        assert.ok(
+          manager.item.text.startsWith(`${ICON} `),
+          `expected icon prefix for ${colorScheme}, ` +
+            `got: ${manager.item.text}`
+        );
       });
     }
   });

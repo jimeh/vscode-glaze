@@ -15,7 +15,7 @@ import type { StatusBarState } from './types';
  * Manages the Patina status bar item.
  */
 export class StatusBarManager implements vscode.Disposable {
-  private readonly item: vscode.StatusBarItem;
+  readonly item: vscode.StatusBarItem;
   private state: StatusBarState | undefined;
 
   constructor() {

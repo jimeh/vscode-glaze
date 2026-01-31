@@ -1,4 +1,10 @@
 /**
+ * Default blend factor for theme color blending.
+ * Used as fallback when no explicit blend factor is configured.
+ */
+export const DEFAULT_BLEND_FACTOR = 0.35;
+
+/**
  * Determines what value is used to generate the workspace color.
  */
 export type WorkspaceIdentifierSource =

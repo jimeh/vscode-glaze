@@ -1,4 +1,5 @@
-import type { ThemeType, ThemeColors } from '../theme';
+import type { ThemeType, ThemeColors, PaletteKey } from '../theme';
+import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { TintTarget } from '../config';
 import type {
   ElementColors,
@@ -26,32 +27,64 @@ import { applyHueOffset, computeBaseHue } from '../color/tint';
 export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 
 /**
- * Generates element colors for a single UI element at a given hue.
+ * Generates element colors for a single UI element at a given
+ * hue, optionally blending with theme colors.
  */
 function generateElementColors(
   scheme: ColorScheme,
   themeType: ThemeType,
   hue: number,
-  bgKey: string,
-  fgKey: string
+  bgKey: PaletteKey,
+  fgKey: PaletteKey,
+  themeColors?: ThemeColors,
+  blendFactor?: number
 ): ElementColors {
   const config = getSchemeConfig(scheme);
   const themeConfig = config[themeType];
 
-  const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
-  const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
+  const bgConfig = themeConfig[bgKey];
+  const fgConfig = themeConfig[fgKey];
 
-  // Apply hue offset for multi-hue schemes (duotone, analogous)
+  // Apply hue offset for multi-hue schemes
   const bgHue = applyHueOffset(hue, bgConfig.hueOffset);
   const fgHue = applyHueOffset(hue, fgConfig.hueOffset);
 
-  // Calculate chroma based on max gamut chroma and chromaFactor
+  // Calculate chroma based on max gamut chroma
   const bgChroma = maxChroma(bgConfig.lightness, bgHue) * bgConfig.chromaFactor;
   const fgChroma = maxChroma(fgConfig.lightness, fgHue) * fgConfig.chromaFactor;
 
+  const bgOklch: OKLCH = {
+    l: bgConfig.lightness,
+    c: bgChroma,
+    h: bgHue,
+  };
+  const fgOklch: OKLCH = {
+    l: fgConfig.lightness,
+    c: fgChroma,
+    h: fgHue,
+  };
+
+  // Blend with theme colors if provided
+  if (themeColors && blendFactor !== undefined && blendFactor > 0) {
+    const themeBg = getColorForKey(bgKey, themeColors);
+    const themeFg = getColorForKey(fgKey, themeColors);
+
+    const blendedBg = themeBg
+      ? blendWithThemeOklch(bgOklch, themeBg, blendFactor)
+      : bgOklch;
+    const blendedFg = themeFg
+      ? blendWithThemeOklch(fgOklch, themeFg, blendFactor)
+      : fgOklch;
+
+    return {
+      background: oklchToHex(blendedBg),
+      foreground: oklchToHex(blendedFg),
+    };
+  }
+
   return {
-    background: oklchToHex({ l: bgConfig.lightness, c: bgChroma, h: bgHue }),
-    foreground: oklchToHex({ l: fgConfig.lightness, c: fgChroma, h: fgHue }),
+    background: oklchToHex(bgOklch),
+    foreground: oklchToHex(fgOklch),
   };
 }
 
@@ -116,60 +149,6 @@ export function generateAllSchemePreviews(
 }
 
 /**
- * Generates blended element colors with theme blending applied.
- */
-function generateBlendedElementColors(
-  scheme: ColorScheme,
-  themeType: ThemeType,
-  hue: number,
-  bgKey: string,
-  fgKey: string,
-  themeColors: ThemeColors,
-  blendFactor: number
-): ElementColors {
-  const config = getSchemeConfig(scheme);
-  const themeConfig = config[themeType];
-
-  const bgConfig = themeConfig[bgKey as keyof typeof themeConfig];
-  const fgConfig = themeConfig[fgKey as keyof typeof themeConfig];
-
-  // Apply hue offset for multi-hue schemes (duotone, analogous)
-  const bgHue = applyHueOffset(hue, bgConfig.hueOffset);
-  const fgHue = applyHueOffset(hue, fgConfig.hueOffset);
-
-  // Calculate chroma based on max gamut chroma and chromaFactor
-  const bgChroma = maxChroma(bgConfig.lightness, bgHue) * bgConfig.chromaFactor;
-  const fgChroma = maxChroma(fgConfig.lightness, fgHue) * fgConfig.chromaFactor;
-
-  // Create base OKLCH colors
-  const bgOklch: OKLCH = { l: bgConfig.lightness, c: bgChroma, h: bgHue };
-  const fgOklch: OKLCH = { l: fgConfig.lightness, c: fgChroma, h: fgHue };
-
-  // Get theme colors for blending
-  const themeBgColor = getColorForKey(
-    bgKey as Parameters<typeof getColorForKey>[0],
-    themeColors
-  );
-  const themeFgColor = getColorForKey(
-    fgKey as Parameters<typeof getColorForKey>[0],
-    themeColors
-  );
-
-  // Apply blending
-  const blendedBg = themeBgColor
-    ? blendWithThemeOklch(bgOklch, themeBgColor, blendFactor)
-    : bgOklch;
-  const blendedFg = themeFgColor
-    ? blendWithThemeOklch(fgOklch, themeFgColor, blendFactor)
-    : fgOklch;
-
-  return {
-    background: oklchToHex(blendedBg),
-    foreground: oklchToHex(blendedFg),
-  };
-}
-
-/**
  * Generates blended colors for all three elements at a given hue.
  */
 function generateBlendedColorsAtHue(
@@ -181,7 +160,7 @@ function generateBlendedColorsAtHue(
   targetBlendFactors?: Partial<Record<TintTarget, number>>
 ): SchemePreviewColors {
   return {
-    titleBar: generateBlendedElementColors(
+    titleBar: generateElementColors(
       scheme,
       themeType,
       hue,
@@ -190,7 +169,7 @@ function generateBlendedColorsAtHue(
       themeColors,
       targetBlendFactors?.titleBar ?? blendFactor
     ),
-    statusBar: generateBlendedElementColors(
+    statusBar: generateElementColors(
       scheme,
       themeType,
       hue,
@@ -199,7 +178,7 @@ function generateBlendedColorsAtHue(
       themeColors,
       targetBlendFactors?.statusBar ?? blendFactor
     ),
-    activityBar: generateBlendedElementColors(
+    activityBar: generateElementColors(
       scheme,
       themeType,
       hue,
@@ -236,7 +215,7 @@ export function generateWorkspacePreview(
     themeType,
     seed = 0,
     themeColors,
-    blendFactor = 0.35,
+    blendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
   } = options;
 
