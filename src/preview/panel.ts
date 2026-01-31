@@ -22,13 +22,11 @@ export class PalettePreviewPanel {
   private static instance: PalettePreviewPanel | undefined;
 
   private readonly panel: vscode.WebviewPanel;
-  private readonly extensionUri: vscode.Uri;
   private disposables: vscode.Disposable[] = [];
   private selectedThemeType: ThemeType | undefined;
 
-  private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
+  private constructor(panel: vscode.WebviewPanel) {
     this.panel = panel;
-    this.extensionUri = extensionUri;
 
     this.update();
 
@@ -85,7 +83,7 @@ export class PalettePreviewPanel {
       }
     );
 
-    PalettePreviewPanel.instance = new PalettePreviewPanel(panel, extensionUri);
+    PalettePreviewPanel.instance = new PalettePreviewPanel(panel);
   }
 
   /**
