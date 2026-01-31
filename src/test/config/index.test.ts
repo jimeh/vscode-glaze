@@ -459,6 +459,32 @@ suite('getTintConfig', () => {
     );
   });
 
+  test('returns all targets by default', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'elements.titleBar',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'elements.statusBar',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'elements.activityBar',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.deepStrictEqual(result.targets, [
+      'titleBar',
+      'statusBar',
+      'activityBar',
+    ]);
+  });
+
   test('returns empty targets when all elements disabled', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
@@ -1010,7 +1036,7 @@ suite('getStatusBarEnabled', () => {
     );
   });
 
-  test('returns false by default', async () => {
+  test('returns true by default', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'statusBar.enabled',
@@ -1018,7 +1044,7 @@ suite('getStatusBarEnabled', () => {
       vscode.ConfigurationTarget.Global
     );
     const result = getStatusBarEnabled();
-    assert.strictEqual(result, false);
+    assert.strictEqual(result, true);
   });
 
   test('returns true when configured', async () => {

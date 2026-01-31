@@ -204,13 +204,13 @@
         },
         "patina.elements.activityBar": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Apply color tint to the left side activity bar.",
           "order": 5
         },
         "patina.elements.statusBar": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Apply color tint to the bottom status bar.",
           "order": 6
         },
@@ -376,7 +376,7 @@
         },
         "patina.statusBar.enabled": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Show Patina status in the status bar.",
           "order": 15
         }

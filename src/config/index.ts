@@ -144,10 +144,10 @@ export function getTintConfig(): TintConfig {
   if (config.get<boolean>('elements.titleBar', true)) {
     targets.push('titleBar');
   }
-  if (config.get<boolean>('elements.statusBar', false)) {
+  if (config.get<boolean>('elements.statusBar', true)) {
     targets.push('statusBar');
   }
-  if (config.get<boolean>('elements.activityBar', false)) {
+  if (config.get<boolean>('elements.activityBar', true)) {
     targets.push('activityBar');
   }
 
@@ -198,5 +198,5 @@ export function getThemeConfig(): ThemeConfig {
  */
 export function getStatusBarEnabled(): boolean {
   const config = vscode.workspace.getConfiguration('patina');
-  return config.get<boolean>('statusBar.enabled', false);
+  return config.get<boolean>('statusBar.enabled', true);
 }
