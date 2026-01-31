@@ -6,10 +6,7 @@ import type {
   StatusGeneralInfo,
   StatusState,
 } from './types';
-import {
-  computeBaseHue as computeBaseHueShared,
-  computeTint,
-} from '../color/tint';
+import { computeBaseHue, computeTint } from '../color/tint';
 import {
   getColorScheme,
   getThemeConfig,
@@ -27,18 +24,6 @@ import {
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
 import { detectOsColorScheme } from '../theme/osColorScheme';
-
-/**
- * Computes the base hue from a workspace identifier and seed.
- * Re-exported from the shared color/tint module.
- *
- * @param identifier - The workspace identifier string
- * @param seed - Seed value to shift the hue (0 = no shift)
- * @returns Hue angle in degrees (0-359)
- */
-export function computeBaseHue(identifier: string, seed: number): number {
-  return computeBaseHueShared(identifier, seed);
-}
 
 /**
  * Options for computing status color details.

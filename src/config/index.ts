@@ -184,13 +184,12 @@ export function getThemeConfig(): ThemeConfig {
   const blendFactor = Math.max(0, Math.min(1, blendFactorValue));
 
   const targetBlendFactors: Partial<Record<TintTarget, number>> = {};
-  for (const [target, key] of Object.entries(TARGET_BLEND_FACTOR_KEYS)) {
+  const targets = Object.keys(TARGET_BLEND_FACTOR_KEYS) as TintTarget[];
+  for (const target of targets) {
+    const key = TARGET_BLEND_FACTOR_KEYS[target];
     const value = config.get<number | null>(key, null);
     if (value !== null && typeof value === 'number') {
-      targetBlendFactors[target as TintTarget] = Math.max(
-        0,
-        Math.min(1, value)
-      );
+      targetBlendFactors[target] = Math.max(0, Math.min(1, value));
     }
   }
 

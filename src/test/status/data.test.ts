@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { computeBaseHue, computeStatusColors } from '../../status/data';
+import { computeStatusColors } from '../../status/data';
 import type { ComputeStatusColorsOptions } from '../../status/data';
 import type { TintTarget } from '../../config';
 import type { ThemeType, ThemeColors } from '../../theme';
@@ -20,73 +20,6 @@ function makeColorsOptions(
     ...overrides,
   };
 }
-
-suite('computeBaseHue', () => {
-  test('is deterministic for same identifier and seed', () => {
-    const h1 = computeBaseHue('my-project', 0);
-    const h2 = computeBaseHue('my-project', 0);
-    assert.strictEqual(h1, h2);
-  });
-
-  test('seed=0 is the same as no seed shift', () => {
-    const h1 = computeBaseHue('my-project', 0);
-    const h2 = computeBaseHue('my-project', 0);
-    assert.strictEqual(h1, h2);
-  });
-
-  test('different seeds produce different hues', () => {
-    const h1 = computeBaseHue('my-project', 0);
-    const h2 = computeBaseHue('my-project', 42);
-    assert.notStrictEqual(h1, h2);
-  });
-
-  test('result is in 0-359 range', () => {
-    const identifiers = [
-      'project-a',
-      'project-b',
-      'some/long/path/to/workspace',
-      '',
-      'x',
-    ];
-    const seeds = [0, 1, 42, -100, 999999999];
-
-    for (const id of identifiers) {
-      for (const seed of seeds) {
-        const hue = computeBaseHue(id, seed);
-        assert.ok(
-          hue >= 0 && hue < 360,
-          `Hue ${hue} for "${id}" seed=${seed} out of range`
-        );
-      }
-    }
-  });
-
-  test('different identifiers produce different hues', () => {
-    const h1 = computeBaseHue('project-a', 0);
-    const h2 = computeBaseHue('project-b', 0);
-    assert.notStrictEqual(h1, h2);
-  });
-
-  test('handles empty string identifier', () => {
-    const hue = computeBaseHue('', 0);
-    assert.ok(hue >= 0 && hue < 360);
-  });
-
-  test('handles unicode identifiers', () => {
-    const hue = computeBaseHue('プロジェクト', 0);
-    assert.ok(hue >= 0 && hue < 360);
-  });
-
-  test('handles negative seeds', () => {
-    const hue = computeBaseHue('test', -100);
-    assert.ok(hue >= 0 && hue < 360);
-  });
-
-  test('handles large seeds', () => {
-    const hue = computeBaseHue('test', 999999999);
-    assert.ok(hue >= 0 && hue < 360);
-  });
-});
 
 suite('computeStatusColors', () => {
   const hexPattern = /^#[0-9a-f]{6}$/i;

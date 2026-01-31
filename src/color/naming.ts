@@ -10,7 +10,10 @@ const cache = new Map<string, string>();
 
 function getNearestFn(): ReturnType<typeof nearestColor.from> {
   if (!nearestFn) {
-    // Convert hex -> name map to name -> hex map for nearest-color
+    // Convert hex -> name map to name -> hex map for nearest-color.
+    // Double assertion needed: resolveJsonModule infers narrow literal
+    // types for the ~5000 JSON entries. Alternatives (.d.ts override is
+    // fragile, Object.fromEntries copies at runtime) have worse tradeoffs.
     const colors: Record<string, string> = {};
     for (const [hex, name] of Object.entries(
       colornameMap as unknown as ColorNameMap

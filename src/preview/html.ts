@@ -3,6 +3,7 @@ import type { TintTarget } from '../config';
 import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
+import { escapeHtml } from '../webview';
 
 /**
  * Hue labels for column headers (OKLCH-calibrated hue angles).
@@ -196,17 +197,6 @@ function generateSchemesTable(state: PreviewState): string {
       </tbody>
     </table>
   `;
-}
-
-/**
- * Escapes HTML special characters.
- */
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 /**

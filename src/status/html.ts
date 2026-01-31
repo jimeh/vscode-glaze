@@ -6,6 +6,7 @@ import type {
 import type { ElementType } from '../theme';
 import type { TintTarget } from '../config';
 import { capitalizeFirst } from '../statusBar/helpers';
+import { escapeHtml } from '../webview';
 
 /**
  * Element groups in display order with their labels.
@@ -15,17 +16,6 @@ const ELEMENT_GROUPS: { element: ElementType; label: string }[] = [
   { element: 'activityBar', label: 'Activity Bar' },
   { element: 'statusBar', label: 'Status Bar' },
 ];
-
-/**
- * Escapes HTML special characters.
- */
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
 
 /**
  * Generates an inline color swatch span.

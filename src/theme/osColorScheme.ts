@@ -26,7 +26,8 @@ export function detectOsColorScheme(): 'dark' | 'light' | undefined {
       default:
         return undefined;
     }
-  } catch {
+  } catch (err) {
+    console.debug('[Patina] OS color scheme detection failed:', err);
     return undefined;
   }
 }
@@ -57,7 +58,8 @@ function detectWindows(): 'dark' | 'light' | undefined {
     );
     // Output contains "0x0" for dark, "0x1" for light
     return output.includes('0x0') ? 'dark' : 'light';
-  } catch {
+  } catch (err) {
+    console.debug('[Patina] Windows color scheme detection failed:', err);
     return undefined;
   }
 }
@@ -69,7 +71,8 @@ function detectLinux(): 'dark' | 'light' | undefined {
       { timeout: EXEC_TIMEOUT, encoding: 'utf-8' }
     );
     return output.toLowerCase().includes('dark') ? 'dark' : 'light';
-  } catch {
+  } catch (err) {
+    console.debug('[Patina] Linux color scheme detection failed:', err);
     return undefined;
   }
 }
