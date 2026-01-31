@@ -83,8 +83,10 @@ export class StatusBarManager implements vscode.Disposable {
   }
 
   private isActive(): boolean {
-    // state is guaranteed to be set before render() is called
-    const { globalEnabled, workspaceEnabledOverride } = this.state!;
+    if (!this.state) {
+      return false;
+    }
+    const { globalEnabled, workspaceEnabledOverride } = this.state;
     return isEffectivelyEnabled(globalEnabled, workspaceEnabledOverride);
   }
 
@@ -100,8 +102,10 @@ export class StatusBarManager implements vscode.Disposable {
       md.appendMarkdown('**Patina** $(x) Inactive\n\n');
     }
 
-    // state is guaranteed to be set before render() is called
-    const state = this.state!;
+    if (!this.state) {
+      return md;
+    }
+    const state = this.state;
 
     // Warning when colors were modified outside Patina
     if (state.customizedOutsidePatina) {

@@ -311,4 +311,13 @@ function refreshStatusBar(): void {
   statusBar.update(state);
 }
 
-export function deactivate() {}
+export function deactivate() {
+  if (applyTintTimeout) {
+    clearTimeout(applyTintTimeout);
+    applyTintTimeout = undefined;
+  }
+  if (removeTintTimeout) {
+    clearTimeout(removeTintTimeout);
+    removeTintTimeout = undefined;
+  }
+}

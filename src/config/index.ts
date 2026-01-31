@@ -68,11 +68,36 @@ export async function setEnabledForWorkspace(
   await config.update('enabled', value, vscode.ConfigurationTarget.Workspace);
 }
 
-const VALID_THEME_MODES: ThemeMode[] = ['auto', 'light', 'dark'];
-
-function isValidThemeMode(value: string): value is ThemeMode {
-  return VALID_THEME_MODES.includes(value as ThemeMode);
+/**
+ * Reads a string config value and validates it against allowed values.
+ * Returns the default if the value is not in the allowed set.
+ */
+function getValidatedEnum<T extends string>(
+  config: vscode.WorkspaceConfiguration,
+  key: string,
+  validValues: readonly T[],
+  defaultValue: T
+): T {
+  const value = config.get<string>(key, defaultValue);
+  return (validValues as readonly string[]).includes(value)
+    ? (value as T)
+    : defaultValue;
 }
+
+const VALID_THEME_MODES: readonly ThemeMode[] = ['auto', 'light', 'dark'];
+
+const VALID_SOURCES: readonly WorkspaceIdentifierSource[] = [
+  'name',
+  'pathRelativeToHome',
+  'pathAbsolute',
+  'pathRelativeToCustom',
+];
+
+const VALID_MULTI_ROOT_SOURCES: readonly MultiRootIdentifierSource[] = [
+  'workspaceFile',
+  'allFolders',
+  'firstFolder',
+];
 
 /**
  * Returns the configured color scheme.
@@ -83,54 +108,29 @@ export function getColorScheme(): ColorScheme {
   return isValidColorScheme(scheme) ? scheme : DEFAULT_COLOR_SCHEME;
 }
 
-const VALID_SOURCES: WorkspaceIdentifierSource[] = [
-  'name',
-  'pathRelativeToHome',
-  'pathAbsolute',
-  'pathRelativeToCustom',
-];
-
-function isValidSource(value: string): value is WorkspaceIdentifierSource {
-  return VALID_SOURCES.includes(value as WorkspaceIdentifierSource);
-}
-
-const VALID_MULTI_ROOT_SOURCES: MultiRootIdentifierSource[] = [
-  'workspaceFile',
-  'allFolders',
-  'firstFolder',
-];
-
-function isValidMultiRootSource(
-  value: string
-): value is MultiRootIdentifierSource {
-  return VALID_MULTI_ROOT_SOURCES.includes(value as MultiRootIdentifierSource);
-}
-
 /**
  * Reads the workspace identifier configuration from VSCode settings.
  */
 export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
   const config = vscode.workspace.getConfiguration('patina');
 
-  const source = config.get<string>(
-    'workspaceIdentifier.source',
-    'pathRelativeToHome'
-  );
-  const customBasePath = config.get<string>(
-    'workspaceIdentifier.customBasePath',
-    ''
-  );
-  const multiRootSource = config.get<string>(
-    'workspaceIdentifier.multiRootSource',
-    'workspaceFile'
-  );
-
   return {
-    source: isValidSource(source) ? source : 'pathRelativeToHome',
-    customBasePath,
-    multiRootSource: isValidMultiRootSource(multiRootSource)
-      ? multiRootSource
-      : 'workspaceFile',
+    source: getValidatedEnum(
+      config,
+      'workspaceIdentifier.source',
+      VALID_SOURCES,
+      'pathRelativeToHome'
+    ),
+    customBasePath: config.get<string>(
+      'workspaceIdentifier.customBasePath',
+      ''
+    ),
+    multiRootSource: getValidatedEnum(
+      config,
+      'workspaceIdentifier.multiRootSource',
+      VALID_MULTI_ROOT_SOURCES,
+      'workspaceFile'
+    ),
   };
 }
 
@@ -151,8 +151,7 @@ export function getTintConfig(): TintConfig {
     targets.push('activityBar');
   }
 
-  const modeValue = config.get<string>('tint.mode', 'auto');
-  const mode: ThemeMode = isValidThemeMode(modeValue) ? modeValue : 'auto';
+  const mode = getValidatedEnum(config, 'tint.mode', VALID_THEME_MODES, 'auto');
 
   const seedValue = config.get<number>('tint.seed', 0);
   const seed = Number.isInteger(seedValue) ? seedValue : 0;

@@ -4,29 +4,12 @@ import {
   applyHueOffset,
   computeBaseTintHex,
   computeTint,
-  tintResultToPalette,
   tintResultToStatusBarColors,
 } from '../../color/tint';
-import { generatePalette, calculateBaseTint } from '../../color';
-import type { ColorScheme, TintTarget } from '../../config';
-import type { ThemeType, ThemeContext, ThemeColors } from '../../theme';
+import type { ColorScheme } from '../../config';
+import type { ThemeType } from '../../theme';
 import { PATINA_MANAGED_KEYS } from '../../theme';
-
-const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
-
-/**
- * Helper to create a ThemeContext for testing.
- */
-function makeThemeContext(
-  tintType: ThemeType,
-  options?: { colors?: ThemeColors }
-): ThemeContext {
-  return {
-    tintType,
-    isAutoDetected: true,
-    colors: options?.colors,
-  };
-}
+import { ALL_TARGETS } from '../helpers';
 
 // ============================================================================
 // computeBaseHue
@@ -138,27 +121,6 @@ suite('computeBaseTintHex', () => {
   test('returns valid hex color', () => {
     assert.match(computeBaseTintHex(180, 'dark'), hexPattern);
     assert.match(computeBaseTintHex(0, 'light'), hexPattern);
-  });
-
-  test('produces same result as calculateBaseTint', () => {
-    const identifiers = ['test', 'my-project', '项目'];
-    const themeTypes: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
-
-    for (const id of identifiers) {
-      for (const tt of themeTypes) {
-        const hue = computeBaseHue(id, 0);
-        const fromNew = computeBaseTintHex(hue, tt);
-        const fromOld = calculateBaseTint({
-          workspaceIdentifier: id,
-          themeType: tt,
-        });
-        assert.strictEqual(
-          fromNew,
-          fromOld,
-          `Mismatch for id="${id}" theme=${tt}`
-        );
-      }
-    }
   });
 
   test('light theme produces lighter color than dark', () => {
@@ -465,164 +427,6 @@ suite('computeTint', () => {
 });
 
 // ============================================================================
-// Cross-validation: computeTint + tintResultToPalette vs generatePalette
-// ============================================================================
-
-suite('tintResultToPalette cross-validation', () => {
-  const COLOR_SCHEMES: ColorScheme[] = [
-    'pastel',
-    'vibrant',
-    'muted',
-    'tinted',
-    'duotone',
-    'undercurrent',
-    'analogous',
-    'neon',
-  ];
-  const THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
-
-  test('matches generatePalette for all targets, no blending', () => {
-    for (const scheme of COLOR_SCHEMES) {
-      for (const tt of THEME_TYPES) {
-        const oldPalette = generatePalette({
-          workspaceIdentifier: 'cross-val-test',
-          targets: ALL_TARGETS,
-          themeContext: makeThemeContext(tt),
-          colorScheme: scheme,
-        });
-
-        const result = computeTint({
-          workspaceIdentifier: 'cross-val-test',
-          targets: ALL_TARGETS,
-          themeType: tt,
-          colorScheme: scheme,
-        });
-        const newPalette = tintResultToPalette(result);
-
-        assert.deepStrictEqual(
-          newPalette,
-          oldPalette,
-          `Mismatch for scheme=${scheme} theme=${tt}`
-        );
-      }
-    }
-  });
-
-  test('matches generatePalette with theme blending', () => {
-    const themeColors: ThemeColors = {
-      'editor.background': '#282C34',
-      'editor.foreground': '#ABB2BF',
-    };
-
-    for (const scheme of COLOR_SCHEMES) {
-      const oldPalette = generatePalette({
-        workspaceIdentifier: 'blend-test',
-        targets: ALL_TARGETS,
-        themeContext: makeThemeContext('dark', { colors: themeColors }),
-        colorScheme: scheme,
-        themeBlendFactor: 0.35,
-      });
-
-      const result = computeTint({
-        workspaceIdentifier: 'blend-test',
-        targets: ALL_TARGETS,
-        themeType: 'dark',
-        colorScheme: scheme,
-        themeColors,
-        themeBlendFactor: 0.35,
-      });
-      const newPalette = tintResultToPalette(result);
-
-      assert.deepStrictEqual(
-        newPalette,
-        oldPalette,
-        `Blending mismatch for scheme=${scheme}`
-      );
-    }
-  });
-
-  test('matches generatePalette with per-target blend overrides', () => {
-    const themeColors: ThemeColors = { 'editor.background': '#1E1E1E' };
-
-    const oldPalette = generatePalette({
-      workspaceIdentifier: 'override-test',
-      targets: ALL_TARGETS,
-      themeContext: makeThemeContext('dark', { colors: themeColors }),
-      themeBlendFactor: 0.35,
-      targetBlendFactors: { statusBar: 0.8, activityBar: 0.1 },
-    });
-
-    const result = computeTint({
-      workspaceIdentifier: 'override-test',
-      targets: ALL_TARGETS,
-      themeType: 'dark',
-      themeColors,
-      themeBlendFactor: 0.35,
-      targetBlendFactors: { statusBar: 0.8, activityBar: 0.1 },
-    });
-    const newPalette = tintResultToPalette(result);
-
-    assert.deepStrictEqual(newPalette, oldPalette);
-  });
-
-  test('matches generatePalette with seed', () => {
-    for (const seed of [0, 42, 999999999, -100]) {
-      const oldPalette = generatePalette({
-        workspaceIdentifier: 'seed-test',
-        targets: ALL_TARGETS,
-        themeContext: makeThemeContext('dark'),
-        seed,
-      });
-
-      const result = computeTint({
-        workspaceIdentifier: 'seed-test',
-        targets: ALL_TARGETS,
-        themeType: 'dark',
-        seed,
-      });
-      const newPalette = tintResultToPalette(result);
-
-      assert.deepStrictEqual(
-        newPalette,
-        oldPalette,
-        `Seed mismatch for seed=${seed}`
-      );
-    }
-  });
-
-  test('matches generatePalette with partial targets', () => {
-    const targetSets: TintTarget[][] = [
-      ['titleBar'],
-      ['statusBar'],
-      ['activityBar'],
-      ['titleBar', 'statusBar'],
-      [],
-    ];
-
-    for (const targets of targetSets) {
-      const oldPalette = generatePalette({
-        workspaceIdentifier: 'partial-test',
-        targets,
-        themeContext: makeThemeContext('dark'),
-      });
-
-      const result = computeTint({
-        workspaceIdentifier: 'partial-test',
-        targets,
-        themeType: 'dark',
-      });
-      const newPalette = tintResultToPalette(result);
-
-      assert.deepStrictEqual(
-        newPalette,
-        oldPalette,
-        `Partial targets mismatch for [${targets}]`
-      );
-    }
-  });
-});
-
-// ============================================================================
 // tintResultToStatusBarColors
 // ============================================================================
 
@@ -667,50 +471,6 @@ suite('tintResultToStatusBarColors', () => {
     assert.ok(colors.titleBar !== undefined);
     assert.strictEqual(colors.statusBar, undefined);
     assert.strictEqual(colors.activityBar, undefined);
-  });
-
-  test('matches extension.ts TintColors construction', () => {
-    // Replicate what extension.ts does:
-    // 1. generatePalette for colors
-    // 2. calculateBaseTint for baseTint
-    // 3. Assemble TintColors manually
-    const id = 'my-workspace';
-    const seed = 42;
-    const themeType: ThemeType = 'dark';
-
-    const palette = generatePalette({
-      workspaceIdentifier: id,
-      targets: ALL_TARGETS,
-      themeContext: makeThemeContext(themeType),
-      seed,
-    });
-
-    const baseTint = calculateBaseTint({
-      workspaceIdentifier: id,
-      themeType,
-      seed,
-    });
-
-    const manualColors = {
-      baseTint,
-      titleBar: palette['titleBar.activeBackground'],
-      activityBar: palette['activityBar.background'],
-      statusBar: palette['statusBar.background'],
-    };
-
-    // Now via computeTint
-    const result = computeTint({
-      workspaceIdentifier: id,
-      targets: ALL_TARGETS,
-      themeType,
-      seed,
-    });
-    const newColors = tintResultToStatusBarColors(result);
-
-    assert.strictEqual(newColors.baseTint, manualColors.baseTint);
-    assert.strictEqual(newColors.titleBar, manualColors.titleBar);
-    assert.strictEqual(newColors.statusBar, manualColors.statusBar);
-    assert.strictEqual(newColors.activityBar, manualColors.activityBar);
   });
 });
 

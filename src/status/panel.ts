@@ -16,7 +16,7 @@ export class StatusPanel {
   private readonly panel: vscode.WebviewPanel;
   private disposables: vscode.Disposable[] = [];
 
-  private constructor(panel: vscode.WebviewPanel, _extensionUri: vscode.Uri) {
+  private constructor(panel: vscode.WebviewPanel) {
     this.panel = panel;
 
     this.update();
@@ -73,7 +73,7 @@ export class StatusPanel {
       }
     );
 
-    StatusPanel.instance = new StatusPanel(panel, extensionUri);
+    StatusPanel.instance = new StatusPanel(panel);
   }
 
   /**
