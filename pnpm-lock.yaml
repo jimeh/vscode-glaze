@@ -11,9 +11,6 @@ importers:
       nearest-color:
         specifier: ^0.4.4
         version: 0.4.4
-      semver:
-        specifier: ^7.7.3
-        version: 7.7.3
     devDependencies:
       '@resvg/resvg-js':
         specifier: ^2.6.2
@@ -78,6 +75,9 @@ importers:
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
+      semver:
+        specifier: ^7.7.3
+        version: 7.7.3
       tsx:
         specifier: ^4.7.0
         version: 4.21.0
@@ -441,24 +441,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@node-rs/crc32-linux-arm64-musl@1.10.6':
     resolution: {integrity: sha512-k8ra/bmg0hwRrIEE8JL1p32WfaN9gDlUUpQRWsbxd1WhjqvXea7kKO6K4DwVxyxlPhBS9Gkb5Urq7Y4mXANzaw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@node-rs/crc32-linux-x64-gnu@1.10.6':
     resolution: {integrity: sha512-IfjtqcuFK7JrSZ9mlAFhb83xgium30PguvRjIMI45C3FJwu18bnLk1oR619IYb/zetQT82MObgmqfKOtgemEKw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@node-rs/crc32-linux-x64-musl@1.10.6':
     resolution: {integrity: sha512-LbFYsA5M9pNunOweSt6uhxenYQF94v3bHDAQRPTQ3rnjn+mK6IC7YTAYoBjvoJP8lVzcvk9hRj8wp4Jyh6Y80g==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@node-rs/crc32-wasm32-wasi@1.10.6':
     resolution: {integrity: sha512-KaejdLgHMPsRaxnM+OG9L9XdWL2TabNx80HLdsCOoX9BVhEkfh39OeahBo8lBmidylKbLGMQoGfIKDjq0YMStw==}
@@ -538,24 +542,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@resvg/resvg-js-linux-arm64-musl@2.6.2':
     resolution: {integrity: sha512-3h3dLPWNgSsD4lQBJPb4f+kvdOSJHa5PjTYVsWHxLUzH4IFTJUAnmuWpw4KqyQ3NA5QCyhw4TWgxk3jRkQxEKg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@resvg/resvg-js-linux-x64-gnu@2.6.2':
     resolution: {integrity: sha512-IVUe+ckIerA7xMZ50duAZzwf1U7khQe2E0QpUxu5MBJNao5RqC0zwV/Zm965vw6D3gGFUl7j4m+oJjubBVoftw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@resvg/resvg-js-linux-x64-musl@2.6.2':
     resolution: {integrity: sha512-UOf83vqTzoYQO9SZ0fPl2ZIFtNIz/Rr/y+7X8XRX1ZnBYsQ/tTb+cj9TE+KHOdmlTFBxhYzVkP2lRByCzqi4jQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@resvg/resvg-js-win32-arm64-msvc@2.6.2':
     resolution: {integrity: sha512-7C/RSgCa+7vqZ7qAbItfiaAWhyRSoD4l4BQAbVDqRRsRgY+S+hgS3in0Rxr7IorKUpGE69X48q6/nOAuTJQxeQ==}
