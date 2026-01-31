@@ -1,17 +1,15 @@
 import type { TintTarget } from '../config';
-import type { ThemeColors, ThemeType, PaletteKey } from '../theme';
+import type { ThemeColors, ThemeType } from '../theme';
 import type { ColorScheme } from '../color';
 import type {
   StatusColorDetail,
   StatusGeneralInfo,
   StatusState,
 } from './types';
-import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
-import { getColorForKey } from '../theme/colors';
-import { hashString } from '../color/hash';
-import { oklchToHex, maxChroma } from '../color/convert';
-import { blendWithThemeOklch } from '../color/blend';
-import { getSchemeConfig } from '../color/schemes';
+import {
+  computeBaseHue as computeBaseHueShared,
+  computeTint,
+} from '../color/tint';
 import {
   getColorScheme,
   getThemeConfig,
@@ -32,16 +30,14 @@ import { detectOsColorScheme } from '../theme/osColorScheme';
 
 /**
  * Computes the base hue from a workspace identifier and seed.
- * Replicates the hash + XOR + mod logic from generatePalette.
+ * Re-exported from the shared color/tint module.
  *
  * @param identifier - The workspace identifier string
  * @param seed - Seed value to shift the hue (0 = no shift)
  * @returns Hue angle in degrees (0-359)
  */
 export function computeBaseHue(identifier: string, seed: number): number {
-  const workspaceHash = hashString(identifier);
-  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
-  return ((workspaceHash ^ seedHash) >>> 0) % 360;
+  return computeBaseHueShared(identifier, seed);
 }
 
 /**
@@ -89,60 +85,27 @@ export function computeStatusColors(
     targets,
   } = options;
 
-  const targetSet = new Set<string>(targets);
-  const schemeConfig = getSchemeConfig(colorScheme);
-  const themeConfig = schemeConfig[themeType];
-
-  return PATINA_MANAGED_KEYS.map((key: PaletteKey): StatusColorDetail => {
-    const def = COLOR_KEY_DEFINITIONS[key];
-    const config = themeConfig[key];
-
-    // Compute element hue with offset
-    const elementHue =
-      (((baseHue + (config.hueOffset ?? 0)) % 360) + 360) % 360;
-
-    // Compute OKLCH tint
-    const maxC = maxChroma(config.lightness, elementHue);
-    const chroma = maxC * config.chromaFactor;
-    const tintOklch = {
-      l: config.lightness,
-      c: chroma,
-      h: elementHue,
-    };
-    const tintColor = oklchToHex(tintOklch);
-
-    // Look up theme color
-    const themeColor = themeColors
-      ? getColorForKey(key, themeColors)
-      : undefined;
-
-    // Resolve effective blend factor for this element
-    const effectiveBlend =
-      targetBlendFactors?.[def.element as TintTarget] ?? blendFactor;
-
-    // Compute final color (blend with theme if available)
-    let finalColor: string;
-    if (themeColor && effectiveBlend > 0) {
-      const blendedOklch = blendWithThemeOklch(
-        tintOklch,
-        themeColor,
-        effectiveBlend
-      );
-      finalColor = oklchToHex(blendedOklch);
-    } else {
-      finalColor = tintColor;
-    }
-
-    return {
-      key,
-      element: def.element,
-      colorType: def.colorType,
-      themeColor,
-      tintColor,
-      finalColor,
-      enabled: targetSet.has(def.element),
-    };
+  const result = computeTint({
+    baseHue,
+    targets,
+    themeType,
+    colorScheme,
+    themeColors,
+    themeBlendFactor: blendFactor,
+    targetBlendFactors,
   });
+
+  return result.keys.map(
+    (detail): StatusColorDetail => ({
+      key: detail.key,
+      element: detail.element,
+      colorType: detail.colorType,
+      themeColor: detail.themeColor,
+      tintColor: detail.tintHex,
+      finalColor: detail.finalHex,
+      enabled: detail.enabled,
+    })
+  );
 }
 
 /**

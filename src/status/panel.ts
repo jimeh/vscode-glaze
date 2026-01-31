@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import type { StatusMessage } from './types';
 import { buildStatusState } from './data';
 import { generateStatusHtml } from './html';
+import { generateNonce } from '../webview';
 
 /**
  * Manages the Patina Status webview panel.
@@ -80,7 +81,7 @@ export class StatusPanel {
    */
   public update(): void {
     const state = buildStatusState();
-    const nonce = this.generateNonce();
+    const nonce = generateNonce();
     const cspSource = this.panel.webview.cspSource;
 
     this.panel.webview.html = generateStatusHtml(state, nonce, cspSource);
@@ -95,19 +96,6 @@ export class StatusPanel {
         this.update();
         break;
     }
-  }
-
-  /**
-   * Generates a random nonce for CSP.
-   */
-  private generateNonce(): string {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let nonce = '';
-    for (let i = 0; i < 32; i++) {
-      nonce += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return nonce;
   }
 
   /**

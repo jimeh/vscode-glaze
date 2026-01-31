@@ -1,5 +1,9 @@
 import * as vscode from 'vscode';
-import { generatePalette, calculateBaseTint } from './color';
+import {
+  computeTint,
+  tintResultToPalette,
+  tintResultToStatusBarColors,
+} from './color';
 import { getWorkspaceIdentifier } from './workspace';
 import {
   getColorScheme,
@@ -20,7 +24,11 @@ import {
   hasPatinaColorsWithoutMarker,
   ColorCustomizations,
 } from './settings';
-import { StatusBarManager, StatusBarState, TintColors } from './statusBar';
+import {
+  StatusBarManager,
+  type StatusBarState,
+  type TintColors,
+} from './statusBar';
 import { PalettePreviewPanel } from './preview';
 import { StatusPanel } from './status';
 
@@ -219,15 +227,17 @@ async function applyTint(): Promise<void> {
   const themeConfig = getThemeConfig();
   const themeContext = getThemeContext(tintConfig.mode);
   const colorScheme = getColorScheme();
-  const colors = generatePalette({
+  const tintResult = computeTint({
     workspaceIdentifier: identifier,
     targets: tintConfig.targets,
-    themeContext,
+    themeType: themeContext.tintType,
     colorScheme,
+    themeColors: themeContext.colors,
     themeBlendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
     seed: tintConfig.seed,
   });
+  const colors = tintResultToPalette(tintResult);
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
@@ -248,21 +258,9 @@ async function applyTint(): Promise<void> {
     vscode.ConfigurationTarget.Workspace
   );
 
-  // Build tint colors for status bar display
-  const tintColors: TintColors = {
-    baseTint: calculateBaseTint({
-      workspaceIdentifier: identifier,
-      themeType: themeContext.tintType,
-      seed: tintConfig.seed,
-    }),
-    titleBar: colors['titleBar.activeBackground'],
-    activityBar: colors['activityBar.background'],
-    statusBar: colors['statusBar.background'],
-  };
-
   // Update status bar with current state
   lastWorkspaceIdentifier = identifier;
-  lastTintColors = tintColors;
+  lastTintColors = tintResultToStatusBarColors(tintResult);
   lastCustomizedOutsidePatina = false;
   refreshStatusBar();
 }
