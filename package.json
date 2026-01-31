@@ -384,7 +384,8 @@
     }
   },
   "scripts": {
-    "postinstall": "cp node_modules/color-name-list/dist/colornames.bestof.min.json src/color/colornames.json",
+    "generate-colornames": "tsx scripts/generate-colornames.ts",
+    "postinstall": "pnpm run generate-colornames",
     "vscode:prepublish": "pnpm run bundle",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",

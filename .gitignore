@@ -8,8 +8,8 @@ coverage/
 # Theme extraction script cache
 scripts/extract-theme-colors/.cache/
 
-# Generated color names (copied from npm package on install)
-src/color/colornames.json
+# Generated color names (produced by scripts/generate-colornames.ts)
+src/color/generated/
 
 # Test fixture workspace settings (generated during tests)
 src/test/fixtures/test-workspace/.vscode/
