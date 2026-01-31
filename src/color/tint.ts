@@ -83,6 +83,19 @@ export interface ComputeTintOptions {
 }
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+/** Lightness for base tint preview in light themes (OKLCH L). */
+const BASE_TINT_LIGHTNESS_LIGHT = 0.65;
+
+/** Lightness for base tint preview in dark themes (OKLCH L). */
+const BASE_TINT_LIGHTNESS_DARK = 0.5;
+
+/** Fraction of max in-gamut chroma used for base tint preview. */
+const BASE_TINT_CHROMA_FACTOR = 0.7;
+
+// ============================================================================
 // Shared helpers
 // ============================================================================
 
@@ -125,8 +138,10 @@ export function computeBaseTintHex(
   themeType: ThemeType
 ): string {
   const lightness =
-    themeType === 'light' || themeType === 'hcLight' ? 0.65 : 0.5;
-  const chroma = maxChroma(lightness, baseHue) * 0.7;
+    themeType === 'light' || themeType === 'hcLight'
+      ? BASE_TINT_LIGHTNESS_LIGHT
+      : BASE_TINT_LIGHTNESS_DARK;
+  const chroma = maxChroma(lightness, baseHue) * BASE_TINT_CHROMA_FACTOR;
   return oklchToHex({ l: lightness, c: chroma, h: baseHue });
 }
 
@@ -232,7 +247,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
 
 /**
  * Converts a TintResult to a partial palette containing only
- * enabled keys. Drop-in replacement for generatePalette output.
+ * enabled keys.
  */
 export function tintResultToPalette(
   result: TintResult

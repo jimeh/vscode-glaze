@@ -71,6 +71,20 @@ function formatFolder(
 }
 
 /**
+ * Formats all folders into a sorted, newline-joined identifier string.
+ */
+function formatAllFolders(
+  folders: readonly WorkspaceFolder[],
+  source: WorkspaceIdentifierConfig['source'],
+  customBasePath: string
+): string {
+  return folders
+    .map((f) => formatFolder(f, source, customBasePath))
+    .sort()
+    .join('\n');
+}
+
+/**
  * Extracts a suitable identifier from the current workspace based on config.
  *
  * @param config - Configuration specifying how to generate the identifier
@@ -113,20 +127,19 @@ export function getWorkspaceIdentifier(
         );
       }
       // Fall back to allFolders if workspace file unavailable
-      const formattedAll = workspaceFolders
-        .map((f) => formatFolder(f, config.source, config.customBasePath))
-        .sort()
-        .join('\n');
-      return formattedAll;
+      return formatAllFolders(
+        workspaceFolders,
+        config.source,
+        config.customBasePath
+      );
     }
 
-    case 'allFolders': {
-      const formattedAll = workspaceFolders
-        .map((f) => formatFolder(f, config.source, config.customBasePath))
-        .sort()
-        .join('\n');
-      return formattedAll;
-    }
+    case 'allFolders':
+      return formatAllFolders(
+        workspaceFolders,
+        config.source,
+        config.customBasePath
+      );
 
     case 'firstFolder':
     default:
