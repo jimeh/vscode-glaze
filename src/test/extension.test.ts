@@ -1185,11 +1185,181 @@ suite('Extension Test Suite', () => {
 
       await vscode.commands.executeCommand('patina.forceApply');
 
-      const colors = await waitForColorCustomizations();
+      const colors = await waitForColorKey(PATINA_ACTIVE_KEY);
       assert.strictEqual(
-        colors['patina.active'],
+        colors[PATINA_ACTIVE_KEY],
         '#ef5ec7',
         'patina.active should have the correct marker value'
+      );
+    });
+  });
+
+  suite('Rapid toggle race-safety', () => {
+    let originalEnabledGlobal: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      originalEnabledGlobal = inspection?.globalValue;
+      originalEnabledWorkspace = inspection?.workspaceValue;
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabledGlobal,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        originalEnabledWorkspace,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('enable→disable→enable settles with colors applied', async function () {
+      this.timeout(8000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Start from a clean disabled state
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+      await waitForPatinaColorsCleared();
+
+      // Rapid toggle: enable → disable → enable
+      await patinaConfig.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Final state should be enabled with colors applied
+      const colors = await waitForColorCustomizations();
+      assert.ok(colors, 'colorCustomizations should be set');
+      assert.ok(
+        'titleBar.activeBackground' in colors,
+        'should have titleBar.activeBackground'
+      );
+      assert.ok(
+        PATINA_ACTIVE_KEY in colors,
+        'should have patina.active marker'
+      );
+    });
+  });
+
+  suite('forceApply race-safety', () => {
+    let originalEnabled: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      originalColorCustomizations = config.get('workbench.colorCustomizations');
+    });
+
+    suiteTeardown(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('forceApply during pending config change produces correct final state', async function () {
+      this.timeout(8000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Enable and wait for initial colors
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      await waitForColorCustomizations();
+
+      // Simulate external modification: remove marker
+      const config = vscode.workspace.getConfiguration();
+      const colors = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.ok(colors);
+      const tampered = { ...colors };
+      delete tampered[PATINA_ACTIVE_KEY];
+      await config.update(
+        'workbench.colorCustomizations',
+        tampered,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Immediately fire forceApply — should resolve correctly
+      // even if a config-change-triggered reconcile is pending
+      await vscode.commands.executeCommand('patina.forceApply');
+
+      const updated = await waitForColorKey(PATINA_ACTIVE_KEY);
+      assert.ok(updated, 'colorCustomizations should be set');
+      assert.ok(
+        PATINA_ACTIVE_KEY in updated,
+        'marker should be present after forceApply'
+      );
+      assert.ok(
+        'titleBar.activeBackground' in updated,
+        'managed keys should be present after forceApply'
       );
     });
   });

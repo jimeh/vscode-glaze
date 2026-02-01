@@ -17,8 +17,6 @@ import {
 } from './config';
 import { getThemeContext } from './theme';
 import {
-  PATINA_ACTIVE_KEY,
-  PATINA_ACTIVE_VALUE,
   mergeColorCustomizations,
   removePatinaColors,
   hasPatinaColorsWithoutMarker,
@@ -33,15 +31,17 @@ import { PalettePreviewPanel } from './preview';
 import { StatusPanel } from './status';
 
 let statusBar: StatusBarManager;
-let applyTintTimeout: ReturnType<typeof setTimeout> | undefined;
-let removeTintTimeout: ReturnType<typeof setTimeout> | undefined;
 
-/** Debounce delay in ms for apply/remove tint operations. */
+/** Debounce delay in ms for reconcile operations. */
 const DEBOUNCE_MS = 150;
 
+interface ReconcileOptions {
+  force?: boolean;
+}
+
 /**
- * Cached values from the last applyTint/removeTint for cheap
- * status bar refreshes.
+ * Cached values from the last reconcile for cheap status bar
+ * refreshes.
  */
 interface CachedTintState {
   workspaceIdentifier: string | undefined;
@@ -56,32 +56,187 @@ let cached: CachedTintState = {
   customizedOutsidePatina: false,
 };
 
-function debouncedApplyTint(): void {
-  if (removeTintTimeout) {
-    clearTimeout(removeTintTimeout);
-    removeTintTimeout = undefined;
+// --- Serialized reconcile state ---
+
+/** Monotonic counter bumped on every requestReconcile(). */
+let requestGeneration = 0;
+
+/** Promise chain ensuring only one reconcile worker runs at a time. */
+let reconcileChain: Promise<void> = Promise.resolve();
+
+/** Debounce timer for requestReconcile(). */
+let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+
+/** Returns true if this generation has been superseded. */
+function isStale(gen: number): boolean {
+  return gen !== requestGeneration;
+}
+
+/**
+ * Request a reconcile. Bumps generation, resets debounce timer.
+ * The actual worker is enqueued after the debounce delay.
+ */
+function requestReconcile(options?: ReconcileOptions): void {
+  const gen = ++requestGeneration;
+  if (debounceTimer !== undefined) {
+    clearTimeout(debounceTimer);
   }
-  if (applyTintTimeout) {
-    clearTimeout(applyTintTimeout);
-  }
-  applyTintTimeout = setTimeout(() => {
-    applyTintTimeout = undefined;
-    applyTint();
+  debounceTimer = setTimeout(() => {
+    debounceTimer = undefined;
+    if (isStale(gen)) {
+      return; // superseded while waiting
+    }
+    enqueueReconcile(gen, options);
   }, DEBOUNCE_MS);
 }
 
-function debouncedRemoveTint(): void {
-  if (applyTintTimeout) {
-    clearTimeout(applyTintTimeout);
-    applyTintTimeout = undefined;
+/**
+ * Enqueue a reconcile worker onto the promise chain so only one
+ * runs at a time.
+ */
+function enqueueReconcile(gen: number, options?: ReconcileOptions): void {
+  reconcileChain = reconcileChain.then(() => reconcileWorker(gen, options));
+}
+
+/**
+ * Wrapper that delegates to doReconcile, catching errors so the
+ * promise chain never rejects.
+ */
+async function reconcileWorker(
+  gen: number,
+  options?: ReconcileOptions
+): Promise<void> {
+  if (isStale(gen)) {
+    return;
   }
-  if (removeTintTimeout) {
-    clearTimeout(removeTintTimeout);
+  try {
+    await doReconcile(gen, options);
+  } catch (err) {
+    console.error('[Patina] reconcile error:', err);
   }
-  removeTintTimeout = setTimeout(() => {
-    removeTintTimeout = undefined;
-    removeTint();
-  }, DEBOUNCE_MS);
+}
+
+/** Reset cached state to empty and refresh the status bar. */
+function resetCachedState(): void {
+  cached = {
+    workspaceIdentifier: undefined,
+    tintColors: undefined,
+    customizedOutsidePatina: false,
+    lastError: undefined,
+  };
+  refreshStatusBar();
+}
+
+/**
+ * Write colorCustomizations with stale-check and error handling.
+ * Returns true on successful write that is still current.
+ */
+async function writeColorConfig(
+  gen: number,
+  value: ColorCustomizations | undefined
+): Promise<boolean> {
+  if (isStale(gen)) return false;
+  try {
+    const config = vscode.workspace.getConfiguration();
+    await config.update(
+      'workbench.colorCustomizations',
+      value,
+      vscode.ConfigurationTarget.Workspace
+    );
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[Patina] Failed to write color customizations:', err);
+    cached = { ...cached, lastError: message };
+    refreshStatusBar();
+    return false;
+  }
+  return !isStale(gen);
+}
+
+/** Strip Patina colors from config and reset cached state. */
+async function clearTintColors(gen: number): Promise<void> {
+  const config = vscode.workspace.getConfiguration();
+  const existing = config.get<ColorCustomizations>(
+    'workbench.colorCustomizations'
+  );
+  const remaining = removePatinaColors(existing);
+  if (await writeColorConfig(gen, remaining)) {
+    resetCachedState();
+  }
+}
+
+/** Compute and write tint colors to config. */
+async function applyTintColors(
+  gen: number,
+  identifier: string,
+  tintConfig: ReturnType<typeof getTintConfig>,
+  force: boolean
+): Promise<void> {
+  const themeConfig = getThemeConfig();
+  const themeContext = getThemeContext(tintConfig.mode);
+  const colorScheme = getColorScheme();
+  const tintResult = computeTint({
+    workspaceIdentifier: identifier,
+    targets: tintConfig.targets,
+    themeType: themeContext.tintType,
+    colorScheme,
+    themeColors: themeContext.colors,
+    themeBlendFactor: themeConfig.blendFactor,
+    targetBlendFactors: themeConfig.targetBlendFactors,
+    seed: tintConfig.seed,
+  });
+  const colors = tintResultToPalette(tintResult);
+
+  const config = vscode.workspace.getConfiguration();
+  const existing = config.get<ColorCustomizations>(
+    'workbench.colorCustomizations'
+  );
+
+  // Guard: if managed colors exist but marker is absent, an
+  // external tool or user has modified settings — refuse to
+  // overwrite (unless force).
+  if (!force && hasPatinaColorsWithoutMarker(existing)) {
+    cached = { ...cached, customizedOutsidePatina: true };
+    refreshStatusBar();
+    return;
+  }
+
+  const merged = mergeColorCustomizations(existing, colors);
+  if (await writeColorConfig(gen, merged)) {
+    cached = {
+      workspaceIdentifier: identifier,
+      tintColors: tintResultToStatusBarColors(tintResult),
+      customizedOutsidePatina: false,
+      lastError: undefined,
+    };
+    refreshStatusBar();
+  }
+}
+
+/**
+ * Unified apply/remove logic. Reads config fresh and decides
+ * whether to apply or remove colors.
+ */
+async function doReconcile(
+  gen: number,
+  options?: ReconcileOptions
+): Promise<void> {
+  const force = options?.force ?? false;
+  const tintConfig = getTintConfig();
+
+  if (!isEnabledForWorkspace() || tintConfig.targets.length === 0) {
+    await clearTintColors(gen);
+    return;
+  }
+
+  const identifierConfig = getWorkspaceIdentifierConfig();
+  const identifier = getWorkspaceIdentifier(identifierConfig);
+  if (!identifier) {
+    resetCachedState();
+    return;
+  }
+
+  await applyTintColors(gen, identifier, tintConfig, force);
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -89,7 +244,7 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(statusBar);
 
   // Apply tint on activation
-  debouncedApplyTint();
+  requestReconcile();
 
   context.subscriptions.push(
     vscode.commands.registerCommand('patina.copyColor', (hex: string) => {
@@ -163,22 +318,8 @@ export async function activate(context: vscode.ExtensionContext) {
       );
       refreshStatusBar();
     }),
-    vscode.commands.registerCommand('patina.forceApply', async () => {
-      // Inject the ownership marker into existing colors, then re-apply.
-      const config = vscode.workspace.getConfiguration();
-      const existing = config.get<ColorCustomizations>(
-        'workbench.colorCustomizations'
-      );
-      if (existing) {
-        const updated = { ...existing };
-        updated[PATINA_ACTIVE_KEY] = PATINA_ACTIVE_VALUE;
-        await config.update(
-          'workbench.colorCustomizations',
-          updated,
-          vscode.ConfigurationTarget.Workspace
-        );
-      }
-      await applyTint();
+    vscode.commands.registerCommand('patina.forceApply', () => {
+      requestReconcile({ force: true });
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
       // Handle VS Code theme changes
@@ -187,7 +328,7 @@ export async function activate(context: vscode.ExtensionContext) {
         e.affectsConfiguration('workbench.preferredDarkColorTheme') ||
         e.affectsConfiguration('workbench.preferredLightColorTheme')
       ) {
-        debouncedApplyTint();
+        requestReconcile();
         return;
       }
       if (e.affectsConfiguration('patina.statusBar.enabled')) {
@@ -195,11 +336,7 @@ export async function activate(context: vscode.ExtensionContext) {
         return;
       }
       if (e.affectsConfiguration('patina.enabled')) {
-        if (isEnabledForWorkspace()) {
-          debouncedApplyTint();
-        } else {
-          debouncedRemoveTint();
-        }
+        requestReconcile();
         return;
       }
       if (
@@ -208,132 +345,15 @@ export async function activate(context: vscode.ExtensionContext) {
         e.affectsConfiguration('patina.theme') ||
         e.affectsConfiguration('patina.elements')
       ) {
-        debouncedApplyTint();
+        requestReconcile();
       }
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
-      // Debounce handles race condition where activeColorTheme fires before
-      // workbench.colorTheme config is updated
-      debouncedApplyTint();
+      // Debounce handles race condition where activeColorTheme
+      // fires before workbench.colorTheme config is updated
+      requestReconcile();
     })
   );
-}
-
-async function applyTint(): Promise<void> {
-  if (!isEnabledForWorkspace()) {
-    await removeTint();
-    return;
-  }
-
-  const identifierConfig = getWorkspaceIdentifierConfig();
-  const identifier = getWorkspaceIdentifier(identifierConfig);
-  if (!identifier) {
-    cached = {
-      workspaceIdentifier: undefined,
-      tintColors: undefined,
-      customizedOutsidePatina: false,
-      lastError: undefined,
-    };
-    refreshStatusBar();
-    return;
-  }
-
-  const tintConfig = getTintConfig();
-  if (tintConfig.targets.length === 0) {
-    await removeTint();
-    return;
-  }
-
-  const themeConfig = getThemeConfig();
-  const themeContext = getThemeContext(tintConfig.mode);
-  const colorScheme = getColorScheme();
-  const tintResult = computeTint({
-    workspaceIdentifier: identifier,
-    targets: tintConfig.targets,
-    themeType: themeContext.tintType,
-    colorScheme,
-    themeColors: themeContext.colors,
-    themeBlendFactor: themeConfig.blendFactor,
-    targetBlendFactors: themeConfig.targetBlendFactors,
-    seed: tintConfig.seed,
-  });
-  const colors = tintResultToPalette(tintResult);
-  const config = vscode.workspace.getConfiguration();
-  const existing = config.get<ColorCustomizations>(
-    'workbench.colorCustomizations'
-  );
-
-  // Guard: if managed colors exist but marker is absent, an
-  // external tool or user has modified settings — refuse to
-  // overwrite.
-  if (hasPatinaColorsWithoutMarker(existing)) {
-    cached = {
-      ...cached,
-      customizedOutsidePatina: true,
-    };
-    refreshStatusBar();
-    return;
-  }
-
-  const merged = mergeColorCustomizations(existing, colors);
-  try {
-    await config.update(
-      'workbench.colorCustomizations',
-      merged,
-      vscode.ConfigurationTarget.Workspace
-    );
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error('[Patina] Failed to update color customizations:', err);
-    cached = {
-      ...cached,
-      lastError: message,
-    };
-    refreshStatusBar();
-    return;
-  }
-
-  // Only update cached state after successful write
-  cached = {
-    workspaceIdentifier: identifier,
-    tintColors: tintResultToStatusBarColors(tintResult),
-    customizedOutsidePatina: false,
-    lastError: undefined,
-  };
-  refreshStatusBar();
-}
-
-async function removeTint(): Promise<void> {
-  const config = vscode.workspace.getConfiguration();
-  const existing = config.get<ColorCustomizations>(
-    'workbench.colorCustomizations'
-  );
-
-  const remaining = removePatinaColors(existing);
-  try {
-    await config.update(
-      'workbench.colorCustomizations',
-      remaining,
-      vscode.ConfigurationTarget.Workspace
-    );
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error('[Patina] Failed to remove color customizations:', err);
-    cached = {
-      ...cached,
-      lastError: message,
-    };
-    refreshStatusBar();
-    return;
-  }
-
-  cached = {
-    workspaceIdentifier: undefined,
-    tintColors: undefined,
-    customizedOutsidePatina: false,
-    lastError: undefined,
-  };
-  refreshStatusBar();
 }
 
 /**
@@ -363,12 +383,10 @@ function refreshStatusBar(): void {
 }
 
 export function deactivate() {
-  if (applyTintTimeout) {
-    clearTimeout(applyTintTimeout);
-    applyTintTimeout = undefined;
+  if (debounceTimer !== undefined) {
+    clearTimeout(debounceTimer);
+    debounceTimer = undefined;
   }
-  if (removeTintTimeout) {
-    clearTimeout(removeTintTimeout);
-    removeTintTimeout = undefined;
-  }
+  // Bump generation to cancel any in-flight workers
+  requestGeneration++;
 }
