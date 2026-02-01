@@ -7,6 +7,7 @@ import type { ElementType } from '../theme';
 import type { TintTarget } from '../config';
 import { capitalizeFirst } from '../statusBar/helpers';
 import { escapeHtml } from '../webview';
+import { renderWebviewHtml } from '../webview/html';
 
 /**
  * Element groups in display order with their labels.
@@ -242,38 +243,9 @@ function generateColorTable(colors: StatusColorDetail[]): string {
 }
 
 /**
- * Generates the complete status HTML document.
- *
- * @param state - The current status state
- * @param nonce - CSP nonce for inline scripts
- * @param cspSource - CSP source for styles
- * @returns Complete HTML document string
+ * Status-specific CSS (appended after the base body reset).
  */
-export function generateStatusHtml(
-  state: StatusState,
-  nonce: string,
-  cspSource: string
-): string {
-  const generalInfo = generateGeneralInfo(state);
-  const colorTable = generateColorTable(state.colors);
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
-  <title>Patina Status</title>
-  <style>
-    body {
-      font-family: var(--vscode-font-family);
-      font-size: var(--vscode-font-size);
-      color: var(--vscode-foreground);
-      background: var(--vscode-editor-background);
-      padding: 16px;
-      margin: 0;
-    }
-
+const STATUS_CSS = `
     h2 {
       font-size: 14px;
       font-weight: 600;
@@ -410,11 +382,40 @@ export function generateStatusHtml(
 
     .refresh-btn:hover {
       background: var(--vscode-button-secondaryHoverBackground);
-    }
-  </style>
-</head>
-<body>
-  <div class="toolbar">
+    }`;
+
+/**
+ * Status-specific script (runs inside an IIFE with acquireVsCodeApi).
+ */
+const STATUS_SCRIPT = `const vscode = acquireVsCodeApi();
+
+      document.getElementById('refreshBtn')
+        .addEventListener('click', () => {
+          vscode.postMessage({ type: 'refresh' });
+        });`;
+
+/**
+ * Generates the complete status HTML document.
+ *
+ * @param state - The current status state
+ * @param nonce - CSP nonce for inline scripts
+ * @param cspSource - CSP source for styles
+ * @returns Complete HTML document string
+ */
+export function generateStatusHtml(
+  state: StatusState,
+  nonce: string,
+  cspSource: string
+): string {
+  const generalInfo = generateGeneralInfo(state);
+  const colorTable = generateColorTable(state.colors);
+
+  return renderWebviewHtml({
+    title: 'Patina Status',
+    nonce,
+    cspSource,
+    css: STATUS_CSS,
+    body: `<div class="toolbar">
     <button class="refresh-btn" id="refreshBtn">Refresh</button>
   </div>
 
@@ -422,18 +423,7 @@ export function generateStatusHtml(
   ${generalInfo}
 
   <h2>Color Pipeline</h2>
-  ${colorTable}
-
-  <script nonce="${nonce}">
-    (function() {
-      const vscode = acquireVsCodeApi();
-
-      document.getElementById('refreshBtn')
-        .addEventListener('click', () => {
-          vscode.postMessage({ type: 'refresh' });
-        });
-    })();
-  </script>
-</body>
-</html>`;
+  ${colorTable}`,
+    script: STATUS_SCRIPT,
+  });
 }

@@ -4,6 +4,7 @@ import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
 import { escapeHtml } from '../webview';
+import { renderWebviewHtml } from '../webview/html';
 
 /**
  * Hue labels for column headers (OKLCH-calibrated hue angles).
@@ -200,34 +201,9 @@ function generateSchemesTable(state: PreviewState): string {
 }
 
 /**
- * Generates the complete preview HTML document.
+ * Preview-specific CSS (appended after the base body reset).
  */
-export function generatePreviewHtml(
-  state: PreviewState,
-  nonce: string,
-  cspSource: string
-): string {
-  const themeTabs = generateThemeTabs(state.themeType);
-  const workspaceSection = generateWorkspaceSection(state);
-  const schemesTable = generateSchemesTable(state);
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
-  <title>Patina Color Preview</title>
-  <style>
-    body {
-      font-family: var(--vscode-font-family);
-      font-size: var(--vscode-font-size);
-      color: var(--vscode-foreground);
-      background: var(--vscode-editor-background);
-      padding: 16px;
-      margin: 0;
-    }
-
+const PREVIEW_CSS = `
     .theme-tabs {
       display: flex;
       gap: 8px;
@@ -385,18 +361,12 @@ export function generatePreviewHtml(
       margin-top: 16px;
       font-size: 12px;
       color: var(--vscode-descriptionForeground);
-    }
-  </style>
-</head>
-<body>
-  ${themeTabs}
-  ${workspaceSection}
-  ${schemesTable}
-  <p class="hint">Click a row to apply that color scheme.</p>
+    }`;
 
-  <script nonce="${nonce}">
-    (function() {
-      const vscode = acquireVsCodeApi();
+/**
+ * Preview-specific script (runs inside an IIFE with acquireVsCodeApi).
+ */
+const PREVIEW_SCRIPT = `const vscode = acquireVsCodeApi();
 
       // Theme tab click handler
       document.querySelectorAll('.theme-tab').forEach(tab => {
@@ -412,9 +382,29 @@ export function generatePreviewHtml(
           const scheme = row.dataset.scheme;
           vscode.postMessage({ type: 'selectScheme', scheme });
         });
-      });
-    })();
-  </script>
-</body>
-</html>`;
+      });`;
+
+/**
+ * Generates the complete preview HTML document.
+ */
+export function generatePreviewHtml(
+  state: PreviewState,
+  nonce: string,
+  cspSource: string
+): string {
+  const themeTabs = generateThemeTabs(state.themeType);
+  const workspaceSection = generateWorkspaceSection(state);
+  const schemesTable = generateSchemesTable(state);
+
+  return renderWebviewHtml({
+    title: 'Patina Color Preview',
+    nonce,
+    cspSource,
+    css: PREVIEW_CSS,
+    body: `${themeTabs}
+  ${workspaceSection}
+  ${schemesTable}
+  <p class="hint">Click a row to apply that color scheme.</p>`,
+    script: PREVIEW_SCRIPT,
+  });
 }

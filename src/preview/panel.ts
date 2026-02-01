@@ -11,56 +11,29 @@ import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
 import { generateAllSchemePreviews, generateWorkspacePreview } from './colors';
 import { generatePreviewHtml } from './html';
-import { generateNonce } from '../webview';
+import { BaseWebviewPanel } from '../webview/panel';
+
+/**
+ * Configuration sections that trigger a preview panel re-render.
+ */
+const CONFIG_SECTIONS = [
+  'patina.tint',
+  'patina.theme',
+  'patina.workspaceIdentifier',
+] as const;
 
 /**
  * Manages the color palette preview webview panel.
  */
-export class PalettePreviewPanel {
+export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
   public static readonly viewType = 'patina.colorPreview';
 
   private static instance: PalettePreviewPanel | undefined;
 
-  private readonly panel: vscode.WebviewPanel;
-  private disposables: vscode.Disposable[] = [];
   private selectedThemeType: ThemeType | undefined;
 
   private constructor(panel: vscode.WebviewPanel) {
-    this.panel = panel;
-
-    this.update();
-
-    // Handle panel disposal
-    this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
-
-    // Handle messages from webview
-    this.panel.webview.onDidReceiveMessage(
-      (message: PreviewMessage) => this.handleMessage(message),
-      null,
-      this.disposables
-    );
-
-    // Re-render when configuration changes
-    this.disposables.push(
-      vscode.workspace.onDidChangeConfiguration((e) => {
-        if (
-          e.affectsConfiguration('patina.tint') ||
-          e.affectsConfiguration('patina.theme') ||
-          e.affectsConfiguration('patina.workspaceIdentifier')
-        ) {
-          this.update();
-        }
-      })
-    );
-
-    // Re-render when theme changes
-    this.disposables.push(
-      vscode.window.onDidChangeActiveColorTheme(() => {
-        // Clear manual selection when theme changes
-        this.selectedThemeType = undefined;
-        setTimeout(() => this.update(), 0);
-      })
-    );
+    super(panel, { configSections: CONFIG_SECTIONS });
   }
 
   /**
@@ -87,14 +60,11 @@ export class PalettePreviewPanel {
   }
 
   /**
-   * Updates the webview content.
+   * Generates the preview panel HTML.
    */
-  public update(): void {
+  protected generateHtml(nonce: string, cspSource: string): string {
     const state = this.buildState();
-    const nonce = generateNonce();
-    const cspSource = this.panel.webview.cspSource;
-
-    this.panel.webview.html = generatePreviewHtml(state, nonce, cspSource);
+    return generatePreviewHtml(state, nonce, cspSource);
   }
 
   /**
@@ -137,7 +107,7 @@ export class PalettePreviewPanel {
   /**
    * Handles messages from the webview.
    */
-  private async handleMessage(message: PreviewMessage): Promise<void> {
+  protected async handleMessage(message: PreviewMessage): Promise<void> {
     switch (message.type) {
       case 'selectScheme': {
         const config = vscode.workspace.getConfiguration('patina');
@@ -169,18 +139,17 @@ export class PalettePreviewPanel {
   }
 
   /**
+   * Clears manual theme type selection when the VS Code theme changes.
+   */
+  protected override onThemeChanged(): void {
+    this.selectedThemeType = undefined;
+  }
+
+  /**
    * Disposes of the panel and cleans up resources.
    */
-  public dispose(): void {
+  public override dispose(): void {
     PalettePreviewPanel.instance = undefined;
-
-    this.panel.dispose();
-
-    while (this.disposables.length) {
-      const disposable = this.disposables.pop();
-      if (disposable) {
-        disposable.dispose();
-      }
-    }
+    super.dispose();
   }
 }
