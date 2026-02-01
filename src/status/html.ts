@@ -365,9 +365,9 @@ const STATUS_CSS = `
     }
 
     .toolbar {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 12px;
+      float: right;
+      margin-left: 12px;
+      margin-bottom: 4px;
     }
 
     .refresh-btn {
