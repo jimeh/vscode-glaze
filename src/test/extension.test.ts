@@ -104,8 +104,9 @@ async function waitForPatinaColorsCleared(
 suite('Extension Test Suite', () => {
   suiteSetup(async () => {
     // Ensure extension is activated
-    const ext = vscode.extensions.getExtension('undefined_publisher.patina');
-    if (ext && !ext.isActive) {
+    const ext = vscode.extensions.getExtension('jimeh.patina');
+    assert.ok(ext, 'Patina extension (jimeh.patina) not found');
+    if (!ext.isActive) {
       await ext.activate();
     }
   });
@@ -119,6 +120,101 @@ suite('Extension Test Suite', () => {
     test('patina.disableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
       assert.ok(commands.includes('patina.disableGlobally'));
+    });
+  });
+
+  suite('Disabled behavior', () => {
+    let originalEnabledGlobal: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      originalEnabledGlobal = inspection?.globalValue;
+      originalEnabledWorkspace = inspection?.workspaceValue;
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      originalColorCustomizations = config.get('workbench.colorCustomizations');
+    });
+
+    suiteTeardown(async () => {
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabledGlobal,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        originalEnabledWorkspace,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('does not mutate workbench.colorCustomizations when disabled', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const seededColors = { 'editor.background': '#aabbcc' };
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        seededColors,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const ext = vscode.extensions.getExtension('jimeh.patina');
+      assert.ok(ext, 'Patina extension (jimeh.patina) not found');
+      if (!ext.isActive) {
+        await ext.activate();
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 400));
+
+      const inspection = config.inspect<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.deepStrictEqual(
+        inspection?.workspaceValue,
+        seededColors,
+        'workbench.colorCustomizations should be unchanged when disabled'
+      );
+      if (inspection?.workspaceValue) {
+        for (const key of Object.keys(inspection.workspaceValue)) {
+          assert.ok(
+            !isPatinaKey(key),
+            `Patina key ${key} should not be present when disabled`
+          );
+        }
+      }
     });
   });
 
