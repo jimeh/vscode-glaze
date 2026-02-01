@@ -1,13 +1,11 @@
-const NONCE_CHARS =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+import { randomBytes } from 'crypto';
 
 /**
- * Generates a random 32-character alphanumeric nonce for CSP.
+ * Generates a cryptographically secure nonce for CSP.
+ *
+ * Uses `crypto.randomBytes` instead of `Math.random` for
+ * unpredictable output suitable for Content-Security-Policy.
  */
 export function generateNonce(): string {
-  let nonce = '';
-  for (let i = 0; i < 32; i++) {
-    nonce += NONCE_CHARS.charAt(Math.floor(Math.random() * NONCE_CHARS.length));
-  }
-  return nonce;
+  return randomBytes(24).toString('base64url');
 }

@@ -49,7 +49,13 @@ export function blendWithThemeOklch(
   themeBackgroundHex: string,
   blendFactor: number
 ): OKLCH {
-  const themeOklch = hexToOklch(themeBackgroundHex);
+  let themeOklch;
+  try {
+    themeOklch = hexToOklch(themeBackgroundHex);
+  } catch {
+    // Invalid hex — skip blending, return tint unchanged.
+    return tintOklch;
+  }
   const factor = Math.max(0, Math.min(1, blendFactor));
 
   // Interpolate all components toward theme

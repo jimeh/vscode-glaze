@@ -135,6 +135,10 @@ suite('colorSwatch', () => {
     assert.ok(lower.includes('#abc123'));
     assert.ok(upper.includes('#ABC123'));
   });
+
+  test('throws on invalid hex', () => {
+    assert.throws(() => colorSwatch('not-a-hex'), /Invalid hex color/);
+  });
 });
 
 suite('clickableColorSwatch', () => {
@@ -157,6 +161,13 @@ suite('clickableColorSwatch', () => {
     const upper = clickableColorSwatch('#ABC123');
     assert.ok(lower.includes('`#abc123`'));
     assert.ok(upper.includes('`#ABC123`'));
+  });
+
+  test('includes color name in output', () => {
+    const result = clickableColorSwatch('#ff0000');
+    // getColorName returns a human-readable name; just verify
+    // it appears quoted in the output
+    assert.ok(result.includes('"'), 'should include quoted color name');
   });
 });
 

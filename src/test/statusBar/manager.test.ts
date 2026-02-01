@@ -405,6 +405,106 @@ suite('StatusBarManager', () => {
     }
   });
 
+  suite('error state', () => {
+    test('shows error text when lastError is set', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+        lastError: 'Unable to write settings',
+      };
+
+      manager.update(state);
+      assert.strictEqual(manager.item.text, `${ICON} $(error) Error`);
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Failed to apply colors'),
+        `tooltip should show error, got: ${tip}`
+      );
+      assert.ok(
+        tip.includes('Unable to write settings'),
+        `tooltip should include error message, got: ${tip}`
+      );
+    });
+
+    test('error takes priority over customized warning', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: undefined,
+        customizedOutsidePatina: true,
+        lastError: 'Write failed',
+      };
+
+      manager.update(state);
+      assert.strictEqual(
+        manager.item.text,
+        `${ICON} $(error) Error`,
+        'error should take priority over modified warning'
+      );
+    });
+
+    test('clears error when lastError is undefined', async () => {
+      await enableStatusBar();
+
+      // First show error
+      const errorState: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+        lastError: 'Some error',
+      };
+      manager.update(errorState);
+      assert.strictEqual(manager.item.text, `${ICON} $(error) Error`);
+
+      // Then clear error
+      const okState: StatusBarState = {
+        ...errorState,
+        lastError: undefined,
+      };
+      manager.update(okState);
+      assert.ok(
+        manager.item.text.startsWith(`${ICON} `),
+        `expected icon prefix after error clear, got: ${manager.item.text}`
+      );
+      assert.ok(
+        !manager.item.text.includes('Error'),
+        'should not show error after clear'
+      );
+    });
+  });
+
   suite('all color schemes', () => {
     const colorSchemes: Array<
       | 'pastel'

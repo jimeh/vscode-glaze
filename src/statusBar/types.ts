@@ -48,4 +48,7 @@ export interface StatusBarState {
 
   /** Whether managed colors were modified outside of Patina. */
   customizedOutsidePatina: boolean;
+
+  /** Error message from the last failed apply/remove operation. */
+  lastError?: string;
 }

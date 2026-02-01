@@ -7,9 +7,9 @@ suite('generateNonce', () => {
     assert.strictEqual(nonce.length, 32);
   });
 
-  test('contains only alphanumeric characters', () => {
+  test('contains only base64url characters', () => {
     const nonce = generateNonce();
-    assert.match(nonce, /^[A-Za-z0-9]+$/);
+    assert.match(nonce, /^[A-Za-z0-9_-]+$/);
   });
 
   test('generates unique values across 100 calls', () => {

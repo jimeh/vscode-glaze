@@ -18,6 +18,10 @@ suite('escapeHtml', () => {
     assert.strictEqual(escapeHtml('a"b'), 'a&quot;b');
   });
 
+  test('escapes single quote', () => {
+    assert.strictEqual(escapeHtml("a'b"), 'a&#39;b');
+  });
+
   test('returns empty string unchanged', () => {
     assert.strictEqual(escapeHtml(''), '');
   });
@@ -28,8 +32,8 @@ suite('escapeHtml', () => {
 
   test('escapes all special characters in one string', () => {
     assert.strictEqual(
-      escapeHtml('<div class="a&b">'),
-      '&lt;div class=&quot;a&amp;b&quot;&gt;'
+      escapeHtml(`<div class="a&b" title='c'>`),
+      '&lt;div class=&quot;a&amp;b&quot; title=&#39;c&#39;&gt;'
     );
   });
 

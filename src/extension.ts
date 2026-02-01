@@ -47,6 +47,7 @@ interface CachedTintState {
   workspaceIdentifier: string | undefined;
   tintColors: TintColors | undefined;
   customizedOutsidePatina: boolean;
+  lastError?: string;
 }
 
 let cached: CachedTintState = {
@@ -231,6 +232,7 @@ async function applyTint(): Promise<void> {
       workspaceIdentifier: undefined,
       tintColors: undefined,
       customizedOutsidePatina: false,
+      lastError: undefined,
     };
     refreshStatusBar();
     return;
@@ -281,7 +283,13 @@ async function applyTint(): Promise<void> {
       vscode.ConfigurationTarget.Workspace
     );
   } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
     console.error('[Patina] Failed to update color customizations:', err);
+    cached = {
+      ...cached,
+      lastError: message,
+    };
+    refreshStatusBar();
     return;
   }
 
@@ -290,6 +298,7 @@ async function applyTint(): Promise<void> {
     workspaceIdentifier: identifier,
     tintColors: tintResultToStatusBarColors(tintResult),
     customizedOutsidePatina: false,
+    lastError: undefined,
   };
   refreshStatusBar();
 }
@@ -308,7 +317,13 @@ async function removeTint(): Promise<void> {
       vscode.ConfigurationTarget.Workspace
     );
   } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
     console.error('[Patina] Failed to remove color customizations:', err);
+    cached = {
+      ...cached,
+      lastError: message,
+    };
+    refreshStatusBar();
     return;
   }
 
@@ -316,6 +331,7 @@ async function removeTint(): Promise<void> {
     workspaceIdentifier: undefined,
     tintColors: undefined,
     customizedOutsidePatina: false,
+    lastError: undefined,
   };
   refreshStatusBar();
 }
@@ -340,6 +356,7 @@ function refreshStatusBar(): void {
     seed: tintConfig.seed,
     tintColors: cached.tintColors,
     customizedOutsidePatina: cached.customizedOutsidePatina,
+    lastError: cached.lastError,
   };
 
   statusBar.update(state);

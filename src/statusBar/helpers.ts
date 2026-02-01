@@ -1,5 +1,6 @@
 import type { ThemeType } from '../theme';
 import { getColorName } from '../color';
+import { assertHex, escapeHtml } from '../webview';
 
 /**
  * Determines if Patina is effectively enabled for the current workspace.
@@ -56,6 +57,7 @@ export function getThemeModeLabel(
  * Creates an HTML color swatch span element.
  */
 export function colorSwatch(hex: string): string {
+  assertHex(hex);
   return (
     `<span style="background-color:${hex};border-radius:2px;">` +
     '&nbsp;&nbsp;&nbsp;</span>'
@@ -67,7 +69,7 @@ export function colorSwatch(hex: string): string {
  */
 export function clickableColorSwatch(hex: string): string {
   const swatch = colorSwatch(hex);
-  const name = getColorName(hex);
+  const name = escapeHtml(getColorName(hex));
   const args = encodeURIComponent(JSON.stringify(hex));
   return `${swatch} "${name}" \`${hex}\` [$(copy)](command:patina.copyColor?${args})`;
 }

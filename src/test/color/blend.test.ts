@@ -130,12 +130,20 @@ suite('blendWithThemeOklch', () => {
     );
   });
 
-  test('throws on invalid theme hex', () => {
+  test('returns tint unblended on invalid theme hex', () => {
     const tint = { l: 0.5, c: 0.15, h: 200 };
-    assert.throws(
-      () => blendWithThemeOklch(tint, 'invalid', 0.5),
-      'Should throw on invalid hex'
-    );
+    const result = blendWithThemeOklch(tint, 'invalid', 0.5);
+    assert.strictEqual(result.l, tint.l, 'Lightness should match tint');
+    assert.strictEqual(result.c, tint.c, 'Chroma should match tint');
+    assert.strictEqual(result.h, tint.h, 'Hue should match tint');
+  });
+
+  test('returns tint unblended on empty theme hex', () => {
+    const tint = { l: 0.4, c: 0.1, h: 120 };
+    const result = blendWithThemeOklch(tint, '', 0.5);
+    assert.strictEqual(result.l, tint.l);
+    assert.strictEqual(result.c, tint.c);
+    assert.strictEqual(result.h, tint.h);
   });
 
   test('clamps result to sRGB gamut', () => {

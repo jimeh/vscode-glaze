@@ -3,7 +3,7 @@ import type { TintTarget } from '../config';
 import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
-import { escapeHtml } from '../webview';
+import { assertHex, escapeHtml } from '../webview';
 import { renderWebviewHtml } from '../webview/html';
 
 /**
@@ -41,6 +41,14 @@ const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
  */
 function generateSwatch(colors: SchemePreviewColors): string {
   const { titleBar, activityBar, statusBar } = colors;
+
+  // Validate all hex values before interpolating into style attrs
+  assertHex(titleBar.background);
+  assertHex(titleBar.foreground);
+  assertHex(activityBar.background);
+  assertHex(activityBar.foreground);
+  assertHex(statusBar.background);
+  assertHex(statusBar.foreground);
 
   return `
     <div class="swatch">
