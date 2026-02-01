@@ -17,7 +17,7 @@ export const PATINA_ACTIVE_VALUE = '#ef5ec7';
 /**
  * Type for VSCode's workbench.colorCustomizations setting.
  */
-export type ColorCustomizations = Record<string, string>;
+export type ColorCustomizations = Record<string, unknown>;
 
 /**
  * Merges Patina colors with existing color customizations.
@@ -30,7 +30,7 @@ export type ColorCustomizations = Record<string, string>;
  */
 export function mergeColorCustomizations(
   existing: ColorCustomizations | undefined,
-  patinaColors: Partial<ColorCustomizations>
+  patinaColors: Record<string, string>
 ): ColorCustomizations {
   const result: ColorCustomizations = {};
 

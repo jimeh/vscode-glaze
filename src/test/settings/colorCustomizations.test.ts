@@ -2,6 +2,7 @@ import * as assert from 'assert';
 import {
   PATINA_ACTIVE_KEY,
   PATINA_ACTIVE_VALUE,
+  type ColorCustomizations,
   mergeColorCustomizations,
   removePatinaColors,
   hasPatinaColorsWithoutMarker,
@@ -114,6 +115,80 @@ suite('mergeColorCustomizations', () => {
     assert.strictEqual(result['editor.background'], '#aabbcc');
     assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
   });
+
+  test('preserves theme-scoped block during merge', () => {
+    const existing: ColorCustomizations = {
+      '[Monokai]': { 'editor.background': '#1e1e1e' },
+      'editor.background': '#aabbcc',
+    };
+    const patinaColors = {
+      'titleBar.activeBackground': '#112233',
+    };
+
+    const result = mergeColorCustomizations(existing, patinaColors);
+
+    assert.deepStrictEqual(result['[Monokai]'], {
+      'editor.background': '#1e1e1e',
+    });
+    assert.strictEqual(result['editor.background'], '#aabbcc');
+    assert.strictEqual(result['titleBar.activeBackground'], '#112233');
+    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
+  });
+
+  test('preserves multiple theme-scoped blocks', () => {
+    const existing: ColorCustomizations = {
+      '[Monokai]': { 'editor.background': '#1e1e1e' },
+      '[Solarized Dark]': { 'editor.foreground': '#abcdef' },
+    };
+    const patinaColors = {
+      'titleBar.activeBackground': '#112233',
+    };
+
+    const result = mergeColorCustomizations(existing, patinaColors);
+
+    assert.deepStrictEqual(result['[Monokai]'], {
+      'editor.background': '#1e1e1e',
+    });
+    assert.deepStrictEqual(result['[Solarized Dark]'], {
+      'editor.foreground': '#abcdef',
+    });
+  });
+
+  test('preserves non-string top-level values', () => {
+    const existing: ColorCustomizations = {
+      'editor.background': '#aabbcc',
+      someNonStringKey: 42,
+    };
+    const patinaColors = {
+      'titleBar.activeBackground': '#112233',
+    };
+
+    const result = mergeColorCustomizations(existing, patinaColors);
+
+    assert.strictEqual(result['someNonStringKey'], 42);
+    assert.strictEqual(result['editor.background'], '#aabbcc');
+  });
+
+  test('preserves theme-scoped block containing Patina key names', () => {
+    const existing: ColorCustomizations = {
+      '[Monokai]': {
+        'titleBar.activeBackground': '#mono111',
+        'statusBar.background': '#mono222',
+      },
+    };
+    const patinaColors = {
+      'titleBar.activeBackground': '#patina111',
+    };
+
+    const result = mergeColorCustomizations(existing, patinaColors);
+
+    // Theme-scoped block preserved intact — not stripped
+    assert.deepStrictEqual(result['[Monokai]'], {
+      'titleBar.activeBackground': '#mono111',
+      'statusBar.background': '#mono222',
+    });
+    assert.strictEqual(result['titleBar.activeBackground'], '#patina111');
+  });
 });
 
 suite('removePatinaColors', () => {
@@ -199,6 +274,61 @@ suite('removePatinaColors', () => {
 
     assert.strictEqual(result, undefined);
   });
+
+  test('preserves theme-scoped block when Patina keys removed', () => {
+    const existing: ColorCustomizations = {
+      'titleBar.activeBackground': '#111111',
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      '[Monokai]': { 'editor.background': '#1e1e1e' },
+    };
+
+    const result = removePatinaColors(existing);
+
+    assert.deepStrictEqual(result, {
+      '[Monokai]': { 'editor.background': '#1e1e1e' },
+    });
+  });
+
+  test('preserves theme-scoped block with nested Patina key names', () => {
+    const existing: ColorCustomizations = {
+      'titleBar.activeBackground': '#111111',
+      '[Monokai]': {
+        'titleBar.activeBackground': '#mono111',
+      },
+    };
+
+    const result = removePatinaColors(existing);
+
+    assert.deepStrictEqual(result, {
+      '[Monokai]': { 'titleBar.activeBackground': '#mono111' },
+    });
+  });
+
+  test('preserves non-string values during remove', () => {
+    const existing: ColorCustomizations = {
+      'titleBar.activeBackground': '#111111',
+      someNonStringKey: 42,
+    };
+
+    const result = removePatinaColors(existing);
+
+    assert.deepStrictEqual(result, { someNonStringKey: 42 });
+  });
+
+  test('returns theme-scoped block as only remaining content', () => {
+    const existing: ColorCustomizations = {
+      'titleBar.activeBackground': '#111111',
+      'statusBar.background': '#222222',
+      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      '[Solarized Dark]': { 'editor.foreground': '#abcdef' },
+    };
+
+    const result = removePatinaColors(existing);
+
+    assert.deepStrictEqual(result, {
+      '[Solarized Dark]': { 'editor.foreground': '#abcdef' },
+    });
+  });
 });
 
 suite('hasPatinaColorsWithoutMarker', () => {
@@ -246,6 +376,35 @@ suite('hasPatinaColorsWithoutMarker', () => {
   test('returns true when marker key exists with wrong value', () => {
     const existing = {
       [PATINA_ACTIVE_KEY]: '#000000',
+      'titleBar.activeBackground': '#111111',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+  });
+
+  test('returns false when managed keys only inside theme-scoped blocks', () => {
+    const existing: ColorCustomizations = {
+      '[Monokai]': {
+        'titleBar.activeBackground': '#mono111',
+        'statusBar.background': '#mono222',
+      },
+      'editor.background': '#aabbcc',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
+  });
+
+  test('returns true when top-level managed keys alongside theme-scoped blocks', () => {
+    const existing: ColorCustomizations = {
+      '[Monokai]': {
+        'titleBar.activeBackground': '#mono111',
+      },
+      'titleBar.activeBackground': '#111111',
+    };
+    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+  });
+
+  test('returns true when marker value is non-string', () => {
+    const existing: ColorCustomizations = {
+      [PATINA_ACTIVE_KEY]: { nested: true },
       'titleBar.activeBackground': '#111111',
     };
     assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
