@@ -34,7 +34,7 @@ export abstract class BaseWebviewPanel<TMessage> {
     this.panel = panel;
     this.config = config;
 
-    this.update();
+    void this.update();
 
     // Handle panel disposal
     this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
@@ -57,7 +57,7 @@ export abstract class BaseWebviewPanel<TMessage> {
     this.disposables.push(
       vscode.window.onDidChangeActiveColorTheme(() => {
         this.onThemeChanged();
-        setTimeout(() => this.update(), 0);
+        setTimeout(() => void this.update(), 0);
       })
     );
   }
@@ -65,17 +65,20 @@ export abstract class BaseWebviewPanel<TMessage> {
   /**
    * Updates the webview content with current state.
    */
-  public update(): void {
+  public async update(): Promise<void> {
     const nonce = generateNonce();
     const cspSource = this.panel.webview.cspSource;
 
-    this.panel.webview.html = this.generateHtml(nonce, cspSource);
+    this.panel.webview.html = await this.generateHtml(nonce, cspSource);
   }
 
   /**
    * Generates the complete HTML for this panel.
    */
-  protected abstract generateHtml(nonce: string, cspSource: string): string;
+  protected abstract generateHtml(
+    nonce: string,
+    cspSource: string
+  ): Promise<string>;
 
   /**
    * Handles a message received from the webview.
@@ -101,7 +104,7 @@ export abstract class BaseWebviewPanel<TMessage> {
       e.affectsConfiguration(s)
     );
     if (affected) {
-      this.update();
+      void this.update();
     }
   }
 

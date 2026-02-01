@@ -62,18 +62,21 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
   /**
    * Generates the preview panel HTML.
    */
-  protected generateHtml(nonce: string, cspSource: string): string {
-    const state = this.buildState();
+  protected async generateHtml(
+    nonce: string,
+    cspSource: string
+  ): Promise<string> {
+    const state = await this.buildState();
     return generatePreviewHtml(state, nonce, cspSource);
   }
 
   /**
    * Builds the current preview state.
    */
-  private buildState(): PreviewState {
+  private async buildState(): Promise<PreviewState> {
     const tintConfig = getTintConfig();
     const themeConfig = getThemeConfig();
-    const themeContext = getThemeContext(tintConfig.mode);
+    const themeContext = await getThemeContext(tintConfig.mode);
     const currentScheme = getColorScheme();
 
     // Use manual selection if set, otherwise use detected theme type
@@ -132,7 +135,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
       }
       case 'changeThemeType': {
         this.selectedThemeType = message.themeType;
-        this.update();
+        void this.update();
         break;
       }
     }

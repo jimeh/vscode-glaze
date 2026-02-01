@@ -24,7 +24,9 @@ import { detectOsColorScheme } from './osColorScheme';
  * @param themeType - The current theme type as reported by VS Code
  * @returns The effective theme name, or undefined if not found
  */
-export function getThemeName(themeType: ThemeType): string | undefined {
+export async function getThemeName(
+  themeType: ThemeType
+): Promise<string | undefined> {
   const windowConfig = vscode.workspace.getConfiguration('window');
   const autoDetect =
     windowConfig.get<boolean>('autoDetectColorScheme') ?? false;
@@ -62,7 +64,7 @@ export function getThemeName(themeType: ThemeType): string | undefined {
   }
 
   // Phase 2: OS fallback (both matched or neither matched)
-  const osScheme = detectOsColorScheme();
+  const osScheme = await detectOsColorScheme();
   if (osScheme === 'dark') {
     return darkTheme || colorTheme;
   }

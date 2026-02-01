@@ -96,8 +96,8 @@ suite('getThemeName', () => {
         colorTheme: 'Monokai',
       });
 
-      assert.strictEqual(getThemeName('dark'), 'Monokai');
-      assert.strictEqual(getThemeName('light'), 'Monokai');
+      assert.strictEqual(await getThemeName('dark'), 'Monokai');
+      assert.strictEqual(await getThemeName('light'), 'Monokai');
     });
 
     test('returns colorTheme when no preferred themes set', async () => {
@@ -108,8 +108,8 @@ suite('getThemeName', () => {
         colorTheme: 'Default Dark+',
       });
 
-      assert.strictEqual(getThemeName('dark'), 'Default Dark+');
-      assert.strictEqual(getThemeName('light'), 'Default Dark+');
+      assert.strictEqual(await getThemeName('dark'), 'Default Dark+');
+      assert.strictEqual(await getThemeName('light'), 'Default Dark+');
     });
   });
 
@@ -124,7 +124,7 @@ suite('getThemeName', () => {
         colorTheme: 'Monokai',
       });
 
-      assert.strictEqual(getThemeName('dark'), 'Default Dark Modern');
+      assert.strictEqual(await getThemeName('dark'), 'Default Dark Modern');
     });
 
     test('resolves light theme via quick check with distinct types', async () => {
@@ -135,7 +135,7 @@ suite('getThemeName', () => {
         colorTheme: 'Monokai',
       });
 
-      assert.strictEqual(getThemeName('light'), 'Default Light Modern');
+      assert.strictEqual(await getThemeName('light'), 'Default Light Modern');
     });
 
     test('falls back to colorTheme when both preferred are empty', async () => {
@@ -146,8 +146,8 @@ suite('getThemeName', () => {
         colorTheme: 'Monokai',
       });
 
-      assert.strictEqual(getThemeName('dark'), 'Monokai');
-      assert.strictEqual(getThemeName('light'), 'Monokai');
+      assert.strictEqual(await getThemeName('dark'), 'Monokai');
+      assert.strictEqual(await getThemeName('light'), 'Monokai');
     });
 
     test('handles only dark preferred theme set', async () => {
@@ -160,7 +160,7 @@ suite('getThemeName', () => {
 
       // For dark themeType: darkInfo matches (type=dark), lightInfo
       // is undefined (empty name → no lookup). Only dark matches.
-      assert.strictEqual(getThemeName('dark'), 'Default Dark Modern');
+      assert.strictEqual(await getThemeName('dark'), 'Default Dark Modern');
     });
 
     test('handles only light preferred theme set', async () => {
@@ -173,7 +173,7 @@ suite('getThemeName', () => {
 
       // For light themeType: lightInfo matches (type=light),
       // darkInfo is undefined. Only light matches.
-      assert.strictEqual(getThemeName('light'), 'Default Light Modern');
+      assert.strictEqual(await getThemeName('light'), 'Default Light Modern');
     });
 
     test('returns a string for any themeType', async () => {
@@ -185,10 +185,10 @@ suite('getThemeName', () => {
         colorTheme: 'Monokai',
       });
 
-      const darkResult = getThemeName('dark');
-      const lightResult = getThemeName('light');
-      const hcDarkResult = getThemeName('hcDark');
-      const hcLightResult = getThemeName('hcLight');
+      const darkResult = await getThemeName('dark');
+      const lightResult = await getThemeName('light');
+      const hcDarkResult = await getThemeName('hcDark');
+      const hcLightResult = await getThemeName('hcLight');
 
       assert.strictEqual(typeof darkResult, 'string');
       assert.strictEqual(typeof lightResult, 'string');

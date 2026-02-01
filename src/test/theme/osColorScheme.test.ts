@@ -5,15 +5,15 @@ import {
 } from '../../theme/osColorScheme';
 
 suite('detectOsColorScheme', () => {
-  test('returns a valid value', () => {
-    const result = detectOsColorScheme();
+  test('returns a valid value', async () => {
+    const result = await detectOsColorScheme();
     assert.ok(
       result === 'dark' || result === 'light' || result === undefined,
       `Expected 'dark', 'light', or undefined, got: ${result}`
     );
   });
 
-  test('returns a string on supported platforms', function () {
+  test('returns a string on supported platforms', async function () {
     // Only macOS is guaranteed: `defaults` always resolves to
     // 'dark' or 'light'. Linux/Windows can legitimately return
     // undefined in headless or non-standard desktop environments.
@@ -22,7 +22,7 @@ suite('detectOsColorScheme', () => {
       this.skip();
     }
 
-    const result = detectOsColorScheme();
+    const result = await detectOsColorScheme();
     assert.strictEqual(
       typeof result,
       'string',

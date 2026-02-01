@@ -99,12 +99,12 @@ export function computeStatusColors(
  *
  * @returns Complete StatusState for rendering the webview
  */
-export function buildStatusState(): StatusState {
+export async function buildStatusState(): Promise<StatusState> {
   const globalEnabled = isGloballyEnabled();
   const workspaceEnabled = getWorkspaceEnabledOverride();
   const tintConfig = getTintConfig();
   const themeConfig = getThemeConfig();
-  const themeContext = getThemeContext(tintConfig.mode);
+  const themeContext = await getThemeContext(tintConfig.mode);
   const colorScheme = getColorScheme();
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
@@ -138,7 +138,7 @@ export function buildStatusState(): StatusState {
     tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
     themeColorsAvailable: themeContext.colors !== undefined,
-    osColorScheme: detectOsColorScheme(),
+    osColorScheme: await detectOsColorScheme(),
     colorScheme,
     blendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,

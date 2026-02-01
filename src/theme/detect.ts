@@ -30,7 +30,9 @@ export function getThemeTypeFromColorThemeKind(
  * @param themeMode - User's theme mode preference ('auto', 'light', or 'dark')
  * @returns Theme context with the resolved type and detection status
  */
-export function getThemeContext(themeMode: ThemeMode): ThemeContext {
+export async function getThemeContext(
+  themeMode: ThemeMode
+): Promise<ThemeContext> {
   let tintType: ThemeType;
   let isAutoDetected: boolean;
 
@@ -47,7 +49,7 @@ export function getThemeContext(themeMode: ThemeMode): ThemeContext {
   }
 
   // Get the theme name, then look up its colors
-  const name = getThemeName(vsCodeKind);
+  const name = await getThemeName(vsCodeKind);
   const themeInfo = name ? getThemeInfo(name) : undefined;
 
   return {

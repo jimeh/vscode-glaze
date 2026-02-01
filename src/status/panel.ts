@@ -53,8 +53,11 @@ export class StatusPanel extends BaseWebviewPanel<StatusMessage> {
   /**
    * Generates the status panel HTML.
    */
-  protected generateHtml(nonce: string, cspSource: string): string {
-    const state = buildStatusState();
+  protected async generateHtml(
+    nonce: string,
+    cspSource: string
+  ): Promise<string> {
+    const state = await buildStatusState();
     return generateStatusHtml(state, nonce, cspSource);
   }
 
@@ -64,7 +67,7 @@ export class StatusPanel extends BaseWebviewPanel<StatusMessage> {
   protected handleMessage(message: StatusMessage): void {
     switch (message.type) {
       case 'refresh':
-        this.update();
+        void this.update();
         break;
     }
   }

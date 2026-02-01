@@ -117,14 +117,14 @@ async function reconcileWorker(
 }
 
 /** Reset cached state to empty and refresh the status bar. */
-function resetCachedState(): void {
+async function resetCachedState(): Promise<void> {
   cached = {
     workspaceIdentifier: undefined,
     tintColors: undefined,
     customizedOutsidePatina: false,
     lastError: undefined,
   };
-  refreshStatusBar();
+  await refreshStatusBar();
 }
 
 /**
@@ -147,7 +147,7 @@ async function writeColorConfig(
     const message = err instanceof Error ? err.message : String(err);
     console.error('[Patina] Failed to write color customizations:', err);
     cached = { ...cached, lastError: message };
-    refreshStatusBar();
+    await refreshStatusBar();
     return false;
   }
   return !isStale(gen);
@@ -161,7 +161,7 @@ async function clearTintColors(gen: number): Promise<void> {
   );
   const remaining = removePatinaColors(existing);
   if (await writeColorConfig(gen, remaining)) {
-    resetCachedState();
+    await resetCachedState();
   }
 }
 
@@ -173,7 +173,7 @@ async function applyTintColors(
   force: boolean
 ): Promise<void> {
   const themeConfig = getThemeConfig();
-  const themeContext = getThemeContext(tintConfig.mode);
+  const themeContext = await getThemeContext(tintConfig.mode);
   const colorScheme = getColorScheme();
   const tintResult = computeTint({
     workspaceIdentifier: identifier,
@@ -197,7 +197,7 @@ async function applyTintColors(
   // overwrite (unless force).
   if (!force && hasPatinaColorsWithoutMarker(existing)) {
     cached = { ...cached, customizedOutsidePatina: true };
-    refreshStatusBar();
+    await refreshStatusBar();
     return;
   }
 
@@ -209,7 +209,7 @@ async function applyTintColors(
       customizedOutsidePatina: false,
       lastError: undefined,
     };
-    refreshStatusBar();
+    await refreshStatusBar();
   }
 }
 
@@ -232,7 +232,7 @@ async function doReconcile(
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
-    resetCachedState();
+    await resetCachedState();
     return;
   }
 
@@ -307,7 +307,7 @@ export async function activate(context: vscode.ExtensionContext) {
       );
       // Refresh status bar immediately so the tooltip reflects the
       // new seed without waiting for the debounced config listener.
-      refreshStatusBar();
+      await refreshStatusBar();
     }),
     vscode.commands.registerCommand('patina.resetSeed', async () => {
       const config = vscode.workspace.getConfiguration('patina');
@@ -316,7 +316,7 @@ export async function activate(context: vscode.ExtensionContext) {
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
-      refreshStatusBar();
+      await refreshStatusBar();
     }),
     vscode.commands.registerCommand('patina.forceApply', () => {
       requestReconcile({ force: true });
@@ -361,9 +361,9 @@ export async function activate(context: vscode.ExtensionContext) {
  * workspace identifier and tint colors from the last
  * apply/remove.
  */
-function refreshStatusBar(): void {
+async function refreshStatusBar(): Promise<void> {
   const tintConfig = getTintConfig();
-  const themeContext = getThemeContext(tintConfig.mode);
+  const themeContext = await getThemeContext(tintConfig.mode);
 
   const state: StatusBarState = {
     globalEnabled: isGloballyEnabled(),

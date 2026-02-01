@@ -1,4 +1,7 @@
-import { execSync } from 'child_process';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
 
 /**
  * Detects the operating system's color scheme (dark or light mode).
@@ -8,21 +11,23 @@ import { execSync } from 'child_process';
  * - Windows: Registry query for AppsUseLightTheme
  * - Linux: `gsettings get org.gnome.desktop.interface color-scheme`
  *
- * All commands are hardcoded strings with no user input, so execSync
+ * All commands are hardcoded strings with no user input, so exec
  * is safe from command injection here.
  *
  * @returns `'dark'` or `'light'` if detected, `undefined` on unsupported
  *   platforms or errors
  */
-export function detectOsColorScheme(): 'dark' | 'light' | undefined {
+export async function detectOsColorScheme(): Promise<
+  'dark' | 'light' | undefined
+> {
   try {
     switch (process.platform) {
       case 'darwin':
-        return detectMacOs();
+        return await detectMacOs();
       case 'win32':
-        return detectWindows();
+        return await detectWindows();
       case 'linux':
-        return detectLinux();
+        return await detectLinux();
       default:
         return undefined;
     }
@@ -34,13 +39,12 @@ export function detectOsColorScheme(): 'dark' | 'light' | undefined {
 
 const EXEC_TIMEOUT = 2000;
 
-function detectMacOs(): 'dark' | 'light' {
+async function detectMacOs(): Promise<'dark' | 'light'> {
   try {
-    const output = execSync('defaults read -g AppleInterfaceStyle', {
+    const { stdout } = await execAsync('defaults read -g AppleInterfaceStyle', {
       timeout: EXEC_TIMEOUT,
-      encoding: 'utf-8',
     });
-    return output.trim().toLowerCase() === 'dark' ? 'dark' : 'light';
+    return stdout.trim().toLowerCase() === 'dark' ? 'dark' : 'light';
   } catch {
     // Command fails when light mode is active (key doesn't exist)
     return 'light';
@@ -67,29 +71,29 @@ export function parseWindowsRegOutput(
   return value === 0 ? 'dark' : 'light';
 }
 
-function detectWindows(): 'dark' | 'light' | undefined {
+async function detectWindows(): Promise<'dark' | 'light' | undefined> {
   try {
-    const output = execSync(
+    const { stdout } = await execAsync(
       'reg query' +
         ' HKCU\\Software\\Microsoft\\Windows' +
         '\\CurrentVersion\\Themes\\Personalize' +
         ' /v AppsUseLightTheme',
-      { timeout: EXEC_TIMEOUT, encoding: 'utf-8' }
+      { timeout: EXEC_TIMEOUT }
     );
-    return parseWindowsRegOutput(output);
+    return parseWindowsRegOutput(stdout);
   } catch (err) {
     console.debug('[Patina] Windows color scheme detection failed:', err);
     return undefined;
   }
 }
 
-function detectLinux(): 'dark' | 'light' | undefined {
+async function detectLinux(): Promise<'dark' | 'light' | undefined> {
   try {
-    const output = execSync(
+    const { stdout } = await execAsync(
       'gsettings get' + ' org.gnome.desktop.interface color-scheme',
-      { timeout: EXEC_TIMEOUT, encoding: 'utf-8' }
+      { timeout: EXEC_TIMEOUT }
     );
-    return output.toLowerCase().includes('dark') ? 'dark' : 'light';
+    return stdout.toLowerCase().includes('dark') ? 'dark' : 'light';
   } catch (err) {
     console.debug('[Patina] Linux color scheme detection failed:', err);
     return undefined;
