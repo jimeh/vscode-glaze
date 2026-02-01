@@ -75,6 +75,17 @@ export function clickableColorSwatch(hex: string): string {
 }
 
 /**
+ * Escapes characters that have special meaning in markdown or HTML.
+ *
+ * Use on user-controlled strings before interpolating them into
+ * `MarkdownString.appendMarkdown()` to prevent injection of HTML
+ * tags or markdown command links.
+ */
+export function escapeForMarkdown(str: string): string {
+  return str.replace(/[\\`*_{}\[\]()<>&~|!]/g, '\\$&');
+}
+
+/**
  * Capitalizes the first character of a string.
  */
 export function capitalizeFirst(str: string): string {
@@ -86,10 +97,14 @@ export function capitalizeFirst(str: string): string {
  * Single values stay inline; multi-line values get formatted as a list.
  */
 export function formatWorkspaceIdForDisplay(id: string): string {
-  if (!id.includes('\n')) {
-    return `\`${id}\``;
+  // Replace backticks with single quotes to prevent code-span breakout.
+  // Content inside backtick code spans is already safe from HTML rendering.
+  const safe = id.replace(/`/g, "'");
+
+  if (!safe.includes('\n')) {
+    return `\`${safe}\``;
   }
   // Multi-folder: each on its own line with HTML line breaks
-  const folders = id.split('\n');
+  const folders = safe.split('\n');
   return '<br>' + folders.map((f) => `\`${f}\``).join('<br>');
 }

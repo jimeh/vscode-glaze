@@ -4,6 +4,7 @@ export {
   capitalizeFirst,
   clickableColorSwatch,
   colorSwatch,
+  escapeForMarkdown,
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,

@@ -4,6 +4,7 @@ import { getStatusBarEnabled } from '../config';
 import {
   capitalizeFirst,
   clickableColorSwatch,
+  escapeForMarkdown,
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
@@ -95,7 +96,9 @@ export class StatusBarManager implements vscode.Disposable {
 
   private buildTooltip(isActive: boolean): vscode.MarkdownString {
     const md = new vscode.MarkdownString();
-    md.isTrusted = true;
+    md.isTrusted = {
+      enabledCommands: ['patina.copyColor', 'patina.forceApply'],
+    };
     md.supportThemeIcons = true;
     md.supportHtml = true;
 
@@ -113,7 +116,8 @@ export class StatusBarManager implements vscode.Disposable {
     // Error from last apply/remove attempt
     if (state.lastError) {
       md.appendMarkdown(
-        `$(error) **Failed to apply colors:** ${state.lastError}\n\n`
+        `$(error) **Failed to apply colors:** ` +
+          `${escapeForMarkdown(state.lastError)}\n\n`
       );
     }
 
@@ -152,7 +156,7 @@ export class StatusBarManager implements vscode.Disposable {
 
       // Theme name
       if (themeName) {
-        md.appendMarkdown(`**Theme:** ${themeName}\n\n`);
+        md.appendMarkdown(`**Theme:** ${escapeForMarkdown(themeName)}\n\n`);
       }
 
       // Tint mode

@@ -3,6 +3,7 @@ import {
   capitalizeFirst,
   clickableColorSwatch,
   colorSwatch,
+  escapeForMarkdown,
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
@@ -198,6 +199,59 @@ suite('capitalizeFirst', () => {
   });
 });
 
+suite('escapeForMarkdown', () => {
+  test('escapes HTML angle brackets', () => {
+    assert.strictEqual(
+      escapeForMarkdown('<script>alert(1)</script>'),
+      '\\<script\\>alert\\(1\\)\\</script\\>'
+    );
+  });
+
+  test('escapes markdown syntax characters', () => {
+    assert.strictEqual(
+      escapeForMarkdown('**bold** _italic_ ~strike~'),
+      '\\*\\*bold\\*\\* \\_italic\\_ \\~strike\\~'
+    );
+  });
+
+  test('escapes markdown command links', () => {
+    assert.strictEqual(
+      escapeForMarkdown('[click](command:evil.run)'),
+      '\\[click\\]\\(command:evil.run\\)'
+    );
+  });
+
+  test('escapes backticks', () => {
+    assert.strictEqual(escapeForMarkdown('`code`'), '\\`code\\`');
+  });
+
+  test('escapes ampersand and pipe', () => {
+    assert.strictEqual(escapeForMarkdown('a & b | c'), 'a \\& b \\| c');
+  });
+
+  test('escapes backslashes', () => {
+    assert.strictEqual(
+      escapeForMarkdown('path\\to\\file'),
+      'path\\\\to\\\\file'
+    );
+  });
+
+  test('passes through safe strings unchanged', () => {
+    assert.strictEqual(escapeForMarkdown('One Dark Pro'), 'One Dark Pro');
+  });
+
+  test('passes through empty string', () => {
+    assert.strictEqual(escapeForMarkdown(''), '');
+  });
+
+  test('escapes curly braces and exclamation mark', () => {
+    assert.strictEqual(
+      escapeForMarkdown('{value} !important'),
+      '\\{value\\} \\!important'
+    );
+  });
+});
+
 suite('formatWorkspaceIdForDisplay', () => {
   test('wraps single folder in backticks inline', () => {
     const result = formatWorkspaceIdForDisplay('my-project');
@@ -217,5 +271,15 @@ suite('formatWorkspaceIdForDisplay', () => {
   test('handles empty string', () => {
     const result = formatWorkspaceIdForDisplay('');
     assert.strictEqual(result, '``');
+  });
+
+  test('replaces backticks with single quotes', () => {
+    const result = formatWorkspaceIdForDisplay('my`project');
+    assert.strictEqual(result, "`my'project`");
+  });
+
+  test('replaces backticks in multi-folder names', () => {
+    const result = formatWorkspaceIdForDisplay('back`end\nfront`end');
+    assert.strictEqual(result, "<br>`back'end`<br>`front'end`");
   });
 });

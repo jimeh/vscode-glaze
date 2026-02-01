@@ -505,6 +505,130 @@ suite('StatusBarManager', () => {
     });
   });
 
+  suite('tooltip content security', () => {
+    test('escapes HTML/markdown in lastError', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test',
+        themeName: 'Default Dark+',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+        lastError: '<img src=x onerror=alert(1)>',
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      // Angle brackets and parens should be backslash-escaped
+      assert.ok(
+        tip.includes('\\<img src=x onerror=alert\\(1\\)\\>'),
+        `HTML should be backslash-escaped in tooltip, got: ${tip}`
+      );
+    });
+
+    test('escapes markdown command links in lastError', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test',
+        themeName: 'Default Dark+',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+        lastError: '[click](command:evil.run)',
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        !tip.includes('[click](command:evil.run)'),
+        `tooltip should not contain raw command link, got: ${tip}`
+      );
+    });
+
+    test('escapes brackets/angles in themeName', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test',
+        themeName: '<b>Evil</b> [x](command:bad)',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        !tip.includes('<b>Evil</b>'),
+        `tooltip should not contain raw HTML in theme name, got: ${tip}`
+      );
+      assert.ok(
+        !tip.includes('[x](command:bad)'),
+        `tooltip should not contain command link in theme name, got: ${tip}`
+      );
+    });
+
+    test('isTrusted restricts to allowed commands', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test',
+        themeName: 'Default Dark+',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tooltip = manager.item.tooltip as vscode.MarkdownString;
+      assert.ok(
+        typeof tooltip.isTrusted === 'object' && tooltip.isTrusted !== null,
+        'isTrusted should be an object with enabledCommands'
+      );
+      const trusted = tooltip.isTrusted as {
+        enabledCommands: string[];
+      };
+      assert.deepStrictEqual(trusted.enabledCommands, [
+        'patina.copyColor',
+        'patina.forceApply',
+      ]);
+    });
+  });
+
   suite('all color schemes', () => {
     const colorSchemes: Array<
       | 'pastel'
