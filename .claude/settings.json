@@ -2,6 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(awk:*)",
+      "Bash(find:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr diff:*)",
       "Bash(gh pr list:*)",
@@ -19,7 +20,18 @@
       "Bash(npx prettier:*)",
       "Bash(pnpm add:*)",
       "Bash(pnpm bundle:*)",
+      "Bash(pnpm check-types:*)",
+      "Bash(pnpm compile)",
+      "Bash(pnpm compile-tests:*)",
       "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm extract-themes:*)",
+      "Bash(pnpm extract-themes:dry-run:*)",
+      "Bash(pnpm extract-themes:verbose:*)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm generate-colornames:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm lint:fix:*)",
+      "Bash(pnpm remove:*)",
       "Bash(pnpm run check-types:*)",
       "Bash(pnpm run compile)",
       "Bash(pnpm run compile-tests:*)",
@@ -27,11 +39,17 @@
       "Bash(pnpm run extract-themes:dry-run:*)",
       "Bash(pnpm run extract-themes:verbose:*)",
       "Bash(pnpm run format:*)",
+      "Bash(pnpm run generate-colornames:*)",
       "Bash(pnpm run lint:*)",
       "Bash(pnpm run lint:fix:*)",
       "Bash(pnpm run test:*)",
       "Bash(pnpm run test:coverage:*)",
-      "Bash(pnpm run test:coverage:html:*)"
+      "Bash(pnpm run test:coverage:html:*)",
+      "Bash(pnpm run verify:vsix-files:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm test:coverage:*)",
+      "Bash(pnpm test:coverage:html:*)",
+      "Bash(pnpm verify:vsix-files:*)"
     ]
   }
 }
