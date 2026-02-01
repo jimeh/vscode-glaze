@@ -112,7 +112,7 @@
         "patina.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Enable or disable Patina color tinting globally.",
+          "description": "Enable or disable Patina color tinting.",
           "order": 0
         },
         "patina.tint.colorScheme": {
