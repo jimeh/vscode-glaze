@@ -407,7 +407,8 @@
     "extract-themes": "tsx scripts/extract-theme-colors/index.ts",
     "extract-themes:dry-run": "tsx scripts/extract-theme-colors/index.ts --dry-run",
     "extract-themes:verbose": "tsx scripts/extract-theme-colors/index.ts --verbose",
-    "generate-images": "tsx scripts/generate-images.ts"
+    "generate-images": "tsx scripts/generate-images.ts",
+    "verify:vsix-files": "tsx scripts/verify-vsix-files.ts"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
