@@ -47,6 +47,26 @@ function detectMacOs(): 'dark' | 'light' {
   }
 }
 
+/**
+ * Parses Windows `reg query` output to determine color scheme.
+ *
+ * The registry value AppsUseLightTheme is a REG_DWORD where
+ * `0` means dark mode and any non-zero value means light mode.
+ *
+ * @param output - Raw stdout from `reg query`
+ * @returns `'dark'` | `'light'` | `undefined` if value not found
+ */
+export function parseWindowsRegOutput(
+  output: string
+): 'dark' | 'light' | undefined {
+  const match = output.match(/REG_DWORD\s+(0x[0-9a-fA-F]+)/i);
+  if (!match) {
+    return undefined;
+  }
+  const value = parseInt(match[1], 16);
+  return value === 0 ? 'dark' : 'light';
+}
+
 function detectWindows(): 'dark' | 'light' | undefined {
   try {
     const output = execSync(
@@ -56,8 +76,7 @@ function detectWindows(): 'dark' | 'light' | undefined {
         ' /v AppsUseLightTheme',
       { timeout: EXEC_TIMEOUT, encoding: 'utf-8' }
     );
-    // Output contains "0x0" for dark, "0x1" for light
-    return output.includes('0x0') ? 'dark' : 'light';
+    return parseWindowsRegOutput(output);
   } catch (err) {
     console.debug('[Patina] Windows color scheme detection failed:', err);
     return undefined;
