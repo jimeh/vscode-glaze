@@ -283,10 +283,19 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Disable first so enableGlobally triggers a real config change
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+      await waitForPatinaColorsCleared();
+
       await vscode.commands.executeCommand('patina.enableGlobally');
 
-      // Wait for colorCustomizations to be set (polls with timeout)
-      const colors = await waitForColorCustomizations();
+      // Wait for the specific key we assert on
+      const colors = await waitForColorKey('titleBar.activeBackground');
 
       assert.ok(colors, 'colorCustomizations should be set');
       assert.ok(
@@ -300,10 +309,19 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Disable first so enableGlobally triggers a real config change
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+      await waitForPatinaColorsCleared();
+
       await vscode.commands.executeCommand('patina.enableGlobally');
 
-      // Wait for colorCustomizations to be set (polls with timeout)
-      const colors = await waitForColorCustomizations();
+      // Wait for the specific key we need for assertions
+      const colors = await waitForColorKey('titleBar.activeBackground');
 
       const hexPattern = /^#[0-9a-f]{6}$/i;
       for (const [key, value] of Object.entries(colors ?? {})) {

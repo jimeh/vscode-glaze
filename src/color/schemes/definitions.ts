@@ -57,6 +57,11 @@ export const COLOR_SCHEME_DEFINITIONS = {
     description: 'Three adjacent hues for harmonious color transitions',
     order: 7,
   },
+  adaptive: {
+    label: 'Adaptive',
+    description: "Preserves theme's lightness/chroma, shifts only the hue",
+    order: 8,
+  },
 } as const satisfies Record<string, ColorSchemeDefinition>;
 
 /**

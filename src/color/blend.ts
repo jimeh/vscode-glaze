@@ -28,6 +28,28 @@ function blendHue(hue1: number, hue2: number, factor: number): number {
 }
 
 /**
+ * Internal helper that parses the theme hex, clamps the factor,
+ * and delegates to an interpolation function for the actual blend.
+ */
+function blendOklchInternal(
+  tintOklch: OKLCH,
+  themeBackgroundHex: string,
+  blendFactor: number,
+  interpolate: (tint: OKLCH, theme: OKLCH, factor: number) => OKLCH
+): OKLCH {
+  let themeOklch;
+  try {
+    themeOklch = hexToOklch(themeBackgroundHex);
+  } catch {
+    // Invalid hex — skip blending, return tint unchanged.
+    return tintOklch;
+  }
+  const factor = Math.max(0, Math.min(1, blendFactor));
+
+  return clampToGamut(interpolate(tintOklch, themeOklch, factor));
+}
+
+/**
  * Blends a tint color with a theme background color in OKLCH space.
  *
  * OKLCH provides perceptually uniform blending, ensuring smoother
@@ -49,24 +71,48 @@ export function blendWithThemeOklch(
   themeBackgroundHex: string,
   blendFactor: number
 ): OKLCH {
-  let themeOklch;
-  try {
-    themeOklch = hexToOklch(themeBackgroundHex);
-  } catch {
-    // Invalid hex — skip blending, return tint unchanged.
-    return tintOklch;
-  }
-  const factor = Math.max(0, Math.min(1, blendFactor));
+  return blendOklchInternal(
+    tintOklch,
+    themeBackgroundHex,
+    blendFactor,
+    (tint, theme, factor) => ({
+      l: tint.l * (1 - factor) + theme.l * factor,
+      c: tint.c * (1 - factor) + theme.c * factor,
+      h: blendHue(tint.h, theme.h, factor),
+    })
+  );
+}
 
-  // Interpolate all components toward theme
-  const blendedH = blendHue(tintOklch.h, themeOklch.h, factor);
-  const blendedL = tintOklch.l * (1 - factor) + themeOklch.l * factor;
-  const blendedC = tintOklch.c * (1 - factor) + themeOklch.c * factor;
-
-  // Clamp to gamut in case blending produced an out-of-gamut color
-  return clampToGamut({
-    l: blendedL,
-    c: blendedC,
-    h: blendedH,
-  });
+/**
+ * Blends only the hue of a tint color toward a theme color.
+ *
+ * Lightness and chroma are preserved from the tint; only the hue
+ * component is interpolated. Used by the adaptive scheme where L/C
+ * already come from the theme's original values.
+ *
+ * At factor 0, returns the tint color unchanged.
+ * At factor 1, returns the theme's hue with the tint's L/C.
+ *
+ * After blending, the result is clamped to sRGB gamut if necessary.
+ *
+ * @param tintOklch - The tint color in OKLCH (L/C preserved)
+ * @param themeBackgroundHex - The theme's background color as hex
+ * @param blendFactor - How much to blend the hue toward theme (0-1)
+ * @returns Blended OKLCH color (gamut-clamped)
+ */
+export function blendHueOnlyOklch(
+  tintOklch: OKLCH,
+  themeBackgroundHex: string,
+  blendFactor: number
+): OKLCH {
+  return blendOklchInternal(
+    tintOklch,
+    themeBackgroundHex,
+    blendFactor,
+    (tint, theme, factor) => ({
+      l: tint.l,
+      c: tint.c,
+      h: blendHue(tint.h, theme.h, factor),
+    })
+  );
 }
