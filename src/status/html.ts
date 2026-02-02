@@ -16,6 +16,7 @@ const ELEMENT_GROUPS: { element: ElementType; label: string }[] = [
   { element: 'titleBar', label: 'Title Bar' },
   { element: 'activityBar', label: 'Activity Bar' },
   { element: 'statusBar', label: 'Status Bar' },
+  { element: 'sideBar', label: 'Side Bar' },
 ];
 
 /**
@@ -156,6 +157,7 @@ const TARGET_LABELS: Record<TintTarget, string> = {
   titleBar: 'Title Bar',
   activityBar: 'Activity Bar',
   statusBar: 'Status Bar',
+  sideBar: 'Side Bar',
 };
 
 /**

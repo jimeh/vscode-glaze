@@ -152,13 +152,13 @@ suite('computeTint', () => {
     );
   });
 
-  test('computes all 8 keys regardless of targets', () => {
+  test('computes all 12 keys regardless of targets', () => {
     const result = computeTint({
       workspaceIdentifier: 'test',
       targets: ['titleBar'],
       themeType: 'dark',
     });
-    assert.strictEqual(result.keys.length, 8);
+    assert.strictEqual(result.keys.length, 12);
   });
 
   test('enabled flag matches targets', () => {
@@ -413,7 +413,7 @@ suite('computeTint', () => {
     }
   });
 
-  test('all 8 PATINA_MANAGED_KEYS are represented', () => {
+  test('all PATINA_MANAGED_KEYS are represented', () => {
     const result = computeTint({
       workspaceIdentifier: 'test',
       targets: ALL_TARGETS,
@@ -454,10 +454,12 @@ suite('tintResultToStatusBarColors', () => {
     )!;
     const sbBg = result.keys.find((k) => k.key === 'statusBar.background')!;
     const abBg = result.keys.find((k) => k.key === 'activityBar.background')!;
+    const sideBg = result.keys.find((k) => k.key === 'sideBar.background')!;
 
     assert.strictEqual(colors.titleBar, tbBg.finalHex);
     assert.strictEqual(colors.statusBar, sbBg.finalHex);
     assert.strictEqual(colors.activityBar, abBg.finalHex);
+    assert.strictEqual(colors.sideBar, sideBg.finalHex);
   });
 
   test('omits disabled targets', () => {
@@ -471,6 +473,7 @@ suite('tintResultToStatusBarColors', () => {
     assert.ok(colors.titleBar !== undefined);
     assert.strictEqual(colors.statusBar, undefined);
     assert.strictEqual(colors.activityBar, undefined);
+    assert.strictEqual(colors.sideBar, undefined);
   });
 });
 

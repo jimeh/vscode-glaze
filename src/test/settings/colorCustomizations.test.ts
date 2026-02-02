@@ -101,6 +101,10 @@ suite('mergeColorCustomizations', () => {
       'statusBar.foreground': '#666666',
       'activityBar.background': '#777777',
       'activityBar.foreground': '#888888',
+      'sideBar.background': '#999999',
+      'sideBar.foreground': '#aaaaaa',
+      'sideBarSectionHeader.background': '#bbbbbb',
+      'sideBarSectionHeader.foreground': '#cccccc',
       'editor.background': '#aabbcc',
     };
     const patinaColors = {
@@ -240,6 +244,10 @@ suite('removePatinaColors', () => {
       'statusBar.foreground': '#666666',
       'activityBar.background': '#777777',
       'activityBar.foreground': '#888888',
+      'sideBar.background': '#999999',
+      'sideBar.foreground': '#aaaaaa',
+      'sideBarSectionHeader.background': '#bbbbbb',
+      'sideBarSectionHeader.foreground': '#cccccc',
       'editor.background': '#aabbcc',
     };
 

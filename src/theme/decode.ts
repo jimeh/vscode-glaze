@@ -32,6 +32,10 @@ const COLOR_KEY_ORDER: readonly ThemeColorKey[] = [
   'statusBar.foreground',
   'activityBar.background',
   'activityBar.foreground',
+  'sideBar.background',
+  'sideBar.foreground',
+  'sideBarSectionHeader.background',
+  'sideBarSectionHeader.foreground',
 ] as const;
 
 /**

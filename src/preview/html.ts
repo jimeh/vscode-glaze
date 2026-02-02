@@ -88,6 +88,7 @@ const TARGET_SHORT_LABELS: Record<TintTarget, string> = {
   titleBar: 'TB',
   activityBar: 'AB',
   statusBar: 'SB',
+  sideBar: 'Side',
 };
 
 /**

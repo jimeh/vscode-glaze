@@ -152,6 +152,9 @@ export function getTintConfig(): TintConfig {
   if (config.get<boolean>('elements.activityBar', true)) {
     targets.push('activityBar');
   }
+  if (config.get<boolean>('elements.sideBar', false)) {
+    targets.push('sideBar');
+  }
 
   const mode = getValidatedEnum(config, 'tint.mode', VALID_THEME_MODES, 'auto');
 
@@ -168,6 +171,7 @@ const TARGET_BLEND_FACTOR_KEYS: Record<TintTarget, string> = {
   titleBar: 'theme.titleBarBlendFactor',
   activityBar: 'theme.activityBarBlendFactor',
   statusBar: 'theme.statusBarBlendFactor',
+  sideBar: 'theme.sideBarBlendFactor',
 };
 
 /**

@@ -49,7 +49,7 @@ export interface WorkspaceIdentifierConfig {
 /**
  * UI element groups that can be tinted.
  */
-export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar';
+export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar' | 'sideBar';
 
 export type { ColorScheme } from '../color/schemes';
 

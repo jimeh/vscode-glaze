@@ -13,6 +13,8 @@ export interface TintColors {
   activityBar?: string;
   /** Status bar background color (if enabled). */
   statusBar?: string;
+  /** Side bar background color (if enabled). */
+  sideBar?: string;
 }
 
 /**

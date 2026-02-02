@@ -104,6 +104,10 @@ function extractColors(
     'statusBar.foreground',
     'activityBar.background',
     'activityBar.foreground',
+    'sideBar.background',
+    'sideBar.foreground',
+    'sideBarSectionHeader.background',
+    'sideBarSectionHeader.foreground',
   ] as const;
 
   for (const key of optionalKeys) {

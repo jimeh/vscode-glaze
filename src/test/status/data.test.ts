@@ -5,7 +5,12 @@ import type { TintTarget } from '../../config';
 import type { ThemeType, ThemeColors } from '../../theme';
 import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../../theme';
 
-const ALL_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
+const ALL_TARGETS: TintTarget[] = [
+  'titleBar',
+  'statusBar',
+  'activityBar',
+  'sideBar',
+];
 
 function makeColorsOptions(
   overrides: Partial<ComputeStatusColorsOptions> = {}
@@ -24,9 +29,9 @@ function makeColorsOptions(
 suite('computeStatusColors', () => {
   const hexPattern = /^#[0-9a-f]{6}$/i;
 
-  test('returns 8 StatusColorDetail entries', () => {
+  test('returns StatusColorDetail entries for all managed keys', () => {
     const colors = computeStatusColors(makeColorsOptions());
-    assert.strictEqual(colors.length, 8);
+    assert.strictEqual(colors.length, PATINA_MANAGED_KEYS.length);
   });
 
   test('all hex values are valid format', () => {
@@ -223,8 +228,8 @@ suite('computeStatusColors', () => {
       const colors = computeStatusColors(makeColorsOptions({ themeType }));
       assert.strictEqual(
         colors.length,
-        8,
-        `Should return 8 colors for ${themeType}`
+        PATINA_MANAGED_KEYS.length,
+        `Should return ${PATINA_MANAGED_KEYS.length} colors for ${themeType}`
       );
 
       for (const color of colors) {
@@ -253,8 +258,8 @@ suite('computeStatusColors', () => {
       const colors = computeStatusColors(makeColorsOptions({ colorScheme }));
       assert.strictEqual(
         colors.length,
-        8,
-        `Should return 8 colors for ${colorScheme}`
+        PATINA_MANAGED_KEYS.length,
+        `Should return ${PATINA_MANAGED_KEYS.length} colors for ${colorScheme}`
       );
     }
   });

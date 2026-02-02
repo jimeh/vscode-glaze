@@ -235,7 +235,7 @@ suite('generateStatusHtml', () => {
     );
   });
 
-  test('color table has all 8 managed keys', () => {
+  test('color table has all managed keys', () => {
     const state = createMockState();
     const html = generateStatusHtml(state, nonce, cspSource);
 

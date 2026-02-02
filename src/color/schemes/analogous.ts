@@ -48,6 +48,11 @@ export const analogousScheme: SchemeConfig = {
       chromaFactor: 0.12,
       hueOffset: 25,
     },
+    // Side bar shares hue with activity bar (base hue)
+    'sideBar.background': { lightness: 0.25, chromaFactor: 0.45 },
+    'sideBar.foreground': { lightness: 0.88, chromaFactor: 0.1 },
+    'sideBarSectionHeader.background': { lightness: 0.28, chromaFactor: 0.45 },
+    'sideBarSectionHeader.foreground': { lightness: 0.88, chromaFactor: 0.1 },
   },
   light: {
     'titleBar.activeBackground': {
@@ -82,6 +87,10 @@ export const analogousScheme: SchemeConfig = {
       chromaFactor: 0.15,
       hueOffset: 25,
     },
+    'sideBar.background': { lightness: 0.88, chromaFactor: 0.4 },
+    'sideBar.foreground': { lightness: 0.22, chromaFactor: 0.12 },
+    'sideBarSectionHeader.background': { lightness: 0.85, chromaFactor: 0.4 },
+    'sideBarSectionHeader.foreground': { lightness: 0.22, chromaFactor: 0.12 },
   },
   hcDark: {
     'titleBar.activeBackground': {
@@ -116,6 +125,10 @@ export const analogousScheme: SchemeConfig = {
       chromaFactor: 0.1,
       hueOffset: 25,
     },
+    'sideBar.background': { lightness: 0.11, chromaFactor: 0.5 },
+    'sideBar.foreground': { lightness: 0.94, chromaFactor: 0.08 },
+    'sideBarSectionHeader.background': { lightness: 0.14, chromaFactor: 0.5 },
+    'sideBarSectionHeader.foreground': { lightness: 0.94, chromaFactor: 0.08 },
   },
   hcLight: {
     'titleBar.activeBackground': {
@@ -150,5 +163,9 @@ export const analogousScheme: SchemeConfig = {
       chromaFactor: 0.18,
       hueOffset: 25,
     },
+    'sideBar.background': { lightness: 0.95, chromaFactor: 0.45 },
+    'sideBar.foreground': { lightness: 0.12, chromaFactor: 0.15 },
+    'sideBarSectionHeader.background': { lightness: 0.92, chromaFactor: 0.45 },
+    'sideBarSectionHeader.foreground': { lightness: 0.12, chromaFactor: 0.15 },
   },
 };

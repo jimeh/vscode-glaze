@@ -51,7 +51,7 @@ export interface TintResult {
   readonly baseHue: number;
   /** Display-only base tint hex (neutral L/C, no blending) */
   readonly baseTintHex: string;
-  /** Detail for each of the 8 managed palette keys */
+  /** Detail for each managed palette key */
   readonly keys: readonly TintKeyDetail[];
 }
 
@@ -147,7 +147,7 @@ export function computeBaseTintHex(
 }
 
 /**
- * Unified tint computation for all 8 managed palette keys.
+ * Unified tint computation for all managed palette keys.
  *
  * Always computes every key; the `enabled` flag per-key indicates
  * whether the element's target is active. Consumers filter by
@@ -285,6 +285,9 @@ export function tintResultToStatusBarColors(result: TintResult): TintColors {
         break;
       case 'activityBar.background':
         colors.activityBar = detail.finalHex;
+        break;
+      case 'sideBar.background':
+        colors.sideBar = detail.finalHex;
         break;
     }
   }

@@ -37,7 +37,9 @@ function isPatinaKey(key: string): boolean {
     key === PATINA_ACTIVE_KEY ||
     key.startsWith('titleBar.') ||
     key.startsWith('statusBar.') ||
-    key.startsWith('activityBar.')
+    key.startsWith('activityBar.') ||
+    key.startsWith('sideBar.') ||
+    key.startsWith('sideBarSectionHeader.')
   );
 }
 
@@ -308,7 +310,9 @@ suite('Extension Test Suite', () => {
         if (
           key.startsWith('titleBar.') ||
           key.startsWith('statusBar.') ||
-          key.startsWith('activityBar.')
+          key.startsWith('activityBar.') ||
+          key.startsWith('sideBar.') ||
+          key.startsWith('sideBarSectionHeader.')
         ) {
           assert.match(value, hexPattern, `Invalid hex for ${key}: ${value}`);
         }
@@ -1147,6 +1151,98 @@ suite('Extension Test Suite', () => {
       assert.ok(
         'statusBar.foreground' in colors,
         'should have statusBar.foreground after enabling'
+      );
+    });
+  });
+
+  suite('sideBar element config changes', () => {
+    let originalEnabled: boolean | undefined;
+    let originalSideBar: boolean | undefined;
+    let originalColorCustomizations: unknown;
+
+    suiteSetup(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      originalEnabled = patinaConfig.get<boolean>('enabled');
+      originalSideBar = patinaConfig.get<boolean>('elements.sideBar');
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
+    });
+
+    suiteTeardown(async () => {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return;
+      }
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        originalEnabled,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'elements.sideBar',
+        originalSideBar,
+        vscode.ConfigurationTarget.Global
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
+    });
+
+    test('sideBar keys appear when elements.sideBar enabled', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Disable first so enableGlobally triggers a fresh apply
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await waitForPatinaColorsCleared();
+
+      // Start with sideBar disabled (default)
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'elements.sideBar',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Enable globally
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      let colors = await waitForColorCustomizations();
+
+      // Verify no sideBar keys
+      assert.ok(
+        !('sideBar.background' in colors),
+        'should not have sideBar.background initially'
+      );
+
+      // Enable sideBar element
+      await patinaConfig.update(
+        'elements.sideBar',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Poll until sideBar keys appear
+      colors = await waitForColorKey('sideBar.background');
+
+      assert.ok(
+        'sideBar.background' in colors,
+        'should have sideBar.background after enabling'
+      );
+      assert.ok(
+        'sideBar.foreground' in colors,
+        'should have sideBar.foreground after enabling'
       );
     });
   });

@@ -29,7 +29,11 @@ export type ThemeColorKey =
   | 'statusBar.background'
   | 'statusBar.foreground'
   | 'activityBar.background'
-  | 'activityBar.foreground';
+  | 'activityBar.foreground'
+  | 'sideBar.background'
+  | 'sideBar.foreground'
+  | 'sideBarSectionHeader.background'
+  | 'sideBarSectionHeader.foreground';
 
 /**
  * Theme colors using native VSCode keys.

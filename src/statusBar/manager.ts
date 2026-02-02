@@ -75,9 +75,12 @@ export class StatusBarManager implements vscode.Disposable {
       return 'Patina';
     }
 
-    // Check elements in priority order: titleBar, activityBar, statusBar
+    // Check elements in priority order
     const activeColor =
-      tintColors.titleBar ?? tintColors.activityBar ?? tintColors.statusBar;
+      tintColors.titleBar ??
+      tintColors.activityBar ??
+      tintColors.sideBar ??
+      tintColors.statusBar;
 
     if (activeColor) {
       return getColorName(activeColor);
@@ -189,6 +192,11 @@ export class StatusBarManager implements vscode.Disposable {
         if (tintColors.activityBar) {
           md.appendMarkdown(
             `Activity Bar: ${clickableColorSwatch(tintColors.activityBar)}\n\n`
+          );
+        }
+        if (tintColors.sideBar) {
+          md.appendMarkdown(
+            `Side Bar: ${clickableColorSwatch(tintColors.sideBar)}\n\n`
           );
         }
         if (tintColors.statusBar) {

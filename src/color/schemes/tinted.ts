@@ -18,6 +18,10 @@ export const tintedScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.88, chromaFactor: 0.08 },
     'activityBar.background': { lightness: 0.22, chromaFactor: 0.1 },
     'activityBar.foreground': { lightness: 0.82, chromaFactor: 0.06 },
+    'sideBar.background': { lightness: 0.19, chromaFactor: 0.1 },
+    'sideBar.foreground': { lightness: 0.82, chromaFactor: 0.06 },
+    'sideBarSectionHeader.background': { lightness: 0.22, chromaFactor: 0.1 },
+    'sideBarSectionHeader.foreground': { lightness: 0.82, chromaFactor: 0.06 },
   },
   light: {
     'titleBar.activeBackground': { lightness: 0.85, chromaFactor: 0.1 },
@@ -28,6 +32,10 @@ export const tintedScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.15, chromaFactor: 0.08 },
     'activityBar.background': { lightness: 0.92, chromaFactor: 0.1 },
     'activityBar.foreground': { lightness: 0.18, chromaFactor: 0.06 },
+    'sideBar.background': { lightness: 0.95, chromaFactor: 0.1 },
+    'sideBar.foreground': { lightness: 0.18, chromaFactor: 0.06 },
+    'sideBarSectionHeader.background': { lightness: 0.92, chromaFactor: 0.1 },
+    'sideBarSectionHeader.foreground': { lightness: 0.18, chromaFactor: 0.06 },
   },
   hcDark: {
     'titleBar.activeBackground': { lightness: 0.14, chromaFactor: 0.1 },
@@ -38,6 +46,10 @@ export const tintedScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.96, chromaFactor: 0.06 },
     'activityBar.background': { lightness: 0.08, chromaFactor: 0.1 },
     'activityBar.foreground': { lightness: 0.92, chromaFactor: 0.05 },
+    'sideBar.background': { lightness: 0.05, chromaFactor: 0.1 },
+    'sideBar.foreground': { lightness: 0.92, chromaFactor: 0.05 },
+    'sideBarSectionHeader.background': { lightness: 0.08, chromaFactor: 0.1 },
+    'sideBarSectionHeader.foreground': { lightness: 0.92, chromaFactor: 0.05 },
   },
   hcLight: {
     'titleBar.activeBackground': { lightness: 0.94, chromaFactor: 0.1 },
@@ -48,5 +60,9 @@ export const tintedScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.08, chromaFactor: 0.06 },
     'activityBar.background': { lightness: 0.97, chromaFactor: 0.1 },
     'activityBar.foreground': { lightness: 0.1, chromaFactor: 0.05 },
+    'sideBar.background': { lightness: 0.99, chromaFactor: 0.1 },
+    'sideBar.foreground': { lightness: 0.1, chromaFactor: 0.05 },
+    'sideBarSectionHeader.background': { lightness: 0.97, chromaFactor: 0.1 },
+    'sideBarSectionHeader.foreground': { lightness: 0.1, chromaFactor: 0.05 },
   },
 };

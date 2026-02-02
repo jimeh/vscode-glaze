@@ -6,7 +6,12 @@
 /**
  * UI element types that can be tinted.
  */
-export type ElementType = 'editor' | 'titleBar' | 'statusBar' | 'activityBar';
+export type ElementType =
+  | 'editor'
+  | 'titleBar'
+  | 'statusBar'
+  | 'activityBar'
+  | 'sideBar';
 
 /**
  * Color type: background or foreground.
@@ -92,6 +97,30 @@ export const COLOR_KEY_DEFINITIONS = {
     required: false,
     inPalette: true,
   },
+  'sideBar.background': {
+    element: 'sideBar',
+    colorType: 'background',
+    required: false,
+    inPalette: true,
+  },
+  'sideBar.foreground': {
+    element: 'sideBar',
+    colorType: 'foreground',
+    required: false,
+    inPalette: true,
+  },
+  'sideBarSectionHeader.background': {
+    element: 'sideBar',
+    colorType: 'background',
+    required: false,
+    inPalette: true,
+  },
+  'sideBarSectionHeader.foreground': {
+    element: 'sideBar',
+    colorType: 'foreground',
+    required: false,
+    inPalette: true,
+  },
 } as const satisfies Record<string, ColorKeyDefinition>;
 
 // ============================================================================
@@ -169,6 +198,13 @@ export const PALETTE_KEY_TO_COLOR_KEY: Record<PaletteKey, ThemeColorKey> =
       // Inactive titleBar background falls back to active background
       if (key === 'titleBar.inactiveBackground') {
         return [key, 'titleBar.activeBackground'];
+      }
+      // Section header falls back to corresponding sideBar key
+      if (key === 'sideBarSectionHeader.background') {
+        return [key, 'sideBar.background'];
+      }
+      if (key === 'sideBarSectionHeader.foreground') {
+        return [key, 'sideBar.foreground'];
       }
       return [key, key];
     })

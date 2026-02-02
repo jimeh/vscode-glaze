@@ -20,6 +20,10 @@ export const vibrantScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.94, chromaFactor: 0.15 },
     'activityBar.background': { lightness: 0.36, chromaFactor: 0.8 },
     'activityBar.foreground': { lightness: 0.9, chromaFactor: 0.14 },
+    'sideBar.background': { lightness: 0.33, chromaFactor: 0.8 },
+    'sideBar.foreground': { lightness: 0.9, chromaFactor: 0.14 },
+    'sideBarSectionHeader.background': { lightness: 0.36, chromaFactor: 0.8 },
+    'sideBarSectionHeader.foreground': { lightness: 0.9, chromaFactor: 0.14 },
   },
   light: {
     'titleBar.activeBackground': { lightness: 0.68, chromaFactor: 0.8 },
@@ -30,6 +34,10 @@ export const vibrantScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.18, chromaFactor: 0.25 },
     'activityBar.background': { lightness: 0.75, chromaFactor: 0.75 },
     'activityBar.foreground': { lightness: 0.2, chromaFactor: 0.2 },
+    'sideBar.background': { lightness: 0.78, chromaFactor: 0.75 },
+    'sideBar.foreground': { lightness: 0.2, chromaFactor: 0.2 },
+    'sideBarSectionHeader.background': { lightness: 0.75, chromaFactor: 0.75 },
+    'sideBarSectionHeader.foreground': { lightness: 0.2, chromaFactor: 0.2 },
   },
   hcDark: {
     'titleBar.activeBackground': { lightness: 0.28, chromaFactor: 0.9 },
@@ -40,6 +48,10 @@ export const vibrantScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.97, chromaFactor: 0.12 },
     'activityBar.background': { lightness: 0.22, chromaFactor: 0.85 },
     'activityBar.foreground': { lightness: 0.95, chromaFactor: 0.12 },
+    'sideBar.background': { lightness: 0.19, chromaFactor: 0.85 },
+    'sideBar.foreground': { lightness: 0.95, chromaFactor: 0.12 },
+    'sideBarSectionHeader.background': { lightness: 0.22, chromaFactor: 0.85 },
+    'sideBarSectionHeader.foreground': { lightness: 0.95, chromaFactor: 0.12 },
   },
   hcLight: {
     'titleBar.activeBackground': { lightness: 0.82, chromaFactor: 0.85 },
@@ -50,5 +62,9 @@ export const vibrantScheme: SchemeConfig = {
     'statusBar.foreground': { lightness: 0.12, chromaFactor: 0.3 },
     'activityBar.background': { lightness: 0.87, chromaFactor: 0.8 },
     'activityBar.foreground': { lightness: 0.14, chromaFactor: 0.22 },
+    'sideBar.background': { lightness: 0.9, chromaFactor: 0.8 },
+    'sideBar.foreground': { lightness: 0.14, chromaFactor: 0.22 },
+    'sideBarSectionHeader.background': { lightness: 0.87, chromaFactor: 0.8 },
+    'sideBarSectionHeader.foreground': { lightness: 0.14, chromaFactor: 0.22 },
   },
 };

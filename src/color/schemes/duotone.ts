@@ -16,13 +16,33 @@ export const duotoneScheme: SchemeConfig = {
     'titleBar.inactiveForeground': { lightness: 0.72, chromaFactor: 0.1 },
     'statusBar.background': { lightness: 0.4, chromaFactor: 0.5 },
     'statusBar.foreground': { lightness: 0.92, chromaFactor: 0.12 },
-    // Complement hue (+180°) for activity bar
+    // Complement hue (+180°) for activity bar and side bar
     'activityBar.background': {
       lightness: 0.28,
       chromaFactor: 0.45,
       hueOffset: 180,
     },
     'activityBar.foreground': {
+      lightness: 0.88,
+      chromaFactor: 0.1,
+      hueOffset: 180,
+    },
+    'sideBar.background': {
+      lightness: 0.25,
+      chromaFactor: 0.45,
+      hueOffset: 180,
+    },
+    'sideBar.foreground': {
+      lightness: 0.88,
+      chromaFactor: 0.1,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.background': {
+      lightness: 0.28,
+      chromaFactor: 0.45,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.foreground': {
       lightness: 0.88,
       chromaFactor: 0.1,
       hueOffset: 180,
@@ -45,6 +65,26 @@ export const duotoneScheme: SchemeConfig = {
       chromaFactor: 0.12,
       hueOffset: 180,
     },
+    'sideBar.background': {
+      lightness: 0.88,
+      chromaFactor: 0.4,
+      hueOffset: 180,
+    },
+    'sideBar.foreground': {
+      lightness: 0.22,
+      chromaFactor: 0.12,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.background': {
+      lightness: 0.85,
+      chromaFactor: 0.4,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.foreground': {
+      lightness: 0.22,
+      chromaFactor: 0.12,
+      hueOffset: 180,
+    },
   },
   hcDark: {
     'titleBar.activeBackground': { lightness: 0.2, chromaFactor: 0.55 },
@@ -63,6 +103,26 @@ export const duotoneScheme: SchemeConfig = {
       chromaFactor: 0.08,
       hueOffset: 180,
     },
+    'sideBar.background': {
+      lightness: 0.11,
+      chromaFactor: 0.5,
+      hueOffset: 180,
+    },
+    'sideBar.foreground': {
+      lightness: 0.94,
+      chromaFactor: 0.08,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.background': {
+      lightness: 0.14,
+      chromaFactor: 0.5,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.foreground': {
+      lightness: 0.94,
+      chromaFactor: 0.08,
+      hueOffset: 180,
+    },
   },
   hcLight: {
     'titleBar.activeBackground': { lightness: 0.88, chromaFactor: 0.5 },
@@ -77,6 +137,26 @@ export const duotoneScheme: SchemeConfig = {
       hueOffset: 180,
     },
     'activityBar.foreground': {
+      lightness: 0.12,
+      chromaFactor: 0.15,
+      hueOffset: 180,
+    },
+    'sideBar.background': {
+      lightness: 0.95,
+      chromaFactor: 0.45,
+      hueOffset: 180,
+    },
+    'sideBar.foreground': {
+      lightness: 0.12,
+      chromaFactor: 0.15,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.background': {
+      lightness: 0.92,
+      chromaFactor: 0.45,
+      hueOffset: 180,
+    },
+    'sideBarSectionHeader.foreground': {
       lightness: 0.12,
       chromaFactor: 0.15,
       hueOffset: 180,

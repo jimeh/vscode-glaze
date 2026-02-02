@@ -14,6 +14,10 @@ const ALL_PALETTE_KEYS = [
   'statusBar.foreground',
   'activityBar.background',
   'activityBar.foreground',
+  'sideBar.background',
+  'sideBar.foreground',
+  'sideBarSectionHeader.background',
+  'sideBarSectionHeader.foreground',
 ] as const;
 
 suite('getSchemeConfig', () => {

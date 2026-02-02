@@ -418,6 +418,7 @@ suite('getTintConfig', () => {
   let originalTitleBar: boolean | undefined;
   let originalStatusBar: boolean | undefined;
   let originalActivityBar: boolean | undefined;
+  let originalSideBar: boolean | undefined;
   let originalMode: string | undefined;
   let originalSeed: number | undefined;
 
@@ -426,6 +427,7 @@ suite('getTintConfig', () => {
     originalTitleBar = config.get<boolean>('elements.titleBar');
     originalStatusBar = config.get<boolean>('elements.statusBar');
     originalActivityBar = config.get<boolean>('elements.activityBar');
+    originalSideBar = config.get<boolean>('elements.sideBar');
     originalMode = config.get<string>('tint.mode');
     originalSeed = config.get<number>('tint.seed');
   });
@@ -448,6 +450,11 @@ suite('getTintConfig', () => {
       vscode.ConfigurationTarget.Global
     );
     await config.update(
+      'elements.sideBar',
+      originalSideBar,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
       'tint.mode',
       originalMode,
       vscode.ConfigurationTarget.Global
@@ -459,7 +466,7 @@ suite('getTintConfig', () => {
     );
   });
 
-  test('returns all targets by default', async () => {
+  test('returns default-enabled targets by default', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'elements.titleBar',
@@ -476,8 +483,14 @@ suite('getTintConfig', () => {
       undefined,
       vscode.ConfigurationTarget.Global
     );
+    await config.update(
+      'elements.sideBar',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
 
     const result = getTintConfig();
+    // sideBar defaults to false, so not included
     assert.deepStrictEqual(result.targets, [
       'titleBar',
       'statusBar',
@@ -499,6 +512,11 @@ suite('getTintConfig', () => {
     );
     await config.update(
       'elements.activityBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'elements.sideBar',
       false,
       vscode.ConfigurationTarget.Global
     );
@@ -612,13 +630,46 @@ suite('getTintConfig', () => {
       true,
       vscode.ConfigurationTarget.Global
     );
+    await config.update(
+      'elements.sideBar',
+      true,
+      vscode.ConfigurationTarget.Global
+    );
 
     const result = getTintConfig();
     assert.deepStrictEqual(result.targets, [
       'titleBar',
       'statusBar',
       'activityBar',
+      'sideBar',
     ]);
+  });
+
+  test('sideBar target appears only when explicitly enabled', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'elements.titleBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'elements.statusBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'elements.activityBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'elements.sideBar',
+      true,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.deepStrictEqual(result.targets, ['sideBar']);
   });
 
   test('defaults to auto mode when not configured', async () => {
@@ -719,6 +770,7 @@ suite('getThemeConfig', () => {
   let originalTitleBarBlendFactor: number | null | undefined;
   let originalActivityBarBlendFactor: number | null | undefined;
   let originalStatusBarBlendFactor: number | null | undefined;
+  let originalSideBarBlendFactor: number | null | undefined;
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('patina');
@@ -731,6 +783,9 @@ suite('getThemeConfig', () => {
     );
     originalStatusBarBlendFactor = config.get<number | null>(
       'theme.statusBarBlendFactor'
+    );
+    originalSideBarBlendFactor = config.get<number | null>(
+      'theme.sideBarBlendFactor'
     );
   });
 
@@ -754,6 +809,11 @@ suite('getThemeConfig', () => {
     await config.update(
       'theme.statusBarBlendFactor',
       originalStatusBarBlendFactor,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.sideBarBlendFactor',
+      originalSideBarBlendFactor,
       vscode.ConfigurationTarget.Global
     );
   });
@@ -844,6 +904,11 @@ suite('getThemeConfig', () => {
     );
     await config.update(
       'theme.statusBarBlendFactor',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'theme.sideBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
     );
