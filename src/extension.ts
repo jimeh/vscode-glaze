@@ -159,6 +159,10 @@ async function clearTintColors(gen: number): Promise<void> {
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
+  if (hasPatinaColorsWithoutMarker(existing)) {
+    await resetCachedState();
+    return;
+  }
   const remaining = removePatinaColors(existing);
   if (await writeColorConfig(gen, remaining)) {
     await resetCachedState();

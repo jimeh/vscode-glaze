@@ -286,6 +286,40 @@ suite('StatusBarManager', () => {
         tip.includes('modified outside Patina'),
         `tooltip should warn about external changes, got: ${tip}`
       );
+      assert.ok(
+        tip.includes('Active'),
+        `tooltip should indicate active, got: ${tip}`
+      );
+    });
+
+    test('shows icon only when customized outside Patina but inactive', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: false,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: undefined,
+        customizedOutsidePatina: true,
+      };
+
+      manager.update(state);
+      assert.strictEqual(manager.item.text, ICON);
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Inactive'),
+        `tooltip should indicate inactive, got: ${tip}`
+      );
+      assert.ok(
+        !tip.includes('modified outside Patina'),
+        `tooltip should not warn when inactive, got: ${tip}`
+      );
     });
   });
 

@@ -56,7 +56,7 @@ export class StatusBarManager implements vscode.Disposable {
     // Set icon and text
     if (lastError) {
       this.item.text = '$(paintcan) $(error) Error';
-    } else if (customized) {
+    } else if (customized && isActive) {
       this.item.text = '$(paintcan) $(warning) Modified';
     } else if (isActive) {
       const colorName = this.getActiveColorName();
@@ -124,8 +124,8 @@ export class StatusBarManager implements vscode.Disposable {
       );
     }
 
-    // Warning when colors were modified outside Patina
-    if (state.customizedOutsidePatina) {
+    // Warning when colors were modified outside Patina (only when active)
+    if (state.customizedOutsidePatina && isActive) {
       md.appendMarkdown(
         '$(warning) **Colors modified outside Patina.** ' +
           'Patina will not overwrite external changes.\n\n' +

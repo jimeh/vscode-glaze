@@ -224,6 +224,81 @@ suite('Extension Test Suite', () => {
         }
       }
     });
+
+    test('does not clear Patina keys when disabled via settings', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await patinaConfig.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+      const colors = await waitForColorCustomizations();
+      assert.ok(
+        PATINA_ACTIVE_KEY in colors,
+        'patina.active should exist before tampering'
+      );
+
+      const config = vscode.workspace.getConfiguration();
+      const tampered = { ...colors };
+      delete tampered[PATINA_ACTIVE_KEY];
+      const expected = {
+        ...tampered,
+        'editor.background': '#ccddee',
+      };
+      await config.update(
+        'workbench.colorCustomizations',
+        expected,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await patinaConfig.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Allow the debounced reconcile to run.
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
+      const after = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.ok(after, 'workbench.colorCustomizations should remain');
+      assert.deepStrictEqual(
+        after,
+        expected,
+        'workbench.colorCustomizations should remain unchanged'
+      );
+      assert.ok(
+        !(PATINA_ACTIVE_KEY in after),
+        'patina.active should remain absent'
+      );
+      const hasManagedKey = Object.keys(after).some(
+        (key) => isPatinaKey(key) && key !== PATINA_ACTIVE_KEY
+      );
+      assert.ok(
+        hasManagedKey,
+        'Patina-managed keys should remain when marker is missing'
+      );
+
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      assert.strictEqual(
+        inspection?.globalValue,
+        false,
+        'patina.enabled at global scope should be false'
+      );
+    });
   });
 
   suite('patina.enableGlobally', () => {
@@ -419,6 +494,66 @@ suite('Extension Test Suite', () => {
           assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
         }
       }
+    });
+
+    test('does not clear Patina keys when marker is missing', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      const colors = await waitForColorCustomizations();
+      assert.ok(
+        PATINA_ACTIVE_KEY in colors,
+        'patina.active should exist before tampering'
+      );
+
+      const config = vscode.workspace.getConfiguration();
+      const tampered = { ...colors };
+      delete tampered[PATINA_ACTIVE_KEY];
+      const expected = {
+        ...tampered,
+        'editor.background': '#aabbcc',
+      };
+      await config.update(
+        'workbench.colorCustomizations',
+        expected,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await vscode.commands.executeCommand('patina.disableGlobally');
+
+      // Allow the debounced reconcile to run.
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
+      const after = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.ok(after, 'workbench.colorCustomizations should remain');
+      assert.deepStrictEqual(
+        after,
+        expected,
+        'workbench.colorCustomizations should remain unchanged'
+      );
+      assert.ok(
+        !(PATINA_ACTIVE_KEY in after),
+        'patina.active should remain absent'
+      );
+      const hasManagedKey = Object.keys(after).some(
+        (key) => isPatinaKey(key) && key !== PATINA_ACTIVE_KEY
+      );
+      assert.ok(
+        hasManagedKey,
+        'Patina-managed keys should remain when marker is missing'
+      );
     });
   });
 
@@ -821,6 +956,75 @@ suite('Extension Test Suite', () => {
 
       // Get fresh config after command
       const inspection = config.inspect<boolean>('enabled');
+      assert.strictEqual(
+        inspection?.workspaceValue,
+        false,
+        'patina.enabled at workspace scope should be false'
+      );
+    });
+
+    test('does not clear Patina keys when marker is missing', async function () {
+      this.timeout(5000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      const colors = await waitForColorCustomizations();
+      assert.ok(
+        PATINA_ACTIVE_KEY in colors,
+        'patina.active should exist before tampering'
+      );
+
+      const config = vscode.workspace.getConfiguration();
+      const tampered = { ...colors };
+      delete tampered[PATINA_ACTIVE_KEY];
+      const expected = {
+        ...tampered,
+        'editor.background': '#bbccdd',
+      };
+      await config.update(
+        'workbench.colorCustomizations',
+        expected,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      await vscode.commands.executeCommand('patina.disableWorkspace');
+
+      // Allow the debounced reconcile to run.
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
+      const after = config.get<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.ok(after, 'workbench.colorCustomizations should remain');
+      assert.deepStrictEqual(
+        after,
+        expected,
+        'workbench.colorCustomizations should remain unchanged'
+      );
+      assert.ok(
+        !(PATINA_ACTIVE_KEY in after),
+        'patina.active should remain absent'
+      );
+      const hasManagedKey = Object.keys(after).some(
+        (key) => isPatinaKey(key) && key !== PATINA_ACTIVE_KEY
+      );
+      assert.ok(
+        hasManagedKey,
+        'Patina-managed keys should remain when marker is missing'
+      );
+
+      const inspection = vscode.workspace
+        .getConfiguration('patina')
+        .inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         false,
