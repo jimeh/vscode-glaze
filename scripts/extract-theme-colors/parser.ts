@@ -1,12 +1,13 @@
 /**
  * Theme JSON parser with inheritance support.
  */
-import type {
-  ThemeJson,
-  ThemeType,
-  ThemeColors,
-  ExtractedTheme,
-  ThemeContribution,
+import {
+  COLOR_KEY_ORDER,
+  type ThemeJson,
+  type ThemeType,
+  type ThemeColors,
+  type ExtractedTheme,
+  type ThemeContribution,
 } from './types';
 
 // Accepts 3, 4, 6, or 8 digit hex colors (#RGB, #RGBA, #RRGGBB, #RRGGBBAA)
@@ -93,22 +94,8 @@ function extractColors(
     'editor.background': normalizeHexColor(editor),
   };
 
-  // Extract optional colors using native VSCode keys
-  const optionalKeys = [
-    'editor.foreground',
-    'titleBar.activeBackground',
-    'titleBar.activeForeground',
-    'titleBar.inactiveBackground',
-    'titleBar.inactiveForeground',
-    'statusBar.background',
-    'statusBar.foreground',
-    'activityBar.background',
-    'activityBar.foreground',
-    'sideBar.background',
-    'sideBar.foreground',
-    'sideBarSectionHeader.background',
-    'sideBarSectionHeader.foreground',
-  ] as const;
+  // Extract optional colors (everything after editor.background)
+  const optionalKeys = COLOR_KEY_ORDER.slice(1);
 
   for (const key of optionalKeys) {
     const value = colors[key];

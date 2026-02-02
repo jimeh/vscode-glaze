@@ -16,24 +16,35 @@ export type RegistrySource = 'marketplace' | 'openvsx';
 export type ThemeType = 'dark' | 'light' | 'hcDark' | 'hcLight';
 
 /**
- * All color keys that can be extracted from themes.
- * Uses native VSCode color keys (matching workbench.colorCustomizations).
+ * Color keys in canonical order matching compact array indices.
+ * Must match the order in src/theme/decode.ts.
+ *
+ * This is the single source of truth for the extract-theme-colors
+ * script. Both output.ts (encoding) and parser.ts (extraction) import
+ * from here.
  */
-export type ThemeColorKey =
-  | 'editor.background'
-  | 'editor.foreground'
-  | 'titleBar.activeBackground'
-  | 'titleBar.activeForeground'
-  | 'titleBar.inactiveBackground'
-  | 'titleBar.inactiveForeground'
-  | 'statusBar.background'
-  | 'statusBar.foreground'
-  | 'activityBar.background'
-  | 'activityBar.foreground'
-  | 'sideBar.background'
-  | 'sideBar.foreground'
-  | 'sideBarSectionHeader.background'
-  | 'sideBarSectionHeader.foreground';
+export const COLOR_KEY_ORDER = [
+  'editor.background',
+  'editor.foreground',
+  'titleBar.activeBackground',
+  'titleBar.activeForeground',
+  'titleBar.inactiveBackground',
+  'titleBar.inactiveForeground',
+  'statusBar.background',
+  'statusBar.foreground',
+  'activityBar.background',
+  'activityBar.foreground',
+  'sideBar.background',
+  'sideBar.foreground',
+  'sideBarSectionHeader.background',
+  'sideBarSectionHeader.foreground',
+] as const;
+
+/**
+ * All color keys that can be extracted from themes.
+ * Derived from COLOR_KEY_ORDER to keep a single source of truth.
+ */
+export type ThemeColorKey = (typeof COLOR_KEY_ORDER)[number];
 
 /**
  * Theme colors using native VSCode keys.

@@ -4,29 +4,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { CONFIG } from './config';
-import type {
-  ExtractedTheme,
-  MetadataTheme,
-  ThemeColors,
-  ThemeType,
+import {
+  COLOR_KEY_ORDER,
+  type ExtractedTheme,
+  type MetadataTheme,
+  type ThemeColors,
+  type ThemeType,
 } from './types';
-
-/**
- * Color keys in order matching compact array indices.
- * Must match the order in src/theme/decode.ts
- */
-const COLOR_KEY_ORDER = [
-  'editor.background',
-  'editor.foreground',
-  'titleBar.activeBackground',
-  'titleBar.activeForeground',
-  'titleBar.inactiveBackground',
-  'titleBar.inactiveForeground',
-  'statusBar.background',
-  'statusBar.foreground',
-  'activityBar.background',
-  'activityBar.foreground',
-] as const;
 
 /**
  * Theme types in order matching compact type indices.
@@ -345,7 +329,8 @@ export function generateReport(themes: ExtractedTheme[]): string {
     (t) =>
       t.colors['titleBar.activeBackground'] ||
       t.colors['statusBar.background'] ||
-      t.colors['activityBar.background']
+      t.colors['activityBar.background'] ||
+      t.colors['sideBar.background']
   );
 
   if (themesWithElements.length === 0) {
@@ -361,6 +346,9 @@ export function generateReport(themes: ExtractedTheme[]): string {
       }
       if (theme.colors['activityBar.background']) {
         elements.push('activityBar');
+      }
+      if (theme.colors['sideBar.background']) {
+        elements.push('sideBar');
       }
       lines.push(`- ${theme.name}: ${elements.join(', ')}`);
     }

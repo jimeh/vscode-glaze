@@ -118,6 +118,58 @@ suite('createThemeLookup', () => {
     assert.strictEqual(lookup['anything'], undefined);
   });
 
+  test('decodes sidebar colors at indices 10-13', () => {
+    const withSidebar: CompactThemeData = {
+      'Sidebar Theme': [
+        0,
+        '1E1E1E', // 0: editor.background
+        'D4D4D4', // 1: editor.foreground
+        '323233', // 2: titleBar.activeBackground
+        'CCC', // 3: titleBar.activeForeground
+        undefined, // 4: titleBar.inactiveBackground
+        undefined, // 5: titleBar.inactiveForeground
+        '007ACC', // 6: statusBar.background
+        'FFF', // 7: statusBar.foreground
+        '333', // 8: activityBar.background
+        'FFF', // 9: activityBar.foreground
+        '181818', // 10: sideBar.background
+        'CCC', // 11: sideBar.foreground
+        '252526', // 12: sideBarSectionHeader.background
+        'BBB', // 13: sideBarSectionHeader.foreground
+      ],
+    };
+    const lookup = createThemeLookup(withSidebar);
+    const colors = lookup['Sidebar Theme']!.colors;
+    assert.strictEqual(colors['sideBar.background'], '#181818');
+    assert.strictEqual(colors['sideBar.foreground'], '#CCCCCC');
+    assert.strictEqual(colors['sideBarSectionHeader.background'], '#252526');
+    assert.strictEqual(colors['sideBarSectionHeader.foreground'], '#BBBBBB');
+  });
+
+  test('decodes sparse sidebar (only sideBar.background)', () => {
+    const sparseSidebar: CompactThemeData = {
+      'Sparse Sidebar': [
+        0,
+        '1E1E1E', // 0: editor.background
+        undefined, // 1-9: skipped
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        '252526', // 10: sideBar.background
+      ],
+    };
+    const lookup = createThemeLookup(sparseSidebar);
+    const colors = lookup['Sparse Sidebar']!.colors;
+    assert.strictEqual(colors['sideBar.background'], '#252526');
+    assert.strictEqual(colors['sideBar.foreground'], undefined);
+    assert.strictEqual(colors['sideBarSectionHeader.background'], undefined);
+  });
+
   test('editor.background is always present', () => {
     const lookup = createThemeLookup(sampleData);
     for (const name of Object.keys(sampleData)) {
