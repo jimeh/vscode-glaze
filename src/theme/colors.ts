@@ -151,6 +151,8 @@ export function getColorForKey(
   colors: ThemeColors
 ): string | undefined {
   // 1. Check direct key
+  // Cast is safe: PaletteKey never includes 'editor.background'
+  // (inPalette: false), so it's always within OptionalColorKey.
   type OptionalColorKey = Exclude<ThemeColorKey, 'editor.background'>;
   const directValue = colors[key as OptionalColorKey];
   if (directValue) {

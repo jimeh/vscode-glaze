@@ -577,10 +577,23 @@ suite('adaptive scheme', () => {
 
   test('uses hue-only blending mode', () => {
     const resolver = getSchemeResolver('adaptive');
+    // Provide explicit colors for every palette key so the test
+    // doesn't depend on getColorForKey's editor.background fallback.
     const themeColors = {
       'editor.background': '#1E1E1E',
       'editor.foreground': '#D4D4D4',
       'titleBar.activeBackground': '#3C3C3C',
+      'titleBar.activeForeground': '#CCCCCC',
+      'titleBar.inactiveBackground': '#2D2D2D',
+      'titleBar.inactiveForeground': '#999999',
+      'statusBar.background': '#007ACC',
+      'statusBar.foreground': '#FFFFFF',
+      'activityBar.background': '#333333',
+      'activityBar.foreground': '#FFFFFF',
+      'sideBar.background': '#252526',
+      'sideBar.foreground': '#CCCCCC',
+      'sideBarSectionHeader.background': '#333333',
+      'sideBarSectionHeader.foreground': '#CCCCCC',
     };
 
     for (const key of ALL_PALETTE_KEYS) {

@@ -1,6 +1,6 @@
 import type { SchemeConfig, SchemeResolver } from './types';
 import { maxChroma } from '../convert';
-import { applyHueOffset } from '../tint';
+import { applyHueOffset } from '../hue';
 
 /**
  * Wraps a static SchemeConfig as a SchemeResolver.

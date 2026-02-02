@@ -2,7 +2,7 @@ import type { SchemeResolver } from './types';
 import { pastelScheme } from './pastel';
 import { staticResolver } from './resolvers';
 import { hexToOklch } from '../convert';
-import { applyHueOffset } from '../tint';
+import { applyHueOffset } from '../hue';
 import { getColorForKey } from '../../theme/colors';
 
 /**
