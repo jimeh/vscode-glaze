@@ -183,6 +183,12 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Workspace
       );
 
+      // Wait for the disable-triggered reconcile to fully settle before
+      // seeding colorCustomizations, otherwise the debounced reconcile
+      // can overwrite our seeded value.
+      await waitForPatinaColorsCleared();
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       const seededColors = { 'editor.background': '#aabbcc' };
       const config = vscode.workspace.getConfiguration();
       await config.update(
@@ -199,9 +205,9 @@ suite('Extension Test Suite', () => {
 
       await new Promise((resolve) => setTimeout(resolve, 400));
 
-      const inspection = config.inspect<Record<string, string>>(
-        'workbench.colorCustomizations'
-      );
+      const inspection = vscode.workspace
+        .getConfiguration()
+        .inspect<Record<string, string>>('workbench.colorCustomizations');
       assert.deepStrictEqual(
         inspection?.workspaceValue,
         seededColors,
