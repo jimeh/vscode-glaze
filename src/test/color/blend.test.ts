@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { blendWithThemeOklch } from '../../color/blend';
+import { blendWithThemeOklch, blendHueOnlyOklch } from '../../color/blend';
 import { hexToOklch, oklchToHex } from '../../color/convert';
 
 suite('blendWithThemeOklch', () => {
@@ -160,5 +160,114 @@ suite('blendWithThemeOklch', () => {
       /^#[0-9a-f]{6}$/,
       'Should produce valid gamut-clamped hex'
     );
+  });
+});
+
+// =================================================================
+// blendHueOnlyOklch
+// =================================================================
+
+suite('blendHueOnlyOklch', () => {
+  test('returns original when factor is 0', () => {
+    const tint = { l: 0.5, c: 0.05, h: 200 };
+    const result = blendHueOnlyOklch(tint, '#1F1F1F', 0);
+    assert.strictEqual(result.l, tint.l);
+    assert.strictEqual(result.c, tint.c);
+    assert.strictEqual(result.h, tint.h);
+  });
+
+  test('returns theme hue with tint L/C when factor is 1', () => {
+    const tint = { l: 0.5, c: 0.05, h: 200 };
+    const themeHex = '#FF5733'; // orange-red
+    const themeOklch = hexToOklch(themeHex);
+    const result = blendHueOnlyOklch(tint, themeHex, 1);
+
+    // L and C should be preserved from tint
+    assert.ok(
+      Math.abs(result.l - tint.l) < 0.01,
+      `L should match tint: ${result.l} vs ${tint.l}`
+    );
+    // C may be gamut-clamped but should be close
+    assert.ok(
+      result.c <= tint.c + 0.001,
+      `C should not exceed tint: ${result.c} vs ${tint.c}`
+    );
+    // H should match theme
+    assert.ok(
+      Math.abs(result.h - themeOklch.h) < 1,
+      `Hue should match theme: ${result.h} vs ${themeOklch.h}`
+    );
+  });
+
+  test('preserves L and C at all blend factors', () => {
+    const tint = { l: 0.4, c: 0.05, h: 180 };
+    const themeHex = '#282C34';
+    const factors = [0, 0.25, 0.5, 0.75, 1];
+
+    for (const factor of factors) {
+      const result = blendHueOnlyOklch(tint, themeHex, factor);
+      // L/C should be preserved (gamut clamping may reduce C)
+      assert.ok(
+        Math.abs(result.l - tint.l) < 0.01,
+        `L should be preserved at factor=${factor}: ` +
+          `${result.l} vs ${tint.l}`
+      );
+      assert.ok(
+        result.c <= tint.c + 0.001,
+        `C should not exceed tint at factor=${factor}: ` +
+          `${result.c} vs ${tint.c}`
+      );
+    }
+  });
+
+  test('blends hue at intermediate factor', () => {
+    const tint = { l: 0.5, c: 0.05, h: 0 };
+    const themeHex = '#00FF00'; // green, hue ~142
+    const themeOklch = hexToOklch(themeHex);
+    const result = blendHueOnlyOklch(tint, themeHex, 0.5);
+
+    // Hue should be roughly halfway between 0 and theme hue
+    const expectedHue = themeOklch.h / 2;
+    assert.ok(
+      Math.abs(result.h - expectedHue) < 5,
+      `Hue should be ~${expectedHue}, got ${result.h}`
+    );
+  });
+
+  test('handles hue wraparound', () => {
+    const tint = { l: 0.5, c: 0.05, h: 350 };
+    const result = blendHueOnlyOklch(tint, '#FF0000', 0.5);
+
+    // Should wrap around 0/360, not go through 180
+    assert.ok(
+      result.h > 340 || result.h < 30,
+      `Hue ${result.h} should wrap around 0/360`
+    );
+  });
+
+  test('returns tint unchanged on invalid theme hex', () => {
+    const tint = { l: 0.5, c: 0.05, h: 200 };
+    const result = blendHueOnlyOklch(tint, 'invalid', 0.5);
+    assert.strictEqual(result.l, tint.l);
+    assert.strictEqual(result.c, tint.c);
+    assert.strictEqual(result.h, tint.h);
+  });
+
+  test('produces valid hex output', () => {
+    const tint = { l: 0.5, c: 0.1, h: 180 };
+    const themes = ['#1F1F1F', '#FFFFFF', '#282C34', '#FF5733'];
+    const factors = [0, 0.25, 0.5, 0.75, 1];
+
+    for (const theme of themes) {
+      for (const factor of factors) {
+        const result = blendHueOnlyOklch(tint, theme, factor);
+        const hex = oklchToHex(result);
+        assert.match(
+          hex,
+          /^#[0-9a-f]{6}$/,
+          `Theme ${theme} factor ${factor} should give valid hex`
+        );
+      }
+    }
   });
 });

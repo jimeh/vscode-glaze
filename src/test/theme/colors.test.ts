@@ -475,4 +475,91 @@ suite('getColorForKey', () => {
       '#282C34'
     );
   });
+
+  test('returns sideBar colors when defined', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'sideBar.background': '#21252B',
+      'sideBar.foreground': '#ABB2BF',
+    };
+    assert.strictEqual(getColorForKey('sideBar.background', colors), '#21252B');
+    assert.strictEqual(getColorForKey('sideBar.foreground', colors), '#ABB2BF');
+  });
+
+  test('sideBarSectionHeader prefers direct key over sideBar', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'sideBar.background': '#21252B',
+      'sideBarSectionHeader.background': '#1A1D23',
+      'sideBarSectionHeader.foreground': '#FFFFFF',
+    };
+    assert.strictEqual(
+      getColorForKey('sideBarSectionHeader.background', colors),
+      '#1A1D23'
+    );
+    assert.strictEqual(
+      getColorForKey('sideBarSectionHeader.foreground', colors),
+      '#FFFFFF'
+    );
+  });
+
+  test('sideBarSectionHeader falls back to sideBar', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'sideBar.background': '#21252B',
+      'sideBar.foreground': '#ABB2BF',
+    };
+    assert.strictEqual(
+      getColorForKey('sideBarSectionHeader.background', colors),
+      '#21252B'
+    );
+    assert.strictEqual(
+      getColorForKey('sideBarSectionHeader.foreground', colors),
+      '#ABB2BF'
+    );
+  });
+
+  test('sideBarSectionHeader falls back to editor when no sideBar', () => {
+    assert.strictEqual(
+      getColorForKey('sideBarSectionHeader.background', editorOnlyColors),
+      '#282C34'
+    );
+  });
+
+  test('titleBar.inactiveBackground prefers direct when defined', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'titleBar.activeBackground': '#21252B',
+      'titleBar.inactiveBackground': '#1A1D23',
+    };
+    assert.strictEqual(
+      getColorForKey('titleBar.inactiveBackground', colors),
+      '#1A1D23'
+    );
+  });
+
+  test('titleBar.inactiveBackground falls back to active', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'titleBar.activeBackground': '#21252B',
+    };
+    assert.strictEqual(
+      getColorForKey('titleBar.inactiveBackground', colors),
+      '#21252B'
+    );
+  });
+
+  test('sideBar falls back to editor.background when not defined', () => {
+    assert.strictEqual(
+      getColorForKey('sideBar.background', editorOnlyColors),
+      '#282C34'
+    );
+  });
+
+  test('sideBar.foreground falls back to editor.foreground', () => {
+    assert.strictEqual(
+      getColorForKey('sideBar.foreground', bgOnlyColors),
+      '#ABB2BF'
+    );
+  });
 });

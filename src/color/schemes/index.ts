@@ -6,23 +6,34 @@ export {
   DEFAULT_COLOR_SCHEME,
   isValidColorScheme,
 } from './definitions';
-export type { SchemeConfig, ElementConfig } from './types';
+export type {
+  SchemeConfig,
+  SchemeResolver,
+  SchemeResolveContext,
+  SchemeResolveResult,
+} from './types';
 
 import type { ColorScheme } from './definitions';
-import type { SchemeConfig } from './types';
+import type { SchemeConfig, SchemeResolver } from './types';
+import { adaptiveResolver } from './adaptive';
 import { analogousScheme } from './analogous';
 import { duotoneScheme } from './duotone';
 import { mutedScheme } from './muted';
 import { neonScheme } from './neon';
 import { pastelScheme } from './pastel';
+import { staticResolver } from './resolvers';
 import { tintedScheme } from './tinted';
 import { undercurrentScheme } from './undercurrent';
 import { vibrantScheme } from './vibrant';
 
 /**
- * Map of color scheme names to their configurations.
+ * Static scheme configurations keyed by scheme name.
+ * Excludes dynamic schemes (e.g. adaptive) that have no
+ * static config.
  */
-const SCHEME_CONFIGS: Record<ColorScheme, SchemeConfig> = {
+export const STATIC_SCHEME_CONFIGS: Readonly<
+  Partial<Record<ColorScheme, SchemeConfig>>
+> = {
   pastel: pastelScheme,
   vibrant: vibrantScheme,
   muted: mutedScheme,
@@ -34,8 +45,23 @@ const SCHEME_CONFIGS: Record<ColorScheme, SchemeConfig> = {
 };
 
 /**
- * Returns the configuration for the specified color scheme.
+ * Map of color scheme names to their resolvers.
  */
-export function getSchemeConfig(scheme: ColorScheme): SchemeConfig {
-  return SCHEME_CONFIGS[scheme];
+const SCHEME_RESOLVERS: Record<ColorScheme, SchemeResolver> = {
+  pastel: staticResolver(pastelScheme),
+  vibrant: staticResolver(vibrantScheme),
+  muted: staticResolver(mutedScheme),
+  tinted: staticResolver(tintedScheme),
+  duotone: staticResolver(duotoneScheme),
+  undercurrent: staticResolver(undercurrentScheme),
+  analogous: staticResolver(analogousScheme),
+  neon: staticResolver(neonScheme),
+  adaptive: adaptiveResolver,
+};
+
+/**
+ * Returns the resolver for the specified color scheme.
+ */
+export function getSchemeResolver(scheme: ColorScheme): SchemeResolver {
+  return SCHEME_RESOLVERS[scheme];
 }

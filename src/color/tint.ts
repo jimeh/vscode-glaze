@@ -1,4 +1,3 @@
-import type { OKLCH } from './types';
 import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { ColorScheme, TintTarget } from '../config';
 import type {
@@ -13,8 +12,9 @@ import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { oklchToHex, maxChroma } from './convert';
-import { blendWithThemeOklch } from './blend';
-import { getSchemeConfig } from './schemes';
+import { blendWithThemeOklch, blendHueOnlyOklch } from './blend';
+import { getSchemeResolver } from './schemes';
+import type { SchemeResolveContext } from './schemes';
 import type { TintColors } from '../statusBar/types';
 
 // ============================================================================
@@ -183,26 +183,20 @@ export function computeTint(options: ComputeTintOptions): TintResult {
 
   const baseTintHex = computeBaseTintHex(baseHue, themeType);
   const targetSet = new Set<string>(targets);
-  const schemeConfig = getSchemeConfig(colorScheme);
-  const themeConfig = schemeConfig[themeType];
+  const resolver = getSchemeResolver(colorScheme);
+  const resolveContext: SchemeResolveContext = { themeColors, baseHue };
 
   const keys: TintKeyDetail[] = PATINA_MANAGED_KEYS.map(
     (key: PaletteKey): TintKeyDetail => {
       const def = COLOR_KEY_DEFINITIONS[key];
-      const config = themeConfig[key];
       const element = def.element as TintTarget;
 
-      // Compute element hue with offset
-      const elementHue = applyHueOffset(baseHue, config.hueOffset);
-
-      // Compute OKLCH tint color (pre-blend)
-      const maxC = maxChroma(config.lightness, elementHue);
-      const chroma = maxC * config.chromaFactor;
-      const tintOklch: OKLCH = {
-        l: config.lightness,
-        c: chroma,
-        h: elementHue,
-      };
+      // Resolve tint color via scheme resolver
+      const { tintOklch, hueOnlyBlend } = resolver(
+        themeType,
+        key,
+        resolveContext
+      );
       const tintHex = oklchToHex(tintOklch);
 
       // Look up theme color
@@ -216,11 +210,8 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       // Compute final color (blend with theme if available)
       let finalHex: string;
       if (themeColor && effectiveBlend > 0) {
-        const blendedOklch = blendWithThemeOklch(
-          tintOklch,
-          themeColor,
-          effectiveBlend
-        );
+        const blendFn = hueOnlyBlend ? blendHueOnlyOklch : blendWithThemeOklch;
+        const blendedOklch = blendFn(tintOklch, themeColor, effectiveBlend);
         finalHex = oklchToHex(blendedOklch);
       } else {
         finalHex = tintHex;

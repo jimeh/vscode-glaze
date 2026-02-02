@@ -127,9 +127,9 @@ suite('generateSchemePreview', () => {
 });
 
 suite('generateAllSchemePreviews', () => {
-  test('returns previews for all 8 schemes', () => {
+  test('returns previews for all schemes', () => {
     const previews = generateAllSchemePreviews('dark');
-    assert.strictEqual(previews.length, 8);
+    assert.strictEqual(previews.length, ALL_COLOR_SCHEMES.length);
   });
 
   test('schemes are in correct order', () => {
@@ -143,8 +143,8 @@ suite('generateAllSchemePreviews', () => {
       const previews = generateAllSchemePreviews(themeType);
       assert.strictEqual(
         previews.length,
-        8,
-        `Should return 8 previews for ${themeType}`
+        ALL_COLOR_SCHEMES.length,
+        `Should return ${ALL_COLOR_SCHEMES.length} previews for ${themeType}`
       );
     }
   });

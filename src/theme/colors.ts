@@ -5,6 +5,7 @@ import {
   OPTIONAL_THEME_COLOR_KEYS,
   PALETTE_KEY_TO_COLOR_KEY,
   FOREGROUND_KEYS,
+  type ThemeColorKey,
   type ThemeColors,
   type PaletteKey,
 } from './colorKeys';
@@ -135,8 +136,11 @@ export function getThemeInfo(themeName: string): ThemeInfo | undefined {
 
 /**
  * Gets the appropriate color for a specific palette key.
- * Falls back to editor.background for background keys, editor.foreground for
- * foreground keys. Returns undefined if no suitable color is found.
+ *
+ * Lookup order:
+ * 1. Direct key (e.g. sideBarSectionHeader.background)
+ * 2. Mapped fallback key (e.g. sideBar.background)
+ * 3. editor.background / editor.foreground
  *
  * @param key - The palette key to get color for
  * @param colors - The theme colors
@@ -146,11 +150,20 @@ export function getColorForKey(
   key: PaletteKey,
   colors: ThemeColors
 ): string | undefined {
-  const colorKey = PALETTE_KEY_TO_COLOR_KEY[key];
-  if (colors[colorKey]) {
-    return colors[colorKey]!;
+  // 1. Check direct key
+  type OptionalColorKey = Exclude<ThemeColorKey, 'editor.background'>;
+  const directValue = colors[key as OptionalColorKey];
+  if (directValue) {
+    return directValue;
   }
-  // Fallback based on key type
+
+  // 2. Check mapped fallback key (only when different from direct)
+  const fallbackKey = PALETTE_KEY_TO_COLOR_KEY[key];
+  if (fallbackKey !== key && colors[fallbackKey]) {
+    return colors[fallbackKey]!;
+  }
+
+  // 3. Generic fallback based on key type
   if (FOREGROUND_KEYS.has(key)) {
     return colors['editor.foreground'];
   }

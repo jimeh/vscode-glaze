@@ -347,6 +347,7 @@ suite('computeTint', () => {
       'undercurrent',
       'analogous',
       'neon',
+      'adaptive',
     ];
     const hexPattern = /^#[0-9a-f]{6}$/i;
 
