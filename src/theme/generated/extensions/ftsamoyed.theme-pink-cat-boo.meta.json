@@ -4,8 +4,8 @@
   "publisherName": "ftsamoyed",
   "displayName": "Pink-Cat-Boo Theme",
   "version": "1.3.0",
-  "extractedAt": "2026-01-25T15:27:51.750Z",
-  "installCount": 227929,
+  "extractedAt": "2026-02-02T13:46:29.168Z",
+  "installCount": 229040,
   "themes": [
     {
       "name": "Pink Cat Boo",
@@ -16,7 +16,9 @@
         "titleBar.activeBackground": "#2D2F42",
         "statusBar.background": "#F3B4BF",
         "activityBar.background": "#202330",
-        "activityBar.foreground": "#FDE3E8"
+        "activityBar.foreground": "#FDE3E8",
+        "sideBar.background": "#2D2F42",
+        "sideBarSectionHeader.background": "#202330"
       },
       "type": "dark"
     }

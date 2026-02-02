@@ -4,8 +4,8 @@
   "publisherName": "mariorodeghiero",
   "displayName": "Vue Theme",
   "version": "2.0.3",
-  "extractedAt": "2026-01-25T15:27:43.725Z",
-  "installCount": 682611,
+  "extractedAt": "2026-02-02T13:46:20.982Z",
+  "installCount": 683700,
   "themes": [
     {
       "name": "Vue Theme",
@@ -20,7 +20,10 @@
         "statusBar.background": "#002B36",
         "statusBar.foreground": "#19F9D8",
         "activityBar.background": "#002B36",
-        "activityBar.foreground": "#19F9D8"
+        "activityBar.foreground": "#19F9D8",
+        "sideBar.background": "#002B36",
+        "sideBar.foreground": "#AEB1B0",
+        "sideBarSectionHeader.foreground": "#BCBDBD"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#002933",
         "statusBar.foreground": "#14C5AB",
         "activityBar.background": "#002933",
-        "activityBar.foreground": "#14C5AB"
+        "activityBar.foreground": "#14C5AB",
+        "sideBar.background": "#002933",
+        "sideBar.foreground": "#AEB1B0",
+        "sideBarSectionHeader.foreground": "#AEB1B1"
       },
       "type": "hcDark"
     }

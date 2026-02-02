@@ -4,8 +4,8 @@
   "publisherName": "nicolasdschmidt",
   "displayName": "Lunar Pink Theme",
   "version": "1.4.0",
-  "extractedAt": "2026-01-25T15:27:54.369Z",
-  "installCount": 181034,
+  "extractedAt": "2026-02-02T13:46:32.073Z",
+  "installCount": 182650,
   "themes": [
     {
       "name": "Lunar Pink",
@@ -20,7 +20,11 @@
         "statusBar.background": "#131313",
         "statusBar.foreground": "#E621AF",
         "activityBar.background": "#131313",
-        "activityBar.foreground": "#E621AF"
+        "activityBar.foreground": "#E621AF",
+        "sideBar.background": "#131313",
+        "sideBar.foreground": "#DDDDDD",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#262626",
         "statusBar.foreground": "#E621AF",
         "activityBar.background": "#262626",
-        "activityBar.foreground": "#E621AF"
+        "activityBar.foreground": "#E621AF",
+        "sideBar.background": "#262626",
+        "sideBar.foreground": "#DDDDDD",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     }

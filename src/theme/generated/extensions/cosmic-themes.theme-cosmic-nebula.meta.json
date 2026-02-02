@@ -4,8 +4,8 @@
   "publisherName": "cosmic-themes",
   "displayName": "Cosmic Nebula Themes",
   "version": "1.0.0",
-  "extractedAt": "2026-01-25T15:28:14.524Z",
-  "installCount": 6339,
+  "extractedAt": "2026-02-02T13:46:52.441Z",
+  "installCount": 6500,
   "themes": [
     {
       "name": "Cosmic Nebula",
@@ -20,7 +20,9 @@
         "statusBar.background": "#0F061E",
         "statusBar.foreground": "#F8F8FF",
         "activityBar.background": "#0F061E",
-        "activityBar.foreground": "#F8F8FF"
+        "activityBar.foreground": "#F8F8FF",
+        "sideBar.background": "#160928",
+        "sideBarSectionHeader.background": "#1A0B2E"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#14081C",
         "statusBar.foreground": "#E8E8F0",
         "activityBar.background": "#14081C",
-        "activityBar.foreground": "#E8E8F0"
+        "activityBar.foreground": "#E8E8F0",
+        "sideBar.background": "#1B0D26",
+        "sideBarSectionHeader.background": "#1F1030"
       },
       "type": "dark"
     }

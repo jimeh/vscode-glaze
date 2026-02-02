@@ -4,8 +4,8 @@
   "publisherName": "enkia",
   "displayName": "Tokyo Night",
   "version": "1.1.2",
-  "extractedAt": "2026-01-25T15:27:40.580Z",
-  "installCount": 2497199,
+  "extractedAt": "2026-02-02T13:46:17.872Z",
+  "installCount": 2512110,
   "themes": [
     {
       "name": "Tokyo Night",
@@ -20,7 +20,11 @@
         "statusBar.background": "#16161E",
         "statusBar.foreground": "#787C99",
         "activityBar.background": "#16161E",
-        "activityBar.foreground": "#787C99"
+        "activityBar.foreground": "#787C99",
+        "sideBar.background": "#16161E",
+        "sideBar.foreground": "#787C99",
+        "sideBarSectionHeader.background": "#16161E",
+        "sideBarSectionHeader.foreground": "#A9B1D6"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1F2335",
         "statusBar.foreground": "#8089B3",
         "activityBar.background": "#1F2335",
-        "activityBar.foreground": "#8089B3"
+        "activityBar.foreground": "#8089B3",
+        "sideBar.background": "#1F2335",
+        "sideBar.foreground": "#8089B3",
+        "sideBarSectionHeader.background": "#1F2335",
+        "sideBarSectionHeader.foreground": "#A9B1D6"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#D6D8DF",
         "statusBar.foreground": "#363C4D",
         "activityBar.background": "#D6D8DF",
-        "activityBar.foreground": "#363C4D"
+        "activityBar.foreground": "#363C4D",
+        "sideBar.background": "#D6D8DF",
+        "sideBar.foreground": "#363C4D",
+        "sideBarSectionHeader.background": "#D6D8DF",
+        "sideBarSectionHeader.foreground": "#363C4D"
       },
       "type": "light"
     }

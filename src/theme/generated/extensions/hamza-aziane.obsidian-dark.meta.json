@@ -4,8 +4,8 @@
   "publisherName": "Hamza-Aziane",
   "displayName": "Obsidian Dark",
   "version": "1.0.0",
-  "extractedAt": "2026-01-25T15:28:10.471Z",
-  "installCount": 9715,
+  "extractedAt": "2026-02-02T13:46:48.407Z",
+  "installCount": 9811,
   "themes": [
     {
       "name": "Obsidian Dark",
@@ -20,7 +20,11 @@
         "statusBar.background": "#0D1117",
         "statusBar.foreground": "#D1D3D6",
         "activityBar.background": "#141A25",
-        "activityBar.foreground": "#C9D1D9"
+        "activityBar.foreground": "#C9D1D9",
+        "sideBar.background": "#11151A",
+        "sideBar.foreground": "#C9D1D9",
+        "sideBarSectionHeader.background": "#141A25",
+        "sideBarSectionHeader.foreground": "#C9D1D9"
       },
       "type": "dark"
     }

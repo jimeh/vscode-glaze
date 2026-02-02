@@ -4,8 +4,8 @@
   "publisherName": "pr1sm8",
   "displayName": "Panda Theme",
   "version": "1.2.0",
-  "extractedAt": "2026-01-25T15:28:25.479Z",
-  "installCount": 3175,
+  "extractedAt": "2026-02-02T13:47:03.081Z",
+  "installCount": 3254,
   "themes": [
     {
       "name": "Panda Syntax",
@@ -20,7 +20,9 @@
         "statusBar.background": "#222223",
         "statusBar.foreground": "#E6E6E6",
         "activityBar.background": "#222223",
-        "activityBar.foreground": "#E6E6E6"
+        "activityBar.foreground": "#E6E6E6",
+        "sideBar.background": "#242526",
+        "sideBar.foreground": "#BBBBBB"
       },
       "type": "dark"
     }

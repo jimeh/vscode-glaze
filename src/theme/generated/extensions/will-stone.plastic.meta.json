@@ -4,8 +4,8 @@
   "publisherName": "will-stone",
   "displayName": "Plastic",
   "version": "9.5.0",
-  "extractedAt": "2026-01-25T15:27:59.250Z",
-  "installCount": 138553,
+  "extractedAt": "2026-02-02T13:46:37.104Z",
+  "installCount": 138690,
   "themes": [
     {
       "name": "Plastic",
@@ -20,7 +20,10 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#A9B2C3",
         "activityBar.background": "#21252B",
-        "activityBar.foreground": "#C6CCD7"
+        "activityBar.foreground": "#C6CCD7",
+        "sideBar.background": "#181A1F",
+        "sideBar.foreground": "#C6CCD7",
+        "sideBarSectionHeader.background": "#21252B"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#A9B2C3",
         "activityBar.background": "#21252B",
-        "activityBar.foreground": "#C6CCD7"
+        "activityBar.foreground": "#C6CCD7",
+        "sideBar.background": "#181A1F",
+        "sideBar.foreground": "#C6CCD7",
+        "sideBarSectionHeader.background": "#21252B"
       },
       "type": "dark"
     }

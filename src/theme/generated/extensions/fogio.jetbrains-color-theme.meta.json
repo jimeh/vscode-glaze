@@ -4,8 +4,8 @@
   "publisherName": "fogio",
   "displayName": "JetBrains New UI Color Theme Extended",
   "version": "0.6.0",
-  "extractedAt": "2026-01-25T15:28:11.430Z",
-  "installCount": 8746,
+  "extractedAt": "2026-02-02T13:46:48.830Z",
+  "installCount": 9343,
   "themes": [
     {
       "name": "dark-jetbrains-color-theme",
@@ -17,7 +17,10 @@
         "statusBar.background": "#2B2D30",
         "statusBar.foreground": "#9DA0A8",
         "activityBar.background": "#2B2D30",
-        "activityBar.foreground": "#CED0D6"
+        "activityBar.foreground": "#CED0D6",
+        "sideBar.background": "#2B2D30",
+        "sideBar.foreground": "#CED0D6",
+        "sideBarSectionHeader.background": "#43454A"
       },
       "type": "dark"
     },
@@ -34,7 +37,11 @@
         "statusBar.background": "#007ACC",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#F7F8FA",
-        "activityBar.foreground": "#47484D"
+        "activityBar.foreground": "#47484D",
+        "sideBar.background": "#F7F8FA",
+        "sideBar.foreground": "#2B202D",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#000000"
       },
       "type": "light"
     }

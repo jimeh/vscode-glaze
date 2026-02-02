@@ -4,8 +4,8 @@
   "publisherName": "eliostruyf",
   "displayName": "The unnamed",
   "version": "1.16.0",
-  "extractedAt": "2026-01-25T15:28:25.377Z",
-  "installCount": 3201,
+  "extractedAt": "2026-02-02T13:47:03.289Z",
+  "installCount": 3220,
   "themes": [
     {
       "name": "The unnamed",
@@ -20,7 +20,11 @@
         "statusBar.background": "#0E131F",
         "statusBar.foreground": "#F3EFF5",
         "activityBar.background": "#0E131F",
-        "activityBar.foreground": "#F3EFF5"
+        "activityBar.foreground": "#F3EFF5",
+        "sideBar.background": "#141C2D",
+        "sideBar.foreground": "#F3EFF5",
+        "sideBarSectionHeader.background": "#0D1217",
+        "sideBarSectionHeader.foreground": "#F3EFF5"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#0E131F",
         "statusBar.foreground": "#F3EFF5",
         "activityBar.background": "#0E131F",
-        "activityBar.foreground": "#F3EFF5"
+        "activityBar.foreground": "#F3EFF5",
+        "sideBar.background": "#141C2D",
+        "sideBar.foreground": "#F3EFF5",
+        "sideBarSectionHeader.background": "#0D1217",
+        "sideBarSectionHeader.foreground": "#F3EFF5"
       },
       "type": "dark"
     }

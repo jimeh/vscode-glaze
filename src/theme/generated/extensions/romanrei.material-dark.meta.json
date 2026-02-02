@@ -4,8 +4,8 @@
   "publisherName": "romanrei",
   "displayName": "Material Dark",
   "version": "1.1.0",
-  "extractedAt": "2026-01-25T15:28:03.529Z",
-  "installCount": 115499,
+  "extractedAt": "2026-02-02T13:46:41.303Z",
+  "installCount": 115802,
   "themes": [
     {
       "name": "Material Dark Theme",
@@ -14,7 +14,9 @@
         "editor.background": "#212121",
         "editor.foreground": "#EEFFFF",
         "statusBar.background": "#212121",
-        "activityBar.background": "#212121"
+        "activityBar.background": "#212121",
+        "sideBar.background": "#212121",
+        "sideBar.foreground": "#EEEEEE"
       },
       "type": "dark"
     }

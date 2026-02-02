@@ -4,8 +4,8 @@
   "publisherName": "Vladeeg",
   "displayName": "VLight Theme",
   "version": "2.2.0",
-  "extractedAt": "2026-01-25T15:28:19.635Z",
-  "installCount": 4347,
+  "extractedAt": "2026-02-02T13:46:57.709Z",
+  "installCount": 4372,
   "themes": [
     {
       "name": "VLight",
@@ -17,7 +17,9 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#403F53",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#403F53"
+        "activityBar.foreground": "#403F53",
+        "sideBar.background": "#F0F0F0",
+        "sideBar.foreground": "#403F53"
       },
       "type": "light"
     }

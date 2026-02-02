@@ -3,9 +3,9 @@
   "extensionName": "night-wolf",
   "publisherName": "MaoSantaella",
   "displayName": "Night Wolf",
-  "version": "2.3.1",
-  "extractedAt": "2026-01-25T15:28:01.120Z",
-  "installCount": 131069,
+  "version": "2.5.0",
+  "extractedAt": "2026-02-02T13:46:38.905Z",
+  "installCount": 131412,
   "themes": [
     {
       "name": "Night Wolf (dark blue)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#101E2C",
         "statusBar.foreground": "#7BA5CF",
         "activityBar.background": "#101E2C",
-        "activityBar.foreground": "#7BA5CF"
+        "activityBar.foreground": "#7BA5CF",
+        "sideBar.background": "#101E2C",
+        "sideBar.foreground": "#7BA5CF",
+        "sideBarSectionHeader.background": "#14283C",
+        "sideBarSectionHeader.foreground": "#7BA5CF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#101E2C",
         "statusBar.foreground": "#7BA5CF",
         "activityBar.background": "#101E2C",
-        "activityBar.foreground": "#7BA5CF"
+        "activityBar.foreground": "#7BA5CF",
+        "sideBar.background": "#101E2C",
+        "sideBar.foreground": "#7BA5CF",
+        "sideBarSectionHeader.background": "#14283C",
+        "sideBarSectionHeader.foreground": "#7BA5CF"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#1B1B1B",
         "statusBar.foreground": "#9D9D9D",
         "activityBar.background": "#1B1B1B",
-        "activityBar.foreground": "#9D9D9D"
+        "activityBar.foreground": "#9D9D9D",
+        "sideBar.background": "#1B1B1B",
+        "sideBar.foreground": "#9D9D9D",
+        "sideBarSectionHeader.background": "#242424",
+        "sideBarSectionHeader.foreground": "#9D9D9D"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#1B1B1B",
         "statusBar.foreground": "#9D9D9D",
         "activityBar.background": "#1B1B1B",
-        "activityBar.foreground": "#9D9D9D"
+        "activityBar.foreground": "#9D9D9D",
+        "sideBar.background": "#1B1B1B",
+        "sideBar.foreground": "#9D9D9D",
+        "sideBarSectionHeader.background": "#242424",
+        "sideBarSectionHeader.foreground": "#9D9D9D"
       },
       "type": "dark"
     },
@@ -88,7 +104,11 @@
         "statusBar.background": "#252525",
         "statusBar.foreground": "#9B9B9B",
         "activityBar.background": "#252525",
-        "activityBar.foreground": "#9B9B9B"
+        "activityBar.foreground": "#9B9B9B",
+        "sideBar.background": "#252525",
+        "sideBar.foreground": "#9B9B9B",
+        "sideBarSectionHeader.background": "#2D2D2D",
+        "sideBarSectionHeader.foreground": "#9B9B9B"
       },
       "type": "dark"
     },
@@ -105,7 +125,11 @@
         "statusBar.background": "#252525",
         "statusBar.foreground": "#9B9B9B",
         "activityBar.background": "#252525",
-        "activityBar.foreground": "#9B9B9B"
+        "activityBar.foreground": "#9B9B9B",
+        "sideBar.background": "#252525",
+        "sideBar.foreground": "#9B9B9B",
+        "sideBarSectionHeader.background": "#2D2D2D",
+        "sideBarSectionHeader.foreground": "#9B9B9B"
       },
       "type": "dark"
     },
@@ -122,7 +146,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#969696",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#969696"
+        "activityBar.foreground": "#969696",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#969696",
+        "sideBarSectionHeader.background": "#141414",
+        "sideBarSectionHeader.foreground": "#969696"
       },
       "type": "dark"
     },
@@ -139,7 +167,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#969696",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#969696"
+        "activityBar.foreground": "#969696",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#969696",
+        "sideBarSectionHeader.background": "#141414",
+        "sideBarSectionHeader.foreground": "#969696"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "codestackr",
   "displayName": "codeSTACKr Theme",
   "version": "0.0.9",
-  "extractedAt": "2026-01-25T15:27:54.578Z",
-  "installCount": 180867,
+  "extractedAt": "2026-02-02T13:46:32.177Z",
+  "installCount": 181222,
   "themes": [
     {
       "name": "codeSTACKr Theme",
@@ -15,7 +15,9 @@
         "editor.foreground": "#FFFFFF",
         "titleBar.activeBackground": "#070F15",
         "statusBar.background": "#070F15",
-        "activityBar.background": "#0C1A25"
+        "activityBar.background": "#0C1A25",
+        "sideBar.background": "#0A1620",
+        "sideBarSectionHeader.background": "#0C1A25"
       },
       "type": "dark"
     },
@@ -27,7 +29,9 @@
         "editor.foreground": "#FFFFFF",
         "titleBar.activeBackground": "#070F15",
         "statusBar.background": "#070F15",
-        "activityBar.background": "#0C1A25"
+        "activityBar.background": "#0C1A25",
+        "sideBar.background": "#0A1620",
+        "sideBarSectionHeader.background": "#0C1A25"
       },
       "type": "dark"
     }

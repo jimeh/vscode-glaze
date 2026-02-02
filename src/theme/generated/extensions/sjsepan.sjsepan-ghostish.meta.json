@@ -4,8 +4,8 @@
   "publisherName": "sjsepan",
   "displayName": "sjsepan.ghostish",
   "version": "0.4.1",
-  "extractedAt": "2026-01-25T15:28:20.480Z",
-  "installCount": 4056,
+  "extractedAt": "2026-02-02T13:46:58.330Z",
+  "installCount": 4178,
   "themes": [
     {
       "name": "Ghostish",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#C4C4C4",
         "activityBar.background": "#1A1A1A",
-        "activityBar.foreground": "#C4C4C4"
+        "activityBar.foreground": "#C4C4C4",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#C4C4C4",
+        "sideBarSectionHeader.background": "#1A1A1A",
+        "sideBarSectionHeader.foreground": "#C4C4C4"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#C4C4C4",
         "activityBar.background": "#1A1A1A",
-        "activityBar.foreground": "#C4C4C4"
+        "activityBar.foreground": "#C4C4C4",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#C4C4C4",
+        "sideBarSectionHeader.background": "#1A1A1A",
+        "sideBarSectionHeader.foreground": "#C4C4C4"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#C4C4C4",
         "activityBar.background": "#1A1A1A",
-        "activityBar.foreground": "#C4C4C4"
+        "activityBar.foreground": "#C4C4C4",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#C4C4C4",
+        "sideBarSectionHeader.background": "#1A1A1A",
+        "sideBarSectionHeader.foreground": "#C4C4C4"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#C4C4C4",
         "activityBar.background": "#1A1A1A",
-        "activityBar.foreground": "#C4C4C4"
+        "activityBar.foreground": "#C4C4C4",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#C4C4C4",
+        "sideBarSectionHeader.background": "#1A1A1A",
+        "sideBarSectionHeader.foreground": "#C4C4C4"
       },
       "type": "dark"
     }

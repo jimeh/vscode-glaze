@@ -4,8 +4,8 @@
   "publisherName": "nullxception",
   "displayName": "Cherry",
   "version": "0.2.7",
-  "extractedAt": "2026-01-25T15:28:14.946Z",
-  "installCount": 6047,
+  "extractedAt": "2026-02-02T13:46:52.855Z",
+  "installCount": 6103,
   "themes": [
     {
       "name": "Cherry",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1F1F2A",
         "statusBar.foreground": "#AEB4D0",
         "activityBar.background": "#1F1F2A",
-        "activityBar.foreground": "#FF568E"
+        "activityBar.foreground": "#FF568E",
+        "sideBar.background": "#1F1F2A",
+        "sideBar.foreground": "#AEB4D0",
+        "sideBarSectionHeader.background": "#1F1F2A",
+        "sideBarSectionHeader.foreground": "#AEB4D0"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#101017",
         "statusBar.foreground": "#AEB4D0",
         "activityBar.background": "#101017",
-        "activityBar.foreground": "#FF568E"
+        "activityBar.foreground": "#FF568E",
+        "sideBar.background": "#101017",
+        "sideBar.foreground": "#AEB4D0",
+        "sideBarSectionHeader.background": "#101017",
+        "sideBarSectionHeader.foreground": "#AEB4D0"
       },
       "type": "dark"
     }

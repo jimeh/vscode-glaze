@@ -4,8 +4,8 @@
   "publisherName": "sam-the-programmer",
   "displayName": "Jupyter Theme",
   "version": "0.1.3",
-  "extractedAt": "2026-01-25T15:28:06.691Z",
-  "installCount": 94078,
+  "extractedAt": "2026-02-02T13:46:44.629Z",
+  "installCount": 94582,
   "themes": [
     {
       "name": "Jupyter Theme",
@@ -23,7 +23,9 @@
         "editor.background": "#1E202B",
         "editor.foreground": "#DBD9D9",
         "statusBar.background": "#0D5641",
-        "activityBar.background": "#21222D"
+        "activityBar.background": "#21222D",
+        "sideBar.background": "#1E202B",
+        "sideBarSectionHeader.background": "#252631"
       },
       "type": "dark"
     },

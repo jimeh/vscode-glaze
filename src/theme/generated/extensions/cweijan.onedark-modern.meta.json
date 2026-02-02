@@ -4,8 +4,8 @@
   "publisherName": "cweijan",
   "displayName": "One Dark Modern",
   "version": "1.0.5",
-  "extractedAt": "2026-01-25T15:28:18.776Z",
-  "installCount": 4551,
+  "extractedAt": "2026-02-02T13:46:56.749Z",
+  "installCount": 4614,
   "themes": [
     {
       "name": "One Dark Modern",
@@ -20,7 +20,10 @@
         "statusBar.background": "#343840",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#22252A",
+        "sideBar.foreground": "#ABB2BF",
+        "sideBarSectionHeader.background": "#22252A"
       },
       "type": "dark"
     },
@@ -36,7 +39,9 @@
         "statusBar.background": "#465163",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#303845",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#2D3440",
+        "sideBarSectionHeader.background": "#2D3440"
       },
       "type": "dark"
     }

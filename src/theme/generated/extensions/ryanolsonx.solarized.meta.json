@@ -4,8 +4,8 @@
   "publisherName": "ryanolsonx",
   "displayName": "Solarized",
   "version": "3.0.0",
-  "extractedAt": "2026-01-25T15:27:54.787Z",
-  "installCount": 179360,
+  "extractedAt": "2026-02-02T13:46:32.485Z",
+  "installCount": 180084,
   "themes": [
     {
       "name": "Solarized Dark+",
@@ -20,7 +20,11 @@
         "statusBar.background": "#001B21",
         "statusBar.foreground": "#839496",
         "activityBar.background": "#001F26",
-        "activityBar.foreground": "#839496"
+        "activityBar.foreground": "#839496",
+        "sideBar.background": "#001F26",
+        "sideBar.foreground": "#839496",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#839496"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#001B21",
         "statusBar.foreground": "#93A1A1",
         "activityBar.background": "#001F26",
-        "activityBar.foreground": "#93A1A1"
+        "activityBar.foreground": "#93A1A1",
+        "sideBar.background": "#001F26",
+        "sideBar.foreground": "#93A1A1",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#93A1A1"
       },
       "type": "dark"
     },
@@ -50,7 +58,8 @@
         "statusBar.background": "#EEE8D5",
         "statusBar.foreground": "#586E75",
         "activityBar.background": "#DDD6C1",
-        "activityBar.foreground": "#584C27"
+        "activityBar.foreground": "#584C27",
+        "sideBar.background": "#EEE8D5"
       },
       "type": "light"
     },
@@ -62,7 +71,8 @@
         "titleBar.activeBackground": "#002C39",
         "statusBar.background": "#00212B",
         "statusBar.foreground": "#93A1A1",
-        "activityBar.background": "#003847"
+        "activityBar.background": "#003847",
+        "sideBar.background": "#00212B"
       },
       "type": "dark"
     },
@@ -75,7 +85,8 @@
         "statusBar.background": "#EEE8D5",
         "statusBar.foreground": "#586E75",
         "activityBar.background": "#DDD6C1",
-        "activityBar.foreground": "#584C27"
+        "activityBar.foreground": "#584C27",
+        "sideBar.background": "#EEE8D5"
       },
       "type": "light"
     }

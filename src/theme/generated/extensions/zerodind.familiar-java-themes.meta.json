@@ -4,8 +4,8 @@
   "publisherName": "zerodind",
   "displayName": "Familiar Java Themes",
   "version": "0.1.7",
-  "extractedAt": "2026-01-25T15:28:09.944Z",
-  "installCount": 10522,
+  "extractedAt": "2026-02-02T13:46:47.891Z",
+  "installCount": 10666,
   "themes": [
     {
       "name": "Eclipse Light",
@@ -17,7 +17,9 @@
         "statusBar.background": "#E2E2E2",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#E2E2E2",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FFFFFF",
+        "sideBarSectionHeader.background": "#E2E2E2"
       },
       "type": "light"
     },
@@ -29,7 +31,9 @@
         "editor.foreground": "#D9E8F7",
         "titleBar.activeBackground": "#515658",
         "statusBar.background": "#515658",
-        "activityBar.background": "#515658"
+        "activityBar.background": "#515658",
+        "sideBar.background": "#2F2F2F",
+        "sideBarSectionHeader.background": "#292929"
       },
       "type": "dark"
     },
@@ -43,7 +47,9 @@
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F2F2F2",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FFFFFF",
+        "sideBarSectionHeader.background": "#F2F2F2"
       },
       "type": "light"
     },
@@ -57,7 +63,9 @@
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F2F2F2",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FFFFFF",
+        "sideBarSectionHeader.background": "#F2F2F2"
       },
       "type": "light"
     },
@@ -72,7 +80,9 @@
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
         "activityBar.background": "#3C3F41",
-        "activityBar.foreground": "#BBBBBB"
+        "activityBar.foreground": "#BBBBBB",
+        "sideBar.background": "#3C3F41",
+        "sideBarSectionHeader.background": "#3C3F41"
       },
       "type": "dark"
     },
@@ -87,7 +97,9 @@
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
         "activityBar.background": "#3C3F41",
-        "activityBar.foreground": "#BBBBBB"
+        "activityBar.foreground": "#BBBBBB",
+        "sideBar.background": "#3C3F41",
+        "sideBarSectionHeader.background": "#3C3F41"
       },
       "type": "dark"
     }

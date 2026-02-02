@@ -4,8 +4,8 @@
   "publisherName": "Catppuccin",
   "displayName": "Catppuccin for VSCode",
   "version": "3.18.1",
-  "extractedAt": "2026-01-25T15:27:42.535Z",
-  "installCount": 1034622,
+  "extractedAt": "2026-02-02T13:46:19.779Z",
+  "installCount": 1047978,
   "themes": [
     {
       "name": "Catppuccin Mocha",
@@ -20,7 +20,11 @@
         "statusBar.background": "#11111B",
         "statusBar.foreground": "#CDD6F4",
         "activityBar.background": "#11111B",
-        "activityBar.foreground": "#CBA6F7"
+        "activityBar.foreground": "#CBA6F7",
+        "sideBar.background": "#181825",
+        "sideBar.foreground": "#CDD6F4",
+        "sideBarSectionHeader.background": "#181825",
+        "sideBarSectionHeader.foreground": "#CDD6F4"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#181926",
         "statusBar.foreground": "#CAD3F5",
         "activityBar.background": "#181926",
-        "activityBar.foreground": "#C6A0F6"
+        "activityBar.foreground": "#C6A0F6",
+        "sideBar.background": "#1E2030",
+        "sideBar.foreground": "#CAD3F5",
+        "sideBarSectionHeader.background": "#1E2030",
+        "sideBarSectionHeader.foreground": "#CAD3F5"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#232634",
         "statusBar.foreground": "#C6D0F5",
         "activityBar.background": "#232634",
-        "activityBar.foreground": "#CA9EE6"
+        "activityBar.foreground": "#CA9EE6",
+        "sideBar.background": "#292C3C",
+        "sideBar.foreground": "#C6D0F5",
+        "sideBarSectionHeader.background": "#292C3C",
+        "sideBarSectionHeader.foreground": "#C6D0F5"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#DCE0E8",
         "statusBar.foreground": "#4C4F69",
         "activityBar.background": "#DCE0E8",
-        "activityBar.foreground": "#8839EF"
+        "activityBar.foreground": "#8839EF",
+        "sideBar.background": "#E6E9EF",
+        "sideBar.foreground": "#4C4F69",
+        "sideBarSectionHeader.background": "#E6E9EF",
+        "sideBarSectionHeader.foreground": "#4C4F69"
       },
       "type": "light"
     }

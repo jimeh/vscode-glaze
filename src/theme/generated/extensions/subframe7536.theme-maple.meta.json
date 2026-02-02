@@ -4,8 +4,8 @@
   "publisherName": "subframe7536",
   "displayName": "Maple Theme",
   "version": "0.7.16",
-  "extractedAt": "2026-01-25T15:28:10.366Z",
-  "installCount": 9813,
+  "extractedAt": "2026-02-02T13:46:48.304Z",
+  "installCount": 9989,
   "themes": [
     {
       "name": "Maple Dark",
@@ -18,7 +18,10 @@
         "statusBar.background": "#171718",
         "statusBar.foreground": "#CBD5E1",
         "activityBar.background": "#171718",
-        "activityBar.foreground": "#CBD5E1"
+        "activityBar.foreground": "#CBD5E1",
+        "sideBar.background": "#171718",
+        "sideBar.foreground": "#CBD5E1",
+        "sideBarSectionHeader.background": "#171718"
       },
       "type": "dark"
     },
@@ -33,7 +36,10 @@
         "statusBar.background": "#FAFAF9",
         "statusBar.foreground": "#475569",
         "activityBar.background": "#FAFAF9",
-        "activityBar.foreground": "#475569"
+        "activityBar.foreground": "#475569",
+        "sideBar.background": "#FAFAF9",
+        "sideBar.foreground": "#475569",
+        "sideBarSectionHeader.background": "#FAFAF9"
       },
       "type": "light"
     }

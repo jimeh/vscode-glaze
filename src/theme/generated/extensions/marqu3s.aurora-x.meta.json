@@ -4,8 +4,8 @@
   "publisherName": "marqu3s",
   "displayName": "Aurora X",
   "version": "2.0.2",
-  "extractedAt": "2026-01-25T15:27:53.749Z",
-  "installCount": 188642,
+  "extractedAt": "2026-02-02T13:46:31.444Z",
+  "installCount": 188843,
   "themes": [
     {
       "name": "Aurora X",
@@ -18,7 +18,10 @@
         "statusBar.background": "#86A5FF",
         "statusBar.foreground": "#07090F",
         "activityBar.background": "#07090F",
-        "activityBar.foreground": "#86A5FF"
+        "activityBar.foreground": "#86A5FF",
+        "sideBar.background": "#07090F",
+        "sideBarSectionHeader.background": "#07090F",
+        "sideBarSectionHeader.foreground": "#86A5FF"
       },
       "type": "dark"
     }

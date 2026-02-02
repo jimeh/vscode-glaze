@@ -4,8 +4,8 @@
   "publisherName": "mgwg",
   "displayName": "Light Pink Theme",
   "version": "0.6.0",
-  "extractedAt": "2026-01-25T15:27:59.563Z",
-  "installCount": 137711,
+  "extractedAt": "2026-02-02T13:46:37.000Z",
+  "installCount": 138729,
   "themes": [
     {
       "name": "Light Pink",
@@ -16,7 +16,9 @@
         "titleBar.activeForeground": "#736A6D",
         "statusBar.background": "#FF7AB3",
         "activityBar.background": "#F2E7ED",
-        "activityBar.foreground": "#FF7AB3"
+        "activityBar.foreground": "#FF7AB3",
+        "sideBar.background": "#F5F0F3",
+        "sideBarSectionHeader.background": "#F5E3EF"
       },
       "type": "light"
     },
@@ -26,7 +28,8 @@
       "colors": {
         "editor.background": "#1E1E1E",
         "editor.foreground": "#D4D4D4",
-        "statusBar.background": "#F15FB4"
+        "statusBar.background": "#F15FB4",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

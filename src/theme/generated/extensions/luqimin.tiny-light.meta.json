@@ -4,8 +4,8 @@
   "publisherName": "luqimin",
   "displayName": "Tiny Light",
   "version": "2.0.9",
-  "extractedAt": "2026-01-25T15:28:05.094Z",
-  "installCount": 102247,
+  "extractedAt": "2026-02-02T13:46:42.870Z",
+  "installCount": 102419,
   "themes": [
     {
       "name": "Tiny Light",
@@ -17,7 +17,8 @@
         "statusBar.background": "#EEE8D5",
         "statusBar.foreground": "#586E75",
         "activityBar.background": "#DDD6C1",
-        "activityBar.foreground": "#584C27"
+        "activityBar.foreground": "#584C27",
+        "sideBar.background": "#EEE8D5"
       },
       "type": "light"
     }

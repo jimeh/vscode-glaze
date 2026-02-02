@@ -4,8 +4,8 @@
   "publisherName": "zewish",
   "displayName": "Greyburst Theme",
   "version": "0.1.0",
-  "extractedAt": "2026-01-25T15:28:19.946Z",
-  "installCount": 4301,
+  "extractedAt": "2026-02-02T13:46:57.915Z",
+  "installCount": 4331,
   "themes": [
     {
       "name": "Greyburst",
@@ -13,7 +13,8 @@
       "colors": {
         "editor.background": "#282828",
         "editor.foreground": "#F8F8F2",
-        "statusBar.background": "#1B1D1F"
+        "statusBar.background": "#1B1D1F",
+        "sideBar.background": "#303030"
       },
       "type": "dark"
     }

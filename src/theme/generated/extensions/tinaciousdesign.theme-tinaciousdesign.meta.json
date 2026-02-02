@@ -4,8 +4,8 @@
   "publisherName": "tinaciousdesign",
   "displayName": "Tinacious Design theme",
   "version": "2.4.0",
-  "extractedAt": "2026-01-25T15:27:58.295Z",
-  "installCount": 149496,
+  "extractedAt": "2026-02-02T13:46:36.051Z",
+  "installCount": 149814,
   "themes": [
     {
       "name": "Tinacious Design",
@@ -20,7 +20,10 @@
         "statusBar.background": "#FF3399",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#1D1D26",
-        "activityBar.foreground": "#CC66FF"
+        "activityBar.foreground": "#CC66FF",
+        "sideBar.background": "#252530",
+        "sideBar.foreground": "#CBCBF0",
+        "sideBarSectionHeader.background": "#2C2C3E"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#FF3399",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#F8F8FF",
-        "activityBar.foreground": "#FF3399"
+        "activityBar.foreground": "#FF3399",
+        "sideBar.background": "#F5F5FF",
+        "sideBar.foreground": "#7C79AC",
+        "sideBarSectionHeader.background": "#FF3399"
       },
       "type": "light"
     },
@@ -70,7 +76,8 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#050505",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#090909"
       },
       "type": "dark"
     }

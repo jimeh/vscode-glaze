@@ -4,8 +4,8 @@
   "publisherName": "dcasella",
   "displayName": "Monokai++",
   "version": "2.0.4",
-  "extractedAt": "2026-01-25T15:27:51.018Z",
-  "installCount": 244956,
+  "extractedAt": "2026-02-02T13:46:28.443Z",
+  "installCount": 245248,
   "themes": [
     {
       "name": "Monokai++",
@@ -23,7 +23,8 @@
         "editor.background": "#1C1C1C",
         "editor.foreground": "#CCCCCC",
         "statusBar.background": "#1C1C1C",
-        "activityBar.background": "#1C1C1C"
+        "activityBar.background": "#1C1C1C",
+        "sideBar.background": "#1C1C1C"
       },
       "type": "dark"
     }

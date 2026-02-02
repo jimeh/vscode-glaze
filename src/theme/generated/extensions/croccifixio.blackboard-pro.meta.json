@@ -4,8 +4,8 @@
   "publisherName": "croccifixio",
   "displayName": "Blackboard Pro",
   "version": "1.1.11",
-  "extractedAt": "2026-01-25T15:28:16.236Z",
-  "installCount": 5508,
+  "extractedAt": "2026-02-02T13:46:54.501Z",
+  "installCount": 5567,
   "themes": [
     {
       "name": "Blackboard Pro",
@@ -20,7 +20,11 @@
         "statusBar.background": "#13172B",
         "statusBar.foreground": "#8392FF",
         "activityBar.background": "#13172B",
-        "activityBar.foreground": "#C8C8FF"
+        "activityBar.foreground": "#C8C8FF",
+        "sideBar.background": "#13172B",
+        "sideBar.foreground": "#B0B8F7",
+        "sideBarSectionHeader.background": "#13172B",
+        "sideBarSectionHeader.foreground": "#E0E0E0"
       },
       "type": "dark"
     }

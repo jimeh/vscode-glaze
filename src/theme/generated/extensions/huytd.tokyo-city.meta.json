@@ -4,8 +4,8 @@
   "publisherName": "huytd",
   "displayName": "Tokyo City",
   "version": "0.2.4",
-  "extractedAt": "2026-01-25T15:28:13.631Z",
-  "installCount": 6819,
+  "extractedAt": "2026-02-02T13:46:51.810Z",
+  "installCount": 6914,
   "themes": [
     {
       "name": "Tokyo City",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1D252C",
         "statusBar.foreground": "#B7C5D3",
         "activityBar.background": "#1D252C",
-        "activityBar.foreground": "#B7C5D3"
+        "activityBar.foreground": "#B7C5D3",
+        "sideBar.background": "#1D252C",
+        "sideBar.foreground": "#B7C5D3",
+        "sideBarSectionHeader.background": "#252E36",
+        "sideBarSectionHeader.foreground": "#B7C5D3"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#171D23",
         "statusBar.foreground": "#B7C5D3",
         "activityBar.background": "#1D252C",
-        "activityBar.foreground": "#B7C5D3"
+        "activityBar.foreground": "#B7C5D3",
+        "sideBar.background": "#1D252C",
+        "sideBar.foreground": "#B7C5D3",
+        "sideBarSectionHeader.background": "#252E36",
+        "sideBarSectionHeader.foreground": "#B7C5D3"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#171D23",
         "statusBar.foreground": "#B7C5D3",
         "activityBar.background": "#171D23",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#171D23",
+        "sideBar.foreground": "#B7C5D3",
+        "sideBarSectionHeader.background": "#171D23",
+        "sideBarSectionHeader.foreground": "#B7C5D3"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#F6F6F8",
         "statusBar.foreground": "#4C505E",
         "activityBar.background": "#F6F6F8",
-        "activityBar.foreground": "#4C505E"
+        "activityBar.foreground": "#4C505E",
+        "sideBar.background": "#F6F6F8",
+        "sideBar.foreground": "#4C505E",
+        "sideBarSectionHeader.background": "#ECECF0",
+        "sideBarSectionHeader.foreground": "#4C505E"
       },
       "type": "light"
     }

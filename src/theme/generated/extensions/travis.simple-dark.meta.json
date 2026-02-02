@@ -4,8 +4,8 @@
   "publisherName": "travis",
   "displayName": "Simple Dark",
   "version": "1.4.3",
-  "extractedAt": "2026-01-25T15:28:07.221Z",
-  "installCount": 24864,
+  "extractedAt": "2026-02-02T13:46:45.161Z",
+  "installCount": 25211,
   "themes": [
     {
       "name": "Simple Dark",
@@ -18,7 +18,9 @@
         "statusBar.background": "#202124",
         "statusBar.foreground": "#F0F0F0",
         "activityBar.background": "#2C2F32",
-        "activityBar.foreground": "#F0F0F0"
+        "activityBar.foreground": "#F0F0F0",
+        "sideBar.background": "#202124",
+        "sideBarSectionHeader.background": "#2C2F32"
       },
       "type": "dark"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#202124",
         "statusBar.foreground": "#F0F0F0",
         "activityBar.background": "#2C2F32",
-        "activityBar.foreground": "#F0F0F0"
+        "activityBar.foreground": "#F0F0F0",
+        "sideBar.background": "#202124",
+        "sideBarSectionHeader.background": "#2C2F32"
       },
       "type": "dark"
     },
@@ -48,7 +52,9 @@
         "statusBar.background": "#FAFAFA",
         "statusBar.foreground": "#202124",
         "activityBar.background": "#F5F5F5",
-        "activityBar.foreground": "#202124"
+        "activityBar.foreground": "#202124",
+        "sideBar.background": "#FAFAFA",
+        "sideBarSectionHeader.background": "#F5F5F5"
       },
       "type": "light"
     },
@@ -63,7 +69,9 @@
         "statusBar.background": "#FAF5E8",
         "statusBar.foreground": "#202124",
         "activityBar.background": "#F3ECDE",
-        "activityBar.foreground": "#202124"
+        "activityBar.foreground": "#202124",
+        "sideBar.background": "#FAF5E8",
+        "sideBarSectionHeader.background": "#F3ECDE"
       },
       "type": "light"
     }

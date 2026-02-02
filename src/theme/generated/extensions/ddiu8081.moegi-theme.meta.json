@@ -4,8 +4,8 @@
   "publisherName": "ddiu8081",
   "displayName": "Moegi Theme",
   "version": "0.7.1",
-  "extractedAt": "2026-01-25T15:28:15.060Z",
-  "installCount": 5930,
+  "extractedAt": "2026-02-02T13:46:53.063Z",
+  "installCount": 5988,
   "themes": [
     {
       "name": "Moegi Dark",
@@ -18,7 +18,9 @@
         "statusBar.background": "#181818",
         "statusBar.foreground": "#999999",
         "activityBar.background": "#181818",
-        "activityBar.foreground": "#CCCCCC"
+        "activityBar.foreground": "#CCCCCC",
+        "sideBar.background": "#181818",
+        "sideBarSectionHeader.background": "#181818"
       },
       "type": "dark"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#050505",
         "statusBar.foreground": "#777777",
         "activityBar.background": "#050505",
-        "activityBar.foreground": "#AAAAAA"
+        "activityBar.foreground": "#AAAAAA",
+        "sideBar.background": "#050505",
+        "sideBarSectionHeader.background": "#050505"
       },
       "type": "dark"
     },
@@ -48,7 +52,9 @@
         "statusBar.background": "#191624",
         "statusBar.foreground": "#9892AD",
         "activityBar.background": "#191624",
-        "activityBar.foreground": "#C8C2DD"
+        "activityBar.foreground": "#C8C2DD",
+        "sideBar.background": "#191624",
+        "sideBarSectionHeader.background": "#191624"
       },
       "type": "dark"
     },
@@ -63,7 +69,9 @@
         "statusBar.background": "#EFEAF5",
         "statusBar.foreground": "#534758",
         "activityBar.background": "#EFEAF5",
-        "activityBar.foreground": "#433748"
+        "activityBar.foreground": "#433748",
+        "sideBar.background": "#EFEAF5",
+        "sideBarSectionHeader.background": "#EFEAF5"
       },
       "type": "light"
     },
@@ -78,7 +86,9 @@
         "statusBar.background": "#181818",
         "statusBar.foreground": "#999999",
         "activityBar.background": "#181818",
-        "activityBar.foreground": "#CCCCCC"
+        "activityBar.foreground": "#CCCCCC",
+        "sideBar.background": "#181818",
+        "sideBarSectionHeader.background": "#181818"
       },
       "type": "dark"
     },
@@ -93,7 +103,9 @@
         "statusBar.background": "#050505",
         "statusBar.foreground": "#777777",
         "activityBar.background": "#050505",
-        "activityBar.foreground": "#AAAAAA"
+        "activityBar.foreground": "#AAAAAA",
+        "sideBar.background": "#050505",
+        "sideBarSectionHeader.background": "#050505"
       },
       "type": "dark"
     },
@@ -108,7 +120,9 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#444444",
         "activityBar.background": "#F9F9FB",
-        "activityBar.foreground": "#333333"
+        "activityBar.foreground": "#333333",
+        "sideBar.background": "#F9F9FB",
+        "sideBarSectionHeader.background": "#F9F9FB"
       },
       "type": "light"
     },
@@ -123,7 +137,9 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#444444",
         "activityBar.background": "#F9F9FB",
-        "activityBar.foreground": "#333333"
+        "activityBar.foreground": "#333333",
+        "sideBar.background": "#F9F9FB",
+        "sideBarSectionHeader.background": "#F9F9FB"
       },
       "type": "light"
     },
@@ -138,7 +154,9 @@
         "statusBar.background": "#FAF3ED",
         "statusBar.foreground": "#584F47",
         "activityBar.background": "#FAF3ED",
-        "activityBar.foreground": "#483F37"
+        "activityBar.foreground": "#483F37",
+        "sideBar.background": "#FAF3ED",
+        "sideBarSectionHeader.background": "#FAF3ED"
       },
       "type": "light"
     }

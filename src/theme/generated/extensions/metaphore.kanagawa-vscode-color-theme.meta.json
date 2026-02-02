@@ -4,8 +4,8 @@
   "publisherName": "metaphore",
   "displayName": "Kanagawa Flavors",
   "version": "0.5.0",
-  "extractedAt": "2026-01-25T15:28:14.179Z",
-  "installCount": 6619,
+  "extractedAt": "2026-02-02T13:46:52.016Z",
+  "installCount": 6809,
   "themes": [
     {
       "name": "Kanagawa Wave",
@@ -20,7 +20,11 @@
         "statusBar.background": "#16161D",
         "statusBar.foreground": "#C8C093",
         "activityBar.background": "#2A2A37",
-        "activityBar.foreground": "#DCD7BA"
+        "activityBar.foreground": "#DCD7BA",
+        "sideBar.background": "#1F1F28",
+        "sideBar.foreground": "#DCD7BA",
+        "sideBarSectionHeader.background": "#363646",
+        "sideBarSectionHeader.foreground": "#DCD7BA"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#0D0C0C",
         "statusBar.foreground": "#C8C093",
         "activityBar.background": "#282727",
-        "activityBar.foreground": "#C5C9C5"
+        "activityBar.foreground": "#C5C9C5",
+        "sideBar.background": "#181616",
+        "sideBar.foreground": "#C5C9C5",
+        "sideBarSectionHeader.background": "#393836",
+        "sideBarSectionHeader.foreground": "#C5C9C5"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#D5CEA3",
         "statusBar.foreground": "#43436C",
         "activityBar.background": "#E7DBA0",
-        "activityBar.foreground": "#545464"
+        "activityBar.foreground": "#545464",
+        "sideBar.background": "#F2ECBC",
+        "sideBar.foreground": "#545464",
+        "sideBarSectionHeader.background": "#E4D794",
+        "sideBarSectionHeader.foreground": "#545464"
       },
       "type": "light"
     }

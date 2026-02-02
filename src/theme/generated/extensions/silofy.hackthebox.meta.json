@@ -4,8 +4,8 @@
   "publisherName": "silofy",
   "displayName": "HackTheBox",
   "version": "0.2.9",
-  "extractedAt": "2026-01-25T15:27:51.959Z",
-  "installCount": 219655,
+  "extractedAt": "2026-02-02T13:46:29.377Z",
+  "installCount": 220267,
   "themes": [
     {
       "name": "Hack The Box",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1A2332",
         "statusBar.foreground": "#A4B1CD",
         "activityBar.background": "#141D2B",
-        "activityBar.foreground": "#A4B1CD"
+        "activityBar.foreground": "#A4B1CD",
+        "sideBar.background": "#1A2332",
+        "sideBar.foreground": "#A4B1CD",
+        "sideBarSectionHeader.background": "#1A2332",
+        "sideBarSectionHeader.foreground": "#6E7B96"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1A2332",
         "statusBar.foreground": "#A4B1CD",
         "activityBar.background": "#1A2332",
-        "activityBar.foreground": "#A4B1CD"
+        "activityBar.foreground": "#A4B1CD",
+        "sideBar.background": "#1A2332",
+        "sideBar.foreground": "#6E7B96",
+        "sideBarSectionHeader.background": "#1A2332",
+        "sideBarSectionHeader.foreground": "#6E7B96"
       },
       "type": "dark"
     }

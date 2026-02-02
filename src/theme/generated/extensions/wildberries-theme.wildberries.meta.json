@@ -4,8 +4,8 @@
   "publisherName": "wildberries-theme",
   "displayName": "Wildberries",
   "version": "0.0.1",
-  "extractedAt": "2026-01-25T15:28:10.153Z",
-  "installCount": 10043,
+  "extractedAt": "2026-02-02T13:46:48.097Z",
+  "installCount": 10167,
   "themes": [
     {
       "name": "Wildberries",
@@ -19,7 +19,10 @@
         "statusBar.background": "#C79BFF",
         "statusBar.foreground": "#19002E",
         "activityBar.background": "#900048",
-        "activityBar.foreground": "#00FFB7"
+        "activityBar.foreground": "#00FFB7",
+        "sideBar.background": "#240041",
+        "sideBarSectionHeader.background": "#19002E",
+        "sideBarSectionHeader.foreground": "#C79BFF"
       },
       "type": "dark"
     },
@@ -35,7 +38,10 @@
         "statusBar.background": "#C79BFF",
         "statusBar.foreground": "#19002E",
         "activityBar.background": "#19002E",
-        "activityBar.foreground": "#00FFB7"
+        "activityBar.foreground": "#00FFB7",
+        "sideBar.background": "#240041",
+        "sideBarSectionHeader.background": "#19002E",
+        "sideBarSectionHeader.foreground": "#C79BFF"
       },
       "type": "dark"
     }

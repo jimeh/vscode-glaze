@@ -4,8 +4,8 @@
   "publisherName": "ahmadawais",
   "displayName": "Shades of Purple",
   "version": "7.3.6",
-  "extractedAt": "2026-01-25T15:27:40.896Z",
-  "installCount": 2234376,
+  "extractedAt": "2026-02-02T13:46:18.183Z",
+  "installCount": 2238618,
   "themes": [
     {
       "name": "Shades of Purple",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1E1E3F",
         "statusBar.foreground": "#A599E9",
         "activityBar.background": "#28284E",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#222244",
+        "sideBar.foreground": "#A599E9",
+        "sideBarSectionHeader.background": "#1E1E3F",
+        "sideBarSectionHeader.foreground": "#A599E9"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#15152B",
         "statusBar.foreground": "#A599E9",
         "activityBar.background": "#15152A",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#131327",
+        "sideBar.foreground": "#A599E9",
+        "sideBarSectionHeader.background": "#15152B",
+        "sideBarSectionHeader.foreground": "#A599E9"
       },
       "type": "dark"
     }

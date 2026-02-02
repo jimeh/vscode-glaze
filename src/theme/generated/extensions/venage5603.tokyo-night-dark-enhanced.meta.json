@@ -4,8 +4,8 @@
   "publisherName": "Venage5603",
   "displayName": "Tokyo Night Dark Enhanced",
   "version": "1.12.0",
-  "extractedAt": "2026-01-25T15:28:20.800Z",
-  "installCount": 4006,
+  "extractedAt": "2026-02-02T13:46:58.536Z",
+  "installCount": 4145,
   "themes": [
     {
       "name": "Tokyo Night Dark Enhanced",
@@ -20,7 +20,11 @@
         "statusBar.background": "#08080B",
         "statusBar.foreground": "#787C99",
         "activityBar.background": "#08080B",
-        "activityBar.foreground": "#787C99"
+        "activityBar.foreground": "#787C99",
+        "sideBar.background": "#08080B",
+        "sideBar.foreground": "#787C99",
+        "sideBarSectionHeader.background": "#08080B",
+        "sideBarSectionHeader.foreground": "#A9B1D6"
       },
       "type": "dark"
     }

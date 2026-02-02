@@ -4,8 +4,8 @@
   "publisherName": "Yummygum",
   "displayName": "City Lights theme",
   "version": "1.1.9",
-  "extractedAt": "2026-01-25T15:27:49.276Z",
-  "installCount": 303785,
+  "extractedAt": "2026-02-02T13:46:26.714Z",
+  "installCount": 304170,
   "themes": [
     {
       "name": "City Lights",
@@ -20,7 +20,11 @@
         "statusBar.background": "#171D23",
         "statusBar.foreground": "#B7C5D3",
         "activityBar.background": "#1D252C",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#171D23",
+        "sideBar.foreground": "#B7C5D3",
+        "sideBarSectionHeader.background": "#1D252C",
+        "sideBarSectionHeader.foreground": "#B7C5D3"
       },
       "type": "dark"
     }

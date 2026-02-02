@@ -4,8 +4,8 @@
   "publisherName": "gitpod",
   "displayName": "Gitpod Theme",
   "version": "0.0.2",
-  "extractedAt": "2026-01-25T15:28:06.794Z",
-  "installCount": 433101,
+  "extractedAt": "2026-02-02T13:46:44.731Z",
+  "installCount": 434008,
   "themes": [
     {
       "name": "Gitpod Dark",
@@ -16,7 +16,9 @@
         "statusBar.background": "#252526",
         "statusBar.foreground": "#F3F3F3",
         "activityBar.background": "#292524",
-        "activityBar.foreground": "#F3F3F3"
+        "activityBar.foreground": "#F3F3F3",
+        "sideBar.background": "#1C1917",
+        "sideBarSectionHeader.background": "#252526"
       },
       "type": "dark"
     },
@@ -29,7 +31,9 @@
         "statusBar.background": "#F3F3F3",
         "statusBar.foreground": "#292524",
         "activityBar.background": "#F9F9F9",
-        "activityBar.foreground": "#292524"
+        "activityBar.foreground": "#292524",
+        "sideBar.background": "#FCFCFC",
+        "sideBarSectionHeader.background": "#F9F9F9"
       },
       "type": "light"
     }

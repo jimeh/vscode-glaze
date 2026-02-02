@@ -4,8 +4,8 @@
   "publisherName": "pyxel",
   "displayName": "Runic Theme",
   "version": "1.2.0",
-  "extractedAt": "2026-01-25T15:28:24.854Z",
-  "installCount": 3268,
+  "extractedAt": "2026-02-02T13:47:02.668Z",
+  "installCount": 3318,
   "themes": [
     {
       "name": "Runic Minimal",
@@ -20,7 +20,11 @@
         "statusBar.background": "#131515",
         "statusBar.foreground": "#D1D1D1",
         "activityBar.background": "#131515",
-        "activityBar.foreground": "#D1D1D1"
+        "activityBar.foreground": "#D1D1D1",
+        "sideBar.background": "#131515",
+        "sideBar.foreground": "#D1D1D1",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#131515",
         "statusBar.foreground": "#D1D1D1",
         "activityBar.background": "#131515",
-        "activityBar.foreground": "#D1D1D1"
+        "activityBar.foreground": "#D1D1D1",
+        "sideBar.background": "#131515",
+        "sideBar.foreground": "#D1D1D1",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#CCCCCC"
       },
       "type": "dark"
     }

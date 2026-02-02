@@ -4,8 +4,8 @@
   "publisherName": "nerosiar",
   "displayName": "Just Black",
   "version": "3.0.1",
-  "extractedAt": "2026-01-25T15:28:16.809Z",
-  "installCount": 5371,
+  "extractedAt": "2026-02-02T13:46:54.712Z",
+  "installCount": 5432,
   "themes": [
     {
       "name": "Just Black",
@@ -20,7 +20,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#00FFFF",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FFFF7E"
+        "activityBar.foreground": "#FFFF7E",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#525975",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#FF7700"
       },
       "type": "dark"
     }

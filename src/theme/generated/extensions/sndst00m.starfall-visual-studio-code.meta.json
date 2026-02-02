@@ -4,8 +4,8 @@
   "publisherName": "sndst00m",
   "displayName": "Starfall",
   "version": "0.5.4",
-  "extractedAt": "2026-01-25T15:28:12.185Z",
-  "installCount": 7790,
+  "extractedAt": "2026-02-02T13:46:50.107Z",
+  "installCount": 7846,
   "themes": [
     {
       "name": "Starfall",
@@ -20,7 +20,10 @@
         "statusBar.background": "#1B2636",
         "statusBar.foreground": "#6D88A7",
         "activityBar.background": "#1B2636",
-        "activityBar.foreground": "#CACDE2"
+        "activityBar.foreground": "#CACDE2",
+        "sideBar.background": "#1B2636",
+        "sideBar.foreground": "#6D88A7",
+        "sideBarSectionHeader.background": "#1B2636"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#212127",
         "statusBar.foreground": "#7E8995",
         "activityBar.background": "#212127",
-        "activityBar.foreground": "#CACDE2"
+        "activityBar.foreground": "#CACDE2",
+        "sideBar.background": "#212127",
+        "sideBar.foreground": "#7E8995",
+        "sideBarSectionHeader.background": "#212127"
       },
       "type": "dark"
     },
@@ -54,7 +60,10 @@
         "statusBar.background": "#0E131B",
         "statusBar.foreground": "#7E8995",
         "activityBar.background": "#0E131B",
-        "activityBar.foreground": "#CACDE2"
+        "activityBar.foreground": "#CACDE2",
+        "sideBar.background": "#0E131B",
+        "sideBar.foreground": "#7E8995",
+        "sideBarSectionHeader.background": "#0E131B"
       },
       "type": "dark"
     },
@@ -71,7 +80,10 @@
         "statusBar.background": "#202337",
         "statusBar.foreground": "#6D88A7",
         "activityBar.background": "#202337",
-        "activityBar.foreground": "#CACDE2"
+        "activityBar.foreground": "#CACDE2",
+        "sideBar.background": "#202337",
+        "sideBar.foreground": "#6D88A7",
+        "sideBarSectionHeader.background": "#202337"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "teabyii",
   "displayName": "Ayu",
   "version": "1.1.7",
-  "extractedAt": "2026-01-25T15:27:39.928Z",
-  "installCount": 3963877,
+  "extractedAt": "2026-02-02T13:46:17.243Z",
+  "installCount": 3973395,
   "themes": [
     {
       "name": "Ayu Light",
@@ -20,7 +20,10 @@
         "statusBar.background": "#F8F9FA",
         "statusBar.foreground": "#828E9F",
         "activityBar.background": "#F8F9FA",
-        "activityBar.foreground": "#828E9F"
+        "activityBar.foreground": "#828E9F",
+        "sideBar.background": "#F8F9FA",
+        "sideBarSectionHeader.background": "#F8F9FA",
+        "sideBarSectionHeader.foreground": "#828E9F"
       },
       "type": "light"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#F8F9FA",
         "statusBar.foreground": "#828E9F",
         "activityBar.background": "#F8F9FA",
-        "activityBar.foreground": "#828E9F"
+        "activityBar.foreground": "#828E9F",
+        "sideBar.background": "#F8F9FA",
+        "sideBarSectionHeader.background": "#F8F9FA",
+        "sideBarSectionHeader.foreground": "#828E9F"
       },
       "type": "light"
     },
@@ -54,7 +60,10 @@
         "statusBar.background": "#1F2430",
         "statusBar.foreground": "#707A8C",
         "activityBar.background": "#1F2430",
-        "activityBar.foreground": "#707A8C"
+        "activityBar.foreground": "#707A8C",
+        "sideBar.background": "#1F2430",
+        "sideBarSectionHeader.background": "#1F2430",
+        "sideBarSectionHeader.foreground": "#707A8C"
       },
       "type": "dark"
     },
@@ -71,7 +80,10 @@
         "statusBar.background": "#1F2430",
         "statusBar.foreground": "#707A8C",
         "activityBar.background": "#1F2430",
-        "activityBar.foreground": "#707A8C"
+        "activityBar.foreground": "#707A8C",
+        "sideBar.background": "#1F2430",
+        "sideBarSectionHeader.background": "#1F2430",
+        "sideBarSectionHeader.foreground": "#707A8C"
       },
       "type": "dark"
     },
@@ -88,7 +100,10 @@
         "statusBar.background": "#0D1017",
         "statusBar.foreground": "#555E73",
         "activityBar.background": "#0D1017",
-        "activityBar.foreground": "#555E73"
+        "activityBar.foreground": "#555E73",
+        "sideBar.background": "#0D1017",
+        "sideBarSectionHeader.background": "#0D1017",
+        "sideBarSectionHeader.foreground": "#555E73"
       },
       "type": "dark"
     },
@@ -105,7 +120,10 @@
         "statusBar.background": "#0D1017",
         "statusBar.foreground": "#555E73",
         "activityBar.background": "#0D1017",
-        "activityBar.foreground": "#555E73"
+        "activityBar.foreground": "#555E73",
+        "sideBar.background": "#0D1017",
+        "sideBarSectionHeader.background": "#0D1017",
+        "sideBarSectionHeader.foreground": "#555E73"
       },
       "type": "dark"
     }

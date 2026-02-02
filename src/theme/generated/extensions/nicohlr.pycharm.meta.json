@@ -4,8 +4,8 @@
   "publisherName": "nicohlr",
   "displayName": "PyCharm Theme",
   "version": "0.0.10",
-  "extractedAt": "2026-01-25T15:27:59.774Z",
-  "installCount": 137005,
+  "extractedAt": "2026-02-02T13:46:37.519Z",
+  "installCount": 137673,
   "themes": [
     {
       "name": "Pycharm Original Theme",
@@ -18,7 +18,10 @@
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
         "activityBar.background": "#3C3F41",
-        "activityBar.foreground": "#F0F0F0"
+        "activityBar.foreground": "#F0F0F0",
+        "sideBar.background": "#3C3F41",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#3B4754"
       },
       "type": "dark"
     },
@@ -35,7 +38,10 @@
         "statusBar.background": "#313437",
         "statusBar.foreground": "#7A8288",
         "activityBar.background": "#313437",
-        "activityBar.foreground": "#F8F8F8"
+        "activityBar.foreground": "#F8F8F8",
+        "sideBar.background": "#313437",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#5C6166"
       },
       "type": "dark"
     },
@@ -49,7 +55,9 @@
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#7E7E7E",
         "activityBar.background": "#1A1A1A",
-        "activityBar.foreground": "#7D7D7D"
+        "activityBar.foreground": "#7D7D7D",
+        "sideBar.background": "#1A1A1A",
+        "sideBarSectionHeader.background": "#202020"
       },
       "type": "dark"
     },
@@ -58,7 +66,8 @@
       "label": "PyCharm Dark+ Theme",
       "colors": {
         "editor.background": "#1E1E1E",
-        "editor.foreground": "#A9B7C6"
+        "editor.foreground": "#A9B7C6",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "huacat",
   "displayName": "Huacat Pink Theme",
   "version": "1.1.2",
-  "extractedAt": "2026-01-25T15:28:13.949Z",
-  "installCount": 6696,
+  "extractedAt": "2026-02-02T13:46:52.119Z",
+  "installCount": 6787,
   "themes": [
     {
       "name": "Huacat Pink Theme",
@@ -20,7 +20,9 @@
         "statusBar.background": "#F5EAF5",
         "statusBar.foreground": "#DD71B9",
         "activityBar.background": "#F5EAF5",
-        "activityBar.foreground": "#DD71B9"
+        "activityBar.foreground": "#DD71B9",
+        "sideBar.background": "#F5EAF5",
+        "sideBarSectionHeader.background": "#F5EAF5"
       },
       "type": "light"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#3D173D",
         "statusBar.foreground": "#D49CC1",
         "activityBar.background": "#3D173D",
-        "activityBar.foreground": "#D49CC1"
+        "activityBar.foreground": "#D49CC1",
+        "sideBar.background": "#3D173D",
+        "sideBarSectionHeader.background": "#3D173D"
       },
       "type": "dark"
     }

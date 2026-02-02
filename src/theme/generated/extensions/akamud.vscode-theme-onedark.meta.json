@@ -4,8 +4,8 @@
   "publisherName": "akamud",
   "displayName": "Atom One Dark Theme",
   "version": "2.3.0",
-  "extractedAt": "2026-01-25T15:27:39.485Z",
-  "installCount": 6906802,
+  "extractedAt": "2026-02-02T13:46:16.812Z",
+  "installCount": 6923101,
   "themes": [
     {
       "name": "Atom One Dark",
@@ -20,7 +20,9 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#333842",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#21252B",
+        "sideBarSectionHeader.background": "#333842"
       },
       "type": "dark"
     }

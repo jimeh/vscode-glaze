@@ -4,8 +4,8 @@
   "publisherName": "alefragnani",
   "displayName": "Delphi Themes",
   "version": "1.5.0",
-  "extractedAt": "2026-01-25T15:28:05.661Z",
-  "installCount": 100353,
+  "extractedAt": "2026-02-02T13:46:43.596Z",
+  "installCount": 100617,
   "themes": [
     {
       "name": "Delphi",
@@ -17,7 +17,9 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FFFFFF",
+        "sideBarSectionHeader.background": "#F0F0F0"
       },
       "type": "light"
     },
@@ -30,7 +32,10 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#5B5B5B"
+        "activityBar.foreground": "#5B5B5B",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#E3E3E3"
       },
       "type": "light"
     },
@@ -43,7 +48,10 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#5B5B5B"
+        "activityBar.foreground": "#5B5B5B",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#E3E3E3"
       },
       "type": "light"
     },
@@ -56,7 +64,10 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#5B5B5B"
+        "activityBar.foreground": "#5B5B5B",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#E3E3E3"
       },
       "type": "light"
     },
@@ -69,7 +80,10 @@
         "statusBar.background": "#000080",
         "statusBar.foreground": "#FFFF00",
         "activityBar.background": "#000080",
-        "activityBar.foreground": "#FFFF00"
+        "activityBar.foreground": "#FFFF00",
+        "sideBar.background": "#0000AA",
+        "sideBar.foreground": "#FFFF00",
+        "sideBarSectionHeader.background": "#000080"
       },
       "type": "dark"
     },
@@ -82,7 +96,10 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#222222",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -95,7 +112,10 @@
         "statusBar.background": "#00FFFF",
         "statusBar.foreground": "#0000FF",
         "activityBar.background": "#00FFFF",
-        "activityBar.foreground": "#0000FF"
+        "activityBar.foreground": "#0000FF",
+        "sideBar.background": "#00DDDD",
+        "sideBar.foreground": "#0000FF",
+        "sideBarSectionHeader.background": "#00FFFF"
       },
       "type": "light"
     }

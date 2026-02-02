@@ -4,8 +4,8 @@
   "publisherName": "aaronYoung",
   "displayName": "Dark SynthWave '84",
   "version": "1.0.3",
-  "extractedAt": "2026-01-25T15:27:59.459Z",
-  "installCount": 137999,
+  "extractedAt": "2026-02-02T13:46:37.208Z",
+  "installCount": 138458,
   "themes": [
     {
       "name": "Dark SynthWave '84",
@@ -20,7 +20,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#FFFFFF",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "tobiasalthoff",
   "displayName": "Atom Material Theme",
   "version": "1.10.9",
-  "extractedAt": "2026-01-25T15:27:44.990Z",
-  "installCount": 534145,
+  "extractedAt": "2026-02-02T13:46:22.253Z",
+  "installCount": 535338,
   "themes": [
     {
       "name": "Atom Material Theme",
@@ -17,7 +17,11 @@
         "statusBar.background": "#232E33",
         "statusBar.foreground": "#A7B6B8",
         "activityBar.background": "#20292E",
-        "activityBar.foreground": "#A7B6B8"
+        "activityBar.foreground": "#A7B6B8",
+        "sideBar.background": "#232E33",
+        "sideBar.foreground": "#A7B6B8",
+        "sideBarSectionHeader.background": "#20292E",
+        "sideBarSectionHeader.foreground": "#A7B6B8"
       },
       "type": "dark"
     }

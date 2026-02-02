@@ -4,8 +4,8 @@
   "publisherName": "azemoh",
   "displayName": "One Monokai Theme",
   "version": "0.5.2",
-  "extractedAt": "2026-01-25T15:27:40.476Z",
-  "installCount": 2804759,
+  "extractedAt": "2026-02-02T13:46:17.768Z",
+  "installCount": 2810376,
   "themes": [
     {
       "name": "One Monokai",
@@ -19,7 +19,9 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#2F333D",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#21252B",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     }

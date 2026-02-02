@@ -4,8 +4,8 @@
   "publisherName": "fehey",
   "displayName": "Brackets Light Pro",
   "version": "0.4.6",
-  "extractedAt": "2026-01-25T15:27:57.562Z",
-  "installCount": 156308,
+  "extractedAt": "2026-02-02T13:46:35.419Z",
+  "installCount": 156652,
   "themes": [
     {
       "name": "Brackets Light Pro",
@@ -18,7 +18,8 @@
         "statusBar.background": "#A4A9B2",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#C3C7CD",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#EBEDEF"
       },
       "type": "light"
     },
@@ -33,7 +34,8 @@
         "statusBar.background": "#A4A9B2",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#C3C7CD",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#EBEDEF"
       },
       "type": "light"
     }

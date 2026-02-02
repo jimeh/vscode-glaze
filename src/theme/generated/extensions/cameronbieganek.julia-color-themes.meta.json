@@ -4,8 +4,8 @@
   "publisherName": "cameronbieganek",
   "displayName": "Julia Color Themes",
   "version": "0.1.1",
-  "extractedAt": "2026-01-25T15:28:02.477Z",
-  "installCount": 124590,
+  "extractedAt": "2026-02-02T13:46:40.149Z",
+  "installCount": 125039,
   "themes": [
     {
       "name": "Julia (Monokai Classic)",
@@ -16,7 +16,9 @@
         "titleBar.activeBackground": "#1E1F1C",
         "statusBar.background": "#414339",
         "activityBar.background": "#272822",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E1F1C",
+        "sideBarSectionHeader.background": "#272822"
       },
       "type": "dark"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#16171D",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#16171D",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#191B20",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     }

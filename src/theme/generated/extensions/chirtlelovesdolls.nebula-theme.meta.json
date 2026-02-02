@@ -4,8 +4,8 @@
   "publisherName": "ChirtleLovesDolls",
   "displayName": "Nebula Theme",
   "version": "1.3.3",
-  "extractedAt": "2026-01-25T15:27:58.720Z",
-  "installCount": 143450,
+  "extractedAt": "2026-02-02T13:46:36.468Z",
+  "installCount": 143708,
   "themes": [
     {
       "name": "Nebula",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1F2330",
         "statusBar.foreground": "#919CB9",
         "activityBar.background": "#1F2330",
-        "activityBar.foreground": "#F6F0FF"
+        "activityBar.foreground": "#F6F0FF",
+        "sideBar.background": "#27273A",
+        "sideBar.foreground": "#919CB9",
+        "sideBarSectionHeader.background": "#1F2330",
+        "sideBarSectionHeader.foreground": "#F6F0FF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#27273A",
         "statusBar.foreground": "#919CB9",
         "activityBar.background": "#F6F0FF",
-        "activityBar.foreground": "#353551"
+        "activityBar.foreground": "#353551",
+        "sideBar.background": "#27273A",
+        "sideBar.foreground": "#919CB9",
+        "sideBarSectionHeader.background": "#353551",
+        "sideBarSectionHeader.foreground": "#F6F0FF"
       },
       "type": "dark"
     }

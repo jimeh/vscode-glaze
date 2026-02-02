@@ -4,8 +4,8 @@
   "publisherName": "alonsodomin",
   "displayName": "BlueForest Theme",
   "version": "0.3.1",
-  "extractedAt": "2026-01-25T15:28:23.808Z",
-  "installCount": 3435,
+  "extractedAt": "2026-02-02T13:47:00.908Z",
+  "installCount": 3662,
   "themes": [
     {
       "name": "BlueForest",
@@ -15,7 +15,9 @@
         "editor.foreground": "#D0D0D0",
         "titleBar.activeBackground": "#1B2B40",
         "statusBar.background": "#1E5C1E",
-        "activityBar.background": "#1B2B40"
+        "activityBar.background": "#1B2B40",
+        "sideBar.background": "#141F2E",
+        "sideBarSectionHeader.background": "#1C2D42"
       },
       "type": "dark"
     }

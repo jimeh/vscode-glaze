@@ -4,8 +4,8 @@
   "publisherName": "muhammad-sammy",
   "displayName": "Solarized Sharp",
   "version": "1.0.4",
-  "extractedAt": "2026-01-25T15:28:21.529Z",
-  "installCount": 3830,
+  "extractedAt": "2026-02-02T13:46:59.774Z",
+  "installCount": 3869,
   "themes": [
     {
       "name": "Solarized Sharp Dark",
@@ -15,7 +15,9 @@
         "editor.foreground": "#819090",
         "titleBar.activeBackground": "#00222B",
         "statusBar.background": "#00222B",
-        "activityBar.background": "#003C4B"
+        "activityBar.background": "#003C4B",
+        "sideBar.background": "#003340",
+        "sideBarSectionHeader.background": "#003C4B"
       },
       "type": "dark"
     },
@@ -27,7 +29,9 @@
         "editor.foreground": "#819090",
         "titleBar.activeBackground": "#031920",
         "statusBar.background": "#031920",
-        "activityBar.background": "#052C39"
+        "activityBar.background": "#052C39",
+        "sideBar.background": "#042631",
+        "sideBarSectionHeader.background": "#052C39"
       },
       "type": "dark"
     }

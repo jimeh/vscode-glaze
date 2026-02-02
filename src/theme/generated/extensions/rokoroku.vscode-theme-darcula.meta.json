@@ -4,8 +4,8 @@
   "publisherName": "rokoroku",
   "displayName": "Darcula Theme",
   "version": "1.2.3",
-  "extractedAt": "2026-01-25T15:27:43.170Z",
-  "installCount": 884028,
+  "extractedAt": "2026-02-02T13:46:20.422Z",
+  "installCount": 885696,
   "themes": [
     {
       "name": "Darcula",
@@ -18,7 +18,8 @@
         "titleBar.inactiveBackground": "#FFFFFF",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#CCCCCC",
-        "activityBar.background": "#FFFFFF"
+        "activityBar.background": "#FFFFFF",
+        "sideBar.background": "#242424"
       },
       "type": "dark"
     }

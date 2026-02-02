@@ -4,8 +4,8 @@
   "publisherName": "opensumi",
   "displayName": "OpenSumi Default Themes",
   "version": "2.5.8",
-  "extractedAt": "2026-01-25T15:28:08.009Z",
-  "installCount": 16631,
+  "extractedAt": "2026-02-02T13:46:45.954Z",
+  "installCount": 16751,
   "themes": [
     {
       "name": "opensumi-dark",
@@ -15,7 +15,10 @@
         "statusBar.background": "#252729",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#35393D",
-        "activityBar.foreground": "#D7DBDE"
+        "activityBar.foreground": "#D7DBDE",
+        "sideBar.background": "#2C3033",
+        "sideBarSectionHeader.background": "#43484D",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -27,7 +30,10 @@
         "statusBar.background": "#262626",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#ECECEC",
-        "activityBar.foreground": "#4D4D4D"
+        "activityBar.foreground": "#4D4D4D",
+        "sideBar.background": "#F2F2F2",
+        "sideBarSectionHeader.background": "#E0E0E0",
+        "sideBarSectionHeader.foreground": "#262626"
       },
       "type": "light"
     }

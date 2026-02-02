@@ -4,8 +4,8 @@
   "publisherName": "emmess",
   "displayName": "emmess_paleGreen_on_bluishCyan",
   "version": "1.0.0",
-  "extractedAt": "2026-01-25T15:28:19.740Z",
-  "installCount": 4339,
+  "extractedAt": "2026-02-02T13:46:57.606Z",
+  "installCount": 4396,
   "themes": [
     {
       "name": "PaleGreen on BluishCyan by emmess",
@@ -20,7 +20,11 @@
         "statusBar.background": "#071E21",
         "statusBar.foreground": "#AAC0AA",
         "activityBar.background": "#0F3E43",
-        "activityBar.foreground": "#071E21"
+        "activityBar.foreground": "#071E21",
+        "sideBar.background": "#0F3E43",
+        "sideBar.foreground": "#AAC0AA",
+        "sideBarSectionHeader.background": "#AAC0BD",
+        "sideBarSectionHeader.foreground": "#AAC0AA"
       },
       "type": "dark"
     }

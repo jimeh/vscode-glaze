@@ -4,8 +4,8 @@
   "publisherName": "Thomaz",
   "displayName": "Dark",
   "version": "1.7.0",
-  "extractedAt": "2026-01-25T15:27:48.862Z",
-  "installCount": 324938,
+  "extractedAt": "2026-02-02T13:46:26.196Z",
+  "installCount": 325934,
   "themes": [
     {
       "name": "NarutoDark",
@@ -19,7 +19,9 @@
         "titleBar.inactiveForeground": "#FFFFFF",
         "statusBar.background": "#24375A",
         "activityBar.background": "#161620",
-        "activityBar.foreground": "#F85D03"
+        "activityBar.foreground": "#F85D03",
+        "sideBar.background": "#070416",
+        "sideBarSectionHeader.background": "#120A36"
       },
       "type": "dark"
     }

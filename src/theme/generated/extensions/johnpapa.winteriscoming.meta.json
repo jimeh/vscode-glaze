@@ -4,8 +4,8 @@
   "publisherName": "johnpapa",
   "displayName": "Winter is Coming Theme",
   "version": "1.4.4",
-  "extractedAt": "2026-01-25T15:27:40.258Z",
-  "installCount": 3562748,
+  "extractedAt": "2026-02-02T13:46:17.559Z",
+  "installCount": 3570103,
   "themes": [
     {
       "name": "Winter is Coming (Dark Blue)",
@@ -18,7 +18,11 @@
         "titleBar.inactiveBackground": "#000A11",
         "statusBar.background": "#219FD5",
         "activityBar.background": "#011627",
-        "activityBar.foreground": "#99D0F7"
+        "activityBar.foreground": "#99D0F7",
+        "sideBar.background": "#011627",
+        "sideBar.foreground": "#7799BB",
+        "sideBarSectionHeader.background": "#011627",
+        "sideBarSectionHeader.foreground": "#7799BB"
       },
       "type": "dark"
     },
@@ -33,7 +37,11 @@
         "titleBar.inactiveBackground": "#000A11",
         "statusBar.background": "#219FD5",
         "activityBar.background": "#011627",
-        "activityBar.foreground": "#99D0F7"
+        "activityBar.foreground": "#99D0F7",
+        "sideBar.background": "#011627",
+        "sideBar.foreground": "#7799BB",
+        "sideBarSectionHeader.background": "#011627",
+        "sideBarSectionHeader.foreground": "#7799BB"
       },
       "type": "dark"
     },
@@ -47,7 +55,11 @@
         "titleBar.activeForeground": "#EEEFFF",
         "titleBar.inactiveBackground": "#000A11",
         "statusBar.background": "#2F86D2",
-        "activityBar.foreground": "#99D0F7"
+        "activityBar.foreground": "#99D0F7",
+        "sideBar.background": "#F3F3F3",
+        "sideBar.foreground": "#0D3464",
+        "sideBarSectionHeader.background": "#DDDDDD",
+        "sideBarSectionHeader.foreground": "#37567C"
       },
       "type": "light"
     },
@@ -61,7 +73,11 @@
         "titleBar.activeForeground": "#EEEFFF",
         "titleBar.inactiveBackground": "#000A11",
         "statusBar.background": "#2F86D2",
-        "activityBar.foreground": "#99D0F7"
+        "activityBar.foreground": "#99D0F7",
+        "sideBar.background": "#F3F3F3",
+        "sideBar.foreground": "#0D3464",
+        "sideBarSectionHeader.background": "#DDDDDD",
+        "sideBarSectionHeader.foreground": "#37567C"
       },
       "type": "light"
     },
@@ -76,7 +92,11 @@
         "titleBar.inactiveBackground": "#000A11",
         "statusBar.background": "#219FD5",
         "activityBar.background": "#282822",
-        "activityBar.foreground": "#99D0F7"
+        "activityBar.foreground": "#99D0F7",
+        "sideBar.background": "#282822",
+        "sideBar.foreground": "#7799BB",
+        "sideBarSectionHeader.background": "#282822",
+        "sideBarSectionHeader.foreground": "#7799BB"
       },
       "type": "dark"
     },
@@ -91,7 +111,11 @@
         "titleBar.inactiveBackground": "#000A11",
         "statusBar.background": "#219FD5",
         "activityBar.background": "#282822",
-        "activityBar.foreground": "#99D0F7"
+        "activityBar.foreground": "#99D0F7",
+        "sideBar.background": "#282822",
+        "sideBar.foreground": "#7799BB",
+        "sideBarSectionHeader.background": "#282822",
+        "sideBarSectionHeader.foreground": "#7799BB"
       },
       "type": "dark"
     }

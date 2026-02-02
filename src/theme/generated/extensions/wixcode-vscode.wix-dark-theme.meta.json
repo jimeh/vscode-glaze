@@ -4,8 +4,8 @@
   "publisherName": "wixcode-vscode",
   "displayName": "Wix Dark Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-01-25T15:28:20.050Z",
-  "installCount": 4279,
+  "extractedAt": "2026-02-02T13:46:58.227Z",
+  "installCount": 4301,
   "themes": [
     {
       "name": "Wix",
@@ -16,7 +16,10 @@
         "titleBar.activeBackground": "#333853",
         "statusBar.background": "#333853",
         "activityBar.background": "#333853",
-        "activityBar.foreground": "#D6E6FE"
+        "activityBar.foreground": "#D6E6FE",
+        "sideBar.background": "#1B2C3C",
+        "sideBar.foreground": "#D8E1E8",
+        "sideBarSectionHeader.background": "#1B2C3C"
       },
       "type": "dark"
     }

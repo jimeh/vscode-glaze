@@ -4,8 +4,8 @@
   "publisherName": "tomWritesCode",
   "displayName": "raspberryCandy",
   "version": "0.0.6",
-  "extractedAt": "2026-01-25T15:28:17.335Z",
-  "installCount": 5080,
+  "extractedAt": "2026-02-02T13:46:55.335Z",
+  "installCount": 5127,
   "themes": [
     {
       "name": "raspberryCandy",
@@ -14,7 +14,10 @@
         "editor.background": "#160021",
         "editor.foreground": "#00FEFF",
         "activityBar.background": "#160021",
-        "activityBar.foreground": "#00FEFF"
+        "activityBar.foreground": "#00FEFF",
+        "sideBar.background": "#160021",
+        "sideBarSectionHeader.background": "#DCBAF9",
+        "sideBarSectionHeader.foreground": "#160021"
       },
       "type": "dark"
     },
@@ -25,7 +28,10 @@
         "editor.background": "#16161D",
         "editor.foreground": "#00FEFF",
         "activityBar.background": "#16161D",
-        "activityBar.foreground": "#00FEFF"
+        "activityBar.foreground": "#00FEFF",
+        "sideBar.background": "#16161D",
+        "sideBarSectionHeader.background": "#DCBAF9",
+        "sideBarSectionHeader.foreground": "#16161D"
       },
       "type": "dark"
     },
@@ -36,7 +42,10 @@
         "editor.background": "#F6F6F6",
         "editor.foreground": "#5D08E5",
         "activityBar.background": "#F6F6F6",
-        "activityBar.foreground": "#16161D"
+        "activityBar.foreground": "#16161D",
+        "sideBar.background": "#F6F6F6",
+        "sideBarSectionHeader.background": "#DCBAF9",
+        "sideBarSectionHeader.foreground": "#16161D"
       },
       "type": "light"
     }

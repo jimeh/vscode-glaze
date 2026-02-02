@@ -4,8 +4,8 @@
   "publisherName": "SpaceBox",
   "displayName": "SpaceBox",
   "version": "0.1.1",
-  "extractedAt": "2026-01-25T15:28:23.917Z",
-  "installCount": 3397,
+  "extractedAt": "2026-02-02T13:47:01.737Z",
+  "installCount": 3447,
   "themes": [
     {
       "name": "SpaceBox",
@@ -20,7 +20,11 @@
         "statusBar.background": "#0D1116",
         "statusBar.foreground": "#CCCECE",
         "activityBar.background": "#0D1116",
-        "activityBar.foreground": "#0894F8"
+        "activityBar.foreground": "#0894F8",
+        "sideBar.background": "#010409",
+        "sideBar.foreground": "#C9D3DB",
+        "sideBarSectionHeader.background": "#010409",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#0D1116",
         "statusBar.foreground": "#CCCECE",
         "activityBar.background": "#0D1116",
-        "activityBar.foreground": "#D9E9FF"
+        "activityBar.foreground": "#D9E9FF",
+        "sideBar.background": "#161B22",
+        "sideBar.foreground": "#C9D3DB",
+        "sideBarSectionHeader.background": "#161B22",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#0D1116",
         "statusBar.foreground": "#CCCECE",
         "activityBar.background": "#0B0E13",
-        "activityBar.foreground": "#D9E9FF"
+        "activityBar.foreground": "#D9E9FF",
+        "sideBar.background": "#0B0E13",
+        "sideBar.foreground": "#C9D3DB",
+        "sideBarSectionHeader.background": "#0B0E13",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#242C3A",
         "statusBar.foreground": "#CCCECE",
         "activityBar.background": "#131822",
-        "activityBar.foreground": "#9553FF"
+        "activityBar.foreground": "#9553FF",
+        "sideBar.background": "#131822",
+        "sideBar.foreground": "#D7DCE4",
+        "sideBarSectionHeader.background": "#131822",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     }

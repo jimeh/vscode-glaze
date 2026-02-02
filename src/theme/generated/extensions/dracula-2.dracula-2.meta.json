@@ -4,8 +4,8 @@
   "publisherName": "Dracula-2",
   "displayName": "Dracula Remastered",
   "version": "0.3.8",
-  "extractedAt": "2026-01-25T15:28:07.325Z",
-  "installCount": 21307,
+  "extractedAt": "2026-02-02T13:46:45.264Z",
+  "installCount": 21602,
   "themes": [
     {
       "name": "Darcula",
@@ -20,7 +20,9 @@
         "statusBar.background": "#191A21",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E1F35",
+        "sideBarSectionHeader.background": "#1E1F35"
       },
       "type": "dark"
     }

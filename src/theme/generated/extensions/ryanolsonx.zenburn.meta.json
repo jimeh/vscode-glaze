@@ -4,8 +4,8 @@
   "publisherName": "ryanolsonx",
   "displayName": "Zenburn",
   "version": "2.2.0",
-  "extractedAt": "2026-01-25T15:28:22.901Z",
-  "installCount": 3589,
+  "extractedAt": "2026-02-02T13:47:01.114Z",
+  "installCount": 3624,
   "themes": [
     {
       "name": "Zenburn",
@@ -15,7 +15,8 @@
         "editor.foreground": "#DEDEDE",
         "statusBar.background": "#2E3330",
         "statusBar.foreground": "#87AE86",
-        "activityBar.background": "#313633"
+        "activityBar.background": "#313633",
+        "sideBar.background": "#3A3A3A"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "expo",
   "displayName": "Expo Theme",
   "version": "1.4.2",
-  "extractedAt": "2026-01-25T15:28:17.552Z",
-  "installCount": 4952,
+  "extractedAt": "2026-02-02T13:46:55.025Z",
+  "installCount": 5245,
   "themes": [
     {
       "name": "Expo Dark",
@@ -16,7 +16,9 @@
         "titleBar.inactiveBackground": "#0C0D0E",
         "statusBar.background": "#0C0D0E",
         "activityBar.background": "#0C0D0E",
-        "activityBar.foreground": "#B0B4BA"
+        "activityBar.foreground": "#B0B4BA",
+        "sideBar.background": "#0C0D0E",
+        "sideBarSectionHeader.background": "#0C0D0E"
       },
       "type": "dark"
     },
@@ -30,7 +32,10 @@
         "statusBar.background": "#FCFCFD",
         "statusBar.foreground": "#60646C",
         "activityBar.background": "#F9F9FB",
-        "activityBar.foreground": "#60646C"
+        "activityBar.foreground": "#60646C",
+        "sideBar.background": "#FCFCFD",
+        "sideBar.foreground": "#60646C",
+        "sideBarSectionHeader.background": "#FCFCFD"
       },
       "type": "light"
     }

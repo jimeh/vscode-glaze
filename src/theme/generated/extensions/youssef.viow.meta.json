@@ -4,8 +4,8 @@
   "publisherName": "Youssef",
   "displayName": "Viow Color Themes",
   "version": "0.3.3",
-  "extractedAt": "2026-01-25T15:27:50.484Z",
-  "installCount": 274075,
+  "extractedAt": "2026-02-02T13:46:27.917Z",
+  "installCount": 274934,
   "themes": [
     {
       "name": "Viow Darker",
@@ -16,7 +16,9 @@
         "titleBar.activeBackground": "#15468E",
         "statusBar.background": "#161A22",
         "activityBar.background": "#191D25",
-        "activityBar.foreground": "#CDCDCD"
+        "activityBar.foreground": "#CDCDCD",
+        "sideBar.background": "#1E2228",
+        "sideBarSectionHeader.background": "#383838"
       },
       "type": "dark"
     },
@@ -29,7 +31,9 @@
         "titleBar.activeBackground": "#191C28",
         "statusBar.background": "#191C28",
         "activityBar.background": "#191C28",
-        "activityBar.foreground": "#CDCDCD"
+        "activityBar.foreground": "#CDCDCD",
+        "sideBar.background": "#191C28",
+        "sideBarSectionHeader.background": "#191C28"
       },
       "type": "dark"
     },
@@ -43,7 +47,9 @@
         "statusBar.background": "#DFDFDF",
         "statusBar.foreground": "#454545",
         "activityBar.background": "#EAEAEA",
-        "activityBar.foreground": "#666666"
+        "activityBar.foreground": "#666666",
+        "sideBar.background": "#F4F4F4",
+        "sideBarSectionHeader.background": "#E5E5E5"
       },
       "type": "light"
     },
@@ -56,7 +62,9 @@
         "titleBar.activeBackground": "#191C28",
         "statusBar.background": "#001432",
         "activityBar.background": "#181B25",
-        "activityBar.foreground": "#CDCDCD"
+        "activityBar.foreground": "#CDCDCD",
+        "sideBar.background": "#1C1F2B",
+        "sideBarSectionHeader.background": "#1B375C"
       },
       "type": "dark"
     },
@@ -69,7 +77,9 @@
         "titleBar.activeBackground": "#8E1533",
         "statusBar.background": "#3A1223",
         "activityBar.background": "#130C0F",
-        "activityBar.foreground": "#CDCDCD"
+        "activityBar.foreground": "#CDCDCD",
+        "sideBar.background": "#3A1223",
+        "sideBarSectionHeader.background": "#5C1B33"
       },
       "type": "dark"
     },
@@ -83,7 +93,10 @@
         "statusBar.background": "#110E1A",
         "statusBar.foreground": "#85749F",
         "activityBar.background": "#110F1A",
-        "activityBar.foreground": "#7A7398"
+        "activityBar.foreground": "#7A7398",
+        "sideBar.background": "#110F1A",
+        "sideBar.foreground": "#7A7398",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -97,7 +110,10 @@
         "statusBar.background": "#110E1A",
         "statusBar.foreground": "#85749F",
         "activityBar.background": "#110F1A",
-        "activityBar.foreground": "#7A7398"
+        "activityBar.foreground": "#7A7398",
+        "sideBar.background": "#1E183C",
+        "sideBar.foreground": "#7A7398",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

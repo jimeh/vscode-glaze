@@ -4,8 +4,8 @@
   "publisherName": "peymanslh",
   "displayName": "Blueberry dark theme",
   "version": "1.1.1",
-  "extractedAt": "2026-01-25T15:28:06.486Z",
-  "installCount": 94992,
+  "extractedAt": "2026-02-02T13:46:44.526Z",
+  "installCount": 95120,
   "themes": [
     {
       "name": "Blueberry dark theme",
@@ -20,7 +20,10 @@
         "statusBar.background": "#1D212F",
         "statusBar.foreground": "#676E95",
         "activityBar.background": "#1D212F",
-        "activityBar.foreground": "#A6ACCD"
+        "activityBar.foreground": "#A6ACCD",
+        "sideBar.background": "#1D212F",
+        "sideBar.foreground": "#676E95",
+        "sideBarSectionHeader.background": "#1D212F"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "usernamehw",
   "displayName": "Light Theme ( Prism )",
   "version": "1.2.0",
-  "extractedAt": "2026-01-25T15:28:12.718Z",
-  "installCount": 7101,
+  "extractedAt": "2026-02-02T13:46:50.740Z",
+  "installCount": 7183,
   "themes": [
     {
       "name": "Prism",
@@ -18,7 +18,9 @@
         "statusBar.background": "#F8F6F5",
         "statusBar.foreground": "#090909",
         "activityBar.background": "#F8F6F5",
-        "activityBar.foreground": "#111111"
+        "activityBar.foreground": "#111111",
+        "sideBar.background": "#F8F6F5",
+        "sideBarSectionHeader.background": "#708090"
       },
       "type": "light"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#F8F6F5",
         "statusBar.foreground": "#090909",
         "activityBar.background": "#F8F6F5",
-        "activityBar.foreground": "#111111"
+        "activityBar.foreground": "#111111",
+        "sideBar.background": "#F8F6F5",
+        "sideBarSectionHeader.background": "#708090"
       },
       "type": "light"
     }

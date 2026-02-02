@@ -4,8 +4,8 @@
   "publisherName": "PROxZIMA",
   "displayName": "Sweet Dracula",
   "version": "1.0.9",
-  "extractedAt": "2026-01-25T15:28:04.364Z",
-  "installCount": 107888,
+  "extractedAt": "2026-02-02T13:46:41.934Z",
+  "installCount": 108952,
   "themes": [
     {
       "name": "Sweet Dracula",
@@ -20,7 +20,11 @@
         "statusBar.background": "#11131C",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#232634",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#161925",
+        "sideBar.foreground": "#FDFDFD",
+        "sideBarSectionHeader.background": "#11131C",
+        "sideBarSectionHeader.foreground": "#FDFDFD"
       },
       "type": "dark"
     }

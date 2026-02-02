@@ -4,8 +4,8 @@
   "publisherName": "Luxcium",
   "displayName": "Pop N' Lock Theme by Luxcium ✨",
   "version": "3.32.188",
-  "extractedAt": "2026-01-25T15:28:02.163Z",
-  "installCount": 125607,
+  "extractedAt": "2026-02-02T13:46:39.943Z",
+  "installCount": 125749,
   "themes": [
     {
       "name": "Pop N' Lock Theme by Luxcium ✨",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1D2547",
         "statusBar.foreground": "#D2C8BE",
         "activityBar.background": "#1C1C30",
-        "activityBar.foreground": "#C4BDB5"
+        "activityBar.foreground": "#C4BDB5",
+        "sideBar.background": "#1D1028",
+        "sideBar.foreground": "#D2C8BE",
+        "sideBarSectionHeader.background": "#661177",
+        "sideBarSectionHeader.foreground": "#D2C8BE"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#181818",
         "statusBar.foreground": "#DDCCBB",
         "activityBar.background": "#181818",
-        "activityBar.foreground": "#FFEECC"
+        "activityBar.foreground": "#FFEECC",
+        "sideBar.background": "#181818",
+        "sideBar.foreground": "#DDCCBB",
+        "sideBarSectionHeader.background": "#202020",
+        "sideBarSectionHeader.foreground": "#DDCCBB"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#181420",
         "statusBar.foreground": "#DDCCBB",
         "activityBar.background": "#181420",
-        "activityBar.foreground": "#FFEECC"
+        "activityBar.foreground": "#FFEECC",
+        "sideBar.background": "#181420",
+        "sideBar.foreground": "#DDCCBB",
+        "sideBarSectionHeader.background": "#181420",
+        "sideBarSectionHeader.foreground": "#DDCCBB"
       },
       "type": "dark"
     }

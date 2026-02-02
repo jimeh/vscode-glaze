@@ -4,8 +4,8 @@
   "publisherName": "sdras",
   "displayName": "Night Owl",
   "version": "2.1.1",
-  "extractedAt": "2026-01-25T15:27:40.371Z",
-  "installCount": 3386588,
+  "extractedAt": "2026-02-02T13:46:17.665Z",
+  "installCount": 3394495,
   "themes": [
     {
       "name": "Night Owl",
@@ -19,7 +19,11 @@
         "statusBar.background": "#011627",
         "statusBar.foreground": "#5F7E97",
         "activityBar.background": "#011627",
-        "activityBar.foreground": "#5F7E97"
+        "activityBar.foreground": "#5F7E97",
+        "sideBar.background": "#011627",
+        "sideBar.foreground": "#89A4BB",
+        "sideBarSectionHeader.background": "#011627",
+        "sideBarSectionHeader.foreground": "#5F7E97"
       },
       "type": "dark"
     },
@@ -35,7 +39,11 @@
         "statusBar.background": "#011627",
         "statusBar.foreground": "#5F7E97",
         "activityBar.background": "#011627",
-        "activityBar.foreground": "#5F7E97"
+        "activityBar.foreground": "#5F7E97",
+        "sideBar.background": "#011627",
+        "sideBar.foreground": "#89A4BB",
+        "sideBarSectionHeader.background": "#011627",
+        "sideBarSectionHeader.foreground": "#5F7E97"
       },
       "type": "dark"
     },
@@ -49,7 +57,9 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#403F53",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#403F53"
+        "activityBar.foreground": "#403F53",
+        "sideBar.background": "#F0F0F0",
+        "sideBar.foreground": "#403F53"
       },
       "type": "light"
     },
@@ -63,7 +73,9 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#403F53",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#403F53"
+        "activityBar.foreground": "#403F53",
+        "sideBar.background": "#F0F0F0",
+        "sideBar.foreground": "#403F53"
       },
       "type": "light"
     }

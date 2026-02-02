@@ -4,8 +4,8 @@
   "publisherName": "Darkempire78",
   "displayName": "Discord Tools",
   "version": "1.5.0",
-  "extractedAt": "2026-01-25T15:27:55.945Z",
-  "installCount": 166899,
+  "extractedAt": "2026-02-02T13:46:33.686Z",
+  "installCount": 167317,
   "themes": [
     {
       "name": "Discord Theme (Dark)",
@@ -16,7 +16,9 @@
         "titleBar.activeBackground": "#202225",
         "titleBar.inactiveBackground": "#202225",
         "statusBar.background": "#202225",
-        "activityBar.background": "#202225"
+        "activityBar.background": "#202225",
+        "sideBar.background": "#2F3136",
+        "sideBarSectionHeader.background": "#2F3136"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "max-SS",
   "displayName": "Cyberpunk",
   "version": "1.2.14",
-  "extractedAt": "2026-01-25T15:27:46.730Z",
-  "installCount": 428148,
+  "extractedAt": "2026-02-02T13:46:24.152Z",
+  "installCount": 429609,
   "themes": [
     {
       "name": "Cyberpunk",
@@ -20,7 +20,9 @@
         "statusBar.background": "#002212",
         "statusBar.foreground": "#00FF9C",
         "activityBar.background": "#261D45",
-        "activityBar.foreground": "#00FFC8"
+        "activityBar.foreground": "#00FFC8",
+        "sideBar.background": "#372963",
+        "sideBar.foreground": "#B08BFF"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#002212",
         "statusBar.foreground": "#00FF9C",
         "activityBar.background": "#100D23",
-        "activityBar.foreground": "#00FF9D"
+        "activityBar.foreground": "#00FF9D",
+        "sideBar.background": "#1E1D45",
+        "sideBar.foreground": "#8B96FF"
       },
       "type": "dark"
     },
@@ -52,7 +56,11 @@
         "statusBar.background": "#1D000A",
         "statusBar.foreground": "#FF0055",
         "activityBar.background": "#101116",
-        "activityBar.foreground": "#FF0055"
+        "activityBar.foreground": "#FF0055",
+        "sideBar.background": "#0A0B0E",
+        "sideBar.foreground": "#BE4E74",
+        "sideBarSectionHeader.background": "#240000",
+        "sideBarSectionHeader.foreground": "#FF8BA8"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "GokturkSM",
   "displayName": "Nebula Pandas",
   "version": "0.0.4",
-  "extractedAt": "2026-01-25T15:27:56.360Z",
-  "installCount": 164308,
+  "extractedAt": "2026-02-02T13:46:33.997Z",
+  "installCount": 165350,
   "themes": [
     {
       "name": "Nebula Pandas Theme",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1F2330",
         "statusBar.foreground": "#919CB9",
         "activityBar.background": "#1F2330",
-        "activityBar.foreground": "#F6F0FF"
+        "activityBar.foreground": "#F6F0FF",
+        "sideBar.background": "#27273A",
+        "sideBar.foreground": "#919CB9",
+        "sideBarSectionHeader.background": "#1F2330",
+        "sideBarSectionHeader.foreground": "#F6F0FF"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "radiolevity",
   "displayName": "Search Lights",
   "version": "1.10.3",
-  "extractedAt": "2026-01-25T15:28:06.897Z",
-  "installCount": 36162,
+  "extractedAt": "2026-02-02T13:46:44.835Z",
+  "installCount": 36246,
   "themes": [
     {
       "name": "Search Lights",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1A1F28",
         "statusBar.foreground": "#738699",
         "activityBar.background": "#1A1F28",
-        "activityBar.foreground": "#738699"
+        "activityBar.foreground": "#738699",
+        "sideBar.background": "#1A1F28",
+        "sideBar.foreground": "#738699",
+        "sideBarSectionHeader.background": "#1A1F28",
+        "sideBarSectionHeader.foreground": "#FFCC66"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1A1F28",
         "statusBar.foreground": "#738699",
         "activityBar.background": "#1A1F28",
-        "activityBar.foreground": "#738699"
+        "activityBar.foreground": "#738699",
+        "sideBar.background": "#1A1F28",
+        "sideBar.foreground": "#738699",
+        "sideBarSectionHeader.background": "#1A1F28",
+        "sideBarSectionHeader.foreground": "#FFCC66"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#202020",
         "statusBar.foreground": "#717171",
         "activityBar.background": "#202020",
-        "activityBar.foreground": "#717171"
+        "activityBar.foreground": "#717171",
+        "sideBar.background": "#202020",
+        "sideBar.foreground": "#717171",
+        "sideBarSectionHeader.background": "#202020",
+        "sideBarSectionHeader.foreground": "#8CA6BD"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#202020",
         "statusBar.foreground": "#717171",
         "activityBar.background": "#202020",
-        "activityBar.foreground": "#717171"
+        "activityBar.foreground": "#717171",
+        "sideBar.background": "#202020",
+        "sideBar.foreground": "#717171",
+        "sideBarSectionHeader.background": "#202020",
+        "sideBarSectionHeader.foreground": "#8CA6BD"
       },
       "type": "dark"
     }

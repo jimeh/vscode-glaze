@@ -4,8 +4,8 @@
   "publisherName": "TheMistProject",
   "displayName": "Forest Mist Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-01-25T15:28:11.958Z",
-  "installCount": 8025,
+  "extractedAt": "2026-02-02T13:46:50.000Z",
+  "installCount": 8059,
   "themes": [
     {
       "name": "Forest Mist",
@@ -20,7 +20,9 @@
         "statusBar.background": "#1A1F2A",
         "statusBar.foreground": "#EEF0F2",
         "activityBar.background": "#1A1F2A",
-        "activityBar.foreground": "#EEF0F2"
+        "activityBar.foreground": "#EEF0F2",
+        "sideBar.background": "#242936",
+        "sideBarSectionHeader.background": "#1A1F2A"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#1C212C",
         "statusBar.foreground": "#E8EAEC",
         "activityBar.background": "#1C212C",
-        "activityBar.foreground": "#E8EAEC"
+        "activityBar.foreground": "#E8EAEC",
+        "sideBar.background": "#252A35",
+        "sideBarSectionHeader.background": "#1C212C"
       },
       "type": "dark"
     }

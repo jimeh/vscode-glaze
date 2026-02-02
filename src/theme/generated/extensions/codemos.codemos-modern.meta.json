@@ -4,8 +4,8 @@
   "publisherName": "Codemos",
   "displayName": "Codemos Modern",
   "version": "3.0.9",
-  "extractedAt": "2026-01-25T15:28:09.090Z",
-  "installCount": 12677,
+  "extractedAt": "2026-02-02T13:46:46.841Z",
+  "installCount": 12925,
   "themes": [
     {
       "name": "Codemos Modern (Dark)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#171717",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#171717",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#1C1C1C",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#FFFFFF",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#EDEDED",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#EDEDED",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#F3F3F3",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#000000"
       },
       "type": "light"
     }

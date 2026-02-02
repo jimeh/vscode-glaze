@@ -4,8 +4,8 @@
   "publisherName": "particle",
   "displayName": "Workbench Themes",
   "version": "1.16.44",
-  "extractedAt": "2026-01-25T15:28:01.642Z",
-  "installCount": 128394,
+  "extractedAt": "2026-02-02T13:46:39.418Z",
+  "installCount": 128697,
   "themes": [
     {
       "name": "Dark Matter (by Particle)",
@@ -13,7 +13,8 @@
       "colors": {
         "editor.background": "#001928",
         "statusBar.background": "#00334F",
-        "activityBar.background": "#030B15"
+        "activityBar.background": "#030B15",
+        "sideBar.background": "#04152B"
       },
       "type": "dark"
     }

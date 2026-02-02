@@ -4,8 +4,8 @@
   "publisherName": "claudius",
   "displayName": "classic-terminal",
   "version": "0.0.6",
-  "extractedAt": "2026-01-25T15:28:10.576Z",
-  "installCount": 9539,
+  "extractedAt": "2026-02-02T13:46:48.510Z",
+  "installCount": 9642,
   "themes": [
     {
       "name": "Classic Terminal",
@@ -16,7 +16,10 @@
         "statusBar.background": "#8D8D8D",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#7C7C7C"
+        "activityBar.foreground": "#7C7C7C",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#7C7C7C",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "NguyenHoangLam",
   "displayName": "Beautiful Dracula",
   "version": "0.1.4",
-  "extractedAt": "2026-01-25T15:28:02.790Z",
-  "installCount": 122212,
+  "extractedAt": "2026-02-02T13:46:40.563Z",
+  "installCount": 122625,
   "themes": [
     {
       "name": "Beautiful Dracula Normal",
@@ -20,7 +20,9 @@
         "statusBar.background": "#191A21",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E1F35",
+        "sideBarSectionHeader.background": "#1E1F35"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#191A21",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E1F35",
+        "sideBarSectionHeader.background": "#1E1F35"
       },
       "type": "dark"
     },
@@ -54,7 +58,9 @@
         "statusBar.background": "#191A21",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E1F35",
+        "sideBarSectionHeader.background": "#1E1F35"
       },
       "type": "dark"
     },
@@ -71,7 +77,9 @@
         "statusBar.background": "#191A21",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E1F35",
+        "sideBarSectionHeader.background": "#1E1F35"
       },
       "type": "dark"
     }

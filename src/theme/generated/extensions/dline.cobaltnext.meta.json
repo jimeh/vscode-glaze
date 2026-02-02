@@ -4,8 +4,8 @@
   "publisherName": "dline",
   "displayName": "Cobalt Next",
   "version": "0.4.5",
-  "extractedAt": "2026-01-25T15:28:02.372Z",
-  "installCount": 124609,
+  "extractedAt": "2026-02-02T13:46:40.255Z",
+  "installCount": 124778,
   "themes": [
     {
       "name": "Cobalt Next",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1B2B34",
         "statusBar.foreground": "#D8DEE9",
         "activityBar.background": "#1B2B34",
-        "activityBar.foreground": "#D8DEE9"
+        "activityBar.foreground": "#D8DEE9",
+        "sideBar.background": "#0F1C23",
+        "sideBar.foreground": "#65737E",
+        "sideBarSectionHeader.background": "#1B2B34",
+        "sideBarSectionHeader.foreground": "#D8DEE9"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1B2B34",
         "statusBar.foreground": "#D8DEE9",
         "activityBar.background": "#0F1C23",
-        "activityBar.foreground": "#D8DEE9"
+        "activityBar.foreground": "#D8DEE9",
+        "sideBar.background": "#0F1C23",
+        "sideBar.foreground": "#65737E",
+        "sideBarSectionHeader.background": "#1B2B34",
+        "sideBarSectionHeader.foreground": "#D8DEE9"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#0F1C23",
         "statusBar.foreground": "#D8DEE9",
         "activityBar.background": "#0F1C23",
-        "activityBar.foreground": "#5FB3B3"
+        "activityBar.foreground": "#5FB3B3",
+        "sideBar.background": "#0F1C23",
+        "sideBar.foreground": "#65737E",
+        "sideBarSectionHeader.background": "#1B2B34",
+        "sideBarSectionHeader.foreground": "#D8DEE9"
       },
       "type": "dark"
     }

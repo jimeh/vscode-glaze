@@ -4,8 +4,8 @@
   "publisherName": "ChrisRu",
   "displayName": "Night Sky Theme",
   "version": "2.0.0",
-  "extractedAt": "2026-01-25T15:28:24.337Z",
-  "installCount": 3314,
+  "extractedAt": "2026-02-02T13:47:02.565Z",
+  "installCount": 3328,
   "themes": [
     {
       "name": "Night Sky",
@@ -19,7 +19,9 @@
         "titleBar.inactiveForeground": "#B2B2B3",
         "statusBar.background": "#1D2026",
         "activityBar.background": "#222830",
-        "activityBar.foreground": "#D8DEE9"
+        "activityBar.foreground": "#D8DEE9",
+        "sideBar.background": "#1D2026",
+        "sideBarSectionHeader.background": "#222830"
       },
       "type": "dark"
     }

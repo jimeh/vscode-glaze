@@ -4,8 +4,8 @@
   "publisherName": "sainnhe",
   "displayName": "Everforest",
   "version": "0.3.0",
-  "extractedAt": "2026-01-25T15:28:03.325Z",
-  "installCount": 116676,
+  "extractedAt": "2026-02-02T13:46:40.993Z",
+  "installCount": 117775,
   "themes": [
     {
       "name": "Everforest Dark",
@@ -20,7 +20,11 @@
         "statusBar.background": "#2D353B",
         "statusBar.foreground": "#9AA79D",
         "activityBar.background": "#2D353B",
-        "activityBar.foreground": "#D3C6AA"
+        "activityBar.foreground": "#D3C6AA",
+        "sideBar.background": "#2D353B",
+        "sideBar.foreground": "#859289",
+        "sideBarSectionHeader.background": "#2D353B",
+        "sideBarSectionHeader.foreground": "#9AA79D"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#FDF6E3",
         "statusBar.foreground": "#879686",
         "activityBar.background": "#FDF6E3",
-        "activityBar.foreground": "#5C6A72"
+        "activityBar.foreground": "#5C6A72",
+        "sideBar.background": "#FDF6E3",
+        "sideBar.foreground": "#939F91",
+        "sideBarSectionHeader.background": "#FDF6E3",
+        "sideBarSectionHeader.foreground": "#879686"
       },
       "type": "light"
     }

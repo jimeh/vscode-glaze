@@ -4,8 +4,8 @@
   "publisherName": "vanyauhalin",
   "displayName": "Moondust Theme",
   "version": "0.11.0",
-  "extractedAt": "2026-01-25T15:28:12.616Z",
-  "installCount": 7248,
+  "extractedAt": "2026-02-02T13:46:50.530Z",
+  "installCount": 7469,
   "themes": [
     {
       "name": "Moondust: Near Side of the Moon",
@@ -20,7 +20,11 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#575E66",
         "activityBar.background": "#F6F7F8",
-        "activityBar.foreground": "#575E66"
+        "activityBar.foreground": "#575E66",
+        "sideBar.background": "#F6F7F8",
+        "sideBar.foreground": "#434A51",
+        "sideBarSectionHeader.background": "#F6F7F8",
+        "sideBarSectionHeader.foreground": "#434A51"
       },
       "type": "light"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#161A1D",
         "statusBar.foreground": "#89949A",
         "activityBar.background": "#1E2225",
-        "activityBar.foreground": "#89949A"
+        "activityBar.foreground": "#89949A",
+        "sideBar.background": "#1E2225",
+        "sideBar.foreground": "#B1B6B9",
+        "sideBarSectionHeader.background": "#1E2225",
+        "sideBarSectionHeader.foreground": "#B1B6B9"
       },
       "type": "dark"
     }

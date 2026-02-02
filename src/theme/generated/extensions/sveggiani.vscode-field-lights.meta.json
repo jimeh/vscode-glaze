@@ -4,8 +4,8 @@
   "publisherName": "sveggiani",
   "displayName": "Field Lights Theme",
   "version": "0.0.11",
-  "extractedAt": "2026-01-25T15:28:00.006Z",
-  "installCount": 136658,
+  "extractedAt": "2026-02-02T13:46:38.076Z",
+  "installCount": 136907,
   "themes": [
     {
       "name": "Field Lights",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1A1F28",
         "statusBar.foreground": "#738699",
         "activityBar.background": "#1A1F28",
-        "activityBar.foreground": "#738699"
+        "activityBar.foreground": "#738699",
+        "sideBar.background": "#1A1F28",
+        "sideBar.foreground": "#738699",
+        "sideBarSectionHeader.background": "#1A1F28",
+        "sideBarSectionHeader.foreground": "#FFCC66"
       },
       "type": "dark"
     }

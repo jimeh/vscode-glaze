@@ -4,8 +4,8 @@
   "publisherName": "radiolevity",
   "displayName": "Neofloss",
   "version": "1.1.6",
-  "extractedAt": "2026-01-25T15:28:08.114Z",
-  "installCount": 16398,
+  "extractedAt": "2026-02-02T13:46:46.058Z",
+  "installCount": 16513,
   "themes": [
     {
       "name": "Neofloss",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1C1B1D",
         "statusBar.foreground": "#695A6B",
         "activityBar.background": "#1C1B1D",
-        "activityBar.foreground": "#7497E6"
+        "activityBar.foreground": "#7497E6",
+        "sideBar.background": "#1C1B1D",
+        "sideBar.foreground": "#695A6B",
+        "sideBarSectionHeader.background": "#1C1B1D",
+        "sideBarSectionHeader.foreground": "#BEA7FF"
       },
       "type": "dark"
     }

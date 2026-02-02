@@ -4,8 +4,8 @@
   "publisherName": "sjsepan",
   "displayName": "sjsepan.redalertish",
   "version": "0.3.2",
-  "extractedAt": "2026-01-25T15:28:24.646Z",
-  "installCount": 3287,
+  "extractedAt": "2026-02-02T13:47:02.256Z",
+  "installCount": 3355,
   "themes": [
     {
       "name": "RedAlertish",
@@ -20,7 +20,11 @@
         "statusBar.background": "#350A03",
         "statusBar.foreground": "#FF9486",
         "activityBar.background": "#350A03",
-        "activityBar.foreground": "#FF9486"
+        "activityBar.foreground": "#FF9486",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#FF9486",
+        "sideBarSectionHeader.background": "#350A03",
+        "sideBarSectionHeader.foreground": "#FF9486"
       },
       "type": "dark"
     }

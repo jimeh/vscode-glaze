@@ -4,8 +4,8 @@
   "publisherName": "crazyurus",
   "displayName": "微信小程序开发工具",
   "version": "1.5.1",
-  "extractedAt": "2026-01-25T15:27:52.610Z",
-  "installCount": 217636,
+  "extractedAt": "2026-02-02T13:46:30.309Z",
+  "installCount": 218242,
   "themes": [
     {
       "name": "WeChat Dark",
@@ -17,7 +17,10 @@
         "titleBar.inactiveBackground": "#424242",
         "statusBar.background": "#383838",
         "statusBar.foreground": "#9B9B9B",
-        "activityBar.foreground": "#F7F7F7"
+        "activityBar.foreground": "#F7F7F7",
+        "sideBar.background": "#2E2E2E",
+        "sideBarSectionHeader.background": "#383838",
+        "sideBarSectionHeader.foreground": "#BDBDBD"
       },
       "type": "dark"
     },
@@ -29,7 +32,11 @@
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#787878",
         "activityBar.background": "#F2F2F2",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#222222",
+        "sideBarSectionHeader.background": "#F2F2F2",
+        "sideBarSectionHeader.foreground": "#7F7F7F"
       },
       "type": "light"
     }

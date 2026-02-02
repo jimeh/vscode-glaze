@@ -4,8 +4,8 @@
   "publisherName": "ellacrity",
   "displayName": "Recoil",
   "version": "0.7.3",
-  "extractedAt": "2026-01-25T15:28:17.773Z",
-  "installCount": 4927,
+  "extractedAt": "2026-02-02T13:46:55.650Z",
+  "installCount": 4986,
   "themes": [
     {
       "name": "Recoil",
@@ -20,7 +20,11 @@
         "statusBar.background": "#050D14",
         "statusBar.foreground": "#DADEE2",
         "activityBar.background": "#1C2630",
-        "activityBar.foreground": "#FBA94B"
+        "activityBar.foreground": "#FBA94B",
+        "sideBar.background": "#091118",
+        "sideBar.foreground": "#E4E2C8",
+        "sideBarSectionHeader.background": "#808080",
+        "sideBarSectionHeader.foreground": "#DADEE2"
       },
       "type": "dark"
     }

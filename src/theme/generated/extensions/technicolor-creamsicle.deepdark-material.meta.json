@@ -4,8 +4,8 @@
   "publisherName": "technicolor-creamsicle",
   "displayName": "Deepdark Material Theme",
   "version": "3.3.0",
-  "extractedAt": "2026-01-25T15:28:18.883Z",
-  "installCount": 4513,
+  "extractedAt": "2026-02-02T13:46:56.857Z",
+  "installCount": 4554,
   "themes": [
     {
       "name": "Deepdark Material Theme | Default Version",
@@ -20,7 +20,11 @@
         "statusBar.background": "#080808",
         "statusBar.foreground": "#878787",
         "activityBar.background": "#080808",
-        "activityBar.foreground": "#F5F5F5"
+        "activityBar.foreground": "#F5F5F5",
+        "sideBar.background": "#212121",
+        "sideBar.foreground": "#8C8C8A",
+        "sideBarSectionHeader.background": "#212121",
+        "sideBarSectionHeader.foreground": "#B2B2B1"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#080808",
         "statusBar.foreground": "#878787",
         "activityBar.background": "#080808",
-        "activityBar.foreground": "#F5F5F5"
+        "activityBar.foreground": "#F5F5F5",
+        "sideBar.background": "#0C0C0C",
+        "sideBar.foreground": "#8C8C8A",
+        "sideBarSectionHeader.background": "#212121",
+        "sideBarSectionHeader.foreground": "#B2B2B1"
       },
       "type": "dark"
     }

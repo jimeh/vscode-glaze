@@ -4,8 +4,8 @@
   "publisherName": "vallyscode",
   "displayName": "Cloud Theme",
   "version": "0.0.12",
-  "extractedAt": "2026-01-25T15:28:18.664Z",
-  "installCount": 4610,
+  "extractedAt": "2026-02-02T13:46:56.633Z",
+  "installCount": 4670,
   "themes": [
     {
       "name": "Cloud",
@@ -20,7 +20,11 @@
         "statusBar.background": "#F1F1F1",
         "statusBar.foreground": "#454545",
         "activityBar.background": "#F1F1F1",
-        "activityBar.foreground": "#454545"
+        "activityBar.foreground": "#454545",
+        "sideBar.background": "#F1F1F1",
+        "sideBar.foreground": "#454545",
+        "sideBarSectionHeader.background": "#F1F1F1",
+        "sideBarSectionHeader.foreground": "#454545"
       },
       "type": "light"
     }

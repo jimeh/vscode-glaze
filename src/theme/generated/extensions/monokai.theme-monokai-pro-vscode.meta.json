@@ -4,8 +4,8 @@
   "publisherName": "monokai",
   "displayName": "Monokai Pro",
   "version": "2.0.12",
-  "extractedAt": "2026-01-25T15:27:40.041Z",
-  "installCount": 3871085,
+  "extractedAt": "2026-02-02T13:46:17.351Z",
+  "installCount": 3882076,
   "themes": [
     {
       "name": "Monokai Pro",
@@ -20,7 +20,11 @@
         "statusBar.background": "#221F22",
         "statusBar.foreground": "#727072",
         "activityBar.background": "#19181A",
-        "activityBar.foreground": "#C1C0C0"
+        "activityBar.foreground": "#C1C0C0",
+        "sideBar.background": "#221F22",
+        "sideBar.foreground": "#939293",
+        "sideBarSectionHeader.background": "#221F22",
+        "sideBarSectionHeader.foreground": "#727072"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1E1F2B",
         "statusBar.foreground": "#696D77",
         "activityBar.background": "#161821",
-        "activityBar.foreground": "#B2B9BD"
+        "activityBar.foreground": "#B2B9BD",
+        "sideBar.background": "#1E1F2B",
+        "sideBar.foreground": "#888D94",
+        "sideBarSectionHeader.background": "#1E1F2B",
+        "sideBarSectionHeader.foreground": "#696D77"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#211C1C",
         "statusBar.foreground": "#72696A",
         "activityBar.background": "#191515",
-        "activityBar.foreground": "#C3B7B8"
+        "activityBar.foreground": "#C3B7B8",
+        "sideBar.background": "#211C1C",
+        "sideBar.foreground": "#948A8B",
+        "sideBarSectionHeader.background": "#211C1C",
+        "sideBarSectionHeader.foreground": "#72696A"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#191919",
         "statusBar.foreground": "#69676C",
         "activityBar.background": "#131313",
-        "activityBar.foreground": "#BAB6C0"
+        "activityBar.foreground": "#BAB6C0",
+        "sideBar.background": "#191919",
+        "sideBar.foreground": "#8B888F",
+        "sideBarSectionHeader.background": "#191919",
+        "sideBarSectionHeader.foreground": "#69676C"
       },
       "type": "dark"
     },
@@ -88,7 +104,11 @@
         "statusBar.background": "#1D2528",
         "statusBar.foreground": "#6B7678",
         "activityBar.background": "#161B1E",
-        "activityBar.foreground": "#B8C4C3"
+        "activityBar.foreground": "#B8C4C3",
+        "sideBar.background": "#1D2528",
+        "sideBar.foreground": "#8B9798",
+        "sideBarSectionHeader.background": "#1D2528",
+        "sideBarSectionHeader.foreground": "#6B7678"
       },
       "type": "dark"
     },
@@ -105,7 +125,11 @@
         "statusBar.background": "#EDE7E5",
         "statusBar.foreground": "#918C8E",
         "activityBar.background": "#E0DAD9",
-        "activityBar.foreground": "#706B6E"
+        "activityBar.foreground": "#706B6E",
+        "sideBar.background": "#EDE7E5",
+        "sideBar.foreground": "#706B6E",
+        "sideBarSectionHeader.background": "#EDE7E5",
+        "sideBarSectionHeader.foreground": "#A59FA0"
       },
       "type": "light"
     },
@@ -122,7 +146,11 @@
         "statusBar.background": "#EEE5DE",
         "statusBar.foreground": "#92898A",
         "activityBar.background": "#DED5D0",
-        "activityBar.foreground": "#72696D"
+        "activityBar.foreground": "#72696D",
+        "sideBar.background": "#EEE5DE",
+        "sideBar.foreground": "#72696D",
+        "sideBarSectionHeader.background": "#EEE5DE",
+        "sideBarSectionHeader.foreground": "#A59C9C"
       },
       "type": "light"
     },
@@ -139,7 +167,11 @@
         "statusBar.background": "#1D1E19",
         "statusBar.foreground": "#6E7066",
         "activityBar.background": "#161613",
-        "activityBar.foreground": "#C0C1B5"
+        "activityBar.foreground": "#C0C1B5",
+        "sideBar.background": "#1D1E19",
+        "sideBar.foreground": "#919288",
+        "sideBarSectionHeader.background": "#1D1E19",
+        "sideBarSectionHeader.foreground": "#6E7066"
       },
       "type": "dark"
     }

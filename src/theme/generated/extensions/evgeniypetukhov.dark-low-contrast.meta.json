@@ -4,8 +4,8 @@
   "publisherName": "EvgeniyPetukhov",
   "displayName": "Dark Low Contrast Themes",
   "version": "0.6.0",
-  "extractedAt": "2026-01-25T15:27:56.052Z",
-  "installCount": 166125,
+  "extractedAt": "2026-02-02T13:46:33.792Z",
+  "installCount": 166636,
   "themes": [
     {
       "name": "Dark Low Contrast",
@@ -20,7 +20,9 @@
         "statusBar.background": "#0667A9",
         "statusBar.foreground": "#D2D2D2",
         "activityBar.background": "#2E2E2E",
-        "activityBar.foreground": "#D2D2D2"
+        "activityBar.foreground": "#D2D2D2",
+        "sideBar.background": "#232324",
+        "sideBarSectionHeader.background": "#060606"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#0B67A4",
         "statusBar.foreground": "#D7D2CD",
         "activityBar.background": "#332E29",
-        "activityBar.foreground": "#D7D2CD"
+        "activityBar.foreground": "#D7D2CD",
+        "sideBar.background": "#28231F",
+        "sideBarSectionHeader.background": "#0B0601"
       },
       "type": "dark"
     },
@@ -54,7 +58,9 @@
         "statusBar.background": "#0667AE",
         "statusBar.foreground": "#D2D2D7",
         "activityBar.background": "#2E2E33",
-        "activityBar.foreground": "#D2D2D7"
+        "activityBar.foreground": "#D2D2D7",
+        "sideBar.background": "#232329",
+        "sideBarSectionHeader.background": "#06060B"
       },
       "type": "dark"
     },
@@ -71,7 +77,9 @@
         "statusBar.background": "#066CA9",
         "statusBar.foreground": "#D2D7D2",
         "activityBar.background": "#2E332E",
-        "activityBar.foreground": "#D2D7D2"
+        "activityBar.foreground": "#D2D7D2",
+        "sideBar.background": "#232824",
+        "sideBarSectionHeader.background": "#060B06"
       },
       "type": "dark"
     },
@@ -88,7 +96,9 @@
         "statusBar.background": "#0B67A9",
         "statusBar.foreground": "#D7D2D2",
         "activityBar.background": "#332E2E",
-        "activityBar.foreground": "#D7D2D2"
+        "activityBar.foreground": "#D7D2D2",
+        "sideBar.background": "#282324",
+        "sideBarSectionHeader.background": "#0B0606"
       },
       "type": "dark"
     }

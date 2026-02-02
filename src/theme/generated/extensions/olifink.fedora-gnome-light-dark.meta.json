@@ -4,8 +4,8 @@
   "publisherName": "olifink",
   "displayName": "Fedora GNOME light & dark themes",
   "version": "0.0.4",
-  "extractedAt": "2026-01-25T15:28:22.592Z",
-  "installCount": 3642,
+  "extractedAt": "2026-02-02T13:47:00.703Z",
+  "installCount": 3675,
   "themes": [
     {
       "name": "Gnome Dark (GitHub)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#353535",
         "statusBar.foreground": "#D1D5DA",
         "activityBar.background": "#323232",
-        "activityBar.foreground": "#E1E4E8"
+        "activityBar.foreground": "#E1E4E8",
+        "sideBar.background": "#2D2D2D",
+        "sideBar.foreground": "#D1D5DA",
+        "sideBarSectionHeader.background": "#353535",
+        "sideBarSectionHeader.foreground": "#E1E4E8"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#EDECEA",
         "statusBar.foreground": "#586069",
         "activityBar.background": "#F6F5F4",
-        "activityBar.foreground": "#2F363D"
+        "activityBar.foreground": "#2F363D",
+        "sideBar.background": "#F6F5F4",
+        "sideBar.foreground": "#586069",
+        "sideBarSectionHeader.background": "#F1EFEE",
+        "sideBarSectionHeader.foreground": "#2F363D"
       },
       "type": "light"
     },
@@ -54,7 +62,9 @@
         "statusBar.background": "#353535",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#323232",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#2D2D2D",
+        "sideBarSectionHeader.background": "#353535"
       },
       "type": "dark"
     },
@@ -71,7 +81,9 @@
         "statusBar.background": "#EDECEA",
         "statusBar.foreground": "#424243",
         "activityBar.background": "#F6F5F4",
-        "activityBar.foreground": "#121417"
+        "activityBar.foreground": "#121417",
+        "sideBar.background": "#F6F5F4",
+        "sideBarSectionHeader.background": "#F1EFEE"
       },
       "type": "light"
     }

@@ -4,8 +4,8 @@
   "publisherName": "odind",
   "displayName": "MoonRise Theme",
   "version": "0.2.2",
-  "extractedAt": "2026-01-25T15:28:25.062Z",
-  "installCount": 3259,
+  "extractedAt": "2026-02-02T13:47:02.771Z",
+  "installCount": 3290,
   "themes": [
     {
       "name": "MoonRise",
@@ -20,7 +20,9 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#21252B",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     }

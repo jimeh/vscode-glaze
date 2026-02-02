@@ -4,8 +4,8 @@
   "publisherName": "akamud",
   "displayName": "Atom One Light Theme",
   "version": "2.3.0",
-  "extractedAt": "2026-01-25T15:27:41.757Z",
-  "installCount": 1374637,
+  "extractedAt": "2026-02-02T13:46:19.016Z",
+  "installCount": 1377550,
   "themes": [
     {
       "name": "Atom One Light",
@@ -20,7 +20,9 @@
         "statusBar.background": "#EAEAEB",
         "statusBar.foreground": "#424243",
         "activityBar.background": "#FAFAFA",
-        "activityBar.foreground": "#121417"
+        "activityBar.foreground": "#121417",
+        "sideBar.background": "#EAEAEB",
+        "sideBarSectionHeader.background": "#FAFAFA"
       },
       "type": "light"
     }

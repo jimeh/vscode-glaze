@@ -4,8 +4,8 @@
   "publisherName": "SpaceBox",
   "displayName": "Monospace IDX Theme",
   "version": "0.0.7",
-  "extractedAt": "2026-01-25T15:28:19.421Z",
-  "installCount": 4383,
+  "extractedAt": "2026-02-02T13:46:57.292Z",
+  "installCount": 4477,
   "themes": [
     {
       "name": "Monospace IDX Light",
@@ -20,7 +20,11 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#5D6A7D",
         "activityBar.background": "#FFFFFF",
-        "activityBar.foreground": "#333E4F"
+        "activityBar.foreground": "#333E4F",
+        "sideBar.background": "#F4F7FD",
+        "sideBar.foreground": "#475365",
+        "sideBarSectionHeader.background": "#F4F7FD",
+        "sideBarSectionHeader.foreground": "#333E4F"
       },
       "type": "light"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1F2939",
         "statusBar.foreground": "#A4AFBD",
         "activityBar.background": "#171F2B",
-        "activityBar.foreground": "#D9DFE7"
+        "activityBar.foreground": "#D9DFE7",
+        "sideBar.background": "#10151D",
+        "sideBar.foreground": "#D9DFE7",
+        "sideBarSectionHeader.background": "#10151D",
+        "sideBarSectionHeader.foreground": "#D9DFE7"
       },
       "type": "dark"
     }

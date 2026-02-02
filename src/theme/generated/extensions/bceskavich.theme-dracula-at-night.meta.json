@@ -4,8 +4,8 @@
   "publisherName": "bceskavich",
   "displayName": "Dracula At Night",
   "version": "2.7.1",
-  "extractedAt": "2026-01-25T15:27:44.578Z",
-  "installCount": 557807,
+  "extractedAt": "2026-02-02T13:46:21.942Z",
+  "installCount": 559190,
   "themes": [
     {
       "name": "Dracula At Night",
@@ -20,7 +20,8 @@
         "statusBar.background": "#0E1419",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#253340",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#0E1419"
       },
       "type": "dark"
     }

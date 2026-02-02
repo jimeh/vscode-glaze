@@ -4,8 +4,8 @@
   "publisherName": "artlaman",
   "displayName": "Chalice Color Themes",
   "version": "1.0.2",
-  "extractedAt": "2026-01-25T15:28:09.838Z",
-  "installCount": 10652,
+  "extractedAt": "2026-02-02T13:46:47.788Z",
+  "installCount": 10786,
   "themes": [
     {
       "name": "chalice-color-theme-light",
@@ -18,7 +18,9 @@
         "statusBar.background": "#CACACA",
         "statusBar.foreground": "#545454",
         "activityBar.background": "#DDDDDD",
-        "activityBar.foreground": "#424242"
+        "activityBar.foreground": "#424242",
+        "sideBar.background": "#DDDDDD",
+        "sideBar.foreground": "#313131"
       },
       "type": "light"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#CACACA",
         "statusBar.foreground": "#545454",
         "activityBar.background": "#DDDDDD",
-        "activityBar.foreground": "#424242"
+        "activityBar.foreground": "#424242",
+        "sideBar.background": "#DDDDDD",
+        "sideBar.foreground": "#313131"
       },
       "type": "light"
     },
@@ -48,7 +52,9 @@
         "statusBar.background": "#24292A",
         "statusBar.foreground": "#B7B9B9",
         "activityBar.background": "#323738",
-        "activityBar.foreground": "#C5C5C5"
+        "activityBar.foreground": "#C5C5C5",
+        "sideBar.background": "#323738",
+        "sideBar.foreground": "#CFD0D0"
       },
       "type": "dark"
     },
@@ -63,7 +69,9 @@
         "statusBar.background": "#24292A",
         "statusBar.foreground": "#B7B9B9",
         "activityBar.background": "#323738",
-        "activityBar.foreground": "#C5C5C5"
+        "activityBar.foreground": "#C5C5C5",
+        "sideBar.background": "#323738",
+        "sideBar.foreground": "#CFD0D0"
       },
       "type": "dark"
     }

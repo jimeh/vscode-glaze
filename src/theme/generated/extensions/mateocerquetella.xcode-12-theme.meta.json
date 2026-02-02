@@ -4,8 +4,8 @@
   "publisherName": "MateoCERQUETELLA",
   "displayName": "Xcode Theme",
   "version": "5.0.1",
-  "extractedAt": "2026-01-25T15:27:56.258Z",
-  "installCount": 164518,
+  "extractedAt": "2026-02-02T13:46:34.101Z",
+  "installCount": 165268,
   "themes": [
     {
       "name": "Xcode Classic (Dark)",
@@ -18,7 +18,9 @@
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
         "activityBar.background": "#282831",
-        "activityBar.foreground": "#DFDFDF"
+        "activityBar.foreground": "#DFDFDF",
+        "sideBar.background": "#32323B",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
         "activityBar.background": "#282831",
-        "activityBar.foreground": "#DFDFDF"
+        "activityBar.foreground": "#DFDFDF",
+        "sideBar.background": "#32323B",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -48,7 +52,9 @@
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
         "activityBar.background": "#2A2C2F",
-        "activityBar.foreground": "#DFDFDF"
+        "activityBar.foreground": "#DFDFDF",
+        "sideBar.background": "#2A2C2F",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -63,7 +69,9 @@
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
         "activityBar.background": "#2A2C2F",
-        "activityBar.foreground": "#DFDFDF"
+        "activityBar.foreground": "#DFDFDF",
+        "sideBar.background": "#2A2C2F",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

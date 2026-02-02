@@ -4,8 +4,8 @@
   "publisherName": "mskelton",
   "displayName": "One Dark Theme",
   "version": "1.14.3",
-  "extractedAt": "2026-01-25T15:28:02.051Z",
-  "installCount": 125729,
+  "extractedAt": "2026-02-02T13:46:39.833Z",
+  "installCount": 126050,
   "themes": [
     {
       "name": "One Dark",
@@ -20,7 +20,9 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#21252B",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#21252B",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     }

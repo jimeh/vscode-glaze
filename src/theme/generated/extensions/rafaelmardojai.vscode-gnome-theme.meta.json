@@ -4,8 +4,8 @@
   "publisherName": "rafaelmardojai",
   "displayName": "GNOME theme",
   "version": "0.4.1",
-  "extractedAt": "2026-01-25T15:28:22.048Z",
-  "installCount": 3755,
+  "extractedAt": "2026-02-02T13:47:00.185Z",
+  "installCount": 3789,
   "themes": [
     {
       "name": "GNOME dark",
@@ -19,7 +19,10 @@
         "statusBar.background": "#242424",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#1E1E1E",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#1E1E1E",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#242424"
       },
       "type": "dark"
     }

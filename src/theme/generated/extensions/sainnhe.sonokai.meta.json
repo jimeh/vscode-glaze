@@ -4,8 +4,8 @@
   "publisherName": "sainnhe",
   "displayName": "Sonokai",
   "version": "0.2.9",
-  "extractedAt": "2026-01-25T15:28:08.980Z",
-  "installCount": 12833,
+  "extractedAt": "2026-02-02T13:46:46.949Z",
+  "installCount": 12905,
   "themes": [
     {
       "name": "Sonokai",
@@ -20,7 +20,11 @@
         "statusBar.background": "#222327",
         "statusBar.foreground": "#E2E2E3",
         "activityBar.background": "#181819",
-        "activityBar.foreground": "#E2E2E3"
+        "activityBar.foreground": "#E2E2E3",
+        "sideBar.background": "#222327",
+        "sideBar.foreground": "#7F8490",
+        "sideBarSectionHeader.background": "#2C2E34",
+        "sideBarSectionHeader.foreground": "#7F8490"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#242124",
         "statusBar.foreground": "#E3E1E4",
         "activityBar.background": "#1A181A",
-        "activityBar.foreground": "#E3E1E4"
+        "activityBar.foreground": "#E3E1E4",
+        "sideBar.background": "#242124",
+        "sideBar.foreground": "#848089",
+        "sideBarSectionHeader.background": "#2D2A2E",
+        "sideBarSectionHeader.foreground": "#848089"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#21232B",
         "statusBar.foreground": "#E1E3E4",
         "activityBar.background": "#181A1C",
-        "activityBar.foreground": "#E1E3E4"
+        "activityBar.foreground": "#E1E3E4",
+        "sideBar.background": "#21232B",
+        "sideBar.foreground": "#7E8294",
+        "sideBarSectionHeader.background": "#2B2D3A",
+        "sideBarSectionHeader.foreground": "#7E8294"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#21252A",
         "statusBar.foreground": "#E1E3E4",
         "activityBar.background": "#181A1C",
-        "activityBar.foreground": "#E1E3E4"
+        "activityBar.foreground": "#E1E3E4",
+        "sideBar.background": "#21252A",
+        "sideBar.foreground": "#828A9A",
+        "sideBarSectionHeader.background": "#2A2F38",
+        "sideBarSectionHeader.foreground": "#828A9A"
       },
       "type": "dark"
     },
@@ -88,7 +104,11 @@
         "statusBar.background": "#22282B",
         "statusBar.foreground": "#E1E2E3",
         "activityBar.background": "#1C1E1F",
-        "activityBar.foreground": "#E1E2E3"
+        "activityBar.foreground": "#E1E2E3",
+        "sideBar.background": "#22282B",
+        "sideBar.foreground": "#82878B",
+        "sideBarSectionHeader.background": "#273136",
+        "sideBarSectionHeader.foreground": "#82878B"
       },
       "type": "dark"
     },
@@ -105,7 +125,11 @@
         "statusBar.background": "#282523",
         "statusBar.foreground": "#E4E3E1",
         "activityBar.background": "#1F1E1C",
-        "activityBar.foreground": "#E4E3E1"
+        "activityBar.foreground": "#E4E3E1",
+        "sideBar.background": "#282523",
+        "sideBar.foreground": "#90817B",
+        "sideBarSectionHeader.background": "#312C2B",
+        "sideBarSectionHeader.foreground": "#90817B"
       },
       "type": "dark"
     }

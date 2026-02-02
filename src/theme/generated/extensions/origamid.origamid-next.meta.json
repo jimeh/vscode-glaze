@@ -4,8 +4,8 @@
   "publisherName": "origamid",
   "displayName": "Origamid Next",
   "version": "2.0.13",
-  "extractedAt": "2026-01-25T15:28:06.382Z",
-  "installCount": 95174,
+  "extractedAt": "2026-02-02T13:46:44.214Z",
+  "installCount": 95481,
   "themes": [
     {
       "name": "Origamid Next",
@@ -20,7 +20,11 @@
         "statusBar.background": "#111111",
         "statusBar.foreground": "#666666",
         "activityBar.background": "#111111",
-        "activityBar.foreground": "#888888"
+        "activityBar.foreground": "#888888",
+        "sideBar.background": "#111111",
+        "sideBar.foreground": "#888888",
+        "sideBarSectionHeader.background": "#111111",
+        "sideBarSectionHeader.foreground": "#666666"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#111114",
         "statusBar.foreground": "#666669",
         "activityBar.background": "#111114",
-        "activityBar.foreground": "#88888B"
+        "activityBar.foreground": "#88888B",
+        "sideBar.background": "#111114",
+        "sideBar.foreground": "#88888B",
+        "sideBarSectionHeader.background": "#111114",
+        "sideBarSectionHeader.foreground": "#666669"
       },
       "type": "dark"
     }

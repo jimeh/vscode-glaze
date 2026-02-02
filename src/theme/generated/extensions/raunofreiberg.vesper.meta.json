@@ -4,8 +4,8 @@
   "publisherName": "raunofreiberg",
   "displayName": "Vesper",
   "version": "0.0.39",
-  "extractedAt": "2026-01-25T15:28:23.280Z",
-  "installCount": 3513,
+  "extractedAt": "2026-02-02T13:47:00.805Z",
+  "installCount": 3670,
   "themes": [
     {
       "name": "Vesper",
@@ -20,7 +20,10 @@
         "statusBar.background": "#101010",
         "statusBar.foreground": "#A0A0A0",
         "activityBar.background": "#101010",
-        "activityBar.foreground": "#A0A0A0"
+        "activityBar.foreground": "#A0A0A0",
+        "sideBar.background": "#101010",
+        "sideBarSectionHeader.background": "#101010",
+        "sideBarSectionHeader.foreground": "#A0A0A0"
       },
       "type": "dark"
     }

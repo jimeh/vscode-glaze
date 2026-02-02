@@ -4,8 +4,8 @@
   "publisherName": "mikaelkristiansson87",
   "displayName": "React Theme",
   "version": "2.0.0",
-  "extractedAt": "2026-01-25T15:28:04.885Z",
-  "installCount": 103863,
+  "extractedAt": "2026-02-02T13:46:42.661Z",
+  "installCount": 104231,
   "themes": [
     {
       "name": "React Theme",
@@ -16,7 +16,10 @@
         "titleBar.inactiveBackground": "#282C34",
         "statusBar.background": "#282C34",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#282C34",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     },
@@ -33,7 +36,11 @@
         "statusBar.background": "#181818",
         "statusBar.foreground": "#CCCCCC",
         "activityBar.background": "#181818",
-        "activityBar.foreground": "#D7D7D7"
+        "activityBar.foreground": "#D7D7D7",
+        "sideBar.background": "#181818",
+        "sideBar.foreground": "#CCCCCC",
+        "sideBarSectionHeader.background": "#181818",
+        "sideBarSectionHeader.foreground": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -50,7 +57,11 @@
         "statusBar.background": "#F8F8F8",
         "statusBar.foreground": "#3B3B3B",
         "activityBar.background": "#F8F8F8",
-        "activityBar.foreground": "#1F1F1F"
+        "activityBar.foreground": "#1F1F1F",
+        "sideBar.background": "#F8F8F8",
+        "sideBar.foreground": "#3B3B3B",
+        "sideBarSectionHeader.background": "#F8F8F8",
+        "sideBarSectionHeader.foreground": "#3B3B3B"
       },
       "type": "light"
     }

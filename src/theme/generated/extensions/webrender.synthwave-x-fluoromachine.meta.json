@@ -4,8 +4,8 @@
   "publisherName": "webrender",
   "displayName": "Synthwave x Fluoromachine",
   "version": "0.0.14",
-  "extractedAt": "2026-01-25T15:27:53.440Z",
-  "installCount": 198008,
+  "extractedAt": "2026-02-02T13:46:31.133Z",
+  "installCount": 198323,
   "themes": [
     {
       "name": "Synthwave x Fluoromachine",
@@ -17,7 +17,11 @@
         "statusBar.background": "#241B2F",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#171520",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#241B2F",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#241B2F",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     }

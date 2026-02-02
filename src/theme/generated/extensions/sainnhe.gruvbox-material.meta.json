@@ -4,8 +4,8 @@
   "publisherName": "sainnhe",
   "displayName": "Gruvbox Material",
   "version": "6.5.2",
-  "extractedAt": "2026-01-25T15:27:48.759Z",
-  "installCount": 325028,
+  "extractedAt": "2026-02-02T13:46:26.302Z",
+  "installCount": 325572,
   "themes": [
     {
       "name": "Gruvbox Material Dark",
@@ -20,7 +20,11 @@
         "statusBar.background": "#292828",
         "statusBar.foreground": "#A89984",
         "activityBar.background": "#292828",
-        "activityBar.foreground": "#A89984"
+        "activityBar.foreground": "#A89984",
+        "sideBar.background": "#292828",
+        "sideBar.foreground": "#928374",
+        "sideBarSectionHeader.background": "#292828",
+        "sideBarSectionHeader.foreground": "#A89984"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#FBF1C7",
         "statusBar.foreground": "#7C6F64",
         "activityBar.background": "#FBF1C7",
-        "activityBar.foreground": "#7C6F64"
+        "activityBar.foreground": "#7C6F64",
+        "sideBar.background": "#FBF1C7",
+        "sideBar.foreground": "#928374",
+        "sideBarSectionHeader.background": "#FBF1C7",
+        "sideBarSectionHeader.foreground": "#7C6F64"
       },
       "type": "light"
     }

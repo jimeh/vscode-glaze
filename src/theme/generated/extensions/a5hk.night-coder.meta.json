@@ -4,8 +4,8 @@
   "publisherName": "a5hk",
   "displayName": "Night Coder",
   "version": "6.0.1",
-  "extractedAt": "2026-01-25T15:28:07.002Z",
-  "installCount": 28092,
+  "extractedAt": "2026-02-02T13:46:44.940Z",
+  "installCount": 28429,
   "themes": [
     {
       "name": "Night Coder Ember",
@@ -20,7 +20,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#030917",
-        "activityBar.foreground": "#ABADB2"
+        "activityBar.foreground": "#ABADB2",
+        "sideBar.background": "#030917",
+        "sideBarSectionHeader.background": "#141926"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#030917",
-        "activityBar.foreground": "#ABADB2"
+        "activityBar.foreground": "#ABADB2",
+        "sideBar.background": "#030612",
+        "sideBarSectionHeader.background": "#252A36"
       },
       "type": "dark"
     },
@@ -54,7 +58,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#0F1317",
-        "activityBar.foreground": "#AFB0B2"
+        "activityBar.foreground": "#AFB0B2",
+        "sideBar.background": "#0F1317",
+        "sideBarSectionHeader.background": "#1F2326"
       },
       "type": "dark"
     },
@@ -71,7 +77,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#0F1317",
-        "activityBar.foreground": "#AFB0B2"
+        "activityBar.foreground": "#AFB0B2",
+        "sideBar.background": "#0A0D0F",
+        "sideBarSectionHeader.background": "#2F3236"
       },
       "type": "dark"
     },
@@ -88,7 +96,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#2C2C2C",
-        "activityBar.foreground": "#B9B9B9"
+        "activityBar.foreground": "#B9B9B9",
+        "sideBar.background": "#2C2C2C",
+        "sideBarSectionHeader.background": "#3A3A3A"
       },
       "type": "dark"
     },
@@ -105,7 +115,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#2C2C2C",
-        "activityBar.foreground": "#B9B9B9"
+        "activityBar.foreground": "#B9B9B9",
+        "sideBar.background": "#262626",
+        "sideBarSectionHeader.background": "#484848"
       },
       "type": "dark"
     },
@@ -122,7 +134,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#AAAAAA"
+        "activityBar.foreground": "#AAAAAA",
+        "sideBar.background": "#000000",
+        "sideBarSectionHeader.background": "#111111"
       },
       "type": "dark"
     },
@@ -139,7 +153,9 @@
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#AAAAAA"
+        "activityBar.foreground": "#AAAAAA",
+        "sideBar.background": "#050505",
+        "sideBarSectionHeader.background": "#222222"
       },
       "type": "dark"
     }

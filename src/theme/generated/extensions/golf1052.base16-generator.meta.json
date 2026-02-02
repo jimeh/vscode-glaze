@@ -4,8 +4,8 @@
   "publisherName": "golf1052",
   "displayName": "Base16 Theme Generator",
   "version": "1.19.1",
-  "extractedAt": "2026-01-25T15:28:13.523Z",
-  "installCount": 6838,
+  "extractedAt": "2026-02-02T13:46:51.704Z",
+  "installCount": 6914,
   "themes": [
     {
       "name": "Base16 Default Dark",
@@ -20,7 +20,11 @@
         "statusBar.background": "#7CAFC2",
         "statusBar.foreground": "#F8F8F8",
         "activityBar.background": "#181818",
-        "activityBar.foreground": "#D8D8D8"
+        "activityBar.foreground": "#D8D8D8",
+        "sideBar.background": "#282828",
+        "sideBar.foreground": "#D8D8D8",
+        "sideBarSectionHeader.background": "#585858",
+        "sideBarSectionHeader.foreground": "#D8D8D8"
       },
       "type": "dark"
     }

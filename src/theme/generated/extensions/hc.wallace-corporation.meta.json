@@ -4,8 +4,8 @@
   "publisherName": "hc",
   "displayName": "Wallace Corporation",
   "version": "0.4.1",
-  "extractedAt": "2026-01-25T15:28:21.423Z",
-  "installCount": 3871,
+  "extractedAt": "2026-02-02T13:46:59.263Z",
+  "installCount": 3915,
   "themes": [
     {
       "name": "Wallace Corporation",
@@ -18,7 +18,11 @@
         "statusBar.background": "#0B0C0F",
         "statusBar.foreground": "#D5D8DA",
         "activityBar.background": "#0E0F13",
-        "activityBar.foreground": "#E95678"
+        "activityBar.foreground": "#E95678",
+        "sideBar.background": "#0E0F13",
+        "sideBar.foreground": "#D5D8DA",
+        "sideBarSectionHeader.background": "#0E0F13",
+        "sideBarSectionHeader.foreground": "#D5D8DA"
       },
       "type": "dark"
     },
@@ -35,7 +39,11 @@
         "statusBar.background": "#FFB000",
         "statusBar.foreground": "#FFB000",
         "activityBar.background": "#0B0C0F",
-        "activityBar.foreground": "#FFB000"
+        "activityBar.foreground": "#FFB000",
+        "sideBar.background": "#0B0C0F",
+        "sideBar.foreground": "#FFB000",
+        "sideBarSectionHeader.background": "#FFB000",
+        "sideBarSectionHeader.foreground": "#FFB000"
       },
       "type": "dark"
     }

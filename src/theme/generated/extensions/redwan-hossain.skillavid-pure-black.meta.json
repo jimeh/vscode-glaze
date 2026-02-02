@@ -4,8 +4,8 @@
   "publisherName": "redwan-hossain",
   "displayName": "SkillAvid Pure Black",
   "version": "5.0.0",
-  "extractedAt": "2026-01-25T15:28:15.489Z",
-  "installCount": 5734,
+  "extractedAt": "2026-02-02T13:46:53.271Z",
+  "installCount": 5816,
   "themes": [
     {
       "name": "SkillAvid Pure Black",
@@ -20,7 +20,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#060013",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#060013",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#060013",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#060013",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#060013",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#060013",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#060013",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#060013",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "compassak",
   "displayName": "IntelliJ IDEA New UI",
   "version": "1.4.0",
-  "extractedAt": "2026-01-25T15:28:14.737Z",
-  "installCount": 6170,
+  "extractedAt": "2026-02-02T13:46:52.544Z",
+  "installCount": 6436,
   "themes": [
     {
       "name": "IntelliJ IDEA New UI Dark",
@@ -18,7 +18,11 @@
         "statusBar.background": "#2B2D30",
         "statusBar.foreground": "#9EA0A8",
         "activityBar.background": "#2B2D30",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#2B2D30",
+        "sideBar.foreground": "#DFE1E5",
+        "sideBarSectionHeader.background": "#2B2D30",
+        "sideBarSectionHeader.foreground": "#DFE1E5"
       },
       "type": "dark"
     },
@@ -34,7 +38,10 @@
         "statusBar.background": "#F7F8FA",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F7F8FA",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#F7F8FA",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#F7F8FA"
       },
       "type": "light"
     },
@@ -49,7 +56,10 @@
         "statusBar.background": "#F7F8FA",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#F7F8FA",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#F7F8FA",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#F7F8FA"
       },
       "type": "light"
     }

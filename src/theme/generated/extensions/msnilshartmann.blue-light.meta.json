@@ -4,8 +4,8 @@
   "publisherName": "msnilshartmann",
   "displayName": "Blue Light Theme",
   "version": "0.6.3",
-  "extractedAt": "2026-01-25T15:28:25.271Z",
-  "installCount": 3223,
+  "extractedAt": "2026-02-02T13:47:03.185Z",
+  "installCount": 3252,
   "themes": [
     {
       "name": "Blue Light Theme 2022",
@@ -17,7 +17,11 @@
         "statusBar.background": "#007ACC",
         "statusBar.foreground": "#E2EEFA",
         "activityBar.background": "#FFFFFF",
-        "activityBar.foreground": "#AAAAAA"
+        "activityBar.foreground": "#AAAAAA",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#5B7685",
+        "sideBarSectionHeader.background": "#E8E8E8",
+        "sideBarSectionHeader.foreground": "#5B7685"
       },
       "type": "light"
     },
@@ -31,7 +35,11 @@
         "statusBar.background": "#007ACC",
         "statusBar.foreground": "#E2EEFA",
         "activityBar.background": "#FFFFFF",
-        "activityBar.foreground": "#AAAAAA"
+        "activityBar.foreground": "#AAAAAA",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#5B7685",
+        "sideBarSectionHeader.background": "#E8E8E8",
+        "sideBarSectionHeader.foreground": "#5B7685"
       },
       "type": "light"
     }

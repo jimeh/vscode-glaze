@@ -4,8 +4,8 @@
   "publisherName": "ankitpati",
   "displayName": "AMOLED",
   "version": "1.0.3",
-  "extractedAt": "2026-01-25T15:28:15.162Z",
-  "installCount": 5897,
+  "extractedAt": "2026-02-02T13:46:52.957Z",
+  "installCount": 6014,
   "themes": [
     {
       "name": "AMOLED",
@@ -19,7 +19,9 @@
         "titleBar.inactiveForeground": "#FFFFFF",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
-        "activityBar.background": "#000000"
+        "activityBar.background": "#000000",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#D4D4D4"
       },
       "type": "dark"
     }

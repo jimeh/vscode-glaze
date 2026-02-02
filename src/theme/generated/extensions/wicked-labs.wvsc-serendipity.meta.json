@@ -4,8 +4,8 @@
   "publisherName": "wicked-labs",
   "displayName": "Serendipity",
   "version": "0.101.0",
-  "extractedAt": "2026-01-25T15:28:24.022Z",
-  "installCount": 3385,
+  "extractedAt": "2026-02-02T13:47:01.842Z",
+  "installCount": 3417,
   "themes": [
     {
       "name": "Serendipity Sunset",
@@ -20,7 +20,10 @@
         "statusBar.background": "#202231",
         "statusBar.foreground": "#6B6D7C",
         "activityBar.background": "#202231",
-        "activityBar.foreground": "#DEE0EF"
+        "activityBar.foreground": "#DEE0EF",
+        "sideBar.background": "#202231",
+        "sideBar.foreground": "#6B6D7C",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#FDFDFE",
         "statusBar.foreground": "#5F6488",
         "activityBar.background": "#FDFDFE",
-        "activityBar.foreground": "#4E5377"
+        "activityBar.foreground": "#4E5377",
+        "sideBar.background": "#FDFDFE",
+        "sideBar.foreground": "#5F6488",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "light"
     },
@@ -54,7 +60,10 @@
         "statusBar.background": "#151726",
         "statusBar.foreground": "#8D8F9E",
         "activityBar.background": "#151726",
-        "activityBar.foreground": "#DEE0EF"
+        "activityBar.foreground": "#DEE0EF",
+        "sideBar.background": "#151726",
+        "sideBar.foreground": "#8D8F9E",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

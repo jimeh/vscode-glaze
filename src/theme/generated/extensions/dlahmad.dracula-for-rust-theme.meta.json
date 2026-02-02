@@ -4,15 +4,16 @@
   "publisherName": "dlahmad",
   "displayName": "Dracula For Rust Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-01-25T15:28:09.733Z",
-  "installCount": 10769,
+  "extractedAt": "2026-02-02T13:46:47.683Z",
+  "installCount": 10802,
   "themes": [
     {
       "name": "Dracula For Rust Theme",
       "label": "Dracula For Rust Theme",
       "colors": {
         "editor.background": "#212122",
-        "editor.foreground": "#D4D4D4"
+        "editor.foreground": "#D4D4D4",
+        "sideBar.background": "#1E1E1F"
       },
       "type": "dark"
     }

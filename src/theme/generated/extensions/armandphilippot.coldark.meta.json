@@ -4,8 +4,8 @@
   "publisherName": "armandphilippot",
   "displayName": "Coldark",
   "version": "1.2.11",
-  "extractedAt": "2026-01-25T15:28:10.903Z",
-  "installCount": 9055,
+  "extractedAt": "2026-02-02T13:46:48.935Z",
+  "installCount": 9119,
   "themes": [
     {
       "name": "Coldark - Cold",
@@ -20,7 +20,11 @@
         "statusBar.background": "#005A8E",
         "statusBar.foreground": "#E3EAF2",
         "activityBar.background": "#0B121B",
-        "activityBar.foreground": "#D0DAE7"
+        "activityBar.foreground": "#D0DAE7",
+        "sideBar.background": "#E3EAF2",
+        "sideBar.foreground": "#111B27",
+        "sideBarSectionHeader.background": "#8DA1B9",
+        "sideBarSectionHeader.foreground": "#213043"
       },
       "type": "light"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#6CB8E6",
         "statusBar.foreground": "#111B27",
         "activityBar.background": "#0B121B",
-        "activityBar.foreground": "#D0DAE7"
+        "activityBar.foreground": "#D0DAE7",
+        "sideBar.background": "#111B27",
+        "sideBar.foreground": "#E3EAF2",
+        "sideBarSectionHeader.background": "#0B121B",
+        "sideBarSectionHeader.foreground": "#D0DAE7"
       },
       "type": "dark"
     }

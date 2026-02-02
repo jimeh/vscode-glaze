@@ -4,8 +4,8 @@
   "publisherName": "magicstack",
   "displayName": "Chromodynamics Theme",
   "version": "0.0.14",
-  "extractedAt": "2026-01-25T15:27:59.666Z",
-  "installCount": 137281,
+  "extractedAt": "2026-02-02T13:46:37.414Z",
+  "installCount": 137794,
   "themes": [
     {
       "name": "Chromodynamics",
@@ -15,7 +15,8 @@
         "editor.foreground": "#C6C6C6",
         "statusBar.background": "#131313",
         "statusBar.foreground": "#C6C6C6",
-        "activityBar.background": "#101010"
+        "activityBar.background": "#101010",
+        "sideBar.background": "#131313"
       },
       "type": "dark"
     }

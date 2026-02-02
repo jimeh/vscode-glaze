@@ -4,8 +4,8 @@
   "publisherName": "aaronthomas",
   "displayName": "Snazzy Operator",
   "version": "1.1.3",
-  "extractedAt": "2026-01-25T15:27:54.472Z",
-  "installCount": 181002,
+  "extractedAt": "2026-02-02T13:46:32.280Z",
+  "installCount": 181179,
   "themes": [
     {
       "name": "Snazzy Operator",
@@ -16,7 +16,8 @@
         "titleBar.activeBackground": "#282A36",
         "statusBar.background": "#2E313D",
         "statusBar.foreground": "#6C6E75",
-        "activityBar.background": "#282A36"
+        "activityBar.background": "#282A36",
+        "sideBar.background": "#2C2F3D"
       },
       "type": "dark"
     }

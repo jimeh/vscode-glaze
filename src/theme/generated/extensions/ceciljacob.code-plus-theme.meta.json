@@ -4,8 +4,8 @@
   "publisherName": "ceciljacob",
   "displayName": "Theme +",
   "version": "1.28.0",
-  "extractedAt": "2026-01-25T15:27:53.236Z",
-  "installCount": 200831,
+  "extractedAt": "2026-02-02T13:46:31.030Z",
+  "installCount": 201012,
   "themes": [
     {
       "name": "Theme + Dark Blue Theme",
@@ -20,7 +20,11 @@
         "statusBar.background": "#081620",
         "statusBar.foreground": "#DFECF6",
         "activityBar.background": "#081620",
-        "activityBar.foreground": "#9BC4E2"
+        "activityBar.foreground": "#9BC4E2",
+        "sideBar.background": "#081620",
+        "sideBar.foreground": "#DFECF6",
+        "sideBarSectionHeader.background": "#9BC4E2",
+        "sideBarSectionHeader.foreground": "#DFECF6"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#180F08",
         "statusBar.foreground": "#F6ECE0",
         "activityBar.background": "#180F08",
-        "activityBar.foreground": "#D2A67B"
+        "activityBar.foreground": "#D2A67B",
+        "sideBar.background": "#180F08",
+        "sideBar.foreground": "#F6ECE0",
+        "sideBarSectionHeader.background": "#D2A67B",
+        "sideBarSectionHeader.foreground": "#F6ECE0"
       },
       "type": "dark"
     }

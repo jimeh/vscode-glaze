@@ -4,8 +4,8 @@
   "publisherName": "arzg",
   "displayName": "Xcode Theme",
   "version": "0.7.15",
-  "extractedAt": "2026-01-25T15:28:14.283Z",
-  "installCount": 6609,
+  "extractedAt": "2026-02-02T13:46:52.223Z",
+  "installCount": 6703,
   "themes": [
     {
       "name": "Xcode 11 Default Dark",
@@ -20,7 +20,9 @@
         "statusBar.background": "#202124",
         "statusBar.foreground": "#9A9A9C",
         "activityBar.background": "#26282B",
-        "activityBar.foreground": "#007AFF"
+        "activityBar.foreground": "#007AFF",
+        "sideBar.background": "#26282B",
+        "sideBar.foreground": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#808080",
         "activityBar.background": "#E2E1E2",
-        "activityBar.foreground": "#0070F5"
+        "activityBar.foreground": "#0070F5",
+        "sideBar.background": "#E2E1E2",
+        "sideBar.foreground": "#363636"
       },
       "type": "light"
     }

@@ -4,8 +4,8 @@
   "publisherName": "foxhoundn",
   "displayName": "Synthax",
   "version": "0.1.13",
-  "extractedAt": "2026-01-25T15:28:08.533Z",
-  "installCount": 13712,
+  "extractedAt": "2026-02-02T13:46:46.629Z",
+  "installCount": 13788,
   "themes": [
     {
       "name": "Synthax",
@@ -20,7 +20,11 @@
         "statusBar.background": "#0D0221",
         "statusBar.foreground": "#D0B7FF",
         "activityBar.background": "#0D0221",
-        "activityBar.foreground": "#00FBFF"
+        "activityBar.foreground": "#00FBFF",
+        "sideBar.background": "#0D0221",
+        "sideBar.foreground": "#D0B7FF",
+        "sideBarSectionHeader.background": "#0D0221",
+        "sideBarSectionHeader.foreground": "#00FBFF"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "arzg",
   "displayName": "sema",
   "version": "1.12.1",
-  "extractedAt": "2026-01-25T15:28:24.544Z",
-  "installCount": 3308,
+  "extractedAt": "2026-02-02T13:47:02.463Z",
+  "installCount": 3334,
   "themes": [
     {
       "name": "sema",
@@ -20,7 +20,8 @@
         "statusBar.background": "#0F0F0F",
         "statusBar.foreground": "#585858",
         "activityBar.background": "#0F0F0F",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#0F0F0F"
       },
       "type": "dark"
     },
@@ -37,7 +38,8 @@
         "statusBar.background": "#0F0F0F",
         "statusBar.foreground": "#585858",
         "activityBar.background": "#0F0F0F",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#0F0F0F"
       },
       "type": "dark"
     },
@@ -54,7 +56,8 @@
         "statusBar.background": "#222222",
         "statusBar.foreground": "#626262",
         "activityBar.background": "#222222",
-        "activityBar.foreground": "#EEEEEE"
+        "activityBar.foreground": "#EEEEEE",
+        "sideBar.background": "#222222"
       },
       "type": "dark"
     },
@@ -71,7 +74,8 @@
         "statusBar.background": "#222222",
         "statusBar.foreground": "#626262",
         "activityBar.background": "#222222",
-        "activityBar.foreground": "#EEEEEE"
+        "activityBar.foreground": "#EEEEEE",
+        "sideBar.background": "#222222"
       },
       "type": "dark"
     },
@@ -88,7 +92,8 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#A4A4A4",
         "activityBar.background": "#FFFFFF",
-        "activityBar.foreground": "#161616"
+        "activityBar.foreground": "#161616",
+        "sideBar.background": "#FFFFFF"
       },
       "type": "light"
     },
@@ -105,7 +110,8 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#A4A4A4",
         "activityBar.background": "#FFFFFF",
-        "activityBar.foreground": "#161616"
+        "activityBar.foreground": "#161616",
+        "sideBar.background": "#FFFFFF"
       },
       "type": "light"
     },
@@ -122,7 +128,8 @@
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#A7A7A7",
         "activityBar.background": "#F2F2F2",
-        "activityBar.foreground": "#2E2E2E"
+        "activityBar.foreground": "#2E2E2E",
+        "sideBar.background": "#F2F2F2"
       },
       "type": "light"
     },
@@ -139,7 +146,8 @@
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#A7A7A7",
         "activityBar.background": "#F2F2F2",
-        "activityBar.foreground": "#2E2E2E"
+        "activityBar.foreground": "#2E2E2E",
+        "sideBar.background": "#F2F2F2"
       },
       "type": "light"
     }

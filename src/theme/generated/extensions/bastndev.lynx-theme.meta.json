@@ -3,9 +3,9 @@
   "extensionName": "lynx-theme",
   "publisherName": "bastndev",
   "displayName": "Lynx Icon Theme Pro | 2026",
-  "version": "3.3.25",
-  "extractedAt": "2026-01-25T15:28:08.770Z",
-  "installCount": 13189,
+  "version": "3.8.0",
+  "extractedAt": "2026-02-02T13:46:46.524Z",
+  "installCount": 14699,
   "themes": [
     {
       "name": "1. DARK (Lynx Theme Pro)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#0D0D0D",
         "statusBar.foreground": "#8A9A8A",
         "activityBar.background": "#0D0D0D",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#0D0D0D",
+        "sideBar.foreground": "#B2B9C5",
+        "sideBarSectionHeader.background": "#080808",
+        "sideBarSectionHeader.foreground": "#57B689"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#EAEAEA",
         "statusBar.foreground": "#616161",
         "activityBar.background": "#EAEAEA",
-        "activityBar.foreground": "#2D2D2D"
+        "activityBar.foreground": "#2D2D2D",
+        "sideBar.background": "#EAEAEA",
+        "sideBar.foreground": "#4D5A5D",
+        "sideBarSectionHeader.background": "#F5F5F5",
+        "sideBarSectionHeader.foreground": "#479671"
       },
       "type": "light"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#161F24",
         "statusBar.foreground": "#678FA2",
         "activityBar.background": "#161F24",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#161F24",
+        "sideBar.foreground": "#B2B9C5",
+        "sideBarSectionHeader.background": "#0F1618",
+        "sideBarSectionHeader.foreground": "#37B8B0"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#F2E6D3",
         "statusBar.foreground": "#8A7B6D",
         "activityBar.background": "#F2E6D3",
-        "activityBar.foreground": "#4A3F35"
+        "activityBar.foreground": "#4A3F35",
+        "sideBar.background": "#F2E6D3",
+        "sideBar.foreground": "#6B5D4F",
+        "sideBarSectionHeader.background": "#E8D5C4",
+        "sideBarSectionHeader.foreground": "#8B7865"
       },
       "type": "light"
     },
@@ -88,7 +104,11 @@
         "statusBar.background": "#231514",
         "statusBar.foreground": "#A0A0A0",
         "activityBar.background": "#231514",
-        "activityBar.foreground": "#FFD0BB"
+        "activityBar.foreground": "#FFD0BB",
+        "sideBar.background": "#231514",
+        "sideBar.foreground": "#FFD0BB",
+        "sideBarSectionHeader.background": "#170F10",
+        "sideBarSectionHeader.foreground": "#A85A4C"
       },
       "type": "dark"
     },
@@ -105,7 +125,11 @@
         "statusBar.background": "#19161D",
         "statusBar.foreground": "#8A7A9A",
         "activityBar.background": "#1F1926",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#19161D",
+        "sideBar.foreground": "#B2B9C5",
+        "sideBarSectionHeader.background": "#0F0C12",
+        "sideBarSectionHeader.foreground": "#B080FF"
       },
       "type": "dark"
     },
@@ -122,7 +146,11 @@
         "statusBar.background": "#141719",
         "statusBar.foreground": "#94A3B8",
         "activityBar.background": "#161A1D",
-        "activityBar.foreground": "#E2E8F0"
+        "activityBar.foreground": "#E2E8F0",
+        "sideBar.background": "#181B1F",
+        "sideBar.foreground": "#B1BAC5",
+        "sideBarSectionHeader.background": "#1A1E22",
+        "sideBarSectionHeader.foreground": "#0EA5E9"
       },
       "type": "dark"
     },
@@ -139,7 +167,11 @@
         "statusBar.background": "#0C0D0E",
         "statusBar.foreground": "#777B84",
         "activityBar.background": "#0C0D0E",
-        "activityBar.foreground": "#B0B4BA"
+        "activityBar.foreground": "#B0B4BA",
+        "sideBar.background": "#0C0D0E",
+        "sideBar.foreground": "#B0B4BA",
+        "sideBarSectionHeader.background": "#0C0D0E",
+        "sideBarSectionHeader.foreground": "#0090FF"
       },
       "type": "dark"
     }

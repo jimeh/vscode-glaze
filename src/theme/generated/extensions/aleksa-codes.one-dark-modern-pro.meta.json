@@ -4,8 +4,8 @@
   "publisherName": "aleksa-codes",
   "displayName": "One Dark Modern Pro",
   "version": "1.0.10",
-  "extractedAt": "2026-01-25T15:28:20.155Z",
-  "installCount": 4256,
+  "extractedAt": "2026-02-02T13:46:56.285Z",
+  "installCount": 4772,
   "themes": [
     {
       "name": "One Dark Modern Pro",
@@ -20,7 +20,11 @@
         "statusBar.background": "#181818",
         "statusBar.foreground": "#CCCCCC",
         "activityBar.background": "#181818",
-        "activityBar.foreground": "#D7D7D7"
+        "activityBar.foreground": "#D7D7D7",
+        "sideBar.background": "#181818",
+        "sideBar.foreground": "#CCCCCC",
+        "sideBarSectionHeader.background": "#181818",
+        "sideBarSectionHeader.foreground": "#CCCCCC"
       },
       "type": "dark"
     }

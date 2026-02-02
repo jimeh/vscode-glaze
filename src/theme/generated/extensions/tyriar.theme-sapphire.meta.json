@@ -4,8 +4,8 @@
   "publisherName": "Tyriar",
   "displayName": "Sapphire Theme",
   "version": "0.9.4",
-  "extractedAt": "2026-01-25T15:28:03.633Z",
-  "installCount": 115447,
+  "extractedAt": "2026-02-02T13:46:41.406Z",
+  "installCount": 115716,
   "themes": [
     {
       "name": "Sapphire",
@@ -15,7 +15,9 @@
         "editor.foreground": "#EFEFEF",
         "titleBar.activeBackground": "#131820",
         "statusBar.background": "#131820",
-        "activityBar.background": "#212A39"
+        "activityBar.background": "#212A39",
+        "sideBar.background": "#1C2431",
+        "sideBarSectionHeader.background": "#212A39"
       },
       "type": "dark"
     },
@@ -27,7 +29,9 @@
         "editor.foreground": "#EFEFEF",
         "titleBar.activeBackground": "#1C2430",
         "statusBar.background": "#1C2430",
-        "activityBar.background": "#323F55"
+        "activityBar.background": "#323F55",
+        "sideBar.background": "#2B3649",
+        "sideBarSectionHeader.background": "#323F55"
       },
       "type": "dark"
     },
@@ -39,7 +43,9 @@
         "editor.foreground": "#EFEFEF",
         "titleBar.activeBackground": "#060A10",
         "statusBar.background": "#060A10",
-        "activityBar.background": "#0B121C"
+        "activityBar.background": "#0B121C",
+        "sideBar.background": "#090F18",
+        "sideBarSectionHeader.background": "#0B121C"
       },
       "type": "dark"
     }

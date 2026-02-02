@@ -4,8 +4,8 @@
   "publisherName": "StoneC0der",
   "displayName": "G Dark-Themes",
   "version": "5.0.1",
-  "extractedAt": "2026-01-25T15:28:21.011Z",
-  "installCount": 3968,
+  "extractedAt": "2026-02-02T13:46:58.956Z",
+  "installCount": 3999,
   "themes": [
     {
       "name": "G Dark (Default)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#00344A",
         "statusBar.foreground": "#51BDF0",
         "activityBar.background": "#00344A",
-        "activityBar.foreground": "#1C7EBB"
+        "activityBar.foreground": "#1C7EBB",
+        "sideBar.background": "#00344A",
+        "sideBar.foreground": "#96BDD3",
+        "sideBarSectionHeader.background": "#00344A",
+        "sideBarSectionHeader.foreground": "#AFD6F3"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#202537",
         "statusBar.foreground": "#728EAC",
         "activityBar.background": "#202537",
-        "activityBar.foreground": "#1C7EBB"
+        "activityBar.foreground": "#1C7EBB",
+        "sideBar.background": "#202537",
+        "sideBar.foreground": "#9AB3FF",
+        "sideBarSectionHeader.background": "#292F46",
+        "sideBarSectionHeader.foreground": "#AFD6F3"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#2A3670",
         "statusBar.foreground": "#8599F1",
         "activityBar.background": "#2A3670",
-        "activityBar.foreground": "#8599F1"
+        "activityBar.foreground": "#8599F1",
+        "sideBar.background": "#2A3670",
+        "sideBar.foreground": "#96A4E2",
+        "sideBarSectionHeader.background": "#2A3670",
+        "sideBarSectionHeader.foreground": "#AFD6F3"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#12141D",
         "statusBar.foreground": "#466470",
         "activityBar.background": "#17181F",
-        "activityBar.foreground": "#238D82"
+        "activityBar.foreground": "#238D82",
+        "sideBar.background": "#1D1F25",
+        "sideBar.foreground": "#4E7683",
+        "sideBarSectionHeader.background": "#17181F",
+        "sideBarSectionHeader.foreground": "#568E9B"
       },
       "type": "dark"
     },
@@ -88,7 +104,11 @@
         "statusBar.background": "#07161B",
         "statusBar.foreground": "#5D737C",
         "activityBar.background": "#081A20",
-        "activityBar.foreground": "#25699D"
+        "activityBar.foreground": "#25699D",
+        "sideBar.background": "#07161B",
+        "sideBar.foreground": "#4E808B",
+        "sideBarSectionHeader.background": "#081A20",
+        "sideBarSectionHeader.foreground": "#71AFBD"
       },
       "type": "dark"
     },
@@ -105,7 +125,11 @@
         "statusBar.background": "#191B22",
         "statusBar.foreground": "#658B9B",
         "activityBar.background": "#1C1D27",
-        "activityBar.foreground": "#3E6583"
+        "activityBar.foreground": "#3E6583",
+        "sideBar.background": "#17181F",
+        "sideBar.foreground": "#4E808B",
+        "sideBarSectionHeader.background": "#1C1D27",
+        "sideBarSectionHeader.foreground": "#71AFBD"
       },
       "type": "dark"
     },
@@ -122,7 +146,11 @@
         "statusBar.background": "#0C2037",
         "statusBar.foreground": "#748BA3",
         "activityBar.background": "#0C2037",
-        "activityBar.foreground": "#0D77BE"
+        "activityBar.foreground": "#0D77BE",
+        "sideBar.background": "#0C2037",
+        "sideBar.foreground": "#7C929C",
+        "sideBarSectionHeader.background": "#102740",
+        "sideBarSectionHeader.foreground": "#5791BD"
       },
       "type": "dark"
     },
@@ -139,7 +167,11 @@
         "statusBar.background": "#124154",
         "statusBar.foreground": "#7AB3CE",
         "activityBar.background": "#124154",
-        "activityBar.foreground": "#3AA6D8"
+        "activityBar.foreground": "#3AA6D8",
+        "sideBar.background": "#124154",
+        "sideBar.foreground": "#68AFD0",
+        "sideBarSectionHeader.background": "#124154",
+        "sideBarSectionHeader.foreground": "#35AACD"
       },
       "type": "dark"
     },
@@ -156,7 +188,11 @@
         "statusBar.background": "#232C32",
         "statusBar.foreground": "#7D919B",
         "activityBar.background": "#232C32",
-        "activityBar.foreground": "#40A0CC"
+        "activityBar.foreground": "#40A0CC",
+        "sideBar.background": "#232C32",
+        "sideBar.foreground": "#63A3C0",
+        "sideBarSectionHeader.background": "#232C32",
+        "sideBarSectionHeader.foreground": "#3E9CA3"
       },
       "type": "dark"
     },
@@ -173,7 +209,11 @@
         "statusBar.background": "#23073F",
         "statusBar.foreground": "#9C85B1",
         "activityBar.background": "#23073F",
-        "activityBar.foreground": "#870FFF"
+        "activityBar.foreground": "#870FFF",
+        "sideBar.background": "#23073F",
+        "sideBar.foreground": "#D1A0FF",
+        "sideBarSectionHeader.background": "#23073F",
+        "sideBarSectionHeader.foreground": "#A443FF"
       },
       "type": "dark"
     },
@@ -190,7 +230,11 @@
         "statusBar.background": "#FCFBF7",
         "statusBar.foreground": "#64757C",
         "activityBar.background": "#FCFBF7",
-        "activityBar.foreground": "#9D910E"
+        "activityBar.foreground": "#9D910E",
+        "sideBar.background": "#FCFBF7",
+        "sideBar.foreground": "#657E8A",
+        "sideBarSectionHeader.background": "#FCFBF7",
+        "sideBarSectionHeader.foreground": "#244B68"
       },
       "type": "light"
     },
@@ -207,7 +251,11 @@
         "statusBar.background": "#E8F0FF",
         "statusBar.foreground": "#6A7275",
         "activityBar.background": "#E8F0FF",
-        "activityBar.foreground": "#2E6086"
+        "activityBar.foreground": "#2E6086",
+        "sideBar.background": "#E0EAFC",
+        "sideBar.foreground": "#6D7587",
+        "sideBarSectionHeader.background": "#EBF2FE",
+        "sideBarSectionHeader.foreground": "#566585"
       },
       "type": "light"
     },
@@ -224,7 +272,11 @@
         "statusBar.background": "#F0F8FE",
         "statusBar.foreground": "#6D7274",
         "activityBar.background": "#F0F8FE",
-        "activityBar.foreground": "#2E6086"
+        "activityBar.foreground": "#2E6086",
+        "sideBar.background": "#F0F8FE",
+        "sideBar.foreground": "#525E78",
+        "sideBarSectionHeader.background": "#F8FCFF",
+        "sideBarSectionHeader.foreground": "#576EA0"
       },
       "type": "light"
     },
@@ -241,7 +293,11 @@
         "statusBar.background": "#171022",
         "statusBar.foreground": "#F79FDB",
         "activityBar.background": "#171022",
-        "activityBar.foreground": "#F51AD4"
+        "activityBar.foreground": "#F51AD4",
+        "sideBar.background": "#171022",
+        "sideBar.foreground": "#A79BA6",
+        "sideBarSectionHeader.background": "#181124",
+        "sideBarSectionHeader.foreground": "#F576EB"
       },
       "type": "hcDark"
     },
@@ -258,7 +314,11 @@
         "statusBar.background": "#001212",
         "statusBar.foreground": "#78CDC7",
         "activityBar.background": "#001212",
-        "activityBar.foreground": "#12B5A4"
+        "activityBar.foreground": "#12B5A4",
+        "sideBar.background": "#001212",
+        "sideBar.foreground": "#64A4B2",
+        "sideBarSectionHeader.background": "#001212",
+        "sideBarSectionHeader.foreground": "#5EA1B0"
       },
       "type": "hcDark"
     },
@@ -275,7 +335,11 @@
         "statusBar.background": "#030C0C",
         "statusBar.foreground": "#6CAF77",
         "activityBar.background": "#030C0C",
-        "activityBar.foreground": "#6DE07C"
+        "activityBar.foreground": "#6DE07C",
+        "sideBar.background": "#030C0C",
+        "sideBar.foreground": "#7CB88B",
+        "sideBarSectionHeader.background": "#030C0C",
+        "sideBarSectionHeader.foreground": "#43F584"
       },
       "type": "hcDark"
     },
@@ -292,7 +356,11 @@
         "statusBar.background": "#23073F",
         "statusBar.foreground": "#A47ACE",
         "activityBar.background": "#23073F",
-        "activityBar.foreground": "#810DF5"
+        "activityBar.foreground": "#810DF5",
+        "sideBar.background": "#23073F",
+        "sideBar.foreground": "#C792EA",
+        "sideBarSectionHeader.background": "#200F3B",
+        "sideBarSectionHeader.foreground": "#B550F9"
       },
       "type": "hcDark"
     }

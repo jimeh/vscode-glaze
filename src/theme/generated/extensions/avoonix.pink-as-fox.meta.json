@@ -4,8 +4,8 @@
   "publisherName": "Avoonix",
   "displayName": "Pink as Fox",
   "version": "1.8.1",
-  "extractedAt": "2026-01-25T15:28:18.419Z",
-  "installCount": 4643,
+  "extractedAt": "2026-02-02T13:46:56.389Z",
+  "installCount": 4702,
   "themes": [
     {
       "name": "Pink as Fox (black)",
@@ -20,7 +20,9 @@
         "statusBar.background": "#FF55C8",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#FFD4F1",
-        "activityBar.foreground": "#000000"
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#000000",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#FF55C8",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FF55C8"
+        "activityBar.foreground": "#FF55C8",
+        "sideBar.background": "#000000",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     },
@@ -54,7 +58,9 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FF55C8",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#FF55C8"
+        "activityBar.foreground": "#FF55C8",
+        "sideBar.background": "#000000",
+        "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
     }

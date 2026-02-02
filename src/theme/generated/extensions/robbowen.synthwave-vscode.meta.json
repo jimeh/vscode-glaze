@@ -4,8 +4,8 @@
   "publisherName": "RobbOwen",
   "displayName": "SynthWave '84",
   "version": "0.1.20",
-  "extractedAt": "2026-01-25T15:27:40.788Z",
-  "installCount": 2400641,
+  "extractedAt": "2026-02-02T13:46:18.080Z",
+  "installCount": 2406312,
   "themes": [
     {
       "name": "SynthWave '84",
@@ -17,7 +17,11 @@
         "statusBar.background": "#241B2F",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#171520",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#241B2F",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#241B2F",
+        "sideBarSectionHeader.foreground": "#FFFFFF"
       },
       "type": "dark"
     }

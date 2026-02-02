@@ -4,8 +4,8 @@
   "publisherName": "uloco",
   "displayName": "Bluloco Light Theme",
   "version": "3.7.5",
-  "extractedAt": "2026-01-25T15:27:45.759Z",
-  "installCount": 479348,
+  "extractedAt": "2026-02-02T13:46:23.053Z",
+  "installCount": 480220,
   "themes": [
     {
       "name": "Bluloco Light",
@@ -20,7 +20,11 @@
         "statusBar.background": "#EBEBEB",
         "statusBar.foreground": "#383A42",
         "activityBar.background": "#F1F1F1",
-        "activityBar.foreground": "#383A42"
+        "activityBar.foreground": "#383A42",
+        "sideBar.background": "#E8E8E8",
+        "sideBar.foreground": "#383A42",
+        "sideBarSectionHeader.background": "#D5D7D8",
+        "sideBarSectionHeader.foreground": "#383A42"
       },
       "type": "light"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#EBEBEB",
         "statusBar.foreground": "#383A42",
         "activityBar.background": "#F1F1F1",
-        "activityBar.foreground": "#383A42"
+        "activityBar.foreground": "#383A42",
+        "sideBar.background": "#E8E8E8",
+        "sideBar.foreground": "#383A42",
+        "sideBarSectionHeader.background": "#D5D7D8",
+        "sideBarSectionHeader.foreground": "#383A42"
       },
       "type": "light"
     }

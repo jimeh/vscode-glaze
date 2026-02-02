@@ -4,8 +4,8 @@
   "publisherName": "FelixIcaza",
   "displayName": "Andromeda Fork",
   "version": "1.7.1",
-  "extractedAt": "2026-01-25T15:28:07.901Z",
-  "installCount": 17452,
+  "extractedAt": "2026-02-02T13:46:45.851Z",
+  "installCount": 17753,
   "themes": [
     {
       "name": "Andromeda",
@@ -16,7 +16,10 @@
         "titleBar.activeBackground": "#23262E",
         "statusBar.background": "#23262E",
         "activityBar.background": "#23262E",
-        "activityBar.foreground": "#BAAFC0"
+        "activityBar.foreground": "#BAAFC0",
+        "sideBar.background": "#23262E",
+        "sideBar.foreground": "#746F77",
+        "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"
     },
@@ -29,7 +32,10 @@
         "titleBar.activeBackground": "#23262E",
         "statusBar.background": "#23262E",
         "activityBar.background": "#20232B",
-        "activityBar.foreground": "#BAAFC0"
+        "activityBar.foreground": "#BAAFC0",
+        "sideBar.background": "#23262E",
+        "sideBar.foreground": "#746F77",
+        "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"
     },
@@ -42,7 +48,10 @@
         "titleBar.activeBackground": "#23262E",
         "statusBar.background": "#23262E",
         "activityBar.background": "#20232B",
-        "activityBar.foreground": "#BAAFC0"
+        "activityBar.foreground": "#BAAFC0",
+        "sideBar.background": "#23262E",
+        "sideBar.foreground": "#746F77",
+        "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"
     },
@@ -55,7 +64,10 @@
         "titleBar.activeBackground": "#23262E",
         "statusBar.background": "#23262E",
         "activityBar.background": "#23262E",
-        "activityBar.foreground": "#BAAFC0"
+        "activityBar.foreground": "#BAAFC0",
+        "sideBar.background": "#23262E",
+        "sideBar.foreground": "#746F77",
+        "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "freeCodeCamp",
   "displayName": "freeCodeCamp Dark Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-01-25T15:28:00.693Z",
-  "installCount": 132308,
+  "extractedAt": "2026-02-02T13:46:38.489Z",
+  "installCount": 132588,
   "themes": [
     {
       "name": "freeCodeCamp Dark Theme",
@@ -19,7 +19,9 @@
         "titleBar.inactiveForeground": "#DFDFE2",
         "statusBar.background": "#0A0A23",
         "activityBar.background": "#0A0A23",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#1B1B32",
+        "sideBar.foreground": "#F5F6F7"
       },
       "type": "dark"
     }

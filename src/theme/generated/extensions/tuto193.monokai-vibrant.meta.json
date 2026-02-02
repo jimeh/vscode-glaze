@@ -4,8 +4,8 @@
   "publisherName": "tuto193",
   "displayName": "Monokai Vibrant",
   "version": "0.5.2",
-  "extractedAt": "2026-01-25T15:28:18.099Z",
-  "installCount": 4740,
+  "extractedAt": "2026-02-02T13:46:56.080Z",
+  "installCount": 4778,
   "themes": [
     {
       "name": "Monokai Vibrant",
@@ -20,7 +20,9 @@
         "statusBar.background": "#16171D",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#16171D",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#191B20",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "steffo",
   "displayName": "Steffula Code",
   "version": "0.15.2",
-  "extractedAt": "2026-01-25T15:28:22.696Z",
-  "installCount": 3630,
+  "extractedAt": "2026-02-02T13:47:00.598Z",
+  "installCount": 3717,
   "themes": [
     {
       "name": "Steffula Code",
@@ -15,7 +15,8 @@
         "editor.foreground": "#A9B7C6",
         "statusBar.background": "#3C3F41",
         "activityBar.background": "#3C3F41",
-        "activityBar.foreground": "#CACBCC"
+        "activityBar.foreground": "#CACBCC",
+        "sideBar.background": "#3C3F41"
       },
       "type": "dark"
     }

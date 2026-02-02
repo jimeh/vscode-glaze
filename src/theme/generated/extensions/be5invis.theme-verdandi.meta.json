@@ -4,8 +4,8 @@
   "publisherName": "be5invis",
   "displayName": "Verdandi Theme",
   "version": "2.0.1",
-  "extractedAt": "2026-01-25T15:28:06.279Z",
-  "installCount": 95318,
+  "extractedAt": "2026-02-02T13:46:44.319Z",
+  "installCount": 95415,
   "themes": [
     {
       "name": "Verdandi",
@@ -20,7 +20,9 @@
         "statusBar.background": "#CFD4D9",
         "statusBar.foreground": "#51575E",
         "activityBar.background": "#BFC6CD",
-        "activityBar.foreground": "#353A3F"
+        "activityBar.foreground": "#353A3F",
+        "sideBar.background": "#E9ECEE",
+        "sideBarSectionHeader.background": "#CFD4D9"
       },
       "type": "light"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#2C3239",
         "statusBar.foreground": "#949CA3",
         "activityBar.background": "#39414A",
-        "activityBar.foreground": "#B5BBC0"
+        "activityBar.foreground": "#B5BBC0",
+        "sideBar.background": "#171B20",
+        "sideBarSectionHeader.background": "#2C3239"
       },
       "type": "dark"
     }

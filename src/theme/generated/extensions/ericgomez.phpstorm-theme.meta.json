@@ -3,9 +3,9 @@
   "extensionName": "phpstorm-theme",
   "publisherName": "ericgomez",
   "displayName": "PhpStorm Dark Theme",
-  "version": "1.0.17",
-  "extractedAt": "2026-01-25T15:28:12.821Z",
-  "installCount": 7088,
+  "version": "1.0.18",
+  "extractedAt": "2026-02-02T13:46:50.210Z",
+  "installCount": 7846,
   "themes": [
     {
       "name": "PhpStorm Dark",
@@ -18,7 +18,11 @@
         "statusBar.background": "#2B2D30",
         "statusBar.foreground": "#9EA0A8",
         "activityBar.background": "#2B2D30",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#2B2D30",
+        "sideBar.foreground": "#DFE1E5",
+        "sideBarSectionHeader.background": "#2B2D30",
+        "sideBarSectionHeader.foreground": "#DFE1E5"
       },
       "type": "dark"
     },
@@ -28,12 +32,16 @@
       "colors": {
         "editor.background": "#191A1C",
         "editor.foreground": "#BCBEC4",
-        "titleBar.activeBackground": "#2B2D30",
-        "titleBar.inactiveBackground": "#2B2D30",
-        "statusBar.background": "#2B2D30",
+        "titleBar.activeBackground": "#26282B",
+        "titleBar.inactiveBackground": "#26282B",
+        "statusBar.background": "#26282B",
         "statusBar.foreground": "#9EA0A8",
-        "activityBar.background": "#2B2D30",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.background": "#26282B",
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#191A1C",
+        "sideBar.foreground": "#DFE1E5",
+        "sideBarSectionHeader.background": "#191A1C",
+        "sideBarSectionHeader.foreground": "#DFE1E5"
       },
       "type": "dark"
     }

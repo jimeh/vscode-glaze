@@ -4,8 +4,8 @@
   "publisherName": "Hachidaime",
   "displayName": "Brick Shinkuro",
   "version": "1.3.7",
-  "extractedAt": "2026-01-25T15:28:21.945Z",
-  "installCount": 3764,
+  "extractedAt": "2026-02-02T13:47:00.082Z",
+  "installCount": 3794,
   "themes": [
     {
       "name": "Brick Shinkuro",
@@ -20,7 +20,11 @@
         "statusBar.background": "#171729",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#4A4E69",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#22223B",
+        "sideBar.foreground": "#CCCCCC",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#CCCCCC"
       },
       "type": "dark"
     }

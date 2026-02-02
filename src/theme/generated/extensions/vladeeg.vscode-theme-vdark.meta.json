@@ -4,8 +4,8 @@
   "publisherName": "Vladeeg",
   "displayName": "VDark Theme",
   "version": "1.1.1",
-  "extractedAt": "2026-01-25T15:28:22.151Z",
-  "installCount": 3723,
+  "extractedAt": "2026-02-02T13:47:00.390Z",
+  "installCount": 3747,
   "themes": [
     {
       "name": "VDark",
@@ -17,7 +17,9 @@
         "statusBar.background": "#2A2A2A",
         "statusBar.foreground": "#B3B9C5",
         "activityBar.background": "#2A2A2A",
-        "activityBar.foreground": "#B3B9C5"
+        "activityBar.foreground": "#B3B9C5",
+        "sideBar.background": "#2A2A2A",
+        "sideBar.foreground": "#B3B9C5"
       },
       "type": "dark"
     }

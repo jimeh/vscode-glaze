@@ -4,8 +4,8 @@
   "publisherName": "mcagampan",
   "displayName": "Dark Horizon",
   "version": "0.4.2",
-  "extractedAt": "2026-01-25T15:28:00.795Z",
-  "installCount": 131993,
+  "extractedAt": "2026-02-02T13:46:38.591Z",
+  "installCount": 132534,
   "themes": [
     {
       "name": "Dark Horizon",
@@ -17,7 +17,11 @@
         "statusBar.background": "#0E0E0E",
         "statusBar.foreground": "#D5D8DA",
         "activityBar.background": "#080808",
-        "activityBar.foreground": "#D5D8DA"
+        "activityBar.foreground": "#D5D8DA",
+        "sideBar.background": "#0E0E0E",
+        "sideBar.foreground": "#D5D8DA",
+        "sideBarSectionHeader.background": "#0E0E0E",
+        "sideBarSectionHeader.foreground": "#D5D8DA"
       },
       "type": "dark"
     }

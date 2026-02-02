@@ -4,8 +4,8 @@
   "publisherName": "karyfoundation",
   "displayName": "Kary Pro Colors",
   "version": "37.0.0",
-  "extractedAt": "2026-01-25T15:27:57.113Z",
-  "installCount": 157557,
+  "extractedAt": "2026-02-02T13:46:35.111Z",
+  "installCount": 157692,
   "themes": [
     {
       "name": "Kary Pro Colors － Light",
@@ -19,7 +19,10 @@
         "statusBar.background": "#57893A",
         "statusBar.foreground": "#C7E2B7",
         "activityBar.background": "#F1F1F1",
-        "activityBar.foreground": "#3778B7"
+        "activityBar.foreground": "#3778B7",
+        "sideBar.background": "#F1F1F1",
+        "sideBarSectionHeader.background": "#F6F6F6",
+        "sideBarSectionHeader.foreground": "#C94824"
       },
       "type": "light"
     },
@@ -36,7 +39,11 @@
         "statusBar.background": "#356326",
         "statusBar.foreground": "#70CF50",
         "activityBar.background": "#171717",
-        "activityBar.foreground": "#7DA76F"
+        "activityBar.foreground": "#7DA76F",
+        "sideBar.background": "#171717",
+        "sideBar.foreground": "#A3A3A3",
+        "sideBarSectionHeader.background": "#202020",
+        "sideBarSectionHeader.foreground": "#819DC2"
       },
       "type": "dark"
     }

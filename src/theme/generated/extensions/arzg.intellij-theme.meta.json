@@ -4,8 +4,8 @@
   "publisherName": "arzg",
   "displayName": "IntelliJ Theme",
   "version": "1.11.0",
-  "extractedAt": "2026-01-25T15:28:06.589Z",
-  "installCount": 94888,
+  "extractedAt": "2026-02-02T13:46:44.422Z",
+  "installCount": 95256,
   "themes": [
     {
       "name": "Darcula IntelliJ",
@@ -19,7 +19,8 @@
         "titleBar.inactiveForeground": "#BCBCBC",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
-        "activityBar.background": "#3C3E40"
+        "activityBar.background": "#3C3E40",
+        "sideBar.background": "#3C3E40"
       },
       "type": "dark"
     },
@@ -35,7 +36,8 @@
         "titleBar.inactiveForeground": "#BCBCBC",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
-        "activityBar.background": "#3C3E40"
+        "activityBar.background": "#3C3E40",
+        "sideBar.background": "#3C3E40"
       },
       "type": "dark"
     },
@@ -51,7 +53,8 @@
         "titleBar.inactiveForeground": "#BCBCBC",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
-        "activityBar.background": "#3C3E40"
+        "activityBar.background": "#3C3E40",
+        "sideBar.background": "#3C3E40"
       },
       "type": "dark"
     },
@@ -67,7 +70,8 @@
         "titleBar.inactiveForeground": "#BCBCBC",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
-        "activityBar.background": "#3C3E40"
+        "activityBar.background": "#3C3E40",
+        "sideBar.background": "#3C3E40"
       },
       "type": "dark"
     },
@@ -83,7 +87,8 @@
         "titleBar.inactiveForeground": "#BCBCBC",
         "statusBar.background": "#3E3E3D",
         "statusBar.foreground": "#BCBCBC",
-        "activityBar.background": "#3E3E3D"
+        "activityBar.background": "#3E3E3D",
+        "sideBar.background": "#3E3E3D"
       },
       "type": "dark"
     }

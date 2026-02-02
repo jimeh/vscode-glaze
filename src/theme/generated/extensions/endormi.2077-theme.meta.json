@@ -4,8 +4,8 @@
   "publisherName": "Endormi",
   "displayName": "2077 theme",
   "version": "1.5.3",
-  "extractedAt": "2026-01-25T15:27:44.135Z",
-  "installCount": 613805,
+  "extractedAt": "2026-02-02T13:46:21.393Z",
+  "installCount": 615734,
   "themes": [
     {
       "name": "2077",
@@ -17,7 +17,10 @@
         "statusBar.background": "#0A0631",
         "statusBar.foreground": "#4D8BEE",
         "activityBar.background": "#030D22",
-        "activityBar.foreground": "#FF2592"
+        "activityBar.foreground": "#FF2592",
+        "sideBar.background": "#030D22",
+        "sideBarSectionHeader.background": "#04112E",
+        "sideBarSectionHeader.foreground": "#1F9AFF"
       },
       "type": "dark"
     }

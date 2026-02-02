@@ -4,8 +4,8 @@
   "publisherName": "omthemes",
   "displayName": "Om Theme (A Darker Dracula Theme)",
   "version": "1.0.17",
-  "extractedAt": "2026-01-25T15:27:51.648Z",
-  "installCount": 233937,
+  "extractedAt": "2026-02-02T13:46:29.066Z",
+  "installCount": 235164,
   "themes": [
     {
       "name": "OM Theme (Default Dracula Italic)",
@@ -20,7 +20,10 @@
         "statusBar.background": "#12131D",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#13141F",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#181928",
+        "sideBar.foreground": "#F8F8F2",
+        "sideBarSectionHeader.background": "#13141F"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#12131D",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#13141F",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#181928",
+        "sideBar.foreground": "#F8F8F2",
+        "sideBarSectionHeader.background": "#13141F"
       },
       "type": "dark"
     },
@@ -54,7 +60,10 @@
         "statusBar.background": "#12131D",
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#13141F",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#181928",
+        "sideBar.foreground": "#F8F8F2",
+        "sideBarSectionHeader.background": "#13141F"
       },
       "type": "dark"
     }

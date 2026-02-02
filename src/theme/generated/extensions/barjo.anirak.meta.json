@@ -4,8 +4,8 @@
   "publisherName": "barjo",
   "displayName": "Anirak",
   "version": "6.4.3",
-  "extractedAt": "2026-01-25T15:28:17.441Z",
-  "installCount": 5077,
+  "extractedAt": "2026-02-02T13:46:55.438Z",
+  "installCount": 5113,
   "themes": [
     {
       "name": "Anirak (Dark)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#161731",
         "statusBar.foreground": "#EBF2FF",
         "activityBar.background": "#161731",
-        "activityBar.foreground": "#EBF2FF"
+        "activityBar.foreground": "#EBF2FF",
+        "sideBar.background": "#161731",
+        "sideBar.foreground": "#B3C7FF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#B3C7FF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#F8F8FC",
         "statusBar.foreground": "#2B2E4B",
         "activityBar.background": "#F8F8FC",
-        "activityBar.foreground": "#2B2E4B"
+        "activityBar.foreground": "#2B2E4B",
+        "sideBar.background": "#F8F8FC",
+        "sideBar.foreground": "#16216B",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#16216B"
       },
       "type": "light"
     }

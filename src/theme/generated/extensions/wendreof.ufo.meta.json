@@ -4,8 +4,8 @@
   "publisherName": "wendreof",
   "displayName": "Ufo Theme",
   "version": "0.0.12",
-  "extractedAt": "2026-01-25T15:28:12.983Z",
-  "installCount": 7005,
+  "extractedAt": "2026-02-02T13:46:51.078Z",
+  "installCount": 7022,
   "themes": [
     {
       "name": "dark",
@@ -16,7 +16,11 @@
         "statusBar.background": "#400E63",
         "statusBar.foreground": "#9FEE98",
         "activityBar.background": "#121212",
-        "activityBar.foreground": "#9FEE98"
+        "activityBar.foreground": "#9FEE98",
+        "sideBar.background": "#121212",
+        "sideBar.foreground": "#B3B3B3",
+        "sideBarSectionHeader.background": "#121212",
+        "sideBarSectionHeader.foreground": "#B3B3B3"
       },
       "type": "dark"
     },
@@ -29,7 +33,11 @@
         "statusBar.background": "#400E63",
         "statusBar.foreground": "#9FEE98",
         "activityBar.background": "#0D1117",
-        "activityBar.foreground": "#9FEE98"
+        "activityBar.foreground": "#9FEE98",
+        "sideBar.background": "#0D1117",
+        "sideBar.foreground": "#B3B3B3",
+        "sideBarSectionHeader.background": "#0D1117",
+        "sideBarSectionHeader.foreground": "#B3B3B3"
       },
       "type": "dark"
     }

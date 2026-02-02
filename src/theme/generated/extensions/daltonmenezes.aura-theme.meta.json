@@ -4,8 +4,8 @@
   "publisherName": "DaltonMenezes",
   "displayName": "Aura Theme",
   "version": "2.1.2",
-  "extractedAt": "2026-01-25T15:27:44.887Z",
-  "installCount": 537435,
+  "extractedAt": "2026-02-02T13:46:22.149Z",
+  "installCount": 540493,
   "themes": [
     {
       "name": "Aura Dark (Soft Text)",
@@ -18,7 +18,11 @@
         "statusBar.background": "#121016",
         "statusBar.foreground": "#ADACAE",
         "activityBar.background": "#15141B",
-        "activityBar.foreground": "#54C59F"
+        "activityBar.foreground": "#54C59F",
+        "sideBar.background": "#110F18",
+        "sideBar.foreground": "#B4B4B4",
+        "sideBarSectionHeader.background": "#15141B",
+        "sideBarSectionHeader.foreground": "#ADACAE"
       },
       "type": "dark"
     },
@@ -33,7 +37,11 @@
         "statusBar.background": "#121016",
         "statusBar.foreground": "#ADACAE",
         "activityBar.background": "#15141B",
-        "activityBar.foreground": "#61FFCA"
+        "activityBar.foreground": "#61FFCA",
+        "sideBar.background": "#110F18",
+        "sideBar.foreground": "#CDCCCE",
+        "sideBarSectionHeader.background": "#15141B",
+        "sideBarSectionHeader.foreground": "#ADACAE"
       },
       "type": "dark"
     },
@@ -48,7 +56,11 @@
         "statusBar.background": "#1F1A27",
         "statusBar.foreground": "#ADACAE",
         "activityBar.background": "#21202E",
-        "activityBar.foreground": "#54C59F"
+        "activityBar.foreground": "#54C59F",
+        "sideBar.background": "#1C1B22",
+        "sideBar.foreground": "#B4B4B4",
+        "sideBarSectionHeader.background": "#21202E",
+        "sideBarSectionHeader.foreground": "#ADACAE"
       },
       "type": "dark"
     },
@@ -63,7 +75,11 @@
         "statusBar.background": "#1F1A27",
         "statusBar.foreground": "#ADACAE",
         "activityBar.background": "#21202E",
-        "activityBar.foreground": "#61FFCA"
+        "activityBar.foreground": "#61FFCA",
+        "sideBar.background": "#1C1B22",
+        "sideBar.foreground": "#CDCCCE",
+        "sideBarSectionHeader.background": "#21202E",
+        "sideBarSectionHeader.foreground": "#ADACAE"
       },
       "type": "dark"
     }

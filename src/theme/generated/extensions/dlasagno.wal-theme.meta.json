@@ -4,8 +4,8 @@
   "publisherName": "dlasagno",
   "displayName": "Wal Theme",
   "version": "1.1.2",
-  "extractedAt": "2026-01-25T15:28:18.210Z",
-  "installCount": 4716,
+  "extractedAt": "2026-02-02T13:46:55.977Z",
+  "installCount": 4838,
   "themes": [
     {
       "name": "Wal",
@@ -20,7 +20,10 @@
         "statusBar.background": "#222222",
         "statusBar.foreground": "#D4D4D4",
         "activityBar.background": "#222222",
-        "activityBar.foreground": "#5F919B"
+        "activityBar.foreground": "#5F919B",
+        "sideBar.background": "#222222",
+        "sideBarSectionHeader.background": "#222222",
+        "sideBarSectionHeader.foreground": "#D4D4D4"
       },
       "type": "dark"
     },
@@ -37,7 +40,10 @@
         "statusBar.background": "#222222",
         "statusBar.foreground": "#D4D4D4",
         "activityBar.background": "#222222",
-        "activityBar.foreground": "#5F919B"
+        "activityBar.foreground": "#5F919B",
+        "sideBar.background": "#222222",
+        "sideBarSectionHeader.background": "#222222",
+        "sideBarSectionHeader.foreground": "#D4D4D4"
       },
       "type": "dark"
     }

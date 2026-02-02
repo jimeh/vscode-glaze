@@ -4,8 +4,8 @@
   "publisherName": "idleberg",
   "displayName": "Hopscotch",
   "version": "0.8.2",
-  "extractedAt": "2026-01-25T15:27:50.266Z",
-  "installCount": 279215,
+  "extractedAt": "2026-02-02T13:46:27.813Z",
+  "installCount": 279295,
   "themes": [
     {
       "name": "Hopscotch [proofreader]",
@@ -17,7 +17,11 @@
         "statusBar.background": "#1290BF",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#392F4B",
-        "activityBar.foreground": "#FFFDE6"
+        "activityBar.foreground": "#FFFDE6",
+        "sideBar.background": "#171015",
+        "sideBar.foreground": "#B9B5B8",
+        "sideBarSectionHeader.background": "#645287",
+        "sideBarSectionHeader.foreground": "#FFFDE6"
       },
       "type": "dark"
     },
@@ -31,7 +35,11 @@
         "statusBar.background": "#171015",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#171015",
-        "activityBar.foreground": "#FFFDE6"
+        "activityBar.foreground": "#FFFDE6",
+        "sideBar.background": "#171015",
+        "sideBar.foreground": "#B9B5B8",
+        "sideBarSectionHeader.background": "#171015",
+        "sideBarSectionHeader.foreground": "#FFFDE6"
       },
       "type": "dark"
     },
@@ -45,7 +53,11 @@
         "statusBar.background": "#171015",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#171015",
-        "activityBar.foreground": "#FFFDE6"
+        "activityBar.foreground": "#FFFDE6",
+        "sideBar.background": "#171015",
+        "sideBar.foreground": "#B9B5B8",
+        "sideBarSectionHeader.background": "#171015",
+        "sideBarSectionHeader.foreground": "#FFFDE6"
       },
       "type": "dark"
     },

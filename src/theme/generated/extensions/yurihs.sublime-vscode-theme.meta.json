@@ -4,8 +4,8 @@
   "publisherName": "yurihs",
   "displayName": "Sublime VSCode Theme",
   "version": "1.5.0",
-  "extractedAt": "2026-01-25T15:28:08.218Z",
-  "installCount": 15730,
+  "extractedAt": "2026-02-02T13:46:46.159Z",
+  "installCount": 15798,
   "themes": [
     {
       "name": "Sublime VSCode Theme",
@@ -16,7 +16,10 @@
         "titleBar.activeBackground": "#1E1F1C",
         "statusBar.background": "#414339",
         "activityBar.background": "#EBEDEF",
-        "activityBar.foreground": "#333333"
+        "activityBar.foreground": "#333333",
+        "sideBar.background": "#EBEDEF",
+        "sideBar.foreground": "#333333",
+        "sideBarSectionHeader.background": "#EBEDEF"
       },
       "type": "dark"
     }

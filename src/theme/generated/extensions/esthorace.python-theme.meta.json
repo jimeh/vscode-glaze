@@ -4,8 +4,8 @@
   "publisherName": "esthorace",
   "displayName": "Esmerald",
   "version": "2.7.5",
-  "extractedAt": "2026-01-25T15:28:13.296Z",
-  "installCount": 6868,
+  "extractedAt": "2026-02-02T13:46:51.182Z",
+  "installCount": 6999,
   "themes": [
     {
       "name": "Esmerald",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1A2332",
         "statusBar.foreground": "#A4B1CD",
         "activityBar.background": "#121C2B",
-        "activityBar.foreground": "#A4B1CD"
+        "activityBar.foreground": "#A4B1CD",
+        "sideBar.background": "#121C2B",
+        "sideBar.foreground": "#A4B1CD",
+        "sideBarSectionHeader.background": "#121C2B",
+        "sideBarSectionHeader.foreground": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#F4F7FD",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#FCFCFC",
-        "activityBar.foreground": "#333E4F"
+        "activityBar.foreground": "#333E4F",
+        "sideBar.background": "#FCFCFC",
+        "sideBar.foreground": "#000000",
+        "sideBarSectionHeader.background": "#F4F7FD",
+        "sideBarSectionHeader.foreground": "#333E4F"
       },
       "type": "light"
     }

@@ -4,8 +4,8 @@
   "publisherName": "a5hk",
   "displayName": "Paper",
   "version": "3.0.2",
-  "extractedAt": "2026-01-25T15:28:10.049Z",
-  "installCount": 10207,
+  "extractedAt": "2026-02-02T13:46:47.994Z",
+  "installCount": 10333,
   "themes": [
     {
       "name": "Paper",
@@ -20,7 +20,9 @@
         "statusBar.background": "#0FBDA8",
         "statusBar.foreground": "#010D0B",
         "activityBar.background": "#FCF8E8",
-        "activityBar.foreground": "#898883"
+        "activityBar.foreground": "#898883",
+        "sideBar.background": "#FCF8E8",
+        "sideBarSectionHeader.background": "#F1EDDE"
       },
       "type": "light"
     },
@@ -37,7 +39,9 @@
         "statusBar.background": "#0FBDA8",
         "statusBar.foreground": "#010D0B",
         "activityBar.background": "#FCF8E8",
-        "activityBar.foreground": "#898883"
+        "activityBar.foreground": "#898883",
+        "sideBar.background": "#FBF5DF",
+        "sideBarSectionHeader.background": "#E5E2D4"
       },
       "type": "light"
     }

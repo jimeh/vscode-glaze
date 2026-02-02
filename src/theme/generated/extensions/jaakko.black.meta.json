@@ -4,8 +4,8 @@
   "publisherName": "Jaakko",
   "displayName": "Black",
   "version": "0.15.0",
-  "extractedAt": "2026-01-25T15:27:52.820Z",
-  "installCount": 212350,
+  "extractedAt": "2026-02-02T13:46:30.516Z",
+  "installCount": 213323,
   "themes": [
     {
       "name": "Black",
@@ -20,7 +20,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#BFD4E1",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#BDBDBD"
+        "activityBar.foreground": "#BDBDBD",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#BFD4E1",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#BFD4E1"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#000000",
         "statusBar.foreground": "#BFD4E1",
         "activityBar.background": "#000000",
-        "activityBar.foreground": "#BDBDBD"
+        "activityBar.foreground": "#BDBDBD",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#BFD4E1",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#BFD4E1"
       },
       "type": "dark"
     }

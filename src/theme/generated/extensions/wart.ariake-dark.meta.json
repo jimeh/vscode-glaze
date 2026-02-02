@@ -4,8 +4,8 @@
   "publisherName": "wart",
   "displayName": "Ariake Dark",
   "version": "0.2.2",
-  "extractedAt": "2026-01-25T15:27:53.543Z",
-  "installCount": 193333,
+  "extractedAt": "2026-02-02T13:46:31.236Z",
+  "installCount": 193842,
   "themes": [
     {
       "name": "Ariake Dark",
@@ -17,7 +17,9 @@
         "titleBar.inactiveBackground": "#1C1F26",
         "statusBar.background": "#1C1F26",
         "statusBar.foreground": "#4F5B66",
-        "activityBar.background": "#1C1F26"
+        "activityBar.background": "#1C1F26",
+        "sideBar.background": "#1C1F26",
+        "sideBarSectionHeader.background": "#1C1F26"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "shubham-saudolla",
   "displayName": "Lilac",
   "version": "1.2.7",
-  "extractedAt": "2026-01-25T15:28:14.633Z",
-  "installCount": 6301,
+  "extractedAt": "2026-02-02T13:46:52.647Z",
+  "installCount": 6356,
   "themes": [
     {
       "name": "Lilac",
@@ -17,7 +17,11 @@
         "statusBar.background": "#9D89E2",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#0D0B0F",
-        "activityBar.foreground": "#E0CEED"
+        "activityBar.foreground": "#E0CEED",
+        "sideBar.background": "#151217",
+        "sideBar.foreground": "#E0CEED",
+        "sideBarSectionHeader.background": "#1C1920",
+        "sideBarSectionHeader.foreground": "#E0CEED"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "ArtisanByteCrafter",
   "displayName": "Pop Theme",
   "version": "1.0.3",
-  "extractedAt": "2026-01-25T15:28:15.912Z",
-  "installCount": 5650,
+  "extractedAt": "2026-02-02T13:46:54.086Z",
+  "installCount": 5665,
   "themes": [
     {
       "name": "Pop Dark",
@@ -20,7 +20,11 @@
         "statusBar.background": "#2B2928",
         "statusBar.foreground": "#DEDEDE",
         "activityBar.background": "#4D4643",
-        "activityBar.foreground": "#FDF6E3"
+        "activityBar.foreground": "#FDF6E3",
+        "sideBar.background": "#2B2928",
+        "sideBar.foreground": "#DEDEDE",
+        "sideBarSectionHeader.background": "#463E39",
+        "sideBarSectionHeader.foreground": "#DEDEDE"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#403C3A",
         "statusBar.foreground": "#F6F6F6",
         "activityBar.background": "#DDDDDD",
-        "activityBar.foreground": "#403C3A"
+        "activityBar.foreground": "#403C3A",
+        "sideBar.background": "#F6F6F6",
+        "sideBar.foreground": "#403C3A",
+        "sideBarSectionHeader.background": "#DEDEDE",
+        "sideBarSectionHeader.foreground": "#403C3A"
       },
       "type": "light"
     }

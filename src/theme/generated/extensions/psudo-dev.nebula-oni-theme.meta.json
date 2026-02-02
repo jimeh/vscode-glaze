@@ -3,9 +3,9 @@
   "extensionName": "nebula-oni-theme",
   "publisherName": "psudo-dev",
   "displayName": "Nebula Oni Theme",
-  "version": "2.2.2",
-  "extractedAt": "2026-01-25T15:28:07.691Z",
-  "installCount": 17953,
+  "version": "2.2.3",
+  "extractedAt": "2026-02-02T13:46:45.471Z",
+  "installCount": 18919,
   "themes": [
     {
       "name": "Nebula Oni (Hourglass)",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1E2126",
         "statusBar.foreground": "#B4BBC8",
         "activityBar.background": "#363C44",
-        "activityBar.foreground": "#FFE14D"
+        "activityBar.foreground": "#FFE14D",
+        "sideBar.background": "#21252A",
+        "sideBar.foreground": "#9097A0",
+        "sideBarSectionHeader.background": "#363C44",
+        "sideBarSectionHeader.foreground": "#B4BBC8"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1E2126",
         "statusBar.foreground": "#B4BBC8",
         "activityBar.background": "#363C44",
-        "activityBar.foreground": "#FFE14D"
+        "activityBar.foreground": "#FFE14D",
+        "sideBar.background": "#21252A",
+        "sideBar.foreground": "#9097A0",
+        "sideBarSectionHeader.background": "#363C44",
+        "sideBarSectionHeader.foreground": "#B4BBC8"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#1E2126",
         "statusBar.foreground": "#B4BBC8",
         "activityBar.background": "#363C44",
-        "activityBar.foreground": "#FFE14D"
+        "activityBar.foreground": "#FFE14D",
+        "sideBar.background": "#21252A",
+        "sideBar.foreground": "#9097A0",
+        "sideBarSectionHeader.background": "#363C44",
+        "sideBarSectionHeader.foreground": "#B4BBC8"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#1E2126",
         "statusBar.foreground": "#B4BBC8",
         "activityBar.background": "#363C44",
-        "activityBar.foreground": "#FFE14D"
+        "activityBar.foreground": "#FFE14D",
+        "sideBar.background": "#21252A",
+        "sideBar.foreground": "#9097A0",
+        "sideBarSectionHeader.background": "#363C44",
+        "sideBarSectionHeader.foreground": "#B4BBC8"
       },
       "type": "dark"
     },
@@ -88,7 +104,11 @@
         "statusBar.background": "#091A2B",
         "statusBar.foreground": "#A3BDCC",
         "activityBar.background": "#10314F",
-        "activityBar.foreground": "#FF99E5"
+        "activityBar.foreground": "#FF99E5",
+        "sideBar.background": "#0A1D2E",
+        "sideBar.foreground": "#5986B3",
+        "sideBarSectionHeader.background": "#10314F",
+        "sideBarSectionHeader.foreground": "#A3BDCC"
       },
       "type": "dark"
     }

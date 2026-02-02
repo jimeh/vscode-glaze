@@ -4,8 +4,8 @@
   "publisherName": "apvarun",
   "displayName": "Celestial",
   "version": "0.3.0",
-  "extractedAt": "2026-01-25T15:28:06.071Z",
-  "installCount": 96888,
+  "extractedAt": "2026-02-02T13:46:44.007Z",
+  "installCount": 97023,
   "themes": [
     {
       "name": "Celestial",
@@ -17,7 +17,11 @@
         "statusBar.background": "#0B0C0F",
         "statusBar.foreground": "#D5D8DA",
         "activityBar.background": "#0E0F13",
-        "activityBar.foreground": "#D5D8DA"
+        "activityBar.foreground": "#D5D8DA",
+        "sideBar.background": "#0E0F13",
+        "sideBar.foreground": "#D5D8DA",
+        "sideBarSectionHeader.background": "#0E0F13",
+        "sideBarSectionHeader.foreground": "#D5D8DA"
       },
       "type": "dark"
     }

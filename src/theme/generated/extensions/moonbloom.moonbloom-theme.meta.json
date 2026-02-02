@@ -4,8 +4,8 @@
   "publisherName": "Moonbloom",
   "displayName": "Moonbloom Official Theme",
   "version": "1.1.2",
-  "extractedAt": "2026-01-25T15:28:25.167Z",
-  "installCount": 3224,
+  "extractedAt": "2026-02-02T13:47:02.977Z",
+  "installCount": 3267,
   "themes": [
     {
       "name": "Moonbloom Official Theme",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1D1E27",
         "statusBar.foreground": "#8282A9",
         "activityBar.background": "#1D1E27",
-        "activityBar.foreground": "#8483D8"
+        "activityBar.foreground": "#8483D8",
+        "sideBar.background": "#1D1E27",
+        "sideBar.foreground": "#D1D2E8",
+        "sideBarSectionHeader.background": "#1D1E27",
+        "sideBarSectionHeader.foreground": "#9B9BBA"
       },
       "type": "dark"
     }

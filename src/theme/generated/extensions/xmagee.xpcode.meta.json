@@ -4,8 +4,8 @@
   "publisherName": "xmagee",
   "displayName": null,
   "version": "1.1.0",
-  "extractedAt": "2026-01-25T15:28:08.636Z",
-  "installCount": 13456,
+  "extractedAt": "2026-02-02T13:46:46.731Z",
+  "installCount": 13484,
   "themes": [
     {
       "name": "xpcode",
@@ -15,7 +15,9 @@
         "editor.foreground": "#FFFFFF",
         "titleBar.activeBackground": "#0C0C0C",
         "statusBar.background": "#0C0C0C",
-        "activityBar.background": "#161616"
+        "activityBar.background": "#161616",
+        "sideBar.background": "#131313",
+        "sideBarSectionHeader.background": "#161616"
       },
       "type": "dark"
     }

@@ -4,8 +4,8 @@
   "publisherName": "barrsan",
   "displayName": "ReUI",
   "version": "1.2.5",
-  "extractedAt": "2026-01-25T15:28:03.014Z",
-  "installCount": 119843,
+  "extractedAt": "2026-02-02T13:46:40.786Z",
+  "installCount": 119979,
   "themes": [
     {
       "name": "ReUI",
@@ -18,7 +18,10 @@
         "statusBar.background": "#282C34",
         "statusBar.foreground": "#DDDDDD",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#282C34",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     },
@@ -33,7 +36,10 @@
         "statusBar.background": "#282C34",
         "statusBar.foreground": "#DDDDDD",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#282C34",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     },
@@ -48,7 +54,10 @@
         "statusBar.background": "#18273A",
         "statusBar.foreground": "#5884C9",
         "activityBar.background": "#18273A",
-        "activityBar.foreground": "#FFCB6B"
+        "activityBar.foreground": "#FFCB6B",
+        "sideBar.background": "#18273A",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#18273A"
       },
       "type": "dark"
     },
@@ -63,7 +72,10 @@
         "statusBar.background": "#18273A",
         "statusBar.foreground": "#5884C9",
         "activityBar.background": "#18273A",
-        "activityBar.foreground": "#FFCB6B"
+        "activityBar.foreground": "#FFCB6B",
+        "sideBar.background": "#18273A",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#18273A"
       },
       "type": "dark"
     },
@@ -78,7 +90,10 @@
         "statusBar.background": "#282C34",
         "statusBar.foreground": "#DDDDDD",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#282C34",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     },
@@ -93,7 +108,10 @@
         "statusBar.background": "#282C34",
         "statusBar.foreground": "#DDDDDD",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#282C34",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
     },
@@ -108,7 +126,10 @@
         "statusBar.background": "#18273A",
         "statusBar.foreground": "#5884C9",
         "activityBar.background": "#18273A",
-        "activityBar.foreground": "#FFCB6B"
+        "activityBar.foreground": "#FFCB6B",
+        "sideBar.background": "#18273A",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#18273A"
       },
       "type": "dark"
     },
@@ -123,7 +144,10 @@
         "statusBar.background": "#18273A",
         "statusBar.foreground": "#5884C9",
         "activityBar.background": "#18273A",
-        "activityBar.foreground": "#FFCB6B"
+        "activityBar.foreground": "#FFCB6B",
+        "sideBar.background": "#18273A",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBarSectionHeader.background": "#18273A"
       },
       "type": "dark"
     },
@@ -138,7 +162,10 @@
         "statusBar.background": "#1E232E",
         "statusBar.foreground": "#DDDDDD",
         "activityBar.background": "#1E232E",
-        "activityBar.foreground": "#F8F8F2"
+        "activityBar.foreground": "#F8F8F2",
+        "sideBar.background": "#1E232E",
+        "sideBar.foreground": "#DDDDDD",
+        "sideBarSectionHeader.background": "#1E232E"
       },
       "type": "dark"
     },
@@ -153,7 +180,10 @@
         "statusBar.background": "#1E232E",
         "statusBar.foreground": "#DDDDDD",
         "activityBar.background": "#1E232E",
-        "activityBar.foreground": "#788CB7"
+        "activityBar.foreground": "#788CB7",
+        "sideBar.background": "#1E232E",
+        "sideBar.foreground": "#DDDDDD",
+        "sideBarSectionHeader.background": "#1E232E"
       },
       "type": "dark"
     }

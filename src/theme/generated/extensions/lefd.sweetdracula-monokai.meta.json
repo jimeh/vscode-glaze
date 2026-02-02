@@ -4,8 +4,8 @@
   "publisherName": "lefd",
   "displayName": "Sweet Dracula Monokai",
   "version": "1.1.14",
-  "extractedAt": "2026-01-25T15:28:11.006Z",
-  "installCount": 8965,
+  "extractedAt": "2026-02-02T13:46:49.037Z",
+  "installCount": 9085,
   "themes": [
     {
       "name": "Sweet Dracula Monokai",
@@ -18,7 +18,9 @@
         "statusBar.background": "#11131C",
         "statusBar.foreground": "#CCCCCC",
         "activityBar.background": "#232634",
-        "activityBar.foreground": "#FF79C6"
+        "activityBar.foreground": "#FF79C6",
+        "sideBar.background": "#161925",
+        "sideBarSectionHeader.background": "#11131C"
       },
       "type": "dark"
     }

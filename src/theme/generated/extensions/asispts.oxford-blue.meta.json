@@ -4,8 +4,8 @@
   "publisherName": "asispts",
   "displayName": "Oxford-blue Theme",
   "version": "0.7.0",
-  "extractedAt": "2026-01-25T15:28:15.266Z",
-  "installCount": 5749,
+  "extractedAt": "2026-02-02T13:46:53.486Z",
+  "installCount": 5775,
   "themes": [
     {
       "name": "oxford-blue",
@@ -16,7 +16,10 @@
         "statusBar.background": "#EFFF73",
         "statusBar.foreground": "#4B4E29",
         "activityBar.background": "#001A39",
-        "activityBar.foreground": "#EFFF73"
+        "activityBar.foreground": "#EFFF73",
+        "sideBar.background": "#002147",
+        "sideBarSectionHeader.background": "#001A39",
+        "sideBarSectionHeader.foreground": "#2D658D"
       },
       "type": "dark"
     }

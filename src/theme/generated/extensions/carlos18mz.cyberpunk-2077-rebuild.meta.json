@@ -4,8 +4,8 @@
   "publisherName": "Carlos18mz",
   "displayName": "Cyberpunk 2077 rebuild",
   "version": "0.0.8",
-  "extractedAt": "2026-01-25T15:28:04.053Z",
-  "installCount": 108728,
+  "extractedAt": "2026-02-02T13:46:41.830Z",
+  "installCount": 109074,
   "themes": [
     {
       "name": "Cyberpunk 2077 rebuild",
@@ -20,7 +20,11 @@
         "statusBar.background": "#002015",
         "statusBar.foreground": "#00D482",
         "activityBar.background": "#101116",
-        "activityBar.foreground": "#00D4B1"
+        "activityBar.foreground": "#00D4B1",
+        "sideBar.background": "#0C0C11",
+        "sideBar.foreground": "#00D4B1",
+        "sideBarSectionHeader.background": "#013329",
+        "sideBarSectionHeader.foreground": "#00D4B1"
       },
       "type": "dark"
     }

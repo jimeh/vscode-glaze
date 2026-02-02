@@ -4,8 +4,8 @@
   "publisherName": "garytyler",
   "displayName": "Darcula PyCharm Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-01-25T15:27:48.344Z",
-  "installCount": 334745,
+  "extractedAt": "2026-02-02T13:46:25.780Z",
+  "installCount": 335905,
   "themes": [
     {
       "name": "Darcula Pycharm with Dark GUI",
@@ -17,7 +17,10 @@
         "statusBar.background": "#313335",
         "statusBar.foreground": "#BBBBBB",
         "activityBar.background": "#313335",
-        "activityBar.foreground": "#C5C5C5"
+        "activityBar.foreground": "#C5C5C5",
+        "sideBar.background": "#27292A",
+        "sideBar.foreground": "#A7A7A7",
+        "sideBarSectionHeader.background": "#3C3F41"
       },
       "type": "dark"
     },
@@ -31,7 +34,10 @@
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
         "activityBar.background": "#3C3F41",
-        "activityBar.foreground": "#F0F0F0"
+        "activityBar.foreground": "#F0F0F0",
+        "sideBar.background": "#3C3F41",
+        "sideBar.foreground": "#BBBBBB",
+        "sideBarSectionHeader.background": "#3B4754"
       },
       "type": "dark"
     }

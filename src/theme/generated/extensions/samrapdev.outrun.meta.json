@@ -4,8 +4,8 @@
   "publisherName": "samrapdev",
   "displayName": "Outrun",
   "version": "0.2.2",
-  "extractedAt": "2026-01-25T15:28:04.157Z",
-  "installCount": 108147,
+  "extractedAt": "2026-02-02T13:46:42.039Z",
+  "installCount": 108297,
   "themes": [
     {
       "name": "Outrun Night",
@@ -17,7 +17,10 @@
         "statusBar.background": "#0C0A20",
         "statusBar.foreground": "#7984D1",
         "activityBar.background": "#161130",
-        "activityBar.foreground": "#7984D1"
+        "activityBar.foreground": "#7984D1",
+        "sideBar.background": "#0C0A20",
+        "sideBarSectionHeader.background": "#161130",
+        "sideBarSectionHeader.foreground": "#7984D1"
       },
       "type": "dark"
     },
@@ -31,7 +34,10 @@
         "statusBar.background": "#090819",
         "statusBar.foreground": "#7984D1",
         "activityBar.background": "#0C0A20",
-        "activityBar.foreground": "#7984D1"
+        "activityBar.foreground": "#7984D1",
+        "sideBar.background": "#090819",
+        "sideBarSectionHeader.background": "#0C0A20",
+        "sideBarSectionHeader.foreground": "#7984D1"
       },
       "type": "dark"
     }

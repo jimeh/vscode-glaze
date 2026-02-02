@@ -4,8 +4,8 @@
   "publisherName": "khan",
   "displayName": "Two Monokai Theme",
   "version": "0.1.3",
-  "extractedAt": "2026-01-25T15:28:15.377Z",
-  "installCount": 5736,
+  "extractedAt": "2026-02-02T13:46:53.165Z",
+  "installCount": 5817,
   "themes": [
     {
       "name": "Two Monokai",
@@ -20,7 +20,11 @@
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#2F333D",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#21252B",
+        "sideBar.foreground": "#ABB2BF",
+        "sideBarSectionHeader.background": "#282C34",
+        "sideBarSectionHeader.foreground": "#ABB2BF"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1E2227",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#23272E",
-        "activityBar.foreground": "#D7DAE0"
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#1E2227",
+        "sideBar.foreground": "#ABB2BF",
+        "sideBarSectionHeader.background": "#23272E",
+        "sideBarSectionHeader.foreground": "#ABB2BF"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#282C34",
         "statusBar.foreground": "#969AA4",
         "activityBar.background": "#282C34",
-        "activityBar.foreground": "#C7CCD6"
+        "activityBar.foreground": "#C7CCD6",
+        "sideBar.background": "#282C34",
+        "sideBar.foreground": "#969AA4",
+        "sideBarSectionHeader.background": "#282C34",
+        "sideBarSectionHeader.foreground": "#ABB2BF"
       },
       "type": "dark"
     }

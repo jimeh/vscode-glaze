@@ -4,8 +4,8 @@
   "publisherName": "qufiwefefwoyn",
   "displayName": "Kanagawa",
   "version": "1.5.1",
-  "extractedAt": "2026-01-25T15:27:51.232Z",
-  "installCount": 240945,
+  "extractedAt": "2026-02-02T13:46:28.649Z",
+  "installCount": 242390,
   "themes": [
     {
       "name": "Kanagawa",
@@ -20,7 +20,11 @@
         "statusBar.background": "#16161D",
         "statusBar.foreground": "#C8C093",
         "activityBar.background": "#2A2A37",
-        "activityBar.foreground": "#DCD7BA"
+        "activityBar.foreground": "#DCD7BA",
+        "sideBar.background": "#1F1F28",
+        "sideBar.foreground": "#DCD7BA",
+        "sideBarSectionHeader.background": "#363646",
+        "sideBarSectionHeader.foreground": "#DCD7BA"
       },
       "type": "dark"
     }

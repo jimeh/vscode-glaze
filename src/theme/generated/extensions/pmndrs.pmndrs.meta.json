@@ -4,8 +4,8 @@
   "publisherName": "pmndrs",
   "displayName": "poimandres",
   "version": "0.3.7",
-  "extractedAt": "2026-01-25T15:27:58.824Z",
-  "installCount": 142747,
+  "extractedAt": "2026-02-02T13:46:36.573Z",
+  "installCount": 143615,
   "themes": [
     {
       "name": "poimandres",
@@ -20,7 +20,11 @@
         "statusBar.background": "#1B1E28",
         "statusBar.foreground": "#A6ACCD",
         "activityBar.background": "#1B1E28",
-        "activityBar.foreground": "#A6ACCD"
+        "activityBar.foreground": "#A6ACCD",
+        "sideBar.background": "#1B1E28",
+        "sideBar.foreground": "#767C9D",
+        "sideBarSectionHeader.background": "#1B1E28",
+        "sideBarSectionHeader.foreground": "#A6ACCD"
       },
       "type": "dark"
     },
@@ -37,7 +41,11 @@
         "statusBar.background": "#1B1E28",
         "statusBar.foreground": "#A6ACCD",
         "activityBar.background": "#1B1E28",
-        "activityBar.foreground": "#A6ACCD"
+        "activityBar.foreground": "#A6ACCD",
+        "sideBar.background": "#1B1E28",
+        "sideBar.foreground": "#767C9D",
+        "sideBarSectionHeader.background": "#1B1E28",
+        "sideBarSectionHeader.foreground": "#A6ACCD"
       },
       "type": "dark"
     },
@@ -54,7 +62,11 @@
         "statusBar.background": "#252B37",
         "statusBar.foreground": "#A6ACCD",
         "activityBar.background": "#252B37",
-        "activityBar.foreground": "#A6ACCD"
+        "activityBar.foreground": "#A6ACCD",
+        "sideBar.background": "#252B37",
+        "sideBar.foreground": "#868CAD",
+        "sideBarSectionHeader.background": "#252B37",
+        "sideBarSectionHeader.foreground": "#A6ACCD"
       },
       "type": "dark"
     },
@@ -71,7 +83,11 @@
         "statusBar.background": "#252B37",
         "statusBar.foreground": "#A6ACCD",
         "activityBar.background": "#252B37",
-        "activityBar.foreground": "#A6ACCD"
+        "activityBar.foreground": "#A6ACCD",
+        "sideBar.background": "#252B37",
+        "sideBar.foreground": "#868CAD",
+        "sideBarSectionHeader.background": "#252B37",
+        "sideBarSectionHeader.foreground": "#A6ACCD"
       },
       "type": "dark"
     }

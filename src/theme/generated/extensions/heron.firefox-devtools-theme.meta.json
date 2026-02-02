@@ -4,8 +4,8 @@
   "publisherName": "Heron",
   "displayName": "Firefox Theme",
   "version": "4.10.8",
-  "extractedAt": "2026-01-25T15:27:54.683Z",
-  "installCount": 180552,
+  "extractedAt": "2026-02-02T13:46:32.382Z",
+  "installCount": 180811,
   "themes": [
     {
       "name": "Firefox Dark",
@@ -20,7 +20,11 @@
         "statusBar.background": "#0C0C0D",
         "statusBar.foreground": "#B1B1B3",
         "activityBar.background": "#1B1B1D",
-        "activityBar.foreground": "#FFFFFF"
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#1B1B1D",
+        "sideBar.foreground": "#B1B1B3",
+        "sideBarSectionHeader.background": "#222225",
+        "sideBarSectionHeader.foreground": "#B1B1B3"
       },
       "type": "dark"
     },
@@ -33,7 +37,10 @@
         "statusBar.background": "#F9F9FA",
         "statusBar.foreground": "#4A4A4F",
         "activityBar.background": "#F9F9FA",
-        "activityBar.foreground": "#939393"
+        "activityBar.foreground": "#939393",
+        "sideBar.background": "#F9F9FA",
+        "sideBar.foreground": "#3C3C3C",
+        "sideBarSectionHeader.background": "#EDEDF0"
       },
       "type": "light"
     }
