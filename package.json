@@ -436,7 +436,7 @@
     "vsce:ls": "pnpm run vscode:prepublish && pnpm exec vsce ls --no-dependencies",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "pretest": "rm -f src/test/fixtures/test-workspace/.vscode/settings.json && pnpm run compile-tests && pnpm run compile && pnpm run lint",
     "check-types": "tsc --noEmit",
     "lint": "eslint src && prettier --check .",
     "lint:fix": "eslint src --fix && prettier --write .",
