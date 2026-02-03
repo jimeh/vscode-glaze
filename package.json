@@ -3,7 +3,7 @@
   "publisher": "jimeh",
   "displayName": "Patina",
   "description": "Applies subtle color tints to your editor windows based on the open project, so you can easily tell your workspaces apart.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "author": {
     "name": "Jim Myhrberg"
