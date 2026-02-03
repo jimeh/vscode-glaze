@@ -77,70 +77,34 @@ let cached: CachedTintState = {
 
 // --- Serialized reconcile state ---
 
-/** Monotonic counter bumped on every requestReconcile(). */
-let requestGeneration = 0;
-
-/** Promise chain ensuring only one reconcile worker runs at a time. */
+/** Promise chain ensuring only one reconcile runs at a time. */
 let reconcileChain: Promise<void> = Promise.resolve();
 
 /** Debounce timer for requestReconcile(). */
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
 
-/**
- * Timestamp of Patina's last colorCustomizations write. Used to
- * suppress the resulting config change event and avoid triggering
- * a redundant reconcile. The event fires asynchronously after the
- * write resolves, so we use a time window instead of a flag.
- */
-let lastSelfWriteTime = 0;
-
-/** Returns true if this generation has been superseded. */
-function isStale(gen: number): boolean {
-  return gen !== requestGeneration;
-}
+/** Sticky force flag — once set, persists until consumed. */
+let pendingForce = false;
 
 /**
- * Request a reconcile. Bumps generation, resets debounce timer.
- * The actual worker is enqueued after the debounce delay.
+ * Request a reconcile. Resets the debounce timer; the actual
+ * reconcile is enqueued onto the promise chain after the delay.
+ * The force flag is sticky: once set during a debounce window it
+ * persists until the reconcile consumes it.
  */
 function requestReconcile(options?: ReconcileOptions): void {
-  const gen = ++requestGeneration;
-  if (debounceTimer !== undefined) {
-    clearTimeout(debounceTimer);
-  }
+  if (options?.force) pendingForce = true;
+  if (debounceTimer !== undefined) clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
     debounceTimer = undefined;
-    if (isStale(gen)) {
-      return; // superseded while waiting
-    }
-    enqueueReconcile(gen, options);
+    const force = pendingForce;
+    pendingForce = false;
+    reconcileChain = reconcileChain.then(() =>
+      doReconcile({ force }).catch((err) =>
+        console.error('[Patina] reconcile error:', err)
+      )
+    );
   }, DEBOUNCE_MS);
-}
-
-/**
- * Enqueue a reconcile worker onto the promise chain so only one
- * runs at a time.
- */
-function enqueueReconcile(gen: number, options?: ReconcileOptions): void {
-  reconcileChain = reconcileChain.then(() => reconcileWorker(gen, options));
-}
-
-/**
- * Wrapper that delegates to doReconcile, catching errors so the
- * promise chain never rejects.
- */
-async function reconcileWorker(
-  gen: number,
-  options?: ReconcileOptions
-): Promise<void> {
-  if (isStale(gen)) {
-    return;
-  }
-  try {
-    await doReconcile(gen, options);
-  } catch (err) {
-    console.error('[Patina] reconcile error:', err);
-  }
 }
 
 /** Reset cached state to empty and refresh the status bar. */
@@ -155,36 +119,33 @@ async function resetCachedState(): Promise<void> {
 }
 
 /**
- * Write colorCustomizations with stale-check and error handling.
- * Returns true on successful write that is still current.
+ * Write colorCustomizations with equality check and error handling.
+ * The equality check prevents reconcile loops: after Patina writes
+ * colors, the resulting config event triggers a re-read that matches
+ * what was just written, so the write is skipped.
+ * Returns true on success (or if no write was needed).
  */
 async function writeColorConfig(
-  gen: number,
   value: ColorCustomizations | undefined
 ): Promise<boolean> {
-  if (isStale(gen)) return false;
-
-  // Re-read config to skip redundant writes. Phantom reconciles
-  // that recompute identical colors must not race with external
-  // changes to colorCustomizations. Normalize empty objects to
-  // undefined since VS Code returns {} (Proxy) for cleared config.
+  // Re-read config to skip redundant writes. Normalize empty
+  // objects to undefined since VS Code returns {} (Proxy) for
+  // cleared config.
   const raw = vscode.workspace
     .getConfiguration()
     .get<ColorCustomizations>('workbench.colorCustomizations');
   const current = raw && Object.keys(raw).length > 0 ? raw : undefined;
   const normalized = value && Object.keys(value).length > 0 ? value : undefined;
-  if (shallowEqualRecords(current, normalized)) {
-    return !isStale(gen);
-  }
+  if (shallowEqualRecords(current, normalized)) return true;
 
   try {
-    const config = vscode.workspace.getConfiguration();
-    await config.update(
-      'workbench.colorCustomizations',
-      value,
-      vscode.ConfigurationTarget.Workspace
-    );
-    lastSelfWriteTime = Date.now();
+    await vscode.workspace
+      .getConfiguration()
+      .update(
+        'workbench.colorCustomizations',
+        value,
+        vscode.ConfigurationTarget.Workspace
+      );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error('[Patina] Failed to write color customizations:', err);
@@ -192,11 +153,11 @@ async function writeColorConfig(
     await refreshStatusBar();
     return false;
   }
-  return !isStale(gen);
+  return true;
 }
 
 /** Strip Patina colors from config and reset cached state. */
-async function clearTintColors(gen: number): Promise<void> {
+async function clearTintColors(): Promise<void> {
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
@@ -209,14 +170,13 @@ async function clearTintColors(gen: number): Promise<void> {
   }
 
   const remaining = removePatinaColors(existing);
-  if (await writeColorConfig(gen, remaining)) {
+  if (await writeColorConfig(remaining)) {
     await resetCachedState();
   }
 }
 
 /** Compute and write tint colors to config. */
 async function applyTintColors(
-  gen: number,
   identifier: string,
   tintConfig: ReturnType<typeof getTintConfig>,
   force: boolean
@@ -251,7 +211,7 @@ async function applyTintColors(
   }
 
   const merged = mergeColorCustomizations(existing, colors);
-  if (await writeColorConfig(gen, merged)) {
+  if (await writeColorConfig(merged)) {
     cached = {
       workspaceIdentifier: identifier,
       tintColors: tintResultToStatusBarColors(tintResult),
@@ -266,15 +226,12 @@ async function applyTintColors(
  * Unified apply/remove logic. Reads config fresh and decides
  * whether to apply or remove colors.
  */
-async function doReconcile(
-  gen: number,
-  options?: ReconcileOptions
-): Promise<void> {
+async function doReconcile(options?: ReconcileOptions): Promise<void> {
   const force = options?.force ?? false;
   const tintConfig = getTintConfig();
 
   if (!isEnabledForWorkspace() || tintConfig.targets.length === 0) {
-    await clearTintColors(gen);
+    await clearTintColors();
     return;
   }
 
@@ -285,7 +242,7 @@ async function doReconcile(
     return;
   }
 
-  await applyTintColors(gen, identifier, tintConfig, force);
+  await applyTintColors(identifier, tintConfig, force);
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -371,14 +328,11 @@ export async function activate(context: vscode.ExtensionContext) {
       requestReconcile({ force: true });
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
-      // React to external colorCustomizations changes so a fresh
-      // reconcile supersedes any stale pending one. Skip events
-      // caused by Patina's own writes (within 250ms) to avoid
-      // redundant reconciles during rapid toggling.
+      // React to colorCustomizations changes. The equality check
+      // in writeColorConfig prevents loops — if Patina just wrote
+      // these colors, the re-read will match and skip the write.
       if (e.affectsConfiguration('workbench.colorCustomizations')) {
-        if (Date.now() - lastSelfWriteTime > 250) {
-          requestReconcile();
-        }
+        requestReconcile();
         return;
       }
       // Handle VS Code theme changes
@@ -444,6 +398,4 @@ export function deactivate() {
     clearTimeout(debounceTimer);
     debounceTimer = undefined;
   }
-  // Bump generation to cancel any in-flight workers
-  requestGeneration++;
 }
