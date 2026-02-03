@@ -6,8 +6,9 @@ import {
   computeTint,
   tintResultToStatusBarColors,
 } from '../../color/tint';
+import { hexToOklch } from '../../color/convert';
 import type { ColorScheme } from '../../config';
-import type { ThemeType } from '../../theme';
+import type { ThemeColors, ThemeType } from '../../theme';
 import { PATINA_MANAGED_KEYS } from '../../theme';
 import { ALL_TARGETS } from '../helpers';
 
@@ -423,6 +424,195 @@ suite('computeTint', () => {
     const resultKeys = result.keys.map((d) => d.key);
     for (const key of PATINA_MANAGED_KEYS) {
       assert.ok(resultKeys.includes(key), `Missing key: ${key}`);
+    }
+  });
+});
+
+// ============================================================================
+// Hue direction harmonization
+// ============================================================================
+
+suite('computeTint hue harmonization', () => {
+  // One Dark Pro theme colors that trigger the split-direction bug:
+  // #21252B (sidebar/statusBar) has hue ~258° and #282C34 (titleBar/
+  // activityBar) has hue ~264°. With a base hue of 83° the hue
+  // diff straddles the 180° boundary, causing opposite blend
+  // directions without harmonization.
+  const oneDarkProColors: ThemeColors = {
+    'editor.background': '#282C34',
+    'titleBar.activeBackground': '#282C34',
+    'titleBar.activeForeground': '#9DA5B4',
+    'titleBar.inactiveBackground': '#282C34',
+    'titleBar.inactiveForeground': '#6B717D',
+    'activityBar.background': '#282C34',
+    'activityBar.foreground': '#D7DAE0',
+    'statusBar.background': '#21252B',
+    'statusBar.foreground': '#9DA5B4',
+    'sideBar.background': '#21252B',
+    'sideBar.foreground': '#ABB2BF',
+    'sideBarSectionHeader.background': '#282C34',
+    'sideBarSectionHeader.foreground': '#ABB2BF',
+  };
+
+  /**
+   * Helper: extract hue from a hex color string.
+   */
+  function hueOf(hex: string): number {
+    return hexToOklch(hex).h;
+  }
+
+  /**
+   * Helper: normalize a hue difference to (-180, 180].
+   */
+  function hueDiff(a: number, b: number): number {
+    let d = b - a;
+    if (d > 180) d -= 360;
+    else if (d <= -180) d += 360;
+    return d;
+  }
+
+  test('background hues are harmonized (One Dark Pro + hue 83)', () => {
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorScheme: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+    });
+
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+
+    // All background hues should be within 30° of each other
+    const hues = bgKeys.map((k) => hueOf(k.finalHex));
+    for (let i = 1; i < hues.length; i++) {
+      const diff = Math.abs(hueDiff(hues[0], hues[i]));
+      assert.ok(
+        diff < 30,
+        `Background hues too far apart: ${bgKeys[0].key} ` +
+          `(${hues[0].toFixed(1)}°) vs ${bgKeys[i].key} ` +
+          `(${hues[i].toFixed(1)}°), diff=${diff.toFixed(1)}°`
+      );
+    }
+  });
+
+  test('foreground hues follow their background direction', () => {
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorScheme: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+    });
+
+    // For each element, its fg/bg should be in similar hue range
+    const elements = ['titleBar', 'statusBar', 'activityBar', 'sideBar'];
+    for (const el of elements) {
+      const bgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'background'
+      );
+      const fgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'foreground' && k.themeColor
+      );
+
+      if (bgs.length === 0 || fgs.length === 0) continue;
+
+      const bgHue = hueOf(bgs[0].finalHex);
+      for (const fg of fgs) {
+        const fgHue = hueOf(fg.finalHex);
+        const diff = Math.abs(hueDiff(bgHue, fgHue));
+        // Foregrounds have low chroma so hue can wobble more,
+        // but should still be within the same hemisphere.
+        assert.ok(
+          diff < 90,
+          `${el} fg/bg hue mismatch: bg=${bgHue.toFixed(1)}° ` +
+            `fg=${fgHue.toFixed(1)}° diff=${diff.toFixed(1)}°`
+        );
+      }
+    }
+  });
+
+  test('no-op when theme colors are absent', () => {
+    // Without theme colors, harmonization has nothing to do.
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorScheme: 'pastel',
+    });
+
+    for (const detail of result.keys) {
+      assert.strictEqual(detail.tintHex, detail.finalHex);
+    }
+  });
+
+  test('no-op when all directions already agree', () => {
+    // Use a hue far from the 180° boundary relative to
+    // One Dark Pro's theme hues (~258-264°). Hue 0 gives
+    // diff ~258-264 which is clearly > 180, so all CCW.
+    const result = computeTint({
+      baseHue: 0,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorScheme: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+    });
+
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+    const hues = bgKeys.map((k) => hueOf(k.finalHex));
+
+    // All should still be consistent
+    for (let i = 1; i < hues.length; i++) {
+      const diff = Math.abs(hueDiff(hues[0], hues[i]));
+      assert.ok(
+        diff < 30,
+        `Hues should agree at hue=0: ${bgKeys[0].key} ` +
+          `(${hues[0].toFixed(1)}°) vs ${bgKeys[i].key} ` +
+          `(${hues[i].toFixed(1)}°), diff=${diff.toFixed(1)}°`
+      );
+    }
+  });
+
+  test('deterministic with tied directions', () => {
+    // Even if an equal number of elements go CW vs CCW, the
+    // result should be deterministic across runs.
+    const opts = {
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark' as ThemeType,
+      colorScheme: 'pastel' as ColorScheme,
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+    };
+
+    const a = computeTint(opts);
+    const b = computeTint(opts);
+    assert.deepStrictEqual(a, b);
+  });
+
+  test('produces valid hex after harmonization', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorScheme: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+    });
+
+    for (const detail of result.keys) {
+      assert.match(
+        detail.finalHex,
+        hexPattern,
+        `Invalid finalHex for ${detail.key}: ${detail.finalHex}`
+      );
     }
   });
 });
