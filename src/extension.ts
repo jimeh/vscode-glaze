@@ -32,8 +32,27 @@ import { StatusPanel } from './status';
 
 let statusBar: StatusBarManager;
 
+/**
+ * Shallow-compare two optional records by key count and value
+ * identity. Used to skip redundant config writes.
+ */
+function shallowEqualRecords(
+  a: Record<string, unknown> | undefined,
+  b: Record<string, unknown> | undefined
+): boolean {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+  if (keysA.length !== keysB.length) return false;
+  for (const key of keysA) {
+    if (a[key] !== b[key]) return false;
+  }
+  return true;
+}
+
 /** Debounce delay in ms for reconcile operations. */
-const DEBOUNCE_MS = 150;
+const DEBOUNCE_MS = 75;
 
 interface ReconcileOptions {
   force?: boolean;
@@ -66,6 +85,14 @@ let reconcileChain: Promise<void> = Promise.resolve();
 
 /** Debounce timer for requestReconcile(). */
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+
+/**
+ * Timestamp of Patina's last colorCustomizations write. Used to
+ * suppress the resulting config change event and avoid triggering
+ * a redundant reconcile. The event fires asynchronously after the
+ * write resolves, so we use a time window instead of a flag.
+ */
+let lastSelfWriteTime = 0;
 
 /** Returns true if this generation has been superseded. */
 function isStale(gen: number): boolean {
@@ -136,6 +163,20 @@ async function writeColorConfig(
   value: ColorCustomizations | undefined
 ): Promise<boolean> {
   if (isStale(gen)) return false;
+
+  // Re-read config to skip redundant writes. Phantom reconciles
+  // that recompute identical colors must not race with external
+  // changes to colorCustomizations. Normalize empty objects to
+  // undefined since VS Code returns {} (Proxy) for cleared config.
+  const raw = vscode.workspace
+    .getConfiguration()
+    .get<ColorCustomizations>('workbench.colorCustomizations');
+  const current = raw && Object.keys(raw).length > 0 ? raw : undefined;
+  const normalized = value && Object.keys(value).length > 0 ? value : undefined;
+  if (shallowEqualRecords(current, normalized)) {
+    return !isStale(gen);
+  }
+
   try {
     const config = vscode.workspace.getConfiguration();
     await config.update(
@@ -143,6 +184,7 @@ async function writeColorConfig(
       value,
       vscode.ConfigurationTarget.Workspace
     );
+    lastSelfWriteTime = Date.now();
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error('[Patina] Failed to write color customizations:', err);
@@ -159,6 +201,13 @@ async function clearTintColors(gen: number): Promise<void> {
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
+
+  // Don't remove colors that Patina doesn't own.
+  if (hasPatinaColorsWithoutMarker(existing)) {
+    await resetCachedState();
+    return;
+  }
+
   const remaining = removePatinaColors(existing);
   if (await writeColorConfig(gen, remaining)) {
     await resetCachedState();
@@ -322,6 +371,16 @@ export async function activate(context: vscode.ExtensionContext) {
       requestReconcile({ force: true });
     }),
     vscode.workspace.onDidChangeConfiguration((e) => {
+      // React to external colorCustomizations changes so a fresh
+      // reconcile supersedes any stale pending one. Skip events
+      // caused by Patina's own writes (within 250ms) to avoid
+      // redundant reconciles during rapid toggling.
+      if (e.affectsConfiguration('workbench.colorCustomizations')) {
+        if (Date.now() - lastSelfWriteTime > 250) {
+          requestReconcile();
+        }
+        return;
+      }
       // Handle VS Code theme changes
       if (
         e.affectsConfiguration('workbench.colorTheme') ||
@@ -349,8 +408,6 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
-      // Debounce handles race condition where activeColorTheme
-      // fires before workbench.colorTheme config is updated
       requestReconcile();
     })
   );

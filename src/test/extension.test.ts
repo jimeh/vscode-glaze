@@ -340,11 +340,14 @@ suite('Extension Test Suite', () => {
 
   suite('patina.disableGlobally', () => {
     let originalColorCustomizations: unknown;
-    let originalEnabled: boolean | undefined;
+    let originalEnabledGlobal: boolean | undefined;
+    let originalEnabledWorkspace: boolean | undefined;
 
     suiteSetup(async () => {
       const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const inspection = patinaConfig.inspect<boolean>('enabled');
+      originalEnabledGlobal = inspection?.globalValue;
+      originalEnabledWorkspace = inspection?.workspaceValue;
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -357,8 +360,13 @@ suite('Extension Test Suite', () => {
       const patinaConfig = vscode.workspace.getConfiguration('patina');
       await patinaConfig.update(
         'enabled',
-        originalEnabled,
+        originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig.update(
+        'enabled',
+        originalEnabledWorkspace,
+        vscode.ConfigurationTarget.Workspace
       );
 
       if (!vscode.workspace.workspaceFolders?.length) {
@@ -419,6 +427,60 @@ suite('Extension Test Suite', () => {
           assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
         }
       }
+    });
+
+    test('preserves unowned managed keys', async function () {
+      this.timeout(8000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Start from clean colorCustomizations so applyTintColors
+      // isn't blocked by leftover unowned keys from prior tests.
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Clear workspace override so global controls state
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Enable Patina via command and wait for colors
+      await vscode.commands.executeCommand('patina.enableGlobally');
+      await waitForColorKey(PATINA_ACTIVE_KEY);
+
+      // Replace colorCustomizations with managed keys but NO
+      // marker, simulating a user or another tool owning them.
+      const seededColors: Record<string, string> = {
+        'titleBar.activeBackground': '#112233',
+        'editor.background': '#aabbcc',
+      };
+      await config.update(
+        'workbench.colorCustomizations',
+        seededColors,
+        vscode.ConfigurationTarget.Workspace
+      );
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      // Disable via command
+      await vscode.commands.executeCommand('patina.disableGlobally');
+      await new Promise((resolve) => setTimeout(resolve, 400));
+
+      const inspection = config.inspect<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.deepStrictEqual(
+        inspection?.workspaceValue,
+        seededColors,
+        'disableGlobally should preserve unowned managed keys'
+      );
     });
   });
 
@@ -768,6 +830,7 @@ suite('Extension Test Suite', () => {
   });
 
   suite('patina.disableWorkspace', () => {
+    let originalEnabledGlobal: boolean | undefined;
     let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
 
@@ -777,6 +840,7 @@ suite('Extension Test Suite', () => {
       }
       const config = vscode.workspace.getConfiguration('patina');
       const inspection = config.inspect<boolean>('enabled');
+      originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
@@ -790,6 +854,11 @@ suite('Extension Test Suite', () => {
         return;
       }
       const config = vscode.workspace.getConfiguration('patina');
+      await config.update(
+        'enabled',
+        originalEnabledGlobal,
+        vscode.ConfigurationTarget.Global
+      );
       await config.update(
         'enabled',
         originalEnabledWorkspace,
@@ -825,6 +894,58 @@ suite('Extension Test Suite', () => {
         inspection?.workspaceValue,
         false,
         'patina.enabled at workspace scope should be false'
+      );
+    });
+
+    test('preserves unowned managed keys', async function () {
+      this.timeout(8000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Start from clean colorCustomizations so applyTintColors
+      // isn't blocked by leftover unowned keys from prior tests.
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Enable via workspace override and wait for colors
+      const patinaConfig = vscode.workspace.getConfiguration('patina');
+      await patinaConfig.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+      await vscode.commands.executeCommand('patina.enableWorkspace');
+      await waitForColorKey(PATINA_ACTIVE_KEY);
+
+      // Replace colorCustomizations with managed keys but NO
+      // marker, simulating a user or another tool owning them.
+      const seededColors: Record<string, string> = {
+        'titleBar.activeBackground': '#112233',
+        'editor.background': '#aabbcc',
+      };
+      await config.update(
+        'workbench.colorCustomizations',
+        seededColors,
+        vscode.ConfigurationTarget.Workspace
+      );
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      // Disable via workspace command
+      await vscode.commands.executeCommand('patina.disableWorkspace');
+      await new Promise((resolve) => setTimeout(resolve, 400));
+
+      const inspection = config.inspect<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.deepStrictEqual(
+        inspection?.workspaceValue,
+        seededColors,
+        'disableWorkspace should preserve unowned managed keys'
       );
     });
   });
@@ -1077,6 +1198,65 @@ suite('Extension Test Suite', () => {
       assert.ok(
         'titleBar.activeBackground' in colors,
         'should have titleBar.activeBackground'
+      );
+    });
+
+    test('does not remove managed keys set without patina.active marker', async function () {
+      this.timeout(8000);
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      // Enable Patina and wait for it to apply colors
+      const patinaConfig2 = vscode.workspace.getConfiguration('patina');
+      await patinaConfig2.update(
+        'enabled',
+        true,
+        vscode.ConfigurationTarget.Global
+      );
+      await patinaConfig2.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+      await waitForColorKey(PATINA_ACTIVE_KEY);
+
+      // Replace colorCustomizations with managed keys but NO
+      // marker, simulating a user or another tool owning them.
+      const seededColors: Record<string, string> = {
+        'titleBar.activeBackground': '#112233',
+        'editor.background': '#aabbcc',
+      };
+      const config = vscode.workspace.getConfiguration();
+      await config.update(
+        'workbench.colorCustomizations',
+        seededColors,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      // Wait for the config-change reconcile to notice the
+      // tampered colors before we disable.
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      // Disable Patina — this triggers clearTintColors, which
+      // must skip removal because it doesn't own the keys.
+      await patinaConfig2.update(
+        'enabled',
+        false,
+        vscode.ConfigurationTarget.Global
+      );
+
+      // Wait for the disable-triggered reconcile to settle
+      await new Promise((resolve) => setTimeout(resolve, 400));
+
+      // Verify the managed keys are still present and unchanged
+      const inspection = config.inspect<Record<string, string>>(
+        'workbench.colorCustomizations'
+      );
+      assert.deepStrictEqual(
+        inspection?.workspaceValue,
+        seededColors,
+        'managed keys without marker should be preserved on disable'
       );
     });
   });
@@ -1492,7 +1672,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Final state should be enabled with colors applied
-      const colors = await waitForColorCustomizations();
+      const colors = await waitForColorKey('titleBar.activeBackground');
       assert.ok(colors, 'colorCustomizations should be set');
       assert.ok(
         'titleBar.activeBackground' in colors,

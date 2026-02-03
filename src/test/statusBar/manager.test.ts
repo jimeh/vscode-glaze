@@ -287,6 +287,40 @@ suite('StatusBarManager', () => {
         `tooltip should warn about external changes, got: ${tip}`
       );
     });
+
+    test('shows icon only when customized but inactive', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: false,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorScheme: 'pastel',
+        seed: 0,
+        tintColors: undefined,
+        customizedOutsidePatina: true,
+      };
+
+      manager.update(state);
+      assert.strictEqual(
+        manager.item.text,
+        ICON,
+        'should show icon only when inactive, even if customized'
+      );
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Inactive'),
+        `tooltip should indicate inactive, got: ${tip}`
+      );
+      assert.ok(
+        !tip.includes('modified outside Patina'),
+        `tooltip should not warn about external changes when inactive, got: ${tip}`
+      );
+    });
   });
 
   suite('updateVisibility', () => {
