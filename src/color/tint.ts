@@ -153,15 +153,13 @@ export function computeBaseTintHex(
  * Ensures all blended keys shift hue in the same direction around
  * the color wheel.
  *
- * When theme backgrounds have slightly different hues, shortest-path
+ * When theme colors have slightly different hues, shortest-path
  * blending can send some elements clockwise and others counter-
  * clockwise, producing jarring mismatches (e.g., one element turns
  * green while the rest turn orange). This function detects the
  * majority blend direction among background colors and re-blends
- * any outliers to match. Foreground colors follow the direction
- * chosen for their element's background.
- *
- * If all directions already agree, the keys are returned unchanged.
+ * any key — background or foreground — whose natural direction
+ * disagrees with the majority.
  *
  * @param keys - Initial blended key details
  * @param hueOnlyFlags - Parallel array indicating hueOnly blending
@@ -174,8 +172,6 @@ function harmonizeHueDirections(
   // Collect hue blend directions for background keys that were
   // actually blended (have a theme color and non-zero factor).
   const bgDirections: Array<{
-    index: number;
-    element: ElementType;
     direction: 'cw' | 'ccw';
   }> = [];
 
@@ -191,43 +187,33 @@ function harmonizeHueDirections(
     const tintHue = hexToOklch(detail.tintHex).h;
     const themeHue = hexToOklch(detail.themeColor).h;
     bgDirections.push({
-      index: i,
-      element: detail.element,
       direction: getHueBlendDirection(tintHue, themeHue),
     });
   }
 
-  // Nothing to harmonize if fewer than 2 blended backgrounds.
-  if (bgDirections.length < 2) {
+  // Nothing to harmonize without at least one blended background.
+  if (bgDirections.length === 0) {
     return keys;
   }
 
   const cwCount = bgDirections.filter((d) => d.direction === 'cw').length;
   const ccwCount = bgDirections.length - cwCount;
 
-  // All backgrounds already agree — nothing to do.
-  if (cwCount === 0 || ccwCount === 0) {
-    return keys;
-  }
-
   // Pick majority direction; break ties toward clockwise for
   // deterministic results.
   const majorityDir: HueBlendDirection = cwCount >= ccwCount ? 'cw' : 'ccw';
 
-  // Build a set of elements whose backgrounds need re-blending.
-  const elementsToFix = new Set<ElementType>();
-  for (const bg of bgDirections) {
-    if (bg.direction !== majorityDir) {
-      elementsToFix.add(bg.element);
-    }
-  }
-
-  // Re-blend affected keys (both bg and fg for those elements).
+  // Re-blend any key whose natural direction disagrees.
   return keys.map((detail, i) => {
-    if (!elementsToFix.has(detail.element)) {
+    if (!detail.themeColor || detail.blendFactor <= 0) {
       return detail;
     }
-    if (!detail.themeColor || detail.blendFactor <= 0) {
+
+    const tintHue = hexToOklch(detail.tintHex).h;
+    const themeHue = hexToOklch(detail.themeColor).h;
+    const naturalDir = getHueBlendDirection(tintHue, themeHue);
+
+    if (naturalDir === majorityDir) {
       return detail;
     }
 

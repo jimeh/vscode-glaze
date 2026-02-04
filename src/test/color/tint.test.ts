@@ -6,7 +6,8 @@ import {
   computeTint,
   tintResultToStatusBarColors,
 } from '../../color/tint';
-import { hexToOklch } from '../../color/convert';
+import { hexToOklch, oklchToHex, maxChroma } from '../../color/convert';
+import { getHueBlendDirection } from '../../color/blend';
 import type { ColorScheme } from '../../config';
 import type { ThemeColors, ThemeType } from '../../theme';
 import { PATINA_MANAGED_KEYS } from '../../theme';
@@ -524,10 +525,10 @@ suite('computeTint hue harmonization', () => {
       for (const fg of fgs) {
         const fgHue = hueOf(fg.finalHex);
         const diff = Math.abs(hueDiff(bgHue, fgHue));
-        // Foregrounds have low chroma so hue can wobble more,
-        // but should still be within the same hemisphere.
+        // Foregrounds have low chroma so hue can wobble, but
+        // with harmonization they should stay within 60°.
         assert.ok(
-          diff < 90,
+          diff < 60,
           `${el} fg/bg hue mismatch: bg=${bgHue.toFixed(1)}° ` +
             `fg=${fgHue.toFixed(1)}° diff=${diff.toFixed(1)}°`
         );
@@ -549,7 +550,7 @@ suite('computeTint hue harmonization', () => {
     }
   });
 
-  test('no-op when all directions already agree', () => {
+  test('consistent when all background directions already agree', () => {
     // Use a hue far from the 180° boundary relative to
     // One Dark Pro's theme hues (~258-264°). Hue 0 gives
     // diff ~258-264 which is clearly > 180, so all CCW.
@@ -567,7 +568,7 @@ suite('computeTint hue harmonization', () => {
     );
     const hues = bgKeys.map((k) => hueOf(k.finalHex));
 
-    // All should still be consistent
+    // All backgrounds should still be consistent
     for (let i = 1; i < hues.length; i++) {
       const diff = Math.abs(hueDiff(hues[0], hues[i]));
       assert.ok(
@@ -575,6 +576,115 @@ suite('computeTint hue harmonization', () => {
         `Hues should agree at hue=0: ${bgKeys[0].key} ` +
           `(${hues[0].toFixed(1)}°) vs ${bgKeys[i].key} ` +
           `(${hues[i].toFixed(1)}°), diff=${diff.toFixed(1)}°`
+      );
+    }
+
+    // Foregrounds should also be harmonized with backgrounds
+    const elements = ['titleBar', 'statusBar', 'activityBar', 'sideBar'];
+    for (const el of elements) {
+      const bgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'background'
+      );
+      const fgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'foreground' && k.themeColor
+      );
+      if (bgs.length === 0 || fgs.length === 0) continue;
+      const bgHue = hueOf(bgs[0].finalHex);
+      for (const fg of fgs) {
+        const fgHue = hueOf(fg.finalHex);
+        const diff = Math.abs(hueDiff(bgHue, fgHue));
+        assert.ok(
+          diff < 90,
+          `${el} fg/bg hue mismatch at hue=0: ` +
+            `bg=${bgHue.toFixed(1)}° fg=${fgHue.toFixed(1)}° ` +
+            `diff=${diff.toFixed(1)}°`
+        );
+      }
+    }
+  });
+
+  test('foreground harmonized when backgrounds unanimously agree', () => {
+    // Backgrounds at hue ~258-264° with baseHue=0 all blend CCW
+    // (diff > 180). Construct foregrounds with a hue that would
+    // naturally blend CW (diff < 180) to verify they get
+    // re-blended to match the background majority (CCW).
+    //
+    // Use a bright foreground at hue ~90° (green-ish). With a
+    // tint hue near 0°, shortest-path blending would go CW
+    // (0 → 90), but backgrounds unanimously go CCW.
+    const fgAtHue90 = oklchToHex({
+      l: 0.75,
+      c: maxChroma(0.75, 90) * 0.4,
+      h: 90,
+    });
+
+    const colorsWithCwForeground: ThemeColors = {
+      // Backgrounds: all hue ~260°, will blend CCW from baseHue=0
+      'editor.background': '#282C34',
+      'titleBar.activeBackground': '#282C34',
+      'titleBar.inactiveBackground': '#282C34',
+      'activityBar.background': '#282C34',
+      'statusBar.background': '#21252B',
+      'sideBar.background': '#21252B',
+      'sideBarSectionHeader.background': '#282C34',
+      // Foregrounds: hue ~90°, would naturally blend CW from ~0°
+      'titleBar.activeForeground': fgAtHue90,
+      'titleBar.inactiveForeground': fgAtHue90,
+      'activityBar.foreground': fgAtHue90,
+      'statusBar.foreground': fgAtHue90,
+      'sideBar.foreground': fgAtHue90,
+      'sideBarSectionHeader.foreground': fgAtHue90,
+    };
+
+    const result = computeTint({
+      baseHue: 0,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorScheme: 'pastel',
+      themeColors: colorsWithCwForeground,
+      themeBlendFactor: 0.35,
+    });
+
+    // Verify backgrounds are unanimously one direction
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+    const bgHues = bgKeys.map((k) => hueOf(k.finalHex));
+    for (let i = 1; i < bgHues.length; i++) {
+      const diff = Math.abs(hueDiff(bgHues[0], bgHues[i]));
+      assert.ok(diff < 30, `Background hues should agree`);
+    }
+
+    // Verify foregrounds are harmonized with background direction.
+    // Without harmonization the fg hue would go CW (~45-90°),
+    // with harmonization it should go CCW (toward ~300-350°).
+    const fgKeys = result.keys.filter(
+      (k) => k.colorType === 'foreground' && k.themeColor && k.blendFactor > 0
+    );
+    assert.ok(fgKeys.length > 0, 'Should have blended foregrounds');
+
+    for (const fg of fgKeys) {
+      const tintHue = hexToOklch(fg.tintHex).h;
+      const themeHue = hexToOklch(fg.themeColor!).h;
+      const naturalDir = getHueBlendDirection(tintHue, themeHue);
+      const fgHue = hueOf(fg.finalHex);
+
+      // Natural direction should be CW (the opposite of bg)
+      assert.strictEqual(
+        naturalDir,
+        'cw',
+        `${fg.key} should naturally blend CW ` +
+          `(tint=${tintHue.toFixed(1)}° theme=${themeHue.toFixed(1)}°)`
+      );
+
+      // After harmonization, fg should be closer to the bg hue
+      // range (CCW side, ~300-360°) rather than the CW side (~45-90°)
+      const diffFromBg = Math.abs(hueDiff(bgHues[0], fgHue));
+      assert.ok(
+        diffFromBg < 90,
+        `${fg.key} should be harmonized with backgrounds: ` +
+          `fg=${fgHue.toFixed(1)}° bg=${bgHues[0].toFixed(1)}° ` +
+          `diff=${diffFromBg.toFixed(1)}°`
       );
     }
   });
