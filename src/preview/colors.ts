@@ -3,6 +3,7 @@ import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { TintTarget } from '../config';
 import type {
   ElementColors,
+  HarmonyPreview,
   StylePreview,
   StylePreviewColors,
   WorkspacePreview,
@@ -15,7 +16,11 @@ import {
 } from '../color/styles';
 import type { StyleResolveContext } from '../color/styles';
 import type { ColorHarmony } from '../color/harmony';
-import { HARMONY_CONFIGS } from '../color/harmony';
+import {
+  ALL_COLOR_HARMONIES,
+  COLOR_HARMONY_LABELS,
+  HARMONY_CONFIGS,
+} from '../color/harmony';
 import { hexToOklch, oklchToHex } from '../color/convert';
 import {
   blendWithThemeOklch,
@@ -204,6 +209,35 @@ export function generateStylePreview(
  */
 export function generateAllStylePreviews(themeType: ThemeType): StylePreview[] {
   return ALL_COLOR_STYLES.map((s) => generateStylePreview(s, themeType));
+}
+
+/**
+ * Generates preview data for a single color harmony.
+ */
+export function generateHarmonyPreview(
+  harmony: ColorHarmony,
+  style: ColorStyle,
+  themeType: ThemeType
+): HarmonyPreview {
+  return {
+    harmony,
+    label: COLOR_HARMONY_LABELS[harmony],
+    hueColors: SAMPLE_HUES.map((hue) =>
+      generateColorsAtHue(style, themeType, hue, harmony)
+    ),
+  };
+}
+
+/**
+ * Generates preview data for all color harmonies.
+ */
+export function generateAllHarmonyPreviews(
+  style: ColorStyle,
+  themeType: ThemeType
+): HarmonyPreview[] {
+  return ALL_COLOR_HARMONIES.map((h) =>
+    generateHarmonyPreview(h, style, themeType)
+  );
 }
 
 /**

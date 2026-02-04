@@ -10,7 +10,11 @@ import {
 } from '../config';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
-import { generateAllStylePreviews, generateWorkspacePreview } from './colors';
+import {
+  generateAllHarmonyPreviews,
+  generateAllStylePreviews,
+  generateWorkspacePreview,
+} from './colors';
 import { generatePreviewHtml } from './html';
 import { BaseWebviewPanel } from '../webview/panel';
 
@@ -102,11 +106,15 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
         })
       : undefined;
 
+    const harmonies = generateAllHarmonyPreviews(currentStyle, themeType);
+
     return {
       themeType,
       currentStyle,
+      currentHarmony,
       workspacePreview,
       styles,
+      harmonies,
     };
   }
 
@@ -134,6 +142,28 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
 
         await config.update('tint.colorStyle', message.style, target);
         // Update will happen via config change listener
+        break;
+      }
+      case 'selectHarmony': {
+        const harmonyConfig = vscode.workspace.getConfiguration('patina');
+        const harmonyInspection = harmonyConfig.inspect('tint.colorHarmony');
+
+        let harmonyTarget: vscode.ConfigurationTarget;
+        if (harmonyInspection?.workspaceValue !== undefined) {
+          harmonyTarget = vscode.ConfigurationTarget.Workspace;
+        } else if (harmonyInspection?.globalValue !== undefined) {
+          harmonyTarget = vscode.ConfigurationTarget.Global;
+        } else {
+          harmonyTarget = vscode.workspace.workspaceFolders
+            ? vscode.ConfigurationTarget.Workspace
+            : vscode.ConfigurationTarget.Global;
+        }
+
+        await harmonyConfig.update(
+          'tint.colorHarmony',
+          message.harmony,
+          harmonyTarget
+        );
         break;
       }
       case 'changeThemeType': {

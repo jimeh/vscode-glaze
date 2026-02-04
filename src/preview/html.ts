@@ -1,6 +1,11 @@
 import type { ThemeType } from '../theme';
 import type { TintTarget } from '../config';
-import type { PreviewState, StylePreview, StylePreviewColors } from './types';
+import type {
+  HarmonyPreview,
+  PreviewState,
+  StylePreview,
+  StylePreviewColors,
+} from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
 import { assertHex, escapeHtml } from '../webview';
@@ -208,6 +213,55 @@ function generateStylesTable(state: PreviewState): string {
 }
 
 /**
+ * Generates a single harmony row.
+ */
+function generateHarmonyRow(
+  harmony: HarmonyPreview,
+  isCurrent: boolean
+): string {
+  const currentClass = isCurrent ? 'current' : '';
+  const currentBadge = isCurrent ? '<span class="current-badge">*</span>' : '';
+
+  const hueCells = harmony.hueColors
+    .map((colors) => `<td class="hue-cell">${generateSwatch(colors)}</td>`)
+    .join('\n');
+
+  return `
+    <tr class="harmony-row ${currentClass}" data-harmony="${harmony.harmony}">
+      <td class="style-name">${harmony.label}${currentBadge}</td>
+      ${hueCells}
+    </tr>
+  `;
+}
+
+/**
+ * Generates the color harmonies table.
+ */
+function generateHarmoniesTable(state: PreviewState): string {
+  const hueHeaders = SAMPLE_HUES.map(
+    (hue) => `<th class="hue-header">${HUE_LABELS[hue]}</th>`
+  ).join('\n');
+
+  const harmonyRows = state.harmonies
+    .map((h) => generateHarmonyRow(h, h.harmony === state.currentHarmony))
+    .join('\n');
+
+  return `
+    <table class="styles-table">
+      <thead>
+        <tr>
+          <th class="style-header">Harmony</th>
+          ${hueHeaders}
+        </tr>
+      </thead>
+      <tbody>
+        ${harmonyRows}
+      </tbody>
+    </table>
+  `;
+}
+
+/**
  * Preview-specific CSS (appended after the base body reset).
  */
 const PREVIEW_CSS = `
@@ -307,20 +361,24 @@ const PREVIEW_CSS = `
       color: var(--vscode-descriptionForeground);
     }
 
-    .style-row {
+    .style-row,
+    .harmony-row {
       cursor: pointer;
       transition: background 0.15s;
     }
 
-    .style-row:hover {
+    .style-row:hover,
+    .harmony-row:hover {
       background: var(--vscode-list-hoverBackground);
     }
 
-    .style-row.current {
+    .style-row.current,
+    .harmony-row.current {
       background: var(--vscode-list-activeSelectionBackground);
     }
 
-    .style-row.current:hover {
+    .style-row.current:hover,
+    .harmony-row.current:hover {
       background: var(--vscode-list-activeSelectionBackground);
     }
 
@@ -364,8 +422,20 @@ const PREVIEW_CSS = `
       vertical-align: middle;
     }
 
+    .section-heading {
+      margin: 16px 0 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--vscode-foreground);
+    }
+
+    .section-heading:first-of-type {
+      margin-top: 0;
+    }
+
     .hint {
-      margin-top: 16px;
+      margin-top: 8px;
+      margin-bottom: 16px;
       font-size: 12px;
       color: var(--vscode-descriptionForeground);
     }`;
@@ -389,6 +459,14 @@ const PREVIEW_SCRIPT = `const vscode = acquireVsCodeApi();
           const style = row.dataset.style;
           vscode.postMessage({ type: 'selectStyle', style });
         });
+      });
+
+      // Harmony row click handler
+      document.querySelectorAll('.harmony-row').forEach(row => {
+        row.addEventListener('click', () => {
+          const harmony = row.dataset.harmony;
+          vscode.postMessage({ type: 'selectHarmony', harmony });
+        });
       });`;
 
 /**
@@ -402,6 +480,7 @@ export function generatePreviewHtml(
   const themeTabs = generateThemeTabs(state.themeType);
   const workspaceSection = generateWorkspaceSection(state);
   const stylesTable = generateStylesTable(state);
+  const harmoniesTable = generateHarmoniesTable(state);
 
   return renderWebviewHtml({
     title: 'Patina Color Preview',
@@ -410,8 +489,12 @@ export function generatePreviewHtml(
     css: PREVIEW_CSS,
     body: `${themeTabs}
   ${workspaceSection}
+  <h3 class="section-heading">Color Style</h3>
   ${stylesTable}
-  <p class="hint">Click a row to apply that color style.</p>`,
+  <p class="hint">Click a row to apply that color style.</p>
+  <h3 class="section-heading">Color Harmony</h3>
+  ${harmoniesTable}
+  <p class="hint">Click a row to apply that color harmony.</p>`,
     script: PREVIEW_SCRIPT,
   });
 }

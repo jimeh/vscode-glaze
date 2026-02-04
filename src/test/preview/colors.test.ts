@@ -3,9 +3,12 @@ import {
   SAMPLE_HUES,
   generateStylePreview,
   generateAllStylePreviews,
+  generateHarmonyPreview,
+  generateAllHarmonyPreviews,
   generateWorkspacePreview,
 } from '../../preview/colors';
 import { ALL_COLOR_STYLES } from '../../color/styles';
+import { ALL_COLOR_HARMONIES } from '../../color/harmony';
 import type { ThemeType } from '../../theme';
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
@@ -145,6 +148,95 @@ suite('generateAllStylePreviews', () => {
         previews.length,
         ALL_COLOR_STYLES.length,
         `Should return ${ALL_COLOR_STYLES.length} previews for ${themeType}`
+      );
+    }
+  });
+});
+
+suite('generateHarmonyPreview', () => {
+  test('returns preview with correct harmony name', () => {
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      const preview = generateHarmonyPreview(harmony, 'pastel', 'dark');
+      assert.strictEqual(preview.harmony, harmony);
+    }
+  });
+
+  test('returns preview with display label', () => {
+    const preview = generateHarmonyPreview('uniform', 'pastel', 'dark');
+    assert.strictEqual(preview.label, 'Uniform');
+
+    const duotone = generateHarmonyPreview('duotone', 'pastel', 'dark');
+    assert.strictEqual(duotone.label, 'Duotone');
+  });
+
+  test('generates colors for each sample hue', () => {
+    const preview = generateHarmonyPreview('uniform', 'pastel', 'dark');
+    assert.strictEqual(
+      preview.hueColors.length,
+      SAMPLE_HUES.length,
+      'Should have colors for each sample hue'
+    );
+  });
+
+  test('each hue has colors for all three elements', () => {
+    const preview = generateHarmonyPreview('triadic', 'pastel', 'dark');
+    for (const hueColors of preview.hueColors) {
+      assert.ok(hueColors.titleBar, 'Should have titleBar colors');
+      assert.ok(hueColors.statusBar, 'Should have statusBar colors');
+      assert.ok(hueColors.activityBar, 'Should have activityBar colors');
+    }
+  });
+
+  test('all colors are valid hex values', () => {
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      for (const themeType of ALL_THEME_TYPES) {
+        const preview = generateHarmonyPreview(harmony, 'pastel', themeType);
+        for (const hueColors of preview.hueColors) {
+          assert.ok(
+            isValidHexColor(hueColors.titleBar.background),
+            `${harmony}/${themeType} titleBar.background should be valid hex`
+          );
+          assert.ok(
+            isValidHexColor(hueColors.titleBar.foreground),
+            `${harmony}/${themeType} titleBar.foreground should be valid hex`
+          );
+        }
+      }
+    }
+  });
+
+  test('different harmonies produce different colors for non-uniform', () => {
+    const uniform = generateHarmonyPreview('uniform', 'pastel', 'dark');
+    const triadic = generateHarmonyPreview('triadic', 'pastel', 'dark');
+
+    // Triadic applies ±120° offsets on titleBar and statusBar
+    assert.notStrictEqual(
+      uniform.hueColors[0].statusBar.background,
+      triadic.hueColors[0].statusBar.background,
+      'Uniform and triadic should produce different statusBar colors'
+    );
+  });
+});
+
+suite('generateAllHarmonyPreviews', () => {
+  test('returns previews for all harmonies', () => {
+    const previews = generateAllHarmonyPreviews('pastel', 'dark');
+    assert.strictEqual(previews.length, ALL_COLOR_HARMONIES.length);
+  });
+
+  test('harmonies are in correct order', () => {
+    const previews = generateAllHarmonyPreviews('pastel', 'dark');
+    const harmonyNames = previews.map((p) => p.harmony);
+    assert.deepStrictEqual(harmonyNames, [...ALL_COLOR_HARMONIES]);
+  });
+
+  test('works with all theme types', () => {
+    for (const themeType of ALL_THEME_TYPES) {
+      const previews = generateAllHarmonyPreviews('pastel', themeType);
+      assert.strictEqual(
+        previews.length,
+        ALL_COLOR_HARMONIES.length,
+        `Should return ${ALL_COLOR_HARMONIES.length} previews for ${themeType}`
       );
     }
   });

@@ -1,4 +1,5 @@
 import type { ColorStyle, TintTarget } from '../config';
+import type { ColorHarmony } from '../color/harmony';
 import type { ThemeType } from '../theme';
 
 /**
@@ -31,6 +32,18 @@ export interface StylePreview {
 }
 
 /**
+ * Preview data for a single color harmony.
+ */
+export interface HarmonyPreview {
+  /** Harmony identifier */
+  harmony: ColorHarmony;
+  /** Display label */
+  label: string;
+  /** Colors for each sample hue */
+  hueColors: StylePreviewColors[];
+}
+
+/**
  * Preview data for the current workspace.
  */
 export interface WorkspacePreview {
@@ -56,8 +69,12 @@ export interface PreviewState {
   currentStyle: ColorStyle;
   /** Current workspace preview (if available) */
   workspacePreview?: WorkspacePreview;
+  /** Currently active color harmony */
+  currentHarmony: ColorHarmony;
   /** Preview data for all styles */
   styles: StylePreview[];
+  /** Preview data for all harmonies */
+  harmonies: HarmonyPreview[];
 }
 
 /**
@@ -65,4 +82,5 @@ export interface PreviewState {
  */
 export type PreviewMessage =
   | { type: 'selectStyle'; style: ColorStyle }
+  | { type: 'selectHarmony'; harmony: ColorHarmony }
   | { type: 'changeThemeType'; themeType: ThemeType };
