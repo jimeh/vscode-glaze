@@ -243,16 +243,7 @@ suite('computeStatusColors', () => {
   });
 
   test('works with all color schemes', () => {
-    const schemes = [
-      'pastel',
-      'vibrant',
-      'muted',
-      'tinted',
-      'duotone',
-      'undercurrent',
-      'analogous',
-      'neon',
-    ] as const;
+    const schemes = ['pastel', 'vibrant', 'muted', 'tinted', 'neon'] as const;
 
     for (const colorScheme of schemes) {
       const colors = computeStatusColors(makeColorsOptions({ colorScheme }));

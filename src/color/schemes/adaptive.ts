@@ -17,7 +17,8 @@ const pastelResolver = staticResolver(pastelScheme);
  *
  * For each palette key:
  * - If the theme defines a color: extracts L/C from the theme color
- *   in OKLCH space, then replaces the hue with the tint's base hue.
+ *   in OKLCH space, then replaces the hue with the tint's base hue
+ *   (plus any harmony hue offset).
  * - If the theme color is missing: falls back to pastel scheme values.
  * - If no theme data at all: falls back to pastel entirely.
  *
@@ -46,9 +47,8 @@ export const adaptiveResolver: SchemeResolver = (themeType, key, context) => {
     return pastelResolver(themeType, key, context);
   }
 
-  // Use pastel's hueOffset for consistency with hue-offset schemes
-  const pastelConfig = pastelScheme[themeType][key];
-  const elementHue = applyHueOffset(context.baseHue, pastelConfig.hueOffset);
+  // Apply harmony hue offset from the resolve context
+  const elementHue = applyHueOffset(context.baseHue, context.hueOffset);
 
   return {
     tintOklch: {

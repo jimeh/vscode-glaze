@@ -154,6 +154,7 @@ export class StatusBarManager implements vscode.Disposable {
         tintType,
         themeAutoDetected,
         colorScheme,
+        colorHarmony,
         tintColors,
       } = state;
 
@@ -169,6 +170,10 @@ export class StatusBarManager implements vscode.Disposable {
       // Color scheme
       const schemeLabel = capitalizeFirst(colorScheme);
       md.appendMarkdown(`**Color Scheme:** ${schemeLabel}\n\n`);
+
+      // Color harmony
+      const harmonyLabel = capitalizeFirst(colorHarmony);
+      md.appendMarkdown(`**Color Harmony:** ${harmonyLabel}\n\n`);
 
       // Seed
       md.appendMarkdown(`**Seed:** \`${state.seed}\`\n\n`);

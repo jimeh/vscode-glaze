@@ -1,4 +1,4 @@
-import type { ColorScheme, TintTarget } from '../config';
+import type { ColorHarmony, ColorScheme, TintTarget } from '../config';
 import type { ColorType, ElementType, PaletteKey, ThemeType } from '../theme';
 
 /**
@@ -47,6 +47,8 @@ export interface StatusGeneralInfo {
   osColorScheme: 'dark' | 'light' | undefined;
   /** Active color scheme */
   colorScheme: ColorScheme;
+  /** Active color harmony */
+  colorHarmony: ColorHarmony;
   /** Theme blend factor (0-1) */
   blendFactor: number;
   /** Per-target blend factor overrides */

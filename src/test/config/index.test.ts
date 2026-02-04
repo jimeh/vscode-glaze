@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
+  getColorHarmony,
   getColorScheme,
   getStatusBarEnabled,
   getThemeConfig,
@@ -1081,6 +1082,101 @@ suite('getColorScheme', () => {
     );
     const result = getColorScheme();
     assert.strictEqual(result, 'pastel');
+  });
+});
+
+suite('getColorHarmony', () => {
+  let originalColorHarmony: string | undefined;
+
+  suiteSetup(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    originalColorHarmony = config.get<string>('tint.colorHarmony');
+  });
+
+  suiteTeardown(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      originalColorHarmony,
+      vscode.ConfigurationTarget.Global
+    );
+  });
+
+  test('defaults to uniform when not configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'uniform');
+  });
+
+  test('returns uniform when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'uniform',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'uniform');
+  });
+
+  test('returns duotone when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'duotone',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'duotone');
+  });
+
+  test('returns undercurrent when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'undercurrent',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'undercurrent');
+  });
+
+  test('returns analogous when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'analogous',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'analogous');
+  });
+
+  test('returns triadic when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'triadic',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'triadic');
+  });
+
+  test('falls back to uniform for invalid harmony', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'invalid',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'uniform');
   });
 });
 

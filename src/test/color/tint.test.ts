@@ -8,7 +8,7 @@ import {
 } from '../../color/tint';
 import { hexToOklch, oklchToHex, maxChroma } from '../../color/convert';
 import { getHueBlendDirection } from '../../color/blend';
-import type { ColorScheme } from '../../config';
+import type { ColorHarmony, ColorScheme } from '../../config';
 import type { ThemeColors, ThemeType } from '../../theme';
 import { PATINA_MANAGED_KEYS } from '../../theme';
 import { ALL_TARGETS } from '../helpers';
@@ -345,9 +345,6 @@ suite('computeTint', () => {
       'vibrant',
       'muted',
       'tinted',
-      'duotone',
-      'undercurrent',
-      'analogous',
       'neon',
       'adaptive',
     ];
@@ -368,6 +365,59 @@ suite('computeTint', () => {
         );
       }
     }
+  });
+
+  test('works with all color harmonies', () => {
+    const harmonies: ColorHarmony[] = [
+      'uniform',
+      'duotone',
+      'undercurrent',
+      'analogous',
+      'triadic',
+    ];
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+
+    for (const harmony of harmonies) {
+      const result = computeTint({
+        workspaceIdentifier: 'test',
+        targets: ALL_TARGETS,
+        themeType: 'dark',
+        colorHarmony: harmony,
+      });
+      for (const detail of result.keys) {
+        assert.match(
+          detail.finalHex,
+          hexPattern,
+          `Invalid hex for ${detail.key} in harmony ${harmony}`
+        );
+      }
+    }
+  });
+
+  test('non-uniform harmony produces different hues for different elements', () => {
+    const result = computeTint({
+      baseHue: 100,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorHarmony: 'duotone',
+    });
+
+    const titleBarBg = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )!;
+    const activityBarBg = result.keys.find(
+      (k) => k.key === 'activityBar.background'
+    )!;
+
+    // Duotone: titleBar=0°, activityBar=180° — hues should differ
+    const titleBarHue = hexToOklch(titleBarBg.tintHex).h;
+    const activityBarHue = hexToOklch(activityBarBg.tintHex).h;
+
+    assert.notStrictEqual(
+      Math.round(titleBarHue),
+      Math.round(activityBarHue),
+      'Duotone should produce different hues for titleBar vs activityBar'
+    );
   });
 
   test('deterministic for same inputs', () => {

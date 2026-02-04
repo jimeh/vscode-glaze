@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import type { ThemeType } from '../theme';
 import type { PreviewMessage, PreviewState } from './types';
 import {
+  getColorHarmony,
   getColorScheme,
   getThemeConfig,
   getTintConfig,
@@ -78,6 +79,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
     const themeConfig = getThemeConfig();
     const themeContext = await getThemeContext(tintConfig.mode);
     const currentScheme = getColorScheme();
+    const currentHarmony = getColorHarmony();
 
     // Use manual selection if set, otherwise use detected theme type
     const themeType = this.selectedThemeType ?? themeContext.tintType;
@@ -91,6 +93,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
       ? generateWorkspacePreview({
           identifier,
           scheme: currentScheme,
+          harmony: currentHarmony,
           themeType,
           seed: tintConfig.seed,
           themeColors: themeContext.colors,

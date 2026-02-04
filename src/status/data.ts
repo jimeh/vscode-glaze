@@ -1,6 +1,6 @@
 import type { TintTarget } from '../config';
 import type { ThemeColors, ThemeType } from '../theme';
-import type { ColorScheme } from '../color';
+import type { ColorHarmony, ColorScheme } from '../color';
 import type {
   StatusColorDetail,
   StatusGeneralInfo,
@@ -8,6 +8,7 @@ import type {
 } from './types';
 import { computeBaseHue, computeTint } from '../color/tint';
 import {
+  getColorHarmony,
   getColorScheme,
   getThemeConfig,
   getTintConfig,
@@ -33,6 +34,8 @@ export interface ComputeStatusColorsOptions {
   baseHue: number;
   /** Active color scheme */
   colorScheme: ColorScheme;
+  /** Active color harmony */
+  colorHarmony?: ColorHarmony;
   /** Resolved theme type */
   themeType: ThemeType;
   /** Theme colors from the database, if available */
@@ -63,6 +66,7 @@ export function computeStatusColors(
   const {
     baseHue,
     colorScheme,
+    colorHarmony,
     themeType,
     themeColors,
     blendFactor,
@@ -75,6 +79,7 @@ export function computeStatusColors(
     targets,
     themeType,
     colorScheme,
+    colorHarmony,
     themeColors,
     themeBlendFactor: blendFactor,
     targetBlendFactors,
@@ -106,6 +111,7 @@ export async function buildStatusState(): Promise<StatusState> {
   const themeConfig = getThemeConfig();
   const themeContext = await getThemeContext(tintConfig.mode);
   const colorScheme = getColorScheme();
+  const colorHarmony = getColorHarmony();
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
 
@@ -115,6 +121,7 @@ export async function buildStatusState(): Promise<StatusState> {
   const colors = computeStatusColors({
     baseHue,
     colorScheme,
+    colorHarmony,
     themeType: themeContext.tintType,
     themeColors: themeContext.colors,
     blendFactor: themeConfig.blendFactor,
@@ -140,6 +147,7 @@ export async function buildStatusState(): Promise<StatusState> {
     themeColorsAvailable: themeContext.colors !== undefined,
     osColorScheme: await detectOsColorScheme(),
     colorScheme,
+    colorHarmony,
     blendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
     seed: tintConfig.seed,

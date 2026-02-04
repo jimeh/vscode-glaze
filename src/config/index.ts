@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { DEFAULT_BLEND_FACTOR } from './types';
 import type {
+  ColorHarmony,
   ColorScheme,
   MultiRootIdentifierSource,
   ThemeConfig,
@@ -11,9 +12,11 @@ import type {
   WorkspaceIdentifierSource,
 } from './types';
 import { DEFAULT_COLOR_SCHEME, isValidColorScheme } from '../color/schemes';
+import { DEFAULT_COLOR_HARMONY, isValidColorHarmony } from '../color/harmony';
 
 export { DEFAULT_BLEND_FACTOR } from './types';
 export type {
+  ColorHarmony,
   ColorScheme,
   MultiRootIdentifierSource,
   ThemeConfig,
@@ -108,6 +111,18 @@ export function getColorScheme(): ColorScheme {
   const config = vscode.workspace.getConfiguration('patina');
   const scheme = config.get<string>('tint.colorScheme', DEFAULT_COLOR_SCHEME);
   return isValidColorScheme(scheme) ? scheme : DEFAULT_COLOR_SCHEME;
+}
+
+/**
+ * Returns the configured color harmony.
+ */
+export function getColorHarmony(): ColorHarmony {
+  const config = vscode.workspace.getConfiguration('patina');
+  const harmony = config.get<string>(
+    'tint.colorHarmony',
+    DEFAULT_COLOR_HARMONY
+  );
+  return isValidColorHarmony(harmony) ? harmony : DEFAULT_COLOR_HARMONY;
 }
 
 /**

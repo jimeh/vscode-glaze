@@ -70,6 +70,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -99,6 +100,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -140,6 +142,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -169,6 +172,7 @@ suite('StatusBarManager', () => {
         tintType: 'light',
         themeAutoDetected: false,
         colorScheme: 'vibrant',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: undefined,
         customizedOutsidePatina: false,
@@ -189,6 +193,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'muted',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#00ff00',
@@ -215,6 +220,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -241,6 +247,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -273,6 +280,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: undefined,
         customizedOutsidePatina: true,
@@ -299,6 +307,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: undefined,
         customizedOutsidePatina: true,
@@ -380,6 +389,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 12345,
         tintColors: {
           baseTint: '#ff0000',
@@ -422,6 +432,7 @@ suite('StatusBarManager', () => {
           tintType,
           themeAutoDetected: true,
           colorScheme: 'pastel',
+          colorHarmony: 'uniform',
           seed: 0,
           tintColors: {
             baseTint: '#123456',
@@ -451,6 +462,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -485,6 +497,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: undefined,
         customizedOutsidePatina: true,
@@ -511,6 +524,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -551,6 +565,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -580,6 +595,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -608,6 +624,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -639,6 +656,7 @@ suite('StatusBarManager', () => {
         tintType: 'dark',
         themeAutoDetected: true,
         colorScheme: 'pastel',
+        colorHarmony: 'uniform',
         seed: 0,
         tintColors: {
           baseTint: '#ff0000',
@@ -665,24 +683,8 @@ suite('StatusBarManager', () => {
 
   suite('all color schemes', () => {
     const colorSchemes: Array<
-      | 'pastel'
-      | 'vibrant'
-      | 'muted'
-      | 'tinted'
-      | 'duotone'
-      | 'undercurrent'
-      | 'analogous'
-      | 'neon'
-    > = [
-      'pastel',
-      'vibrant',
-      'muted',
-      'tinted',
-      'duotone',
-      'undercurrent',
-      'analogous',
-      'neon',
-    ];
+      'pastel' | 'vibrant' | 'muted' | 'tinted' | 'neon'
+    > = ['pastel', 'vibrant', 'muted', 'tinted', 'neon'];
 
     for (const colorScheme of colorSchemes) {
       test(`shows color name for ${colorScheme} scheme`, async () => {
@@ -696,6 +698,7 @@ suite('StatusBarManager', () => {
           tintType: 'dark',
           themeAutoDetected: false,
           colorScheme,
+          colorHarmony: 'uniform',
           seed: 0,
           tintColors: {
             baseTint: '#abcdef',

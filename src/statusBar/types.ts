@@ -1,4 +1,4 @@
-import type { ColorScheme } from '../config';
+import type { ColorHarmony, ColorScheme } from '../config';
 import type { ThemeType } from '../theme';
 
 /**
@@ -41,6 +41,9 @@ export interface StatusBarState {
 
   /** The active color scheme. */
   colorScheme: ColorScheme;
+
+  /** The active color harmony. */
+  colorHarmony: ColorHarmony;
 
   /** Seed value used for tint calculation. */
   seed: number;

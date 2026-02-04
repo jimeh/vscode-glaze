@@ -42,25 +42,10 @@ export const COLOR_SCHEME_DEFINITIONS = {
     description: 'Very subtle color hints while retaining hue variation',
     order: 4,
   },
-  duotone: {
-    label: 'Duotone',
-    description: 'Base hue + complementary accent on activity bar',
-    order: 5,
-  },
-  undercurrent: {
-    label: 'Undercurrent',
-    description: 'Base hue + complementary accent on status bar',
-    order: 6,
-  },
-  analogous: {
-    label: 'Analogous',
-    description: 'Three adjacent hues for harmonious color transitions',
-    order: 7,
-  },
   adaptive: {
     label: 'Adaptive',
     description: "Preserves theme's lightness/chroma, shifts only the hue",
-    order: 8,
+    order: 5,
   },
 } as const satisfies Record<string, ColorSchemeDefinition>;
 

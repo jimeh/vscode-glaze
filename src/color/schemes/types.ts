@@ -14,8 +14,6 @@ export type ElementConfig = {
   lightness: number;
   /** Percentage of max in-gamut chroma (0-1) */
   chromaFactor: number;
-  /** Degrees to add to base hue (0-360), for multi-hue schemes */
-  hueOffset?: number;
 };
 
 /**
@@ -35,6 +33,8 @@ export interface SchemeResolveContext {
   readonly themeColors?: ThemeColors;
   /** Computed base hue for the workspace (0-359) */
   readonly baseHue: number;
+  /** Per-element hue offset from the color harmony (degrees) */
+  readonly hueOffset?: number;
 }
 
 /**

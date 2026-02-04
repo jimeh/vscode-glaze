@@ -33,6 +33,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       themeColorsAvailable: true,
       osColorScheme: 'dark',
       colorScheme: 'pastel',
+      colorHarmony: 'uniform',
       blendFactor: 0.35,
       targetBlendFactors: {},
       seed: 0,

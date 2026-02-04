@@ -123,9 +123,6 @@
             "pastel",
             "muted",
             "tinted",
-            "duotone",
-            "undercurrent",
-            "analogous",
             "adaptive"
           ],
           "enumItemLabels": [
@@ -134,9 +131,6 @@
             "Pastel",
             "Muted",
             "Tinted",
-            "Duotone",
-            "Undercurrent",
-            "Analogous",
             "Adaptive"
           ],
           "enumDescriptions": [
@@ -145,14 +139,38 @@
             "Soft, muted tones that blend gently with any theme",
             "Desaturated, subtle tones for minimal visual impact",
             "Very subtle color hints while retaining hue variation",
-            "Base hue + complementary hue split across UI elements",
-            "Base hue + complementary accent on status bar",
-            "Three adjacent hues for harmonious color transitions",
             "Preserves theme's lightness/chroma, shifts only the hue"
           ],
           "default": "pastel",
-          "description": "Color scheme for tinting: pastel (soft tones), vibrant (bold colors), muted (subtle), tinted (barely-there tints), duotone (complementary split), undercurrent (complementary accent on status bar), analogous (adjacent hues), neon (maximum glow), or adaptive (preserves theme colors, shifts hue).",
+          "description": "Controls the intensity and style of tint colors. Combine with Color Harmony to vary hue distribution across elements.",
           "order": 1
+        },
+        "patina.tint.colorHarmony": {
+          "type": "string",
+          "enum": [
+            "uniform",
+            "duotone",
+            "undercurrent",
+            "analogous",
+            "triadic"
+          ],
+          "enumItemLabels": [
+            "Uniform",
+            "Duotone",
+            "Undercurrent",
+            "Analogous",
+            "Triadic"
+          ],
+          "enumDescriptions": [
+            "Single hue across all elements",
+            "Complementary accent on activity and side bar",
+            "Complementary accent on status bar",
+            "Three adjacent hues spread across elements",
+            "Three evenly-spaced hues for maximum variation"
+          ],
+          "default": "uniform",
+          "description": "Controls how hues are distributed across UI elements. Uniform uses a single hue; other options spread hues across the color wheel.",
+          "order": 2
         },
         "patina.workspaceIdentifier.source": {
           "type": "string",

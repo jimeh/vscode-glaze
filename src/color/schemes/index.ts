@@ -16,14 +16,11 @@ export type {
 import type { ColorScheme } from './definitions';
 import type { SchemeConfig, SchemeResolver } from './types';
 import { adaptiveResolver } from './adaptive';
-import { analogousScheme } from './analogous';
-import { duotoneScheme } from './duotone';
 import { mutedScheme } from './muted';
 import { neonScheme } from './neon';
 import { pastelScheme } from './pastel';
 import { staticResolver } from './resolvers';
 import { tintedScheme } from './tinted';
-import { undercurrentScheme } from './undercurrent';
 import { vibrantScheme } from './vibrant';
 
 /**
@@ -38,9 +35,6 @@ export const STATIC_SCHEME_CONFIGS: Readonly<
   vibrant: vibrantScheme,
   muted: mutedScheme,
   tinted: tintedScheme,
-  duotone: duotoneScheme,
-  undercurrent: undercurrentScheme,
-  analogous: analogousScheme,
   neon: neonScheme,
 };
 
@@ -52,9 +46,6 @@ const SCHEME_RESOLVERS: Record<ColorScheme, SchemeResolver> = {
   vibrant: staticResolver(vibrantScheme),
   muted: staticResolver(mutedScheme),
   tinted: staticResolver(tintedScheme),
-  duotone: staticResolver(duotoneScheme),
-  undercurrent: staticResolver(undercurrentScheme),
-  analogous: staticResolver(analogousScheme),
   neon: staticResolver(neonScheme),
   adaptive: adaptiveResolver,
 };

@@ -14,6 +14,8 @@ import {
   getSchemeResolver,
 } from '../color/schemes';
 import type { SchemeResolveContext } from '../color/schemes';
+import type { ColorHarmony } from '../color/harmony';
+import { HARMONY_CONFIGS } from '../color/harmony';
 import { oklchToHex } from '../color/convert';
 import { blendWithThemeOklch, blendHueOnlyOklch } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
@@ -36,6 +38,7 @@ function generateElementColors(
   hue: number,
   bgKey: PaletteKey,
   fgKey: PaletteKey,
+  hueOffset: number,
   themeColors?: ThemeColors,
   blendFactor?: number
 ): ElementColors {
@@ -43,6 +46,7 @@ function generateElementColors(
   const context: SchemeResolveContext = {
     baseHue: hue,
     themeColors,
+    hueOffset,
   };
 
   const bgResult = resolver(themeType, bgKey, context);
@@ -87,10 +91,13 @@ function generateColorsAtHue(
   scheme: ColorScheme,
   themeType: ThemeType,
   hue: number,
+  harmony: ColorHarmony = 'uniform',
   themeColors?: ThemeColors,
   blendFactor?: number,
   targetBlendFactors?: Partial<Record<TintTarget, number>>
 ): SchemePreviewColors {
+  const harmonyConfig = HARMONY_CONFIGS[harmony];
+
   return {
     titleBar: generateElementColors(
       scheme,
@@ -98,6 +105,7 @@ function generateColorsAtHue(
       hue,
       'titleBar.activeBackground',
       'titleBar.activeForeground',
+      harmonyConfig.titleBar,
       themeColors,
       targetBlendFactors?.titleBar ?? blendFactor
     ),
@@ -107,6 +115,7 @@ function generateColorsAtHue(
       hue,
       'statusBar.background',
       'statusBar.foreground',
+      harmonyConfig.statusBar,
       themeColors,
       targetBlendFactors?.statusBar ?? blendFactor
     ),
@@ -116,6 +125,7 @@ function generateColorsAtHue(
       hue,
       'activityBar.background',
       'activityBar.foreground',
+      harmonyConfig.activityBar,
       themeColors,
       targetBlendFactors?.activityBar ?? blendFactor
     ),
@@ -155,6 +165,7 @@ export function generateAllSchemePreviews(
 export interface WorkspacePreviewOptions {
   identifier: string;
   scheme: ColorScheme;
+  harmony?: ColorHarmony;
   themeType: ThemeType;
   seed?: number;
   themeColors?: ThemeColors;
@@ -171,6 +182,7 @@ export function generateWorkspacePreview(
   const {
     identifier,
     scheme,
+    harmony = 'uniform',
     themeType,
     seed = 0,
     themeColors,
@@ -191,11 +203,12 @@ export function generateWorkspacePreview(
         scheme,
         themeType,
         hue,
+        harmony,
         themeColors,
         blendFactor,
         targetBlendFactors
       )
-    : generateColorsAtHue(scheme, themeType, hue);
+    : generateColorsAtHue(scheme, themeType, hue, harmony);
 
   return {
     identifier,

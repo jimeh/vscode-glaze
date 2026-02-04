@@ -130,6 +130,10 @@ function generateGeneralInfo(state: StatusState): string {
           <td>${escapeHtml(g.colorScheme)}</td>
         </tr>
         <tr>
+          <td class="info-label">Color Harmony</td>
+          <td>${escapeHtml(g.colorHarmony)}</td>
+        </tr>
+        <tr>
           <td class="info-label">Blend Factor</td>
           <td>${blendPct}%</td>
         </tr>${blendOverrideRows}

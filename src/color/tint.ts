@@ -1,5 +1,5 @@
 import { DEFAULT_BLEND_FACTOR } from '../config';
-import type { ColorScheme, TintTarget } from '../config';
+import type { ColorHarmony, ColorScheme, TintTarget } from '../config';
 import type {
   ThemeColors,
   ThemeType,
@@ -22,6 +22,7 @@ import {
 import type { HueBlendDirection } from './blend';
 import { getSchemeResolver } from './schemes';
 import type { SchemeResolveContext } from './schemes';
+import { HARMONY_CONFIGS } from './harmony';
 import type { TintColors } from '../statusBar/types';
 
 // ============================================================================
@@ -80,6 +81,8 @@ export interface ComputeTintOptions {
   themeType: ThemeType;
   /** Color scheme, default 'pastel' */
   colorScheme?: ColorScheme;
+  /** Color harmony for hue distribution, default 'uniform' */
+  colorHarmony?: ColorHarmony;
   /** Theme colors for blending, if available */
   themeColors?: ThemeColors;
   /** How much to blend toward theme background (0-1) */
@@ -261,6 +264,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     targets,
     themeType,
     colorScheme = 'pastel',
+    colorHarmony = 'uniform',
     themeColors,
     themeBlendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
@@ -282,7 +286,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const baseTintHex = computeBaseTintHex(baseHue, themeType);
   const targetSet = new Set<string>(targets);
   const resolver = getSchemeResolver(colorScheme);
-  const resolveContext: SchemeResolveContext = { themeColors, baseHue };
+  const harmonyConfig = HARMONY_CONFIGS[colorHarmony];
 
   // First pass: compute each key with shortest-path hue blending.
   // Track hueOnlyBlend per key for the harmonization re-blend.
@@ -292,6 +296,16 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     (key: PaletteKey): TintKeyDetail => {
       const def = COLOR_KEY_DEFINITIONS[key];
       const element = def.element as TintTarget;
+
+      // Look up harmony hue offset for this element
+      const hueOffset = harmonyConfig[def.element] ?? 0;
+
+      // Build per-key resolve context with harmony hue offset
+      const resolveContext: SchemeResolveContext = {
+        themeColors,
+        baseHue,
+        hueOffset,
+      };
 
       // Resolve tint color via scheme resolver
       const { tintOklch, hueOnlyBlend } = resolver(

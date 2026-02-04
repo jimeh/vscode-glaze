@@ -6,6 +6,8 @@ import {
 } from '../../color/schemes';
 import type { ColorScheme, SchemeConfig } from '../../color/schemes';
 import type { ThemeType } from '../../theme';
+import { ALL_COLOR_HARMONIES, HARMONY_CONFIGS } from '../../color/harmony';
+import type { ColorHarmony } from '../../color/harmony';
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
 
@@ -124,25 +126,6 @@ suite('STATIC_SCHEME_CONFIGS', () => {
       }
     }
   });
-
-  test('hueOffset values within valid range when defined', () => {
-    for (const scheme of STATIC_SCHEMES) {
-      const config = getConfig(scheme);
-      for (const themeType of ALL_THEME_TYPES) {
-        const themeConfig = config[themeType];
-        for (const key of ALL_PALETTE_KEYS) {
-          const { hueOffset } = themeConfig[key];
-          if (hueOffset !== undefined) {
-            assert.ok(
-              hueOffset >= -360 && hueOffset <= 360,
-              `${scheme}.${themeType}.${key}.hueOffset ` +
-                `(${hueOffset}) should be between -360 and 360`
-            );
-          }
-        }
-      }
-    }
-  });
 });
 
 suite('getSchemeResolver', () => {
@@ -187,6 +170,27 @@ suite('getSchemeResolver', () => {
           );
         }
       }
+    }
+  });
+
+  test('resolvers apply hue offset from context', () => {
+    for (const scheme of ALL_COLOR_SCHEMES) {
+      const resolver = getSchemeResolver(scheme);
+      const noOffset = resolver('dark', 'titleBar.activeBackground', {
+        baseHue: 100,
+        hueOffset: 0,
+      });
+      const withOffset = resolver('dark', 'titleBar.activeBackground', {
+        baseHue: 100,
+        hueOffset: 90,
+      });
+
+      // Hue with offset should differ from hue without
+      assert.notStrictEqual(
+        noOffset.tintOklch.h,
+        withOffset.tintOklch.h,
+        `${scheme} should apply hue offset from context`
+      );
     }
   });
 
@@ -306,133 +310,6 @@ suite('tinted scheme', () => {
             `got ${lightness}`
         );
       }
-    }
-  });
-});
-
-suite('duotone scheme', () => {
-  test('activity bar has 180° hue offset (complementary)', () => {
-    const config = getConfig('duotone');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['activityBar.background'].hueOffset,
-        180,
-        `duotone.${themeType}.activityBar.background ` +
-          `should have hueOffset=180`
-      );
-      assert.strictEqual(
-        themeConfig['activityBar.foreground'].hueOffset,
-        180,
-        `duotone.${themeType}.activityBar.foreground ` +
-          `should have hueOffset=180`
-      );
-    }
-  });
-
-  test('title bar and status bar have no hue offset', () => {
-    const config = getConfig('duotone');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['titleBar.activeBackground'].hueOffset,
-        undefined,
-        `duotone.${themeType}.titleBar.activeBackground ` +
-          `should have no offset`
-      );
-      assert.strictEqual(
-        themeConfig['statusBar.background'].hueOffset,
-        undefined,
-        `duotone.${themeType}.statusBar.background ` + `should have no offset`
-      );
-    }
-  });
-});
-
-suite('undercurrent scheme', () => {
-  test('status bar has 180° hue offset (complementary)', () => {
-    const config = getConfig('undercurrent');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['statusBar.background'].hueOffset,
-        180,
-        `undercurrent.${themeType}.statusBar.background ` +
-          `should have hueOffset=180`
-      );
-      assert.strictEqual(
-        themeConfig['statusBar.foreground'].hueOffset,
-        180,
-        `undercurrent.${themeType}.statusBar.foreground ` +
-          `should have hueOffset=180`
-      );
-    }
-  });
-
-  test('title bar and activity bar have no hue offset', () => {
-    const config = getConfig('undercurrent');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['titleBar.activeBackground'].hueOffset,
-        undefined,
-        `undercurrent.${themeType}.titleBar.activeBackground ` +
-          `should have no offset`
-      );
-      assert.strictEqual(
-        themeConfig['activityBar.background'].hueOffset,
-        undefined,
-        `undercurrent.${themeType}.activityBar.background ` +
-          `should have no offset`
-      );
-    }
-  });
-});
-
-suite('analogous scheme', () => {
-  test('title bar has -25° hue offset', () => {
-    const config = getConfig('analogous');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['titleBar.activeBackground'].hueOffset,
-        -25,
-        `analogous.${themeType}.titleBar.activeBackground ` +
-          `should have hueOffset=-25`
-      );
-    }
-  });
-
-  test('status bar has +25° hue offset', () => {
-    const config = getConfig('analogous');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['statusBar.background'].hueOffset,
-        25,
-        `analogous.${themeType}.statusBar.background ` +
-          `should have hueOffset=25`
-      );
-    }
-  });
-
-  test('activity bar has no hue offset (base hue)', () => {
-    const config = getConfig('analogous');
-
-    for (const themeType of ALL_THEME_TYPES) {
-      const themeConfig = config[themeType];
-      assert.strictEqual(
-        themeConfig['activityBar.background'].hueOffset,
-        undefined,
-        `analogous.${themeType}.activityBar.background ` +
-          `should have no offset`
-      );
     }
   });
 });
@@ -605,6 +482,140 @@ suite('adaptive scheme', () => {
         result.hueOnlyBlend,
         true,
         `${key} should use hue-only blending`
+      );
+    }
+  });
+
+  test('applies hue offset from context', () => {
+    const resolver = getSchemeResolver('adaptive');
+    const themeColors = {
+      'editor.background': '#1E1E1E',
+      'titleBar.activeBackground': '#3C3C3C',
+    };
+
+    const noOffset = resolver('dark', 'titleBar.activeBackground', {
+      baseHue: 100,
+      themeColors,
+      hueOffset: 0,
+    });
+    const withOffset = resolver('dark', 'titleBar.activeBackground', {
+      baseHue: 100,
+      themeColors,
+      hueOffset: 90,
+    });
+
+    assert.notStrictEqual(
+      noOffset.tintOklch.h,
+      withOffset.tintOklch.h,
+      'Adaptive should apply hue offset from context'
+    );
+  });
+});
+
+// ============================================================================
+// Color harmony configs
+// ============================================================================
+
+suite('HARMONY_CONFIGS', () => {
+  test('defines config for all harmonies', () => {
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      assert.ok(HARMONY_CONFIGS[harmony], `Config for ${harmony} should exist`);
+    }
+  });
+
+  test('all configs have offsets for all element types', () => {
+    const requiredElements = [
+      'editor',
+      'titleBar',
+      'statusBar',
+      'activityBar',
+      'sideBar',
+    ];
+
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      const config = HARMONY_CONFIGS[harmony];
+      for (const element of requiredElements) {
+        assert.strictEqual(
+          typeof (config as Record<string, number>)[element],
+          'number',
+          `${harmony} should define offset for ${element}`
+        );
+      }
+    }
+  });
+
+  test('uniform has all zero offsets', () => {
+    const config = HARMONY_CONFIGS['uniform'];
+    for (const [element, offset] of Object.entries(config)) {
+      assert.strictEqual(
+        offset,
+        0,
+        `uniform.${element} should be 0, got ${offset}`
+      );
+    }
+  });
+
+  test('duotone has 180° on activity and side bar', () => {
+    const config = HARMONY_CONFIGS['duotone'];
+    assert.strictEqual(config.activityBar, 180);
+    assert.strictEqual(config.sideBar, 180);
+    assert.strictEqual(config.titleBar, 0);
+    assert.strictEqual(config.statusBar, 0);
+  });
+
+  test('undercurrent has 180° on status bar', () => {
+    const config = HARMONY_CONFIGS['undercurrent'];
+    assert.strictEqual(config.statusBar, 180);
+    assert.strictEqual(config.titleBar, 0);
+    assert.strictEqual(config.activityBar, 0);
+    assert.strictEqual(config.sideBar, 0);
+  });
+
+  test('analogous has -25° on title bar and +25° on status bar', () => {
+    const config = HARMONY_CONFIGS['analogous'];
+    assert.strictEqual(config.titleBar, -25);
+    assert.strictEqual(config.statusBar, 25);
+    assert.strictEqual(config.activityBar, 0);
+    assert.strictEqual(config.sideBar, 0);
+  });
+
+  test('triadic has -120° on title bar and +120° on status bar', () => {
+    const config = HARMONY_CONFIGS['triadic'];
+    assert.strictEqual(config.titleBar, -120);
+    assert.strictEqual(config.statusBar, 120);
+    assert.strictEqual(config.activityBar, 0);
+    assert.strictEqual(config.sideBar, 0);
+  });
+
+  test('hue offsets within valid range (-360 to 360)', () => {
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      const config = HARMONY_CONFIGS[harmony];
+      for (const [element, offset] of Object.entries(config)) {
+        assert.ok(
+          offset >= -360 && offset <= 360,
+          `${harmony}.${element} offset (${offset}) ` +
+            `should be between -360 and 360`
+        );
+      }
+    }
+  });
+});
+
+suite('color harmony integration', () => {
+  test('non-uniform harmonies produce different hues per element', () => {
+    const nonUniform: ColorHarmony[] = [
+      'duotone',
+      'undercurrent',
+      'analogous',
+      'triadic',
+    ];
+
+    for (const harmony of nonUniform) {
+      const config = HARMONY_CONFIGS[harmony];
+      const offsets = new Set(Object.values(config));
+      assert.ok(
+        offsets.size > 1,
+        `${harmony} should have at least two distinct offsets`
       );
     }
   });
