@@ -1,30 +1,84 @@
 import type { OKLCH } from './types';
 import { hexToOklch, clampToGamut } from './convert';
 
+/** Direction for hue interpolation around the color wheel. */
+export type HueBlendDirection = 'cw' | 'ccw' | 'shortest';
+
 /**
  * Blends two hue values with proper wraparound handling.
  * Hue is circular (0-360), so we take the shortest path.
  */
 function blendHue(hue1: number, hue2: number, factor: number): number {
+  return blendHueDirected(hue1, hue2, factor, 'shortest');
+}
+
+/**
+ * Blends two hue values with an explicit direction around
+ * the color wheel.
+ *
+ * - `'shortest'` — take the shorter arc (default, original behavior).
+ * - `'cw'`       — always interpolate clockwise (increasing hue).
+ * - `'ccw'`      — always interpolate counter-clockwise.
+ */
+function blendHueDirected(
+  hue1: number,
+  hue2: number,
+  factor: number,
+  direction: HueBlendDirection
+): number {
   let diff = hue2 - hue1;
 
-  // Take the shortest path around the circle
+  switch (direction) {
+    case 'cw':
+      // Force clockwise (positive direction)
+      if (diff < 0) {
+        diff += 360;
+      }
+      break;
+    case 'ccw':
+      // Force counter-clockwise (negative direction)
+      if (diff > 0) {
+        diff -= 360;
+      }
+      break;
+    case 'shortest':
+    default:
+      // Take the shortest path around the circle
+      if (diff > 180) {
+        diff -= 360;
+      } else if (diff < -180) {
+        diff += 360;
+      }
+      break;
+  }
+
+  let result = hue1 + diff * factor;
+
+  // Normalize to [0, 360)
+  result = ((result % 360) + 360) % 360;
+
+  return result;
+}
+
+/**
+ * Determines which direction shortest-path hue blending would
+ * take from `tintHue` toward `themeHue`.
+ *
+ * Returns `'cw'` when the shortest arc goes clockwise (increasing
+ * hue), `'ccw'` when counter-clockwise. At exactly 180° the tie
+ * is broken toward `'cw'` for determinism.
+ */
+export function getHueBlendDirection(
+  tintHue: number,
+  themeHue: number
+): 'cw' | 'ccw' {
+  let diff = themeHue - tintHue;
   if (diff > 180) {
     diff -= 360;
   } else if (diff < -180) {
     diff += 360;
   }
-
-  let result = hue1 + diff * factor;
-
-  // Normalize to 0-360
-  if (result < 0) {
-    result += 360;
-  } else if (result >= 360) {
-    result -= 360;
-  }
-
-  return result;
+  return diff >= 0 ? 'cw' : 'ccw';
 }
 
 /**
@@ -113,6 +167,62 @@ export function blendHueOnlyOklch(
       l: tint.l,
       c: tint.c,
       h: blendHue(tint.h, theme.h, factor),
+    })
+  );
+}
+
+/**
+ * Like {@link blendWithThemeOklch} but forces a specific hue
+ * interpolation direction instead of taking the shortest path.
+ *
+ * @param tintOklch - The tint color in OKLCH
+ * @param themeBackgroundHex - The theme's background color as hex
+ * @param blendFactor - How much to blend toward the theme (0-1)
+ * @param hueDirection - Direction around the color wheel for hue
+ * @returns Blended OKLCH color (gamut-clamped)
+ */
+export function blendWithThemeOklchDirected(
+  tintOklch: OKLCH,
+  themeBackgroundHex: string,
+  blendFactor: number,
+  hueDirection: HueBlendDirection
+): OKLCH {
+  return blendOklchInternal(
+    tintOklch,
+    themeBackgroundHex,
+    blendFactor,
+    (tint, theme, factor) => ({
+      l: tint.l * (1 - factor) + theme.l * factor,
+      c: tint.c * (1 - factor) + theme.c * factor,
+      h: blendHueDirected(tint.h, theme.h, factor, hueDirection),
+    })
+  );
+}
+
+/**
+ * Like {@link blendHueOnlyOklch} but forces a specific hue
+ * interpolation direction instead of taking the shortest path.
+ *
+ * @param tintOklch - The tint color in OKLCH (L/C preserved)
+ * @param themeBackgroundHex - The theme's background color as hex
+ * @param blendFactor - How much to blend the hue toward theme (0-1)
+ * @param hueDirection - Direction around the color wheel for hue
+ * @returns Blended OKLCH color (gamut-clamped)
+ */
+export function blendHueOnlyOklchDirected(
+  tintOklch: OKLCH,
+  themeBackgroundHex: string,
+  blendFactor: number,
+  hueDirection: HueBlendDirection
+): OKLCH {
+  return blendOklchInternal(
+    tintOklch,
+    themeBackgroundHex,
+    blendFactor,
+    (tint, theme, factor) => ({
+      l: tint.l,
+      c: tint.c,
+      h: blendHueDirected(tint.h, theme.h, factor, hueDirection),
     })
   );
 }

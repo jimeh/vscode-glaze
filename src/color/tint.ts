@@ -11,8 +11,15 @@ import type {
 import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
-import { oklchToHex, maxChroma } from './convert';
-import { blendWithThemeOklch, blendHueOnlyOklch } from './blend';
+import { hexToOklch, oklchToHex, maxChroma } from './convert';
+import {
+  blendWithThemeOklch,
+  blendHueOnlyOklch,
+  blendWithThemeOklchDirected,
+  blendHueOnlyOklchDirected,
+  getHueBlendDirection,
+} from './blend';
+import type { HueBlendDirection } from './blend';
 import { getSchemeResolver } from './schemes';
 import type { SchemeResolveContext } from './schemes';
 import type { TintColors } from '../statusBar/types';
@@ -138,12 +145,111 @@ export function computeBaseTintHex(
   return oklchToHex({ l: lightness, c: chroma, h: baseHue });
 }
 
+// ============================================================================
+// Hue direction harmonization
+// ============================================================================
+
+/**
+ * Ensures all blended keys shift hue in the same direction around
+ * the color wheel.
+ *
+ * When theme colors have slightly different hues, shortest-path
+ * blending can send some elements clockwise and others counter-
+ * clockwise, producing jarring mismatches (e.g., one element turns
+ * green while the rest turn orange). This function detects the
+ * majority blend direction among background colors and re-blends
+ * any key — background or foreground — whose natural direction
+ * disagrees with the majority.
+ *
+ * @param keys - Initial blended key details
+ * @param hueOnlyFlags - Parallel array indicating hueOnly blending
+ * @returns Keys with harmonized hue directions
+ */
+function harmonizeHueDirections(
+  keys: readonly TintKeyDetail[],
+  hueOnlyFlags: readonly boolean[]
+): readonly TintKeyDetail[] {
+  // Collect hue blend directions for background keys that were
+  // actually blended (have a theme color and non-zero factor).
+  const bgDirections: Array<'cw' | 'ccw'> = [];
+
+  // Cache parsed OKLCH values so we don't re-parse in the
+  // re-blend pass below.
+  const parsedOklch: Array<{
+    tintOklch: ReturnType<typeof hexToOklch>;
+    themeOklch: ReturnType<typeof hexToOklch>;
+  } | null> = [];
+
+  for (let i = 0; i < keys.length; i++) {
+    const detail = keys[i];
+    if (!detail.themeColor || detail.blendFactor <= 0) {
+      parsedOklch.push(null);
+      continue;
+    }
+    const tintOklch = hexToOklch(detail.tintHex);
+    const themeOklch = hexToOklch(detail.themeColor);
+    parsedOklch.push({ tintOklch, themeOklch });
+    if (detail.colorType === 'background') {
+      bgDirections.push(getHueBlendDirection(tintOklch.h, themeOklch.h));
+    }
+  }
+
+  // Nothing to harmonize without at least one blended background.
+  if (bgDirections.length === 0) {
+    return keys;
+  }
+
+  const cwCount = bgDirections.filter((d) => d === 'cw').length;
+  const ccwCount = bgDirections.length - cwCount;
+
+  // Pick majority direction; break ties toward clockwise for
+  // deterministic results.
+  const majorityDir: HueBlendDirection = cwCount >= ccwCount ? 'cw' : 'ccw';
+
+  // Re-blend any key whose natural direction disagrees.
+  return keys.map((detail, i) => {
+    const cached = parsedOklch[i];
+    if (!cached) {
+      return detail;
+    }
+
+    const naturalDir = getHueBlendDirection(
+      cached.tintOklch.h,
+      cached.themeOklch.h
+    );
+
+    if (naturalDir === majorityDir) {
+      return detail;
+    }
+
+    const blendFn = hueOnlyFlags[i]
+      ? blendHueOnlyOklchDirected
+      : blendWithThemeOklchDirected;
+    const blendedOklch = blendFn(
+      cached.tintOklch,
+      detail.themeColor!,
+      detail.blendFactor,
+      majorityDir
+    );
+
+    return { ...detail, finalHex: oklchToHex(blendedOklch) };
+  });
+}
+
+// ============================================================================
+// Main computation
+// ============================================================================
+
 /**
  * Unified tint computation for all managed palette keys.
  *
  * Always computes every key; the `enabled` flag per-key indicates
  * whether the element's target is active. Consumers filter by
  * `enabled` as needed.
+ *
+ * After computing each key's blended color, a harmonization pass
+ * ensures all elements blend hue in the same direction around the
+ * color wheel. See {@link harmonizeHueDirections}.
  *
  * @param options - Computation options
  * @returns Full TintResult with base hue, base tint hex, and
@@ -178,6 +284,10 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const resolver = getSchemeResolver(colorScheme);
   const resolveContext: SchemeResolveContext = { themeColors, baseHue };
 
+  // First pass: compute each key with shortest-path hue blending.
+  // Track hueOnlyBlend per key for the harmonization re-blend.
+  const hueOnlyFlags: boolean[] = [];
+
   const keys: TintKeyDetail[] = PATINA_MANAGED_KEYS.map(
     (key: PaletteKey): TintKeyDetail => {
       const def = COLOR_KEY_DEFINITIONS[key];
@@ -189,6 +299,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
         key,
         resolveContext
       );
+      hueOnlyFlags.push(hueOnlyBlend);
       const tintHex = oklchToHex(tintOklch);
 
       // Look up theme color
@@ -222,7 +333,11 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     }
   );
 
-  return { baseHue, baseTintHex, keys };
+  // Second pass: harmonize hue blend directions so all elements
+  // shift the same way around the color wheel.
+  const harmonized = harmonizeHueDirections(keys, hueOnlyFlags);
+
+  return { baseHue, baseTintHex, keys: harmonized };
 }
 
 // ============================================================================

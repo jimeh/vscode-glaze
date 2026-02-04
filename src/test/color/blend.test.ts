@@ -1,5 +1,11 @@
 import * as assert from 'assert';
-import { blendWithThemeOklch, blendHueOnlyOklch } from '../../color/blend';
+import {
+  blendWithThemeOklch,
+  blendHueOnlyOklch,
+  blendWithThemeOklchDirected,
+  blendHueOnlyOklchDirected,
+  getHueBlendDirection,
+} from '../../color/blend';
 import { hexToOklch, oklchToHex } from '../../color/convert';
 
 suite('blendWithThemeOklch', () => {
@@ -269,5 +275,230 @@ suite('blendHueOnlyOklch', () => {
         );
       }
     }
+  });
+});
+
+// =================================================================
+// getHueBlendDirection
+// =================================================================
+
+suite('getHueBlendDirection', () => {
+  test('returns cw when theme hue is slightly ahead', () => {
+    assert.strictEqual(getHueBlendDirection(80, 120), 'cw');
+  });
+
+  test('returns ccw when theme hue is slightly behind', () => {
+    assert.strictEqual(getHueBlendDirection(120, 80), 'ccw');
+  });
+
+  test('returns cw when diff is exactly 0', () => {
+    assert.strictEqual(getHueBlendDirection(100, 100), 'cw');
+  });
+
+  test('returns cw when diff is exactly 180 (tie-break)', () => {
+    assert.strictEqual(getHueBlendDirection(0, 180), 'cw');
+    assert.strictEqual(getHueBlendDirection(90, 270), 'cw');
+  });
+
+  test('wraps around correctly at 360 boundary', () => {
+    // 350 -> 10: shortest path is CW (+20°)
+    assert.strictEqual(getHueBlendDirection(350, 10), 'cw');
+    // 10 -> 350: shortest path is CCW (-20°)
+    assert.strictEqual(getHueBlendDirection(10, 350), 'ccw');
+  });
+
+  test('handles the problematic One Dark Pro case', () => {
+    // From the bug: #21252B has hue ~258.4, #282C34 has hue ~264.3
+    // Tint hue ~84. The 6° difference causes opposite directions.
+    // Use actual fractional hues from hexToOklch to match real
+    // behavior (integer 264-84=180 hits the tie-break).
+    const sidebarTheme = hexToOklch('#21252B'); // hue ~258.4
+    const titleBarTheme = hexToOklch('#282C34'); // hue ~264.3
+    const tintHue = 84;
+
+    assert.strictEqual(
+      getHueBlendDirection(tintHue, sidebarTheme.h),
+      'cw',
+      `Sidebar theme (${sidebarTheme.h.toFixed(1)}°) should be CW`
+    );
+    assert.strictEqual(
+      getHueBlendDirection(tintHue, titleBarTheme.h),
+      'ccw',
+      `Title bar theme (${titleBarTheme.h.toFixed(1)}°) should be CCW`
+    );
+  });
+});
+
+// =================================================================
+// blendWithThemeOklchDirected
+// =================================================================
+
+suite('blendWithThemeOklchDirected', () => {
+  test('shortest mode matches blendWithThemeOklch', () => {
+    const tint = { l: 0.5, c: 0.15, h: 100 };
+    const theme = '#282C34';
+    const factor = 0.35;
+
+    const original = blendWithThemeOklch(tint, theme, factor);
+    const directed = blendWithThemeOklchDirected(
+      tint,
+      theme,
+      factor,
+      'shortest'
+    );
+
+    assert.ok(
+      Math.abs(original.h - directed.h) < 0.01,
+      `Hue should match: ${original.h} vs ${directed.h}`
+    );
+    assert.ok(
+      Math.abs(original.l - directed.l) < 0.01,
+      `Lightness should match: ${original.l} vs ${directed.l}`
+    );
+    assert.ok(
+      Math.abs(original.c - directed.c) < 0.01,
+      `Chroma should match: ${original.c} vs ${directed.c}`
+    );
+  });
+
+  test('cw forces clockwise blend', () => {
+    // Tint at 80°, theme at ~258° (One Dark Pro sidebar)
+    // Shortest path would go CW (+174°). CCW would go (-186°).
+    // Forced CW should produce hue > 80°.
+    const tint = { l: 0.35, c: 0.03, h: 80 };
+    const theme = '#21252B'; // hue ~258
+    const factor = 0.35;
+
+    const result = blendWithThemeOklchDirected(tint, theme, factor, 'cw');
+    // CW from 80° toward 258° should land around 80 + 178*0.35 ≈ 142°
+    assert.ok(
+      result.h > 100 && result.h < 200,
+      `CW should produce hue ~142°, got ${result.h}`
+    );
+  });
+
+  test('ccw forces counter-clockwise blend', () => {
+    // Same inputs, but forced CCW: goes from 80° backwards
+    // CCW from 80° toward 258°: diff becomes 258-80=178 -> -182
+    // 80 + (-182)*0.35 = 80 - 63.7 ≈ 16°
+    const tint = { l: 0.35, c: 0.03, h: 80 };
+    const theme = '#21252B'; // hue ~258
+    const factor = 0.35;
+
+    const result = blendWithThemeOklchDirected(tint, theme, factor, 'ccw');
+    // CCW should produce hue around 16°
+    assert.ok(
+      result.h < 80 || result.h > 340,
+      `CCW should produce hue < 80° or > 340°, got ${result.h}`
+    );
+  });
+
+  test('cw and ccw produce different hues', () => {
+    const tint = { l: 0.5, c: 0.1, h: 80 };
+    const theme = '#282C34';
+    const factor = 0.35;
+
+    const cw = blendWithThemeOklchDirected(tint, theme, factor, 'cw');
+    const ccw = blendWithThemeOklchDirected(tint, theme, factor, 'ccw');
+
+    assert.ok(
+      Math.abs(cw.h - ccw.h) > 5,
+      `CW (${cw.h}) and CCW (${ccw.h}) should differ`
+    );
+  });
+
+  test('blends L and C identically regardless of direction', () => {
+    const tint = { l: 0.5, c: 0.1, h: 80 };
+    const theme = '#282C34';
+    const factor = 0.35;
+
+    const cw = blendWithThemeOklchDirected(tint, theme, factor, 'cw');
+    const ccw = blendWithThemeOklchDirected(tint, theme, factor, 'ccw');
+
+    // L and C interpolation is direction-independent
+    assert.ok(
+      Math.abs(cw.l - ccw.l) < 0.01,
+      `Lightness should match: ${cw.l} vs ${ccw.l}`
+    );
+    assert.ok(
+      Math.abs(cw.c - ccw.c) < 0.01,
+      `Chroma should match: ${cw.c} vs ${ccw.c}`
+    );
+  });
+
+  test('returns tint unblended on invalid theme hex', () => {
+    const tint = { l: 0.5, c: 0.05, h: 200 };
+    const result = blendWithThemeOklchDirected(tint, 'invalid', 0.5, 'cw');
+    assert.strictEqual(result.l, tint.l);
+    assert.strictEqual(result.c, tint.c);
+    assert.strictEqual(result.h, tint.h);
+  });
+});
+
+// =================================================================
+// blendHueOnlyOklchDirected
+// =================================================================
+
+suite('blendHueOnlyOklchDirected', () => {
+  test('shortest mode matches blendHueOnlyOklch', () => {
+    const tint = { l: 0.5, c: 0.05, h: 100 };
+    const theme = '#282C34';
+    const factor = 0.5;
+
+    const original = blendHueOnlyOklch(tint, theme, factor);
+    const directed = blendHueOnlyOklchDirected(tint, theme, factor, 'shortest');
+
+    assert.ok(
+      Math.abs(original.h - directed.h) < 0.01,
+      `Hue should match: ${original.h} vs ${directed.h}`
+    );
+  });
+
+  test('preserves L and C regardless of direction', () => {
+    const tint = { l: 0.4, c: 0.05, h: 80 };
+    const theme = '#21252B';
+    const factor = 0.35;
+
+    const cw = blendHueOnlyOklchDirected(tint, theme, factor, 'cw');
+    const ccw = blendHueOnlyOklchDirected(tint, theme, factor, 'ccw');
+
+    // L should be preserved from tint
+    assert.ok(
+      Math.abs(cw.l - tint.l) < 0.01,
+      `CW L should match tint: ${cw.l} vs ${tint.l}`
+    );
+    assert.ok(
+      Math.abs(ccw.l - tint.l) < 0.01,
+      `CCW L should match tint: ${ccw.l} vs ${tint.l}`
+    );
+
+    // C should be preserved (may be gamut-clamped)
+    assert.ok(cw.c <= tint.c + 0.001, `CW C should not exceed tint: ${cw.c}`);
+    assert.ok(
+      ccw.c <= tint.c + 0.001,
+      `CCW C should not exceed tint: ${ccw.c}`
+    );
+  });
+
+  test('cw and ccw produce different hues', () => {
+    const tint = { l: 0.5, c: 0.05, h: 80 };
+    const theme = '#282C34';
+    const factor = 0.35;
+
+    const cw = blendHueOnlyOklchDirected(tint, theme, factor, 'cw');
+    const ccw = blendHueOnlyOklchDirected(tint, theme, factor, 'ccw');
+
+    assert.ok(
+      Math.abs(cw.h - ccw.h) > 5,
+      `CW (${cw.h}) and CCW (${ccw.h}) should differ`
+    );
+  });
+
+  test('returns tint unchanged on invalid theme hex', () => {
+    const tint = { l: 0.5, c: 0.05, h: 200 };
+    const result = blendHueOnlyOklchDirected(tint, 'invalid', 0.5, 'cw');
+    assert.strictEqual(result.l, tint.l);
+    assert.strictEqual(result.c, tint.c);
+    assert.strictEqual(result.h, tint.h);
   });
 });
