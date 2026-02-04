@@ -7,7 +7,7 @@ import {
 import { getWorkspaceIdentifier } from './workspace';
 import {
   getColorHarmony,
-  getColorScheme,
+  getColorStyle,
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
@@ -184,13 +184,13 @@ async function applyTintColors(
 ): Promise<void> {
   const themeConfig = getThemeConfig();
   const themeContext = await getThemeContext(tintConfig.mode);
-  const colorScheme = getColorScheme();
+  const colorStyle = getColorStyle();
   const colorHarmony = getColorHarmony();
   const tintResult = computeTint({
     workspaceIdentifier: identifier,
     targets: tintConfig.targets,
     themeType: themeContext.tintType,
-    colorScheme,
+    colorStyle,
     colorHarmony,
     themeColors: themeContext.colors,
     themeBlendFactor: themeConfig.blendFactor,
@@ -386,7 +386,7 @@ async function refreshStatusBar(): Promise<void> {
     themeName: themeContext.name,
     tintType: themeContext.tintType,
     themeAutoDetected: themeContext.isAutoDetected,
-    colorScheme: getColorScheme(),
+    colorStyle: getColorStyle(),
     colorHarmony: getColorHarmony(),
     seed: tintConfig.seed,
     tintColors: cached.tintColors,

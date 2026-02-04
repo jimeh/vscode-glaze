@@ -1,7 +1,7 @@
-import type { SchemeConfig } from './types';
+import type { StyleConfig } from './types';
 
 /**
- * Pastel color scheme - soft, muted tones that blend gently with any theme.
+ * Pastel color style - soft, muted tones that blend gently with any theme.
  *
  * Uses OKLCH color space with chromaFactor ~0.45-0.60 for soft but colorful
  * tints. All elements share the same hue (derived from workspace identifier)
@@ -10,7 +10,7 @@ import type { SchemeConfig } from './types';
  * Foreground colors use low chroma factor for readability while maintaining
  * color harmony with background elements.
  */
-export const pastelScheme: SchemeConfig = {
+export const pastelStyle: StyleConfig = {
   dark: {
     'titleBar.activeBackground': { lightness: 0.42, chromaFactor: 0.55 },
     'titleBar.activeForeground': { lightness: 0.92, chromaFactor: 0.12 },

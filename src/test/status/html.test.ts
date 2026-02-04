@@ -32,7 +32,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       themeAutoDetected: true,
       themeColorsAvailable: true,
       osColorScheme: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       colorHarmony: 'uniform',
       blendFactor: 0.35,
       targetBlendFactors: {},
@@ -201,12 +201,12 @@ suite('generateStatusHtml', () => {
     );
   });
 
-  test('shows color scheme', () => {
+  test('shows color style', () => {
     const state = createMockState();
-    state.general.colorScheme = 'vibrant';
+    state.general.colorStyle = 'vibrant';
     const html = generateStatusHtml(state, nonce, cspSource);
 
-    assert.ok(html.includes('vibrant'), 'Should show color scheme name');
+    assert.ok(html.includes('vibrant'), 'Should show color style name');
   });
 
   test('shows blend factor as percentage', () => {
@@ -428,30 +428,30 @@ suite('generateStatusHtml', () => {
     );
   });
 
-  test('shows OS color scheme value', () => {
+  test('shows OS color style value', () => {
     const state = createMockState();
     state.general.osColorScheme = 'dark';
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(
-      html.includes('OS Color Scheme'),
-      'Should show OS Color Scheme label'
+      html.includes('OS Color Style'),
+      'Should show OS Color Style label'
     );
     assert.ok(html.includes('>Dark<'), 'Should show capitalized dark value');
   });
 
-  test('shows Unknown when OS color scheme is undefined', () => {
+  test('shows Unknown when OS color style is undefined', () => {
     const state = createMockState();
     state.general.osColorScheme = undefined;
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(
-      html.includes('OS Color Scheme'),
-      'Should show OS Color Scheme label'
+      html.includes('OS Color Style'),
+      'Should show OS Color Style label'
     );
     assert.ok(
       html.includes('>Unknown<'),
-      'Should show Unknown for undefined OS color scheme'
+      'Should show Unknown for undefined OS color style'
     );
   });
 

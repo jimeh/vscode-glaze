@@ -51,7 +51,7 @@ export interface WorkspaceIdentifierConfig {
  */
 export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar' | 'sideBar';
 
-export type { ColorScheme } from '../color/schemes';
+export type { ColorStyle } from '../color/styles';
 export type { ColorHarmony } from '../color/harmony';
 
 /**

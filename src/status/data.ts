@@ -1,6 +1,6 @@
 import type { TintTarget } from '../config';
 import type { ThemeColors, ThemeType } from '../theme';
-import type { ColorHarmony, ColorScheme } from '../color';
+import type { ColorHarmony, ColorStyle } from '../color';
 import type {
   StatusColorDetail,
   StatusGeneralInfo,
@@ -9,7 +9,7 @@ import type {
 import { computeBaseHue, computeTint } from '../color/tint';
 import {
   getColorHarmony,
-  getColorScheme,
+  getColorStyle,
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
@@ -32,8 +32,8 @@ import { detectOsColorScheme } from '../theme/osColorScheme';
 export interface ComputeStatusColorsOptions {
   /** Computed base hue angle (0-359) */
   baseHue: number;
-  /** Active color scheme */
-  colorScheme: ColorScheme;
+  /** Active color style */
+  colorStyle: ColorStyle;
   /** Active color harmony */
   colorHarmony?: ColorHarmony;
   /** Resolved theme type */
@@ -52,7 +52,7 @@ export interface ComputeStatusColorsOptions {
  * Computes color details for all 8 managed palette keys.
  *
  * For each key:
- * 1. Gets the ElementConfig from the scheme
+ * 1. Gets the ElementConfig from the style
  * 2. Computes the OKLCH tint color (pre-blend)
  * 3. Looks up the theme color if available
  * 4. Computes the final blended color
@@ -65,7 +65,7 @@ export function computeStatusColors(
 ): StatusColorDetail[] {
   const {
     baseHue,
-    colorScheme,
+    colorStyle,
     colorHarmony,
     themeType,
     themeColors,
@@ -78,7 +78,7 @@ export function computeStatusColors(
     baseHue,
     targets,
     themeType,
-    colorScheme,
+    colorStyle,
     colorHarmony,
     themeColors,
     themeBlendFactor: blendFactor,
@@ -110,7 +110,7 @@ export async function buildStatusState(): Promise<StatusState> {
   const tintConfig = getTintConfig();
   const themeConfig = getThemeConfig();
   const themeContext = await getThemeContext(tintConfig.mode);
-  const colorScheme = getColorScheme();
+  const colorStyle = getColorStyle();
   const colorHarmony = getColorHarmony();
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
@@ -120,7 +120,7 @@ export async function buildStatusState(): Promise<StatusState> {
 
   const colors = computeStatusColors({
     baseHue,
-    colorScheme,
+    colorStyle,
     colorHarmony,
     themeType: themeContext.tintType,
     themeColors: themeContext.colors,
@@ -146,7 +146,7 @@ export async function buildStatusState(): Promise<StatusState> {
     themeAutoDetected: themeContext.isAutoDetected,
     themeColorsAvailable: themeContext.colors !== undefined,
     osColorScheme: await detectOsColorScheme(),
-    colorScheme,
+    colorStyle,
     colorHarmony,
     blendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,

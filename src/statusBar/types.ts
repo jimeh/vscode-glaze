@@ -1,11 +1,11 @@
-import type { ColorHarmony, ColorScheme } from '../config';
+import type { ColorHarmony, ColorStyle } from '../config';
 import type { ThemeType } from '../theme';
 
 /**
  * Tint colors for display in the status bar tooltip.
  */
 export interface TintColors {
-  /** The base tint hue (before per-element scheme tweaks). */
+  /** The base tint hue (before per-element style tweaks). */
   baseTint: string;
   /** Title bar background color (if enabled). */
   titleBar?: string;
@@ -39,8 +39,8 @@ export interface StatusBarState {
   /** Whether the theme type was auto-detected. */
   themeAutoDetected: boolean;
 
-  /** The active color scheme. */
-  colorScheme: ColorScheme;
+  /** The active color style. */
+  colorStyle: ColorStyle;
 
   /** The active color harmony. */
   colorHarmony: ColorHarmony;

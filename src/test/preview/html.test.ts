@@ -5,10 +5,10 @@ import type { PreviewState } from '../../preview/types';
 function createMockState(overrides: Partial<PreviewState> = {}): PreviewState {
   return {
     themeType: 'dark',
-    currentScheme: 'pastel',
-    schemes: [
+    currentStyle: 'pastel',
+    styles: [
       {
-        scheme: 'pastel',
+        style: 'pastel',
         label: 'Pastel',
         hueColors: [
           {
@@ -19,7 +19,7 @@ function createMockState(overrides: Partial<PreviewState> = {}): PreviewState {
         ],
       },
       {
-        scheme: 'vibrant',
+        style: 'vibrant',
         label: 'Vibrant',
         hueColors: [
           {
@@ -193,31 +193,28 @@ suite('generatePreviewHtml', () => {
     );
   });
 
-  test('includes scheme rows in table', () => {
+  test('includes style rows in table', () => {
     const state = createMockState();
     const html = generatePreviewHtml(state, nonce, cspSource);
 
-    assert.ok(html.includes('scheme-row'), 'Should have scheme rows');
-    assert.ok(html.includes('data-scheme="pastel"'), 'Should have pastel row');
-    assert.ok(
-      html.includes('data-scheme="vibrant"'),
-      'Should have vibrant row'
-    );
+    assert.ok(html.includes('style-row'), 'Should have style rows');
+    assert.ok(html.includes('data-style="pastel"'), 'Should have pastel row');
+    assert.ok(html.includes('data-style="vibrant"'), 'Should have vibrant row');
   });
 
-  test('marks current scheme row with current class', () => {
-    const state = createMockState({ currentScheme: 'pastel' });
+  test('marks current style row with current class', () => {
+    const state = createMockState({ currentStyle: 'pastel' });
     const html = generatePreviewHtml(state, nonce, cspSource);
 
     // The current row should have 'current' class
     assert.ok(
-      html.includes('scheme-row current" data-scheme="pastel"'),
-      'Current scheme row should have current class'
+      html.includes('style-row current" data-style="pastel"'),
+      'Current style row should have current class'
     );
   });
 
-  test('includes current badge (*) for current scheme', () => {
-    const state = createMockState({ currentScheme: 'pastel' });
+  test('includes current badge (*) for current style', () => {
+    const state = createMockState({ currentStyle: 'pastel' });
     const html = generatePreviewHtml(state, nonce, cspSource);
 
     assert.ok(html.includes('current-badge'), 'Should have current badge');
@@ -276,8 +273,8 @@ suite('generatePreviewHtml', () => {
 
     assert.ok(html.includes('acquireVsCodeApi'), 'Should use VS Code API');
     assert.ok(
-      html.includes("postMessage({ type: 'selectScheme'"),
-      'Should post selectScheme message'
+      html.includes("postMessage({ type: 'selectStyle'"),
+      'Should post selectStyle message'
     );
     assert.ok(
       html.includes("postMessage({ type: 'changeThemeType'"),

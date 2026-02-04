@@ -1,5 +1,5 @@
 import { DEFAULT_BLEND_FACTOR } from '../config';
-import type { ColorHarmony, ColorScheme, TintTarget } from '../config';
+import type { ColorHarmony, ColorStyle, TintTarget } from '../config';
 import type {
   ThemeColors,
   ThemeType,
@@ -21,8 +21,8 @@ import {
   effectiveHueDirection,
 } from './blend';
 import type { HueBlendDirection } from './blend';
-import { getSchemeResolver } from './schemes';
-import type { SchemeResolveContext } from './schemes';
+import { getStyleResolver } from './styles';
+import type { StyleResolveContext } from './styles';
 import { HARMONY_CONFIGS } from './harmony';
 import type { TintColors } from '../statusBar/types';
 
@@ -78,10 +78,10 @@ export interface ComputeTintOptions {
   workspaceIdentifier?: string;
   /** Active tint targets (determines `enabled` flag per key) */
   targets: TintTarget[];
-  /** Theme type for scheme config lookup */
+  /** Theme type for style config lookup */
   themeType: ThemeType;
-  /** Color scheme, default 'pastel' */
-  colorScheme?: ColorScheme;
+  /** Color style, default 'pastel' */
+  colorStyle?: ColorStyle;
   /** Color harmony for hue distribution, default 'uniform' */
   colorHarmony?: ColorHarmony;
   /** Theme colors for blending, if available */
@@ -131,7 +131,7 @@ export { applyHueOffset } from './hue';
 /**
  * Computes a display-only base tint hex color for the given hue
  * and theme type. Uses neutral lightness/chroma values without
- * any scheme-specific tweaks or theme blending.
+ * any style-specific tweaks or theme blending.
  *
  * @param baseHue - Hue angle (0-360)
  * @param themeType - Theme type for lightness selection
@@ -220,7 +220,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const {
     targets,
     themeType,
-    colorScheme = 'pastel',
+    colorStyle = 'pastel',
     colorHarmony = 'uniform',
     themeColors,
     themeBlendFactor = DEFAULT_BLEND_FACTOR,
@@ -242,7 +242,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
 
   const baseTintHex = computeBaseTintHex(baseHue, themeType);
   const targetSet = new Set<string>(targets);
-  const resolver = getSchemeResolver(colorScheme);
+  const resolver = getStyleResolver(colorStyle);
   const harmonyConfig = HARMONY_CONFIGS[colorHarmony];
 
   // Pre-calculate majority hue direction from the base hue
@@ -260,13 +260,13 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       const hueOffset = harmonyConfig[def.element] ?? 0;
 
       // Build per-key resolve context with harmony hue offset
-      const resolveContext: SchemeResolveContext = {
+      const resolveContext: StyleResolveContext = {
         themeColors,
         baseHue,
         hueOffset,
       };
 
-      // Resolve tint color via scheme resolver
+      // Resolve tint color via style resolver
       const { tintOklch, hueOnlyBlend } = resolver(
         themeType,
         key,

@@ -3,17 +3,17 @@ import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { TintTarget } from '../config';
 import type {
   ElementColors,
-  SchemePreview,
-  SchemePreviewColors,
+  StylePreview,
+  StylePreviewColors,
   WorkspacePreview,
 } from './types';
-import type { ColorScheme } from '../color/schemes';
+import type { ColorStyle } from '../color/styles';
 import {
-  ALL_COLOR_SCHEMES,
-  COLOR_SCHEME_LABELS,
-  getSchemeResolver,
-} from '../color/schemes';
-import type { SchemeResolveContext } from '../color/schemes';
+  ALL_COLOR_STYLES,
+  COLOR_STYLE_LABELS,
+  getStyleResolver,
+} from '../color/styles';
+import type { StyleResolveContext } from '../color/styles';
 import type { ColorHarmony } from '../color/harmony';
 import { HARMONY_CONFIGS } from '../color/harmony';
 import { hexToOklch, oklchToHex } from '../color/convert';
@@ -43,7 +43,7 @@ export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
  * to keep all elements consistent in their hue rotation.
  */
 function generateElementColors(
-  scheme: ColorScheme,
+  style: ColorStyle,
   themeType: ThemeType,
   hue: number,
   bgKey: PaletteKey,
@@ -53,8 +53,8 @@ function generateElementColors(
   blendFactor?: number,
   hueDirection?: HueBlendDirection
 ): ElementColors {
-  const resolver = getSchemeResolver(scheme);
-  const context: SchemeResolveContext = {
+  const resolver = getStyleResolver(style);
+  const context: StyleResolveContext = {
     baseHue: hue,
     themeColors,
     hueOffset,
@@ -130,14 +130,14 @@ function generateElementColors(
  * the background theme colors so all elements blend consistently.
  */
 function generateColorsAtHue(
-  scheme: ColorScheme,
+  style: ColorStyle,
   themeType: ThemeType,
   hue: number,
   harmony: ColorHarmony = 'uniform',
   themeColors?: ThemeColors,
   blendFactor?: number,
   targetBlendFactors?: Partial<Record<TintTarget, number>>
-): SchemePreviewColors {
+): StylePreviewColors {
   const harmonyConfig = HARMONY_CONFIGS[harmony];
 
   // Pre-calculate majority hue direction from the base hue
@@ -148,7 +148,7 @@ function generateColorsAtHue(
 
   return {
     titleBar: generateElementColors(
-      scheme,
+      style,
       themeType,
       hue,
       'titleBar.activeBackground',
@@ -159,7 +159,7 @@ function generateColorsAtHue(
       majorityDir
     ),
     statusBar: generateElementColors(
-      scheme,
+      style,
       themeType,
       hue,
       'statusBar.background',
@@ -170,7 +170,7 @@ function generateColorsAtHue(
       majorityDir
     ),
     activityBar: generateElementColors(
-      scheme,
+      style,
       themeType,
       hue,
       'activityBar.background',
@@ -184,30 +184,26 @@ function generateColorsAtHue(
 }
 
 /**
- * Generates preview data for a single color scheme.
+ * Generates preview data for a single color style.
  */
-export function generateSchemePreview(
-  scheme: ColorScheme,
+export function generateStylePreview(
+  style: ColorStyle,
   themeType: ThemeType
-): SchemePreview {
+): StylePreview {
   return {
-    scheme,
-    label: COLOR_SCHEME_LABELS[scheme],
+    style,
+    label: COLOR_STYLE_LABELS[style],
     hueColors: SAMPLE_HUES.map((hue) =>
-      generateColorsAtHue(scheme, themeType, hue)
+      generateColorsAtHue(style, themeType, hue)
     ),
   };
 }
 
 /**
- * Generates preview data for all color schemes.
+ * Generates preview data for all color styles.
  */
-export function generateAllSchemePreviews(
-  themeType: ThemeType
-): SchemePreview[] {
-  return ALL_COLOR_SCHEMES.map((scheme) =>
-    generateSchemePreview(scheme, themeType)
-  );
+export function generateAllStylePreviews(themeType: ThemeType): StylePreview[] {
+  return ALL_COLOR_STYLES.map((s) => generateStylePreview(s, themeType));
 }
 
 /**
@@ -215,7 +211,7 @@ export function generateAllSchemePreviews(
  */
 export interface WorkspacePreviewOptions {
   identifier: string;
-  scheme: ColorScheme;
+  style: ColorStyle;
   harmony?: ColorHarmony;
   themeType: ThemeType;
   seed?: number;
@@ -232,7 +228,7 @@ export function generateWorkspacePreview(
 ): WorkspacePreview {
   const {
     identifier,
-    scheme,
+    style,
     harmony = 'uniform',
     themeType,
     seed = 0,
@@ -251,7 +247,7 @@ export function generateWorkspacePreview(
 
   const colors = isBlended
     ? generateColorsAtHue(
-        scheme,
+        style,
         themeType,
         hue,
         harmony,
@@ -259,7 +255,7 @@ export function generateWorkspacePreview(
         blendFactor,
         targetBlendFactors
       )
-    : generateColorsAtHue(scheme, themeType, hue, harmony);
+    : generateColorsAtHue(style, themeType, hue, harmony);
 
   return {
     identifier,

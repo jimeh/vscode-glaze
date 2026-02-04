@@ -17,7 +17,7 @@ function makeColorsOptions(
 ): ComputeStatusColorsOptions {
   return {
     baseHue: 180,
-    colorScheme: 'pastel',
+    colorStyle: 'pastel',
     themeType: 'dark',
     themeColors: undefined,
     blendFactor: 0.35,
@@ -242,15 +242,15 @@ suite('computeStatusColors', () => {
     }
   });
 
-  test('works with all color schemes', () => {
-    const schemes = ['pastel', 'vibrant', 'muted', 'tinted', 'neon'] as const;
+  test('works with all color styles', () => {
+    const styles = ['pastel', 'vibrant', 'muted', 'tinted', 'neon'] as const;
 
-    for (const colorScheme of schemes) {
-      const colors = computeStatusColors(makeColorsOptions({ colorScheme }));
+    for (const colorStyle of styles) {
+      const colors = computeStatusColors(makeColorsOptions({ colorStyle }));
       assert.strictEqual(
         colors.length,
         PATINA_MANAGED_KEYS.length,
-        `Should return ${PATINA_MANAGED_KEYS.length} colors for ${colorScheme}`
+        `Should return ${PATINA_MANAGED_KEYS.length} colors for ${colorStyle}`
       );
     }
   });

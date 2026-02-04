@@ -1,10 +1,10 @@
 import * as assert from 'assert';
 import {
-  ALL_COLOR_SCHEMES,
-  STATIC_SCHEME_CONFIGS,
-  getSchemeResolver,
-} from '../../color/schemes';
-import type { ColorScheme, SchemeConfig } from '../../color/schemes';
+  ALL_COLOR_STYLES,
+  STATIC_STYLE_CONFIGS,
+  getStyleResolver,
+} from '../../color/styles';
+import type { ColorStyle, StyleConfig } from '../../color/styles';
 import type { ThemeType } from '../../theme';
 import { ALL_COLOR_HARMONIES, HARMONY_CONFIGS } from '../../color/harmony';
 import type { ColorHarmony } from '../../color/harmony';
@@ -27,66 +27,66 @@ const ALL_PALETTE_KEYS = [
 ] as const;
 
 /**
- * Schemes that have static SchemeConfig (excludes dynamic schemes).
+ * Styles that have static StyleConfig (excludes dynamic styles).
  */
-const STATIC_SCHEMES = ALL_COLOR_SCHEMES.filter(
-  (s) => STATIC_SCHEME_CONFIGS[s] !== undefined
+const STATIC_STYLES = ALL_COLOR_STYLES.filter(
+  (s) => STATIC_STYLE_CONFIGS[s] !== undefined
 );
 
 /**
  * Helper to get a static config, asserting it exists.
  */
-function getConfig(scheme: ColorScheme): SchemeConfig {
-  const config = STATIC_SCHEME_CONFIGS[scheme];
-  assert.ok(config, `Config for ${scheme} should exist`);
+function getConfig(style: ColorStyle): StyleConfig {
+  const config = STATIC_STYLE_CONFIGS[style];
+  assert.ok(config, `Config for ${style} should exist`);
   return config;
 }
 
-suite('STATIC_SCHEME_CONFIGS', () => {
-  test('contains config for all static schemes', () => {
-    for (const scheme of STATIC_SCHEMES) {
+suite('STATIC_STYLE_CONFIGS', () => {
+  test('contains config for all static styles', () => {
+    for (const style of STATIC_STYLES) {
       assert.ok(
-        STATIC_SCHEME_CONFIGS[scheme],
-        `Config for ${scheme} should exist`
+        STATIC_STYLE_CONFIGS[style],
+        `Config for ${style} should exist`
       );
     }
   });
 
-  test('does not contain dynamic schemes', () => {
+  test('does not contain dynamic styles', () => {
     assert.strictEqual(
-      STATIC_SCHEME_CONFIGS['adaptive'],
+      STATIC_STYLE_CONFIGS['adaptive'],
       undefined,
       'adaptive should not have a static config'
     );
   });
 
-  test('all static schemes define all theme types', () => {
-    for (const scheme of STATIC_SCHEMES) {
-      const config = getConfig(scheme);
+  test('all static styles define all theme types', () => {
+    for (const style of STATIC_STYLES) {
+      const config = getConfig(style);
       for (const themeType of ALL_THEME_TYPES) {
         assert.ok(
           config[themeType],
-          `${scheme} should define config for ${themeType}`
+          `${style} should define config for ${themeType}`
         );
       }
     }
   });
 
-  test('all static schemes define all required palette keys', () => {
-    for (const scheme of STATIC_SCHEMES) {
-      const config = getConfig(scheme);
+  test('all static styles define all required palette keys', () => {
+    for (const style of STATIC_STYLES) {
+      const config = getConfig(style);
       for (const themeType of ALL_THEME_TYPES) {
         const themeConfig = config[themeType];
         for (const key of ALL_PALETTE_KEYS) {
           assert.ok(
             themeConfig[key],
-            `${scheme}.${themeType} should define ${key}`
+            `${style}.${themeType} should define ${key}`
           );
         }
         assert.strictEqual(
           Object.keys(themeConfig).length,
           ALL_PALETTE_KEYS.length,
-          `${scheme}.${themeType} should have exactly ` +
+          `${style}.${themeType} should have exactly ` +
             `${ALL_PALETTE_KEYS.length} keys`
         );
       }
@@ -94,15 +94,15 @@ suite('STATIC_SCHEME_CONFIGS', () => {
   });
 
   test('chromaFactor values within valid range (0-1)', () => {
-    for (const scheme of STATIC_SCHEMES) {
-      const config = getConfig(scheme);
+    for (const style of STATIC_STYLES) {
+      const config = getConfig(style);
       for (const themeType of ALL_THEME_TYPES) {
         const themeConfig = config[themeType];
         for (const key of ALL_PALETTE_KEYS) {
           const { chromaFactor } = themeConfig[key];
           assert.ok(
             chromaFactor >= 0 && chromaFactor <= 1,
-            `${scheme}.${themeType}.${key}.chromaFactor ` +
+            `${style}.${themeType}.${key}.chromaFactor ` +
               `(${chromaFactor}) should be between 0 and 1`
           );
         }
@@ -111,15 +111,15 @@ suite('STATIC_SCHEME_CONFIGS', () => {
   });
 
   test('lightness values within valid range (0-1)', () => {
-    for (const scheme of STATIC_SCHEMES) {
-      const config = getConfig(scheme);
+    for (const style of STATIC_STYLES) {
+      const config = getConfig(style);
       for (const themeType of ALL_THEME_TYPES) {
         const themeConfig = config[themeType];
         for (const key of ALL_PALETTE_KEYS) {
           const { lightness } = themeConfig[key];
           assert.ok(
             lightness >= 0 && lightness <= 1,
-            `${scheme}.${themeType}.${key}.lightness ` +
+            `${style}.${themeType}.${key}.lightness ` +
               `(${lightness}) should be between 0 and 1`
           );
         }
@@ -128,45 +128,45 @@ suite('STATIC_SCHEME_CONFIGS', () => {
   });
 });
 
-suite('getSchemeResolver', () => {
-  test('returns a resolver for all color schemes', () => {
-    for (const scheme of ALL_COLOR_SCHEMES) {
-      const resolver = getSchemeResolver(scheme);
+suite('getStyleResolver', () => {
+  test('returns a resolver for all color styles', () => {
+    for (const style of ALL_COLOR_STYLES) {
+      const resolver = getStyleResolver(style);
       assert.strictEqual(
         typeof resolver,
         'function',
-        `Resolver for ${scheme} should be a function`
+        `Resolver for ${style} should be a function`
       );
     }
   });
 
   test('all resolvers produce valid OKLCH for all keys', () => {
-    for (const scheme of ALL_COLOR_SCHEMES) {
-      const resolver = getSchemeResolver(scheme);
+    for (const style of ALL_COLOR_STYLES) {
+      const resolver = getStyleResolver(style);
       for (const themeType of ALL_THEME_TYPES) {
         for (const key of ALL_PALETTE_KEYS) {
           const result = resolver(themeType, key, { baseHue: 180 });
           assert.ok(
             result.tintOklch,
-            `${scheme}.${themeType}.${key} should return tintOklch`
+            `${style}.${themeType}.${key} should return tintOklch`
           );
           const { l, c, h } = result.tintOklch;
           assert.ok(
             l >= 0 && l <= 1,
-            `${scheme}.${themeType}.${key} L=${l} out of range`
+            `${style}.${themeType}.${key} L=${l} out of range`
           );
           assert.ok(
             c >= 0,
-            `${scheme}.${themeType}.${key} C=${c} should be >= 0`
+            `${style}.${themeType}.${key} C=${c} should be >= 0`
           );
           assert.ok(
             h >= 0 && h < 360,
-            `${scheme}.${themeType}.${key} H=${h} out of range`
+            `${style}.${themeType}.${key} H=${h} out of range`
           );
           assert.strictEqual(
             typeof result.hueOnlyBlend,
             'boolean',
-            `${scheme}.${themeType}.${key} hueOnlyBlend ` + `should be boolean`
+            `${style}.${themeType}.${key} hueOnlyBlend ` + `should be boolean`
           );
         }
       }
@@ -174,8 +174,8 @@ suite('getSchemeResolver', () => {
   });
 
   test('resolvers apply hue offset from context', () => {
-    for (const scheme of ALL_COLOR_SCHEMES) {
-      const resolver = getSchemeResolver(scheme);
+    for (const style of ALL_COLOR_STYLES) {
+      const resolver = getStyleResolver(style);
       const noOffset = resolver('dark', 'titleBar.activeBackground', {
         baseHue: 100,
         hueOffset: 0,
@@ -189,15 +189,15 @@ suite('getSchemeResolver', () => {
       assert.notStrictEqual(
         noOffset.tintOklch.h,
         withOffset.tintOklch.h,
-        `${scheme} should apply hue offset from context`
+        `${style} should apply hue offset from context`
       );
     }
   });
 
-  test('static scheme resolvers match config output', () => {
-    for (const scheme of STATIC_SCHEMES) {
-      const config = getConfig(scheme);
-      const resolver = getSchemeResolver(scheme);
+  test('static style resolvers match config output', () => {
+    for (const style of STATIC_STYLES) {
+      const config = getConfig(style);
+      const resolver = getStyleResolver(style);
       for (const themeType of ALL_THEME_TYPES) {
         for (const key of ALL_PALETTE_KEYS) {
           const result = resolver(themeType, key, { baseHue: 180 });
@@ -205,13 +205,13 @@ suite('getSchemeResolver', () => {
           assert.strictEqual(
             result.hueOnlyBlend,
             false,
-            `${scheme} should use full blending`
+            `${style} should use full blending`
           );
           // Lightness should match config
           assert.strictEqual(
             result.tintOklch.l,
             config[themeType][key].lightness,
-            `${scheme}.${themeType}.${key} lightness mismatch`
+            `${style}.${themeType}.${key} lightness mismatch`
           );
         }
       }
@@ -219,11 +219,11 @@ suite('getSchemeResolver', () => {
   });
 });
 
-suite('color scheme chromaFactor ordering', () => {
+suite('color style chromaFactor ordering', () => {
   /**
    * Helper to get average background chromaFactor for a dark theme.
    */
-  function getAvgBgChromaFactor(config: SchemeConfig): number {
+  function getAvgBgChromaFactor(config: StyleConfig): number {
     const backgroundKeys = [
       'titleBar.activeBackground',
       'statusBar.background',
@@ -280,7 +280,7 @@ suite('color scheme chromaFactor ordering', () => {
   });
 });
 
-suite('tinted scheme', () => {
+suite('tinted style', () => {
   test('has very low chromaFactor for all elements (0.05-0.15)', () => {
     const config = getConfig('tinted');
 
@@ -314,7 +314,7 @@ suite('tinted scheme', () => {
   });
 });
 
-suite('neon scheme', () => {
+suite('neon style', () => {
   test('has maximum chromaFactor (0.85-1.0) for backgrounds', () => {
     const config = getConfig('neon');
     const backgroundKeys = [
@@ -358,9 +358,9 @@ suite('neon scheme', () => {
   });
 });
 
-suite('adaptive scheme', () => {
+suite('adaptive style', () => {
   test('uses theme L/C when theme colors available', () => {
-    const resolver = getSchemeResolver('adaptive');
+    const resolver = getStyleResolver('adaptive');
     const themeColors = {
       'editor.background': '#1E1E1E',
       'titleBar.activeBackground': '#3C3C3C',
@@ -382,8 +382,8 @@ suite('adaptive scheme', () => {
   });
 
   test('falls back to pastel when no theme colors', () => {
-    const adaptive = getSchemeResolver('adaptive');
-    const pastel = getSchemeResolver('pastel');
+    const adaptive = getStyleResolver('adaptive');
+    const pastel = getStyleResolver('pastel');
 
     for (const themeType of ALL_THEME_TYPES) {
       for (const key of ALL_PALETTE_KEYS) {
@@ -412,7 +412,7 @@ suite('adaptive scheme', () => {
   });
 
   test('falls back to pastel when theme color missing for key', () => {
-    const adaptive = getSchemeResolver('adaptive');
+    const adaptive = getStyleResolver('adaptive');
 
     // Only editor.background defined, no activityBar color
     const themeColors = { 'editor.background': '#1E1E1E' };
@@ -425,7 +425,7 @@ suite('adaptive scheme', () => {
   });
 
   test('preserves theme lightness and chroma', () => {
-    const resolver = getSchemeResolver('adaptive');
+    const resolver = getStyleResolver('adaptive');
     // A bright, saturated color
     const themeColors = {
       'editor.background': '#1E1E1E',
@@ -438,7 +438,7 @@ suite('adaptive scheme', () => {
     });
 
     // The result's L/C should come from #0078D4, not from pastel
-    const pastel = getSchemeResolver('pastel');
+    const pastel = getStyleResolver('pastel');
     const pastelResult = pastel('dark', 'statusBar.background', {
       baseHue: 0,
     });
@@ -453,7 +453,7 @@ suite('adaptive scheme', () => {
   });
 
   test('uses hue-only blending mode', () => {
-    const resolver = getSchemeResolver('adaptive');
+    const resolver = getStyleResolver('adaptive');
     // Provide explicit colors for every palette key so the test
     // doesn't depend on getColorForKey's editor.background fallback.
     const themeColors = {
@@ -487,7 +487,7 @@ suite('adaptive scheme', () => {
   });
 
   test('applies hue offset from context', () => {
-    const resolver = getSchemeResolver('adaptive');
+    const resolver = getStyleResolver('adaptive');
     const themeColors = {
       'editor.background': '#1E1E1E',
       'titleBar.activeBackground': '#3C3C3C',

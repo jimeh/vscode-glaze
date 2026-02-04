@@ -115,7 +115,7 @@
           "description": "Enable or disable Patina color tinting.",
           "order": 0
         },
-        "patina.tint.colorScheme": {
+        "patina.tint.colorStyle": {
           "type": "string",
           "enum": [
             "neon",

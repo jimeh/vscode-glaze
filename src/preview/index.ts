@@ -3,7 +3,7 @@ export type {
   ElementColors,
   PreviewMessage,
   PreviewState,
-  SchemePreview,
-  SchemePreviewColors,
+  StylePreview,
+  StylePreviewColors,
   WorkspacePreview,
 } from './types';

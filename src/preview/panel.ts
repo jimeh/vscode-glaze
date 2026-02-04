@@ -3,14 +3,14 @@ import type { ThemeType } from '../theme';
 import type { PreviewMessage, PreviewState } from './types';
 import {
   getColorHarmony,
-  getColorScheme,
+  getColorStyle,
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
 } from '../config';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
-import { generateAllSchemePreviews, generateWorkspacePreview } from './colors';
+import { generateAllStylePreviews, generateWorkspacePreview } from './colors';
 import { generatePreviewHtml } from './html';
 import { BaseWebviewPanel } from '../webview/panel';
 
@@ -78,12 +78,12 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
     const tintConfig = getTintConfig();
     const themeConfig = getThemeConfig();
     const themeContext = await getThemeContext(tintConfig.mode);
-    const currentScheme = getColorScheme();
+    const currentStyle = getColorStyle();
     const currentHarmony = getColorHarmony();
 
     // Use manual selection if set, otherwise use detected theme type
     const themeType = this.selectedThemeType ?? themeContext.tintType;
-    const schemes = generateAllSchemePreviews(themeType);
+    const styles = generateAllStylePreviews(themeType);
 
     // Generate workspace preview if available
     const identifierConfig = getWorkspaceIdentifierConfig();
@@ -92,7 +92,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
     const workspacePreview = identifier
       ? generateWorkspacePreview({
           identifier,
-          scheme: currentScheme,
+          style: currentStyle,
           harmony: currentHarmony,
           themeType,
           seed: tintConfig.seed,
@@ -104,9 +104,9 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
 
     return {
       themeType,
-      currentScheme,
+      currentStyle,
       workspacePreview,
-      schemes,
+      styles,
     };
   }
 
@@ -115,9 +115,9 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
    */
   protected async handleMessage(message: PreviewMessage): Promise<void> {
     switch (message.type) {
-      case 'selectScheme': {
+      case 'selectStyle': {
         const config = vscode.workspace.getConfiguration('patina');
-        const inspection = config.inspect('tint.colorScheme');
+        const inspection = config.inspect('tint.colorStyle');
 
         // Determine target: respect existing scope, default to workspace
         let target: vscode.ConfigurationTarget;
@@ -132,7 +132,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
             : vscode.ConfigurationTarget.Global;
         }
 
-        await config.update('tint.colorScheme', message.scheme, target);
+        await config.update('tint.colorStyle', message.style, target);
         // Update will happen via config change listener
         break;
       }

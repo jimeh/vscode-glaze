@@ -1,7 +1,7 @@
-import type { SchemeConfig } from './types';
+import type { StyleConfig } from './types';
 
 /**
- * Vibrant color scheme - bold, saturated tones for maximum visual impact.
+ * Vibrant color style - bold, saturated tones for maximum visual impact.
  *
  * Uses OKLCH color space with chromaFactor ~0.7-0.95 for vivid, eye-catching
  * colors. Background lightness is boosted for better visibility with
@@ -10,7 +10,7 @@ import type { SchemeConfig } from './types';
  * Foreground colors use moderate chroma to complement the saturated
  * backgrounds while maintaining readability.
  */
-export const vibrantScheme: SchemeConfig = {
+export const vibrantStyle: StyleConfig = {
   dark: {
     'titleBar.activeBackground': { lightness: 0.44, chromaFactor: 0.85 },
     'titleBar.activeForeground': { lightness: 0.94, chromaFactor: 0.15 },

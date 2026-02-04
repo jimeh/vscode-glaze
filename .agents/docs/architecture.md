@@ -12,7 +12,7 @@
 3. **config/** — Reads Patina settings from VSCode configuration API. Five
    config groups:
    - Workspace identifier (`source`, `customBasePath`, `multiRootSource`)
-   - Tint (`colorScheme`, `mode`, `seed`)
+   - Tint (`colorStyle`, `mode`, `seed`)
    - Elements (titleBar, statusBar, activityBar toggles)
    - Theme (`blendFactor` + per-target blend factor overrides)
    - Status bar (`enabled` toggle)
@@ -26,7 +26,7 @@
    - `convert.ts` — Color space conversions (hex/RGB/HSL/Oklch)
    - `naming.ts` — Human-readable color names via nearest-color matching
    - `types.ts` — Color type definitions
-   - `schemes/` — 8 color scheme implementations (analogous, duotone,
+   - `styles/` — 8 color style implementations (analogous, duotone,
      muted, neon, pastel, tinted, undercurrent, vibrant)
 
 5. **theme/** — Theme detection and background color lookup:
@@ -66,7 +66,7 @@
 
 - Colors are generated from a hash of the workspace identifier, producing
   the same hue for the same workspace
-- 8 built-in color schemes control saturation, lightness, and hue
+- 8 built-in color styles control saturation, lightness, and hue
   relationships (pastel, vibrant, muted, tinted, duotone, undercurrent,
   analogous, neon)
 - 4 theme types: dark, light, hcDark, hcLight
@@ -87,7 +87,7 @@
 - Color gen: grep `hashString`, `generatePalette`, `blendWithTheme`
 - Color key metadata: `COLOR_KEY_DEFINITIONS`, `PATINA_MANAGED_KEYS` in
   `src/theme/colorKeys.ts`
-- Color schemes: `src/color/schemes/definitions.ts`
+- Color styles: `src/color/styles/definitions.ts`
 - Theme lookup: grep `getThemeInfo`
 - Settings mutation: grep `mergeColorCustomizations`
 - Ownership marker: `PATINA_ACTIVE_KEY` in `src/settings/`

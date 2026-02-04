@@ -169,7 +169,7 @@ export function blendWithThemeOklch(
  * Blends only the hue of a tint color toward a theme color.
  *
  * Lightness and chroma are preserved from the tint; only the hue
- * component is interpolated. Used by the adaptive scheme where L/C
+ * component is interpolated. Used by the adaptive style where L/C
  * already come from the theme's original values.
  *
  * At factor 0, returns the tint color unchanged.

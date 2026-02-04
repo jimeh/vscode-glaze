@@ -1,6 +1,6 @@
 import type { ThemeType } from '../theme';
 import type { TintTarget } from '../config';
-import type { PreviewState, SchemePreview, SchemePreviewColors } from './types';
+import type { PreviewState, StylePreview, StylePreviewColors } from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
 import { assertHex, escapeHtml } from '../webview';
@@ -39,7 +39,7 @@ const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
  * Generates an inline color swatch with stacked elements.
  * Each element has a title attribute showing the color name on hover.
  */
-function generateSwatch(colors: SchemePreviewColors): string {
+function generateSwatch(colors: StylePreviewColors): string {
   const { titleBar, activityBar, statusBar } = colors;
 
   // Validate all hex values before interpolating into style attrs
@@ -162,48 +162,46 @@ function generateWorkspaceSection(state: PreviewState): string {
 }
 
 /**
- * Generates a single scheme row.
+ * Generates a single style row.
  */
-function generateSchemeRow(scheme: SchemePreview, isCurrent: boolean): string {
+function generateStyleRow(style: StylePreview, isCurrent: boolean): string {
   const currentClass = isCurrent ? 'current' : '';
   const currentBadge = isCurrent ? '<span class="current-badge">*</span>' : '';
 
-  const hueCells = scheme.hueColors
+  const hueCells = style.hueColors
     .map((colors) => `<td class="hue-cell">${generateSwatch(colors)}</td>`)
     .join('\n');
 
   return `
-    <tr class="scheme-row ${currentClass}" data-scheme="${scheme.scheme}">
-      <td class="scheme-name">${scheme.label}${currentBadge}</td>
+    <tr class="style-row ${currentClass}" data-style="${style.style}">
+      <td class="style-name">${style.label}${currentBadge}</td>
       ${hueCells}
     </tr>
   `;
 }
 
 /**
- * Generates the color schemes table.
+ * Generates the color styles table.
  */
-function generateSchemesTable(state: PreviewState): string {
+function generateStylesTable(state: PreviewState): string {
   const hueHeaders = SAMPLE_HUES.map(
     (hue) => `<th class="hue-header">${HUE_LABELS[hue]}</th>`
   ).join('\n');
 
-  const schemeRows = state.schemes
-    .map((scheme) =>
-      generateSchemeRow(scheme, scheme.scheme === state.currentScheme)
-    )
+  const styleRows = state.styles
+    .map((s) => generateStyleRow(s, s.style === state.currentStyle))
     .join('\n');
 
   return `
-    <table class="schemes-table">
+    <table class="styles-table">
       <thead>
         <tr>
-          <th class="scheme-header">Scheme</th>
+          <th class="style-header">Style</th>
           ${hueHeaders}
         </tr>
       </thead>
       <tbody>
-        ${schemeRows}
+        ${styleRows}
       </tbody>
     </table>
   `;
@@ -286,20 +284,20 @@ const PREVIEW_CSS = `
       color: var(--vscode-foreground);
     }
 
-    .schemes-table {
+    .styles-table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
     }
 
-    .schemes-table th,
-    .schemes-table td {
+    .styles-table th,
+    .styles-table td {
       padding: 8px;
       text-align: center;
       border-bottom: 1px solid var(--vscode-widget-border);
     }
 
-    .scheme-header {
+    .style-header {
       text-align: left;
       width: 120px;
     }
@@ -309,24 +307,24 @@ const PREVIEW_CSS = `
       color: var(--vscode-descriptionForeground);
     }
 
-    .scheme-row {
+    .style-row {
       cursor: pointer;
       transition: background 0.15s;
     }
 
-    .scheme-row:hover {
+    .style-row:hover {
       background: var(--vscode-list-hoverBackground);
     }
 
-    .scheme-row.current {
+    .style-row.current {
       background: var(--vscode-list-activeSelectionBackground);
     }
 
-    .scheme-row.current:hover {
+    .style-row.current:hover {
       background: var(--vscode-list-activeSelectionBackground);
     }
 
-    .scheme-name {
+    .style-name {
       text-align: left;
       font-weight: 500;
     }
@@ -385,11 +383,11 @@ const PREVIEW_SCRIPT = `const vscode = acquireVsCodeApi();
         });
       });
 
-      // Scheme row click handler
-      document.querySelectorAll('.scheme-row').forEach(row => {
+      // Style row click handler
+      document.querySelectorAll('.style-row').forEach(row => {
         row.addEventListener('click', () => {
-          const scheme = row.dataset.scheme;
-          vscode.postMessage({ type: 'selectScheme', scheme });
+          const style = row.dataset.style;
+          vscode.postMessage({ type: 'selectStyle', style });
         });
       });`;
 
@@ -403,7 +401,7 @@ export function generatePreviewHtml(
 ): string {
   const themeTabs = generateThemeTabs(state.themeType);
   const workspaceSection = generateWorkspaceSection(state);
-  const schemesTable = generateSchemesTable(state);
+  const stylesTable = generateStylesTable(state);
 
   return renderWebviewHtml({
     title: 'Patina Color Preview',
@@ -412,8 +410,8 @@ export function generatePreviewHtml(
     css: PREVIEW_CSS,
     body: `${themeTabs}
   ${workspaceSection}
-  ${schemesTable}
-  <p class="hint">Click a row to apply that color scheme.</p>`,
+  ${stylesTable}
+  <p class="hint">Click a row to apply that color style.</p>`,
     script: PREVIEW_SCRIPT,
   });
 }

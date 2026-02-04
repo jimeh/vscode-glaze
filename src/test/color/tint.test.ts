@@ -7,7 +7,7 @@ import {
   tintResultToStatusBarColors,
 } from '../../color/tint';
 import { hexToOklch, oklchToHex, maxChroma } from '../../color/convert';
-import type { ColorHarmony, ColorScheme } from '../../config';
+import type { ColorHarmony, ColorStyle } from '../../config';
 import type { ThemeColors, ThemeType } from '../../theme';
 import { PATINA_MANAGED_KEYS } from '../../theme';
 import { ALL_TARGETS } from '../helpers';
@@ -338,8 +338,8 @@ suite('computeTint', () => {
     }
   });
 
-  test('works with all color schemes', () => {
-    const schemes: ColorScheme[] = [
+  test('works with all color styles', () => {
+    const styles: ColorStyle[] = [
       'pastel',
       'vibrant',
       'muted',
@@ -349,18 +349,18 @@ suite('computeTint', () => {
     ];
     const hexPattern = /^#[0-9a-f]{6}$/i;
 
-    for (const scheme of schemes) {
+    for (const style of styles) {
       const result = computeTint({
         workspaceIdentifier: 'test',
         targets: ALL_TARGETS,
         themeType: 'dark',
-        colorScheme: scheme,
+        colorStyle: style,
       });
       for (const detail of result.keys) {
         assert.match(
           detail.finalHex,
           hexPattern,
-          `Invalid hex for ${detail.key} in ${scheme}`
+          `Invalid hex for ${detail.key} in ${style}`
         );
       }
     }
@@ -526,7 +526,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 83,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
     });
@@ -553,7 +553,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 83,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
     });
@@ -591,7 +591,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 83,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
     });
 
     for (const detail of result.keys) {
@@ -607,7 +607,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 0,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
     });
@@ -685,7 +685,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 0,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       themeColors: colorsWithCwForeground,
       themeBlendFactor: 0.35,
     });
@@ -725,7 +725,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 83,
       targets: ALL_TARGETS,
       themeType: 'dark' as ThemeType,
-      colorScheme: 'pastel' as ColorScheme,
+      colorStyle: 'pastel' as ColorStyle,
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
     };
@@ -741,7 +741,7 @@ suite('computeTint hue harmonization', () => {
       baseHue: 83,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
     });
@@ -805,7 +805,7 @@ suite('computeTint pre-blend majority direction', () => {
       baseHue: 30,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       colorHarmony: 'uniform',
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
@@ -849,7 +849,7 @@ suite('computeTint pre-blend majority direction', () => {
       baseHue: 30,
       targets: ALL_TARGETS,
       themeType: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
       colorHarmony: 'duotone',
       themeColors: oneDarkProColors,
       themeBlendFactor: 0.35,
@@ -893,7 +893,7 @@ suite('computeTint pre-blend majority direction', () => {
         baseHue: 83,
         targets: ALL_TARGETS,
         themeType: 'dark',
-        colorScheme: 'pastel',
+        colorStyle: 'pastel',
         colorHarmony: harmony,
         themeColors: oneDarkProColors,
         themeBlendFactor: 0.35,
