@@ -12,14 +12,7 @@ import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { hexToOklch, oklchToHex, maxChroma } from './convert';
-import {
-  blendWithThemeOklch,
-  blendHueOnlyOklch,
-  blendWithThemeOklchDirected,
-  blendHueOnlyOklchDirected,
-  getHueBlendDirection,
-  effectiveHueDirection,
-} from './blend';
+import { blendDirectedOklch, getHueBlendDirection } from './blend';
 import type { HueBlendDirection } from './blend';
 import { getStyleResolver } from './styles';
 import type { StyleResolveContext } from './styles';
@@ -285,37 +278,14 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       // Compute final color (blend with theme if available)
       let finalHex: string;
       if (themeColor && effectiveBlend > 0) {
-        // Determine the effective blend direction for this key.
-        // Use the majority direction to keep elements consistent,
-        // but fall back to shortest path when the majority
-        // direction would force an extreme long-way-around blend
-        // (>270° arc).
-        const themeHue = hexToOklch(themeColor).h;
-        const keyDir = effectiveHueDirection(
-          tintOklch.h,
-          themeHue,
+        const blendedOklch = blendDirectedOklch(
+          tintOklch,
+          themeColor,
+          effectiveBlend,
+          hueOnlyBlend,
           majorityDir
         );
-
-        if (keyDir) {
-          const blendFn = hueOnlyBlend
-            ? blendHueOnlyOklchDirected
-            : blendWithThemeOklchDirected;
-          const blendedOklch = blendFn(
-            tintOklch,
-            themeColor,
-            effectiveBlend,
-            keyDir
-          );
-          finalHex = oklchToHex(blendedOklch);
-        } else {
-          // No majority direction — fall back to shortest path
-          const blendFn = hueOnlyBlend
-            ? blendHueOnlyOklch
-            : blendWithThemeOklch;
-          const blendedOklch = blendFn(tintOklch, themeColor, effectiveBlend);
-          finalHex = oklchToHex(blendedOklch);
-        }
+        finalHex = oklchToHex(blendedOklch);
       } else {
         finalHex = tintHex;
       }

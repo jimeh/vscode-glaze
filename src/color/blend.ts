@@ -254,3 +254,40 @@ export function blendHueOnlyOklchDirected(
     })
   );
 }
+
+/**
+ * High-level blend that resolves the effective hue direction and
+ * picks the appropriate directed or shortest-path blend function.
+ *
+ * Encapsulates the common pattern of:
+ * 1. Resolve effective direction via {@link effectiveHueDirection}
+ * 2. Pick directed vs shortest-path blend function
+ * 3. Call and return the blended result
+ *
+ * @param tintOklch - The tint color in OKLCH
+ * @param themeHex - The theme color as hex
+ * @param factor - Blend factor (0-1)
+ * @param hueOnly - Whether to blend hue only (preserving L/C)
+ * @param majorityDir - Pre-calculated majority hue direction
+ * @returns Blended OKLCH color (gamut-clamped)
+ */
+export function blendDirectedOklch(
+  tintOklch: OKLCH,
+  themeHex: string,
+  factor: number,
+  hueOnly: boolean,
+  majorityDir?: HueBlendDirection
+): OKLCH {
+  const themeHue = hexToOklch(themeHex).h;
+  const dir = effectiveHueDirection(tintOklch.h, themeHue, majorityDir);
+
+  if (dir) {
+    const fn = hueOnly
+      ? blendHueOnlyOklchDirected
+      : blendWithThemeOklchDirected;
+    return fn(tintOklch, themeHex, factor, dir);
+  }
+
+  const fn = hueOnly ? blendHueOnlyOklch : blendWithThemeOklch;
+  return fn(tintOklch, themeHex, factor);
+}

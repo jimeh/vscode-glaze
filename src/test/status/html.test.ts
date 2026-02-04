@@ -428,30 +428,30 @@ suite('generateStatusHtml', () => {
     );
   });
 
-  test('shows OS color style value', () => {
+  test('shows OS color scheme value', () => {
     const state = createMockState();
     state.general.osColorScheme = 'dark';
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(
-      html.includes('OS Color Style'),
-      'Should show OS Color Style label'
+      html.includes('OS Color Scheme'),
+      'Should show OS Color Scheme label'
     );
     assert.ok(html.includes('>Dark<'), 'Should show capitalized dark value');
   });
 
-  test('shows Unknown when OS color style is undefined', () => {
+  test('shows Unknown when OS color scheme is undefined', () => {
     const state = createMockState();
     state.general.osColorScheme = undefined;
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(
-      html.includes('OS Color Style'),
-      'Should show OS Color Style label'
+      html.includes('OS Color Scheme'),
+      'Should show OS Color Scheme label'
     );
     assert.ok(
       html.includes('>Unknown<'),
-      'Should show Unknown for undefined OS color style'
+      'Should show Unknown for undefined OS color scheme'
     );
   });
 

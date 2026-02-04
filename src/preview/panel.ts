@@ -28,6 +28,28 @@ const CONFIG_SECTIONS = [
 ] as const;
 
 /**
+ * Determines the configuration target for a Patina setting.
+ *
+ * Respects the existing scope: if the setting already has a workspace
+ * value, targets workspace; if global, targets global. When neither
+ * is defined, prefers workspace when a workspace folder is open.
+ */
+function getSettingTarget(settingKey: string): vscode.ConfigurationTarget {
+  const config = vscode.workspace.getConfiguration('patina');
+  const inspection = config.inspect(settingKey);
+
+  if (inspection?.workspaceValue !== undefined) {
+    return vscode.ConfigurationTarget.Workspace;
+  }
+  if (inspection?.globalValue !== undefined) {
+    return vscode.ConfigurationTarget.Global;
+  }
+  return vscode.workspace.workspaceFolders
+    ? vscode.ConfigurationTarget.Workspace
+    : vscode.ConfigurationTarget.Global;
+}
+
+/**
  * Manages the color palette preview webview panel.
  */
 export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
@@ -124,46 +146,16 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
   protected async handleMessage(message: PreviewMessage): Promise<void> {
     switch (message.type) {
       case 'selectStyle': {
+        const target = getSettingTarget('tint.colorStyle');
         const config = vscode.workspace.getConfiguration('patina');
-        const inspection = config.inspect('tint.colorStyle');
-
-        // Determine target: respect existing scope, default to workspace
-        let target: vscode.ConfigurationTarget;
-        if (inspection?.workspaceValue !== undefined) {
-          target = vscode.ConfigurationTarget.Workspace;
-        } else if (inspection?.globalValue !== undefined) {
-          target = vscode.ConfigurationTarget.Global;
-        } else {
-          // Neither defined: prefer workspace if available
-          target = vscode.workspace.workspaceFolders
-            ? vscode.ConfigurationTarget.Workspace
-            : vscode.ConfigurationTarget.Global;
-        }
-
         await config.update('tint.colorStyle', message.style, target);
         // Update will happen via config change listener
         break;
       }
       case 'selectHarmony': {
-        const harmonyConfig = vscode.workspace.getConfiguration('patina');
-        const harmonyInspection = harmonyConfig.inspect('tint.colorHarmony');
-
-        let harmonyTarget: vscode.ConfigurationTarget;
-        if (harmonyInspection?.workspaceValue !== undefined) {
-          harmonyTarget = vscode.ConfigurationTarget.Workspace;
-        } else if (harmonyInspection?.globalValue !== undefined) {
-          harmonyTarget = vscode.ConfigurationTarget.Global;
-        } else {
-          harmonyTarget = vscode.workspace.workspaceFolders
-            ? vscode.ConfigurationTarget.Workspace
-            : vscode.ConfigurationTarget.Global;
-        }
-
-        await harmonyConfig.update(
-          'tint.colorHarmony',
-          message.harmony,
-          harmonyTarget
-        );
+        const target = getSettingTarget('tint.colorHarmony');
+        const config = vscode.workspace.getConfiguration('patina');
+        await config.update('tint.colorHarmony', message.harmony, target);
         break;
       }
       case 'changeThemeType': {

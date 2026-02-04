@@ -21,14 +21,8 @@ import {
   COLOR_HARMONY_LABELS,
   HARMONY_CONFIGS,
 } from '../color/harmony';
-import { hexToOklch, oklchToHex } from '../color/convert';
-import {
-  blendWithThemeOklch,
-  blendHueOnlyOklch,
-  blendWithThemeOklchDirected,
-  blendHueOnlyOklchDirected,
-  effectiveHueDirection,
-} from '../color/blend';
+import { oklchToHex } from '../color/convert';
+import { blendDirectedOklch } from '../color/blend';
 import type { HueBlendDirection } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
 import { computeBaseHue, getMajorityHueDirection } from '../color/tint';
@@ -73,47 +67,25 @@ function generateElementColors(
     const themeBg = getColorForKey(bgKey, themeColors);
     const themeFg = getColorForKey(fgKey, themeColors);
 
-    let blendedBg = bgResult.tintOklch;
-    if (themeBg) {
-      const themeHue = hexToOklch(themeBg).h;
-      const dir = effectiveHueDirection(
-        bgResult.tintOklch.h,
-        themeHue,
-        hueDirection
-      );
-      if (dir) {
-        const fn = bgResult.hueOnlyBlend
-          ? blendHueOnlyOklchDirected
-          : blendWithThemeOklchDirected;
-        blendedBg = fn(bgResult.tintOklch, themeBg, blendFactor, dir);
-      } else {
-        const fn = bgResult.hueOnlyBlend
-          ? blendHueOnlyOklch
-          : blendWithThemeOklch;
-        blendedBg = fn(bgResult.tintOklch, themeBg, blendFactor);
-      }
-    }
+    const blendedBg = themeBg
+      ? blendDirectedOklch(
+          bgResult.tintOklch,
+          themeBg,
+          blendFactor,
+          bgResult.hueOnlyBlend,
+          hueDirection
+        )
+      : bgResult.tintOklch;
 
-    let blendedFg = fgResult.tintOklch;
-    if (themeFg) {
-      const themeHue = hexToOklch(themeFg).h;
-      const dir = effectiveHueDirection(
-        fgResult.tintOklch.h,
-        themeHue,
-        hueDirection
-      );
-      if (dir) {
-        const fn = fgResult.hueOnlyBlend
-          ? blendHueOnlyOklchDirected
-          : blendWithThemeOklchDirected;
-        blendedFg = fn(fgResult.tintOklch, themeFg, blendFactor, dir);
-      } else {
-        const fn = fgResult.hueOnlyBlend
-          ? blendHueOnlyOklch
-          : blendWithThemeOklch;
-        blendedFg = fn(fgResult.tintOklch, themeFg, blendFactor);
-      }
-    }
+    const blendedFg = themeFg
+      ? blendDirectedOklch(
+          fgResult.tintOklch,
+          themeFg,
+          blendFactor,
+          fgResult.hueOnlyBlend,
+          hueDirection
+        )
+      : fgResult.tintOklch;
 
     return {
       background: oklchToHex(blendedBg),

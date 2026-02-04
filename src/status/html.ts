@@ -114,7 +114,7 @@ function generateGeneralInfo(state: StatusState): string {
           <td>${themeName}${themeTypeLabel ? ` (${themeTypeLabel})` : ''}</td>
         </tr>
         <tr>
-          <td class="info-label">OS Color Style</td>
+          <td class="info-label">OS Color Scheme</td>
           <td>${g.osColorScheme ? capitalizeFirst(g.osColorScheme) : '<span class="na">Unknown</span>'}</td>
         </tr>
         <tr>
