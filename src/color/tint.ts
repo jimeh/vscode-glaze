@@ -18,6 +18,7 @@ import {
   blendWithThemeOklchDirected,
   blendHueOnlyOklchDirected,
   getHueBlendDirection,
+  effectiveHueDirection,
 } from './blend';
 import type { HueBlendDirection } from './blend';
 import { getSchemeResolver } from './schemes';
@@ -167,7 +168,7 @@ export function computeBaseTintHex(
  * @param themeColors - Theme colors to vote against
  * @returns Majority direction, or `undefined` if no BG theme colors
  */
-function getMajorityHueDirection(
+export function getMajorityHueDirection(
   baseHue: number,
   themeColors: ThemeColors
 ): HueBlendDirection | undefined {
@@ -287,26 +288,14 @@ export function computeTint(options: ComputeTintOptions): TintResult {
         // Determine the effective blend direction for this key.
         // Use the majority direction to keep elements consistent,
         // but fall back to shortest path when the majority
-        // direction would force an extreme long-way-around blend.
-        // This happens for keys whose harmony offset places their
-        // tint hue close to the theme hue on the "wrong" side of
-        // the color wheel (e.g., duotone +180° landing near theme).
-        //
-        // The 270° threshold is intentionally higher than 180° to
-        // allow the majority to override boundary cases (arcs in
-        // the 180-270° range) while blocking extreme arcs (>270°)
-        // that produce visually broken hue shifts.
-        let keyDir: HueBlendDirection | undefined;
-        if (majorityDir) {
-          const themeHue = hexToOklch(themeColor).h;
-          let diff = themeHue - tintOklch.h;
-          if (majorityDir === 'cw') {
-            if (diff < 0) diff += 360;
-          } else {
-            if (diff > 0) diff -= 360;
-          }
-          keyDir = Math.abs(diff) <= 270 ? majorityDir : undefined;
-        }
+        // direction would force an extreme long-way-around blend
+        // (>270° arc).
+        const themeHue = hexToOklch(themeColor).h;
+        const keyDir = effectiveHueDirection(
+          tintOklch.h,
+          themeHue,
+          majorityDir
+        );
 
         if (keyDir) {
           const blendFn = hueOnlyBlend

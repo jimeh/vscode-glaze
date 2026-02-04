@@ -22,11 +22,11 @@ import {
   blendHueOnlyOklch,
   blendWithThemeOklchDirected,
   blendHueOnlyOklchDirected,
-  getHueBlendDirection,
+  effectiveHueDirection,
 } from '../color/blend';
 import type { HueBlendDirection } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
-import { computeBaseHue } from '../color/tint';
+import { computeBaseHue, getMajorityHueDirection } from '../color/tint';
 
 /**
  * Sample hues for preview display (OKLCH-calibrated).
@@ -34,30 +34,6 @@ import { computeBaseHue } from '../color/tint';
  * Blue=265, Purple=305
  */
 export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
-
-/**
- * Returns the majority direction if the arc from `tintHue` to
- * `themeHex` in that direction is ≤ 270°. Falls back to
- * `undefined` (shortest path) when forcing would create an
- * extreme long-way-around blend (>270° arc). The generous
- * threshold allows the majority to override boundary cases
- * while blocking catastrophic arcs.
- */
-function effectiveDir(
-  tintHue: number,
-  themeHex: string,
-  majorityDir?: HueBlendDirection
-): HueBlendDirection | undefined {
-  if (!majorityDir) return undefined;
-  const themeHue = hexToOklch(themeHex).h;
-  let diff = themeHue - tintHue;
-  if (majorityDir === 'cw') {
-    if (diff < 0) diff += 360;
-  } else {
-    if (diff > 0) diff -= 360;
-  }
-  return Math.abs(diff) <= 270 ? majorityDir : undefined;
-}
 
 /**
  * Generates element colors for a single UI element at a given
@@ -94,7 +70,12 @@ function generateElementColors(
 
     let blendedBg = bgResult.tintOklch;
     if (themeBg) {
-      const dir = effectiveDir(bgResult.tintOklch.h, themeBg, hueDirection);
+      const themeHue = hexToOklch(themeBg).h;
+      const dir = effectiveHueDirection(
+        bgResult.tintOklch.h,
+        themeHue,
+        hueDirection
+      );
       if (dir) {
         const fn = bgResult.hueOnlyBlend
           ? blendHueOnlyOklchDirected
@@ -110,7 +91,12 @@ function generateElementColors(
 
     let blendedFg = fgResult.tintOklch;
     if (themeFg) {
-      const dir = effectiveDir(fgResult.tintOklch.h, themeFg, hueDirection);
+      const themeHue = hexToOklch(themeFg).h;
+      const dir = effectiveHueDirection(
+        fgResult.tintOklch.h,
+        themeHue,
+        hueDirection
+      );
       if (dir) {
         const fn = fgResult.hueOnlyBlend
           ? blendHueOnlyOklchDirected
@@ -156,27 +142,9 @@ function generateColorsAtHue(
 
   // Pre-calculate majority hue direction from the base hue
   // (before harmony offsets) against the BG theme colors.
-  let majorityDir: HueBlendDirection | undefined;
-  if (themeColors) {
-    const bgKeys: PaletteKey[] = [
-      'titleBar.activeBackground',
-      'statusBar.background',
-      'activityBar.background',
-    ];
-    let cwCount = 0;
-    let total = 0;
-    for (const bgKey of bgKeys) {
-      const themeHex = getColorForKey(bgKey, themeColors);
-      if (!themeHex) continue;
-      const themeHue = hexToOklch(themeHex).h;
-      const dir = getHueBlendDirection(hue, themeHue);
-      if (dir === 'cw') cwCount++;
-      total++;
-    }
-    if (total > 0) {
-      majorityDir = cwCount >= total - cwCount ? 'cw' : 'ccw';
-    }
-  }
+  const majorityDir = themeColors
+    ? getMajorityHueDirection(hue, themeColors)
+    : undefined;
 
   return {
     titleBar: generateElementColors(

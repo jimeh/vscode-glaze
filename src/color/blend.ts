@@ -82,6 +82,34 @@ export function getHueBlendDirection(
 }
 
 /**
+ * Returns the majority direction if the arc from `tintHue` to
+ * `themeHue` in that direction is <= 270°. Falls back to
+ * `undefined` (shortest path) when forcing would create an
+ * extreme long-way-around blend (>270° arc). The generous
+ * threshold allows the majority to override boundary cases
+ * while blocking catastrophic arcs.
+ *
+ * @param tintHue - The tint color's hue angle
+ * @param themeHue - The theme color's hue angle
+ * @param majorityDir - Pre-calculated majority direction
+ * @returns The majority direction, or `undefined` to use shortest
+ */
+export function effectiveHueDirection(
+  tintHue: number,
+  themeHue: number,
+  majorityDir?: HueBlendDirection
+): HueBlendDirection | undefined {
+  if (!majorityDir) return undefined;
+  let diff = themeHue - tintHue;
+  if (majorityDir === 'cw') {
+    if (diff < 0) diff += 360;
+  } else {
+    if (diff > 0) diff -= 360;
+  }
+  return Math.abs(diff) <= 270 ? majorityDir : undefined;
+}
+
+/**
  * Internal helper that parses the theme hex, clamps the factor,
  * and delegates to an interpolation function for the actual blend.
  */
