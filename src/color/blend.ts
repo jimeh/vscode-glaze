@@ -82,12 +82,21 @@ export function getHueBlendDirection(
 }
 
 /**
+ * Maximum forced arc before falling back to shortest-path blending.
+ * Beyond this the forced direction would arc >3/4 of the wheel,
+ * producing worse results than shortest-path fallback. The generous
+ * threshold allows the majority to override boundary cases while
+ * blocking catastrophic arcs.
+ */
+const MAX_FORCED_ARC_DEGREES = 270;
+
+/**
  * Returns the majority direction if the arc from `tintHue` to
- * `themeHue` in that direction is <= 270°. Falls back to
- * `undefined` (shortest path) when forcing would create an
- * extreme long-way-around blend (>270° arc). The generous
- * threshold allows the majority to override boundary cases
- * while blocking catastrophic arcs.
+ * `themeHue` in that direction is <= {@link MAX_FORCED_ARC_DEGREES}.
+ * Falls back to `undefined` (shortest path) when forcing would
+ * create an extreme long-way-around blend. The generous threshold
+ * allows the majority to override boundary cases while blocking
+ * catastrophic arcs.
  *
  * @param tintHue - The tint color's hue angle
  * @param themeHue - The theme color's hue angle
@@ -106,10 +115,7 @@ export function effectiveHueDirection(
   } else {
     if (diff > 0) diff -= 360;
   }
-  // 270° = generous cap; beyond this the forced direction
-  // would arc >3/4 of the wheel, producing worse results
-  // than shortest-path fallback.
-  return Math.abs(diff) <= 270 ? majorityDir : undefined;
+  return Math.abs(diff) <= MAX_FORCED_ARC_DEGREES ? majorityDir : undefined;
 }
 
 /**

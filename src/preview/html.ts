@@ -179,7 +179,7 @@ function generateStyleRow(style: StylePreview, isCurrent: boolean): string {
 
   return `
     <tr class="style-row ${currentClass}" data-style="${style.style}">
-      <td class="style-name">${style.label}${currentBadge}</td>
+      <td class="comparison-name">${style.label}${currentBadge}</td>
       ${hueCells}
     </tr>
   `;
@@ -198,10 +198,10 @@ function generateStylesTable(state: PreviewState): string {
     .join('\n');
 
   return `
-    <table class="styles-table">
+    <table class="comparison-table">
       <thead>
         <tr>
-          <th class="style-header">Style</th>
+          <th class="comparison-header">Style</th>
           ${hueHeaders}
         </tr>
       </thead>
@@ -228,7 +228,7 @@ function generateHarmonyRow(
 
   return `
     <tr class="harmony-row ${currentClass}" data-harmony="${harmony.harmony}">
-      <td class="style-name">${harmony.label}${currentBadge}</td>
+      <td class="comparison-name">${harmony.label}${currentBadge}</td>
       ${hueCells}
     </tr>
   `;
@@ -247,10 +247,10 @@ function generateHarmoniesTable(state: PreviewState): string {
     .join('\n');
 
   return `
-    <table class="styles-table">
+    <table class="comparison-table">
       <thead>
         <tr>
-          <th class="style-header">Harmony</th>
+          <th class="comparison-header">Harmony</th>
           ${hueHeaders}
         </tr>
       </thead>
@@ -338,20 +338,20 @@ const PREVIEW_CSS = `
       color: var(--vscode-foreground);
     }
 
-    .styles-table {
+    .comparison-table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
     }
 
-    .styles-table th,
-    .styles-table td {
+    .comparison-table th,
+    .comparison-table td {
       padding: 8px;
       text-align: center;
       border-bottom: 1px solid var(--vscode-widget-border);
     }
 
-    .style-header {
+    .comparison-header {
       text-align: left;
       width: 120px;
     }
@@ -382,7 +382,7 @@ const PREVIEW_CSS = `
       background: var(--vscode-list-activeSelectionBackground);
     }
 
-    .style-name {
+    .comparison-name {
       text-align: left;
       font-weight: 500;
     }
