@@ -211,16 +211,16 @@
           "description": "Apply color tint to the left side activity bar.",
           "order": 5
         },
-        "patina.elements.statusBar": {
-          "type": "boolean",
-          "default": true,
-          "description": "Apply color tint to the bottom status bar.",
-          "order": 6
-        },
         "patina.elements.sideBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the side bar.",
+          "order": 6
+        },
+        "patina.elements.statusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Apply color tint to the bottom status bar.",
           "order": 7
         },
         "patina.theme.blendFactor": {
@@ -253,17 +253,6 @@
           "description": "Override blend factor for the activity bar. When set, overrides the default blend factor for this element. null = use default.",
           "order": 10
         },
-        "patina.theme.statusBarBlendFactor": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "minimum": 0,
-          "maximum": 1,
-          "default": null,
-          "description": "Override blend factor for the status bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 11
-        },
         "patina.theme.sideBarBlendFactor": {
           "type": [
             "number",
@@ -273,6 +262,17 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the side bar. When set, overrides the default blend factor for this element. null = use default.",
+          "order": 11
+        },
+        "patina.theme.statusBarBlendFactor": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "default": null,
+          "description": "Override blend factor for the status bar. When set, overrides the default blend factor for this element. null = use default.",
           "order": 12
         },
         "patina.workspaceIdentifier.customBasePath": {
