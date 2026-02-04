@@ -171,24 +171,27 @@ function harmonizeHueDirections(
 ): readonly TintKeyDetail[] {
   // Collect hue blend directions for background keys that were
   // actually blended (have a theme color and non-zero factor).
-  const bgDirections: Array<{
-    direction: 'cw' | 'ccw';
-  }> = [];
+  const bgDirections: Array<'cw' | 'ccw'> = [];
+
+  // Cache parsed OKLCH values so we don't re-parse in the
+  // re-blend pass below.
+  const parsedOklch: Array<{
+    tintOklch: ReturnType<typeof hexToOklch>;
+    themeOklch: ReturnType<typeof hexToOklch>;
+  } | null> = [];
 
   for (let i = 0; i < keys.length; i++) {
     const detail = keys[i];
-    if (
-      detail.colorType !== 'background' ||
-      !detail.themeColor ||
-      detail.blendFactor <= 0
-    ) {
+    if (!detail.themeColor || detail.blendFactor <= 0) {
+      parsedOklch.push(null);
       continue;
     }
-    const tintHue = hexToOklch(detail.tintHex).h;
-    const themeHue = hexToOklch(detail.themeColor).h;
-    bgDirections.push({
-      direction: getHueBlendDirection(tintHue, themeHue),
-    });
+    const tintOklch = hexToOklch(detail.tintHex);
+    const themeOklch = hexToOklch(detail.themeColor);
+    parsedOklch.push({ tintOklch, themeOklch });
+    if (detail.colorType === 'background') {
+      bgDirections.push(getHueBlendDirection(tintOklch.h, themeOklch.h));
+    }
   }
 
   // Nothing to harmonize without at least one blended background.
@@ -196,7 +199,7 @@ function harmonizeHueDirections(
     return keys;
   }
 
-  const cwCount = bgDirections.filter((d) => d.direction === 'cw').length;
+  const cwCount = bgDirections.filter((d) => d === 'cw').length;
   const ccwCount = bgDirections.length - cwCount;
 
   // Pick majority direction; break ties toward clockwise for
@@ -205,25 +208,26 @@ function harmonizeHueDirections(
 
   // Re-blend any key whose natural direction disagrees.
   return keys.map((detail, i) => {
-    if (!detail.themeColor || detail.blendFactor <= 0) {
+    const cached = parsedOklch[i];
+    if (!cached) {
       return detail;
     }
 
-    const tintHue = hexToOklch(detail.tintHex).h;
-    const themeHue = hexToOklch(detail.themeColor).h;
-    const naturalDir = getHueBlendDirection(tintHue, themeHue);
+    const naturalDir = getHueBlendDirection(
+      cached.tintOklch.h,
+      cached.themeOklch.h
+    );
 
     if (naturalDir === majorityDir) {
       return detail;
     }
 
-    const tintOklch = hexToOklch(detail.tintHex);
     const blendFn = hueOnlyFlags[i]
       ? blendHueOnlyOklchDirected
       : blendWithThemeOklchDirected;
     const blendedOklch = blendFn(
-      tintOklch,
-      detail.themeColor,
+      cached.tintOklch,
+      detail.themeColor!,
       detail.blendFactor,
       majorityDir
     );

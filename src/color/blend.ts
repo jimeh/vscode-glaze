@@ -55,11 +55,7 @@ function blendHueDirected(
   let result = hue1 + diff * factor;
 
   // Normalize to [0, 360)
-  if (result < 0) {
-    result += 360;
-  } else if (result >= 360) {
-    result -= 360;
-  }
+  result = ((result % 360) + 360) % 360;
 
   return result;
 }
