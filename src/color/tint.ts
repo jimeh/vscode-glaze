@@ -17,6 +17,7 @@ import type { HueBlendDirection } from './blend';
 import { getStyleResolver } from './styles';
 import type { StyleResolveContext } from './styles';
 import { HARMONY_CONFIGS } from './harmony';
+import { applyHueOffset } from './hue';
 import type { TintColors } from '../statusBar/types';
 
 // ============================================================================
@@ -249,14 +250,16 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       const def = COLOR_KEY_DEFINITIONS[key];
       const element = def.element as TintTarget;
 
-      // Look up harmony hue offset for this element
-      const hueOffset = harmonyConfig[def.element] ?? 0;
+      // Pre-apply harmony hue offset for this element
+      const elementHue = applyHueOffset(
+        baseHue,
+        harmonyConfig[def.element] ?? 0
+      );
 
-      // Build per-key resolve context with harmony hue offset
+      // Build per-key resolve context with offset-adjusted hue
       const resolveContext: StyleResolveContext = {
         themeColors,
-        baseHue,
-        hueOffset,
+        baseHue: elementHue,
       };
 
       // Resolve tint color via style resolver

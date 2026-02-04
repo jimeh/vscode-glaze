@@ -18,6 +18,7 @@ export {
   applyHueOffset,
   computeBaseTintHex,
   computeTint,
+  getMajorityHueDirection,
   tintResultToPalette,
   tintResultToStatusBarColors,
 } from './tint';

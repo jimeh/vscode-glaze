@@ -25,7 +25,11 @@ import { oklchToHex } from '../color/convert';
 import { blendDirectedOklch } from '../color/blend';
 import type { HueBlendDirection } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
-import { computeBaseHue, getMajorityHueDirection } from '../color/tint';
+import {
+  applyHueOffset,
+  computeBaseHue,
+  getMajorityHueDirection,
+} from '../color';
 
 /**
  * Sample hues for preview display (OKLCH-calibrated).
@@ -53,10 +57,10 @@ function generateElementColors(
   hueDirection?: HueBlendDirection
 ): ElementColors {
   const resolver = getStyleResolver(style);
+  const elementHue = applyHueOffset(hue, hueOffset);
   const context: StyleResolveContext = {
-    baseHue: hue,
+    baseHue: elementHue,
     themeColors,
-    hueOffset,
   };
 
   const bgResult = resolver(themeType, bgKey, context);
@@ -165,13 +169,14 @@ function generateColorsAtHue(
  */
 export function generateStylePreview(
   style: ColorStyle,
-  themeType: ThemeType
+  themeType: ThemeType,
+  harmony: ColorHarmony = 'uniform'
 ): StylePreview {
   return {
     style,
     label: COLOR_STYLE_LABELS[style],
     hueColors: SAMPLE_HUES.map((hue) =>
-      generateColorsAtHue(style, themeType, hue)
+      generateColorsAtHue(style, themeType, hue, harmony)
     ),
   };
 }
@@ -179,8 +184,13 @@ export function generateStylePreview(
 /**
  * Generates preview data for all color styles.
  */
-export function generateAllStylePreviews(themeType: ThemeType): StylePreview[] {
-  return ALL_COLOR_STYLES.map((s) => generateStylePreview(s, themeType));
+export function generateAllStylePreviews(
+  themeType: ThemeType,
+  harmony: ColorHarmony = 'uniform'
+): StylePreview[] {
+  return ALL_COLOR_STYLES.map((s) =>
+    generateStylePreview(s, themeType, harmony)
+  );
 }
 
 /**

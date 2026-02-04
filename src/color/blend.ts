@@ -106,6 +106,9 @@ export function effectiveHueDirection(
   } else {
     if (diff > 0) diff -= 360;
   }
+  // 270° = generous cap; beyond this the forced direction
+  // would arc >3/4 of the wheel, producing worse results
+  // than shortest-path fallback.
   return Math.abs(diff) <= 270 ? majorityDir : undefined;
 }
 

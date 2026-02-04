@@ -173,23 +173,21 @@ suite('getStyleResolver', () => {
     }
   });
 
-  test('resolvers apply hue offset from context', () => {
+  test('resolvers produce different hues for different baseHue values', () => {
     for (const style of ALL_COLOR_STYLES) {
       const resolver = getStyleResolver(style);
-      const noOffset = resolver('dark', 'titleBar.activeBackground', {
+      const hue100 = resolver('dark', 'titleBar.activeBackground', {
         baseHue: 100,
-        hueOffset: 0,
       });
-      const withOffset = resolver('dark', 'titleBar.activeBackground', {
-        baseHue: 100,
-        hueOffset: 90,
+      const hue190 = resolver('dark', 'titleBar.activeBackground', {
+        baseHue: 190,
       });
 
-      // Hue with offset should differ from hue without
+      // Different baseHue should produce different output hues
       assert.notStrictEqual(
-        noOffset.tintOklch.h,
-        withOffset.tintOklch.h,
-        `${style} should apply hue offset from context`
+        hue100.tintOklch.h,
+        hue190.tintOklch.h,
+        `${style} should produce different hues for different baseHue`
       );
     }
   });
@@ -486,28 +484,26 @@ suite('adaptive style', () => {
     }
   });
 
-  test('applies hue offset from context', () => {
+  test('produces different hues for different baseHue values', () => {
     const resolver = getStyleResolver('adaptive');
     const themeColors = {
       'editor.background': '#1E1E1E',
       'titleBar.activeBackground': '#3C3C3C',
     };
 
-    const noOffset = resolver('dark', 'titleBar.activeBackground', {
+    const hue100 = resolver('dark', 'titleBar.activeBackground', {
       baseHue: 100,
       themeColors,
-      hueOffset: 0,
     });
-    const withOffset = resolver('dark', 'titleBar.activeBackground', {
-      baseHue: 100,
+    const hue190 = resolver('dark', 'titleBar.activeBackground', {
+      baseHue: 190,
       themeColors,
-      hueOffset: 90,
     });
 
     assert.notStrictEqual(
-      noOffset.tintOklch.h,
-      withOffset.tintOklch.h,
-      'Adaptive should apply hue offset from context'
+      hue100.tintOklch.h,
+      hue190.tintOklch.h,
+      'Adaptive should produce different hues for different baseHue'
     );
   });
 });

@@ -153,6 +153,26 @@ suite('generateAllStylePreviews', () => {
   });
 });
 
+suite('generateStylePreview with harmony', () => {
+  test('non-uniform harmony produces different element colors', () => {
+    const uniform = generateStylePreview('pastel', 'dark', 'uniform');
+    const triadic = generateStylePreview('pastel', 'dark', 'triadic');
+
+    // Triadic offsets titleBar by -120° and statusBar by +120°,
+    // so their colors should differ from uniform.
+    assert.notStrictEqual(
+      uniform.hueColors[0].titleBar.background,
+      triadic.hueColors[0].titleBar.background,
+      'Triadic harmony should change titleBar colors vs uniform'
+    );
+    assert.notStrictEqual(
+      uniform.hueColors[0].statusBar.background,
+      triadic.hueColors[0].statusBar.background,
+      'Triadic harmony should change statusBar colors vs uniform'
+    );
+  });
+});
+
 suite('generateHarmonyPreview', () => {
   test('returns preview with correct harmony name', () => {
     for (const harmony of ALL_COLOR_HARMONIES) {

@@ -109,7 +109,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
 
     // Use manual selection if set, otherwise use detected theme type
     const themeType = this.selectedThemeType ?? themeContext.tintType;
-    const styles = generateAllStylePreviews(themeType);
+    const styles = generateAllStylePreviews(themeType, currentHarmony);
 
     // Generate workspace preview if available
     const identifierConfig = getWorkspaceIdentifierConfig();

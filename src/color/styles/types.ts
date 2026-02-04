@@ -31,10 +31,8 @@ export type StyleConfig = Record<ThemeType, Record<PaletteKey, ElementConfig>>;
 export interface StyleResolveContext {
   /** Theme colors for the current theme, if available */
   readonly themeColors?: ThemeColors;
-  /** Computed base hue for the workspace (0-359) */
+  /** The element's target hue (0-359), with any harmony offset pre-applied */
   readonly baseHue: number;
-  /** Per-element hue offset from the color harmony (degrees) */
-  readonly hueOffset?: number;
 }
 
 /**
