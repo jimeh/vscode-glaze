@@ -3,21 +3,33 @@ import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { TintTarget } from '../config';
 import type {
   ElementColors,
-  SchemePreview,
-  SchemePreviewColors,
+  HarmonyPreview,
+  StylePreview,
+  StylePreviewColors,
   WorkspacePreview,
 } from './types';
-import type { ColorScheme } from '../color/schemes';
+import type { ColorStyle } from '../color/styles';
 import {
-  ALL_COLOR_SCHEMES,
-  COLOR_SCHEME_LABELS,
-  getSchemeResolver,
-} from '../color/schemes';
-import type { SchemeResolveContext } from '../color/schemes';
+  ALL_COLOR_STYLES,
+  COLOR_STYLE_LABELS,
+  getStyleResolver,
+} from '../color/styles';
+import type { StyleResolveContext } from '../color/styles';
+import type { ColorHarmony } from '../color/harmony';
+import {
+  ALL_COLOR_HARMONIES,
+  COLOR_HARMONY_LABELS,
+  HARMONY_CONFIGS,
+} from '../color/harmony';
 import { oklchToHex } from '../color/convert';
-import { blendWithThemeOklch, blendHueOnlyOklch } from '../color/blend';
+import { blendDirectedOklch } from '../color/blend';
+import type { HueBlendDirection } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
-import { computeBaseHue } from '../color/tint';
+import {
+  applyHueOffset,
+  computeBaseHue,
+  getMajorityHueDirection,
+} from '../color';
 
 /**
  * Sample hues for preview display (OKLCH-calibrated).
@@ -29,19 +41,25 @@ export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 /**
  * Generates element colors for a single UI element at a given
  * hue, optionally blending with theme colors.
+ *
+ * When `hueDirection` is provided, directed blending is used
+ * to keep all elements consistent in their hue rotation.
  */
 function generateElementColors(
-  scheme: ColorScheme,
+  style: ColorStyle,
   themeType: ThemeType,
   hue: number,
   bgKey: PaletteKey,
   fgKey: PaletteKey,
+  hueOffset: number,
   themeColors?: ThemeColors,
-  blendFactor?: number
+  blendFactor?: number,
+  hueDirection?: HueBlendDirection
 ): ElementColors {
-  const resolver = getSchemeResolver(scheme);
-  const context: SchemeResolveContext = {
-    baseHue: hue,
+  const resolver = getStyleResolver(style);
+  const elementHue = applyHueOffset(hue, hueOffset);
+  const context: StyleResolveContext = {
+    elementHue,
     themeColors,
   };
 
@@ -53,18 +71,24 @@ function generateElementColors(
     const themeBg = getColorForKey(bgKey, themeColors);
     const themeFg = getColorForKey(fgKey, themeColors);
 
-    const blendBg = bgResult.hueOnlyBlend
-      ? blendHueOnlyOklch
-      : blendWithThemeOklch;
-    const blendFg = fgResult.hueOnlyBlend
-      ? blendHueOnlyOklch
-      : blendWithThemeOklch;
-
     const blendedBg = themeBg
-      ? blendBg(bgResult.tintOklch, themeBg, blendFactor)
+      ? blendDirectedOklch(
+          bgResult.tintOklch,
+          themeBg,
+          blendFactor,
+          bgResult.hueOnlyBlend,
+          hueDirection
+        )
       : bgResult.tintOklch;
+
     const blendedFg = themeFg
-      ? blendFg(fgResult.tintOklch, themeFg, blendFactor)
+      ? blendDirectedOklch(
+          fgResult.tintOklch,
+          themeFg,
+          blendFactor,
+          fgResult.hueOnlyBlend,
+          hueDirection
+        )
       : fgResult.tintOklch;
 
     return {
@@ -82,70 +106,119 @@ function generateElementColors(
 /**
  * Generates preview colors for all three elements at a given hue,
  * optionally blending with theme colors.
+ *
+ * Pre-calculates majority hue direction from the base hue against
+ * the background theme colors so all elements blend consistently.
  */
 function generateColorsAtHue(
-  scheme: ColorScheme,
+  style: ColorStyle,
   themeType: ThemeType,
   hue: number,
+  harmony: ColorHarmony = 'uniform',
   themeColors?: ThemeColors,
   blendFactor?: number,
   targetBlendFactors?: Partial<Record<TintTarget, number>>
-): SchemePreviewColors {
+): StylePreviewColors {
+  const harmonyConfig = HARMONY_CONFIGS[harmony];
+
+  // Pre-calculate majority hue direction from the base hue
+  // (before harmony offsets) against the BG theme colors.
+  const majorityDir = themeColors
+    ? getMajorityHueDirection(hue, themeColors)
+    : undefined;
+
   return {
     titleBar: generateElementColors(
-      scheme,
+      style,
       themeType,
       hue,
       'titleBar.activeBackground',
       'titleBar.activeForeground',
+      harmonyConfig.titleBar,
       themeColors,
-      targetBlendFactors?.titleBar ?? blendFactor
+      targetBlendFactors?.titleBar ?? blendFactor,
+      majorityDir
     ),
     statusBar: generateElementColors(
-      scheme,
+      style,
       themeType,
       hue,
       'statusBar.background',
       'statusBar.foreground',
+      harmonyConfig.statusBar,
       themeColors,
-      targetBlendFactors?.statusBar ?? blendFactor
+      targetBlendFactors?.statusBar ?? blendFactor,
+      majorityDir
     ),
     activityBar: generateElementColors(
-      scheme,
+      style,
       themeType,
       hue,
       'activityBar.background',
       'activityBar.foreground',
+      harmonyConfig.activityBar,
       themeColors,
-      targetBlendFactors?.activityBar ?? blendFactor
+      targetBlendFactors?.activityBar ?? blendFactor,
+      majorityDir
     ),
   };
 }
 
 /**
- * Generates preview data for a single color scheme.
+ * Generates preview data for a single color style.
  */
-export function generateSchemePreview(
-  scheme: ColorScheme,
-  themeType: ThemeType
-): SchemePreview {
+export function generateStylePreview(
+  style: ColorStyle,
+  themeType: ThemeType,
+  harmony: ColorHarmony = 'uniform'
+): StylePreview {
   return {
-    scheme,
-    label: COLOR_SCHEME_LABELS[scheme],
+    style,
+    label: COLOR_STYLE_LABELS[style],
     hueColors: SAMPLE_HUES.map((hue) =>
-      generateColorsAtHue(scheme, themeType, hue)
+      generateColorsAtHue(style, themeType, hue, harmony)
     ),
   };
 }
 
 /**
- * Generates preview data for all color schemes.
+ * Generates preview data for all color styles.
  */
-export function generateAllSchemePreviews(
+export function generateAllStylePreviews(
+  themeType: ThemeType,
+  harmony: ColorHarmony = 'uniform'
+): StylePreview[] {
+  return ALL_COLOR_STYLES.map((s) =>
+    generateStylePreview(s, themeType, harmony)
+  );
+}
+
+/**
+ * Generates preview data for a single color harmony.
+ */
+export function generateHarmonyPreview(
+  harmony: ColorHarmony,
+  style: ColorStyle,
   themeType: ThemeType
-): SchemePreview[] {
-  return ALL_COLOR_SCHEMES.map((scheme) =>
-    generateSchemePreview(scheme, themeType)
+): HarmonyPreview {
+  return {
+    harmony,
+    label: COLOR_HARMONY_LABELS[harmony],
+    hueColors: SAMPLE_HUES.map((hue) =>
+      generateColorsAtHue(style, themeType, hue, harmony)
+    ),
+  };
+}
+
+/**
+ * Generates preview data for all color harmonies.
+ */
+export function generateAllHarmonyPreviews(
+  style: ColorStyle,
+  themeType: ThemeType
+): HarmonyPreview[] {
+  return ALL_COLOR_HARMONIES.map((h) =>
+    generateHarmonyPreview(h, style, themeType)
   );
 }
 
@@ -154,7 +227,8 @@ export function generateAllSchemePreviews(
  */
 export interface WorkspacePreviewOptions {
   identifier: string;
-  scheme: ColorScheme;
+  style: ColorStyle;
+  harmony?: ColorHarmony;
   themeType: ThemeType;
   seed?: number;
   themeColors?: ThemeColors;
@@ -170,7 +244,8 @@ export function generateWorkspacePreview(
 ): WorkspacePreview {
   const {
     identifier,
-    scheme,
+    style,
+    harmony = 'uniform',
     themeType,
     seed = 0,
     themeColors,
@@ -188,14 +263,15 @@ export function generateWorkspacePreview(
 
   const colors = isBlended
     ? generateColorsAtHue(
-        scheme,
+        style,
         themeType,
         hue,
+        harmony,
         themeColors,
         blendFactor,
         targetBlendFactors
       )
-    : generateColorsAtHue(scheme, themeType, hue);
+    : generateColorsAtHue(style, themeType, hue, harmony);
 
   return {
     identifier,

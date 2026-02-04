@@ -82,6 +82,43 @@ export function getHueBlendDirection(
 }
 
 /**
+ * Maximum forced arc before falling back to shortest-path blending.
+ * Beyond this the forced direction would arc >3/4 of the wheel,
+ * producing worse results than shortest-path fallback. The generous
+ * threshold allows the majority to override boundary cases while
+ * blocking catastrophic arcs.
+ */
+const MAX_FORCED_ARC_DEGREES = 270;
+
+/**
+ * Returns the majority direction if the arc from `tintHue` to
+ * `themeHue` in that direction is <= {@link MAX_FORCED_ARC_DEGREES}.
+ * Falls back to `undefined` (shortest path) when forcing would
+ * create an extreme long-way-around blend. The generous threshold
+ * allows the majority to override boundary cases while blocking
+ * catastrophic arcs.
+ *
+ * @param tintHue - The tint color's hue angle
+ * @param themeHue - The theme color's hue angle
+ * @param majorityDir - Pre-calculated majority direction
+ * @returns The majority direction, or `undefined` to use shortest
+ */
+export function effectiveHueDirection(
+  tintHue: number,
+  themeHue: number,
+  majorityDir?: HueBlendDirection
+): HueBlendDirection | undefined {
+  if (!majorityDir) return undefined;
+  let diff = themeHue - tintHue;
+  if (majorityDir === 'cw') {
+    if (diff < 0) diff += 360;
+  } else {
+    if (diff > 0) diff -= 360;
+  }
+  return Math.abs(diff) <= MAX_FORCED_ARC_DEGREES ? majorityDir : undefined;
+}
+
+/**
  * Internal helper that parses the theme hex, clamps the factor,
  * and delegates to an interpolation function for the actual blend.
  */
@@ -141,7 +178,7 @@ export function blendWithThemeOklch(
  * Blends only the hue of a tint color toward a theme color.
  *
  * Lightness and chroma are preserved from the tint; only the hue
- * component is interpolated. Used by the adaptive scheme where L/C
+ * component is interpolated. Used by the adaptive style where L/C
  * already come from the theme's original values.
  *
  * At factor 0, returns the tint color unchanged.
@@ -225,4 +262,41 @@ export function blendHueOnlyOklchDirected(
       h: blendHueDirected(tint.h, theme.h, factor, hueDirection),
     })
   );
+}
+
+/**
+ * High-level blend that resolves the effective hue direction and
+ * picks the appropriate directed or shortest-path blend function.
+ *
+ * Encapsulates the common pattern of:
+ * 1. Resolve effective direction via {@link effectiveHueDirection}
+ * 2. Pick directed vs shortest-path blend function
+ * 3. Call and return the blended result
+ *
+ * @param tintOklch - The tint color in OKLCH
+ * @param themeHex - The theme color as hex
+ * @param factor - Blend factor (0-1)
+ * @param hueOnly - Whether to blend hue only (preserving L/C)
+ * @param majorityDir - Pre-calculated majority hue direction
+ * @returns Blended OKLCH color (gamut-clamped)
+ */
+export function blendDirectedOklch(
+  tintOklch: OKLCH,
+  themeHex: string,
+  factor: number,
+  hueOnly: boolean,
+  majorityDir?: HueBlendDirection
+): OKLCH {
+  const themeHue = hexToOklch(themeHex).h;
+  const dir = effectiveHueDirection(tintOklch.h, themeHue, majorityDir);
+
+  if (dir) {
+    const fn = hueOnly
+      ? blendHueOnlyOklchDirected
+      : blendWithThemeOklchDirected;
+    return fn(tintOklch, themeHex, factor, dir);
+  }
+
+  const fn = hueOnly ? blendHueOnlyOklch : blendWithThemeOklch;
+  return fn(tintOklch, themeHex, factor);
 }

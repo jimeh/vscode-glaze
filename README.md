@@ -9,7 +9,7 @@ distinguish between projects at a glance.
   derived from its directory path
 - **Theme-aware blending** — Colors adapt to your active VS Code theme,
   working seamlessly with both light and dark themes
-- **Multiple color schemes** — Choose from Pastel, Vibrant, Muted, or
+- **Multiple color styles** — Choose from Pastel, Vibrant, Muted, or
   Monochrome palettes
 - **Configurable UI elements** — Apply tints to title bar, status bar, sidebar,
   and more
@@ -64,15 +64,15 @@ Search for "Patina" in the VS Code Extensions view (`Cmd+Shift+X` /
 
 ### Settings
 
-| Setting              | Default        | Description                                                                              |
-| -------------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| `patina.enabled`     | `true`         | Enable or disable Patina                                                                 |
-| `patina.colorScheme` | `"pastel"`     | Color palette: `pastel`, `vibrant`, `muted`, `tinted`, `duotone`, `analogous`, or `neon` |
-| `patina.elements`    | `["titleBar"]` | UI elements to tint                                                                      |
-| `patina.intensity`   | `0.5`          | How strongly the tint is applied (0.0–1.0)                                               |
-| `patina.saturation`  | `0.5`          | Color saturation level (0.0–1.0)                                                         |
+| Setting             | Default        | Description                                                                              |
+| ------------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| `patina.enabled`    | `true`         | Enable or disable Patina                                                                 |
+| `patina.colorStyle` | `"pastel"`     | Color palette: `pastel`, `vibrant`, `muted`, `tinted`, `duotone`, `analogous`, or `neon` |
+| `patina.elements`   | `["titleBar"]` | UI elements to tint                                                                      |
+| `patina.intensity`  | `0.5`          | How strongly the tint is applied (0.0–1.0)                                               |
+| `patina.saturation` | `0.5`          | Color saturation level (0.0–1.0)                                                         |
 
-### Color Schemes
+### Color Styles
 
 - **Pastel** (default) — Soft, muted tones that blend gently with any theme
 - **Vibrant** — Higher saturation for bolder, more noticeable colors

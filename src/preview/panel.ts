@@ -2,14 +2,19 @@ import * as vscode from 'vscode';
 import type { ThemeType } from '../theme';
 import type { PreviewMessage, PreviewState } from './types';
 import {
-  getColorScheme,
+  getColorHarmony,
+  getColorStyle,
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
 } from '../config';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
-import { generateAllSchemePreviews, generateWorkspacePreview } from './colors';
+import {
+  generateAllHarmonyPreviews,
+  generateAllStylePreviews,
+  generateWorkspacePreview,
+} from './colors';
 import { generatePreviewHtml } from './html';
 import { BaseWebviewPanel } from '../webview/panel';
 
@@ -21,6 +26,23 @@ const CONFIG_SECTIONS = [
   'patina.theme',
   'patina.workspaceIdentifier',
 ] as const;
+
+/**
+ * Determines the configuration target for a Patina setting.
+ *
+ * Defaults to global so that preview changes apply user-wide. Only
+ * targets workspace when the user has an explicit workspace-level
+ * override for the setting.
+ */
+function getSettingTarget(settingKey: string): vscode.ConfigurationTarget {
+  const config = vscode.workspace.getConfiguration('patina');
+  const inspection = config.inspect(settingKey);
+
+  if (inspection?.workspaceValue !== undefined) {
+    return vscode.ConfigurationTarget.Workspace;
+  }
+  return vscode.ConfigurationTarget.Global;
+}
 
 /**
  * Manages the color palette preview webview panel.
@@ -77,11 +99,12 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
     const tintConfig = getTintConfig();
     const themeConfig = getThemeConfig();
     const themeContext = await getThemeContext(tintConfig.mode);
-    const currentScheme = getColorScheme();
+    const currentStyle = getColorStyle();
+    const currentHarmony = getColorHarmony();
 
     // Use manual selection if set, otherwise use detected theme type
     const themeType = this.selectedThemeType ?? themeContext.tintType;
-    const schemes = generateAllSchemePreviews(themeType);
+    const styles = generateAllStylePreviews(themeType, currentHarmony);
 
     // Generate workspace preview if available
     const identifierConfig = getWorkspaceIdentifierConfig();
@@ -90,7 +113,8 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
     const workspacePreview = identifier
       ? generateWorkspacePreview({
           identifier,
-          scheme: currentScheme,
+          style: currentStyle,
+          harmony: currentHarmony,
           themeType,
           seed: tintConfig.seed,
           themeColors: themeContext.colors,
@@ -99,11 +123,15 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
         })
       : undefined;
 
+    const harmonies = generateAllHarmonyPreviews(currentStyle, themeType);
+
     return {
       themeType,
-      currentScheme,
+      currentStyle,
+      currentHarmony,
       workspacePreview,
-      schemes,
+      styles,
+      harmonies,
     };
   }
 
@@ -112,25 +140,17 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
    */
   protected async handleMessage(message: PreviewMessage): Promise<void> {
     switch (message.type) {
-      case 'selectScheme': {
+      case 'selectStyle': {
+        const target = getSettingTarget('tint.colorStyle');
         const config = vscode.workspace.getConfiguration('patina');
-        const inspection = config.inspect('tint.colorScheme');
-
-        // Determine target: respect existing scope, default to workspace
-        let target: vscode.ConfigurationTarget;
-        if (inspection?.workspaceValue !== undefined) {
-          target = vscode.ConfigurationTarget.Workspace;
-        } else if (inspection?.globalValue !== undefined) {
-          target = vscode.ConfigurationTarget.Global;
-        } else {
-          // Neither defined: prefer workspace if available
-          target = vscode.workspace.workspaceFolders
-            ? vscode.ConfigurationTarget.Workspace
-            : vscode.ConfigurationTarget.Global;
-        }
-
-        await config.update('tint.colorScheme', message.scheme, target);
+        await config.update('tint.colorStyle', message.style, target);
         // Update will happen via config change listener
+        break;
+      }
+      case 'selectHarmony': {
+        const target = getSettingTarget('tint.colorHarmony');
+        const config = vscode.workspace.getConfiguration('patina');
+        await config.update('tint.colorHarmony', message.harmony, target);
         break;
       }
       case 'changeThemeType': {

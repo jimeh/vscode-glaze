@@ -2,24 +2,23 @@ import * as assert from 'assert';
 import { generatePreviewHtml } from '../../preview/html';
 import type { PreviewState } from '../../preview/types';
 
+const MOCK_HUE_COLORS = [
+  {
+    titleBar: { background: '#524052', foreground: '#e6dce6' },
+    activityBar: { background: '#403340', foreground: '#d9ccd9' },
+    statusBar: { background: '#59475a', foreground: '#e6dce6' },
+  },
+];
+
 function createMockState(overrides: Partial<PreviewState> = {}): PreviewState {
   return {
     themeType: 'dark',
-    currentScheme: 'pastel',
-    schemes: [
+    currentStyle: 'pastel',
+    currentHarmony: 'uniform',
+    styles: [
+      { style: 'pastel', label: 'Pastel', hueColors: MOCK_HUE_COLORS },
       {
-        scheme: 'pastel',
-        label: 'Pastel',
-        hueColors: [
-          {
-            titleBar: { background: '#524052', foreground: '#e6dce6' },
-            activityBar: { background: '#403340', foreground: '#d9ccd9' },
-            statusBar: { background: '#59475a', foreground: '#e6dce6' },
-          },
-        ],
-      },
-      {
-        scheme: 'vibrant',
+        style: 'vibrant',
         label: 'Vibrant',
         hueColors: [
           {
@@ -29,6 +28,10 @@ function createMockState(overrides: Partial<PreviewState> = {}): PreviewState {
           },
         ],
       },
+    ],
+    harmonies: [
+      { harmony: 'uniform', label: 'Uniform', hueColors: MOCK_HUE_COLORS },
+      { harmony: 'duotone', label: 'Duotone', hueColors: MOCK_HUE_COLORS },
     ],
     ...overrides,
   };
@@ -193,31 +196,28 @@ suite('generatePreviewHtml', () => {
     );
   });
 
-  test('includes scheme rows in table', () => {
+  test('includes style rows in table', () => {
     const state = createMockState();
     const html = generatePreviewHtml(state, nonce, cspSource);
 
-    assert.ok(html.includes('scheme-row'), 'Should have scheme rows');
-    assert.ok(html.includes('data-scheme="pastel"'), 'Should have pastel row');
-    assert.ok(
-      html.includes('data-scheme="vibrant"'),
-      'Should have vibrant row'
-    );
+    assert.ok(html.includes('style-row'), 'Should have style rows');
+    assert.ok(html.includes('data-style="pastel"'), 'Should have pastel row');
+    assert.ok(html.includes('data-style="vibrant"'), 'Should have vibrant row');
   });
 
-  test('marks current scheme row with current class', () => {
-    const state = createMockState({ currentScheme: 'pastel' });
+  test('marks current style row with current class', () => {
+    const state = createMockState({ currentStyle: 'pastel' });
     const html = generatePreviewHtml(state, nonce, cspSource);
 
     // The current row should have 'current' class
     assert.ok(
-      html.includes('scheme-row current" data-scheme="pastel"'),
-      'Current scheme row should have current class'
+      html.includes('style-row current" data-style="pastel"'),
+      'Current style row should have current class'
     );
   });
 
-  test('includes current badge (*) for current scheme', () => {
-    const state = createMockState({ currentScheme: 'pastel' });
+  test('includes current badge (*) for current style', () => {
+    const state = createMockState({ currentStyle: 'pastel' });
     const html = generatePreviewHtml(state, nonce, cspSource);
 
     assert.ok(html.includes('current-badge'), 'Should have current badge');
@@ -270,14 +270,68 @@ suite('generatePreviewHtml', () => {
     );
   });
 
+  test('includes harmony rows in table', () => {
+    const state = createMockState();
+    const html = generatePreviewHtml(state, nonce, cspSource);
+
+    assert.ok(html.includes('harmony-row'), 'Should have harmony rows');
+    assert.ok(
+      html.includes('data-harmony="uniform"'),
+      'Should have uniform row'
+    );
+    assert.ok(
+      html.includes('data-harmony="duotone"'),
+      'Should have duotone row'
+    );
+  });
+
+  test('marks current harmony row with current class', () => {
+    const state = createMockState({ currentHarmony: 'uniform' });
+    const html = generatePreviewHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('harmony-row current" data-harmony="uniform"'),
+      'Current harmony row should have current class'
+    );
+  });
+
+  test('includes section headings', () => {
+    const state = createMockState();
+    const html = generatePreviewHtml(state, nonce, cspSource);
+
+    assert.ok(html.includes('Color Style'), 'Should have Color Style heading');
+    assert.ok(
+      html.includes('Color Harmony'),
+      'Should have Color Harmony heading'
+    );
+  });
+
+  test('includes hint text for both sections', () => {
+    const state = createMockState();
+    const html = generatePreviewHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('Click a row to apply that color style.'),
+      'Should have style hint'
+    );
+    assert.ok(
+      html.includes('Click a row to apply that color harmony.'),
+      'Should have harmony hint'
+    );
+  });
+
   test('includes JavaScript for interactivity', () => {
     const state = createMockState();
     const html = generatePreviewHtml(state, nonce, cspSource);
 
     assert.ok(html.includes('acquireVsCodeApi'), 'Should use VS Code API');
     assert.ok(
-      html.includes("postMessage({ type: 'selectScheme'"),
-      'Should post selectScheme message'
+      html.includes("postMessage({ type: 'selectStyle'"),
+      'Should post selectStyle message'
+    );
+    assert.ok(
+      html.includes("postMessage({ type: 'selectHarmony'"),
+      'Should post selectHarmony message'
     );
     assert.ok(
       html.includes("postMessage({ type: 'changeThemeType'"),

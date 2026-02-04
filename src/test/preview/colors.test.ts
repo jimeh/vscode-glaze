@@ -1,11 +1,14 @@
 import * as assert from 'assert';
 import {
   SAMPLE_HUES,
-  generateSchemePreview,
-  generateAllSchemePreviews,
+  generateStylePreview,
+  generateAllStylePreviews,
+  generateHarmonyPreview,
+  generateAllHarmonyPreviews,
   generateWorkspacePreview,
 } from '../../preview/colors';
-import { ALL_COLOR_SCHEMES } from '../../color/schemes';
+import { ALL_COLOR_STYLES } from '../../color/styles';
+import { ALL_COLOR_HARMONIES } from '../../color/harmony';
 import type { ThemeType } from '../../theme';
 
 const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
@@ -34,24 +37,24 @@ suite('SAMPLE_HUES', () => {
   });
 });
 
-suite('generateSchemePreview', () => {
-  test('returns preview with correct scheme name', () => {
-    for (const scheme of ALL_COLOR_SCHEMES) {
-      const preview = generateSchemePreview(scheme, 'dark');
-      assert.strictEqual(preview.scheme, scheme);
+suite('generateStylePreview', () => {
+  test('returns preview with correct style name', () => {
+    for (const style of ALL_COLOR_STYLES) {
+      const preview = generateStylePreview(style, 'dark');
+      assert.strictEqual(preview.style, style);
     }
   });
 
   test('returns preview with display label', () => {
-    const preview = generateSchemePreview('pastel', 'dark');
+    const preview = generateStylePreview('pastel', 'dark');
     assert.strictEqual(preview.label, 'Pastel');
 
-    const vibrantPreview = generateSchemePreview('vibrant', 'dark');
+    const vibrantPreview = generateStylePreview('vibrant', 'dark');
     assert.strictEqual(vibrantPreview.label, 'Vibrant');
   });
 
   test('generates colors for each sample hue', () => {
-    const preview = generateSchemePreview('pastel', 'dark');
+    const preview = generateStylePreview('pastel', 'dark');
     assert.strictEqual(
       preview.hueColors.length,
       SAMPLE_HUES.length,
@@ -60,7 +63,7 @@ suite('generateSchemePreview', () => {
   });
 
   test('each hue has colors for all three elements', () => {
-    const preview = generateSchemePreview('pastel', 'dark');
+    const preview = generateStylePreview('pastel', 'dark');
     for (const hueColors of preview.hueColors) {
       assert.ok(hueColors.titleBar, 'Should have titleBar colors');
       assert.ok(hueColors.statusBar, 'Should have statusBar colors');
@@ -69,33 +72,33 @@ suite('generateSchemePreview', () => {
   });
 
   test('all colors are valid hex values', () => {
-    for (const scheme of ALL_COLOR_SCHEMES) {
+    for (const style of ALL_COLOR_STYLES) {
       for (const themeType of ALL_THEME_TYPES) {
-        const preview = generateSchemePreview(scheme, themeType);
+        const preview = generateStylePreview(style, themeType);
         for (const hueColors of preview.hueColors) {
           assert.ok(
             isValidHexColor(hueColors.titleBar.background),
-            `${scheme}/${themeType} titleBar.background should be valid hex`
+            `${style}/${themeType} titleBar.background should be valid hex`
           );
           assert.ok(
             isValidHexColor(hueColors.titleBar.foreground),
-            `${scheme}/${themeType} titleBar.foreground should be valid hex`
+            `${style}/${themeType} titleBar.foreground should be valid hex`
           );
           assert.ok(
             isValidHexColor(hueColors.statusBar.background),
-            `${scheme}/${themeType} statusBar.background should be valid hex`
+            `${style}/${themeType} statusBar.background should be valid hex`
           );
           assert.ok(
             isValidHexColor(hueColors.statusBar.foreground),
-            `${scheme}/${themeType} statusBar.foreground should be valid hex`
+            `${style}/${themeType} statusBar.foreground should be valid hex`
           );
           assert.ok(
             isValidHexColor(hueColors.activityBar.background),
-            `${scheme}/${themeType} activityBar.background should be valid hex`
+            `${style}/${themeType} activityBar.background should be valid hex`
           );
           assert.ok(
             isValidHexColor(hueColors.activityBar.foreground),
-            `${scheme}/${themeType} activityBar.foreground should be valid hex`
+            `${style}/${themeType} activityBar.foreground should be valid hex`
           );
         }
       }
@@ -103,8 +106,8 @@ suite('generateSchemePreview', () => {
   });
 
   test('different theme types produce different colors', () => {
-    const darkPreview = generateSchemePreview('pastel', 'dark');
-    const lightPreview = generateSchemePreview('pastel', 'light');
+    const darkPreview = generateStylePreview('pastel', 'dark');
+    const lightPreview = generateStylePreview('pastel', 'light');
 
     // At least the first hue should differ between dark and light
     assert.notStrictEqual(
@@ -114,9 +117,9 @@ suite('generateSchemePreview', () => {
     );
   });
 
-  test('different schemes produce different colors', () => {
-    const pastelPreview = generateSchemePreview('pastel', 'dark');
-    const vibrantPreview = generateSchemePreview('vibrant', 'dark');
+  test('different styles produce different colors', () => {
+    const pastelPreview = generateStylePreview('pastel', 'dark');
+    const vibrantPreview = generateStylePreview('vibrant', 'dark');
 
     assert.notStrictEqual(
       pastelPreview.hueColors[0].titleBar.background,
@@ -126,25 +129,134 @@ suite('generateSchemePreview', () => {
   });
 });
 
-suite('generateAllSchemePreviews', () => {
-  test('returns previews for all schemes', () => {
-    const previews = generateAllSchemePreviews('dark');
-    assert.strictEqual(previews.length, ALL_COLOR_SCHEMES.length);
+suite('generateAllStylePreviews', () => {
+  test('returns previews for all styles', () => {
+    const previews = generateAllStylePreviews('dark');
+    assert.strictEqual(previews.length, ALL_COLOR_STYLES.length);
   });
 
-  test('schemes are in correct order', () => {
-    const previews = generateAllSchemePreviews('dark');
-    const schemeNames = previews.map((p) => p.scheme);
-    assert.deepStrictEqual(schemeNames, [...ALL_COLOR_SCHEMES]);
+  test('styles are in correct order', () => {
+    const previews = generateAllStylePreviews('dark');
+    const styleNames = previews.map((p) => p.style);
+    assert.deepStrictEqual(styleNames, [...ALL_COLOR_STYLES]);
   });
 
   test('works with all theme types', () => {
     for (const themeType of ALL_THEME_TYPES) {
-      const previews = generateAllSchemePreviews(themeType);
+      const previews = generateAllStylePreviews(themeType);
       assert.strictEqual(
         previews.length,
-        ALL_COLOR_SCHEMES.length,
-        `Should return ${ALL_COLOR_SCHEMES.length} previews for ${themeType}`
+        ALL_COLOR_STYLES.length,
+        `Should return ${ALL_COLOR_STYLES.length} previews for ${themeType}`
+      );
+    }
+  });
+});
+
+suite('generateStylePreview with harmony', () => {
+  test('non-uniform harmony produces different element colors', () => {
+    const uniform = generateStylePreview('pastel', 'dark', 'uniform');
+    const triadic = generateStylePreview('pastel', 'dark', 'triadic');
+
+    // Triadic offsets titleBar by -120° and statusBar by +120°,
+    // so their colors should differ from uniform.
+    assert.notStrictEqual(
+      uniform.hueColors[0].titleBar.background,
+      triadic.hueColors[0].titleBar.background,
+      'Triadic harmony should change titleBar colors vs uniform'
+    );
+    assert.notStrictEqual(
+      uniform.hueColors[0].statusBar.background,
+      triadic.hueColors[0].statusBar.background,
+      'Triadic harmony should change statusBar colors vs uniform'
+    );
+  });
+});
+
+suite('generateHarmonyPreview', () => {
+  test('returns preview with correct harmony name', () => {
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      const preview = generateHarmonyPreview(harmony, 'pastel', 'dark');
+      assert.strictEqual(preview.harmony, harmony);
+    }
+  });
+
+  test('returns preview with display label', () => {
+    const preview = generateHarmonyPreview('uniform', 'pastel', 'dark');
+    assert.strictEqual(preview.label, 'Uniform');
+
+    const duotone = generateHarmonyPreview('duotone', 'pastel', 'dark');
+    assert.strictEqual(duotone.label, 'Duotone');
+  });
+
+  test('generates colors for each sample hue', () => {
+    const preview = generateHarmonyPreview('uniform', 'pastel', 'dark');
+    assert.strictEqual(
+      preview.hueColors.length,
+      SAMPLE_HUES.length,
+      'Should have colors for each sample hue'
+    );
+  });
+
+  test('each hue has colors for all three elements', () => {
+    const preview = generateHarmonyPreview('triadic', 'pastel', 'dark');
+    for (const hueColors of preview.hueColors) {
+      assert.ok(hueColors.titleBar, 'Should have titleBar colors');
+      assert.ok(hueColors.statusBar, 'Should have statusBar colors');
+      assert.ok(hueColors.activityBar, 'Should have activityBar colors');
+    }
+  });
+
+  test('all colors are valid hex values', () => {
+    for (const harmony of ALL_COLOR_HARMONIES) {
+      for (const themeType of ALL_THEME_TYPES) {
+        const preview = generateHarmonyPreview(harmony, 'pastel', themeType);
+        for (const hueColors of preview.hueColors) {
+          assert.ok(
+            isValidHexColor(hueColors.titleBar.background),
+            `${harmony}/${themeType} titleBar.background should be valid hex`
+          );
+          assert.ok(
+            isValidHexColor(hueColors.titleBar.foreground),
+            `${harmony}/${themeType} titleBar.foreground should be valid hex`
+          );
+        }
+      }
+    }
+  });
+
+  test('different harmonies produce different colors for non-uniform', () => {
+    const uniform = generateHarmonyPreview('uniform', 'pastel', 'dark');
+    const triadic = generateHarmonyPreview('triadic', 'pastel', 'dark');
+
+    // Triadic applies ±120° offsets on titleBar and statusBar
+    assert.notStrictEqual(
+      uniform.hueColors[0].statusBar.background,
+      triadic.hueColors[0].statusBar.background,
+      'Uniform and triadic should produce different statusBar colors'
+    );
+  });
+});
+
+suite('generateAllHarmonyPreviews', () => {
+  test('returns previews for all harmonies', () => {
+    const previews = generateAllHarmonyPreviews('pastel', 'dark');
+    assert.strictEqual(previews.length, ALL_COLOR_HARMONIES.length);
+  });
+
+  test('harmonies are in correct order', () => {
+    const previews = generateAllHarmonyPreviews('pastel', 'dark');
+    const harmonyNames = previews.map((p) => p.harmony);
+    assert.deepStrictEqual(harmonyNames, [...ALL_COLOR_HARMONIES]);
+  });
+
+  test('works with all theme types', () => {
+    for (const themeType of ALL_THEME_TYPES) {
+      const previews = generateAllHarmonyPreviews('pastel', themeType);
+      assert.strictEqual(
+        previews.length,
+        ALL_COLOR_HARMONIES.length,
+        `Should return ${ALL_COLOR_HARMONIES.length} previews for ${themeType}`
       );
     }
   });
@@ -154,7 +266,7 @@ suite('generateWorkspacePreview', () => {
   test('returns preview with identifier', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
     assert.strictEqual(preview.identifier, 'my-project');
@@ -163,7 +275,7 @@ suite('generateWorkspacePreview', () => {
   test('returns colors for all three elements', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
     assert.ok(preview.colors.titleBar, 'Should have titleBar colors');
@@ -174,7 +286,7 @@ suite('generateWorkspacePreview', () => {
   test('all colors are valid hex values', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
 
@@ -189,12 +301,12 @@ suite('generateWorkspacePreview', () => {
   test('same identifier produces same colors', () => {
     const preview1 = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
     const preview2 = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
 
@@ -207,12 +319,12 @@ suite('generateWorkspacePreview', () => {
   test('different identifiers produce different colors', () => {
     const preview1 = generateWorkspacePreview({
       identifier: 'project-a',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
     const preview2 = generateWorkspacePreview({
       identifier: 'project-b',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
 
@@ -225,13 +337,13 @@ suite('generateWorkspacePreview', () => {
   test('seed changes colors', () => {
     const preview1 = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       seed: 0,
     });
     const preview2 = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       seed: 42,
     });
@@ -246,7 +358,7 @@ suite('generateWorkspacePreview', () => {
   test('isBlended is false when no theme colors provided', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
 
@@ -257,7 +369,7 @@ suite('generateWorkspacePreview', () => {
   test('isBlended is true when theme colors provided', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors: { 'editor.background': '#1e1e1e' },
       blendFactor: 0.35,
@@ -270,7 +382,7 @@ suite('generateWorkspacePreview', () => {
   test('isBlended is false when blendFactor is 0', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors: { 'editor.background': '#1e1e1e' },
       blendFactor: 0,
@@ -282,13 +394,13 @@ suite('generateWorkspacePreview', () => {
   test('blending changes colors', () => {
     const unblended = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
 
     const blended = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors: { 'editor.background': '#1e1e1e' },
       blendFactor: 0.5,
@@ -306,7 +418,7 @@ suite('generateWorkspacePreview', () => {
 
     const lowBlend = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors,
       blendFactor: 0.1,
@@ -314,7 +426,7 @@ suite('generateWorkspacePreview', () => {
 
     const highBlend = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors,
       blendFactor: 0.9,
@@ -341,7 +453,7 @@ suite('generateWorkspacePreview', () => {
 
     const previewDefault = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors,
       blendFactor: 0.35,
@@ -349,7 +461,7 @@ suite('generateWorkspacePreview', () => {
 
     const previewOverride = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors,
       blendFactor: 0.35,
@@ -374,7 +486,7 @@ suite('generateWorkspacePreview', () => {
   test('targetBlendFactors included in result when set', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors: { 'editor.background': '#1e1e1e' },
       blendFactor: 0.35,
@@ -389,7 +501,7 @@ suite('generateWorkspacePreview', () => {
   test('targetBlendFactors undefined when empty', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors: { 'editor.background': '#1e1e1e' },
       blendFactor: 0.35,
@@ -404,7 +516,7 @@ suite('generateWorkspacePreview', () => {
 
     const previewNoBlend = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors,
       blendFactor: 0,
@@ -412,7 +524,7 @@ suite('generateWorkspacePreview', () => {
 
     const previewOverride = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
       themeColors,
       blendFactor: 0,
@@ -432,10 +544,32 @@ suite('generateWorkspacePreview', () => {
   test('targetBlendFactors undefined when not provided', () => {
     const preview = generateWorkspacePreview({
       identifier: 'my-project',
-      scheme: 'pastel',
+      style: 'pastel',
       themeType: 'dark',
     });
 
     assert.strictEqual(preview.targetBlendFactors, undefined);
+  });
+
+  test('harmony changes workspace preview colors', () => {
+    const uniform = generateWorkspacePreview({
+      identifier: 'my-project',
+      style: 'pastel',
+      themeType: 'dark',
+      harmony: 'uniform',
+    });
+    const triadic = generateWorkspacePreview({
+      identifier: 'my-project',
+      style: 'pastel',
+      themeType: 'dark',
+      harmony: 'triadic',
+    });
+
+    // Triadic applies ±120° offsets, so at least statusBar should differ
+    assert.notStrictEqual(
+      uniform.colors.statusBar.background,
+      triadic.colors.statusBar.background,
+      'Different harmonies should produce different workspace colors'
+    );
   });
 });

@@ -32,7 +32,8 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       themeAutoDetected: true,
       themeColorsAvailable: true,
       osColorScheme: 'dark',
-      colorScheme: 'pastel',
+      colorStyle: 'pastel',
+      colorHarmony: 'uniform',
       blendFactor: 0.35,
       targetBlendFactors: {},
       seed: 0,
@@ -200,12 +201,12 @@ suite('generateStatusHtml', () => {
     );
   });
 
-  test('shows color scheme', () => {
+  test('shows color style', () => {
     const state = createMockState();
-    state.general.colorScheme = 'vibrant';
+    state.general.colorStyle = 'vibrant';
     const html = generateStatusHtml(state, nonce, cspSource);
 
-    assert.ok(html.includes('vibrant'), 'Should show color scheme name');
+    assert.ok(html.includes('vibrant'), 'Should show color style name');
   });
 
   test('shows blend factor as percentage', () => {

@@ -115,7 +115,7 @@
           "description": "Enable or disable Patina color tinting.",
           "order": 0
         },
-        "patina.tint.colorScheme": {
+        "patina.tint.colorStyle": {
           "type": "string",
           "enum": [
             "neon",
@@ -123,9 +123,6 @@
             "pastel",
             "muted",
             "tinted",
-            "duotone",
-            "undercurrent",
-            "analogous",
             "adaptive"
           ],
           "enumItemLabels": [
@@ -134,9 +131,6 @@
             "Pastel",
             "Muted",
             "Tinted",
-            "Duotone",
-            "Undercurrent",
-            "Analogous",
             "Adaptive"
           ],
           "enumDescriptions": [
@@ -145,14 +139,38 @@
             "Soft, muted tones that blend gently with any theme",
             "Desaturated, subtle tones for minimal visual impact",
             "Very subtle color hints while retaining hue variation",
-            "Base hue + complementary hue split across UI elements",
-            "Base hue + complementary accent on status bar",
-            "Three adjacent hues for harmonious color transitions",
             "Preserves theme's lightness/chroma, shifts only the hue"
           ],
           "default": "pastel",
-          "description": "Color scheme for tinting: pastel (soft tones), vibrant (bold colors), muted (subtle), tinted (barely-there tints), duotone (complementary split), undercurrent (complementary accent on status bar), analogous (adjacent hues), neon (maximum glow), or adaptive (preserves theme colors, shifts hue).",
+          "description": "Controls the intensity and style of tint colors. Combine with Color Harmony to vary hue distribution across elements.",
           "order": 1
+        },
+        "patina.tint.colorHarmony": {
+          "type": "string",
+          "enum": [
+            "uniform",
+            "duotone",
+            "undercurrent",
+            "analogous",
+            "triadic"
+          ],
+          "enumItemLabels": [
+            "Uniform",
+            "Duotone",
+            "Undercurrent",
+            "Analogous",
+            "Triadic"
+          ],
+          "enumDescriptions": [
+            "Single hue across all elements",
+            "Complementary accent on activity and side bar",
+            "Complementary accent on status bar",
+            "Three adjacent hues spread across elements",
+            "Three evenly-spaced hues for maximum variation"
+          ],
+          "default": "uniform",
+          "description": "Controls how hues are distributed across UI elements. Uniform uses a single hue; other options spread hues across the color wheel.",
+          "order": 2
         },
         "patina.workspaceIdentifier.source": {
           "type": "string",
@@ -176,7 +194,7 @@
           ],
           "default": "pathRelativeToHome",
           "description": "Determines what value is used to generate the workspace color.",
-          "order": 2
+          "order": 3
         },
         "patina.workspaceIdentifier.multiRootSource": {
           "type": "string",
@@ -197,31 +215,31 @@
           ],
           "default": "workspaceFile",
           "markdownDescription": "Determines the identifier base for multi-root workspaces. Combined with `source` to format the final identifier. Only applies when a `.code-workspace` file is open.",
-          "order": 3
+          "order": 4
         },
         "patina.elements.titleBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the window title bar.",
-          "order": 4
+          "order": 5
         },
         "patina.elements.activityBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the left side activity bar.",
-          "order": 5
+          "order": 6
         },
         "patina.elements.sideBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the side bar.",
-          "order": 6
+          "order": 7
         },
         "patina.elements.statusBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the bottom status bar.",
-          "order": 7
+          "order": 8
         },
         "patina.theme.blendFactor": {
           "type": "number",
@@ -229,7 +247,7 @@
           "maximum": 1,
           "default": 0.35,
           "description": "How much to blend tint colors toward the theme's background. 0 = full tint (no blending), 1 = theme colors only (no tinting). Only applies to known themes.",
-          "order": 8
+          "order": 9
         },
         "patina.theme.titleBarBlendFactor": {
           "type": [
@@ -240,7 +258,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the title bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 9
+          "order": 10
         },
         "patina.theme.activityBarBlendFactor": {
           "type": [
@@ -251,7 +269,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the activity bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 10
+          "order": 11
         },
         "patina.theme.sideBarBlendFactor": {
           "type": [
@@ -262,7 +280,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the side bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 11
+          "order": 12
         },
         "patina.theme.statusBarBlendFactor": {
           "type": [
@@ -273,13 +291,13 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the status bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 12
+          "order": 13
         },
         "patina.workspaceIdentifier.customBasePath": {
           "type": "string",
           "default": "",
           "description": "Base path for 'pathRelativeToCustom' source. Supports ~ and $HOME for home directory. Falls back to absolute path if workspace is outside this path.",
-          "order": 13
+          "order": 14
         },
         "patina.tint.mode": {
           "type": "string",
@@ -300,19 +318,19 @@
           ],
           "default": "auto",
           "description": "Theme mode for color generation. Auto-detects from VSCode's current theme.",
-          "order": 14
+          "order": 15
         },
         "patina.tint.seed": {
           "type": "integer",
           "default": 0,
           "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces.",
-          "order": 15
+          "order": 16
         },
         "patina.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 16,
+          "order": 17,
           "additionalProperties": {
             "type": "object",
             "required": [
@@ -418,7 +436,7 @@
           "type": "boolean",
           "default": true,
           "description": "Show Patina status in the status bar.",
-          "order": 17
+          "order": 18
         }
       }
     }

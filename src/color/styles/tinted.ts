@@ -1,14 +1,14 @@
-import type { SchemeConfig } from './types';
+import type { StyleConfig } from './types';
 
 /**
- * Tinted color scheme - very subtle per-workspace color tints.
+ * Tinted color style - very subtle per-workspace color tints.
  *
  * Uses very low chromaFactor (0.08-0.12) for barely-there color hints
  * while retaining workspace-specific hue variation. This replaces
  * monochrome for users who want minimal color but still some
  * visual distinction between workspaces.
  */
-export const tintedScheme: SchemeConfig = {
+export const tintedStyle: StyleConfig = {
   dark: {
     'titleBar.activeBackground': { lightness: 0.3, chromaFactor: 0.1 },
     'titleBar.activeForeground': { lightness: 0.88, chromaFactor: 0.08 },

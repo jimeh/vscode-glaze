@@ -14,33 +14,31 @@ export type ElementConfig = {
   lightness: number;
   /** Percentage of max in-gamut chroma (0-1) */
   chromaFactor: number;
-  /** Degrees to add to base hue (0-360), for multi-hue schemes */
-  hueOffset?: number;
 };
 
 /**
  * Configuration for each UI element's color generation per theme type.
  */
-export type SchemeConfig = Record<ThemeType, Record<PaletteKey, ElementConfig>>;
+export type StyleConfig = Record<ThemeType, Record<PaletteKey, ElementConfig>>;
 
 // ============================================================================
-// Scheme Resolver
+// Style Resolver
 // ============================================================================
 
 /**
- * Context passed to scheme resolvers for dynamic color computation.
+ * Context passed to style resolvers for dynamic color computation.
  */
-export interface SchemeResolveContext {
+export interface StyleResolveContext {
   /** Theme colors for the current theme, if available */
   readonly themeColors?: ThemeColors;
-  /** Computed base hue for the workspace (0-359) */
-  readonly baseHue: number;
+  /** The element's target hue (0-359), with any harmony offset pre-applied */
+  readonly elementHue: number;
 }
 
 /**
- * Result from a scheme resolver for a single palette key.
+ * Result from a style resolver for a single palette key.
  */
-export interface SchemeResolveResult {
+export interface StyleResolveResult {
   /** The pre-blend tint color in OKLCH */
   readonly tintOklch: OKLCH;
   /** When true, blending only affects hue (preserves L/C) */
@@ -50,11 +48,11 @@ export interface SchemeResolveResult {
 /**
  * Resolves the tint OKLCH color for a given palette key.
  *
- * Unlike static SchemeConfig which provides fixed lightness/chromaFactor,
+ * Unlike static StyleConfig which provides fixed lightness/chromaFactor,
  * resolvers can compute colors dynamically based on theme context.
  */
-export type SchemeResolver = (
+export type StyleResolver = (
   themeType: ThemeType,
   key: PaletteKey,
-  context: SchemeResolveContext
-) => SchemeResolveResult;
+  context: StyleResolveContext
+) => StyleResolveResult;

@@ -1,7 +1,7 @@
-import type { SchemeConfig } from './types';
+import type { StyleConfig } from './types';
 
 /**
- * Muted color scheme - subtle, desaturated tones for minimal visual impact.
+ * Muted color style - subtle, desaturated tones for minimal visual impact.
  *
  * Uses OKLCH color space with chromaFactor ~0.25-0.35 for subtle tints
  * that provide clear workspace differentiation without distraction.
@@ -9,7 +9,7 @@ import type { SchemeConfig } from './types';
  * Foreground colors use minimal chroma for neutral readability with
  * just a hint of color influence.
  */
-export const mutedScheme: SchemeConfig = {
+export const mutedStyle: StyleConfig = {
   dark: {
     'titleBar.activeBackground': { lightness: 0.36, chromaFactor: 0.32 },
     'titleBar.activeForeground': { lightness: 0.88, chromaFactor: 0.08 },

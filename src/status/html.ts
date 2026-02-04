@@ -126,8 +126,12 @@ function generateGeneralInfo(state: StatusState): string {
           <td>${themeColors}</td>
         </tr>
         <tr>
-          <td class="info-label">Color Scheme</td>
-          <td>${escapeHtml(g.colorScheme)}</td>
+          <td class="info-label">Color Style</td>
+          <td>${escapeHtml(g.colorStyle)}</td>
+        </tr>
+        <tr>
+          <td class="info-label">Color Harmony</td>
+          <td>${escapeHtml(g.colorHarmony)}</td>
         </tr>
         <tr>
           <td class="info-label">Blend Factor</td>

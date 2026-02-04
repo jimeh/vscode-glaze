@@ -1,13 +1,13 @@
-import type { SchemeConfig } from './types';
+import type { StyleConfig } from './types';
 
 /**
- * Neon color scheme - maximum chroma with elevated lightness for glow effect.
+ * Neon color style - maximum chroma with elevated lightness for glow effect.
  *
  * Uses chromaFactor at or near 1.0 (full gamut) with boosted lightness
  * values to create vivid, glowing colors reminiscent of neon signs.
  * Best suited for users who want maximum visual impact.
  */
-export const neonScheme: SchemeConfig = {
+export const neonStyle: StyleConfig = {
   dark: {
     'titleBar.activeBackground': { lightness: 0.58, chromaFactor: 1.0 },
     'titleBar.activeForeground': { lightness: 0.98, chromaFactor: 0.15 },
