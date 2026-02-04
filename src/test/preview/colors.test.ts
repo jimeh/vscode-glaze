@@ -550,4 +550,26 @@ suite('generateWorkspacePreview', () => {
 
     assert.strictEqual(preview.targetBlendFactors, undefined);
   });
+
+  test('harmony changes workspace preview colors', () => {
+    const uniform = generateWorkspacePreview({
+      identifier: 'my-project',
+      style: 'pastel',
+      themeType: 'dark',
+      harmony: 'uniform',
+    });
+    const triadic = generateWorkspacePreview({
+      identifier: 'my-project',
+      style: 'pastel',
+      themeType: 'dark',
+      harmony: 'triadic',
+    });
+
+    // Triadic applies ±120° offsets, so at least statusBar should differ
+    assert.notStrictEqual(
+      uniform.colors.statusBar.background,
+      triadic.colors.statusBar.background,
+      'Different harmonies should produce different workspace colors'
+    );
+  });
 });

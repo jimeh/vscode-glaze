@@ -251,15 +251,12 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       const element = def.element as TintTarget;
 
       // Pre-apply harmony hue offset for this element
-      const elementHue = applyHueOffset(
-        baseHue,
-        harmonyConfig[def.element] ?? 0
-      );
+      const elementHue = applyHueOffset(baseHue, harmonyConfig[def.element]);
 
       // Build per-key resolve context with offset-adjusted hue
       const resolveContext: StyleResolveContext = {
         themeColors,
-        baseHue: elementHue,
+        elementHue,
       };
 
       // Resolve tint color via style resolver

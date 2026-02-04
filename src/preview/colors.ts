@@ -59,7 +59,7 @@ function generateElementColors(
   const resolver = getStyleResolver(style);
   const elementHue = applyHueOffset(hue, hueOffset);
   const context: StyleResolveContext = {
-    baseHue: elementHue,
+    elementHue,
     themeColors,
   };
 

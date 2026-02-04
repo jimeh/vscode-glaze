@@ -32,7 +32,7 @@ export interface StyleResolveContext {
   /** Theme colors for the current theme, if available */
   readonly themeColors?: ThemeColors;
   /** The element's target hue (0-359), with any harmony offset pre-applied */
-  readonly baseHue: number;
+  readonly elementHue: number;
 }
 
 /**

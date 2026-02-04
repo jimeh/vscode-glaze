@@ -5,6 +5,7 @@ import {
   blendWithThemeOklchDirected,
   blendHueOnlyOklchDirected,
   getHueBlendDirection,
+  effectiveHueDirection,
 } from '../../color/blend';
 import { hexToOklch, oklchToHex } from '../../color/convert';
 
@@ -500,5 +501,63 @@ suite('blendHueOnlyOklchDirected', () => {
     assert.strictEqual(result.l, tint.l);
     assert.strictEqual(result.c, tint.c);
     assert.strictEqual(result.h, tint.h);
+  });
+});
+
+// =================================================================
+// effectiveHueDirection
+// =================================================================
+
+suite('effectiveHueDirection', () => {
+  test('returns undefined when majorityDir is undefined', () => {
+    assert.strictEqual(effectiveHueDirection(80, 200, undefined), undefined);
+  });
+
+  test('returns majorityDir when CW arc <= 270°', () => {
+    // CW from 80 to 200: arc = 120°
+    assert.strictEqual(effectiveHueDirection(80, 200, 'cw'), 'cw');
+  });
+
+  test('returns majorityDir when CCW arc <= 270°', () => {
+    // CCW from 200 to 80: diff = 80-200 = -120, abs = 120°
+    assert.strictEqual(effectiveHueDirection(200, 80, 'ccw'), 'ccw');
+  });
+
+  test('returns undefined when forced CW arc > 270°', () => {
+    // CW from 200 to 80: diff = 80-200 = -120, +360 = 240°... no
+    // CW from 10 to 20: diff=10, arc=10 — too small.
+    // Need forced arc > 270: CW from 100 to 80: diff=-20, +360=340°
+    assert.strictEqual(
+      effectiveHueDirection(100, 80, 'cw'),
+      undefined,
+      'CW arc of 340° should fall back to undefined'
+    );
+  });
+
+  test('returns undefined when forced CCW arc > 270°', () => {
+    // CCW from 80 to 100: diff=20, -360=-340, abs=340°
+    assert.strictEqual(
+      effectiveHueDirection(80, 100, 'ccw'),
+      undefined,
+      'CCW arc of 340° should fall back to undefined'
+    );
+  });
+
+  test('boundary: arc exactly at 270° returns majorityDir', () => {
+    // CW from 0 to 270: diff=270, arc=270°
+    assert.strictEqual(
+      effectiveHueDirection(0, 270, 'cw'),
+      'cw',
+      'Exactly 270° arc should return majorityDir'
+    );
+  });
+
+  test('boundary: arc at 271° returns undefined', () => {
+    // CW from 0 to 271: diff=271, arc=271°
+    assert.strictEqual(
+      effectiveHueDirection(0, 271, 'cw'),
+      undefined,
+      '271° arc should fall back to undefined'
+    );
   });
 });

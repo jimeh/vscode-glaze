@@ -14,7 +14,7 @@ import { maxChroma } from '../convert';
 export function staticResolver(config: StyleConfig): StyleResolver {
   return (themeType, key, context) => {
     const elementConfig = config[themeType][key];
-    const elementHue = context.baseHue;
+    const elementHue = context.elementHue;
     const maxC = maxChroma(elementConfig.lightness, elementHue);
     const chroma = maxC * elementConfig.chromaFactor;
 

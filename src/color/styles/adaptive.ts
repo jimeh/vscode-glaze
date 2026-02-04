@@ -46,7 +46,7 @@ export const adaptiveResolver: StyleResolver = (themeType, key, context) => {
     return pastelResolver(themeType, key, context);
   }
 
-  const elementHue = context.baseHue;
+  const elementHue = context.elementHue;
 
   return {
     tintOklch: {

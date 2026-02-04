@@ -243,7 +243,14 @@ suite('computeStatusColors', () => {
   });
 
   test('works with all color styles', () => {
-    const styles = ['pastel', 'vibrant', 'muted', 'tinted', 'neon'] as const;
+    const styles = [
+      'pastel',
+      'vibrant',
+      'muted',
+      'tinted',
+      'neon',
+      'adaptive',
+    ] as const;
 
     for (const colorStyle of styles) {
       const colors = computeStatusColors(makeColorsOptions({ colorStyle }));

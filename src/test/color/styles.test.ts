@@ -145,7 +145,7 @@ suite('getStyleResolver', () => {
       const resolver = getStyleResolver(style);
       for (const themeType of ALL_THEME_TYPES) {
         for (const key of ALL_PALETTE_KEYS) {
-          const result = resolver(themeType, key, { baseHue: 180 });
+          const result = resolver(themeType, key, { elementHue: 180 });
           assert.ok(
             result.tintOklch,
             `${style}.${themeType}.${key} should return tintOklch`
@@ -173,21 +173,21 @@ suite('getStyleResolver', () => {
     }
   });
 
-  test('resolvers produce different hues for different baseHue values', () => {
+  test('resolvers produce different hues for different elementHue values', () => {
     for (const style of ALL_COLOR_STYLES) {
       const resolver = getStyleResolver(style);
       const hue100 = resolver('dark', 'titleBar.activeBackground', {
-        baseHue: 100,
+        elementHue: 100,
       });
       const hue190 = resolver('dark', 'titleBar.activeBackground', {
-        baseHue: 190,
+        elementHue: 190,
       });
 
-      // Different baseHue should produce different output hues
+      // Different elementHue should produce different output hues
       assert.notStrictEqual(
         hue100.tintOklch.h,
         hue190.tintOklch.h,
-        `${style} should produce different hues for different baseHue`
+        `${style} should produce different hues for different elementHue`
       );
     }
   });
@@ -198,7 +198,7 @@ suite('getStyleResolver', () => {
       const resolver = getStyleResolver(style);
       for (const themeType of ALL_THEME_TYPES) {
         for (const key of ALL_PALETTE_KEYS) {
-          const result = resolver(themeType, key, { baseHue: 180 });
+          const result = resolver(themeType, key, { elementHue: 180 });
           // Static resolvers should have hueOnlyBlend=false
           assert.strictEqual(
             result.hueOnlyBlend,
@@ -365,7 +365,7 @@ suite('adaptive style', () => {
     };
 
     const result = resolver('dark', 'titleBar.activeBackground', {
-      baseHue: 200,
+      elementHue: 200,
       themeColors,
     });
 
@@ -385,7 +385,7 @@ suite('adaptive style', () => {
 
     for (const themeType of ALL_THEME_TYPES) {
       for (const key of ALL_PALETTE_KEYS) {
-        const context = { baseHue: 180 };
+        const context = { elementHue: 180 };
         const adaptiveResult = adaptive(themeType, key, context);
         const pastelResult = pastel(themeType, key, context);
 
@@ -414,7 +414,7 @@ suite('adaptive style', () => {
 
     // Only editor.background defined, no activityBar color
     const themeColors = { 'editor.background': '#1E1E1E' };
-    const context = { baseHue: 180, themeColors };
+    const context = { elementHue: 180, themeColors };
 
     // getColorForKey falls back to editor.background for bg keys,
     // so adaptive uses that fallback color's L/C (not pastel values)
@@ -431,14 +431,14 @@ suite('adaptive style', () => {
     };
 
     const result = resolver('dark', 'statusBar.background', {
-      baseHue: 0,
+      elementHue: 0,
       themeColors,
     });
 
     // The result's L/C should come from #0078D4, not from pastel
     const pastel = getStyleResolver('pastel');
     const pastelResult = pastel('dark', 'statusBar.background', {
-      baseHue: 0,
+      elementHue: 0,
     });
 
     // L/C should differ from pastel since theme color is different
@@ -473,7 +473,7 @@ suite('adaptive style', () => {
 
     for (const key of ALL_PALETTE_KEYS) {
       const result = resolver('dark', key, {
-        baseHue: 180,
+        elementHue: 180,
         themeColors,
       });
       assert.strictEqual(
@@ -484,7 +484,7 @@ suite('adaptive style', () => {
     }
   });
 
-  test('produces different hues for different baseHue values', () => {
+  test('produces different hues for different elementHue values', () => {
     const resolver = getStyleResolver('adaptive');
     const themeColors = {
       'editor.background': '#1E1E1E',
@@ -492,18 +492,18 @@ suite('adaptive style', () => {
     };
 
     const hue100 = resolver('dark', 'titleBar.activeBackground', {
-      baseHue: 100,
+      elementHue: 100,
       themeColors,
     });
     const hue190 = resolver('dark', 'titleBar.activeBackground', {
-      baseHue: 190,
+      elementHue: 190,
       themeColors,
     });
 
     assert.notStrictEqual(
       hue100.tintOklch.h,
       hue190.tintOklch.h,
-      'Adaptive should produce different hues for different baseHue'
+      'Adaptive should produce different hues for different elementHue'
     );
   });
 });
