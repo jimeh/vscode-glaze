@@ -30,9 +30,9 @@ const CONFIG_SECTIONS = [
 /**
  * Determines the configuration target for a Patina setting.
  *
- * Respects the existing scope: if the setting already has a workspace
- * value, targets workspace; if global, targets global. When neither
- * is defined, prefers workspace when a workspace folder is open.
+ * Defaults to global so that preview changes apply user-wide. Only
+ * targets workspace when the user has an explicit workspace-level
+ * override for the setting.
  */
 function getSettingTarget(settingKey: string): vscode.ConfigurationTarget {
   const config = vscode.workspace.getConfiguration('patina');
@@ -41,12 +41,7 @@ function getSettingTarget(settingKey: string): vscode.ConfigurationTarget {
   if (inspection?.workspaceValue !== undefined) {
     return vscode.ConfigurationTarget.Workspace;
   }
-  if (inspection?.globalValue !== undefined) {
-    return vscode.ConfigurationTarget.Global;
-  }
-  return vscode.workspace.workspaceFolders
-    ? vscode.ConfigurationTarget.Workspace
-    : vscode.ConfigurationTarget.Global;
+  return vscode.ConfigurationTarget.Global;
 }
 
 /**
