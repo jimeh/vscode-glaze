@@ -16,8 +16,15 @@ import {
 import type { SchemeResolveContext } from '../color/schemes';
 import type { ColorHarmony } from '../color/harmony';
 import { HARMONY_CONFIGS } from '../color/harmony';
-import { oklchToHex } from '../color/convert';
-import { blendWithThemeOklch, blendHueOnlyOklch } from '../color/blend';
+import { hexToOklch, oklchToHex } from '../color/convert';
+import {
+  blendWithThemeOklch,
+  blendHueOnlyOklch,
+  blendWithThemeOklchDirected,
+  blendHueOnlyOklchDirected,
+  getHueBlendDirection,
+} from '../color/blend';
+import type { HueBlendDirection } from '../color/blend';
 import { getColorForKey } from '../theme/colors';
 import { computeBaseHue } from '../color/tint';
 
@@ -29,8 +36,35 @@ import { computeBaseHue } from '../color/tint';
 export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 
 /**
+ * Returns the majority direction if the arc from `tintHue` to
+ * `themeHex` in that direction is ≤ 270°. Falls back to
+ * `undefined` (shortest path) when forcing would create an
+ * extreme long-way-around blend (>270° arc). The generous
+ * threshold allows the majority to override boundary cases
+ * while blocking catastrophic arcs.
+ */
+function effectiveDir(
+  tintHue: number,
+  themeHex: string,
+  majorityDir?: HueBlendDirection
+): HueBlendDirection | undefined {
+  if (!majorityDir) return undefined;
+  const themeHue = hexToOklch(themeHex).h;
+  let diff = themeHue - tintHue;
+  if (majorityDir === 'cw') {
+    if (diff < 0) diff += 360;
+  } else {
+    if (diff > 0) diff -= 360;
+  }
+  return Math.abs(diff) <= 270 ? majorityDir : undefined;
+}
+
+/**
  * Generates element colors for a single UI element at a given
  * hue, optionally blending with theme colors.
+ *
+ * When `hueDirection` is provided, directed blending is used
+ * to keep all elements consistent in their hue rotation.
  */
 function generateElementColors(
   scheme: ColorScheme,
@@ -40,7 +74,8 @@ function generateElementColors(
   fgKey: PaletteKey,
   hueOffset: number,
   themeColors?: ThemeColors,
-  blendFactor?: number
+  blendFactor?: number,
+  hueDirection?: HueBlendDirection
 ): ElementColors {
   const resolver = getSchemeResolver(scheme);
   const context: SchemeResolveContext = {
@@ -57,19 +92,37 @@ function generateElementColors(
     const themeBg = getColorForKey(bgKey, themeColors);
     const themeFg = getColorForKey(fgKey, themeColors);
 
-    const blendBg = bgResult.hueOnlyBlend
-      ? blendHueOnlyOklch
-      : blendWithThemeOklch;
-    const blendFg = fgResult.hueOnlyBlend
-      ? blendHueOnlyOklch
-      : blendWithThemeOklch;
+    let blendedBg = bgResult.tintOklch;
+    if (themeBg) {
+      const dir = effectiveDir(bgResult.tintOklch.h, themeBg, hueDirection);
+      if (dir) {
+        const fn = bgResult.hueOnlyBlend
+          ? blendHueOnlyOklchDirected
+          : blendWithThemeOklchDirected;
+        blendedBg = fn(bgResult.tintOklch, themeBg, blendFactor, dir);
+      } else {
+        const fn = bgResult.hueOnlyBlend
+          ? blendHueOnlyOklch
+          : blendWithThemeOklch;
+        blendedBg = fn(bgResult.tintOklch, themeBg, blendFactor);
+      }
+    }
 
-    const blendedBg = themeBg
-      ? blendBg(bgResult.tintOklch, themeBg, blendFactor)
-      : bgResult.tintOklch;
-    const blendedFg = themeFg
-      ? blendFg(fgResult.tintOklch, themeFg, blendFactor)
-      : fgResult.tintOklch;
+    let blendedFg = fgResult.tintOklch;
+    if (themeFg) {
+      const dir = effectiveDir(fgResult.tintOklch.h, themeFg, hueDirection);
+      if (dir) {
+        const fn = fgResult.hueOnlyBlend
+          ? blendHueOnlyOklchDirected
+          : blendWithThemeOklchDirected;
+        blendedFg = fn(fgResult.tintOklch, themeFg, blendFactor, dir);
+      } else {
+        const fn = fgResult.hueOnlyBlend
+          ? blendHueOnlyOklch
+          : blendWithThemeOklch;
+        blendedFg = fn(fgResult.tintOklch, themeFg, blendFactor);
+      }
+    }
 
     return {
       background: oklchToHex(blendedBg),
@@ -86,6 +139,9 @@ function generateElementColors(
 /**
  * Generates preview colors for all three elements at a given hue,
  * optionally blending with theme colors.
+ *
+ * Pre-calculates majority hue direction from the base hue against
+ * the background theme colors so all elements blend consistently.
  */
 function generateColorsAtHue(
   scheme: ColorScheme,
@@ -98,6 +154,30 @@ function generateColorsAtHue(
 ): SchemePreviewColors {
   const harmonyConfig = HARMONY_CONFIGS[harmony];
 
+  // Pre-calculate majority hue direction from the base hue
+  // (before harmony offsets) against the BG theme colors.
+  let majorityDir: HueBlendDirection | undefined;
+  if (themeColors) {
+    const bgKeys: PaletteKey[] = [
+      'titleBar.activeBackground',
+      'statusBar.background',
+      'activityBar.background',
+    ];
+    let cwCount = 0;
+    let total = 0;
+    for (const bgKey of bgKeys) {
+      const themeHex = getColorForKey(bgKey, themeColors);
+      if (!themeHex) continue;
+      const themeHue = hexToOklch(themeHex).h;
+      const dir = getHueBlendDirection(hue, themeHue);
+      if (dir === 'cw') cwCount++;
+      total++;
+    }
+    if (total > 0) {
+      majorityDir = cwCount >= total - cwCount ? 'cw' : 'ccw';
+    }
+  }
+
   return {
     titleBar: generateElementColors(
       scheme,
@@ -107,7 +187,8 @@ function generateColorsAtHue(
       'titleBar.activeForeground',
       harmonyConfig.titleBar,
       themeColors,
-      targetBlendFactors?.titleBar ?? blendFactor
+      targetBlendFactors?.titleBar ?? blendFactor,
+      majorityDir
     ),
     statusBar: generateElementColors(
       scheme,
@@ -117,7 +198,8 @@ function generateColorsAtHue(
       'statusBar.foreground',
       harmonyConfig.statusBar,
       themeColors,
-      targetBlendFactors?.statusBar ?? blendFactor
+      targetBlendFactors?.statusBar ?? blendFactor,
+      majorityDir
     ),
     activityBar: generateElementColors(
       scheme,
@@ -127,7 +209,8 @@ function generateColorsAtHue(
       'activityBar.foreground',
       harmonyConfig.activityBar,
       themeColors,
-      targetBlendFactors?.activityBar ?? blendFactor
+      targetBlendFactors?.activityBar ?? blendFactor,
+      majorityDir
     ),
   };
 }
