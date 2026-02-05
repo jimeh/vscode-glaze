@@ -178,6 +178,13 @@ suite('isValidBlendMethod', () => {
     assert.strictEqual(isValidBlendMethod('hue-shift'), false);
   });
 
+  test('returns false for Object prototype keys', () => {
+    assert.strictEqual(isValidBlendMethod('toString'), false);
+    assert.strictEqual(isValidBlendMethod('__proto__'), false);
+    assert.strictEqual(isValidBlendMethod('constructor'), false);
+    assert.strictEqual(isValidBlendMethod('hasOwnProperty'), false);
+  });
+
   test('works as type guard', () => {
     const value: string = 'overlay';
     if (isValidBlendMethod(value)) {

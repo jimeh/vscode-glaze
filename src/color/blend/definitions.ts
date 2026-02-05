@@ -63,5 +63,5 @@ export const BLEND_METHOD_LABELS: Readonly<Record<BlendMethod, string>> =
  * Type guard for validating blend method strings.
  */
 export function isValidBlendMethod(value: string): value is BlendMethod {
-  return value in BLEND_METHOD_DEFINITIONS;
+  return ALL_BLEND_METHODS.includes(value as BlendMethod);
 }
