@@ -1,25 +1,6 @@
 import type { ColorHarmony, ColorStyle, TintTarget } from '../config';
-import type { ColorType, ElementType, PaletteKey, ThemeType } from '../theme';
-
-/**
- * Color detail for a single managed palette key in the status view.
- */
-export interface StatusColorDetail {
-  /** The palette key (e.g., 'titleBar.activeBackground') */
-  key: PaletteKey;
-  /** UI element this color belongs to */
-  element: ElementType;
-  /** Whether this is a background or foreground color */
-  colorType: ColorType;
-  /** Theme color from the theme database, if available */
-  themeColor: string | undefined;
-  /** Pre-blend tint color (OKLCH → hex, before theme blending) */
-  tintColor: string;
-  /** Final blended color (after theme blending, or same as tint) */
-  finalColor: string;
-  /** Whether the element is in the active tint targets */
-  enabled: boolean;
-}
+import type { ThemeType } from '../theme';
+import type { TintKeyDetail } from '../color/tint';
 
 /**
  * General status information about the current Patina configuration.
@@ -68,7 +49,7 @@ export interface StatusGeneralInfo {
  */
 export interface StatusState {
   general: StatusGeneralInfo;
-  colors: StatusColorDetail[];
+  colors: readonly TintKeyDetail[];
 }
 
 /**

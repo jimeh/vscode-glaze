@@ -1,35 +1,19 @@
-import type { ThemeType, ThemeColors, PaletteKey } from '../theme';
+import type { ThemeType, ThemeColors } from '../theme';
 import { DEFAULT_BLEND_FACTOR } from '../config';
 import type { TintTarget } from '../config';
 import type {
-  ElementColors,
   HarmonyPreview,
   StylePreview,
   StylePreviewColors,
   WorkspacePreview,
 } from './types';
 import type { ColorStyle } from '../color/styles';
-import {
-  ALL_COLOR_STYLES,
-  COLOR_STYLE_LABELS,
-  getStyleResolver,
-} from '../color/styles';
-import type { StyleResolveContext } from '../color/styles';
+import { ALL_COLOR_STYLES, COLOR_STYLE_LABELS } from '../color/styles';
 import type { ColorHarmony } from '../color/harmony';
-import {
-  ALL_COLOR_HARMONIES,
-  COLOR_HARMONY_LABELS,
-  HARMONY_CONFIGS,
-} from '../color/harmony';
-import { oklchToHex } from '../color/convert';
-import {
-  getBlendFunction,
-  getMajorityHueDirection,
-  type BlendMethod,
-  type HueBlendDirection,
-} from '../color/blend';
-import { getColorForKey } from '../theme/colors';
-import { applyHueOffset, computeBaseHue } from '../color';
+import { ALL_COLOR_HARMONIES, COLOR_HARMONY_LABELS } from '../color/harmony';
+import type { BlendMethod } from '../color/blend';
+import { computeTint } from '../color/tint';
+import { tintResultToPreviewColors } from './adapter';
 
 /**
  * Sample hues for preview display (OKLCH-calibrated).
@@ -39,81 +23,17 @@ import { applyHueOffset, computeBaseHue } from '../color';
 export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 
 /**
- * Generates element colors for a single UI element at a given
- * hue, optionally blending with theme colors.
- *
- * When `hueDirection` is provided, directed blending is used
- * to keep all elements consistent in their hue rotation.
+ * Preview targets — the elements shown in the preview panel.
+ * Excludes sideBar since it's disabled by default and not shown.
  */
-function generateElementColors(
-  style: ColorStyle,
-  themeType: ThemeType,
-  hue: number,
-  bgKey: PaletteKey,
-  fgKey: PaletteKey,
-  hueOffset: number,
-  themeColors?: ThemeColors,
-  blendFactor?: number,
-  blendMethod: BlendMethod = 'overlay',
-  hueDirection?: HueBlendDirection
-): ElementColors {
-  const resolver = getStyleResolver(style);
-  const elementHue = applyHueOffset(hue, hueOffset);
-  const context: StyleResolveContext = {
-    elementHue,
-    themeColors,
-  };
-
-  const bgResult = resolver(themeType, bgKey, context);
-  const fgResult = resolver(themeType, fgKey, context);
-
-  // Blend with theme colors if provided
-  if (themeColors && blendFactor !== undefined && blendFactor > 0) {
-    const themeBg = getColorForKey(bgKey, themeColors);
-    const themeFg = getColorForKey(fgKey, themeColors);
-
-    const blend = getBlendFunction(blendMethod, hueDirection);
-    const tintBgHex = oklchToHex(bgResult.tintOklch);
-    const tintFgHex = oklchToHex(fgResult.tintOklch);
-
-    const blendedBgHex = themeBg
-      ? blend(
-          bgResult.tintOklch,
-          tintBgHex,
-          themeBg,
-          blendFactor,
-          bgResult.hueOnlyBlend
-        )
-      : tintBgHex;
-
-    const blendedFgHex = themeFg
-      ? blend(
-          fgResult.tintOklch,
-          tintFgHex,
-          themeFg,
-          blendFactor,
-          fgResult.hueOnlyBlend
-        )
-      : tintFgHex;
-
-    return {
-      background: blendedBgHex,
-      foreground: blendedFgHex,
-    };
-  }
-
-  return {
-    background: oklchToHex(bgResult.tintOklch),
-    foreground: oklchToHex(fgResult.tintOklch),
-  };
-}
+const PREVIEW_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
 
 /**
  * Generates preview colors for all three elements at a given hue,
  * optionally blending with theme colors.
  *
- * Pre-calculates majority hue direction from the base hue against
- * the background theme colors so all elements blend consistently.
+ * Delegates to computeTint() to ensure identical color computation
+ * with production code paths.
  */
 function generateColorsAtHue(
   style: ColorStyle,
@@ -125,54 +45,19 @@ function generateColorsAtHue(
   blendMethod: BlendMethod = 'overlay',
   targetBlendFactors?: Partial<Record<TintTarget, number>>
 ): StylePreviewColors {
-  const harmonyConfig = HARMONY_CONFIGS[harmony];
+  const result = computeTint({
+    baseHue: hue,
+    targets: PREVIEW_TARGETS,
+    themeType,
+    colorStyle: style,
+    colorHarmony: harmony,
+    themeColors,
+    blendMethod,
+    themeBlendFactor: blendFactor ?? DEFAULT_BLEND_FACTOR,
+    targetBlendFactors,
+  });
 
-  // Pre-calculate majority hue direction from the base hue
-  // (before harmony offsets) against the BG theme colors.
-  // Only relevant for hueShift blending.
-  const majorityDir =
-    blendMethod === 'hueShift' && themeColors
-      ? getMajorityHueDirection(hue, themeColors)
-      : undefined;
-
-  return {
-    titleBar: generateElementColors(
-      style,
-      themeType,
-      hue,
-      'titleBar.activeBackground',
-      'titleBar.activeForeground',
-      harmonyConfig.titleBar,
-      themeColors,
-      targetBlendFactors?.titleBar ?? blendFactor,
-      blendMethod,
-      majorityDir
-    ),
-    statusBar: generateElementColors(
-      style,
-      themeType,
-      hue,
-      'statusBar.background',
-      'statusBar.foreground',
-      harmonyConfig.statusBar,
-      themeColors,
-      targetBlendFactors?.statusBar ?? blendFactor,
-      blendMethod,
-      majorityDir
-    ),
-    activityBar: generateElementColors(
-      style,
-      themeType,
-      hue,
-      'activityBar.background',
-      'activityBar.foreground',
-      harmonyConfig.activityBar,
-      themeColors,
-      targetBlendFactors?.activityBar ?? blendFactor,
-      blendMethod,
-      majorityDir
-    ),
-  };
+  return tintResultToPreviewColors(result);
 }
 
 /**
@@ -266,30 +151,28 @@ export function generateWorkspacePreview(
     targetBlendFactors,
   } = options;
 
-  const hue = computeBaseHue(identifier, seed);
-
   const hasAnyBlend =
     blendFactor > 0 ||
     (targetBlendFactors !== undefined &&
       Object.values(targetBlendFactors).some((f) => f > 0));
   const isBlended = themeColors !== undefined && hasAnyBlend;
 
-  const colors = isBlended
-    ? generateColorsAtHue(
-        style,
-        themeType,
-        hue,
-        harmony,
-        themeColors,
-        blendFactor,
-        blendMethod,
-        targetBlendFactors
-      )
-    : generateColorsAtHue(style, themeType, hue, harmony);
+  const result = computeTint({
+    workspaceIdentifier: identifier,
+    seed,
+    targets: PREVIEW_TARGETS,
+    themeType,
+    colorStyle: style,
+    colorHarmony: harmony,
+    themeColors: isBlended ? themeColors : undefined,
+    blendMethod,
+    themeBlendFactor: blendFactor,
+    targetBlendFactors,
+  });
 
   return {
     identifier,
-    colors,
+    colors: tintResultToPreviewColors(result),
     blendFactor: isBlended ? blendFactor : undefined,
     isBlended,
     targetBlendFactors:

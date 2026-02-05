@@ -1,19 +1,21 @@
 import * as assert from 'assert';
 import { generateStatusHtml } from '../../status/html';
-import type { StatusState, StatusColorDetail } from '../../status/types';
+import type { StatusState } from '../../status/types';
+import type { TintKeyDetail } from '../../color/tint';
 import type { PaletteKey } from '../../theme';
 import { PATINA_MANAGED_KEYS, COLOR_KEY_DEFINITIONS } from '../../theme';
 
-function createMockColors(): StatusColorDetail[] {
-  return PATINA_MANAGED_KEYS.map((key: PaletteKey): StatusColorDetail => {
+function createMockColors(): readonly TintKeyDetail[] {
+  return PATINA_MANAGED_KEYS.map((key: PaletteKey): TintKeyDetail => {
     const def = COLOR_KEY_DEFINITIONS[key];
     return {
       key,
       element: def.element,
       colorType: def.colorType,
       themeColor: '#282c34',
-      tintColor: '#524052',
-      finalColor: '#3d3040',
+      tintHex: '#524052',
+      finalHex: '#3d3040',
+      blendFactor: 0.35,
       enabled: true,
     };
   });

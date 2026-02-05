@@ -1,11 +1,4 @@
-import type { TintTarget } from '../config';
-import type { ThemeColors, ThemeType } from '../theme';
-import type { BlendMethod, ColorHarmony, ColorStyle } from '../color';
-import type {
-  StatusColorDetail,
-  StatusGeneralInfo,
-  StatusState,
-} from './types';
+import type { StatusGeneralInfo, StatusState } from './types';
 import { computeBaseHue, computeTint } from '../color/tint';
 import {
   getColorHarmony,
@@ -27,82 +20,6 @@ import { getWorkspaceIdentifier } from '../workspace';
 import { detectOsColorScheme } from '../theme/osColorScheme';
 
 /**
- * Options for computing status color details.
- */
-export interface ComputeStatusColorsOptions {
-  /** Computed base hue angle (0-359) */
-  baseHue: number;
-  /** Active color style */
-  colorStyle: ColorStyle;
-  /** Active color harmony */
-  colorHarmony?: ColorHarmony;
-  /** Resolved theme type */
-  themeType: ThemeType;
-  /** Theme colors from the database, if available */
-  themeColors: ThemeColors | undefined;
-  /** Blend method to use */
-  blendMethod: BlendMethod;
-  /** Theme blend factor (0-1) */
-  blendFactor: number;
-  /** Per-target blend factor overrides */
-  targetBlendFactors?: Partial<Record<TintTarget, number>>;
-  /** Active tint targets */
-  targets: TintTarget[];
-}
-
-/**
- * Computes color details for all 8 managed palette keys.
- *
- * For each key:
- * 1. Gets the ElementConfig from the style
- * 2. Computes the OKLCH tint color (pre-blend)
- * 3. Looks up the theme color if available
- * 4. Computes the final blended color
- * 5. Determines if the element is enabled
- *
- * @returns Array of StatusColorDetail for all managed keys
- */
-export function computeStatusColors(
-  options: ComputeStatusColorsOptions
-): StatusColorDetail[] {
-  const {
-    baseHue,
-    colorStyle,
-    colorHarmony,
-    themeType,
-    themeColors,
-    blendMethod,
-    blendFactor,
-    targetBlendFactors,
-    targets,
-  } = options;
-
-  const result = computeTint({
-    baseHue,
-    targets,
-    themeType,
-    colorStyle,
-    colorHarmony,
-    themeColors,
-    blendMethod,
-    themeBlendFactor: blendFactor,
-    targetBlendFactors,
-  });
-
-  return result.keys.map(
-    (detail): StatusColorDetail => ({
-      key: detail.key,
-      element: detail.element,
-      colorType: detail.colorType,
-      themeColor: detail.themeColor,
-      tintColor: detail.tintHex,
-      finalColor: detail.finalHex,
-      enabled: detail.enabled,
-    })
-  );
-}
-
-/**
  * Builds the complete status state by reading VSCode configuration
  * and computing all color details.
  *
@@ -122,16 +39,16 @@ export async function buildStatusState(): Promise<StatusState> {
   const isActive = isEnabledForWorkspace() && identifier !== undefined;
   const baseHue = identifier ? computeBaseHue(identifier, tintConfig.seed) : 0;
 
-  const colors = computeStatusColors({
+  const result = computeTint({
     baseHue,
+    targets: tintConfig.targets,
+    themeType: themeContext.tintType,
     colorStyle,
     colorHarmony,
-    themeType: themeContext.tintType,
     themeColors: themeContext.colors,
     blendMethod: themeConfig.blendMethod,
-    blendFactor: themeConfig.blendFactor,
+    themeBlendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
-    targets: tintConfig.targets,
   });
 
   const wbConfig = vscode.workspace.getConfiguration();
@@ -161,5 +78,5 @@ export async function buildStatusState(): Promise<StatusState> {
     customizedOutsidePatina,
   };
 
-  return { general, colors };
+  return { general, colors: result.keys };
 }
