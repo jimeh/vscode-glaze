@@ -2,6 +2,7 @@ import type { StatusState, StatusGeneralInfo } from './types';
 import type { TintKeyDetail } from '../color/tint';
 import type { ElementType } from '../theme';
 import type { TintTarget } from '../config';
+import { computeBaseTintHex } from '../color/tint';
 import { capitalizeFirst } from '../statusBar/helpers';
 import { escapeHtml } from '../webview';
 import { renderWebviewHtml } from '../webview/html';
@@ -71,7 +72,7 @@ function generateGeneralInfo(state: StatusState): string {
   const blendPct = Math.round(g.blendFactor * 100);
   const blendOverrideRows = generateBlendOverrideRows(g);
   const baseHueSwatch = g.workspaceIdentifier
-    ? ` ${colorSwatch(hueToSwatchColor(g.baseHue))}`
+    ? ` ${colorSwatch(computeBaseTintHex(g.baseHue, g.themeType ?? 'dark'))}`
     : '';
 
   const targetLabels =
@@ -184,15 +185,6 @@ function generateBlendOverrideRows(g: StatusGeneralInfo): string {
     );
   }
   return rows.join('');
-}
-
-/**
- * Converts a hue angle to a visible swatch color.
- * Uses a fixed lightness/chroma for display purposes only.
- */
-function hueToSwatchColor(hue: number): string {
-  // Simple HSL approximation for a visible swatch
-  return `hsl(${hue}, 70%, 50%)`;
 }
 
 /**
