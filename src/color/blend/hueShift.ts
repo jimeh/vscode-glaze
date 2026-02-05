@@ -17,9 +17,9 @@ import type {
  * Blends two hue values with an explicit direction around
  * the color wheel.
  *
- * - `'shortest'` -- take the shorter arc (default, original behavior).
- * - `'cw'`       -- always interpolate clockwise (increasing hue).
- * - `'ccw'`      -- always interpolate counter-clockwise.
+ * - `'shortest'` — take the shorter arc (default, original behavior).
+ * - `'cw'`       — always interpolate clockwise (increasing hue).
+ * - `'ccw'`      — always interpolate counter-clockwise.
  */
 function blendHueDirected(
   hue1: number,
@@ -137,8 +137,8 @@ export function effectiveHueDirection(
  *
  * Computes the shortest-path blend direction from `baseHue` (before
  * any harmony offsets) to each background theme color's hue, then
- * returns the majority vote. This ensures all elements -- regardless
- * of their harmony offset -- blend in the same direction, preventing
+ * returns the majority vote. This ensures all elements — regardless
+ * of their harmony offset — blend in the same direction, preventing
  * split-direction artifacts where some elements go clockwise and
  * others counter-clockwise.
  *
@@ -190,7 +190,7 @@ function blendOklchInternal(
   try {
     themeOklch = hexToOklch(themeBackgroundHex);
   } catch {
-    // Invalid hex -- skip blending, return tint unchanged.
+    // Invalid hex — skip blending, return tint unchanged.
     return tintOklch;
   }
   const factor = Math.max(0, Math.min(1, blendFactor));

@@ -10,7 +10,7 @@ import type { BlendFunction } from './types';
  * theme color.
  *
  * Operates in linear sRGB to produce physically correct blending.
- * The `hueOnly` flag is ignored -- overlay mode always composites
+ * The `hueOnly` flag is ignored — overlay mode always composites
  * the full color.
  */
 export const overlayBlend: BlendFunction = (
@@ -26,7 +26,7 @@ export const overlayBlend: BlendFunction = (
     tintRgb = hexToLinearRgb(tintHex);
     themeRgb = hexToLinearRgb(themeHex);
   } catch {
-    // Invalid hex -- skip blending, return tint unchanged.
+    // Invalid hex — skip blending, return tint unchanged.
     return tintHex;
   }
 

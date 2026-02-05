@@ -28,6 +28,18 @@ export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
  */
 const PREVIEW_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
 
+/** Options for {@link generateColorsAtHue}. */
+interface GenerateColorsAtHueOptions {
+  style: ColorStyle;
+  themeType: ThemeType;
+  hue: number;
+  harmony?: ColorHarmony;
+  themeColors?: ThemeColors;
+  blendFactor?: number;
+  blendMethod?: BlendMethod;
+  targetBlendFactors?: Partial<Record<TintTarget, number>>;
+}
+
 /**
  * Generates preview colors for all three elements at a given hue,
  * optionally blending with theme colors.
@@ -36,15 +48,18 @@ const PREVIEW_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
  * with production code paths.
  */
 function generateColorsAtHue(
-  style: ColorStyle,
-  themeType: ThemeType,
-  hue: number,
-  harmony: ColorHarmony = 'uniform',
-  themeColors?: ThemeColors,
-  blendFactor?: number,
-  blendMethod: BlendMethod = 'overlay',
-  targetBlendFactors?: Partial<Record<TintTarget, number>>
+  options: GenerateColorsAtHueOptions
 ): StylePreviewColors {
+  const {
+    style,
+    themeType,
+    hue,
+    harmony = 'uniform',
+    themeColors,
+    blendFactor,
+    blendMethod = 'overlay',
+    targetBlendFactors,
+  } = options;
   const result = computeTint({
     baseHue: hue,
     targets: PREVIEW_TARGETS,
@@ -72,7 +87,7 @@ export function generateStylePreview(
     style,
     label: COLOR_STYLE_LABELS[style],
     hueColors: SAMPLE_HUES.map((hue) =>
-      generateColorsAtHue(style, themeType, hue, harmony)
+      generateColorsAtHue({ style, themeType, hue, harmony })
     ),
   };
 }
@@ -101,7 +116,7 @@ export function generateHarmonyPreview(
     harmony,
     label: COLOR_HARMONY_LABELS[harmony],
     hueColors: SAMPLE_HUES.map((hue) =>
-      generateColorsAtHue(style, themeType, hue, harmony)
+      generateColorsAtHue({ style, themeType, hue, harmony })
     ),
   };
 }
