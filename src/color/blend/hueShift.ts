@@ -1,16 +1,17 @@
-import type { OKLCH } from './types';
-import { hexToOklch, clampToGamut } from './convert';
+import type { OKLCH } from '../types';
+import type { ThemeColors, PaletteKey } from '../../theme';
+import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../../theme';
+import { getColorForKey } from '../../theme/colors';
+import { hexToOklch, oklchToHex, clampToGamut } from '../convert';
+import type {
+  BlendFunction,
+  HueBlendDirection,
+  HueShiftContext,
+} from './types';
 
-/** Direction for hue interpolation around the color wheel. */
-export type HueBlendDirection = 'cw' | 'ccw' | 'shortest';
-
-/**
- * Blends two hue values with proper wraparound handling.
- * Hue is circular (0-360), so we take the shortest path.
- */
-function blendHue(hue1: number, hue2: number, factor: number): number {
-  return blendHueDirected(hue1, hue2, factor, 'shortest');
-}
+// ============================================================================
+// Hue interpolation helpers
+// ============================================================================
 
 /**
  * Blends two hue values with an explicit direction around
@@ -61,11 +62,23 @@ function blendHueDirected(
 }
 
 /**
+ * Blends two hue values with proper wraparound handling.
+ * Hue is circular (0-360), so we take the shortest path.
+ */
+function blendHue(hue1: number, hue2: number, factor: number): number {
+  return blendHueDirected(hue1, hue2, factor, 'shortest');
+}
+
+// ============================================================================
+// Hue direction helpers
+// ============================================================================
+
+/**
  * Determines which direction shortest-path hue blending would
  * take from `tintHue` toward `themeHue`.
  *
  * Returns `'cw'` when the shortest arc goes clockwise (increasing
- * hue), `'ccw'` when counter-clockwise. At exactly 180° the tie
+ * hue), `'ccw'` when counter-clockwise. At exactly 180 the tie
  * is broken toward `'cw'` for determinism.
  */
 export function getHueBlendDirection(
@@ -119,6 +132,51 @@ export function effectiveHueDirection(
 }
 
 /**
+ * Determines the majority hue blend direction from the base hue
+ * toward theme background colors.
+ *
+ * Computes the shortest-path blend direction from `baseHue` (before
+ * any harmony offsets) to each background theme color's hue, then
+ * returns the majority vote. This ensures all elements — regardless
+ * of their harmony offset — blend in the same direction, preventing
+ * split-direction artifacts where some elements go clockwise and
+ * others counter-clockwise.
+ *
+ * @param baseHue - Pre-offset base hue angle
+ * @param themeColors - Theme colors to vote against
+ * @returns Majority direction, or `undefined` if no BG theme colors
+ */
+export function getMajorityHueDirection(
+  baseHue: number,
+  themeColors: ThemeColors
+): HueBlendDirection | undefined {
+  let cwCount = 0;
+  let total = 0;
+
+  for (const key of PATINA_MANAGED_KEYS) {
+    const def = COLOR_KEY_DEFINITIONS[key as PaletteKey];
+    if (def.colorType !== 'background') continue;
+
+    const themeHex = getColorForKey(key as PaletteKey, themeColors);
+    if (!themeHex) continue;
+
+    const themeHue = hexToOklch(themeHex).h;
+    const dir = getHueBlendDirection(baseHue, themeHue);
+    if (dir === 'cw') cwCount++;
+    total++;
+  }
+
+  if (total === 0) return undefined;
+
+  // Break ties toward clockwise for determinism.
+  return cwCount >= total - cwCount ? 'cw' : 'ccw';
+}
+
+// ============================================================================
+// OKLCH blend internals
+// ============================================================================
+
+/**
  * Internal helper that parses the theme hex, clamps the factor,
  * and delegates to an interpolation function for the actual blend.
  */
@@ -140,11 +198,15 @@ function blendOklchInternal(
   return clampToGamut(interpolate(tintOklch, themeOklch, factor));
 }
 
+// ============================================================================
+// Exported OKLCH blend functions (used by tests + preview)
+// ============================================================================
+
 /**
  * Blends a tint color with a theme background color in OKLCH space.
  *
- * OKLCH provides perceptually uniform blending, ensuring smoother
- * transitions that look more natural to the human eye.
+ * OKLCH provides uniform blending in a perceptual color space,
+ * ensuring smoother transitions that look more natural to the human eye.
  *
  * At factor 0, returns the tint color unchanged.
  * At factor 1, returns the theme background color.
@@ -264,6 +326,10 @@ export function blendHueOnlyOklchDirected(
   );
 }
 
+// ============================================================================
+// High-level hue shift blend
+// ============================================================================
+
 /**
  * High-level blend that resolves the effective hue direction and
  * picks the appropriate directed or shortest-path blend function.
@@ -299,4 +365,42 @@ export function blendDirectedOklch(
 
   const fn = hueOnly ? blendHueOnlyOklch : blendWithThemeOklch;
   return fn(tintOklch, themeHex, factor);
+}
+
+/**
+ * Creates a hue shift {@link BlendFunction} that uses OKLCH
+ * interpolation with directed hue blending.
+ *
+ * The returned function lazily computes the majority hue direction
+ * on first call (if context is provided) so all keys blend
+ * consistently in the same direction.
+ *
+ * @param context - Optional context for lazy majority direction
+ *   calculation. If provided with `baseHue` and `themeColors`, the
+ *   majority direction is computed on first blend call.
+ * @returns A {@link BlendFunction} using OKLCH hue shift blending
+ */
+export function createHueShiftBlend(context?: HueShiftContext): BlendFunction {
+  let majorityDir: HueBlendDirection | undefined;
+  let computed = false;
+
+  return (tintOklch, _tintHex, themeHex, factor, hueOnly) => {
+    // Lazy compute majority direction on first call
+    if (!computed && context?.baseHue !== undefined && context?.themeColors) {
+      majorityDir = getMajorityHueDirection(
+        context.baseHue,
+        context.themeColors
+      );
+      computed = true;
+    }
+
+    const blended = blendDirectedOklch(
+      tintOklch,
+      themeHex,
+      factor,
+      hueOnly,
+      majorityDir
+    );
+    return oklchToHex(blended);
+  };
 }

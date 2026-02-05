@@ -1,8 +1,5 @@
-import type {
-  StatusState,
-  StatusColorDetail,
-  StatusGeneralInfo,
-} from './types';
+import type { StatusState, StatusGeneralInfo } from './types';
+import type { TintKeyDetail } from '../color/tint';
 import type { ElementType } from '../theme';
 import type { TintTarget } from '../config';
 import { capitalizeFirst } from '../statusBar/helpers';
@@ -201,7 +198,7 @@ function hueToSwatchColor(hue: number): string {
 /**
  * Generates the color pipeline table.
  */
-function generateColorTable(colors: StatusColorDetail[]): string {
+function generateColorTable(colors: readonly TintKeyDetail[]): string {
   const rows: string[] = [];
 
   for (const group of ELEMENT_GROUPS) {
@@ -224,8 +221,8 @@ function generateColorTable(colors: StatusColorDetail[]): string {
         `<tr class="color-row${disabledClass}">` +
           `<td class="key-cell mono">${escapeHtml(color.key)}</td>` +
           `<td class="color-cell">${colorCell(color.themeColor)}</td>` +
-          `<td class="color-cell">${colorCell(color.tintColor)}</td>` +
-          `<td class="color-cell">${colorCell(color.finalColor)}</td>` +
+          `<td class="color-cell">${colorCell(color.tintHex)}</td>` +
+          `<td class="color-cell">${colorCell(color.finalHex)}</td>` +
           `</tr>`
       );
     }

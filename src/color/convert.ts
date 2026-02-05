@@ -260,3 +260,48 @@ export function clampToGamut(oklch: OKLCH): OKLCH {
 
   return { l, c: low, h };
 }
+
+/**
+ * Converts a hex color string to linear RGB (gamma removed).
+ *
+ * @param hex - Hex color string (e.g., "#ff5733" or "ff5733")
+ * @returns Linear RGB values in the 0-1 range
+ * @throws Error if the hex string is invalid
+ */
+export function hexToLinearRgb(hex: string): {
+  r: number;
+  g: number;
+  b: number;
+} {
+  const cleaned = hex.replace(/^#/, '');
+  if (!/^[0-9a-fA-F]{6}$/.test(cleaned)) {
+    throw new Error(`Invalid hex color: ${hex}`);
+  }
+
+  return {
+    r: srgbToLinear(parseInt(cleaned.slice(0, 2), 16) / 255),
+    g: srgbToLinear(parseInt(cleaned.slice(2, 4), 16) / 255),
+    b: srgbToLinear(parseInt(cleaned.slice(4, 6), 16) / 255),
+  };
+}
+
+/**
+ * Converts linear RGB to a hex color string.
+ *
+ * Applies sRGB gamma correction and clamps to valid range.
+ *
+ * @param rgb - Linear RGB values (0-1 range)
+ * @returns Hex color string (e.g., "#ff5733")
+ */
+export function linearRgbToHex(rgb: {
+  r: number;
+  g: number;
+  b: number;
+}): string {
+  const toHex = (n: number): string =>
+    Math.round(clamp01(linearToSrgb(n)) * 255)
+      .toString(16)
+      .padStart(2, '0');
+
+  return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
+}

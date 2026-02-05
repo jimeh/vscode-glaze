@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
+  getBlendMethod,
   getColorHarmony,
   getColorStyle,
   getStatusBarEnabled,
@@ -766,7 +767,74 @@ suite('getTintConfig', () => {
   });
 });
 
+suite('getBlendMethod', () => {
+  let originalBlendMethod: string | undefined;
+
+  suiteSetup(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    originalBlendMethod = config.get<string>('theme.blendMethod');
+  });
+
+  suiteTeardown(async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      originalBlendMethod,
+      vscode.ConfigurationTarget.Global
+    );
+  });
+
+  test('returns overlay by default', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getBlendMethod();
+    assert.strictEqual(result, 'overlay');
+  });
+
+  test('returns hueShift when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      'hueShift',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getBlendMethod();
+    assert.strictEqual(result, 'hueShift');
+  });
+
+  test('falls back to overlay for invalid value', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      'bogus',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getBlendMethod();
+    assert.strictEqual(result, 'overlay');
+  });
+
+  test('falls back to overlay for prototype key', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      'toString',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getBlendMethod();
+    assert.strictEqual(result, 'overlay');
+  });
+});
+
 suite('getThemeConfig', () => {
+  let originalBlendMethod: string | undefined;
   let originalBlendFactor: number | undefined;
   let originalTitleBarBlendFactor: number | null | undefined;
   let originalActivityBarBlendFactor: number | null | undefined;
@@ -775,6 +843,7 @@ suite('getThemeConfig', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('patina');
+    originalBlendMethod = config.get<string>('theme.blendMethod');
     originalBlendFactor = config.get<number>('theme.blendFactor');
     originalTitleBarBlendFactor = config.get<number | null>(
       'theme.titleBarBlendFactor'
@@ -792,6 +861,11 @@ suite('getThemeConfig', () => {
 
   suiteTeardown(async () => {
     const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      originalBlendMethod,
+      vscode.ConfigurationTarget.Global
+    );
     await config.update(
       'theme.blendFactor',
       originalBlendFactor,
@@ -987,6 +1061,42 @@ suite('getThemeConfig', () => {
     const result = getThemeConfig();
     assert.strictEqual(result.targetBlendFactors.titleBar, 0);
     assert.strictEqual(result.targetBlendFactors.statusBar, 1);
+  });
+
+  test('blendMethod defaults to overlay', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.strictEqual(result.blendMethod, 'overlay');
+  });
+
+  test('blendMethod reflects hueShift when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      'hueShift',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.strictEqual(result.blendMethod, 'hueShift');
+  });
+
+  test('blendMethod falls back for invalid values', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'theme.blendMethod',
+      'bogus',
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getThemeConfig();
+    assert.strictEqual(result.blendMethod, 'overlay');
   });
 });
 

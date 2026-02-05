@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { DEFAULT_BLEND_FACTOR } from './types';
 import type {
+  BlendMethod,
   ColorHarmony,
   ColorStyle,
   MultiRootIdentifierSource,
@@ -11,11 +12,13 @@ import type {
   WorkspaceIdentifierConfig,
   WorkspaceIdentifierSource,
 } from './types';
+import { DEFAULT_BLEND_METHOD, isValidBlendMethod } from '../color/blend';
 import { DEFAULT_COLOR_STYLE, isValidColorStyle } from '../color/styles';
 import { DEFAULT_COLOR_HARMONY, isValidColorHarmony } from '../color/harmony';
 
 export { DEFAULT_BLEND_FACTOR } from './types';
 export type {
+  BlendMethod,
   ColorHarmony,
   ColorStyle,
   MultiRootIdentifierSource,
@@ -114,6 +117,15 @@ export function getColorStyle(): ColorStyle {
 }
 
 /**
+ * Returns the configured blend method.
+ */
+export function getBlendMethod(): BlendMethod {
+  const config = vscode.workspace.getConfiguration('patina');
+  const method = config.get<string>('theme.blendMethod', DEFAULT_BLEND_METHOD);
+  return isValidBlendMethod(method) ? method : DEFAULT_BLEND_METHOD;
+}
+
+/**
  * Returns the configured color harmony.
  */
 export function getColorHarmony(): ColorHarmony {
@@ -195,6 +207,8 @@ const TARGET_BLEND_FACTOR_KEYS: Record<TintTarget, string> = {
 export function getThemeConfig(): ThemeConfig {
   const config = vscode.workspace.getConfiguration('patina');
 
+  const blendMethod = getBlendMethod();
+
   const blendFactorValue = config.get<number>(
     'theme.blendFactor',
     DEFAULT_BLEND_FACTOR
@@ -212,7 +226,7 @@ export function getThemeConfig(): ThemeConfig {
     }
   }
 
-  return { blendFactor, targetBlendFactors };
+  return { blendMethod, blendFactor, targetBlendFactors };
 }
 
 /**
