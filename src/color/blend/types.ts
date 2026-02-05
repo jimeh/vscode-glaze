@@ -1,7 +1,19 @@
 import type { OKLCH } from '../types';
+import type { ThemeColors } from '../../theme';
 
 /** Direction for hue interpolation around the color wheel. */
 export type HueBlendDirection = 'cw' | 'ccw' | 'shortest';
+
+/**
+ * Context for hue shift blending that enables lazy computation of
+ * the majority hue direction.
+ */
+export interface HueShiftContext {
+  /** Pre-offset base hue angle for majority direction calculation. */
+  readonly baseHue?: number;
+  /** Theme colors to vote against for majority direction. */
+  readonly themeColors?: ThemeColors;
+}
 
 /**
  * A blend function that combines a tint color with a theme color.

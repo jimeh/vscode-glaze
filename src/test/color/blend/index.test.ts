@@ -72,15 +72,17 @@ suite('getBlendFunction', () => {
     assert.strictEqual(a, b);
   });
 
-  test('accepts majorityDir for hueShift', () => {
-    const fn = getBlendFunction('hueShift', 'cw');
+  test('accepts context for hueShift', () => {
+    const context = { baseHue: 200, themeColors: undefined };
+    const fn = getBlendFunction('hueShift', context);
     const result = fn(tint, tintHex, themeHex, 0.35, false);
     assert.match(result, /^#[0-9a-f]{6}$/);
   });
 
-  test('ignores majorityDir for overlay', () => {
-    const a = getBlendFunction('overlay', 'cw');
-    const b = getBlendFunction('overlay', 'ccw');
+  test('ignores context for overlay', () => {
+    const context = { baseHue: 200, themeColors: undefined };
+    const a = getBlendFunction('overlay', context);
+    const b = getBlendFunction('overlay', {});
     const c = getBlendFunction('overlay', undefined);
 
     const resultA = a(tint, tintHex, themeHex, 0.35, false);

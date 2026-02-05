@@ -3,7 +3,11 @@ import type { ThemeColors, PaletteKey } from '../../theme';
 import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../../theme';
 import { getColorForKey } from '../../theme/colors';
 import { hexToOklch, oklchToHex, clampToGamut } from '../convert';
-import type { BlendFunction, HueBlendDirection } from './types';
+import type {
+  BlendFunction,
+  HueBlendDirection,
+  HueShiftContext,
+} from './types';
 
 // ============================================================================
 // Hue interpolation helpers
@@ -367,16 +371,29 @@ export function blendDirectedOklch(
  * Creates a hue shift {@link BlendFunction} that uses OKLCH
  * interpolation with directed hue blending.
  *
- * The returned function closes over the pre-calculated majority
- * hue direction so all keys blend consistently.
+ * The returned function lazily computes the majority hue direction
+ * on first call (if context is provided) so all keys blend
+ * consistently in the same direction.
  *
- * @param majorityDir - Pre-calculated majority hue direction
+ * @param context - Optional context for lazy majority direction
+ *   calculation. If provided with `baseHue` and `themeColors`, the
+ *   majority direction is computed on first blend call.
  * @returns A {@link BlendFunction} using OKLCH hue shift blending
  */
-export function createHueShiftBlend(
-  majorityDir?: HueBlendDirection
-): BlendFunction {
+export function createHueShiftBlend(context?: HueShiftContext): BlendFunction {
+  let majorityDir: HueBlendDirection | undefined;
+  let computed = false;
+
   return (tintOklch, _tintHex, themeHex, factor, hueOnly) => {
+    // Lazy compute majority direction on first call
+    if (!computed && context?.baseHue !== undefined && context?.themeColors) {
+      majorityDir = getMajorityHueDirection(
+        context.baseHue,
+        context.themeColors
+      );
+      computed = true;
+    }
+
     const blended = blendDirectedOklch(
       tintOklch,
       themeHex,

@@ -12,7 +12,7 @@ import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { oklchToHex, maxChroma } from './convert';
-import { getBlendFunction, getMajorityHueDirection } from './blend';
+import { getBlendFunction } from './blend';
 import type { BlendMethod } from './blend';
 import { getStyleResolver } from './styles';
 import type { StyleResolveContext } from './styles';
@@ -199,14 +199,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const resolver = getStyleResolver(colorStyle);
   const harmonyConfig = HARMONY_CONFIGS[colorHarmony];
 
-  // Pre-calculate majority hue direction (hueShift only) so
-  // all keys blend consistently in the same direction.
-  const majorityDir =
-    blendMethod === 'hueShift' && themeColors
-      ? getMajorityHueDirection(baseHue, themeColors)
-      : undefined;
-
-  const blend = getBlendFunction(blendMethod, majorityDir);
+  const blend = getBlendFunction(blendMethod, { baseHue, themeColors });
 
   const keys: TintKeyDetail[] = PATINA_MANAGED_KEYS.map(
     (key: PaletteKey): TintKeyDetail => {

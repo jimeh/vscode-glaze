@@ -612,16 +612,17 @@ suite('createHueShiftBlend', () => {
     );
   });
 
-  test('accepts majorityDir parameter', () => {
-    const fnCw = createHueShiftBlend('cw');
-    const fnCcw = createHueShiftBlend('ccw');
+  test('accepts context parameter', () => {
+    // Without themeColors, context has no effect (no majority to compute)
+    const fnWithContext = createHueShiftBlend({ baseHue: 200 });
+    const fnWithoutContext = createHueShiftBlend();
 
-    const resultCw = fnCw(tint, tintHex, themeHex, 0.5, false);
-    const resultCcw = fnCcw(tint, tintHex, themeHex, 0.5, false);
+    const resultWith = fnWithContext(tint, tintHex, themeHex, 0.5, false);
+    const resultWithout = fnWithoutContext(tint, tintHex, themeHex, 0.5, false);
 
-    // With different directions, results may differ
-    assert.match(resultCw, /^#[0-9a-f]{6}$/);
-    assert.match(resultCcw, /^#[0-9a-f]{6}$/);
+    // Both should produce valid hex
+    assert.match(resultWith, /^#[0-9a-f]{6}$/);
+    assert.match(resultWithout, /^#[0-9a-f]{6}$/);
   });
 });
 
