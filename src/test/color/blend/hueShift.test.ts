@@ -6,11 +6,17 @@ import {
   blendHueOnlyOklchDirected,
   getHueBlendDirection,
   effectiveHueDirection,
-  overlayBlend,
-  getBlendFunction,
   createHueShiftBlend,
-} from '../../color/blend';
-import { hexToOklch, oklchToHex } from '../../color/convert';
+} from '../../../color/blend';
+import { hexToOklch, oklchToHex, maxChroma } from '../../../color/convert';
+import { computeTint } from '../../../color/tint';
+import type { ColorHarmony, ColorStyle } from '../../../config';
+import type { ThemeColors, ThemeType } from '../../../theme';
+import { ALL_TARGETS } from '../../helpers';
+
+// ============================================================================
+// blendWithThemeOklch
+// ============================================================================
 
 suite('blendWithThemeOklch', () => {
   test('returns original when factor is 0', () => {
@@ -173,9 +179,9 @@ suite('blendWithThemeOklch', () => {
   });
 });
 
-// =================================================================
+// ============================================================================
 // blendHueOnlyOklch
-// =================================================================
+// ============================================================================
 
 suite('blendHueOnlyOklch', () => {
   test('returns original when factor is 0', () => {
@@ -282,9 +288,9 @@ suite('blendHueOnlyOklch', () => {
   });
 });
 
-// =================================================================
+// ============================================================================
 // getHueBlendDirection
-// =================================================================
+// ============================================================================
 
 suite('getHueBlendDirection', () => {
   test('returns cw when theme hue is slightly ahead', () => {
@@ -333,9 +339,9 @@ suite('getHueBlendDirection', () => {
   });
 });
 
-// =================================================================
+// ============================================================================
 // blendWithThemeOklchDirected
-// =================================================================
+// ============================================================================
 
 suite('blendWithThemeOklchDirected', () => {
   test('shortest mode matches blendWithThemeOklch', () => {
@@ -439,9 +445,9 @@ suite('blendWithThemeOklchDirected', () => {
   });
 });
 
-// =================================================================
+// ============================================================================
 // blendHueOnlyOklchDirected
-// =================================================================
+// ============================================================================
 
 suite('blendHueOnlyOklchDirected', () => {
   test('shortest mode matches blendHueOnlyOklch', () => {
@@ -507,9 +513,9 @@ suite('blendHueOnlyOklchDirected', () => {
   });
 });
 
-// =================================================================
+// ============================================================================
 // effectiveHueDirection
-// =================================================================
+// ============================================================================
 
 suite('effectiveHueDirection', () => {
   test('returns undefined when majorityDir is undefined', () => {
@@ -566,147 +572,509 @@ suite('effectiveHueDirection', () => {
 });
 
 // ============================================================================
-// overlayBlend
+// createHueShiftBlend
 // ============================================================================
 
-suite('overlayBlend', () => {
-  const dummyOklch = { l: 0.5, c: 0.1, h: 200 };
-
-  test('returns tint hex when factor is 0', () => {
-    const tintHex = '#ff0000';
-    const result = overlayBlend(dummyOklch, tintHex, '#0000ff', 0, false);
-    assert.strictEqual(result, tintHex);
-  });
-
-  test('returns theme hex when factor is 1', () => {
-    const themeHex = '#0000ff';
-    const result = overlayBlend(dummyOklch, '#ff0000', themeHex, 1, false);
-    assert.strictEqual(result, themeHex);
-  });
-
-  test('produces intermediate color at factor 0.5', () => {
-    const result = overlayBlend(dummyOklch, '#ff0000', '#0000ff', 0.5, false);
-    assert.match(result, /^#[0-9a-f]{6}$/);
-    // Should be neither pure red nor pure blue
-    assert.notStrictEqual(result, '#ff0000');
-    assert.notStrictEqual(result, '#0000ff');
-  });
-
-  test('ignores hueOnly flag', () => {
-    const a = overlayBlend(dummyOklch, '#ff0000', '#0000ff', 0.3, false);
-    const b = overlayBlend(dummyOklch, '#ff0000', '#0000ff', 0.3, true);
-    assert.strictEqual(a, b);
-  });
-
-  test('ignores tintOklch parameter', () => {
-    const oklchA = { l: 0.2, c: 0.05, h: 100 };
-    const oklchB = { l: 0.8, c: 0.3, h: 300 };
-    const a = overlayBlend(oklchA, '#ff0000', '#0000ff', 0.5, false);
-    const b = overlayBlend(oklchB, '#ff0000', '#0000ff', 0.5, false);
-    assert.strictEqual(a, b);
-  });
-
-  test('returns valid hex output', () => {
-    const result = overlayBlend(dummyOklch, '#1a2b3c', '#4d5e6f', 0.35, false);
-    assert.match(result, /^#[0-9a-f]{6}$/);
-  });
-
-  test('clamps factor above 1', () => {
-    const themeHex = '#0000ff';
-    const result = overlayBlend(dummyOklch, '#ff0000', themeHex, 1.5, false);
-    assert.strictEqual(result, themeHex);
-  });
-
-  test('clamps factor below 0', () => {
-    const tintHex = '#ff0000';
-    const result = overlayBlend(dummyOklch, tintHex, '#0000ff', -0.5, false);
-    assert.strictEqual(result, tintHex);
-  });
-
-  test('returns tint hex on invalid theme hex', () => {
-    const tintHex = '#ff0000';
-    const result = overlayBlend(dummyOklch, tintHex, 'invalid', 0.5, false);
-    assert.strictEqual(result, tintHex);
-  });
-
-  test('returns tint hex on invalid tint hex', () => {
-    const tintHex = 'invalid';
-    const result = overlayBlend(dummyOklch, tintHex, '#0000ff', 0.5, false);
-    assert.strictEqual(result, tintHex);
-  });
-
-  test('blending black and white at 0.5 produces mid gray', () => {
-    const result = overlayBlend(dummyOklch, '#000000', '#ffffff', 0.5, false);
-    // Linear sRGB midpoint is ~#b4b4b4 (not #808080 which is gamma-encoded)
-    const r = parseInt(result.slice(1, 3), 16);
-    const g = parseInt(result.slice(3, 5), 16);
-    const b = parseInt(result.slice(5, 7), 16);
-    // All channels should be equal (gray) and above 128
-    // (since linear midpoint maps to higher sRGB value)
-    assert.strictEqual(r, g);
-    assert.strictEqual(g, b);
-    assert.ok(r > 128, `Expected gray > 128, got ${r}`);
-  });
-});
-
-// ============================================================================
-// getBlendFunction
-// ============================================================================
-
-suite('getBlendFunction', () => {
+suite('createHueShiftBlend', () => {
   const tint = { l: 0.5, c: 0.1, h: 200 };
   const tintHex = oklchToHex(tint);
   const themeHex = '#1F1F1F';
 
-  test('hueShift mode returns a function', () => {
-    const fn = getBlendFunction('hueShift');
+  test('returns a function', () => {
+    const fn = createHueShiftBlend();
     assert.strictEqual(typeof fn, 'function');
   });
 
-  test('overlay mode returns a function', () => {
-    const fn = getBlendFunction('overlay');
-    assert.strictEqual(typeof fn, 'function');
+  test('returns tint hex when factor is 0', () => {
+    const fn = createHueShiftBlend();
+    const result = fn(tint, tintHex, themeHex, 0, false);
+    assert.strictEqual(result, tintHex);
   });
 
-  test('hueShift and overlay produce different results', () => {
-    const hueShift = getBlendFunction('hueShift');
-    const overlay = getBlendFunction('overlay');
-
-    const a = hueShift(tint, tintHex, themeHex, 0.35, false);
-    const b = overlay(tint, tintHex, themeHex, 0.35, false);
-
-    assert.match(a, /^#[0-9a-f]{6}$/);
-    assert.match(b, /^#[0-9a-f]{6}$/);
-    assert.notStrictEqual(a, b);
+  test('produces valid hex output', () => {
+    const fn = createHueShiftBlend();
+    const result = fn(tint, tintHex, themeHex, 0.35, false);
+    assert.match(result, /^#[0-9a-f]{6}$/);
   });
 
-  test('both methods return tint at factor 0', () => {
-    const hueShift = getBlendFunction('hueShift');
-    const overlay = getBlendFunction('overlay');
+  test('hueOnly preserves L/C', () => {
+    const fn = createHueShiftBlend();
+    const resultFull = fn(tint, tintHex, themeHex, 0.5, false);
+    const resultHueOnly = fn(tint, tintHex, themeHex, 0.5, true);
 
-    const a = hueShift(tint, tintHex, themeHex, 0, false);
-    const b = overlay(tint, tintHex, themeHex, 0, false);
+    const fullOklch = hexToOklch(resultFull);
+    const hueOnlyOklch = hexToOklch(resultHueOnly);
 
-    assert.strictEqual(a, tintHex);
-    assert.strictEqual(b, tintHex);
+    // Hue-only should preserve tint's L closer than full blend
+    assert.ok(
+      Math.abs(hueOnlyOklch.l - tint.l) < Math.abs(fullOklch.l - tint.l) + 0.02,
+      'Hue-only should preserve L better'
+    );
   });
 
-  test('hueShift matches createHueShiftBlend output', () => {
-    const fromDispatcher = getBlendFunction('hueShift');
-    const fromFactory = createHueShiftBlend();
+  test('accepts majorityDir parameter', () => {
+    const fnCw = createHueShiftBlend('cw');
+    const fnCcw = createHueShiftBlend('ccw');
 
-    const a = fromDispatcher(tint, tintHex, themeHex, 0.5, false);
-    const b = fromFactory(tint, tintHex, themeHex, 0.5, false);
+    const resultCw = fnCw(tint, tintHex, themeHex, 0.5, false);
+    const resultCcw = fnCcw(tint, tintHex, themeHex, 0.5, false);
 
-    assert.strictEqual(a, b);
+    // With different directions, results may differ
+    assert.match(resultCw, /^#[0-9a-f]{6}$/);
+    assert.match(resultCcw, /^#[0-9a-f]{6}$/);
+  });
+});
+
+// ============================================================================
+// computeTint hue harmonization (hue-shift specific integration tests)
+// ============================================================================
+
+suite('computeTint hue harmonization (hueShift mode)', () => {
+  // One Dark Pro theme colors that trigger the split-direction bug:
+  // #21252B (sidebar/statusBar) has hue ~258° and #282C34 (titleBar/
+  // activityBar) has hue ~264°. With a base hue of 83° the hue
+  // diff straddles the 180° boundary, causing opposite blend
+  // directions without harmonization.
+  const oneDarkProColors: ThemeColors = {
+    'editor.background': '#282C34',
+    'titleBar.activeBackground': '#282C34',
+    'titleBar.activeForeground': '#9DA5B4',
+    'titleBar.inactiveBackground': '#282C34',
+    'titleBar.inactiveForeground': '#6B717D',
+    'activityBar.background': '#282C34',
+    'activityBar.foreground': '#D7DAE0',
+    'statusBar.background': '#21252B',
+    'statusBar.foreground': '#9DA5B4',
+    'sideBar.background': '#21252B',
+    'sideBar.foreground': '#ABB2BF',
+    'sideBarSectionHeader.background': '#282C34',
+    'sideBarSectionHeader.foreground': '#ABB2BF',
+  };
+
+  /**
+   * Helper: extract hue from a hex color string.
+   */
+  function hueOf(hex: string): number {
+    return hexToOklch(hex).h;
+  }
+
+  /**
+   * Helper: normalize a hue difference to (-180, 180].
+   */
+  function hueDiff(a: number, b: number): number {
+    let d = b - a;
+    if (d > 180) d -= 360;
+    else if (d <= -180) d += 360;
+    return d;
+  }
+
+  test('background hues are harmonized (One Dark Pro + hue 83)', () => {
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
+
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+
+    // All background hues should be within 30° of each other
+    const hues = bgKeys.map((k) => hueOf(k.finalHex));
+    for (let i = 1; i < hues.length; i++) {
+      const diff = Math.abs(hueDiff(hues[0], hues[i]));
+      assert.ok(
+        diff < 30,
+        `Background hues too far apart: ${bgKeys[0].key} ` +
+          `(${hues[0].toFixed(1)}°) vs ${bgKeys[i].key} ` +
+          `(${hues[i].toFixed(1)}°), diff=${diff.toFixed(1)}°`
+      );
+    }
   });
 
-  test('overlay matches overlayBlend output', () => {
-    const fromDispatcher = getBlendFunction('overlay');
+  test('foreground hues follow their background direction', () => {
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
 
-    const a = fromDispatcher(tint, tintHex, themeHex, 0.5, false);
-    const b = overlayBlend(tint, tintHex, themeHex, 0.5, false);
+    // For each element, its fg/bg should be in similar hue range
+    const elements = ['titleBar', 'statusBar', 'activityBar', 'sideBar'];
+    for (const el of elements) {
+      const bgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'background'
+      );
+      const fgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'foreground' && k.themeColor
+      );
 
-    assert.strictEqual(a, b);
+      if (bgs.length === 0 || fgs.length === 0) continue;
+
+      const bgHue = hueOf(bgs[0].finalHex);
+      for (const fg of fgs) {
+        const fgHue = hueOf(fg.finalHex);
+        const diff = Math.abs(hueDiff(bgHue, fgHue));
+        // Foregrounds have low chroma so hue can wobble, but
+        // with harmonization they should stay within 60°.
+        assert.ok(
+          diff < 60,
+          `${el} fg/bg hue mismatch: bg=${bgHue.toFixed(1)}° ` +
+            `fg=${fgHue.toFixed(1)}° diff=${diff.toFixed(1)}°`
+        );
+      }
+    }
+  });
+
+  test('no-op when theme colors are absent', () => {
+    // Without theme colors, harmonization has nothing to do.
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      blendMethod: 'hueShift',
+    });
+
+    for (const detail of result.keys) {
+      assert.strictEqual(detail.tintHex, detail.finalHex);
+    }
+  });
+
+  test('consistent when all background directions already agree', () => {
+    // Use a hue far from the 180° boundary relative to
+    // One Dark Pro's theme hues (~258-264°). Hue 0 gives
+    // diff ~258-264 which is clearly > 180, so all CCW.
+    const result = computeTint({
+      baseHue: 0,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
+
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+    const hues = bgKeys.map((k) => hueOf(k.finalHex));
+
+    // All backgrounds should still be consistent
+    for (let i = 1; i < hues.length; i++) {
+      const diff = Math.abs(hueDiff(hues[0], hues[i]));
+      assert.ok(
+        diff < 30,
+        `Hues should agree at hue=0: ${bgKeys[0].key} ` +
+          `(${hues[0].toFixed(1)}°) vs ${bgKeys[i].key} ` +
+          `(${hues[i].toFixed(1)}°), diff=${diff.toFixed(1)}°`
+      );
+    }
+
+    // Foregrounds should also be harmonized with backgrounds
+    const elements = ['titleBar', 'statusBar', 'activityBar', 'sideBar'];
+    for (const el of elements) {
+      const bgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'background'
+      );
+      const fgs = result.keys.filter(
+        (k) => k.element === el && k.colorType === 'foreground' && k.themeColor
+      );
+      if (bgs.length === 0 || fgs.length === 0) continue;
+      const bgHue = hueOf(bgs[0].finalHex);
+      for (const fg of fgs) {
+        const fgHue = hueOf(fg.finalHex);
+        const diff = Math.abs(hueDiff(bgHue, fgHue));
+        assert.ok(
+          diff < 90,
+          `${el} fg/bg hue mismatch at hue=0: ` +
+            `bg=${bgHue.toFixed(1)}° fg=${fgHue.toFixed(1)}° ` +
+            `diff=${diff.toFixed(1)}°`
+        );
+      }
+    }
+  });
+
+  test('foreground harmonized when backgrounds unanimously agree', () => {
+    // Backgrounds at hue ~258-264° with baseHue=0 all blend CCW
+    // (diff > 180). Foregrounds with hue ~90° get the same
+    // majority direction from the pre-blend calculation (based on
+    // baseHue, not post-offset hues), keeping fg/bg consistent.
+    const fgAtHue90 = oklchToHex({
+      l: 0.75,
+      c: maxChroma(0.75, 90) * 0.4,
+      h: 90,
+    });
+
+    const colorsWithCwForeground: ThemeColors = {
+      // Backgrounds: all hue ~260°, will blend CCW from baseHue=0
+      'editor.background': '#282C34',
+      'titleBar.activeBackground': '#282C34',
+      'titleBar.inactiveBackground': '#282C34',
+      'activityBar.background': '#282C34',
+      'statusBar.background': '#21252B',
+      'sideBar.background': '#21252B',
+      'sideBarSectionHeader.background': '#282C34',
+      // Foregrounds: hue ~90°
+      'titleBar.activeForeground': fgAtHue90,
+      'titleBar.inactiveForeground': fgAtHue90,
+      'activityBar.foreground': fgAtHue90,
+      'statusBar.foreground': fgAtHue90,
+      'sideBar.foreground': fgAtHue90,
+      'sideBarSectionHeader.foreground': fgAtHue90,
+    };
+
+    const result = computeTint({
+      baseHue: 0,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      themeColors: colorsWithCwForeground,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
+
+    // Verify backgrounds are unanimously one direction
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+    const bgHues = bgKeys.map((k) => hueOf(k.finalHex));
+    for (let i = 1; i < bgHues.length; i++) {
+      const diff = Math.abs(hueDiff(bgHues[0], bgHues[i]));
+      assert.ok(diff < 30, `Background hues should agree`);
+    }
+
+    // Verify foregrounds are close to background hue range
+    const fgKeys = result.keys.filter(
+      (k) => k.colorType === 'foreground' && k.themeColor && k.blendFactor > 0
+    );
+    assert.ok(fgKeys.length > 0, 'Should have blended foregrounds');
+
+    for (const fg of fgKeys) {
+      const fgHue = hueOf(fg.finalHex);
+      const diffFromBg = Math.abs(hueDiff(bgHues[0], fgHue));
+      assert.ok(
+        diffFromBg < 90,
+        `${fg.key} should be harmonized with backgrounds: ` +
+          `fg=${fgHue.toFixed(1)}° bg=${bgHues[0].toFixed(1)}° ` +
+          `diff=${diffFromBg.toFixed(1)}°`
+      );
+    }
+  });
+
+  test('deterministic with tied directions', () => {
+    // Even if an equal number of elements go CW vs CCW, the
+    // result should be deterministic across runs.
+    const opts = {
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark' as ThemeType,
+      colorStyle: 'pastel' as ColorStyle,
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift' as const,
+    };
+
+    const a = computeTint(opts);
+    const b = computeTint(opts);
+    assert.deepStrictEqual(a, b);
+  });
+
+  test('produces valid hex after harmonization', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    const result = computeTint({
+      baseHue: 83,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
+
+    for (const detail of result.keys) {
+      assert.match(
+        detail.finalHex,
+        hexPattern,
+        `Invalid finalHex for ${detail.key}: ${detail.finalHex}`
+      );
+    }
+  });
+});
+
+// ============================================================================
+// Pre-blend majority direction regression tests
+// ============================================================================
+
+suite('computeTint pre-blend majority direction (hueShift mode)', () => {
+  /**
+   * Helper: extract hue from a hex color string.
+   */
+  function hueOf(hex: string): number {
+    return hexToOklch(hex).h;
+  }
+
+  /**
+   * Helper: normalize a hue difference to (-180, 180].
+   */
+  function hueDiff(a: number, b: number): number {
+    let d = b - a;
+    if (d > 180) d -= 360;
+    else if (d <= -180) d += 360;
+    return d;
+  }
+
+  // Theme with similar hue across all BG elements (~258-264°).
+  const oneDarkProColors: ThemeColors = {
+    'editor.background': '#282C34',
+    'titleBar.activeBackground': '#282C34',
+    'titleBar.activeForeground': '#9DA5B4',
+    'titleBar.inactiveBackground': '#282C34',
+    'titleBar.inactiveForeground': '#6B717D',
+    'activityBar.background': '#282C34',
+    'activityBar.foreground': '#D7DAE0',
+    'statusBar.background': '#21252B',
+    'statusBar.foreground': '#9DA5B4',
+    'sideBar.background': '#21252B',
+    'sideBar.foreground': '#ABB2BF',
+    'sideBarSectionHeader.background': '#282C34',
+    'sideBarSectionHeader.foreground': '#ABB2BF',
+  };
+
+  test('uniform harmony + close theme hues: no long-way-around blending', () => {
+    // Bug: with uniform harmony, all tint hues are baseHue (30°).
+    // Theme hues are ~258-264°. The old post-blend harmonization
+    // would compute direction from 30° → 258° per-element, and
+    // forcing the minority direction caused 30° + 355×0.35 ≈ 154°
+    // (green). Pre-blend direction from baseHue avoids this.
+    const result = computeTint({
+      baseHue: 30,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      colorHarmony: 'uniform',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
+
+    const bgKeys = result.keys.filter(
+      (k) => k.colorType === 'background' && k.themeColor
+    );
+    const hues = bgKeys.map((k) => hueOf(k.finalHex));
+
+    // All BG hues should be within 30° of each other (no outliers
+    // shifted 100°+ in the wrong direction).
+    for (let i = 1; i < hues.length; i++) {
+      const diff = Math.abs(hueDiff(hues[0], hues[i]));
+      assert.ok(
+        diff < 30,
+        `Uniform harmony BG hues too far apart: ` +
+          `${bgKeys[0].key} (${hues[0].toFixed(1)}°) vs ` +
+          `${bgKeys[i].key} (${hues[i].toFixed(1)}°), ` +
+          `diff=${diff.toFixed(1)}°`
+      );
+    }
+
+    // No hue should be in the green range (100-180°) — that would
+    // indicate long-way-around blending from orange (30°).
+    for (const k of bgKeys) {
+      const h = hueOf(k.finalHex);
+      assert.ok(
+        h < 100 || h > 180,
+        `${k.key} hue ${h.toFixed(1)}° is in the green range, ` +
+          `indicating long-way-around blending`
+      );
+    }
+  });
+
+  test('duotone harmony + theme blending: complementary hues maintained', () => {
+    // With duotone, titleBar/statusBar at baseHue and
+    // activityBar/sideBar at baseHue+180°. Both groups should
+    // blend consistently without one group going the long way.
+    const result = computeTint({
+      baseHue: 30,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'pastel',
+      colorHarmony: 'duotone',
+      themeColors: oneDarkProColors,
+      themeBlendFactor: 0.35,
+      blendMethod: 'hueShift',
+    });
+
+    const titleBarBg = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )!;
+    const activityBarBg = result.keys.find(
+      (k) => k.key === 'activityBar.background'
+    )!;
+
+    const tbHue = hueOf(titleBarBg.finalHex);
+    const abHue = hueOf(activityBarBg.finalHex);
+
+    // Both should produce valid colors (not extreme shifts).
+    // The hues should differ since they start 180° apart.
+    const diff = Math.abs(hueDiff(tbHue, abHue));
+    assert.ok(
+      diff > 30,
+      `Duotone elements should have distinct hues: ` +
+        `titleBar=${tbHue.toFixed(1)}° activityBar=${abHue.toFixed(1)}° ` +
+        `diff=${diff.toFixed(1)}°`
+    );
+  });
+
+  test('harmony direction consistent across all harmonies when theme present', () => {
+    // For every harmony, all background hues should be within a
+    // reasonable range (no 100°+ outliers from long-way blending).
+    // Skip very-low-chroma finals where hue is unreliable.
+    const harmonies: ColorHarmony[] = [
+      'uniform',
+      'duotone',
+      'undercurrent',
+      'analogous',
+      'triadic',
+    ];
+
+    for (const harmony of harmonies) {
+      const result = computeTint({
+        baseHue: 83,
+        targets: ALL_TARGETS,
+        themeType: 'dark',
+        colorStyle: 'pastel',
+        colorHarmony: harmony,
+        themeColors: oneDarkProColors,
+        themeBlendFactor: 0.35,
+        blendMethod: 'hueShift',
+      });
+
+      // No background key should have a hue shifted more than
+      // 120° from the unblended tint hue. The blend factor is
+      // 0.35 so even worst case the shift should be moderate.
+      for (const k of result.keys) {
+        if (k.colorType !== 'background' || !k.themeColor) continue;
+        const finalOklch = hexToOklch(k.finalHex);
+        // Skip low chroma — hue is unreliable below ~0.03 due
+        // to hex roundtrip quantization at near-neutral colors.
+        if (finalOklch.c < 0.03) continue;
+        const tintHue = hueOf(k.tintHex);
+        const finalHue = finalOklch.h;
+        const shift = Math.abs(hueDiff(tintHue, finalHue));
+        assert.ok(
+          shift < 120,
+          `${harmony}/${k.key}: hue shifted ${shift.toFixed(1)}° ` +
+            `(tint=${tintHue.toFixed(1)}° final=${finalHue.toFixed(1)}°), ` +
+            `likely long-way-around blending`
+        );
+      }
+    }
   });
 });
