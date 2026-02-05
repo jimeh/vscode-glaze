@@ -4,6 +4,8 @@ import {
   hexToOklch,
   maxChroma,
   clampToGamut,
+  hexToLinearRgb,
+  linearRgbToHex,
 } from '../../color/convert';
 
 suite('oklchToHex', () => {
@@ -286,6 +288,146 @@ suite('clampToGamut', () => {
         hex,
         /^#[0-9a-f]{6}$/,
         'Clamped color should produce valid hex'
+      );
+    }
+  });
+});
+
+// =================================================================
+// hexToLinearRgb
+// =================================================================
+
+suite('hexToLinearRgb', () => {
+  test('converts black', () => {
+    const rgb = hexToLinearRgb('#000000');
+    assert.strictEqual(rgb.r, 0);
+    assert.strictEqual(rgb.g, 0);
+    assert.strictEqual(rgb.b, 0);
+  });
+
+  test('converts white', () => {
+    const rgb = hexToLinearRgb('#ffffff');
+    assert.ok(Math.abs(rgb.r - 1) < 0.001, `Red should be ~1, got ${rgb.r}`);
+    assert.ok(Math.abs(rgb.g - 1) < 0.001, `Green should be ~1, got ${rgb.g}`);
+    assert.ok(Math.abs(rgb.b - 1) < 0.001, `Blue should be ~1, got ${rgb.b}`);
+  });
+
+  test('handles hex without hash', () => {
+    const rgb = hexToLinearRgb('ff0000');
+    assert.ok(rgb.r > 0.9, 'Red channel should be near 1');
+    assert.ok(rgb.g < 0.01, 'Green channel should be near 0');
+    assert.ok(rgb.b < 0.01, 'Blue channel should be near 0');
+  });
+
+  test('handles uppercase hex', () => {
+    const rgb = hexToLinearRgb('#FF0000');
+    assert.ok(rgb.r > 0.9, 'Should parse uppercase hex');
+  });
+
+  test('linearizes sRGB values', () => {
+    // sRGB #808080 (128/255 ≈ 0.502) linearizes to ~0.216
+    const rgb = hexToLinearRgb('#808080');
+    assert.ok(rgb.r > 0.2 && rgb.r < 0.23, `Expected ~0.216, got ${rgb.r}`);
+    assert.strictEqual(rgb.r, rgb.g);
+    assert.strictEqual(rgb.g, rgb.b);
+  });
+
+  test('throws on invalid hex', () => {
+    assert.throws(() => hexToLinearRgb('invalid'));
+    assert.throws(() => hexToLinearRgb('#GGG'));
+    assert.throws(() => hexToLinearRgb('#12345'));
+    assert.throws(() => hexToLinearRgb(''));
+  });
+
+  test('pure red gives only red channel', () => {
+    const rgb = hexToLinearRgb('#ff0000');
+    assert.ok(rgb.r > 0.9);
+    assert.strictEqual(rgb.g, 0);
+    assert.strictEqual(rgb.b, 0);
+  });
+
+  test('pure green gives only green channel', () => {
+    const rgb = hexToLinearRgb('#00ff00');
+    assert.strictEqual(rgb.r, 0);
+    assert.ok(rgb.g > 0.9);
+    assert.strictEqual(rgb.b, 0);
+  });
+
+  test('pure blue gives only blue channel', () => {
+    const rgb = hexToLinearRgb('#0000ff');
+    assert.strictEqual(rgb.r, 0);
+    assert.strictEqual(rgb.g, 0);
+    assert.ok(rgb.b > 0.9);
+  });
+});
+
+// =================================================================
+// linearRgbToHex
+// =================================================================
+
+suite('linearRgbToHex', () => {
+  test('converts black', () => {
+    assert.strictEqual(linearRgbToHex({ r: 0, g: 0, b: 0 }), '#000000');
+  });
+
+  test('converts white', () => {
+    assert.strictEqual(linearRgbToHex({ r: 1, g: 1, b: 1 }), '#ffffff');
+  });
+
+  test('applies gamma encoding', () => {
+    // Linear 0.216 should encode to sRGB ~128 (#80)
+    const hex = linearRgbToHex({ r: 0.216, g: 0.216, b: 0.216 });
+    const r = parseInt(hex.slice(1, 3), 16);
+    assert.ok(Math.abs(r - 128) <= 2, `Expected ~128, got ${r}`);
+  });
+
+  test('returns valid hex format', () => {
+    const hex = linearRgbToHex({ r: 0.5, g: 0.3, b: 0.7 });
+    assert.match(hex, /^#[0-9a-f]{6}$/);
+  });
+
+  test('clamps values above 1', () => {
+    const hex = linearRgbToHex({ r: 1.5, g: 0, b: 0 });
+    assert.strictEqual(hex, '#ff0000');
+  });
+
+  test('clamps values below 0', () => {
+    const hex = linearRgbToHex({ r: -0.5, g: 0, b: 0 });
+    assert.strictEqual(hex, '#000000');
+  });
+
+  test('roundtrip with hexToLinearRgb', () => {
+    const testColors = [
+      '#ff0000',
+      '#00ff00',
+      '#0000ff',
+      '#1a2b3c',
+      '#808080',
+      '#f0e0d0',
+    ];
+
+    for (const original of testColors) {
+      const linear = hexToLinearRgb(original);
+      const roundtrip = linearRgbToHex(linear);
+
+      const origR = parseInt(original.slice(1, 3), 16);
+      const origG = parseInt(original.slice(3, 5), 16);
+      const origB = parseInt(original.slice(5, 7), 16);
+      const rtR = parseInt(roundtrip.slice(1, 3), 16);
+      const rtG = parseInt(roundtrip.slice(3, 5), 16);
+      const rtB = parseInt(roundtrip.slice(5, 7), 16);
+
+      assert.ok(
+        Math.abs(origR - rtR) <= 1,
+        `Red mismatch for ${original}: ${origR} vs ${rtR}`
+      );
+      assert.ok(
+        Math.abs(origG - rtG) <= 1,
+        `Green mismatch for ${original}: ${origG} vs ${rtG}`
+      );
+      assert.ok(
+        Math.abs(origB - rtB) <= 1,
+        `Blue mismatch for ${original}: ${origB} vs ${rtB}`
       );
     }
   });

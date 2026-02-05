@@ -22,14 +22,14 @@ import {
   HARMONY_CONFIGS,
 } from '../color/harmony';
 import { oklchToHex } from '../color/convert';
-import { blendDirectedOklch } from '../color/blend';
-import type { HueBlendDirection } from '../color/blend';
-import { getColorForKey } from '../theme/colors';
 import {
-  applyHueOffset,
-  computeBaseHue,
+  getBlendFunction,
   getMajorityHueDirection,
-} from '../color';
+  type BlendMethod,
+  type HueBlendDirection,
+} from '../color/blend';
+import { getColorForKey } from '../theme/colors';
+import { applyHueOffset, computeBaseHue } from '../color';
 
 /**
  * Sample hues for preview display (OKLCH-calibrated).
@@ -54,6 +54,7 @@ function generateElementColors(
   hueOffset: number,
   themeColors?: ThemeColors,
   blendFactor?: number,
+  blendMethod: BlendMethod = 'overlay',
   hueDirection?: HueBlendDirection
 ): ElementColors {
   const resolver = getStyleResolver(style);
@@ -71,29 +72,33 @@ function generateElementColors(
     const themeBg = getColorForKey(bgKey, themeColors);
     const themeFg = getColorForKey(fgKey, themeColors);
 
-    const blendedBg = themeBg
-      ? blendDirectedOklch(
+    const blend = getBlendFunction(blendMethod, hueDirection);
+    const tintBgHex = oklchToHex(bgResult.tintOklch);
+    const tintFgHex = oklchToHex(fgResult.tintOklch);
+
+    const blendedBgHex = themeBg
+      ? blend(
           bgResult.tintOklch,
+          tintBgHex,
           themeBg,
           blendFactor,
-          bgResult.hueOnlyBlend,
-          hueDirection
+          bgResult.hueOnlyBlend
         )
-      : bgResult.tintOklch;
+      : tintBgHex;
 
-    const blendedFg = themeFg
-      ? blendDirectedOklch(
+    const blendedFgHex = themeFg
+      ? blend(
           fgResult.tintOklch,
+          tintFgHex,
           themeFg,
           blendFactor,
-          fgResult.hueOnlyBlend,
-          hueDirection
+          fgResult.hueOnlyBlend
         )
-      : fgResult.tintOklch;
+      : tintFgHex;
 
     return {
-      background: oklchToHex(blendedBg),
-      foreground: oklchToHex(blendedFg),
+      background: blendedBgHex,
+      foreground: blendedFgHex,
     };
   }
 
@@ -117,15 +122,18 @@ function generateColorsAtHue(
   harmony: ColorHarmony = 'uniform',
   themeColors?: ThemeColors,
   blendFactor?: number,
+  blendMethod: BlendMethod = 'overlay',
   targetBlendFactors?: Partial<Record<TintTarget, number>>
 ): StylePreviewColors {
   const harmonyConfig = HARMONY_CONFIGS[harmony];
 
   // Pre-calculate majority hue direction from the base hue
   // (before harmony offsets) against the BG theme colors.
-  const majorityDir = themeColors
-    ? getMajorityHueDirection(hue, themeColors)
-    : undefined;
+  // Only relevant for hueShift blending.
+  const majorityDir =
+    blendMethod === 'hueShift' && themeColors
+      ? getMajorityHueDirection(hue, themeColors)
+      : undefined;
 
   return {
     titleBar: generateElementColors(
@@ -137,6 +145,7 @@ function generateColorsAtHue(
       harmonyConfig.titleBar,
       themeColors,
       targetBlendFactors?.titleBar ?? blendFactor,
+      blendMethod,
       majorityDir
     ),
     statusBar: generateElementColors(
@@ -148,6 +157,7 @@ function generateColorsAtHue(
       harmonyConfig.statusBar,
       themeColors,
       targetBlendFactors?.statusBar ?? blendFactor,
+      blendMethod,
       majorityDir
     ),
     activityBar: generateElementColors(
@@ -159,6 +169,7 @@ function generateColorsAtHue(
       harmonyConfig.activityBar,
       themeColors,
       targetBlendFactors?.activityBar ?? blendFactor,
+      blendMethod,
       majorityDir
     ),
   };
@@ -232,6 +243,7 @@ export interface WorkspacePreviewOptions {
   themeType: ThemeType;
   seed?: number;
   themeColors?: ThemeColors;
+  blendMethod?: BlendMethod;
   blendFactor?: number;
   targetBlendFactors?: Partial<Record<TintTarget, number>>;
 }
@@ -249,6 +261,7 @@ export function generateWorkspacePreview(
     themeType,
     seed = 0,
     themeColors,
+    blendMethod = 'overlay',
     blendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
   } = options;
@@ -269,6 +282,7 @@ export function generateWorkspacePreview(
         harmony,
         themeColors,
         blendFactor,
+        blendMethod,
         targetBlendFactors
       )
     : generateColorsAtHue(style, themeType, hue, harmony);

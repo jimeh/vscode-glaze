@@ -1,3 +1,11 @@
+export type { BlendMethod } from './blend';
+export {
+  ALL_BLEND_METHODS,
+  BLEND_METHOD_LABELS,
+  DEFAULT_BLEND_METHOD,
+  isValidBlendMethod,
+  getMajorityHueDirection,
+} from './blend';
 export type { ColorStyle } from './styles';
 export {
   ALL_COLOR_STYLES,
@@ -18,7 +26,6 @@ export {
   applyHueOffset,
   computeBaseTintHex,
   computeTint,
-  getMajorityHueDirection,
   tintResultToPalette,
   tintResultToStatusBarColors,
 } from './tint';

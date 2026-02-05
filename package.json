@@ -241,13 +241,31 @@
           "description": "Apply color tint to the bottom status bar.",
           "order": 8
         },
+        "patina.theme.blendMethod": {
+          "type": "string",
+          "enum": [
+            "overlay",
+            "hueShift"
+          ],
+          "enumItemLabels": [
+            "Overlay",
+            "Hue Shift"
+          ],
+          "enumDescriptions": [
+            "Alpha compositing in linear sRGB for colors closer to the theme",
+            "OKLCH interpolation with directed hue for perceptually uniform blending"
+          ],
+          "default": "overlay",
+          "description": "Blending algorithm for combining tint and theme colors. Overlay uses linear sRGB alpha compositing; Hue Shift uses OKLCH for uniform transitions.",
+          "order": 9
+        },
         "patina.theme.blendFactor": {
           "type": "number",
           "minimum": 0,
           "maximum": 1,
           "default": 0.35,
           "description": "How much to blend tint colors toward the theme's background. 0 = full tint (no blending), 1 = theme colors only (no tinting). Only applies to known themes.",
-          "order": 9
+          "order": 10
         },
         "patina.theme.titleBarBlendFactor": {
           "type": [
@@ -258,7 +276,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the title bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 10
+          "order": 11
         },
         "patina.theme.activityBarBlendFactor": {
           "type": [
@@ -269,7 +287,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the activity bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 11
+          "order": 12
         },
         "patina.theme.sideBarBlendFactor": {
           "type": [
@@ -280,7 +298,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the side bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 12
+          "order": 13
         },
         "patina.theme.statusBarBlendFactor": {
           "type": [
@@ -291,13 +309,13 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the status bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 13
+          "order": 14
         },
         "patina.workspaceIdentifier.customBasePath": {
           "type": "string",
           "default": "",
           "description": "Base path for 'pathRelativeToCustom' source. Supports ~ and $HOME for home directory. Falls back to absolute path if workspace is outside this path.",
-          "order": 14
+          "order": 15
         },
         "patina.tint.mode": {
           "type": "string",
@@ -318,19 +336,19 @@
           ],
           "default": "auto",
           "description": "Theme mode for color generation. Auto-detects from VSCode's current theme.",
-          "order": 15
+          "order": 16
         },
         "patina.tint.seed": {
           "type": "integer",
           "default": 0,
           "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces.",
-          "order": 16
+          "order": 17
         },
         "patina.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 17,
+          "order": 18,
           "additionalProperties": {
             "type": "object",
             "required": [
@@ -436,7 +454,7 @@
           "type": "boolean",
           "default": true,
           "description": "Show Patina status in the status bar.",
-          "order": 18
+          "order": 19
         }
       }
     }

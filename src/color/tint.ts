@@ -11,9 +11,9 @@ import type {
 import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
-import { hexToOklch, oklchToHex, maxChroma } from './convert';
-import { blendDirectedOklch, getHueBlendDirection } from './blend';
-import type { HueBlendDirection } from './blend';
+import { oklchToHex, maxChroma } from './convert';
+import { getBlendFunction, getMajorityHueDirection } from './blend';
+import type { BlendMethod } from './blend';
 import { getStyleResolver } from './styles';
 import type { StyleResolveContext } from './styles';
 import { HARMONY_CONFIGS } from './harmony';
@@ -78,6 +78,8 @@ export interface ComputeTintOptions {
   colorStyle?: ColorStyle;
   /** Color harmony for hue distribution, default 'uniform' */
   colorHarmony?: ColorHarmony;
+  /** Blend method for theme color blending, default 'overlay' */
+  blendMethod?: BlendMethod;
   /** Theme colors for blending, if available */
   themeColors?: ThemeColors;
   /** How much to blend toward theme background (0-1) */
@@ -144,51 +146,6 @@ export function computeBaseTintHex(
 }
 
 // ============================================================================
-// Pre-blend majority hue direction
-// ============================================================================
-
-/**
- * Determines the majority hue blend direction from the base hue
- * toward theme background colors.
- *
- * Computes the shortest-path blend direction from `baseHue` (before
- * any harmony offsets) to each background theme color's hue, then
- * returns the majority vote. This ensures all elements — regardless
- * of their harmony offset — blend in the same direction, preventing
- * split-direction artifacts where some elements go clockwise and
- * others counter-clockwise.
- *
- * @param baseHue - Pre-offset base hue angle
- * @param themeColors - Theme colors to vote against
- * @returns Majority direction, or `undefined` if no BG theme colors
- */
-export function getMajorityHueDirection(
-  baseHue: number,
-  themeColors: ThemeColors
-): HueBlendDirection | undefined {
-  let cwCount = 0;
-  let total = 0;
-
-  for (const key of PATINA_MANAGED_KEYS) {
-    const def = COLOR_KEY_DEFINITIONS[key];
-    if (def.colorType !== 'background') continue;
-
-    const themeHex = getColorForKey(key, themeColors);
-    if (!themeHex) continue;
-
-    const themeHue = hexToOklch(themeHex).h;
-    const dir = getHueBlendDirection(baseHue, themeHue);
-    if (dir === 'cw') cwCount++;
-    total++;
-  }
-
-  if (total === 0) return undefined;
-
-  // Break ties toward clockwise for determinism.
-  return cwCount >= total - cwCount ? 'cw' : 'ccw';
-}
-
-// ============================================================================
 // Main computation
 // ============================================================================
 
@@ -199,11 +156,13 @@ export function getMajorityHueDirection(
  * whether the element's target is active. Consumers filter by
  * `enabled` as needed.
  *
- * Before blending, a majority hue direction is pre-calculated
- * from the base hue (before harmony offsets) against all
- * background theme colors. All keys then blend using that
- * direction, preventing split-direction artifacts where some
- * elements go clockwise and others counter-clockwise.
+ * The blend method determines how tint and theme colors are mixed:
+ * - **overlay**: Alpha compositing in linear sRGB space for colors
+ *   that stay closer to the original theme.
+ * - **hueShift**: OKLCH interpolation with directed hue blending.
+ *   A majority hue direction is pre-calculated from the base hue
+ *   against background theme colors to prevent split-direction
+ *   artifacts.
  *
  * @param options - Computation options
  * @returns Full TintResult with base hue, base tint hex, and
@@ -216,6 +175,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     themeType,
     colorStyle = 'pastel',
     colorHarmony = 'uniform',
+    blendMethod = 'overlay',
     themeColors,
     themeBlendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
@@ -239,11 +199,14 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const resolver = getStyleResolver(colorStyle);
   const harmonyConfig = HARMONY_CONFIGS[colorHarmony];
 
-  // Pre-calculate majority hue direction from the base hue
-  // (before harmony offsets) so all keys blend consistently.
-  const majorityDir = themeColors
-    ? getMajorityHueDirection(baseHue, themeColors)
-    : undefined;
+  // Pre-calculate majority hue direction (hueShift only) so
+  // all keys blend consistently in the same direction.
+  const majorityDir =
+    blendMethod === 'hueShift' && themeColors
+      ? getMajorityHueDirection(baseHue, themeColors)
+      : undefined;
+
+  const blend = getBlendFunction(blendMethod, majorityDir);
 
   const keys: TintKeyDetail[] = PATINA_MANAGED_KEYS.map(
     (key: PaletteKey): TintKeyDetail => {
@@ -278,14 +241,13 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       // Compute final color (blend with theme if available)
       let finalHex: string;
       if (themeColor && effectiveBlend > 0) {
-        const blendedOklch = blendDirectedOklch(
+        finalHex = blend(
           tintOklch,
+          tintHex,
           themeColor,
           effectiveBlend,
-          hueOnlyBlend,
-          majorityDir
+          hueOnlyBlend
         );
-        finalHex = oklchToHex(blendedOklch);
       } else {
         finalHex = tintHex;
       }

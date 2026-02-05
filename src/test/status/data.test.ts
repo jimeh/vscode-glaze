@@ -20,6 +20,7 @@ function makeColorsOptions(
     colorStyle: 'pastel',
     themeType: 'dark',
     themeColors: undefined,
+    blendMethod: 'overlay',
     blendFactor: 0.35,
     targets: ALL_TARGETS,
     ...overrides,

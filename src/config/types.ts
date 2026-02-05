@@ -4,6 +4,12 @@
  */
 export const DEFAULT_BLEND_FACTOR = 0.35;
 
+import type { BlendMethod } from '../color/blend';
+
+export type { BlendMethod } from '../color/blend';
+export type { ColorStyle } from '../color/styles';
+export type { ColorHarmony } from '../color/harmony';
+
 /**
  * Determines what value is used to generate the workspace color.
  */
@@ -51,9 +57,6 @@ export interface WorkspaceIdentifierConfig {
  */
 export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar' | 'sideBar';
 
-export type { ColorStyle } from '../color/styles';
-export type { ColorHarmony } from '../color/harmony';
-
 /**
  * User-configurable theme mode setting.
  */
@@ -85,6 +88,14 @@ export interface TintConfig {
  * Configuration for theme-related settings.
  */
 export interface ThemeConfig {
+  /**
+   * Blend method for combining tint and theme colors.
+   * - 'overlay': Alpha compositing in linear sRGB
+   * - 'hueShift': OKLCH interpolation with directed hue blending
+   * Default is 'overlay'.
+   */
+  blendMethod: BlendMethod;
+
   /**
    * How much to blend tint colors toward the theme's background color.
    * Value between 0 (no blending) and 1 (fully match theme).

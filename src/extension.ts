@@ -192,6 +192,7 @@ async function applyTintColors(
     themeType: themeContext.tintType,
     colorStyle,
     colorHarmony,
+    blendMethod: themeConfig.blendMethod,
     themeColors: themeContext.colors,
     themeBlendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,

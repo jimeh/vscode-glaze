@@ -1,6 +1,6 @@
 import type { TintTarget } from '../config';
 import type { ThemeColors, ThemeType } from '../theme';
-import type { ColorHarmony, ColorStyle } from '../color';
+import type { BlendMethod, ColorHarmony, ColorStyle } from '../color';
 import type {
   StatusColorDetail,
   StatusGeneralInfo,
@@ -40,6 +40,8 @@ export interface ComputeStatusColorsOptions {
   themeType: ThemeType;
   /** Theme colors from the database, if available */
   themeColors: ThemeColors | undefined;
+  /** Blend method to use */
+  blendMethod: BlendMethod;
   /** Theme blend factor (0-1) */
   blendFactor: number;
   /** Per-target blend factor overrides */
@@ -69,6 +71,7 @@ export function computeStatusColors(
     colorHarmony,
     themeType,
     themeColors,
+    blendMethod,
     blendFactor,
     targetBlendFactors,
     targets,
@@ -81,6 +84,7 @@ export function computeStatusColors(
     colorStyle,
     colorHarmony,
     themeColors,
+    blendMethod,
     themeBlendFactor: blendFactor,
     targetBlendFactors,
   });
@@ -124,6 +128,7 @@ export async function buildStatusState(): Promise<StatusState> {
     colorHarmony,
     themeType: themeContext.tintType,
     themeColors: themeContext.colors,
+    blendMethod: themeConfig.blendMethod,
     blendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
     targets: tintConfig.targets,
