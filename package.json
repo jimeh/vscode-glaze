@@ -483,6 +483,7 @@
     "lint:fix": "oxlint src --fix && oxfmt --write .",
     "format": "oxfmt --write .",
     "test": "vscode-test --fail-zero",
+    "test:scripts": "node --import tsx --test --test-reporter spec 'scripts/extract-theme-colors/__tests__/**/*.test.ts'",
     "test:coverage": "pnpm run pretest && vscode-test --coverage --fail-zero",
     "test:coverage:html": "pnpm run pretest && vscode-test --coverage --coverage-reporter=html --coverage-reporter=lcov --coverage-output=coverage --fail-zero",
     "extract-themes": "tsx scripts/extract-theme-colors/index.ts",

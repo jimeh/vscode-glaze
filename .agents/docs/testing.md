@@ -35,3 +35,22 @@ Generate HTML and lcov reports in `coverage/`:
 ```bash
 pnpm run test:coverage:html
 ```
+
+## Script Tests
+
+The `extract-theme-colors` script has its own tests using Node.js built-in test
+runner (`node:test`) with `node:assert/strict`. Tests live in
+`scripts/extract-theme-colors/__tests__/`.
+
+```bash
+pnpm run test:scripts
+```
+
+These run independently from the VS Code extension tests — no Electron runtime
+needed. They use `tsx` as the TypeScript loader.
+
+### Running a Single Script Test
+
+```bash
+node --import tsx --test --test-reporter spec --test-name-pattern "parseTheme" 'scripts/extract-theme-colors/__tests__/**/*.test.ts'
+```

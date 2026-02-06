@@ -61,11 +61,13 @@ function determineThemeType(
   type: string | undefined
 ): ThemeType | undefined {
   // Check uiTheme first (from package.json contribution)
+  // Exact matches for HC themes must come before .includes() checks,
+  // since 'hc-light' contains 'light' and 'hc-dark' contains 'dark'.
   if (uiTheme) {
-    if (uiTheme === 'vs-dark' || uiTheme.includes('dark')) return 'dark';
-    if (uiTheme === 'vs' || uiTheme.includes('light')) return 'light';
     if (uiTheme === 'hc-black') return 'hcDark';
     if (uiTheme === 'hc-light') return 'hcLight';
+    if (uiTheme === 'vs-dark' || uiTheme.includes('dark')) return 'dark';
+    if (uiTheme === 'vs' || uiTheme.includes('light')) return 'light';
   }
 
   // Check type from theme JSON
