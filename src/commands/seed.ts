@@ -5,6 +5,7 @@ import {
   isEnabledForWorkspace,
   isGloballyEnabled,
 } from '../config';
+import { getCachedState } from '../reconcile';
 import { refreshStatusBar, StatusBarManager } from '../statusBar';
 
 /**
@@ -78,6 +79,18 @@ export function registerSeedCommands(
         });
       }
 
+      // ── Actions group (conditional)
+      if (effectivelyEnabled && getCachedState().customizedOutsidePatina) {
+        items.push({
+          label: 'Actions',
+          kind: vscode.QuickPickItemKind.Separator,
+        });
+        items.push({
+          label: '$(warning) Force Apply',
+          description: 'Reclaim ownership of color customizations',
+        });
+      }
+
       const selected = await vscode.window.showQuickPick(items, {
         placeHolder: 'Patina',
       });
@@ -105,6 +118,9 @@ export function registerSeedCommands(
           break;
         case '$(discard) Reset Seed':
           await vscode.commands.executeCommand('patina.resetSeed');
+          break;
+        case '$(warning) Force Apply':
+          await vscode.commands.executeCommand('patina.forceApply');
           break;
       }
     }),
