@@ -121,12 +121,18 @@ export function effectiveHueDirection(
   themeHue: number,
   majorityDir?: HueBlendDirection
 ): HueBlendDirection | undefined {
-  if (!majorityDir) return undefined;
+  if (!majorityDir) {
+    return undefined;
+  }
   let diff = themeHue - tintHue;
   if (majorityDir === 'cw') {
-    if (diff < 0) diff += 360;
+    if (diff < 0) {
+      diff += 360;
+    }
   } else {
-    if (diff > 0) diff -= 360;
+    if (diff > 0) {
+      diff -= 360;
+    }
   }
   return Math.abs(diff) <= MAX_FORCED_ARC_DEGREES ? majorityDir : undefined;
 }
@@ -155,18 +161,26 @@ export function getMajorityHueDirection(
 
   for (const key of PATINA_MANAGED_KEYS) {
     const def = COLOR_KEY_DEFINITIONS[key as PaletteKey];
-    if (def.colorType !== 'background') continue;
+    if (def.colorType !== 'background') {
+      continue;
+    }
 
     const themeHex = getColorForKey(key as PaletteKey, themeColors);
-    if (!themeHex) continue;
+    if (!themeHex) {
+      continue;
+    }
 
     const themeHue = hexToOklch(themeHex).h;
     const dir = getHueBlendDirection(baseHue, themeHue);
-    if (dir === 'cw') cwCount++;
+    if (dir === 'cw') {
+      cwCount++;
+    }
     total++;
   }
 
-  if (total === 0) return undefined;
+  if (total === 0) {
+    return undefined;
+  }
 
   // Break ties toward clockwise for determinism.
   return cwCount >= total - cwCount ? 'cw' : 'ccw';

@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "builtin": true,
+    "es2022": true
+  },
+  "rules": {
+    "curly": "warn",
+    "eqeqeq": "warn",
+    "no-throw-literal": "warn"
+  },
+  "ignorePatterns": [
+    "dist/",
+    "out/",
+    "node_modules/",
+    ".vscode-test/",
+    "src/theme/generated/",
+    "src/color/generated/"
+  ]
+}

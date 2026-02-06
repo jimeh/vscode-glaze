@@ -16,17 +16,16 @@ VSCode extension that applies color tints to editor windows based on workspace.
 
 ## TypeScript Style
 
-Prettier (default config) enforces formatting. Key rules:
+Oxfmt enforces formatting (Prettier-compatible). Key rules:
 
-- Single quotes, no semicolons are NOT the default — Prettier uses
-  **double quotes and semicolons**
-- Trailing commas in multi-line constructs (es5 default)
-- 80 char print width (default)
+- Single quotes, semicolons
+- Trailing commas in multi-line constructs (es5)
+- 80 char print width
 - 2-space indentation
 
-**Always run `pnpm run format` after writing/editing TypeScript files and
-before running `pnpm run compile` or `pnpm run test`.** The `compile` task
-includes a Prettier check that will fail on unformatted code.
+**Always run `pnpm run format` after writing/editing TypeScript files and before
+running `pnpm run compile` or `pnpm run test`.** The `compile` task includes an
+oxfmt check that will fail on unformatted code.
 
 ## Conventions
 

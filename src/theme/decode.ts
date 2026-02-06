@@ -97,11 +97,15 @@ function getOrDecode(
 ): ThemeInfo | undefined {
   // Return from cache if already decoded
   const cached = cache.get(prop);
-  if (cached !== undefined) return cached;
+  if (cached !== undefined) {
+    return cached;
+  }
 
   // Decode if exists in compact data
   const entry = compactData[prop];
-  if (entry === undefined) return undefined;
+  if (entry === undefined) {
+    return undefined;
+  }
 
   const decoded = decodeThemeEntry(entry);
   cache.set(prop, decoded);
@@ -119,7 +123,9 @@ export function createThemeLookup(
 
   return new Proxy({} as Record<string, ThemeInfo>, {
     get(_target, prop: string): ThemeInfo | undefined {
-      if (typeof prop !== 'string') return undefined;
+      if (typeof prop !== 'string') {
+        return undefined;
+      }
       return getOrDecode(compactData, cache, prop);
     },
 

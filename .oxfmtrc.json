@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "ignorePatterns": [
+    "*.vsix",
+    ".claude/",
+    ".github/workflows/",
+    ".vscode-test/",
+    ".vscode/settings.json",
+    "dist/",
+    "node_modules/",
+    "out/",
+    "package.json",
+    "pnpm-lock.yaml",
+    "src/theme/generated/"
+  ]
+}
