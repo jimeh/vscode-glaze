@@ -66,13 +66,14 @@ function buildMenuGroups(): readonly MenuGroup[] {
           label: '$(refresh) Randomize Seed',
           description: 'Generate a new random seed',
           command: 'patina.randomizeSeed',
-          when: () => effectivelyEnabled,
+          when: () => effectivelyEnabled && !customizedOutsidePatina,
         },
         {
           label: '$(discard) Reset Seed',
           description: 'Reset seed to default (0)',
           command: 'patina.resetSeed',
-          when: () => effectivelyEnabled && seed !== 0,
+          when: () =>
+            effectivelyEnabled && !customizedOutsidePatina && seed !== 0,
         },
       ],
     },

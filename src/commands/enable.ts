@@ -11,7 +11,11 @@ export function registerEnableCommands(): vscode.Disposable[] {
     }),
     vscode.commands.registerCommand('patina.disableGlobally', async () => {
       const config = vscode.workspace.getConfiguration('patina');
-      await config.update('enabled', false, vscode.ConfigurationTarget.Global);
+      await config.update(
+        'enabled',
+        undefined,
+        vscode.ConfigurationTarget.Global
+      );
     }),
     vscode.commands.registerCommand('patina.enableWorkspace', async () => {
       await setEnabledForWorkspace(true);
