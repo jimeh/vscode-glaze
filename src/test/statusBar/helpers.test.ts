@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import {
   buildColorTable,
+  buildPropertiesTable,
   capitalizeFirst,
   colorCopyLink,
   colorSwatch,
@@ -119,8 +120,8 @@ suite('colorSwatch', () => {
     const result = colorSwatch('#ff0000');
     assert.strictEqual(
       result,
-      '<span style="background-color:#ff0000;border-radius:2px;">' +
-        '&nbsp;&nbsp;&nbsp;</span>'
+      '<span style="background-color:#ff0000;border-radius:3px;">' +
+        '&nbsp;&nbsp;&nbsp;&nbsp;</span>'
     );
   });
 
@@ -128,8 +129,8 @@ suite('colorSwatch', () => {
     const result = colorSwatch('#AABBCC');
     assert.strictEqual(
       result,
-      '<span style="background-color:#AABBCC;border-radius:2px;">' +
-        '&nbsp;&nbsp;&nbsp;</span>'
+      '<span style="background-color:#AABBCC;border-radius:3px;">' +
+        '&nbsp;&nbsp;&nbsp;&nbsp;</span>'
     );
   });
 
@@ -187,7 +188,7 @@ suite('colorTableRow', () => {
 suite('buildColorTable', () => {
   test('includes header row and separator', () => {
     const result = buildColorTable({ baseTint: '#ff0000' });
-    assert.ok(result.includes('| | | | |'));
+    assert.ok(result.includes('| Element | Color | Hex | |'));
     assert.ok(result.includes('|:--|:--|:--|:--|'));
   });
 
@@ -231,6 +232,39 @@ suite('buildColorTable', () => {
     const lines = result.split('\n');
     // header + separator + 2 data rows
     assert.strictEqual(lines.length, 4);
+  });
+});
+
+suite('buildPropertiesTable', () => {
+  test('includes header row and separator', () => {
+    const result = buildPropertiesTable([['Theme', 'Dark+']]);
+    assert.ok(result.includes('| | |'));
+    assert.ok(result.includes('|:--|:--|'));
+  });
+
+  test('renders label as bold in first column', () => {
+    const result = buildPropertiesTable([['Theme', 'Dark+']]);
+    assert.ok(result.includes('| **Theme** | Dark+ |'));
+  });
+
+  test('renders multiple rows', () => {
+    const result = buildPropertiesTable([
+      ['Theme', 'Dark+'],
+      ['Style', 'Pastel'],
+      ['Seed', '`42`'],
+    ]);
+    const lines = result.split('\n');
+    // header + separator + 3 data rows
+    assert.strictEqual(lines.length, 5);
+    assert.ok(result.includes('| **Theme** | Dark+ |'));
+    assert.ok(result.includes('| **Style** | Pastel |'));
+    assert.ok(result.includes('| **Seed** | `42` |'));
+  });
+
+  test('renders empty rows array with just header', () => {
+    const result = buildPropertiesTable([]);
+    const lines = result.split('\n');
+    assert.strictEqual(lines.length, 2);
   });
 });
 
@@ -320,14 +354,14 @@ suite('formatWorkspaceIdForDisplay', () => {
     assert.strictEqual(result, '`my-project`');
   });
 
-  test('formats two folders on separate lines', () => {
+  test('formats two folders as comma-separated', () => {
     const result = formatWorkspaceIdForDisplay('backend\nfrontend');
-    assert.strictEqual(result, '<br>`backend`<br>`frontend`');
+    assert.strictEqual(result, '`backend`, `frontend`');
   });
 
-  test('formats three or more folders on separate lines', () => {
+  test('formats three or more folders as comma-separated', () => {
     const result = formatWorkspaceIdForDisplay('api\nweb\nshared\ntools');
-    assert.strictEqual(result, '<br>`api`<br>`web`<br>`shared`<br>`tools`');
+    assert.strictEqual(result, '`api`, `web`, `shared`, `tools`');
   });
 
   test('handles empty string', () => {
@@ -342,7 +376,7 @@ suite('formatWorkspaceIdForDisplay', () => {
 
   test('replaces backticks in multi-folder names', () => {
     const result = formatWorkspaceIdForDisplay('back`end\nfront`end');
-    assert.strictEqual(result, "<br>`back'end`<br>`front'end`");
+    assert.strictEqual(result, "`back'end`, `front'end`");
   });
 });
 
