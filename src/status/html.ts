@@ -241,19 +241,38 @@ function generateColorTable(colors: readonly TintKeyDetail[]): string {
  * Status-specific CSS (appended after the base body reset).
  */
 const STATUS_CSS = `
-    h2 {
-      font-size: 14px;
-      font-weight: 600;
-      margin: 0 0 12px 0;
-      color: var(--vscode-foreground);
+    html {
+      scroll-behavior: smooth;
     }
+
+    /* --- Section headings --- */
+
+    h2 {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 28px 0 12px 0;
+      padding-bottom: 8px;
+      color: var(--vscode-descriptionForeground);
+      border-bottom: 1px solid
+        var(--vscode-widget-border, transparent);
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    /* --- General info card --- */
 
     .info-card {
       background: var(--vscode-editorWidget-background);
-      border: 1px solid var(--vscode-widget-border, transparent);
-      border-radius: 6px;
-      padding: 12px 16px;
-      margin-bottom: 20px;
+      border: 1px solid
+        var(--vscode-widget-border, transparent);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     }
 
     .info-table {
@@ -262,14 +281,21 @@ const STATUS_CSS = `
     }
 
     .info-table td {
-      padding: 4px 8px 4px 0;
+      padding: 5px 10px 5px 0;
       vertical-align: top;
+      line-height: 1.5;
     }
 
     .info-label {
       color: var(--vscode-descriptionForeground);
       white-space: nowrap;
-      width: 140px;
+      width: 150px;
+      font-size: 12px;
+    }
+
+    .blend-override {
+      font-size: 11px;
+      opacity: 0.75;
     }
 
     .mono {
@@ -277,16 +303,21 @@ const STATUS_CSS = `
       font-size: var(--vscode-editor-font-size);
     }
 
+    /* --- Badges --- */
+
     .badge {
       display: inline-block;
-      padding: 1px 8px;
-      border-radius: 4px;
-      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 11px;
       font-weight: 600;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
     }
 
     .badge.active {
-      background: var(--vscode-testing-iconPassed, #388a34);
+      background: var(--vscode-testing-iconPassed,
+        #388a34);
       color: #fff;
     }
 
@@ -296,14 +327,18 @@ const STATUS_CSS = `
     }
 
     .badge.warning {
-      background: var(--vscode-editorWarning-foreground, #cca700);
+      background: var(--vscode-editorWarning-foreground,
+        #cca700);
       color: #000;
     }
 
     .na {
       color: var(--vscode-descriptionForeground);
       font-style: italic;
+      opacity: 0.7;
     }
+
+    /* --- Color pipeline table --- */
 
     .color-table {
       width: 100%;
@@ -313,32 +348,60 @@ const STATUS_CSS = `
 
     .color-table th {
       text-align: left;
-      padding: 6px 8px;
-      font-size: 12px;
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--vscode-descriptionForeground);
-      border-bottom: 1px solid var(--vscode-widget-border);
+      border-bottom: 2px solid
+        var(--vscode-widget-border);
     }
 
     .color-table td {
-      padding: 5px 8px;
+      padding: 6px 10px;
       border-bottom: 1px solid
         var(--vscode-widget-border);
     }
 
     .group-header td {
       font-weight: 600;
-      padding-top: 12px;
+      font-size: 13px;
+      padding-top: 20px;
+      padding-bottom: 6px;
       color: var(--vscode-foreground);
-      border-bottom: none;
+      border-bottom: 1px solid
+        var(--vscode-widget-border);
+      border-left: 3px solid
+        var(--vscode-focusBorder, #007fd4);
+      padding-left: 10px;
+    }
+
+    /* --- Color rows: hover & disabled --- */
+
+    .color-row {
+      transition: background-color 0.15s ease;
+    }
+
+    .color-row:hover {
+      background-color:
+        var(--vscode-list-hoverBackground);
     }
 
     .color-row.disabled {
-      opacity: 0.4;
+      opacity: 0.35;
     }
+
+    .color-row.disabled:hover {
+      opacity: 0.5;
+    }
+
+    /* --- Color cells & swatches --- */
 
     .key-cell {
       font-family: var(--vscode-editor-font-family);
       font-size: var(--vscode-editor-font-size);
+      white-space: nowrap;
     }
 
     .color-cell {
@@ -348,17 +411,24 @@ const STATUS_CSS = `
     .color-cell code {
       font-family: var(--vscode-editor-font-family);
       font-size: var(--vscode-editor-font-size);
+      letter-spacing: 0.02em;
     }
 
     .color-swatch {
       display: inline-block;
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
       vertical-align: middle;
-      margin-right: 6px;
-      border: 1px solid var(--vscode-widget-border);
+      margin-right: 8px;
+      border: 1px solid
+        var(--vscode-widget-border);
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.22),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
     }
+
+    /* --- Toolbar --- */
 
     .toolbar {
       float: right;
@@ -367,17 +437,22 @@ const STATUS_CSS = `
     }
 
     .refresh-btn {
-      background: var(--vscode-button-secondaryBackground);
-      color: var(--vscode-button-secondaryForeground);
-      border: 1px solid var(--vscode-button-border, transparent);
-      padding: 4px 12px;
+      background:
+        var(--vscode-button-secondaryBackground);
+      color:
+        var(--vscode-button-secondaryForeground);
+      border: 1px solid
+        var(--vscode-button-border, transparent);
+      padding: 5px 14px;
       cursor: pointer;
       border-radius: 4px;
       font-size: 12px;
+      transition: background-color 0.15s ease;
     }
 
     .refresh-btn:hover {
-      background: var(--vscode-button-secondaryHoverBackground);
+      background:
+        var(--vscode-button-secondaryHoverBackground);
     }`;
 
 /**
