@@ -5,10 +5,22 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  files: 'out/test/**/*.test.js',
-  workspaceFolder: resolve(__dirname, 'src/test/fixtures/test-workspace'),
-  mocha: { timeout: 5000 },
+  tests: [
+    {
+      files: 'out/test/**/*.test.js',
+      extensionDevelopmentPath: resolve(__dirname, 'out'),
+      workspaceFolder: resolve(__dirname, 'src/test/fixtures/test-workspace'),
+      mocha: { timeout: 5000 },
+    },
+  ],
   coverage: {
+    exclude: [
+      '**/node_modules/**',
+      '**/.pnpm/**',
+      '**/out/test/**',
+      '**/out/color/generated/**',
+      '**/out/theme/generated/**',
+    ],
     reporter: ['text'],
     lines: 80,
     functions: 80,
