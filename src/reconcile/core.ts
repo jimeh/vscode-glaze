@@ -100,7 +100,13 @@ async function clearTintColors(): Promise<void> {
 
   // Don't remove colors that Patina doesn't own.
   if (hasPatinaColorsWithoutMarker(existing)) {
-    await resetCachedState();
+    updateCachedState({
+      workspaceIdentifier: undefined,
+      tintColors: undefined,
+      customizedOutsidePatina: true,
+      lastError: undefined,
+    });
+    await refreshStatusBar();
     return;
   }
 
@@ -143,7 +149,10 @@ async function applyTintColors(
   // external tool or user has modified settings — refuse to
   // overwrite (unless force).
   if (!force && hasPatinaColorsWithoutMarker(existing)) {
-    updateCachedState({ customizedOutsidePatina: true });
+    updateCachedState({
+      workspaceIdentifier: identifier,
+      customizedOutsidePatina: true,
+    });
     await refreshStatusBar();
     return;
   }
