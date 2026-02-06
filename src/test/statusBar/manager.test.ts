@@ -738,7 +738,125 @@ suite('StatusBarManager', () => {
       assert.deepStrictEqual(trusted.enabledCommands, [
         'patina.copyColor',
         'patina.forceApply',
+        'patina.showStatus',
+        'patina.showColorPreview',
       ]);
+    });
+  });
+
+  suite('tooltip action links', () => {
+    test('includes showStatus link when active', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        hasActiveTargets: true,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('command:patina.showStatus'),
+        `tooltip should include showStatus link, got: ${tip}`
+      );
+    });
+
+    test('includes showStatus link when inactive', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: false,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        hasActiveTargets: true,
+        tintColors: undefined,
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('command:patina.showStatus'),
+        `tooltip should include showStatus link even when inactive, got: ${tip}`
+      );
+    });
+
+    test('includes color preview link when tintColors present', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        hasActiveTargets: true,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('command:patina.showColorPreview'),
+        `tooltip should include color preview link, got: ${tip}`
+      );
+      assert.ok(
+        tip.includes('[$(eye)](command:patina.showColorPreview)'),
+        `tooltip should include preview link icon, got: ${tip}`
+      );
+    });
+
+    test('omits color preview link when tintColors undefined', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: true,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        hasActiveTargets: true,
+        tintColors: undefined,
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        !tip.includes('command:patina.showColorPreview'),
+        `tooltip should not include color preview link without tintColors, got: ${tip}`
+      );
     });
   });
 
