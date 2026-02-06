@@ -1,6 +1,9 @@
 import * as os from 'os';
 import * as path from 'path';
 
+/** Cached home directory — never changes during a session. */
+export const HOME_DIR = os.homedir();
+
 /**
  * Normalizes a path by converting backslashes to forward slashes.
  * Ensures consistent hashing across platforms.
@@ -14,10 +17,10 @@ export function normalizePath(p: string): string {
  */
 export function expandTilde(p: string): string {
   if (p.startsWith('~')) {
-    return path.join(os.homedir(), p.slice(1));
+    return path.join(HOME_DIR, p.slice(1));
   }
   if (p.startsWith('$HOME')) {
-    return path.join(os.homedir(), p.slice(5));
+    return path.join(HOME_DIR, p.slice(5));
   }
   return p;
 }

@@ -8,13 +8,13 @@ export interface TintColors {
   /** The base tint hue (before per-element style tweaks). */
   baseTint: string;
   /** Title bar background color (if enabled). */
-  titleBar?: string;
+  titleBar?: string | undefined;
   /** Activity bar background color (if enabled). */
-  activityBar?: string;
+  activityBar?: string | undefined;
   /** Status bar background color (if enabled). */
-  statusBar?: string;
+  statusBar?: string | undefined;
   /** Side bar background color (if enabled). */
-  sideBar?: string;
+  sideBar?: string | undefined;
 }
 
 /**
@@ -22,41 +22,41 @@ export interface TintColors {
  */
 export interface StatusBarState {
   /** Whether Patina is globally enabled. */
-  globalEnabled: boolean;
+  readonly globalEnabled: boolean;
 
   /** Workspace-level enabled override (undefined = inherits global). */
-  workspaceEnabledOverride: boolean | undefined;
+  readonly workspaceEnabledOverride: boolean | undefined;
 
   /** The workspace identifier used for color generation. */
-  workspaceIdentifier: string | undefined;
+  readonly workspaceIdentifier: string | undefined;
 
   /** The name of the active VS Code color theme. */
-  themeName: string | undefined;
+  readonly themeName: string | undefined;
 
   /** The resolved tint type (auto-detected or manually configured). */
-  tintType: ThemeType;
+  readonly tintType: ThemeType;
 
   /** Whether the theme type was auto-detected. */
-  themeAutoDetected: boolean;
+  readonly themeAutoDetected: boolean;
 
   /** The active color style. */
-  colorStyle: ColorStyle;
+  readonly colorStyle: ColorStyle;
 
   /** The active color harmony. */
-  colorHarmony: ColorHarmony;
+  readonly colorHarmony: ColorHarmony;
 
   /** Seed value used for tint calculation. */
-  seed: number;
+  readonly seed: number;
 
   /** Whether at least one tint target element is enabled. */
-  hasActiveTargets: boolean;
+  readonly hasActiveTargets: boolean;
 
   /** Tint colors for tooltip display. */
-  tintColors: TintColors | undefined;
+  readonly tintColors: TintColors | undefined;
 
   /** Whether managed colors were modified outside of Patina. */
-  customizedOutsidePatina: boolean;
+  readonly customizedOutsidePatina: boolean;
 
   /** Error message from the last failed apply/remove operation. */
-  lastError?: string;
+  readonly lastError?: string | undefined;
 }

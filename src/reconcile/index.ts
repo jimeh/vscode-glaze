@@ -1,5 +1,6 @@
 export type { CachedTintState, ReconcileOptions } from './types';
 export {
+  _resetAllState,
   getCachedState,
   resetCachedState,
   setRefreshStatusBar,

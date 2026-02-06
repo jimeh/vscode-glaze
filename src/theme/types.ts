@@ -20,7 +20,7 @@ export interface ThemeContext {
    * always 'dark' regardless of tint mode). Undefined if the theme
    * is not found in the database.
    */
-  type?: ThemeType;
+  type?: ThemeType | undefined;
 
   /**
    * The resolved tint type — auto-detected from VSCode's active
@@ -38,11 +38,11 @@ export interface ThemeContext {
    * The name of the active color theme (e.g., "One Dark Pro").
    * May be undefined if the theme name cannot be determined.
    */
-  name?: string;
+  name?: string | undefined;
 
   /**
    * Theme colors for different UI elements.
    * Only populated for known themes in the lookup table.
    */
-  colors?: ThemeColors;
+  colors?: ThemeColors | undefined;
 }

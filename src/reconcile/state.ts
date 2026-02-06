@@ -1,10 +1,15 @@
 import type { CachedTintState } from './types';
 
-let cached: CachedTintState = {
+/** Default (empty) cached tint state. */
+const DEFAULT_STATE: Readonly<CachedTintState> = {
   workspaceIdentifier: undefined,
   tintColors: undefined,
   customizedOutsidePatina: false,
+  lastError: undefined,
 };
+
+/** Internal mutable store — only accessed via exported functions. */
+let cached: CachedTintState = { ...DEFAULT_STATE };
 
 /**
  * Callback to refresh the status bar. Injected by extension.ts
@@ -38,11 +43,15 @@ export function updateCachedState(updates: Partial<CachedTintState>): void {
 
 /** Reset cached state to empty and refresh the status bar. */
 export async function resetCachedState(): Promise<void> {
-  cached = {
-    workspaceIdentifier: undefined,
-    tintColors: undefined,
-    customizedOutsidePatina: false,
-    lastError: undefined,
-  };
+  cached = { ...DEFAULT_STATE };
   await refreshStatusBar();
+}
+
+/**
+ * Reset all module state (cached state AND injected callbacks)
+ * to initial values. Intended for test isolation only.
+ */
+export function _resetAllState(): void {
+  cached = { ...DEFAULT_STATE };
+  refreshStatusBarFn = undefined;
 }

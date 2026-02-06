@@ -57,10 +57,9 @@ export interface WorkspaceIdentifierConfig {
  */
 export type TintTarget = 'titleBar' | 'statusBar' | 'activityBar' | 'sideBar';
 
-/**
- * User-configurable theme mode setting.
- */
-export type ThemeMode = 'auto' | 'light' | 'dark';
+import type { ThemeMode } from '../theme/types';
+
+export type { ThemeMode } from '../theme/types';
 
 /**
  * Configuration for tint targets.

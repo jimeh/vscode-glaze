@@ -7,9 +7,9 @@
  */
 export interface OKLCH {
   /** Lightness as a fraction (0-1), perceptually uniform */
-  l: number;
+  readonly l: number;
   /** Chroma (colorfulness), typically 0-0.4 for sRGB gamut */
-  c: number;
+  readonly c: number;
   /** Hue angle in degrees (0-360) */
-  h: number;
+  readonly h: number;
 }

@@ -3,7 +3,8 @@
  * Converts space-efficient array format to ThemeInfo objects.
  */
 
-import type { ThemeType, ThemeInfo } from './colors';
+import type { ThemeType } from './types';
+import type { ThemeInfo } from './colors';
 import type { ThemeColors, ThemeColorKey } from './colorKeys';
 
 /**

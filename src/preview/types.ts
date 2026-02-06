@@ -52,11 +52,11 @@ export interface WorkspacePreview {
   /** Generated colors for this workspace */
   colors: StylePreviewColors;
   /** Theme blend factor (0-1), undefined if no theme colors available */
-  blendFactor?: number;
+  blendFactor?: number | undefined;
   /** Whether theme blending is active (theme colors available) */
   isBlended: boolean;
   /** Per-target blend factor overrides, if any */
-  targetBlendFactors?: Partial<Record<TintTarget, number>>;
+  targetBlendFactors?: Partial<Record<TintTarget, number>> | undefined;
 }
 
 /**
@@ -68,7 +68,7 @@ export interface PreviewState {
   /** Currently active color style */
   currentStyle: ColorStyle;
   /** Current workspace preview (if available) */
-  workspacePreview?: WorkspacePreview;
+  workspacePreview?: WorkspacePreview | undefined;
   /** Currently active color harmony */
   currentHarmony: ColorHarmony;
   /** Preview data for all styles */
