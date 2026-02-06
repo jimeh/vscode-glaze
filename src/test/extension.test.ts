@@ -85,6 +85,33 @@ async function waitForColorKey(
 }
 
 /**
+ * Waits for colorCustomizations to exist with at least one key,
+ * but WITHOUT a specific key present. Useful for waiting until a
+ * debounced reconcile has settled after disabling an element.
+ */
+async function waitForColorKeyAbsent(
+  key: string,
+  timeoutMs = 4000,
+  intervalMs = 50
+): Promise<Record<string, string>> {
+  let colors: Record<string, string> | undefined;
+  await pollUntil(
+    () => {
+      colors = getColorCustomizations();
+      return (
+        colors !== undefined &&
+        Object.keys(colors).length > 0 &&
+        !(key in colors)
+      );
+    },
+    `Timeout waiting for colorCustomizations without key: ${key}`,
+    timeoutMs,
+    intervalMs
+  );
+  return colors!;
+}
+
+/**
  * Waits for colorCustomizations to contain only non-Patina keys.
  */
 async function waitForPatinaColorsCleared(
@@ -1322,9 +1349,10 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Enable globally
+      // Enable globally — wait for colors WITHOUT statusBar keys,
+      // since config event delivery order is not guaranteed.
       await vscode.commands.executeCommand('patina.enableGlobally');
-      let colors = await waitForColorCustomizations();
+      let colors = await waitForColorKeyAbsent('statusBar.background');
 
       // Verify no statusBar keys
       assert.ok(
@@ -1414,9 +1442,10 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Enable globally
+      // Enable globally — wait for colors WITHOUT sideBar keys,
+      // since config event delivery order is not guaranteed.
       await vscode.commands.executeCommand('patina.enableGlobally');
-      let colors = await waitForColorCustomizations();
+      let colors = await waitForColorKeyAbsent('sideBar.background');
 
       // Verify no sideBar keys
       assert.ok(
