@@ -79,8 +79,8 @@ export function getThemeModeLabel(
 export function colorSwatch(hex: string): string {
   assertHex(hex);
   return (
-    `<span style="background-color:${hex};border-radius:2px;">` +
-    '&nbsp;&nbsp;&nbsp;</span>'
+    `<span style="background-color:${hex};border-radius:3px;">` +
+    '&nbsp;&nbsp;&nbsp;&nbsp;</span>'
   );
 }
 
@@ -104,11 +104,24 @@ export function colorTableRow(label: string, hex: string): string {
 }
 
 /**
+ * Builds a two-column markdown table for tooltip properties.
+ */
+export function buildPropertiesTable(
+  rows: ReadonlyArray<readonly [string, string]>
+): string {
+  const lines: string[] = ['| | |', '|:--|:--|'];
+  for (const [label, value] of rows) {
+    lines.push(`| **${label}** | ${value} |`);
+  }
+  return lines.join('\n');
+}
+
+/**
  * Builds a markdown table of tint colors for the tooltip.
  */
 export function buildColorTable(tintColors: TintColors): string {
   const rows: string[] = [
-    '| | | | |',
+    '| Element | Color | Hex | |',
     '|:--|:--|:--|:--|',
     colorTableRow('Base', tintColors.baseTint),
   ];
@@ -149,7 +162,7 @@ export function capitalizeFirst(str: string): string {
 
 /**
  * Formats workspace ID for tooltip display.
- * Single values stay inline; multi-line values get formatted as a list.
+ * Single values stay inline; multi-folder values are comma-joined.
  */
 export function formatWorkspaceIdForDisplay(id: string): string {
   // Replace backticks with single quotes to prevent code-span breakout.
@@ -159,7 +172,7 @@ export function formatWorkspaceIdForDisplay(id: string): string {
   if (!safe.includes('\n')) {
     return `\`${safe}\``;
   }
-  // Multi-folder: each on its own line with HTML line breaks
+  // Multi-folder: comma-separated for compact display in table cells
   const folders = safe.split('\n');
-  return '<br>' + folders.map((f) => `\`${f}\``).join('<br>');
+  return folders.map((f) => `\`${f}\``).join(', ');
 }

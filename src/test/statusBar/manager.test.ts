@@ -85,7 +85,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('Inactive'),
+        tip.includes('$(x)'),
         `tooltip should indicate inactive, got: ${tip}`
       );
     });
@@ -124,7 +124,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('Active'),
+        tip.includes('$(check)'),
         `tooltip should indicate active, got: ${tip}`
       );
       assert.ok(
@@ -159,7 +159,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('Inactive'),
+        tip.includes('$(x)'),
         `tooltip should indicate inactive, got: ${tip}`
       );
     });
@@ -216,7 +216,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('Inactive'),
+        tip.includes('$(x)'),
         `tooltip should indicate inactive, got: ${tip}`
       );
     });
@@ -248,7 +248,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('Inactive'),
+        tip.includes('$(x)'),
         `tooltip should indicate inactive, got: ${tip}`
       );
       assert.ok(
@@ -374,7 +374,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('Inactive'),
+        tip.includes('$(x)'),
         `tooltip should indicate inactive, got: ${tip}`
       );
       assert.ok(

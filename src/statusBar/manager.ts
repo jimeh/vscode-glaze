@@ -3,6 +3,7 @@ import { getColorName } from '../color';
 import { getStatusBarEnabled } from '../config';
 import {
   buildColorTable,
+  buildPropertiesTable,
   capitalizeFirst,
   escapeForMarkdown,
   formatWorkspaceIdForDisplay,
@@ -120,16 +121,21 @@ export class StatusBarManager implements vscode.Disposable {
     md.supportThemeIcons = true;
     md.supportHtml = true;
 
-    if (isActive) {
-      md.appendMarkdown('**Patina** $(check) Active\n\n');
-    } else {
-      md.appendMarkdown('**Patina** $(x) Inactive\n\n');
-    }
-
     if (!this.state) {
+      const icon = isActive ? '$(check)' : '$(x)';
+      md.appendMarkdown(`**Patina** ${icon}\n\n`);
       return md;
     }
     const state = this.state;
+    const { globalEnabled, workspaceEnabledOverride } = state;
+
+    // Header: merged status line
+    const statusIcon = isActive ? '$(check)' : '$(x)';
+    const statusText = getStatusText(globalEnabled, workspaceEnabledOverride);
+    md.appendMarkdown(
+      `**Patina** ${statusIcon} ${statusText} ` +
+        `[$(info)](command:patina.showStatus)\n\n`
+    );
 
     // Error from last apply/remove attempt
     if (state.lastError) {
@@ -148,14 +154,6 @@ export class StatusBarManager implements vscode.Disposable {
           'to reclaim ownership.\n\n'
       );
     }
-    const { globalEnabled, workspaceEnabledOverride } = state;
-
-    // Status line
-    md.appendMarkdown(
-      `**Status:** ` +
-        `${getStatusText(globalEnabled, workspaceEnabledOverride)} ` +
-        `[$(info)](command:patina.showStatus)\n\n`
-    );
 
     // Explain why inactive when enabled but missing requirements
     if (!isActive && !state.hasActiveTargets) {
@@ -163,14 +161,6 @@ export class StatusBarManager implements vscode.Disposable {
     }
 
     if (isActive) {
-      // Workspace ID
-      if (state.workspaceIdentifier) {
-        const displayId = formatWorkspaceIdForDisplay(
-          state.workspaceIdentifier
-        );
-        md.appendMarkdown(`**Workspace ID:** ${displayId}\n\n`);
-      }
-
       const {
         themeName,
         tintType,
@@ -180,25 +170,24 @@ export class StatusBarManager implements vscode.Disposable {
         tintColors,
       } = state;
 
-      // Theme name
-      if (themeName) {
-        md.appendMarkdown(`**Theme:** ${escapeForMarkdown(themeName)}\n\n`);
+      // Properties table
+      const props: Array<readonly [string, string]> = [];
+
+      if (state.workspaceIdentifier) {
+        const displayId = formatWorkspaceIdForDisplay(
+          state.workspaceIdentifier
+        );
+        props.push(['Workspace', displayId]);
       }
+      if (themeName) {
+        props.push(['Theme', escapeForMarkdown(themeName)]);
+      }
+      props.push(['Tint Mode', getThemeModeLabel(tintType, themeAutoDetected)]);
+      props.push(['Style', capitalizeFirst(colorStyle)]);
+      props.push(['Harmony', capitalizeFirst(colorHarmony)]);
+      props.push(['Seed', `\`${state.seed}\``]);
 
-      // Tint mode
-      const themeLabel = getThemeModeLabel(tintType, themeAutoDetected);
-      md.appendMarkdown(`**Tint Mode:** ${themeLabel}\n\n`);
-
-      // Color style
-      const styleLabel = capitalizeFirst(colorStyle);
-      md.appendMarkdown(`**Color Style:** ${styleLabel}\n\n`);
-
-      // Color harmony
-      const harmonyLabel = capitalizeFirst(colorHarmony);
-      md.appendMarkdown(`**Color Harmony:** ${harmonyLabel}\n\n`);
-
-      // Seed
-      md.appendMarkdown(`**Seed:** \`${state.seed}\`\n\n`);
+      md.appendMarkdown(buildPropertiesTable(props) + '\n\n');
 
       // Colors section with clickable swatches in a table
       if (tintColors) {

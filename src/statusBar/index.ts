@@ -3,6 +3,7 @@ export { StatusBarManager } from './manager';
 export { refreshStatusBar } from './refresh';
 export {
   buildColorTable,
+  buildPropertiesTable,
   capitalizeFirst,
   colorCopyLink,
   colorSwatch,
