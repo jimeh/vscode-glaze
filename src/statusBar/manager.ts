@@ -110,7 +110,12 @@ export class StatusBarManager implements vscode.Disposable {
   private buildTooltip(isActive: boolean): vscode.MarkdownString {
     const md = new vscode.MarkdownString();
     md.isTrusted = {
-      enabledCommands: ['patina.copyColor', 'patina.forceApply'],
+      enabledCommands: [
+        'patina.copyColor',
+        'patina.forceApply',
+        'patina.showStatus',
+        'patina.showColorPreview',
+      ],
     };
     md.supportThemeIcons = true;
     md.supportHtml = true;
@@ -147,7 +152,9 @@ export class StatusBarManager implements vscode.Disposable {
 
     // Status line
     md.appendMarkdown(
-      `**Status:** ${getStatusText(globalEnabled, workspaceEnabledOverride)}\n\n`
+      `**Status:** ` +
+        `${getStatusText(globalEnabled, workspaceEnabledOverride)} ` +
+        `[$(info)](command:patina.showStatus)\n\n`
     );
 
     // Explain why inactive when enabled but missing requirements
@@ -196,7 +203,9 @@ export class StatusBarManager implements vscode.Disposable {
       // Colors section with clickable swatches
       if (tintColors) {
         md.appendMarkdown('---\n\n');
-        md.appendMarkdown('**Colors**\n\n');
+        md.appendMarkdown(
+          '**Colors** ' + '[$(eye)](command:patina.showColorPreview)\n\n'
+        );
 
         // Base tint (always shown)
         md.appendMarkdown(
