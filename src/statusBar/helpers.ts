@@ -1,6 +1,7 @@
 import type { ThemeType } from '../theme';
 import { getColorName } from '../color';
 import { assertHex, escapeHtml } from '../webview';
+import type { TintColors } from './types';
 
 /**
  * Determines if Patina is effectively enabled for the current workspace.
@@ -84,13 +85,48 @@ export function colorSwatch(hex: string): string {
 }
 
 /**
- * Creates a color swatch with hex code, color name, and a clickable copy icon.
+ * Creates a markdown command link to copy a hex color to the clipboard.
  */
-export function clickableColorSwatch(hex: string): string {
+export function colorCopyLink(hex: string): string {
+  assertHex(hex);
+  const args = encodeURIComponent(JSON.stringify(hex));
+  return `[$(copy)](command:patina.copyColor?${args})`;
+}
+
+/**
+ * Creates a markdown table row for a color entry in the tooltip.
+ */
+export function colorTableRow(label: string, hex: string): string {
   const swatch = colorSwatch(hex);
   const name = escapeHtml(getColorName(hex));
-  const args = encodeURIComponent(JSON.stringify(hex));
-  return `${swatch} "${name}" \`${hex}\` [$(copy)](command:patina.copyColor?${args})`;
+  const copy = colorCopyLink(hex);
+  return `| ${label} | ${swatch} "${name}" ` + `| \`${hex}\` | ${copy} |`;
+}
+
+/**
+ * Builds a markdown table of tint colors for the tooltip.
+ */
+export function buildColorTable(tintColors: TintColors): string {
+  const rows: string[] = [
+    '| | | | |',
+    '|:--|:--|:--|:--|',
+    colorTableRow('Base', tintColors.baseTint),
+  ];
+
+  if (tintColors.titleBar) {
+    rows.push(colorTableRow('Title Bar', tintColors.titleBar));
+  }
+  if (tintColors.activityBar) {
+    rows.push(colorTableRow('Activity Bar', tintColors.activityBar));
+  }
+  if (tintColors.sideBar) {
+    rows.push(colorTableRow('Side Bar', tintColors.sideBar));
+  }
+  if (tintColors.statusBar) {
+    rows.push(colorTableRow('Status Bar', tintColors.statusBar));
+  }
+
+  return rows.join('\n');
 }
 
 /**

@@ -1,8 +1,10 @@
 import * as assert from 'assert';
 import {
+  buildColorTable,
   capitalizeFirst,
-  clickableColorSwatch,
+  colorCopyLink,
   colorSwatch,
+  colorTableRow,
   escapeForMarkdown,
   formatWorkspaceIdForDisplay,
   getStatusText,
@@ -143,33 +145,92 @@ suite('colorSwatch', () => {
   });
 });
 
-suite('clickableColorSwatch', () => {
-  test('generates swatch with copy icon command link', () => {
-    const result = clickableColorSwatch('#ff0000');
-    assert.ok(result.includes('background-color:#ff0000'));
-    assert.ok(result.includes('`#ff0000`'));
+suite('colorCopyLink', () => {
+  test('contains copy icon and command link', () => {
+    const result = colorCopyLink('#ff0000');
     assert.ok(result.includes('[$(copy)]'));
     assert.ok(result.includes('command:patina.copyColor'));
   });
 
   test('includes encoded hex in command args', () => {
-    const result = clickableColorSwatch('#AABBCC');
+    const result = colorCopyLink('#AABBCC');
     const expectedArgs = encodeURIComponent(JSON.stringify('#AABBCC'));
     assert.ok(result.includes(expectedArgs));
   });
 
-  test('preserves hex format in display', () => {
-    const lower = clickableColorSwatch('#abc123');
-    const upper = clickableColorSwatch('#ABC123');
-    assert.ok(lower.includes('`#abc123`'));
-    assert.ok(upper.includes('`#ABC123`'));
+  test('throws on invalid hex', () => {
+    assert.throws(() => colorCopyLink('not-a-hex'), /Invalid hex color/);
+  });
+});
+
+suite('colorTableRow', () => {
+  test('returns pipe-delimited row with label', () => {
+    const result = colorTableRow('Base', '#ff0000');
+    assert.ok(result.startsWith('| Base |'));
+    assert.ok(result.endsWith('|'));
   });
 
-  test('includes color name in output', () => {
-    const result = clickableColorSwatch('#ff0000');
-    // getColorName returns a human-readable name; just verify
-    // it appears quoted in the output
-    assert.ok(result.includes('"'), 'should include quoted color name');
+  test('includes swatch, color name, and hex code', () => {
+    const result = colorTableRow('Title Bar', '#ff0000');
+    assert.ok(result.includes('background-color:#ff0000'));
+    assert.ok(result.includes('`#ff0000`'));
+    assert.ok(result.includes('"'));
+  });
+
+  test('includes copy command link', () => {
+    const result = colorTableRow('Base', '#ff0000');
+    assert.ok(result.includes('[$(copy)]'));
+    assert.ok(result.includes('command:patina.copyColor'));
+  });
+});
+
+suite('buildColorTable', () => {
+  test('includes header row and separator', () => {
+    const result = buildColorTable({ baseTint: '#ff0000' });
+    assert.ok(result.includes('| | | | |'));
+    assert.ok(result.includes('|:--|:--|:--|:--|'));
+  });
+
+  test('always includes base tint row', () => {
+    const result = buildColorTable({ baseTint: '#ff0000' });
+    assert.ok(result.includes('| Base |'));
+  });
+
+  test('includes only defined element rows', () => {
+    const result = buildColorTable({
+      baseTint: '#ff0000',
+      titleBar: '#00ff00',
+    });
+    assert.ok(result.includes('| Base |'));
+    assert.ok(result.includes('| Title Bar |'));
+    assert.ok(!result.includes('| Activity Bar |'));
+    assert.ok(!result.includes('| Side Bar |'));
+    assert.ok(!result.includes('| Status Bar |'));
+  });
+
+  test('includes all element rows when all defined', () => {
+    const result = buildColorTable({
+      baseTint: '#ff0000',
+      titleBar: '#00ff00',
+      activityBar: '#0000ff',
+      sideBar: '#ffff00',
+      statusBar: '#ff00ff',
+    });
+    assert.ok(result.includes('| Base |'));
+    assert.ok(result.includes('| Title Bar |'));
+    assert.ok(result.includes('| Activity Bar |'));
+    assert.ok(result.includes('| Side Bar |'));
+    assert.ok(result.includes('| Status Bar |'));
+  });
+
+  test('rows are newline-separated', () => {
+    const result = buildColorTable({
+      baseTint: '#ff0000',
+      titleBar: '#00ff00',
+    });
+    const lines = result.split('\n');
+    // header + separator + 2 data rows
+    assert.strictEqual(lines.length, 4);
   });
 });
 
