@@ -39,7 +39,7 @@ export function renderWebviewHtml(opts: WebviewHtmlOptions): string {
       font-size: var(--vscode-font-size);
       color: var(--vscode-foreground);
       background: var(--vscode-editor-background);
-      padding: 16px;
+      padding: 20px;
       margin: 0;
     }
 ${css}

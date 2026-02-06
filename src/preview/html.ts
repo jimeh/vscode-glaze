@@ -171,7 +171,9 @@ function generateWorkspaceSection(state: PreviewState): string {
  */
 function generateStyleRow(style: StylePreview, isCurrent: boolean): string {
   const currentClass = isCurrent ? 'current' : '';
-  const currentBadge = isCurrent ? '<span class="current-badge">*</span>' : '';
+  const currentBadge = isCurrent
+    ? '<span class="current-badge">\u25CF</span>'
+    : '';
 
   const hueCells = style.hueColors
     .map((colors) => `<td class="hue-cell">${generateSwatch(colors)}</td>`)
@@ -220,7 +222,9 @@ function generateHarmonyRow(
   isCurrent: boolean
 ): string {
   const currentClass = isCurrent ? 'current' : '';
-  const currentBadge = isCurrent ? '<span class="current-badge">*</span>' : '';
+  const currentBadge = isCurrent
+    ? '<span class="current-badge">\u25CF</span>'
+    : '';
 
   const hueCells = harmony.hueColors
     .map((colors) => `<td class="hue-cell">${generateSwatch(colors)}</td>`)
@@ -265,60 +269,94 @@ function generateHarmoniesTable(state: PreviewState): string {
  * Preview-specific CSS (appended after the base body reset).
  */
 const PREVIEW_CSS = `
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* --- Segmented theme tabs --- */
+
     .theme-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      display: inline-flex;
+      background: var(--vscode-input-background);
+      border: 1px solid var(--vscode-widget-border, transparent);
+      border-radius: 6px;
+      padding: 2px;
+      margin-bottom: 20px;
+      gap: 2px;
     }
 
     .theme-tab {
-      background: var(--vscode-button-secondaryBackground);
-      color: var(--vscode-button-secondaryForeground);
-      border: 1px solid var(--vscode-button-border, transparent);
-      padding: 6px 12px;
+      background: transparent;
+      color: var(--vscode-descriptionForeground);
+      border: none;
+      padding: 5px 14px;
       cursor: pointer;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 12px;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
     .theme-tab:hover {
-      background: var(--vscode-button-secondaryHoverBackground);
+      background: var(--vscode-list-hoverBackground);
+      color: var(--vscode-foreground);
     }
 
     .theme-tab.active {
       background: var(--vscode-button-background);
       color: var(--vscode-button-foreground);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
+
+    /* --- Workspace card --- */
 
     .workspace-section {
       background: var(--vscode-editorWidget-background);
       border: 1px solid var(--vscode-widget-border, transparent);
-      border-radius: 6px;
-      padding: 12px 16px;
-      margin-bottom: 16px;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     }
 
     .workspace-header {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .workspace-label {
       font-weight: 600;
-      color: var(--vscode-foreground);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--vscode-descriptionForeground);
+    }
+
+    .workspace-section .swatch {
+      border-radius: 6px;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .workspace-section .element {
+      padding: 3px 10px;
+      min-width: 60px;
+      font-size: 12px;
     }
 
     .workspace-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
 
     .workspace-id {
       color: var(--vscode-foreground);
+      font-size: 13px;
     }
 
     .info-label {
@@ -326,46 +364,88 @@ const PREVIEW_CSS = `
     }
 
     .blend-info {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--vscode-descriptionForeground);
       background: var(--vscode-badge-background);
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 3px 10px;
+      border-radius: 10px;
       margin-left: auto;
+      letter-spacing: 0.01em;
     }
 
     .workspace-color-name {
       font-size: 12px;
-      color: var(--vscode-foreground);
+      color: var(--vscode-descriptionForeground);
     }
+
+    /* --- Section headings --- */
+
+    .section-heading {
+      margin: 28px 0 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--vscode-descriptionForeground);
+      border-bottom: 1px solid var(--vscode-widget-border);
+      padding-bottom: 8px;
+    }
+
+    .section-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    /* --- Comparison tables --- */
 
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: fixed;
     }
 
-    .comparison-table th,
-    .comparison-table td {
-      padding: 8px;
+    .comparison-table thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .comparison-table th {
+      padding: 6px 4px 10px;
       text-align: center;
-      border-bottom: 1px solid var(--vscode-widget-border);
+      background: var(--vscode-editor-background);
+      border-bottom:
+        1px solid var(--vscode-widget-border);
+    }
+
+    .comparison-table td {
+      padding: 6px 4px;
+      text-align: center;
     }
 
     .comparison-header {
       text-align: left;
-      width: 120px;
+      width: 110px;
+      padding-left: 12px !important;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--vscode-descriptionForeground);
     }
 
     .hue-header {
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 500;
       color: var(--vscode-descriptionForeground);
+      letter-spacing: 0.02em;
     }
+
+    /* --- Rows: selection & hover --- */
 
     .style-row,
     .harmony-row {
       cursor: pointer;
-      transition: background 0.15s;
+      transition: background 0.15s ease;
+      border-left: 3px solid transparent;
     }
 
     .style-row:hover,
@@ -373,8 +453,18 @@ const PREVIEW_CSS = `
       background: var(--vscode-list-hoverBackground);
     }
 
+    .style-row:hover .swatch,
+    .harmony-row:hover .swatch {
+      transform: scale(1.08);
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
     .style-row.current,
     .harmony-row.current {
+      border-left-color:
+        var(--vscode-focusBorder, var(--vscode-button-background));
       background: var(--vscode-list-activeSelectionBackground);
     }
 
@@ -386,33 +476,46 @@ const PREVIEW_CSS = `
     .comparison-name {
       text-align: left;
       font-weight: 500;
+      font-size: 13px;
+      padding-left: 9px !important;
+      white-space: nowrap;
     }
 
     .current-badge {
       color: var(--vscode-charts-green);
-      margin-left: 4px;
+      margin-left: 5px;
+      font-size: 8px;
+      vertical-align: middle;
     }
+
+    /* --- Swatches --- */
 
     .swatch {
       display: inline-flex;
       flex-direction: column;
-      border-radius: 4px;
+      border-radius: 5px;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.22),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .element {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 2px 6px;
-      min-width: 50px;
+      padding: 2px 7px;
+      min-width: 54px;
       font-size: 11px;
+      line-height: 1.4;
     }
 
     .element .label {
       font-weight: 600;
-      opacity: 0.7;
+      opacity: 0.6;
+      font-size: 10px;
+      letter-spacing: 0.02em;
     }
 
     .element .sample {
@@ -423,22 +526,15 @@ const PREVIEW_CSS = `
       vertical-align: middle;
     }
 
-    .section-heading {
-      margin: 16px 0 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--vscode-foreground);
-    }
-
-    .section-heading:first-of-type {
-      margin-top: 0;
-    }
+    /* --- Hint text --- */
 
     .hint {
-      margin-top: 8px;
-      margin-bottom: 16px;
-      font-size: 12px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-size: 11px;
       color: var(--vscode-descriptionForeground);
+      opacity: 0.7;
+      font-style: italic;
     }`;
 
 /**
