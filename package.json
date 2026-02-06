@@ -102,6 +102,10 @@
         "title": "Patina: Reset Tint Seed"
       },
       {
+        "command": "patina.clearWorkspaceEnabled",
+        "title": "Patina: Clear Workspace Enabled Setting"
+      },
+      {
         "command": "patina.forceApply",
         "title": "Patina: Force Apply Colors"
       }
