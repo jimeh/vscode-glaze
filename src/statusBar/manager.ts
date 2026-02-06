@@ -2,8 +2,8 @@ import * as vscode from 'vscode';
 import { getColorName } from '../color';
 import { getStatusBarEnabled } from '../config';
 import {
+  buildColorTable,
   capitalizeFirst,
-  clickableColorSwatch,
   escapeForMarkdown,
   formatWorkspaceIdForDisplay,
   getStatusText,
@@ -200,39 +200,13 @@ export class StatusBarManager implements vscode.Disposable {
       // Seed
       md.appendMarkdown(`**Seed:** \`${state.seed}\`\n\n`);
 
-      // Colors section with clickable swatches
+      // Colors section with clickable swatches in a table
       if (tintColors) {
         md.appendMarkdown('---\n\n');
         md.appendMarkdown(
           '**Colors** ' + '[$(eye)](command:patina.showColorPreview)\n\n'
         );
-
-        // Base tint (always shown)
-        md.appendMarkdown(
-          `Base: ${clickableColorSwatch(tintColors.baseTint)}\n\n`
-        );
-
-        // Per-element colors (only if enabled)
-        if (tintColors.titleBar) {
-          md.appendMarkdown(
-            `Title Bar: ${clickableColorSwatch(tintColors.titleBar)}\n\n`
-          );
-        }
-        if (tintColors.activityBar) {
-          md.appendMarkdown(
-            `Activity Bar: ${clickableColorSwatch(tintColors.activityBar)}\n\n`
-          );
-        }
-        if (tintColors.sideBar) {
-          md.appendMarkdown(
-            `Side Bar: ${clickableColorSwatch(tintColors.sideBar)}\n\n`
-          );
-        }
-        if (tintColors.statusBar) {
-          md.appendMarkdown(
-            `Status Bar: ${clickableColorSwatch(tintColors.statusBar)}\n\n`
-          );
-        }
+        md.appendMarkdown(buildColorTable(tintColors) + '\n\n');
       }
     }
 
