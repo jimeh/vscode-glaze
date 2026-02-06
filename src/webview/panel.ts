@@ -4,7 +4,7 @@ import { generateNonce } from './nonce';
 /**
  * Configuration for a BaseWebviewPanel subclass.
  */
-export interface WebviewPanelConfig {
+interface WebviewPanelConfig {
   /**
    * Configuration section prefixes that trigger a re-render
    * when changed (checked via `e.affectsConfiguration()`).

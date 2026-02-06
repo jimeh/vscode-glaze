@@ -229,14 +229,6 @@ export async function fetchOpenVsxThemes(): Promise<MarketplaceExtension[]> {
 }
 
 /**
- * Fetches theme extensions from the marketplace.
- * @deprecated Use fetchMarketplaceThemes() instead
- */
-export async function fetchThemeExtensions(): Promise<MarketplaceExtension[]> {
-  return fetchMarketplaceThemes();
-}
-
-/**
  * Parses theme contributions from package.json content.
  */
 export function parseThemeContributions(

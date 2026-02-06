@@ -21,7 +21,7 @@ export type ColorType = 'background' | 'foreground';
 /**
  * Metadata for a single color key.
  */
-export interface ColorKeyDefinition {
+interface ColorKeyDefinition {
   /** UI element this color belongs to */
   element: ElementType;
   /** Whether this is a background or foreground color */
