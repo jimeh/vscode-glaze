@@ -3,7 +3,7 @@ import { getColorName } from '../color';
 import { getStatusBarEnabled } from '../config';
 import {
   capitalizeFirst,
-  clickableColorSwatch,
+  colorTableRow,
   escapeForMarkdown,
   formatWorkspaceIdForDisplay,
   getStatusText,
@@ -200,39 +200,32 @@ export class StatusBarManager implements vscode.Disposable {
       // Seed
       md.appendMarkdown(`**Seed:** \`${state.seed}\`\n\n`);
 
-      // Colors section with clickable swatches
+      // Colors section as a markdown table
       if (tintColors) {
         md.appendMarkdown('---\n\n');
         md.appendMarkdown(
           '**Colors** ' + '[$(eye)](command:patina.showColorPreview)\n\n'
         );
 
-        // Base tint (always shown)
-        md.appendMarkdown(
-          `Base: ${clickableColorSwatch(tintColors.baseTint)}\n\n`
-        );
-
-        // Per-element colors (only if enabled)
+        const rows: string[] = [
+          '| | | | |',
+          '|---|---|---|---|',
+          colorTableRow('Base', tintColors.baseTint),
+        ];
         if (tintColors.titleBar) {
-          md.appendMarkdown(
-            `Title Bar: ${clickableColorSwatch(tintColors.titleBar)}\n\n`
-          );
+          rows.push(colorTableRow('Title Bar', tintColors.titleBar));
         }
         if (tintColors.activityBar) {
-          md.appendMarkdown(
-            `Activity Bar: ${clickableColorSwatch(tintColors.activityBar)}\n\n`
-          );
+          rows.push(colorTableRow('Activity Bar', tintColors.activityBar));
         }
         if (tintColors.sideBar) {
-          md.appendMarkdown(
-            `Side Bar: ${clickableColorSwatch(tintColors.sideBar)}\n\n`
-          );
+          rows.push(colorTableRow('Side Bar', tintColors.sideBar));
         }
         if (tintColors.statusBar) {
-          md.appendMarkdown(
-            `Status Bar: ${clickableColorSwatch(tintColors.statusBar)}\n\n`
-          );
+          rows.push(colorTableRow('Status Bar', tintColors.statusBar));
         }
+
+        md.appendMarkdown(rows.join('\n') + '\n\n');
       }
     }
 

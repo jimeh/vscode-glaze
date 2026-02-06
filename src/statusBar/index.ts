@@ -3,7 +3,7 @@ export { StatusBarManager } from './manager';
 export { refreshStatusBar } from './refresh';
 export {
   capitalizeFirst,
-  clickableColorSwatch,
+  colorTableRow,
   colorSwatch,
   escapeForMarkdown,
   formatWorkspaceIdForDisplay,

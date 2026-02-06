@@ -84,13 +84,16 @@ export function colorSwatch(hex: string): string {
 }
 
 /**
- * Creates a color swatch with hex code, color name, and a clickable copy icon.
+ * Creates a markdown table row for a color entry in the tooltip.
  */
-export function clickableColorSwatch(hex: string): string {
+export function colorTableRow(label: string, hex: string): string {
   const swatch = colorSwatch(hex);
   const name = escapeHtml(getColorName(hex));
   const args = encodeURIComponent(JSON.stringify(hex));
-  return `${swatch} "${name}" \`${hex}\` [$(copy)](command:patina.copyColor?${args})`;
+  return (
+    `| ${label} | ${swatch} ${name} ` +
+    `| \`${hex}\` | [$(copy)](command:patina.copyColor?${args}) |`
+  );
 }
 
 /**
