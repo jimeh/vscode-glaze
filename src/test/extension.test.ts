@@ -602,6 +602,7 @@ suite('Extension Test Suite', () => {
 
   suite('patina.randomizeSeed', () => {
     let originalSeedWorkspace: number | undefined;
+    let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
       if (!vscode.workspace.workspaceFolders?.length) {
@@ -610,6 +611,11 @@ suite('Extension Test Suite', () => {
       const config = vscode.workspace.getConfiguration('patina');
       const inspection = config.inspect<number>('tint.seed');
       originalSeedWorkspace = inspection?.workspaceValue;
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
     });
 
     suiteTeardown(async () => {
@@ -620,6 +626,13 @@ suite('Extension Test Suite', () => {
       await config.update(
         'tint.seed',
         originalSeedWorkspace,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
         vscode.ConfigurationTarget.Workspace
       );
     });
@@ -651,6 +664,7 @@ suite('Extension Test Suite', () => {
 
   suite('patina.resetSeed', () => {
     let originalSeedWorkspace: number | undefined;
+    let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
       if (!vscode.workspace.workspaceFolders?.length) {
@@ -659,6 +673,11 @@ suite('Extension Test Suite', () => {
       const config = vscode.workspace.getConfiguration('patina');
       const inspection = config.inspect<number>('tint.seed');
       originalSeedWorkspace = inspection?.workspaceValue;
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      originalColorCustomizations = wbConfig.get(
+        'workbench.colorCustomizations'
+      );
     });
 
     suiteTeardown(async () => {
@@ -669,6 +688,13 @@ suite('Extension Test Suite', () => {
       await config.update(
         'tint.seed',
         originalSeedWorkspace,
+        vscode.ConfigurationTarget.Workspace
+      );
+
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
         vscode.ConfigurationTarget.Workspace
       );
     });
