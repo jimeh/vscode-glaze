@@ -9,4 +9,5 @@ export {
   getStatusText,
   getThemeModeLabel,
   isEffectivelyEnabled,
+  isTintActive,
 } from './helpers';

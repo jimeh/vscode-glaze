@@ -8,7 +8,7 @@ import {
   formatWorkspaceIdForDisplay,
   getStatusText,
   getThemeModeLabel,
-  isEffectivelyEnabled,
+  isTintActive,
 } from './helpers';
 import type { StatusBarState } from './types';
 
@@ -93,8 +93,18 @@ export class StatusBarManager implements vscode.Disposable {
     if (!this.state) {
       return false;
     }
-    const { globalEnabled, workspaceEnabledOverride } = this.state;
-    return isEffectivelyEnabled(globalEnabled, workspaceEnabledOverride);
+    const {
+      globalEnabled,
+      workspaceEnabledOverride,
+      workspaceIdentifier,
+      hasActiveTargets,
+    } = this.state;
+    return isTintActive(
+      globalEnabled,
+      workspaceEnabledOverride,
+      workspaceIdentifier,
+      hasActiveTargets
+    );
   }
 
   private buildTooltip(isActive: boolean): vscode.MarkdownString {
@@ -139,6 +149,11 @@ export class StatusBarManager implements vscode.Disposable {
     md.appendMarkdown(
       `**Status:** ${getStatusText(globalEnabled, workspaceEnabledOverride)}\n\n`
     );
+
+    // Explain why inactive when enabled but missing requirements
+    if (!isActive && !state.hasActiveTargets) {
+      md.appendMarkdown('$(info) All target elements are disabled.\n\n');
+    }
 
     if (isActive) {
       // Workspace ID

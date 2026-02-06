@@ -72,6 +72,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -102,6 +103,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -144,6 +146,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -174,6 +177,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'vibrant',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: false,
       };
@@ -182,7 +186,7 @@ suite('StatusBarManager', () => {
       assert.strictEqual(manager.item.text, `${ICON} Patina`);
     });
 
-    test('shows icon + color name with undefined workspace ID', async () => {
+    test('shows icon only with undefined workspace ID', async () => {
       await enableStatusBar();
 
       const state: StatusBarState = {
@@ -195,6 +199,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'muted',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#00ff00',
           titleBar: '#00ff00',
@@ -203,9 +208,52 @@ suite('StatusBarManager', () => {
       };
 
       manager.update(state);
+      assert.strictEqual(
+        manager.item.text,
+        ICON,
+        'should show icon only when workspace ID is undefined'
+      );
+
+      const tip = tooltipValue();
       assert.ok(
-        manager.item.text.startsWith(`${ICON} `),
-        `expected icon prefix, got: ${manager.item.text}`
+        tip.includes('Inactive'),
+        `tooltip should indicate inactive, got: ${tip}`
+      );
+    });
+
+    test('shows icon only when no active targets', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        hasActiveTargets: false,
+        tintColors: undefined,
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      assert.strictEqual(
+        manager.item.text,
+        ICON,
+        'should show icon only when no targets are enabled'
+      );
+
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Inactive'),
+        `tooltip should indicate inactive, got: ${tip}`
+      );
+      assert.ok(
+        tip.includes('All target elements are disabled'),
+        `tooltip should explain why inactive, got: ${tip}`
       );
     });
 
@@ -222,6 +270,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -249,6 +298,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -282,6 +332,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: true,
       };
@@ -309,6 +360,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: true,
       };
@@ -391,6 +443,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 12345,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -434,6 +487,7 @@ suite('StatusBarManager', () => {
           colorStyle: 'pastel',
           colorHarmony: 'uniform',
           seed: 0,
+          hasActiveTargets: true,
           tintColors: {
             baseTint: '#123456',
             titleBar: '#123456',
@@ -464,6 +518,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -499,6 +554,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: true,
         lastError: 'Write failed',
@@ -526,6 +582,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -567,6 +624,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -597,6 +655,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -626,6 +685,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -658,6 +718,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
@@ -700,6 +761,7 @@ suite('StatusBarManager', () => {
           colorStyle,
           colorHarmony: 'uniform',
           seed: 0,
+          hasActiveTargets: true,
           tintColors: {
             baseTint: '#abcdef',
             titleBar: '#abcdef',

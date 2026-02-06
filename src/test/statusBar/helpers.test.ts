@@ -8,6 +8,7 @@ import {
   getStatusText,
   getThemeModeLabel,
   isEffectivelyEnabled,
+  isTintActive,
 } from '../../statusBar';
 
 suite('isEffectivelyEnabled', () => {
@@ -281,5 +282,35 @@ suite('formatWorkspaceIdForDisplay', () => {
   test('replaces backticks in multi-folder names', () => {
     const result = formatWorkspaceIdForDisplay('back`end\nfront`end');
     assert.strictEqual(result, "<br>`back'end`<br>`front'end`");
+  });
+});
+
+suite('isTintActive', () => {
+  test('returns true when all conditions met', () => {
+    assert.strictEqual(isTintActive(true, undefined, 'ws', true), true);
+  });
+
+  test('returns false when globally disabled', () => {
+    assert.strictEqual(isTintActive(false, undefined, 'ws', true), false);
+  });
+
+  test('returns false when workspace override disables', () => {
+    assert.strictEqual(isTintActive(true, false, 'ws', true), false);
+  });
+
+  test('returns false when identifier is undefined', () => {
+    assert.strictEqual(isTintActive(true, undefined, undefined, true), false);
+  });
+
+  test('returns false when no active targets', () => {
+    assert.strictEqual(isTintActive(true, undefined, 'ws', false), false);
+  });
+
+  test('workspace override true overrides global false', () => {
+    assert.strictEqual(isTintActive(false, true, 'ws', true), true);
+  });
+
+  test('returns false when all conditions fail', () => {
+    assert.strictEqual(isTintActive(false, undefined, undefined, false), false);
   });
 });

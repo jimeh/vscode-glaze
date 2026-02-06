@@ -6,7 +6,7 @@ import type { TintKeyDetail } from '../color/tint';
  * General status information about the current Patina configuration.
  */
 export interface StatusGeneralInfo {
-  /** Whether Patina is currently active (enabled + has identifier) */
+  /** Whether Patina is actively applying tint colors (enabled + has identifier + has targets) */
   active: boolean;
   /** Global enabled setting */
   globalEnabled: boolean;

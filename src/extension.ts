@@ -390,6 +390,7 @@ async function refreshStatusBar(): Promise<void> {
     colorStyle: getColorStyle(),
     colorHarmony: getColorHarmony(),
     seed: tintConfig.seed,
+    hasActiveTargets: tintConfig.targets.length > 0,
     tintColors: cached.tintColors,
     customizedOutsidePatina: cached.customizedOutsidePatina,
     lastError: cached.lastError,
