@@ -121,7 +121,9 @@ async function waitForPatinaColorsCleared(
   await pollUntil(
     () => {
       const colors = getColorCustomizations();
-      if (!colors) return true;
+      if (!colors) {
+        return true;
+      }
       return !Object.keys(colors).some(isPatinaKey);
     },
     'Timeout waiting for Patina colors to be cleared',

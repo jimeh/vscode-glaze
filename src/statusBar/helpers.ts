@@ -101,7 +101,7 @@ export function clickableColorSwatch(hex: string): string {
  * tags or markdown command links.
  */
 export function escapeForMarkdown(str: string): string {
-  return str.replace(/[\\`*_{}\[\]()<>&~|!]/g, '\\$&');
+  return str.replace(/[\\`*_{}[\]()<>&~|!]/g, '\\$&');
 }
 
 /**

@@ -3,7 +3,7 @@
   // for the documentation about the extensions.json format
   "recommendations": [
     "connor4312.esbuild-problem-matchers",
-    "dbaeumer.vscode-eslint",
+    "oxc.oxc-vscode",
     "ms-vscode.extension-test-runner",
     "swellaby.workspace-config-plus"
   ]

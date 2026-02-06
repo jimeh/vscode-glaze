@@ -664,8 +664,11 @@ suite('computeTint hue harmonization (hueShift mode)', () => {
    */
   function hueDiff(a: number, b: number): number {
     let d = b - a;
-    if (d > 180) d -= 360;
-    else if (d <= -180) d += 360;
+    if (d > 180) {
+      d -= 360;
+    } else if (d <= -180) {
+      d += 360;
+    }
     return d;
   }
 
@@ -718,7 +721,9 @@ suite('computeTint hue harmonization (hueShift mode)', () => {
         (k) => k.element === el && k.colorType === 'foreground' && k.themeColor
       );
 
-      if (bgs.length === 0 || fgs.length === 0) continue;
+      if (bgs.length === 0 || fgs.length === 0) {
+        continue;
+      }
 
       const bgHue = hueOf(bgs[0].finalHex);
       for (const fg of fgs) {
@@ -789,7 +794,9 @@ suite('computeTint hue harmonization (hueShift mode)', () => {
       const fgs = result.keys.filter(
         (k) => k.element === el && k.colorType === 'foreground' && k.themeColor
       );
-      if (bgs.length === 0 || fgs.length === 0) continue;
+      if (bgs.length === 0 || fgs.length === 0) {
+        continue;
+      }
       const bgHue = hueOf(bgs[0].finalHex);
       for (const fg of fgs) {
         const fgHue = hueOf(fg.finalHex);
@@ -928,8 +935,11 @@ suite('computeTint pre-blend majority direction (hueShift mode)', () => {
    */
   function hueDiff(a: number, b: number): number {
     let d = b - a;
-    if (d > 180) d -= 360;
-    else if (d <= -180) d += 360;
+    if (d > 180) {
+      d -= 360;
+    } else if (d <= -180) {
+      d += 360;
+    }
     return d;
   }
 
@@ -1061,11 +1071,15 @@ suite('computeTint pre-blend majority direction (hueShift mode)', () => {
       // 120° from the unblended tint hue. The blend factor is
       // 0.35 so even worst case the shift should be moderate.
       for (const k of result.keys) {
-        if (k.colorType !== 'background' || !k.themeColor) continue;
+        if (k.colorType !== 'background' || !k.themeColor) {
+          continue;
+        }
         const finalOklch = hexToOklch(k.finalHex);
         // Skip low chroma — hue is unreliable below ~0.03 due
         // to hex roundtrip quantization at near-neutral colors.
-        if (finalOklch.c < 0.03) continue;
+        if (finalOklch.c < 0.03) {
+          continue;
+        }
         const tintHue = hueOf(k.tintHex);
         const finalHue = finalOklch.h;
         const shift = Math.abs(hueDiff(tintHue, finalHue));

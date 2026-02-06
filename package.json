@@ -475,9 +475,9 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "rm -f src/test/fixtures/test-workspace/.vscode/settings.json && pnpm run compile-tests && pnpm run prepare-test-manifest && pnpm run compile && pnpm run lint",
     "check-types": "tsc --noEmit",
-    "lint": "eslint src && prettier --check .",
-    "lint:fix": "eslint src --fix && prettier --write .",
-    "format": "prettier --write .",
+    "lint": "oxlint src && oxfmt --check .",
+    "lint:fix": "oxlint src --fix && oxfmt --write .",
+    "format": "oxfmt --write .",
     "test": "vscode-test --fail-zero",
     "test:coverage": "pnpm run pretest && vscode-test --coverage --fail-zero",
     "test:coverage:html": "pnpm run pretest && vscode-test --coverage --coverage-reporter=html --coverage-reporter=lcov --coverage-output=coverage --fail-zero",
@@ -502,17 +502,15 @@
     "adm-zip": "^0.5.16",
     "color-name-list": "^14.29.0",
     "esbuild": "^0.27.2",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
     "jsonc-parser": "^3.3.1",
     "npm-run-all2": "^8.0.4",
     "ovsx": "^0.10.8",
+    "oxfmt": "^0.28.0",
+    "oxlint": "^1.43.0",
     "plist": "^3.1.0",
-    "prettier": "^3.8.1",
     "semver": "^7.7.3",
     "tsx": "^4.7.0",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.52.0"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "nearest-color": "^0.4.4"

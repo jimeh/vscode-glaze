@@ -41,13 +41,21 @@ function shallowEqualRecords(
   a: Record<string, unknown> | undefined,
   b: Record<string, unknown> | undefined
 ): boolean {
-  if (a === b) return true;
-  if (!a || !b) return false;
+  if (a === b) {
+    return true;
+  }
+  if (!a || !b) {
+    return false;
+  }
   const keysA = Object.keys(a);
   const keysB = Object.keys(b);
-  if (keysA.length !== keysB.length) return false;
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
   for (const key of keysA) {
-    if (a[key] !== b[key]) return false;
+    if (a[key] !== b[key]) {
+      return false;
+    }
   }
   return true;
 }
@@ -94,8 +102,12 @@ let pendingForce = false;
  * persists until the reconcile consumes it.
  */
 function requestReconcile(options?: ReconcileOptions): void {
-  if (options?.force) pendingForce = true;
-  if (debounceTimer !== undefined) clearTimeout(debounceTimer);
+  if (options?.force) {
+    pendingForce = true;
+  }
+  if (debounceTimer !== undefined) {
+    clearTimeout(debounceTimer);
+  }
   debounceTimer = setTimeout(() => {
     debounceTimer = undefined;
     const force = pendingForce;
@@ -137,7 +149,9 @@ async function writeColorConfig(
     .get<ColorCustomizations>('workbench.colorCustomizations');
   const current = raw && Object.keys(raw).length > 0 ? raw : undefined;
   const normalized = value && Object.keys(value).length > 0 ? value : undefined;
-  if (shallowEqualRecords(current, normalized)) return true;
+  if (shallowEqualRecords(current, normalized)) {
+    return true;
+  }
 
   try {
     await vscode.workspace
