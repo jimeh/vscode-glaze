@@ -292,7 +292,8 @@ const PREVIEW_CSS = `
     }
 
     .workspace-section {
-      background: var(--vscode-editor-inactiveSelectionBackground);
+      background: var(--vscode-editorWidget-background);
+      border: 1px solid var(--vscode-widget-border, transparent);
       border-radius: 6px;
       padding: 12px 16px;
       margin-bottom: 16px;

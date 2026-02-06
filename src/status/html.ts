@@ -249,7 +249,8 @@ const STATUS_CSS = `
     }
 
     .info-card {
-      background: var(--vscode-editor-inactiveSelectionBackground);
+      background: var(--vscode-editorWidget-background);
+      border: 1px solid var(--vscode-widget-border, transparent);
       border-radius: 6px;
       padding: 12px 16px;
       margin-bottom: 20px;
