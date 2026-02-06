@@ -24,7 +24,7 @@ export class StatusBarManager implements vscode.Disposable {
       vscode.StatusBarAlignment.Right,
       100
     );
-    this.item.command = 'patina.seedMenu';
+    this.item.command = 'patina.quickMenu';
     this.updateVisibility();
   }
 

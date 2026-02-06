@@ -585,12 +585,14 @@ suite('Extension Test Suite', () => {
     });
   });
 
-  suite('Command Registration (seed)', () => {
-    test('patina.seedMenu command is registered', async () => {
+  suite('Command Registration (menu)', () => {
+    test('patina.quickMenu command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.seedMenu'));
+      assert.ok(commands.includes('patina.quickMenu'));
     });
+  });
 
+  suite('Command Registration (seed)', () => {
     test('patina.randomizeSeed command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
       assert.ok(commands.includes('patina.randomizeSeed'));

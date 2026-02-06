@@ -90,8 +90,8 @@
         "title": "Patina: Show Status"
       },
       {
-        "command": "patina.seedMenu",
-        "title": "Patina: Seed Menu"
+        "command": "patina.quickMenu",
+        "title": "Patina: Quick Menu"
       },
       {
         "command": "patina.randomizeSeed",
