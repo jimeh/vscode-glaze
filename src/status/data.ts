@@ -6,7 +6,6 @@ import {
   getThemeConfig,
   getTintConfig,
   getWorkspaceIdentifierConfig,
-  isEnabledForWorkspace,
   isGloballyEnabled,
   getWorkspaceEnabledOverride,
 } from '../config';
@@ -15,6 +14,7 @@ import {
   hasPatinaColorsWithoutMarker,
   type ColorCustomizations,
 } from '../settings';
+import { isTintActive } from '../statusBar/helpers';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
 import { detectOsColorScheme } from '../theme/osColorScheme';
@@ -36,7 +36,12 @@ export async function buildStatusState(): Promise<StatusState> {
   const identifierConfig = getWorkspaceIdentifierConfig();
   const identifier = getWorkspaceIdentifier(identifierConfig);
 
-  const isActive = isEnabledForWorkspace() && identifier !== undefined;
+  const isActive = isTintActive(
+    globalEnabled,
+    workspaceEnabled,
+    identifier,
+    tintConfig.targets.length > 0
+  );
   const baseHue = identifier ? computeBaseHue(identifier, tintConfig.seed) : 0;
 
   const result = computeTint({

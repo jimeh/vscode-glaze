@@ -116,6 +116,19 @@ suite('generateStatusHtml', () => {
     assert.ok(html.includes('>Inactive<'), 'Should show Inactive text');
   });
 
+  test('shows Inactive badge when no targets enabled', () => {
+    const state = createMockState();
+    state.general.active = false;
+    state.general.targets = [];
+    const html = generateStatusHtml(state, nonce, cspSource);
+
+    assert.ok(
+      html.includes('badge inactive'),
+      'Should show inactive when no targets enabled'
+    );
+    assert.ok(html.includes('>Inactive<'), 'Should show Inactive text');
+  });
+
   test('shows workspace ID', () => {
     const state = createMockState();
     state.general.workspaceIdentifier = 'my-awesome-project';

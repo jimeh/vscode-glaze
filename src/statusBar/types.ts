@@ -48,6 +48,9 @@ export interface StatusBarState {
   /** Seed value used for tint calculation. */
   seed: number;
 
+  /** Whether at least one tint target element is enabled. */
+  hasActiveTargets: boolean;
+
   /** Tint colors for tooltip display. */
   tintColors: TintColors | undefined;
 

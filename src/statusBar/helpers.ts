@@ -17,6 +17,25 @@ export function isEffectivelyEnabled(
 }
 
 /**
+ * Whether Patina is actively applying tint colors.
+ * True when enabled, a workspace identifier exists, and at least one
+ * tint target element is enabled. This is the canonical active check
+ * — keep all call sites in sync with doReconcile (extension.ts).
+ */
+export function isTintActive(
+  globalEnabled: boolean,
+  workspaceEnabledOverride: boolean | undefined,
+  workspaceIdentifier: string | undefined,
+  hasActiveTargets: boolean
+): boolean {
+  return (
+    isEffectivelyEnabled(globalEnabled, workspaceEnabledOverride) &&
+    workspaceIdentifier !== undefined &&
+    hasActiveTargets
+  );
+}
+
+/**
  * Gets the status text describing the enabled state.
  */
 export function getStatusText(
