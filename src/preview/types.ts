@@ -5,7 +5,7 @@ import type { ThemeType } from '../theme';
 /**
  * Colors for a single UI element (background + foreground).
  */
-export interface ElementColors {
+interface ElementColors {
   background: string;
   foreground: string;
 }

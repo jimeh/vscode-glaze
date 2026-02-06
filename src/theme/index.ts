@@ -13,7 +13,6 @@ export {
 export type {
   ElementType,
   ColorType,
-  ColorKeyDefinition,
   ThemeColorKey,
   PaletteKey,
   PatinaColorPalette,

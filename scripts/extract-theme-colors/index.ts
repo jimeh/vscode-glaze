@@ -16,7 +16,6 @@
  *   pnpm run extract-themes -- --force-builtin  # Force built-in re-extraction
  */
 import * as fs from 'fs';
-import * as path from 'path';
 import { CONFIG } from './config';
 import { clearCache } from './cache';
 import {
@@ -52,7 +51,6 @@ import {
   readBuiltinsMetadata,
   writeBuiltinsMetadata,
   writeExtensionsMetadata,
-  deleteOldExtensionsJson,
   type ExtensionsMetadata,
 } from './metadata';
 import { fetchLatestVSCodeRelease, downloadVSCodeSource } from './github';
@@ -220,17 +218,6 @@ function ensureExtensionsDir(): void {
 }
 
 /**
- * Cleans up old colors.ts file if it exists.
- */
-function cleanupOldColorsFile(): void {
-  const oldColorsPath = path.join(CONFIG.outputDir, 'colors.ts');
-  if (fs.existsSync(oldColorsPath)) {
-    console.log('Cleaning up old colors.ts file...');
-    fs.unlinkSync(oldColorsPath);
-  }
-}
-
-/**
  * Extracts and saves VS Code built-in themes.
  */
 async function processBuiltinThemes(
@@ -350,8 +337,7 @@ async function main(): Promise<void> {
     clearCache();
   }
 
-  // Clean up old file structure and ensure directories exist
-  cleanupOldColorsFile();
+  // Ensure directories exist
   ensureExtensionsDir();
 
   // Step 1: Process built-in themes
@@ -671,11 +657,6 @@ async function main(): Promise<void> {
         `files to: ${CONFIG.extensionsMetadataDir}/`
     );
   } else {
-    // Delete old consolidated extensions.json if it exists
-    if (deleteOldExtensionsJson()) {
-      console.log('Deleted old extensions.json (migrated to separate files)');
-    }
-
     // Write extensions metadata (only updated extensions)
     const updatedCount = Object.keys(extensionsData.extensions).length;
     if (updatedCount > 0) {

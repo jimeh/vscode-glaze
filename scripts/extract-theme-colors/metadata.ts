@@ -97,93 +97,49 @@ export function getExtensionMetadataPath(extensionId: string): string {
 }
 
 /**
- * Old consolidated format for migration.
- */
-interface OldExtensionsMetadata {
-  extractedAt: string;
-  extensions: Record<string, ExtensionData>;
-}
-
-/**
- * Reads from old consolidated extensions.json for migration.
- * Returns undefined if file doesn't exist or is invalid.
- */
-function readOldExtensionsJson(): ExtensionsMetadata | undefined {
-  const oldPath = path.join(CONFIG.outputDir, 'extensions.json');
-  if (!fs.existsSync(oldPath)) {
-    return undefined;
-  }
-
-  try {
-    const content = fs.readFileSync(oldPath, 'utf-8');
-    const data = JSON.parse(content) as OldExtensionsMetadata;
-
-    if (typeof data.extensions !== 'object') {
-      return undefined;
-    }
-
-    return { extensions: data.extensions };
-  } catch {
-    return undefined;
-  }
-}
-
-/**
  * Reads extensions metadata from individual .meta.json files.
- * Falls back to old extensions.json during migration.
  * Returns empty extensions map if no data exists.
  */
 export function readExtensionsMetadata(): ExtensionsMetadata {
   const dir = CONFIG.extensionsMetadataDir;
 
-  // Try reading from new per-extension files
-  if (fs.existsSync(dir)) {
-    const result: ExtensionsMetadata = { extensions: {} };
+  if (!fs.existsSync(dir)) {
+    return { extensions: {} };
+  }
 
-    try {
-      const files = fs.readdirSync(dir);
-      for (const file of files) {
-        if (!file.endsWith('.meta.json')) {
-          continue;
-        }
+  const result: ExtensionsMetadata = { extensions: {} };
 
-        const extensionId = file.replace('.meta.json', '');
-        const filePath = path.join(dir, file);
-
-        try {
-          const content = fs.readFileSync(filePath, 'utf-8');
-          const data = JSON.parse(content) as ExtensionData;
-
-          // Basic validation
-          if (
-            typeof data.version === 'string' &&
-            (typeof data.displayName === 'string' ||
-              data.displayName === null) &&
-            Array.isArray(data.themes)
-          ) {
-            result.extensions[extensionId] = data;
-          }
-        } catch {
-          // Skip invalid files
-        }
+  try {
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+      if (!file.endsWith('.meta.json')) {
+        continue;
       }
-    } catch {
-      // Fall through to try old format
-    }
 
-    // If we found data, return it
-    if (Object.keys(result.extensions).length > 0) {
-      return result;
+      const extensionId = file.replace('.meta.json', '');
+      const filePath = path.join(dir, file);
+
+      try {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const data = JSON.parse(content) as ExtensionData;
+
+        // Basic validation
+        if (
+          typeof data.version === 'string' &&
+          (typeof data.displayName === 'string' || data.displayName === null) &&
+          Array.isArray(data.themes)
+        ) {
+          result.extensions[extensionId] = data;
+        }
+      } catch {
+        // Skip invalid files
+      }
     }
+  } catch {
+    // Directory read failed
   }
 
-  // Fall back to old consolidated format during migration
-  const oldData = readOldExtensionsJson();
-  if (oldData) {
-    return oldData;
-  }
-
-  return { extensions: {} };
+  return result;
 }
 
 /**
@@ -203,16 +159,4 @@ export function writeExtensionsMetadata(data: ExtensionsMetadata): void {
     const filePath = path.join(dir, fileName);
     fs.writeFileSync(filePath, JSON.stringify(extData, null, 2) + '\n');
   }
-}
-
-/**
- * Deletes the old consolidated extensions.json file if it exists.
- */
-export function deleteOldExtensionsJson(): boolean {
-  const oldPath = path.join(CONFIG.outputDir, 'extensions.json');
-  if (fs.existsSync(oldPath)) {
-    fs.unlinkSync(oldPath);
-    return true;
-  }
-  return false;
 }
