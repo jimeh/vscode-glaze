@@ -1,5 +1,8 @@
 import { PATINA_MANAGED_KEYS } from '../theme';
 
+/** Set of all Patina-managed color keys for O(1) lookup. */
+const MANAGED_KEY_SET = new Set<string>(PATINA_MANAGED_KEYS);
+
 /**
  * Invisible marker key written into colorCustomizations to indicate
  * Patina owns the current set of managed colors. If managed keys are
@@ -85,10 +88,7 @@ export function removePatinaColors(
  * Checks if a key is managed by Patina (including the marker key).
  */
 function isPatinaKey(key: string): boolean {
-  return (
-    key === PATINA_ACTIVE_KEY ||
-    (PATINA_MANAGED_KEYS as readonly string[]).includes(key)
-  );
+  return key === PATINA_ACTIVE_KEY || MANAGED_KEY_SET.has(key);
 }
 
 /**
@@ -110,6 +110,5 @@ export function hasPatinaColorsWithoutMarker(
     return false;
   }
 
-  const managedKeys = PATINA_MANAGED_KEYS as readonly string[];
-  return Object.keys(existing).some((key) => managedKeys.includes(key));
+  return Object.keys(existing).some((key) => MANAGED_KEY_SET.has(key));
 }

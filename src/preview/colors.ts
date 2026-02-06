@@ -33,11 +33,11 @@ interface GenerateColorsAtHueOptions {
   style: ColorStyle;
   themeType: ThemeType;
   hue: number;
-  harmony?: ColorHarmony;
-  themeColors?: ThemeColors;
-  blendFactor?: number;
-  blendMethod?: BlendMethod;
-  targetBlendFactors?: Partial<Record<TintTarget, number>>;
+  harmony?: ColorHarmony | undefined;
+  themeColors?: ThemeColors | undefined;
+  blendFactor?: number | undefined;
+  blendMethod?: BlendMethod | undefined;
+  targetBlendFactors?: Partial<Record<TintTarget, number>> | undefined;
 }
 
 /**
@@ -139,13 +139,13 @@ export function generateAllHarmonyPreviews(
 export interface WorkspacePreviewOptions {
   identifier: string;
   style: ColorStyle;
-  harmony?: ColorHarmony;
+  harmony?: ColorHarmony | undefined;
   themeType: ThemeType;
-  seed?: number;
-  themeColors?: ThemeColors;
-  blendMethod?: BlendMethod;
-  blendFactor?: number;
-  targetBlendFactors?: Partial<Record<TintTarget, number>>;
+  seed?: number | undefined;
+  themeColors?: ThemeColors | undefined;
+  blendMethod?: BlendMethod | undefined;
+  blendFactor?: number | undefined;
+  targetBlendFactors?: Partial<Record<TintTarget, number>> | undefined;
 }
 
 /**

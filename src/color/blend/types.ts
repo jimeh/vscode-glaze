@@ -10,9 +10,9 @@ export type HueBlendDirection = 'cw' | 'ccw' | 'shortest';
  */
 export interface HueShiftContext {
   /** Pre-offset base hue angle for majority direction calculation. */
-  readonly baseHue?: number;
+  readonly baseHue?: number | undefined;
   /** Theme colors to vote against for majority direction. */
-  readonly themeColors?: ThemeColors;
+  readonly themeColors?: ThemeColors | undefined;
 }
 
 /**

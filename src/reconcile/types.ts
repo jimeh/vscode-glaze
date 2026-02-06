@@ -1,7 +1,7 @@
 import type { TintColors } from '../statusBar';
 
 export interface ReconcileOptions {
-  force?: boolean;
+  force?: boolean | undefined;
 }
 
 /**
@@ -12,5 +12,5 @@ export interface CachedTintState {
   workspaceIdentifier: string | undefined;
   tintColors: TintColors | undefined;
   customizedOutsidePatina: boolean;
-  lastError?: string;
+  lastError?: string | undefined;
 }

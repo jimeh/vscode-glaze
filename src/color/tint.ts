@@ -39,7 +39,7 @@ export interface TintKeyDetail {
   /** Post-blend final color as hex */
   readonly finalHex: string;
   /** Theme color from the database, if available */
-  readonly themeColor?: string;
+  readonly themeColor?: string | undefined;
   /** Effective blend factor for this key */
   readonly blendFactor: number;
   /** Whether the element's target is active */
@@ -67,27 +67,27 @@ export interface TintResult {
  */
 export interface ComputeTintOptions {
   /** Pre-computed base hue (skips hash when provided) */
-  baseHue?: number;
+  baseHue?: number | undefined;
   /** Workspace identifier for hue derivation */
-  workspaceIdentifier?: string;
+  workspaceIdentifier?: string | undefined;
   /** Active tint targets (determines `enabled` flag per key) */
   targets: TintTarget[];
   /** Theme type for style config lookup */
   themeType: ThemeType;
   /** Color style, default 'pastel' */
-  colorStyle?: ColorStyle;
+  colorStyle?: ColorStyle | undefined;
   /** Color harmony for hue distribution, default 'uniform' */
-  colorHarmony?: ColorHarmony;
+  colorHarmony?: ColorHarmony | undefined;
   /** Blend method for theme color blending, default 'overlay' */
-  blendMethod?: BlendMethod;
+  blendMethod?: BlendMethod | undefined;
   /** Theme colors for blending, if available */
-  themeColors?: ThemeColors;
+  themeColors?: ThemeColors | undefined;
   /** How much to blend toward theme background (0-1) */
-  themeBlendFactor?: number;
+  themeBlendFactor?: number | undefined;
   /** Per-target blend factor overrides */
-  targetBlendFactors?: Partial<Record<TintTarget, number>>;
+  targetBlendFactors?: Partial<Record<TintTarget, number>> | undefined;
   /** Seed for hue calculation, default 0 */
-  seed?: number;
+  seed?: number | undefined;
 }
 
 // ============================================================================
@@ -262,6 +262,28 @@ export function computeTint(options: ComputeTintOptions): TintResult {
 }
 
 // ============================================================================
+// Status bar color mapping
+// ============================================================================
+
+/**
+ * Set of primary background palette keys for TintColors extraction.
+ * Derived from COLOR_KEY_DEFINITIONS: picks the first background key
+ * per non-editor element.
+ */
+const STATUS_BAR_BG_KEYS: ReadonlySet<PaletteKey> = (() => {
+  const seen = new Set<string>();
+  const keys = new Set<PaletteKey>();
+  for (const key of PATINA_MANAGED_KEYS) {
+    const def = COLOR_KEY_DEFINITIONS[key];
+    if (def.colorType === 'background' && !seen.has(def.element)) {
+      seen.add(def.element);
+      keys.add(key);
+    }
+  }
+  return keys;
+})();
+
+// ============================================================================
 // Convenience converters
 // ============================================================================
 
@@ -283,8 +305,8 @@ export function tintResultToPalette(
 
 /**
  * Extracts TintColors (status bar tooltip data) from a TintResult.
- * Picks background colors for titleBar, statusBar, and activityBar
- * from enabled keys.
+ * Picks the primary background color for each non-editor element
+ * from enabled keys, derived from COLOR_KEY_DEFINITIONS.
  */
 export function tintResultToStatusBarColors(result: TintResult): TintColors {
   const colors: TintColors = {
@@ -292,23 +314,15 @@ export function tintResultToStatusBarColors(result: TintResult): TintColors {
   };
 
   for (const detail of result.keys) {
-    if (!detail.enabled || detail.colorType !== 'background') {
+    if (
+      !detail.enabled ||
+      detail.colorType !== 'background' ||
+      !STATUS_BAR_BG_KEYS.has(detail.key)
+    ) {
       continue;
     }
-    switch (detail.key) {
-      case 'titleBar.activeBackground':
-        colors.titleBar = detail.finalHex;
-        break;
-      case 'statusBar.background':
-        colors.statusBar = detail.finalHex;
-        break;
-      case 'activityBar.background':
-        colors.activityBar = detail.finalHex;
-        break;
-      case 'sideBar.background':
-        colors.sideBar = detail.finalHex;
-        break;
-    }
+    colors[detail.element as keyof Omit<TintColors, 'baseTint'>] =
+      detail.finalHex;
   }
 
   return colors;

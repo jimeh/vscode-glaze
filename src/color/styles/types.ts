@@ -30,7 +30,7 @@ export type StyleConfig = Record<ThemeType, Record<PaletteKey, ElementConfig>>;
  */
 export interface StyleResolveContext {
   /** Theme colors for the current theme, if available */
-  readonly themeColors?: ThemeColors;
+  readonly themeColors?: ThemeColors | undefined;
   /** The element's target hue (0-359), with any harmony offset pre-applied */
   readonly elementHue: number;
 }

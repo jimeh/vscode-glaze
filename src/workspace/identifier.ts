@@ -1,8 +1,7 @@
 import * as vscode from 'vscode';
-import * as os from 'os';
 import * as path from 'path';
 import type { WorkspaceIdentifierConfig } from '../config';
-import { normalizePath, expandTilde, getRelativePath } from './path';
+import { HOME_DIR, normalizePath, expandTilde, getRelativePath } from './path';
 
 /**
  * Minimal workspace folder interface for testing.
@@ -32,8 +31,7 @@ function formatPath(
       return path.basename(fsPath);
 
     case 'pathRelativeToHome': {
-      const homedir = os.homedir();
-      const relative = getRelativePath(homedir, fsPath);
+      const relative = getRelativePath(HOME_DIR, fsPath);
       return relative ?? normalizePath(fsPath);
     }
 

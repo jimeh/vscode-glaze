@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { BUILTIN_THEME_COLORS } from './generated/builtins';
 import { EXTENSION_THEME_COLORS } from './generated/extensions';
+import type { ThemeType } from './types';
 import {
   OPTIONAL_THEME_COLOR_KEYS,
   PALETTE_KEY_TO_COLOR_KEY,
@@ -9,11 +10,6 @@ import {
   type ThemeColors,
   type PaletteKey,
 } from './colorKeys';
-
-/**
- * Official VSCode theme types.
- */
-export type ThemeType = 'dark' | 'light' | 'hcDark' | 'hcLight';
 
 /**
  * Information about a theme's colors.
