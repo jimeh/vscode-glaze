@@ -8,6 +8,7 @@ import {
   getTintConfig,
   getWorkspaceIdentifierConfig,
 } from '../config';
+import { DEFAULT_COLOR_STYLE, DEFAULT_COLOR_HARMONY } from '../color';
 import { getThemeContext } from '../theme';
 import { getWorkspaceIdentifier } from '../workspace';
 import {
@@ -144,14 +145,24 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
       case 'selectStyle': {
         const target = getSettingTarget('tint.colorStyle');
         const config = vscode.workspace.getConfiguration('patina');
-        await config.update('tint.colorStyle', message.style, target);
+        const value =
+          target === vscode.ConfigurationTarget.Global &&
+          message.style === DEFAULT_COLOR_STYLE
+            ? undefined
+            : message.style;
+        await config.update('tint.colorStyle', value, target);
         // Update will happen via config change listener
         break;
       }
       case 'selectHarmony': {
         const target = getSettingTarget('tint.colorHarmony');
         const config = vscode.workspace.getConfiguration('patina');
-        await config.update('tint.colorHarmony', message.harmony, target);
+        const value =
+          target === vscode.ConfigurationTarget.Global &&
+          message.harmony === DEFAULT_COLOR_HARMONY
+            ? undefined
+            : message.harmony;
+        await config.update('tint.colorHarmony', value, target);
         break;
       }
       case 'changeThemeType': {
