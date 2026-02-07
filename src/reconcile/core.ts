@@ -127,6 +127,10 @@ async function applyTintColors(
   const colorStyle = getColorStyle();
   const colorHarmony = getColorHarmony();
   const tintResult = computeTint({
+    baseHue:
+      tintConfig.baseHueOverride !== null
+        ? tintConfig.baseHueOverride
+        : undefined,
     workspaceIdentifier: identifier,
     targets: tintConfig.targets,
     themeType: themeContext.tintType,

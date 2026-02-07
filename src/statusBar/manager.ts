@@ -186,6 +186,9 @@ export class StatusBarManager implements vscode.Disposable {
       props.push(['Style', capitalizeFirst(colorStyle)]);
       props.push(['Harmony', capitalizeFirst(colorHarmony)]);
       props.push(['Seed', `\`${state.seed}\``]);
+      if (state.baseHueOverride !== null) {
+        props.push(['Hue Override', `\`${state.baseHueOverride}\`°`]);
+      }
 
       md.appendMarkdown(buildPropertiesTable(props) + '\n\n');
 

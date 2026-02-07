@@ -188,7 +188,19 @@ export function getTintConfig(): TintConfig {
   const seedValue = config.get<number>('tint.seed', 0);
   const seed = Number.isInteger(seedValue) ? seedValue : 0;
 
-  return { targets, mode, seed };
+  const rawHueOverride = config.get<number | null>(
+    'tint.baseHueOverride',
+    null
+  );
+  const baseHueOverride =
+    rawHueOverride !== null &&
+    Number.isInteger(rawHueOverride) &&
+    rawHueOverride >= 0 &&
+    rawHueOverride <= 359
+      ? rawHueOverride
+      : null;
+
+  return { targets, mode, seed, baseHueOverride };
 }
 
 /**
@@ -227,6 +239,26 @@ export function getThemeConfig(): ThemeConfig {
   }
 
   return { blendMethod, blendFactor, targetBlendFactors };
+}
+
+/**
+ * Returns the workspace-level base hue override.
+ * null means no override is set at workspace scope.
+ */
+export function getBaseHueOverride(): number | null {
+  const config = vscode.workspace.getConfiguration('patina');
+  const inspection = config.inspect<number | null>('tint.baseHueOverride');
+  const value = inspection?.workspaceValue;
+  if (
+    value !== undefined &&
+    value !== null &&
+    Number.isInteger(value) &&
+    value >= 0 &&
+    value <= 359
+  ) {
+    return value;
+  }
+  return null;
 }
 
 /**

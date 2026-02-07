@@ -72,6 +72,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -103,6 +104,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -146,6 +148,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -177,6 +180,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'vibrant',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: false,
@@ -199,6 +203,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'muted',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#00ff00',
@@ -234,6 +239,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: false,
         tintColors: undefined,
         customizedOutsidePatina: false,
@@ -270,6 +276,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -298,6 +305,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -332,6 +340,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: true,
@@ -360,6 +369,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: true,
@@ -443,6 +453,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 12345,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -461,6 +472,72 @@ suite('StatusBarManager', () => {
       assert.ok(
         tip.includes('12345'),
         `tooltip should include seed value, got: ${tip}`
+      );
+    });
+  });
+
+  suite('hue override display', () => {
+    test('includes hue override in tooltip when set', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        baseHueOverride: 200,
+        hasActiveTargets: true,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('Hue Override'),
+        `tooltip should include Hue Override label, got: ${tip}`
+      );
+      assert.ok(
+        tip.includes('200'),
+        `tooltip should include hue value, got: ${tip}`
+      );
+    });
+
+    test('omits hue override from tooltip when null', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        baseHueOverride: null,
+        hasActiveTargets: true,
+        tintColors: {
+          baseTint: '#ff0000',
+          titleBar: '#ff0000',
+        },
+        customizedOutsidePatina: false,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        !tip.includes('Hue Override'),
+        `tooltip should not include Hue Override when null, got: ${tip}`
       );
     });
   });
@@ -487,6 +564,7 @@ suite('StatusBarManager', () => {
           colorStyle: 'pastel',
           colorHarmony: 'uniform',
           seed: 0,
+          baseHueOverride: null,
           hasActiveTargets: true,
           tintColors: {
             baseTint: '#123456',
@@ -518,6 +596,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -554,6 +633,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: true,
@@ -582,6 +662,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -624,6 +705,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -655,6 +737,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -685,6 +768,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -718,6 +802,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -758,6 +843,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -787,6 +873,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: false,
@@ -813,6 +900,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: {
           baseTint: '#ff0000',
@@ -846,6 +934,7 @@ suite('StatusBarManager', () => {
         colorStyle: 'pastel',
         colorHarmony: 'uniform',
         seed: 0,
+        baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
         customizedOutsidePatina: false,
@@ -879,6 +968,7 @@ suite('StatusBarManager', () => {
           colorStyle,
           colorHarmony: 'uniform',
           seed: 0,
+          baseHueOverride: null,
           hasActiveTargets: true,
           tintColors: {
             baseTint: '#abcdef',

@@ -36,6 +36,8 @@ export interface StatusGeneralInfo {
   targetBlendFactors: Partial<Record<TintTarget, number>>;
   /** Seed value for hue calculation */
   seed: number;
+  /** Base hue override (null = no override) */
+  baseHueOverride: number | null;
   /** Computed base hue angle (0-359) */
   baseHue: number;
   /** Active tint targets */

@@ -138,7 +138,15 @@ function generateGeneralInfo(state: StatusState): string {
         <tr>
           <td class="info-label">Seed</td>
           <td>${g.seed}</td>
-        </tr>
+        </tr>${
+          g.baseHueOverride !== null
+            ? `
+        <tr>
+          <td class="info-label">Hue Override</td>
+          <td>${g.baseHueOverride}&deg;</td>
+        </tr>`
+            : ''
+        }
         <tr>
           <td class="info-label">Base Hue</td>
           <td>${g.baseHue}&deg;${baseHueSwatch}</td>

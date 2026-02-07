@@ -39,6 +39,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       blendFactor: 0.35,
       targetBlendFactors: {},
       seed: 0,
+      baseHueOverride: null,
       baseHue: 180,
       targets: ['titleBar', 'statusBar', 'activityBar'],
       customizedOutsidePatina: false,

@@ -142,6 +142,8 @@ export interface WorkspacePreviewOptions {
   harmony?: ColorHarmony | undefined;
   themeType: ThemeType;
   seed?: number | undefined;
+  /** When set, overrides computed hue from identifier. */
+  baseHueOverride?: number | null | undefined;
   themeColors?: ThemeColors | undefined;
   blendMethod?: BlendMethod | undefined;
   blendFactor?: number | undefined;
@@ -160,6 +162,7 @@ export function generateWorkspacePreview(
     harmony = 'uniform',
     themeType,
     seed = 0,
+    baseHueOverride,
     themeColors,
     blendMethod = 'overlay',
     blendFactor = DEFAULT_BLEND_FACTOR,
@@ -173,6 +176,10 @@ export function generateWorkspacePreview(
   const isBlended = themeColors !== undefined && hasAnyBlend;
 
   const result = computeTint({
+    baseHue:
+      baseHueOverride !== null && baseHueOverride !== undefined
+        ? baseHueOverride
+        : undefined,
     workspaceIdentifier: identifier,
     seed,
     targets: PREVIEW_TARGETS,

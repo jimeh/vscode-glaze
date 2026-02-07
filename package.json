@@ -108,6 +108,14 @@
       {
         "command": "patina.forceApply",
         "title": "Patina: Force Apply Colors"
+      },
+      {
+        "command": "patina.setBaseHueOverride",
+        "title": "Patina: Set Base Hue Override"
+      },
+      {
+        "command": "patina.clearBaseHueOverride",
+        "title": "Patina: Clear Base Hue Override"
       }
     ],
     "configuration": {
@@ -354,11 +362,22 @@
           "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces.",
           "order": 18
         },
+        "patina.tint.baseHueOverride": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 359,
+          "default": null,
+          "description": "Override the base hue (0-359) for this workspace. When set, bypasses the deterministic hue calculation. Intended for workspace-level configuration.",
+          "order": 19
+        },
         "patina.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 19,
+          "order": 20,
           "additionalProperties": {
             "type": "object",
             "required": [

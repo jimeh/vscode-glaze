@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import {
+  getBaseHueOverride,
   getTintConfig,
   getWorkspaceEnabledOverride,
   isEnabledForWorkspace,
@@ -30,6 +31,7 @@ interface ActionableQuickPickItem extends vscode.QuickPickItem {
 
 function buildMenuGroups(): readonly MenuGroup[] {
   const { seed } = getTintConfig();
+  const baseHueOverride = getBaseHueOverride();
   const effectivelyEnabled = isEnabledForWorkspace();
   const wsOverride = getWorkspaceEnabledOverride();
   const { customizedOutsidePatina } = getCachedState();
@@ -66,14 +68,38 @@ function buildMenuGroups(): readonly MenuGroup[] {
           label: '$(refresh) Randomize Seed',
           description: 'Generate a new random seed',
           command: 'patina.randomizeSeed',
-          when: () => effectivelyEnabled && !customizedOutsidePatina,
+          when: () =>
+            effectivelyEnabled &&
+            !customizedOutsidePatina &&
+            baseHueOverride === null,
         },
         {
           label: '$(discard) Reset Seed',
           description: 'Reset seed to default (0)',
           command: 'patina.resetSeed',
           when: () =>
-            effectivelyEnabled && !customizedOutsidePatina && seed !== 0,
+            effectivelyEnabled &&
+            !customizedOutsidePatina &&
+            seed !== 0 &&
+            baseHueOverride === null,
+        },
+        {
+          label: '$(symbol-color) Set Base Hue Override...',
+          description:
+            baseHueOverride !== null
+              ? `Currently ${baseHueOverride}°`
+              : 'Pin a specific hue for this workspace',
+          command: 'patina.setBaseHueOverride',
+          when: () => effectivelyEnabled && !customizedOutsidePatina,
+        },
+        {
+          label: '$(discard) Clear Base Hue Override',
+          description: `Remove override (${baseHueOverride}°)`,
+          command: 'patina.clearBaseHueOverride',
+          when: () =>
+            effectivelyEnabled &&
+            !customizedOutsidePatina &&
+            baseHueOverride !== null,
         },
       ],
     },
