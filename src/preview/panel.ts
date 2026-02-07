@@ -118,6 +118,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
           harmony: currentHarmony,
           themeType,
           seed: tintConfig.seed,
+          baseHueOverride: tintConfig.baseHueOverride,
           themeColors: themeContext.colors,
           blendMethod: themeConfig.blendMethod,
           blendFactor: themeConfig.blendFactor,

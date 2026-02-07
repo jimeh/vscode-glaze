@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
+  getBaseHueOverride,
   getBlendMethod,
   getColorHarmony,
   getColorStyle,
@@ -423,6 +424,7 @@ suite('getTintConfig', () => {
   let originalSideBar: boolean | undefined;
   let originalMode: string | undefined;
   let originalSeed: number | undefined;
+  let originalBaseHueOverride: number | null | undefined;
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('patina');
@@ -432,6 +434,7 @@ suite('getTintConfig', () => {
     originalSideBar = config.get<boolean>('elements.sideBar');
     originalMode = config.get<string>('tint.mode');
     originalSeed = config.get<number>('tint.seed');
+    originalBaseHueOverride = config.get<number | null>('tint.baseHueOverride');
   });
 
   suiteTeardown(async () => {
@@ -464,6 +467,11 @@ suite('getTintConfig', () => {
     await config.update(
       'tint.seed',
       originalSeed,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'tint.baseHueOverride',
+      originalBaseHueOverride,
       vscode.ConfigurationTarget.Global
     );
   });
@@ -764,6 +772,187 @@ suite('getTintConfig', () => {
 
     const result = getTintConfig();
     assert.strictEqual(result.seed, 0);
+  });
+
+  test('defaults to null baseHueOverride when not configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, null);
+  });
+
+  test('returns null baseHueOverride when set to null', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      null,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, null);
+  });
+
+  test('reads configured baseHueOverride value', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      180,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, 180);
+  });
+
+  test('accepts baseHueOverride of 0', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      0,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, 0);
+  });
+
+  test('accepts baseHueOverride of 359', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      359,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, 359);
+  });
+
+  test('falls back to null for non-integer baseHueOverride', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      3.14,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, null);
+  });
+
+  test('falls back to null for negative baseHueOverride', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      -1,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, null);
+  });
+
+  test('falls back to null for baseHueOverride >= 360', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      360,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.strictEqual(result.baseHueOverride, null);
+  });
+});
+
+suite('getBaseHueOverride', () => {
+  let originalValue: number | null | undefined;
+
+  suiteSetup(async () => {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    const inspection = config.inspect<number | null>('tint.baseHueOverride');
+    originalValue = inspection?.workspaceValue;
+  });
+
+  suiteTeardown(async () => {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      originalValue,
+      vscode.ConfigurationTarget.Workspace
+    );
+  });
+
+  test('returns null when no workspace override', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      undefined,
+      vscode.ConfigurationTarget.Workspace
+    );
+
+    const result = getBaseHueOverride();
+    assert.strictEqual(result, null);
+  });
+
+  test('returns value when workspace override is set', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      200,
+      vscode.ConfigurationTarget.Workspace
+    );
+
+    const result = getBaseHueOverride();
+    assert.strictEqual(result, 200);
+  });
+
+  test('returns null when workspace override is null', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      null,
+      vscode.ConfigurationTarget.Workspace
+    );
+
+    const result = getBaseHueOverride();
+    assert.strictEqual(result, null);
+  });
+
+  test('returns 0 when workspace override is 0', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.baseHueOverride',
+      0,
+      vscode.ConfigurationTarget.Workspace
+    );
+
+    const result = getBaseHueOverride();
+    assert.strictEqual(result, 0);
   });
 });
 

@@ -48,6 +48,9 @@ export interface StatusBarState {
   /** Seed value used for tint calculation. */
   readonly seed: number;
 
+  /** Base hue override (null = no override). */
+  readonly baseHueOverride: number | null;
+
   /** Whether at least one tint target element is enabled. */
   readonly hasActiveTargets: boolean;
 

@@ -42,7 +42,12 @@ export async function buildStatusState(): Promise<StatusState> {
     identifier,
     tintConfig.targets.length > 0
   );
-  const baseHue = identifier ? computeBaseHue(identifier, tintConfig.seed) : 0;
+  const baseHue =
+    tintConfig.baseHueOverride !== null
+      ? tintConfig.baseHueOverride
+      : identifier
+        ? computeBaseHue(identifier, tintConfig.seed)
+        : 0;
 
   const result = computeTint({
     baseHue,
@@ -78,6 +83,7 @@ export async function buildStatusState(): Promise<StatusState> {
     blendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
     seed: tintConfig.seed,
+    baseHueOverride: tintConfig.baseHueOverride,
     baseHue,
     targets: tintConfig.targets,
     customizedOutsidePatina,

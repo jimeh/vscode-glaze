@@ -32,6 +32,7 @@ export async function refreshStatusBar(
     colorStyle: getColorStyle(),
     colorHarmony: getColorHarmony(),
     seed: tintConfig.seed,
+    baseHueOverride: tintConfig.baseHueOverride,
     hasActiveTargets: tintConfig.targets.length > 0,
     tintColors: cached.tintColors,
     customizedOutsidePatina: cached.customizedOutsidePatina,

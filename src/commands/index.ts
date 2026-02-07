@@ -2,6 +2,7 @@ import type * as vscode from 'vscode';
 import type { StatusBarManager } from '../statusBar';
 import { registerClipboardCommands } from './clipboard';
 import { registerEnableCommands } from './enable';
+import { registerHueOverrideCommands } from './hueOverride';
 import { registerMenuCommands } from './menu';
 import { registerSeedCommands } from './seed';
 import { registerUiCommands } from './ui';
@@ -15,6 +16,7 @@ export function registerAllCommands(
     ...registerEnableCommands(),
     ...registerMenuCommands(),
     ...registerSeedCommands(statusBar),
+    ...registerHueOverrideCommands(statusBar),
     ...registerUiCommands(extensionUri),
     ...registerClipboardCommands(),
   ];

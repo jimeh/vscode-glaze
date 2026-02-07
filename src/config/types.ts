@@ -81,6 +81,12 @@ export interface TintConfig {
    * Default is 0.
    */
   seed: number;
+
+  /**
+   * Override for the base hue (0-359). When set, bypasses the
+   * deterministic hue calculation. null = no override.
+   */
+  baseHueOverride: number | null;
 }
 
 /**
