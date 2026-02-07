@@ -8,6 +8,8 @@ import type {
 } from './types';
 import { SAMPLE_HUES } from './colors';
 import { getColorName } from '../color';
+import { COLOR_HARMONY_LABELS } from '../color/harmony/definitions';
+import { COLOR_STYLE_LABELS } from '../color/styles/definitions';
 import { assertHex, escapeHtml } from '../webview';
 import { renderWebviewHtml } from '../webview/html';
 
@@ -150,6 +152,8 @@ function generateWorkspaceSection(state: PreviewState): string {
     targetBlendFactors
   );
   const colorName = getColorName(colors.titleBar.background);
+  const styleLabel = COLOR_STYLE_LABELS[state.currentStyle];
+  const harmonyLabel = COLOR_HARMONY_LABELS[state.currentHarmony];
 
   return `
     <div class="workspace-section">
@@ -159,6 +163,8 @@ function generateWorkspaceSection(state: PreviewState): string {
         <div class="workspace-info">
           <span class="workspace-id"><span class="info-label">ID:</span> ${escapeHtml(identifier)}</span>
           <span class="workspace-color-name"><span class="info-label">Color:</span> ${escapeHtml(colorName)}</span>
+          <span class="workspace-style"><span class="info-label">Style:</span> ${escapeHtml(styleLabel)}</span>
+          <span class="workspace-harmony"><span class="info-label">Harmony:</span> ${escapeHtml(harmonyLabel)}</span>
         </div>
         ${blendInfo}
       </div>
@@ -373,7 +379,9 @@ const PREVIEW_CSS = `
       letter-spacing: 0.01em;
     }
 
-    .workspace-color-name {
+    .workspace-color-name,
+    .workspace-style,
+    .workspace-harmony {
       font-size: 12px;
       color: var(--vscode-descriptionForeground);
     }
