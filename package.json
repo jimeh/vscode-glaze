@@ -167,24 +167,36 @@
           "type": "string",
           "enum": [
             "uniform",
-            "duotone",
-            "undercurrent",
+            "accent",
+            "gradient",
             "analogous",
-            "triadic"
+            "undercurrent",
+            "duotone",
+            "split-complementary",
+            "triadic",
+            "tetradic"
           ],
           "enumItemLabels": [
             "Uniform",
-            "Duotone",
-            "Undercurrent",
+            "Accent",
+            "Gradient",
             "Analogous",
-            "Triadic"
+            "Undercurrent",
+            "Duotone",
+            "Split-Complementary",
+            "Triadic",
+            "Tetradic"
           ],
           "enumDescriptions": [
             "Single hue across all elements",
-            "Complementary accent on activity and side bar",
-            "Complementary accent on status bar",
+            "Single element gets a distinct pop",
+            "Progressive hue sweep across elements",
             "Three adjacent hues spread across elements",
-            "Three evenly-spaced hues for maximum variation"
+            "Complementary accent on status bar",
+            "Complementary accent on activity and side bar",
+            "Two hues flanking the complement",
+            "Three evenly-spaced hues for maximum variation",
+            "Four hues at 90° intervals"
           ],
           "default": "uniform",
           "description": "Controls how hues are distributed across UI elements. Uniform uses a single hue; other options spread hues across the color wheel.",
