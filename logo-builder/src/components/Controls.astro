@@ -1,0 +1,126 @@
+---
+/**
+ * Main controls panel with spacing, color mode, and box controls.
+ */
+
+import BoxControl from './BoxControl.astro';
+---
+
+<div class="controls">
+  <section class="control-group">
+    <label>
+      Spacing:
+      <input type="range" id="spacing" min="-200" max="200" value="70" />
+      <span id="spacing-value">70</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>
+      Box Width:
+      <input type="range" id="box-width" min="200" max="700" value="510" />
+      <span id="box-width-value">510</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>
+      Box Height:
+      <input type="range" id="box-height" min="150" max="550" value="368" />
+      <span id="box-height-value">368</span>px
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>Dimension Presets:</label>
+    <div class="preset-toggle" id="dimension-presets">
+      <button data-width="400" data-height="400">Square</button>
+      <button data-width="550" data-height="350">Wide</button>
+      <button data-width="350" data-height="500">Tall</button>
+      <button data-width="510" data-height="368" class="active">Default</button>
+    </div>
+  </section>
+
+  <section class="control-group">
+    <label>
+      Rounding:
+      <input type="range" id="rounding" min="0" max="184" value="123" />
+      <span id="rounding-value">123</span>
+      <div class="unit-toggle" id="rounding-unit">
+        <button data-unit="px" class="active">px</button>
+        <button data-unit="%">%</button>
+      </div>
+    </label>
+  </section>
+
+  <section class="control-group">
+    <label>Color Mode:</label>
+    <div class="mode-btns" id="color-mode">
+      <button data-mode="monochromatic">Mono</button>
+      <button data-mode="duotone">Duo</button>
+      <button data-mode="analogous">Analog</button>
+      <button data-mode="triadic">Triad</button>
+      <button data-mode="split">Split</button>
+      <button data-mode="custom" class="active">Custom</button>
+    </div>
+  </section>
+
+  <section class="control-group" id="base-hue-group">
+    <label>
+      Base Hue:
+      <input type="range" id="base-hue" min="0" max="360" value="195" />
+      <span id="base-hue-value">195</span>&deg;
+    </label>
+    <div class="hue-preview" id="base-hue-preview"></div>
+  </section>
+
+  <section class="control-group">
+    <label>Balance Mode:</label>
+    <div class="mode-btns" id="balance-mode">
+      <button data-mode="uniform">Uniform</button>
+      <button data-mode="layered">Layered</button>
+      <button data-mode="contrast">Contrast</button>
+      <button data-mode="custom" class="active">Custom</button>
+    </div>
+  </section>
+
+  <section class="control-group" id="base-lc-group">
+    <label>
+      Base Luminance:
+      <input type="range" id="base-luminance" min="0" max="100" value="70" />
+      <span id="base-luminance-value">0.70</span>
+    </label>
+    <label>
+      Base Chroma:
+      <input type="range" id="base-chroma" min="0" max="100" value="50" />
+      <span id="base-chroma-value">0.50</span>
+    </label>
+  </section>
+
+  <section class="box-controls">
+    <BoxControl
+      boxIndex={1}
+      title="Highlight"
+      defaultL={95}
+      defaultC={54}
+      defaultH={34}
+      defaultHex="#f7ebe8"
+    />
+    <BoxControl
+      boxIndex={3}
+      title="Center"
+      defaultL={67}
+      defaultC={49}
+      defaultH={205}
+      defaultHex="#6b9fa5"
+    />
+    <BoxControl
+      boxIndex={2}
+      title="Shadow"
+      defaultL={63}
+      defaultC={75}
+      defaultH={24}
+      defaultHex="#e54b4b"
+    />
+  </section>
+</div>

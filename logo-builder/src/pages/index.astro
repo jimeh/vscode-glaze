@@ -1,0 +1,29 @@
+---
+/**
+ * Patina Logo Builder - main page.
+ */
+
+import Header from '../components/Header.astro';
+import Preview from '../components/Preview.astro';
+import Controls from '../components/Controls.astro';
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patina Logo Builder</title>
+  </head>
+  <body>
+    <div class="container">
+      <Header />
+      <main>
+        <Preview />
+        <Controls />
+      </main>
+    </div>
+    <script src="../scripts/app.ts"></script>
+  </body>
+</html>

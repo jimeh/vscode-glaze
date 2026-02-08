@@ -1,0 +1,58 @@
+---
+/**
+ * Control panel for a single box with L/C/H sliders and hex input.
+ */
+
+interface Props {
+  boxIndex: number;
+  title: string;
+  defaultL: number;
+  defaultC: number;
+  defaultH: number;
+  defaultHex: string;
+}
+
+const { boxIndex, title, defaultL, defaultC, defaultH, defaultHex } =
+  Astro.props;
+---
+
+<div class="box-control" data-box={boxIndex}>
+  <h3>{title}</h3>
+  <label class="l-row">
+    L:
+    <input
+      type="range"
+      class="l-slider"
+      min="0"
+      max="100"
+      value={defaultL}
+      step="1"
+    />
+    <span class="l-value">{(defaultL / 100).toFixed(2)}</span>
+  </label>
+  <label class="c-row">
+    C:
+    <input
+      type="range"
+      class="c-slider"
+      min="0"
+      max="100"
+      value={defaultC}
+      step="1"
+    />
+    <span class="c-value">{(defaultC / 100).toFixed(2)}</span>
+  </label>
+  <label class="hue-row">
+    H:
+    <input
+      type="range"
+      class="h-slider"
+      min="0"
+      max="360"
+      value={defaultH}
+    />
+    <span class="h-value">{defaultH}</span>&deg;
+  </label>
+  <input type="text" class="hex-input" value={defaultHex} maxlength="7" />
+  <div class="color-swatch" style={`background-color: ${defaultHex}`}></div>
+</div>
