@@ -4,7 +4,7 @@
   "publisherName": "astro-build",
   "displayName": "Houston",
   "version": "0.1.2",
-  "extractedAt": "2026-02-02T13:46:59.563Z",
+  "extractedAt": "2026-02-08T00:11:13.474Z",
   "installCount": 3890,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#CCCCCC",
         "titleBar.inactiveBackground": "#3C3C3C",
         "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#000000",
         "statusBar.background": "#17548B",
         "statusBar.foreground": "#EEF0F9",
         "activityBar.background": "#17191E",
         "activityBar.foreground": "#EEF0F9",
+        "activityBar.activeBackground": "#343841",
         "sideBar.background": "#23262D",
         "sideBar.foreground": "#BFC1C9",
+        "sideBar.border": "#17191E",
         "sideBarSectionHeader.background": "#343841",
-        "sideBarSectionHeader.foreground": "#EEF0F9"
+        "sideBarSectionHeader.foreground": "#EEF0F9",
+        "sideBarSectionHeader.border": "#17191E"
       },
       "type": "dark"
     }

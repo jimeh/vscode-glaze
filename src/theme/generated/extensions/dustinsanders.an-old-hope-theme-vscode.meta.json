@@ -4,7 +4,7 @@
   "publisherName": "dustinsanders",
   "displayName": "An Old Hope Theme",
   "version": "4.4.0",
-  "extractedAt": "2026-02-02T13:46:42.767Z",
+  "extractedAt": "2026-02-08T00:10:55.982Z",
   "installCount": 102544,
   "themes": [
     {
@@ -16,10 +16,12 @@
         "titleBar.activeForeground": "#CBCDD2",
         "statusBar.background": "#1C1D21",
         "statusBar.foreground": "#686B78",
+        "statusBar.border": "#1C1D21",
         "activityBar.background": "#1C1D21",
         "activityBar.foreground": "#535458",
         "sideBar.background": "#141519",
         "sideBar.foreground": "#CBCDD2",
+        "sideBar.border": "#1C1D21",
         "sideBarSectionHeader.background": "#3F4044",
         "sideBarSectionHeader.foreground": "#CBCDD2"
       },
@@ -34,10 +36,12 @@
         "titleBar.activeForeground": "#CBCDD2",
         "statusBar.background": "#1C1D21",
         "statusBar.foreground": "#686B78",
+        "statusBar.border": "#1C1D21",
         "activityBar.background": "#1C1D21",
         "activityBar.foreground": "#535458",
         "sideBar.background": "#141519",
         "sideBar.foreground": "#CBCDD2",
+        "sideBar.border": "#1C1D21",
         "sideBarSectionHeader.background": "#3F4044",
         "sideBarSectionHeader.foreground": "#CBCDD2"
       },

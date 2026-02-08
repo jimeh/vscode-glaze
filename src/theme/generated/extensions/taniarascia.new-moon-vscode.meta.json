@@ -4,7 +4,7 @@
   "publisherName": "taniarascia",
   "displayName": "New Moon Syntax Theme",
   "version": "1.8.8",
-  "extractedAt": "2026-02-02T13:46:41.097Z",
+  "extractedAt": "2026-02-08T00:10:54.183Z",
   "installCount": 117129,
   "themes": [
     {
@@ -16,7 +16,8 @@
         "statusBar.background": "#202020",
         "statusBar.foreground": "#909090",
         "sideBar.background": "#272727",
-        "sideBarSectionHeader.background": "#202020"
+        "sideBarSectionHeader.background": "#202020",
+        "sideBarSectionHeader.border": "#282828"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "piousdeer",
   "displayName": "Adwaita",
   "version": "1.1.0",
-  "extractedAt": "2026-02-02T13:46:49.557Z",
+  "extractedAt": "2026-02-08T00:11:02.978Z",
   "installCount": 8750,
   "themes": [
     {
@@ -13,13 +13,18 @@
       "colors": {
         "editor.background": "#1D1D1D",
         "titleBar.activeBackground": "#303030",
+        "titleBar.border": "#454545",
         "statusBar.background": "#242424",
         "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#454545",
         "activityBar.background": "#303030",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#242424",
         "sideBar.foreground": "#CCCCCC",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#454545",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#454545"
       },
       "type": "dark"
     },
@@ -29,13 +34,18 @@
       "colors": {
         "editor.background": "#1D1D1D",
         "titleBar.activeBackground": "#303030",
+        "titleBar.border": "#454545",
         "statusBar.background": "#1C71D8",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#454545",
         "activityBar.background": "#303030",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#242424",
         "sideBar.foreground": "#CCCCCC",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#454545",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#454545"
       },
       "type": "dark"
     },
@@ -45,13 +55,18 @@
       "colors": {
         "editor.background": "#1D1D1D",
         "titleBar.activeBackground": "#303030",
+        "titleBar.border": "#454545",
         "statusBar.background": "#242424",
         "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#454545",
         "activityBar.background": "#303030",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#242424",
         "sideBar.foreground": "#CCCCCC",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#454545",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#454545"
       },
       "type": "dark"
     },
@@ -61,13 +76,18 @@
       "colors": {
         "editor.background": "#1D1D1D",
         "titleBar.activeBackground": "#303030",
+        "titleBar.border": "#454545",
         "statusBar.background": "#1C71D8",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#454545",
         "activityBar.background": "#303030",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#242424",
         "sideBar.foreground": "#CCCCCC",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#454545",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#454545"
       },
       "type": "dark"
     },
@@ -77,13 +97,18 @@
       "colors": {
         "editor.background": "#FFFFFF",
         "titleBar.activeBackground": "#EBEBEB",
+        "titleBar.border": "#CFCFCF",
         "statusBar.background": "#FAFAFA",
         "statusBar.foreground": "#323232",
+        "statusBar.border": "#CFCFCF",
         "activityBar.background": "#EBEBEB",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#FAFAFA",
         "sideBar.foreground": "#323232",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#CFCFCF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CFCFCF"
       },
       "type": "light"
     },
@@ -93,13 +118,18 @@
       "colors": {
         "editor.background": "#FFFFFF",
         "titleBar.activeBackground": "#EBEBEB",
+        "titleBar.border": "#CFCFCF",
         "statusBar.background": "#1C71D8",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#CFCFCF",
         "activityBar.background": "#EBEBEB",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#FAFAFA",
         "sideBar.foreground": "#323232",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#CFCFCF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CFCFCF"
       },
       "type": "light"
     },
@@ -109,13 +139,18 @@
       "colors": {
         "editor.background": "#FFFFFF",
         "titleBar.activeBackground": "#EBEBEB",
+        "titleBar.border": "#CFCFCF",
         "statusBar.background": "#FAFAFA",
         "statusBar.foreground": "#323232",
+        "statusBar.border": "#CFCFCF",
         "activityBar.background": "#EBEBEB",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#FAFAFA",
         "sideBar.foreground": "#323232",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#CFCFCF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CFCFCF"
       },
       "type": "light"
     },
@@ -125,13 +160,18 @@
       "colors": {
         "editor.background": "#FFFFFF",
         "titleBar.activeBackground": "#EBEBEB",
+        "titleBar.border": "#CFCFCF",
         "statusBar.background": "#1C71D8",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#CFCFCF",
         "activityBar.background": "#EBEBEB",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#FAFAFA",
         "sideBar.foreground": "#323232",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#CFCFCF",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CFCFCF"
       },
       "type": "light"
     }

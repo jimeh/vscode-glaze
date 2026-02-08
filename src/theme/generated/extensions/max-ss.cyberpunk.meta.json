@@ -4,7 +4,7 @@
   "publisherName": "max-SS",
   "displayName": "Cyberpunk",
   "version": "1.2.14",
-  "extractedAt": "2026-02-02T13:46:24.152Z",
+  "extractedAt": "2026-02-08T00:10:36.640Z",
   "installCount": 429609,
   "themes": [
     {
@@ -17,12 +17,15 @@
         "titleBar.activeForeground": "#00FF9C",
         "titleBar.inactiveBackground": "#1E1D45",
         "titleBar.inactiveForeground": "#00FF9C",
+        "titleBar.border": "#100D23",
         "statusBar.background": "#002212",
         "statusBar.foreground": "#00FF9C",
+        "statusBar.border": "#00FF9C",
         "activityBar.background": "#261D45",
         "activityBar.foreground": "#00FFC8",
         "sideBar.background": "#372963",
-        "sideBar.foreground": "#B08BFF"
+        "sideBar.foreground": "#B08BFF",
+        "sideBar.border": "#1D1833"
       },
       "type": "dark"
     },
@@ -36,12 +39,15 @@
         "titleBar.activeForeground": "#00FF9C",
         "titleBar.inactiveBackground": "#1E1D45",
         "titleBar.inactiveForeground": "#00FF9C",
+        "titleBar.border": "#100D23",
         "statusBar.background": "#002212",
         "statusBar.foreground": "#00FF9C",
+        "statusBar.border": "#00FF9C",
         "activityBar.background": "#100D23",
         "activityBar.foreground": "#00FF9D",
         "sideBar.background": "#1E1D45",
-        "sideBar.foreground": "#8B96FF"
+        "sideBar.foreground": "#8B96FF",
+        "sideBar.border": "#09040F"
       },
       "type": "dark"
     },
@@ -55,12 +61,15 @@
         "titleBar.activeForeground": "#FF8BA8",
         "statusBar.background": "#1D000A",
         "statusBar.foreground": "#FF0055",
+        "statusBar.border": "#FF0055",
         "activityBar.background": "#101116",
         "activityBar.foreground": "#FF0055",
         "sideBar.background": "#0A0B0E",
         "sideBar.foreground": "#BE4E74",
+        "sideBar.border": "#101116",
         "sideBarSectionHeader.background": "#240000",
-        "sideBarSectionHeader.foreground": "#FF8BA8"
+        "sideBarSectionHeader.foreground": "#FF8BA8",
+        "sideBarSectionHeader.border": "#FF235A"
       },
       "type": "dark"
     }

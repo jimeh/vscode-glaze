@@ -4,7 +4,7 @@
   "publisherName": "vangware",
   "displayName": "Dark+ Material",
   "version": "3.2.1",
-  "extractedAt": "2026-02-02T13:46:24.045Z",
+  "extractedAt": "2026-02-08T00:10:36.531Z",
   "installCount": 437797,
   "themes": [
     {
@@ -19,10 +19,13 @@
         "titleBar.inactiveForeground": "#BDBDBD",
         "statusBar.background": "#0277BD",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.focusBorder": "#FFFFFF",
         "activityBar.background": "#424242",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#FFFFFF",
         "sideBar.background": "#212121",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#BDBDBD"
       },
       "type": "dark"
     }

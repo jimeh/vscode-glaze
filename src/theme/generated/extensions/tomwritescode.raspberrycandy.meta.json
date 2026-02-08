@@ -4,7 +4,7 @@
   "publisherName": "tomWritesCode",
   "displayName": "raspberryCandy",
   "version": "0.0.6",
-  "extractedAt": "2026-02-02T13:46:55.335Z",
+  "extractedAt": "2026-02-08T00:11:09.017Z",
   "installCount": 5127,
   "themes": [
     {
@@ -16,8 +16,10 @@
         "activityBar.background": "#160021",
         "activityBar.foreground": "#00FEFF",
         "sideBar.background": "#160021",
+        "sideBar.border": "#00FEFF",
         "sideBarSectionHeader.background": "#DCBAF9",
-        "sideBarSectionHeader.foreground": "#160021"
+        "sideBarSectionHeader.foreground": "#160021",
+        "sideBarSectionHeader.border": "#00FEFF"
       },
       "type": "dark"
     },
@@ -30,8 +32,10 @@
         "activityBar.background": "#16161D",
         "activityBar.foreground": "#00FEFF",
         "sideBar.background": "#16161D",
+        "sideBar.border": "#00FEFF",
         "sideBarSectionHeader.background": "#DCBAF9",
-        "sideBarSectionHeader.foreground": "#16161D"
+        "sideBarSectionHeader.foreground": "#16161D",
+        "sideBarSectionHeader.border": "#00FEFF"
       },
       "type": "dark"
     },
@@ -44,8 +48,10 @@
         "activityBar.background": "#F6F6F6",
         "activityBar.foreground": "#16161D",
         "sideBar.background": "#F6F6F6",
+        "sideBar.border": "#5D08E5",
         "sideBarSectionHeader.background": "#DCBAF9",
-        "sideBarSectionHeader.foreground": "#16161D"
+        "sideBarSectionHeader.foreground": "#16161D",
+        "sideBarSectionHeader.border": "#5D08E5"
       },
       "type": "light"
     }

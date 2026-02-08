@@ -4,7 +4,7 @@
   "publisherName": "FelixIcaza",
   "displayName": "Andromeda Fork",
   "version": "1.7.1",
-  "extractedAt": "2026-02-02T13:46:45.851Z",
+  "extractedAt": "2026-02-08T00:10:59.105Z",
   "installCount": 17753,
   "themes": [
     {
@@ -35,6 +35,7 @@
         "activityBar.foreground": "#BAAFC0",
         "sideBar.background": "#23262E",
         "sideBar.foreground": "#746F77",
+        "sideBar.border": "#1B1D23",
         "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"
@@ -51,6 +52,7 @@
         "activityBar.foreground": "#BAAFC0",
         "sideBar.background": "#23262E",
         "sideBar.foreground": "#746F77",
+        "sideBar.border": "#1B1D23",
         "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"

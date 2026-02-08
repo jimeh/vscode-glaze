@@ -4,7 +4,7 @@
   "publisherName": "golf1052",
   "displayName": "Base16 Theme Generator",
   "version": "1.19.1",
-  "extractedAt": "2026-02-02T13:46:51.704Z",
+  "extractedAt": "2026-02-08T00:11:05.209Z",
   "installCount": 6914,
   "themes": [
     {
@@ -21,6 +21,7 @@
         "statusBar.foreground": "#F8F8F8",
         "activityBar.background": "#181818",
         "activityBar.foreground": "#D8D8D8",
+        "activityBar.activeBackground": "#383838",
         "sideBar.background": "#282828",
         "sideBar.foreground": "#D8D8D8",
         "sideBarSectionHeader.background": "#585858",

@@ -4,7 +4,7 @@
   "publisherName": "enkia",
   "displayName": "Tokyo Night",
   "version": "1.1.2",
-  "extractedAt": "2026-02-02T13:46:17.872Z",
+  "extractedAt": "2026-02-08T00:10:30.200Z",
   "installCount": 2512110,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#787C99",
         "titleBar.inactiveBackground": "#16161E",
         "titleBar.inactiveForeground": "#787C99",
+        "titleBar.border": "#101014",
         "statusBar.background": "#16161E",
         "statusBar.foreground": "#787C99",
+        "statusBar.border": "#101014",
         "activityBar.background": "#16161E",
         "activityBar.foreground": "#787C99",
         "sideBar.background": "#16161E",
         "sideBar.foreground": "#787C99",
+        "sideBar.border": "#101014",
         "sideBarSectionHeader.background": "#16161E",
-        "sideBarSectionHeader.foreground": "#A9B1D6"
+        "sideBarSectionHeader.foreground": "#A9B1D6",
+        "sideBarSectionHeader.border": "#101014"
       },
       "type": "dark"
     },
@@ -38,14 +42,18 @@
         "titleBar.activeForeground": "#8089B3",
         "titleBar.inactiveBackground": "#1F2335",
         "titleBar.inactiveForeground": "#8089B3",
+        "titleBar.border": "#1B1E2E",
         "statusBar.background": "#1F2335",
         "statusBar.foreground": "#8089B3",
+        "statusBar.border": "#1B1E2E",
         "activityBar.background": "#1F2335",
         "activityBar.foreground": "#8089B3",
         "sideBar.background": "#1F2335",
         "sideBar.foreground": "#8089B3",
+        "sideBar.border": "#1B1E2E",
         "sideBarSectionHeader.background": "#1F2335",
-        "sideBarSectionHeader.foreground": "#A9B1D6"
+        "sideBarSectionHeader.foreground": "#A9B1D6",
+        "sideBarSectionHeader.border": "#1B1E2E"
       },
       "type": "dark"
     },
@@ -59,14 +67,19 @@
         "titleBar.activeForeground": "#363C4D",
         "titleBar.inactiveBackground": "#D6D8DF",
         "titleBar.inactiveForeground": "#363C4D",
+        "titleBar.border": "#C1C2C7",
         "statusBar.background": "#D6D8DF",
         "statusBar.foreground": "#363C4D",
+        "statusBar.border": "#C1C2C7",
         "activityBar.background": "#D6D8DF",
         "activityBar.foreground": "#363C4D",
+        "activityBar.activeBorder": "#2959AA",
         "sideBar.background": "#D6D8DF",
         "sideBar.foreground": "#363C4D",
+        "sideBar.border": "#C1C2C7",
         "sideBarSectionHeader.background": "#D6D8DF",
-        "sideBarSectionHeader.foreground": "#363C4D"
+        "sideBarSectionHeader.foreground": "#363C4D",
+        "sideBarSectionHeader.border": "#C1C2C7"
       },
       "type": "light"
     }

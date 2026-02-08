@@ -4,7 +4,7 @@
   "publisherName": "marlosirapuan",
   "displayName": "Nord Deep",
   "version": "0.1.623",
-  "extractedAt": "2026-02-02T13:46:53.589Z",
+  "extractedAt": "2026-02-08T00:11:07.195Z",
   "installCount": 5775,
   "themes": [
     {
@@ -17,12 +17,17 @@
         "titleBar.activeForeground": "#D8DEE9",
         "titleBar.inactiveBackground": "#232731",
         "titleBar.inactiveForeground": "#D8DEE9",
+        "titleBar.border": "#232731",
         "statusBar.background": "#292D38",
         "statusBar.foreground": "#D8DEE9",
+        "statusBar.border": "#3B4252",
         "activityBar.background": "#292D38",
         "activityBar.foreground": "#D8DEE9",
+        "activityBar.activeBackground": "#3B4252",
+        "activityBar.activeBorder": "#88C0D0",
         "sideBar.background": "#232731",
         "sideBar.foreground": "#D8DEE9",
+        "sideBar.border": "#3B4252",
         "sideBarSectionHeader.background": "#3B4252",
         "sideBarSectionHeader.foreground": "#D8DEE9"
       },

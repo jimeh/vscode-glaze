@@ -4,7 +4,7 @@
   "publisherName": "Sujan",
   "displayName": "Code Blue",
   "version": "0.9.12",
-  "extractedAt": "2026-02-02T13:46:35.624Z",
+  "extractedAt": "2026-02-08T00:10:48.456Z",
   "installCount": 155264,
   "themes": [
     {
@@ -19,10 +19,12 @@
         "titleBar.inactiveForeground": "#E2E6E9",
         "statusBar.background": "#242B40",
         "statusBar.foreground": "#E2E6E9",
+        "statusBar.border": "#1E2335",
         "activityBar.background": "#242B40",
         "activityBar.foreground": "#E2E6E9",
         "sideBar.background": "#242B40",
         "sideBar.foreground": "#5B6CA2",
+        "sideBar.border": "#242B40",
         "sideBarSectionHeader.background": "#303956",
         "sideBarSectionHeader.foreground": "#E2E6E9"
       },

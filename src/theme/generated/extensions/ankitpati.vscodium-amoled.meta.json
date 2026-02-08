@@ -4,7 +4,7 @@
   "publisherName": "ankitpati",
   "displayName": "AMOLED",
   "version": "1.0.3",
-  "extractedAt": "2026-02-02T13:46:52.957Z",
+  "extractedAt": "2026-02-08T00:11:06.536Z",
   "installCount": 6014,
   "themes": [
     {
@@ -17,11 +17,13 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
         "sideBar.background": "#000000",
-        "sideBar.foreground": "#D4D4D4"
+        "sideBar.foreground": "#D4D4D4",
+        "sideBar.border": "#222222"
       },
       "type": "dark"
     }

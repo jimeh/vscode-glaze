@@ -4,7 +4,7 @@
   "publisherName": "nur",
   "displayName": "Just Black",
   "version": "3.1.1",
-  "extractedAt": "2026-02-02T13:46:38.798Z",
+  "extractedAt": "2026-02-08T00:10:51.786Z",
   "installCount": 131432,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#00FF62",
         "titleBar.inactiveBackground": "#0F111A",
         "titleBar.inactiveForeground": "#525975",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#00FFFF",
+        "statusBar.border": "#000000",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FFFF7E",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#999999",
+        "sideBar.border": "#20474B",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#FF7700"
+        "sideBarSectionHeader.foreground": "#FF7700",
+        "sideBarSectionHeader.border": "#0F111A"
       },
       "type": "dark"
     }

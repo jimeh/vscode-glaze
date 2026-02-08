@@ -4,7 +4,7 @@
   "publisherName": "Sudhan",
   "displayName": "Neon Dark Theme",
   "version": "1.3.0",
-  "extractedAt": "2026-02-02T13:46:45.643Z",
+  "extractedAt": "2026-02-08T00:10:58.896Z",
   "installCount": 18185,
   "themes": [
     {
@@ -17,6 +17,7 @@
         "activityBar.background": "#120E16",
         "activityBar.foreground": "#7000FF",
         "sideBar.background": "#120E16",
+        "sideBar.border": "#1A171E",
         "sideBarSectionHeader.background": "#1A171E"
       },
       "type": "dark"

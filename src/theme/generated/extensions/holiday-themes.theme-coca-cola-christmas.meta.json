@@ -4,7 +4,7 @@
   "publisherName": "holiday-themes",
   "displayName": "Coca-Cola Christmas Theme",
   "version": "1.0.2",
-  "extractedAt": "2026-02-02T13:46:56.182Z",
+  "extractedAt": "2026-02-08T00:11:09.907Z",
   "installCount": 4776,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#080808",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#EC1C24",
+        "activityBar.activeBorder": "#EC1C24",
         "sideBar.background": "#1A1A1A",
-        "sideBarSectionHeader.background": "#080808"
+        "sideBarSectionHeader.background": "#080808",
+        "sideBarSectionHeader.border": "#EC1C24"
       },
       "type": "dark"
     },
@@ -40,8 +43,11 @@
         "statusBar.foreground": "#F2F2F2",
         "activityBar.background": "#1A1A1A",
         "activityBar.foreground": "#F2F2F2",
+        "activityBar.activeBackground": "#CC1A21",
+        "activityBar.activeBorder": "#CC1A21",
         "sideBar.background": "#2A2A2A",
-        "sideBarSectionHeader.background": "#1A1A1A"
+        "sideBarSectionHeader.background": "#1A1A1A",
+        "sideBarSectionHeader.border": "#CC1A21"
       },
       "type": "dark"
     }

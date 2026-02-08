@@ -4,7 +4,7 @@
   "publisherName": "brittanychiang",
   "displayName": "Halcyon Theme",
   "version": "0.4.0",
-  "extractedAt": "2026-02-02T13:46:31.761Z",
+  "extractedAt": "2026-02-08T00:10:44.467Z",
   "installCount": 185756,
   "themes": [
     {
@@ -17,14 +17,17 @@
         "titleBar.activeForeground": "#D7DCE2",
         "titleBar.inactiveBackground": "#171C28",
         "titleBar.inactiveForeground": "#8695B7",
+        "titleBar.border": "#171C28",
         "statusBar.background": "#171C28",
         "statusBar.foreground": "#8695B7",
+        "statusBar.border": "#171C28",
         "activityBar.background": "#171C28",
         "activityBar.foreground": "#8695B7",
         "sideBar.background": "#171C28",
         "sideBar.foreground": "#8695B7",
         "sideBarSectionHeader.background": "#1D2433",
-        "sideBarSectionHeader.foreground": "#FFCC66"
+        "sideBarSectionHeader.foreground": "#FFCC66",
+        "sideBarSectionHeader.border": "#171C28"
       },
       "type": "dark"
     }

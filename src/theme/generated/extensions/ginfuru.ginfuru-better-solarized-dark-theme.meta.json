@@ -4,7 +4,7 @@
   "publisherName": "ginfuru",
   "displayName": "Better Solarized",
   "version": "0.10.9",
-  "extractedAt": "2026-02-02T13:46:36.364Z",
+  "extractedAt": "2026-02-08T00:10:49.255Z",
   "installCount": 144386,
   "themes": [
     {
@@ -16,8 +16,10 @@
         "titleBar.activeBackground": "#002B36",
         "statusBar.background": "#00212B",
         "statusBar.foreground": "#93A1A1",
+        "statusBar.border": "#EEE8D5",
         "activityBar.background": "#003847",
-        "sideBar.background": "#00212B"
+        "sideBar.background": "#00212B",
+        "sideBar.border": "#EEE8D5"
       },
       "type": "dark"
     },
@@ -30,8 +32,10 @@
         "titleBar.activeBackground": "#002C39",
         "statusBar.background": "#00212B",
         "statusBar.foreground": "#93A1A1",
+        "statusBar.border": "#EEE8D5",
         "activityBar.background": "#003847",
-        "sideBar.background": "#00212B"
+        "sideBar.background": "#00212B",
+        "sideBar.border": "#EEE8D5"
       },
       "type": "dark"
     },
@@ -58,8 +62,10 @@
         "titleBar.activeBackground": "#002B36",
         "statusBar.background": "#00212B",
         "statusBar.foreground": "#C8D7D8",
+        "statusBar.border": "#FBF3DB",
         "activityBar.background": "#003847",
-        "sideBar.background": "#00212B"
+        "sideBar.background": "#00212B",
+        "sideBar.border": "#FBF3DB"
       },
       "type": "dark"
     },

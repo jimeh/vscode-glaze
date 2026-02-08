@@ -4,7 +4,7 @@
   "publisherName": "MoBalic",
   "displayName": "Jetbrains Dark Theme",
   "version": "3.1.0",
-  "extractedAt": "2026-02-02T13:46:54.921Z",
+  "extractedAt": "2026-02-08T00:11:08.586Z",
   "installCount": 5290,
   "themes": [
     {
@@ -13,7 +13,8 @@
       "colors": {
         "editor.background": "#2B2B2B",
         "editor.foreground": "#A9B7C6",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

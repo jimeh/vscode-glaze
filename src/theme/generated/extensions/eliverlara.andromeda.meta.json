@@ -4,7 +4,7 @@
   "publisherName": "EliverLara",
   "displayName": "Andromeda",
   "version": "1.10.0",
-  "extractedAt": "2026-02-02T13:46:18.702Z",
+  "extractedAt": "2026-02-08T00:10:31.052Z",
   "installCount": 1602129,
   "themes": [
     {
@@ -35,6 +35,7 @@
         "activityBar.foreground": "#BAAFC0",
         "sideBar.background": "#23262E",
         "sideBar.foreground": "#999999",
+        "sideBar.border": "#1B1D23",
         "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"
@@ -51,6 +52,7 @@
         "activityBar.foreground": "#BAAFC0",
         "sideBar.background": "#23262E",
         "sideBar.foreground": "#999999",
+        "sideBar.border": "#1B1D23",
         "sideBarSectionHeader.background": "#23262E"
       },
       "type": "dark"

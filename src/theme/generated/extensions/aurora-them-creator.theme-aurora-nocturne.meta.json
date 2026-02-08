@@ -4,7 +4,7 @@
   "publisherName": "aurora-them-creator",
   "displayName": "Aurora Nocturne Dreams Theme",
   "version": "1.0.3",
-  "extractedAt": "2026-02-02T13:46:57.398Z",
+  "extractedAt": "2026-02-08T00:11:11.197Z",
   "installCount": 4468,
   "themes": [
     {
@@ -21,9 +21,12 @@
         "statusBar.foreground": "#B8C8E0",
         "activityBar.background": "#070A14",
         "activityBar.foreground": "#00F5D4",
+        "activityBar.activeBackground": "#00F5D4",
+        "activityBar.activeBorder": "#00F5D4",
         "sideBar.background": "#0E1224",
         "sideBarSectionHeader.background": "#070A14",
-        "sideBarSectionHeader.foreground": "#B8C8E0"
+        "sideBarSectionHeader.foreground": "#B8C8E0",
+        "sideBarSectionHeader.border": "#7A8CB0"
       },
       "type": "dark"
     },
@@ -41,9 +44,12 @@
         "statusBar.foreground": "#A8B8D0",
         "activityBar.background": "#0F1421",
         "activityBar.foreground": "#00D4B8",
+        "activityBar.activeBackground": "#00D4B8",
+        "activityBar.activeBorder": "#00D4B8",
         "sideBar.background": "#1A1F2E",
         "sideBarSectionHeader.background": "#0F1421",
-        "sideBarSectionHeader.foreground": "#A8B8D0"
+        "sideBarSectionHeader.foreground": "#A8B8D0",
+        "sideBarSectionHeader.border": "#6B7A9F"
       },
       "type": "dark"
     }

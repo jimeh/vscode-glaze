@@ -4,7 +4,7 @@
   "publisherName": "abelfubu",
   "displayName": "abelFubu-Dark+",
   "version": "1.6.2",
-  "extractedAt": "2026-02-02T13:46:54.819Z",
+  "extractedAt": "2026-02-08T00:11:08.478Z",
   "installCount": 5352,
   "themes": [
     {
@@ -21,8 +21,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#16101E",
         "activityBar.foreground": "#D1D1D1",
+        "activityBar.activeBorder": "#ABE9B3",
         "sideBar.background": "#16101E",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#171F21",
         "sideBarSectionHeader.background": "#16101E",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -42,8 +44,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#191C23",
         "activityBar.foreground": "#D1D1D1",
+        "activityBar.activeBorder": "#ABE9B3",
         "sideBar.background": "#191C23",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#171F21",
         "sideBarSectionHeader.background": "#191C23",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -63,8 +67,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#1E222A",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#7FBBB3",
         "sideBar.background": "#1E222A",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#373241",
         "sideBarSectionHeader.background": "#1E222A",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -84,8 +90,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#282C34",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#61AFEF",
         "sideBar.background": "#282C34",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#373241",
         "sideBarSectionHeader.background": "#272B33",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -105,8 +113,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#1A1F24",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#61AFEF",
         "sideBar.background": "#1A1F24",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#373241",
         "sideBarSectionHeader.background": "#1A1F24",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -126,8 +136,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#1A1F24",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#62E2C6",
         "sideBar.background": "#1A1F24",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#373241",
         "sideBarSectionHeader.background": "#1A1F24",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -147,8 +159,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#1A1F24",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#62E2C6",
         "sideBar.background": "#1A1F24",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#373241",
         "sideBarSectionHeader.background": "#1A1F24",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },

@@ -4,7 +4,7 @@
   "publisherName": "ajshortt",
   "displayName": "Tokyo Hack",
   "version": "0.3.2",
-  "extractedAt": "2026-02-02T13:46:42.350Z",
+  "extractedAt": "2026-02-08T00:10:55.536Z",
   "installCount": 106421,
   "themes": [
     {
@@ -19,10 +19,14 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#18173E",
         "activityBar.foreground": "#F08DF0",
+        "activityBar.activeBackground": "#A762A7",
+        "activityBar.activeBorder": "#F08DF0",
         "sideBar.background": "#18173E",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#A762A7",
         "sideBarSectionHeader.background": "#230A35",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#A762A7"
       },
       "type": "dark"
     }

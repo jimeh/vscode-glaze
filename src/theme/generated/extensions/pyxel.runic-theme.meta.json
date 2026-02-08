@@ -4,7 +4,7 @@
   "publisherName": "pyxel",
   "displayName": "Runic Theme",
   "version": "1.2.0",
-  "extractedAt": "2026-02-02T13:47:02.668Z",
+  "extractedAt": "2026-02-08T00:11:16.708Z",
   "installCount": 3318,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#D1D1D1",
         "titleBar.inactiveBackground": "#131515",
         "titleBar.inactiveForeground": "#D1D1D1",
+        "titleBar.border": "#2D3032",
         "statusBar.background": "#131515",
         "statusBar.foreground": "#D1D1D1",
+        "statusBar.border": "#34373A",
         "activityBar.background": "#131515",
         "activityBar.foreground": "#D1D1D1",
         "sideBar.background": "#131515",
         "sideBar.foreground": "#D1D1D1",
+        "sideBar.border": "#34373A",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#CCCCCC"
+        "sideBarSectionHeader.foreground": "#CCCCCC",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -38,14 +42,18 @@
         "titleBar.activeForeground": "#D1D1D1",
         "titleBar.inactiveBackground": "#131515",
         "titleBar.inactiveForeground": "#D1D1D1",
+        "titleBar.border": "#2D3032",
         "statusBar.background": "#131515",
         "statusBar.foreground": "#D1D1D1",
+        "statusBar.border": "#34373A",
         "activityBar.background": "#131515",
         "activityBar.foreground": "#D1D1D1",
         "sideBar.background": "#131515",
         "sideBar.foreground": "#D1D1D1",
+        "sideBar.border": "#34373A",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#CCCCCC"
+        "sideBarSectionHeader.foreground": "#CCCCCC",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

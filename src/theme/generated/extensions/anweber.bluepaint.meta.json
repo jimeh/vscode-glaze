@@ -4,7 +4,7 @@
   "publisherName": "anweber",
   "displayName": "Blue Paint",
   "version": "0.8.0",
-  "extractedAt": "2026-02-02T13:47:02.873Z",
+  "extractedAt": "2026-02-08T00:11:16.936Z",
   "installCount": 3288,
   "themes": [
     {
@@ -16,12 +16,17 @@
         "titleBar.activeBackground": "#E6E6E6",
         "titleBar.activeForeground": "#000000",
         "titleBar.inactiveBackground": "#F3F3F3",
+        "titleBar.border": "#BFBFBF",
         "statusBar.background": "#F3F3F3",
         "statusBar.foreground": "#262626",
+        "statusBar.border": "#C6C6C6",
         "activityBar.background": "#1565C0",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#0D47A1",
+        "activityBar.activeBorder": "#FFFFFF",
         "sideBar.background": "#F3F3F3",
         "sideBar.foreground": "#000000",
+        "sideBar.border": "#BFBFBF",
         "sideBarSectionHeader.background": "#E6E6E6",
         "sideBarSectionHeader.foreground": "#24292E"
       },

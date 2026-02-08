@@ -4,7 +4,7 @@
   "publisherName": "usernamehw",
   "displayName": "Light Theme ( Prism )",
   "version": "1.2.0",
-  "extractedAt": "2026-02-02T13:46:50.740Z",
+  "extractedAt": "2026-02-08T00:11:04.220Z",
   "installCount": 7183,
   "themes": [
     {
@@ -15,11 +15,16 @@
         "editor.foreground": "#494949",
         "titleBar.activeBackground": "#F8F6F5",
         "titleBar.activeForeground": "#111111",
+        "titleBar.border": "#708090",
         "statusBar.background": "#F8F6F5",
         "statusBar.foreground": "#090909",
+        "statusBar.border": "#C6CCD3",
         "activityBar.background": "#F8F6F5",
         "activityBar.foreground": "#111111",
+        "activityBar.activeBackground": "#708090",
+        "activityBar.activeBorder": "#FFFFFF",
         "sideBar.background": "#F8F6F5",
+        "sideBar.border": "#D4D9DE",
         "sideBarSectionHeader.background": "#708090"
       },
       "type": "light"
@@ -32,11 +37,16 @@
         "editor.foreground": "#494949",
         "titleBar.activeBackground": "#F8F6F5",
         "titleBar.activeForeground": "#111111",
+        "titleBar.border": "#708090",
         "statusBar.background": "#F8F6F5",
         "statusBar.foreground": "#090909",
+        "statusBar.border": "#C6CCD3",
         "activityBar.background": "#F8F6F5",
         "activityBar.foreground": "#111111",
+        "activityBar.activeBackground": "#708090",
+        "activityBar.activeBorder": "#FFFFFF",
         "sideBar.background": "#F8F6F5",
+        "sideBar.border": "#D4D9DE",
         "sideBarSectionHeader.background": "#708090"
       },
       "type": "light"

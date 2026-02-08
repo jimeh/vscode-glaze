@@ -4,7 +4,7 @@
   "publisherName": "hiteshchoudharycode",
   "displayName": "chai theme",
   "version": "0.2.0",
-  "extractedAt": "2026-02-02T13:46:34.516Z",
+  "extractedAt": "2026-02-08T00:10:47.341Z",
   "installCount": 159705,
   "themes": [
     {
@@ -19,12 +19,17 @@
         "titleBar.inactiveForeground": "#9FB6C6",
         "statusBar.background": "#07273B",
         "statusBar.foreground": "#1679B6",
+        "statusBar.border": "#0F1315",
         "activityBar.background": "#07273B",
         "activityBar.foreground": "#1679B6",
+        "activityBar.activeBackground": "#49ACE9",
+        "activityBar.activeBorder": "#49ACE9",
         "sideBar.background": "#010305",
         "sideBar.foreground": "#9FB6C6",
+        "sideBar.border": "#515151",
         "sideBarSectionHeader.background": "#09334E",
-        "sideBarSectionHeader.foreground": "#9FB6C6"
+        "sideBarSectionHeader.foreground": "#9FB6C6",
+        "sideBarSectionHeader.border": "#0F1315"
       },
       "type": "dark"
     },
@@ -40,10 +45,13 @@
         "titleBar.inactiveForeground": "#383A42",
         "statusBar.background": "#EBEBEB",
         "statusBar.foreground": "#383A42",
+        "statusBar.border": "#0099E1",
         "activityBar.background": "#CEAB93",
         "activityBar.foreground": "#383A42",
+        "activityBar.activeBorder": "#0099E1",
         "sideBar.background": "#AD8B73",
         "sideBar.foreground": "#383A42",
+        "sideBar.border": "#D1D1D1",
         "sideBarSectionHeader.background": "#D5D7D8",
         "sideBarSectionHeader.foreground": "#383A42"
       },

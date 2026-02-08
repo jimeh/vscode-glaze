@@ -4,7 +4,7 @@
   "publisherName": "emroussel",
   "displayName": "Atomize (Atom One Dark theme)",
   "version": "2.0.2",
-  "extractedAt": "2026-02-02T13:46:39.521Z",
+  "extractedAt": "2026-02-08T00:10:52.525Z",
   "installCount": 127782,
   "themes": [
     {
@@ -17,12 +17,15 @@
         "titleBar.activeForeground": "#D7DAE0",
         "titleBar.inactiveBackground": "#21252B",
         "titleBar.inactiveForeground": "#696F7A",
+        "titleBar.border": "#181A1F",
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
+        "statusBar.border": "#181A1F",
         "activityBar.background": "#21252B",
         "activityBar.foreground": "#D6D9DF",
         "sideBar.background": "#21252B",
         "sideBar.foreground": "#9DA5B4",
+        "sideBar.border": "#181A1F",
         "sideBarSectionHeader.background": "#333842",
         "sideBarSectionHeader.foreground": "#D7DAE0"
       },

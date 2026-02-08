@@ -4,7 +4,7 @@
   "publisherName": "wendreof",
   "displayName": "Ufo Theme",
   "version": "0.0.12",
-  "extractedAt": "2026-02-02T13:46:51.078Z",
+  "extractedAt": "2026-02-08T00:11:04.559Z",
   "installCount": 7022,
   "themes": [
     {
@@ -15,12 +15,17 @@
         "editor.foreground": "#B6F486",
         "statusBar.background": "#400E63",
         "statusBar.foreground": "#9FEE98",
+        "statusBar.border": "#8F30D3",
         "activityBar.background": "#121212",
         "activityBar.foreground": "#9FEE98",
+        "activityBar.activeBackground": "#121212",
+        "activityBar.activeBorder": "#400E63",
         "sideBar.background": "#121212",
         "sideBar.foreground": "#B3B3B3",
+        "sideBar.border": "#161618",
         "sideBarSectionHeader.background": "#121212",
-        "sideBarSectionHeader.foreground": "#B3B3B3"
+        "sideBarSectionHeader.foreground": "#B3B3B3",
+        "sideBarSectionHeader.border": "#121212"
       },
       "type": "dark"
     },
@@ -32,12 +37,17 @@
         "editor.foreground": "#B6F486",
         "statusBar.background": "#400E63",
         "statusBar.foreground": "#9FEE98",
+        "statusBar.border": "#8F30D3",
         "activityBar.background": "#0D1117",
         "activityBar.foreground": "#9FEE98",
+        "activityBar.activeBackground": "#0D1117",
+        "activityBar.activeBorder": "#400E63",
         "sideBar.background": "#0D1117",
         "sideBar.foreground": "#B3B3B3",
+        "sideBar.border": "#161618",
         "sideBarSectionHeader.background": "#0D1117",
-        "sideBarSectionHeader.foreground": "#B3B3B3"
+        "sideBarSectionHeader.foreground": "#B3B3B3",
+        "sideBarSectionHeader.border": "#0D1117"
       },
       "type": "dark"
     }

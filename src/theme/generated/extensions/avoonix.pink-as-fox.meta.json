@@ -4,7 +4,7 @@
   "publisherName": "Avoonix",
   "displayName": "Pink as Fox",
   "version": "1.8.1",
-  "extractedAt": "2026-02-02T13:46:56.389Z",
+  "extractedAt": "2026-02-08T00:11:10.125Z",
   "installCount": 4702,
   "themes": [
     {
@@ -17,12 +17,17 @@
         "titleBar.activeForeground": "#000000",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#FF55C8",
+        "titleBar.border": "#FF55C8",
         "statusBar.background": "#FF55C8",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#FFD4F1",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBackground": "#FF55C8",
+        "activityBar.activeBorder": "#FF55C8",
         "sideBar.background": "#000000",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#541C42",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#541C42"
       },
       "type": "dark"
     },
@@ -36,12 +41,17 @@
         "titleBar.activeForeground": "#000000",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#FF55C8",
+        "titleBar.border": "#FF55C8",
         "statusBar.background": "#FF55C8",
         "statusBar.foreground": "#000000",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FF55C8",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#FF55C8",
         "sideBar.background": "#000000",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#541C42",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#541C42"
       },
       "type": "dark"
     },
@@ -55,12 +65,18 @@
         "titleBar.activeForeground": "#FF55C8",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#541C42",
+        "titleBar.border": "#541C42",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FF55C8",
+        "statusBar.border": "#541C42",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FF55C8",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#FF55C8",
         "sideBar.background": "#000000",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#541C42",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#541C42"
       },
       "type": "dark"
     }

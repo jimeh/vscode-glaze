@@ -4,7 +4,7 @@
   "publisherName": "ahmadawais",
   "displayName": "Shades of Purple",
   "version": "7.3.6",
-  "extractedAt": "2026-02-02T13:46:18.183Z",
+  "extractedAt": "2026-02-08T00:10:30.526Z",
   "installCount": 2238618,
   "themes": [
     {
@@ -19,12 +19,17 @@
         "titleBar.inactiveForeground": "#A599E9",
         "statusBar.background": "#1E1E3F",
         "statusBar.foreground": "#A599E9",
+        "statusBar.border": "#1E1E3F",
         "activityBar.background": "#28284E",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#222244",
+        "activityBar.activeBorder": "#6943FF",
         "sideBar.background": "#222244",
         "sideBar.foreground": "#A599E9",
+        "sideBar.border": "#25254B",
         "sideBarSectionHeader.background": "#1E1E3F",
-        "sideBarSectionHeader.foreground": "#A599E9"
+        "sideBarSectionHeader.foreground": "#A599E9",
+        "sideBarSectionHeader.border": "#1E1E3F"
       },
       "type": "dark"
     },
@@ -40,12 +45,17 @@
         "titleBar.inactiveForeground": "#A599E9",
         "statusBar.background": "#15152B",
         "statusBar.foreground": "#A599E9",
+        "statusBar.border": "#15152B",
         "activityBar.background": "#15152A",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#131327",
+        "activityBar.activeBorder": "#6943FF",
         "sideBar.background": "#131327",
         "sideBar.foreground": "#A599E9",
+        "sideBar.border": "#1A1A35",
         "sideBarSectionHeader.background": "#15152B",
-        "sideBarSectionHeader.foreground": "#A599E9"
+        "sideBarSectionHeader.foreground": "#A599E9",
+        "sideBarSectionHeader.border": "#15152B"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "MateuszDrewniak",
   "displayName": "Dracula Dark+",
   "version": "2.24.4",
-  "extractedAt": "2026-02-02T13:46:47.367Z",
+  "extractedAt": "2026-02-08T00:11:00.699Z",
   "installCount": 11399,
   "themes": [
     {
@@ -21,6 +21,8 @@
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#282A36",
         "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF79C6",
         "sideBar.background": "#21222C",
         "sideBarSectionHeader.background": "#282A36"
       },

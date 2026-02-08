@@ -4,7 +4,7 @@
   "publisherName": "mgwg",
   "displayName": "Light Pink Theme",
   "version": "0.6.0",
-  "extractedAt": "2026-02-02T13:46:37.000Z",
+  "extractedAt": "2026-02-08T00:10:49.920Z",
   "installCount": 138729,
   "themes": [
     {
@@ -29,7 +29,8 @@
         "editor.background": "#1E1E1E",
         "editor.foreground": "#D4D4D4",
         "statusBar.background": "#F15FB4",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

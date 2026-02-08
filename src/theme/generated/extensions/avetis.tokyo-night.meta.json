@@ -4,7 +4,7 @@
   "publisherName": "Avetis",
   "displayName": "tokyo-night",
   "version": "1.0.2",
-  "extractedAt": "2026-02-02T13:46:42.248Z",
+  "extractedAt": "2026-02-08T00:10:55.415Z",
   "installCount": 106999,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#B7BCCF",
         "titleBar.inactiveBackground": "#363B4F",
         "titleBar.inactiveForeground": "#6E7084",
+        "titleBar.border": "#000000",
         "statusBar.background": "#24283B",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#24283B",
         "activityBar.background": "#24283B",
         "activityBar.foreground": "#C0CAF5",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#2A2E43",
         "sideBar.foreground": "#C0CAF5",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#262A3D",
-        "sideBarSectionHeader.foreground": "#F6F8FF"
+        "sideBarSectionHeader.foreground": "#F6F8FF",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -38,14 +43,19 @@
         "titleBar.activeForeground": "#B7BCCF",
         "titleBar.inactiveBackground": "#363B4F",
         "titleBar.inactiveForeground": "#6E7084",
+        "titleBar.border": "#000000",
         "statusBar.background": "#1D1F2D",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#1A1B26",
         "activityBar.background": "#1A1B26",
         "activityBar.foreground": "#C0CAF5",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#1D1F2D",
         "sideBar.foreground": "#C0CAF5",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#1A1B26",
-        "sideBarSectionHeader.foreground": "#C0CAF5"
+        "sideBarSectionHeader.foreground": "#C0CAF5",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -59,14 +69,19 @@
         "titleBar.activeForeground": "#B7BCCF",
         "titleBar.inactiveBackground": "#363B4F",
         "titleBar.inactiveForeground": "#6E7084",
+        "titleBar.border": "#000000",
         "statusBar.background": "#1D1F2D",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#1A1B26",
         "activityBar.background": "#1A1B26",
         "activityBar.foreground": "#C0CAF5",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#1D1F2D",
         "sideBar.foreground": "#C0CAF5",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#1A1B26",
-        "sideBarSectionHeader.foreground": "#C0CAF5"
+        "sideBarSectionHeader.foreground": "#C0CAF5",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     },
@@ -80,14 +95,19 @@
         "titleBar.activeForeground": "#B7BCCF",
         "titleBar.inactiveBackground": "#363B4F",
         "titleBar.inactiveForeground": "#6E7084",
+        "titleBar.border": "#000000",
         "statusBar.background": "#24283B",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#24283B",
         "activityBar.background": "#24283B",
         "activityBar.foreground": "#C0CAF5",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#2A2E43",
         "sideBar.foreground": "#C0CAF5",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#262A3D",
-        "sideBarSectionHeader.foreground": "#F6F8FF"
+        "sideBarSectionHeader.foreground": "#F6F8FF",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

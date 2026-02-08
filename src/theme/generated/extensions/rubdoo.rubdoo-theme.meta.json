@@ -4,7 +4,7 @@
   "publisherName": "rubdoo",
   "displayName": "rubdoo-theme",
   "version": "0.0.5",
-  "extractedAt": "2026-02-02T13:47:02.359Z",
+  "extractedAt": "2026-02-08T00:11:16.380Z",
   "installCount": 3343,
   "themes": [
     {
@@ -18,7 +18,9 @@
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#4080FF",
         "activityBar.background": "#F0F0F0",
-        "activityBar.foreground": "#0040FF"
+        "activityBar.foreground": "#0040FF",
+        "activityBar.activeBackground": "#E0E0E0",
+        "activityBar.activeBorder": "#FF8080"
       },
       "type": "light"
     },
@@ -33,7 +35,9 @@
         "statusBar.background": "#202020",
         "statusBar.foreground": "#4080FF",
         "activityBar.background": "#202020",
-        "activityBar.foreground": "#0040FF"
+        "activityBar.foreground": "#0040FF",
+        "activityBar.activeBackground": "#1E1E1E",
+        "activityBar.activeBorder": "#FF8080"
       },
       "type": "dark"
     }

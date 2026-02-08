@@ -4,7 +4,7 @@
   "publisherName": "a5hk",
   "displayName": "Night Coder",
   "version": "6.0.1",
-  "extractedAt": "2026-02-02T13:46:44.940Z",
+  "extractedAt": "2026-02-08T00:10:58.139Z",
   "installCount": 28429,
   "themes": [
     {
@@ -21,6 +21,7 @@
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#030917",
         "activityBar.foreground": "#ABADB2",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#030917",
         "sideBarSectionHeader.background": "#141926"
       },
@@ -36,11 +37,14 @@
         "titleBar.activeForeground": "#ABADB2",
         "titleBar.inactiveBackground": "#030917",
         "titleBar.inactiveForeground": "#9A9DA2",
+        "titleBar.border": "#252A36",
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#030917",
         "activityBar.foreground": "#ABADB2",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#030612",
+        "sideBar.border": "#252A36",
         "sideBarSectionHeader.background": "#252A36"
       },
       "type": "dark"
@@ -59,6 +63,7 @@
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#0F1317",
         "activityBar.foreground": "#AFB0B2",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#0F1317",
         "sideBarSectionHeader.background": "#1F2326"
       },
@@ -74,11 +79,14 @@
         "titleBar.activeForeground": "#AFB0B2",
         "titleBar.inactiveBackground": "#0F1317",
         "titleBar.inactiveForeground": "#9FA1A2",
+        "titleBar.border": "#2F3236",
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#0F1317",
         "activityBar.foreground": "#AFB0B2",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#0A0D0F",
+        "sideBar.border": "#2F3236",
         "sideBarSectionHeader.background": "#2F3236"
       },
       "type": "dark"
@@ -97,6 +105,7 @@
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#2C2C2C",
         "activityBar.foreground": "#B9B9B9",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#2C2C2C",
         "sideBarSectionHeader.background": "#3A3A3A"
       },
@@ -112,11 +121,14 @@
         "titleBar.activeForeground": "#B9B9B9",
         "titleBar.inactiveBackground": "#2C2C2C",
         "titleBar.inactiveForeground": "#ABABAB",
+        "titleBar.border": "#484848",
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#2C2C2C",
         "activityBar.foreground": "#B9B9B9",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#262626",
+        "sideBar.border": "#484848",
         "sideBarSectionHeader.background": "#484848"
       },
       "type": "dark"
@@ -135,6 +147,7 @@
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#AAAAAA",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#000000",
         "sideBarSectionHeader.background": "#111111"
       },
@@ -150,11 +163,14 @@
         "titleBar.activeForeground": "#AAAAAA",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#999999",
+        "titleBar.border": "#222222",
         "statusBar.background": "#006600",
         "statusBar.foreground": "#F5FFF5",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#AAAAAA",
+        "activityBar.activeBorder": "#006600",
         "sideBar.background": "#050505",
+        "sideBar.border": "#222222",
         "sideBarSectionHeader.background": "#222222"
       },
       "type": "dark"

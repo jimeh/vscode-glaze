@@ -4,7 +4,7 @@
   "publisherName": "eliostruyf",
   "displayName": "The unnamed",
   "version": "1.16.0",
-  "extractedAt": "2026-02-02T13:47:03.289Z",
+  "extractedAt": "2026-02-08T00:11:17.384Z",
   "installCount": 3220,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#F3EFF5",
         "titleBar.inactiveBackground": "#0C111B",
         "titleBar.inactiveForeground": "#F3EFF5",
+        "titleBar.border": "#212C36",
         "statusBar.background": "#0E131F",
         "statusBar.foreground": "#F3EFF5",
+        "statusBar.border": "#212C36",
         "activityBar.background": "#0E131F",
         "activityBar.foreground": "#F3EFF5",
+        "activityBar.activeBackground": "#FFFFFF",
+        "activityBar.activeBorder": "#ED1292",
         "sideBar.background": "#141C2D",
         "sideBar.foreground": "#F3EFF5",
+        "sideBar.border": "#242D34",
         "sideBarSectionHeader.background": "#0D1217",
-        "sideBarSectionHeader.foreground": "#F3EFF5"
+        "sideBarSectionHeader.foreground": "#F3EFF5",
+        "sideBarSectionHeader.border": "#212C36"
       },
       "type": "dark"
     },
@@ -38,14 +44,20 @@
         "titleBar.activeForeground": "#F3EFF5",
         "titleBar.inactiveBackground": "#0C111B",
         "titleBar.inactiveForeground": "#F3EFF5",
+        "titleBar.border": "#212C36",
         "statusBar.background": "#0E131F",
         "statusBar.foreground": "#F3EFF5",
+        "statusBar.border": "#212C36",
         "activityBar.background": "#0E131F",
         "activityBar.foreground": "#F3EFF5",
+        "activityBar.activeBackground": "#FFFFFF",
+        "activityBar.activeBorder": "#ED1292",
         "sideBar.background": "#141C2D",
         "sideBar.foreground": "#F3EFF5",
+        "sideBar.border": "#242D34",
         "sideBarSectionHeader.background": "#0D1217",
-        "sideBarSectionHeader.foreground": "#F3EFF5"
+        "sideBarSectionHeader.foreground": "#F3EFF5",
+        "sideBarSectionHeader.border": "#212C36"
       },
       "type": "dark"
     }

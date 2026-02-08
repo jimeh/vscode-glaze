@@ -4,7 +4,7 @@
   "publisherName": "ceciljacob",
   "displayName": "Theme +",
   "version": "1.28.0",
-  "extractedAt": "2026-02-02T13:46:31.030Z",
+  "extractedAt": "2026-02-08T00:10:43.704Z",
   "installCount": 201012,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#F6FAFD",
         "titleBar.inactiveBackground": "#081620",
         "titleBar.inactiveForeground": "#F6FAFD",
+        "titleBar.border": "#020608",
         "statusBar.background": "#081620",
         "statusBar.foreground": "#DFECF6",
+        "statusBar.border": "#102838",
         "activityBar.background": "#081620",
         "activityBar.foreground": "#9BC4E2",
+        "activityBar.activeBackground": "#081620",
+        "activityBar.activeBorder": "#9BC4E2",
         "sideBar.background": "#081620",
         "sideBar.foreground": "#DFECF6",
+        "sideBar.border": "#102838",
         "sideBarSectionHeader.background": "#9BC4E2",
-        "sideBarSectionHeader.foreground": "#DFECF6"
+        "sideBarSectionHeader.foreground": "#DFECF6",
+        "sideBarSectionHeader.border": "#020608"
       },
       "type": "dark"
     },
@@ -38,14 +44,20 @@
         "titleBar.activeForeground": "#FCFAF6",
         "titleBar.inactiveBackground": "#180F08",
         "titleBar.inactiveForeground": "#FCFAF6",
+        "titleBar.border": "#080402",
         "statusBar.background": "#180F08",
         "statusBar.foreground": "#F6ECE0",
+        "statusBar.border": "#362412",
         "activityBar.background": "#180F08",
         "activityBar.foreground": "#D2A67B",
+        "activityBar.activeBackground": "#180F08",
+        "activityBar.activeBorder": "#D2A67B",
         "sideBar.background": "#180F08",
         "sideBar.foreground": "#F6ECE0",
+        "sideBar.border": "#362412",
         "sideBarSectionHeader.background": "#D2A67B",
-        "sideBarSectionHeader.foreground": "#F6ECE0"
+        "sideBarSectionHeader.foreground": "#F6ECE0",
+        "sideBarSectionHeader.border": "#080402"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "crazyurus",
   "displayName": "微信小程序开发工具",
   "version": "1.5.1",
-  "extractedAt": "2026-02-02T13:46:30.309Z",
+  "extractedAt": "2026-02-08T00:10:42.954Z",
   "installCount": 218242,
   "themes": [
     {
@@ -15,10 +15,12 @@
         "editor.foreground": "#DCDCDC",
         "titleBar.activeBackground": "#424242",
         "titleBar.inactiveBackground": "#424242",
+        "titleBar.border": "#0B0B0B",
         "statusBar.background": "#383838",
         "statusBar.foreground": "#9B9B9B",
         "activityBar.foreground": "#F7F7F7",
         "sideBar.background": "#2E2E2E",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#383838",
         "sideBarSectionHeader.foreground": "#BDBDBD"
       },
@@ -35,8 +37,10 @@
         "activityBar.foreground": "#000000",
         "sideBar.background": "#FFFFFF",
         "sideBar.foreground": "#222222",
+        "sideBar.border": "#E8E8E8",
         "sideBarSectionHeader.background": "#F2F2F2",
-        "sideBarSectionHeader.foreground": "#7F7F7F"
+        "sideBarSectionHeader.foreground": "#7F7F7F",
+        "sideBarSectionHeader.border": "#E8E8E8"
       },
       "type": "light"
     }

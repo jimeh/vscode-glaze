@@ -4,7 +4,7 @@
   "publisherName": "Lavender-Studio",
   "displayName": "Lavender Dreams Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-02-02T13:46:47.470Z",
+  "extractedAt": "2026-02-08T00:11:00.804Z",
   "installCount": 11223,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#F8F4FF",
         "activityBar.background": "#1F1A28",
         "activityBar.foreground": "#F8F4FF",
+        "activityBar.activeBackground": "#B19CD9",
+        "activityBar.activeBorder": "#B19CD9",
         "sideBar.background": "#251F30",
-        "sideBarSectionHeader.background": "#1F1A28"
+        "sideBarSectionHeader.background": "#1F1A28",
+        "sideBarSectionHeader.border": "#B19CD9"
       },
       "type": "dark"
     },
@@ -40,8 +43,11 @@
         "statusBar.foreground": "#E8E4F0",
         "activityBar.background": "#221D2A",
         "activityBar.foreground": "#E8E4F0",
+        "activityBar.activeBackground": "#A08BC4",
+        "activityBar.activeBorder": "#A08BC4",
         "sideBar.background": "#2A2436",
-        "sideBarSectionHeader.background": "#221D2A"
+        "sideBarSectionHeader.background": "#221D2A",
+        "sideBarSectionHeader.border": "#A08BC4"
       },
       "type": "dark"
     }

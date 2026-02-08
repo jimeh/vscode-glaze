@@ -4,7 +4,7 @@
   "publisherName": "viktorqvarfordt",
   "displayName": "Pitch Black Theme",
   "version": "1.3.0",
-  "extractedAt": "2026-02-02T13:46:34.309Z",
+  "extractedAt": "2026-02-08T00:10:47.126Z",
   "installCount": 162914,
   "themes": [
     {
@@ -17,12 +17,15 @@
         "titleBar.activeForeground": "#CCCCCC",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#CCCCCC",
         "activityBar.background": "#000000",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#D4D4D4",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBar.border": "#000000",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

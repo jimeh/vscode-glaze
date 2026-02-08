@@ -4,7 +4,7 @@
   "publisherName": "MateoCERQUETELLA",
   "displayName": "Xcode Theme",
   "version": "5.0.1",
-  "extractedAt": "2026-02-02T13:46:34.101Z",
+  "extractedAt": "2026-02-08T00:10:46.904Z",
   "installCount": 165268,
   "themes": [
     {
@@ -15,11 +15,14 @@
         "editor.foreground": "#DFDFE0",
         "titleBar.activeBackground": "#282831",
         "titleBar.activeForeground": "#B7B8BB",
+        "titleBar.border": "#282831",
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
+        "statusBar.border": "#000000",
         "activityBar.background": "#282831",
         "activityBar.foreground": "#DFDFDF",
         "sideBar.background": "#32323B",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
@@ -32,11 +35,14 @@
         "editor.foreground": "#DFDFE0",
         "titleBar.activeBackground": "#282831",
         "titleBar.activeForeground": "#B7B8BB",
+        "titleBar.border": "#282831",
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
+        "statusBar.border": "#000000",
         "activityBar.background": "#282831",
         "activityBar.foreground": "#DFDFDF",
         "sideBar.background": "#32323B",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
@@ -49,11 +55,14 @@
         "editor.foreground": "#DFDFE0",
         "titleBar.activeBackground": "#383A3D",
         "titleBar.activeForeground": "#B7B8BB",
+        "titleBar.border": "#26282B",
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
+        "statusBar.border": "#000000",
         "activityBar.background": "#2A2C2F",
         "activityBar.foreground": "#DFDFDF",
         "sideBar.background": "#2A2C2F",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"
@@ -66,11 +75,14 @@
         "editor.foreground": "#DFDFE0",
         "titleBar.activeBackground": "#383A3D",
         "titleBar.activeForeground": "#B7B8BB",
+        "titleBar.border": "#26282B",
         "statusBar.background": "#1C1F21",
         "statusBar.foreground": "#DCDDDD",
+        "statusBar.border": "#000000",
         "activityBar.background": "#2A2C2F",
         "activityBar.foreground": "#DFDFDF",
         "sideBar.background": "#2A2C2F",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000"
       },
       "type": "dark"

@@ -4,7 +4,7 @@
   "publisherName": "mskelton",
   "displayName": "One Dark Theme",
   "version": "1.14.3",
-  "extractedAt": "2026-02-02T13:46:39.833Z",
+  "extractedAt": "2026-02-08T00:10:52.842Z",
   "installCount": 126050,
   "themes": [
     {
@@ -17,11 +17,14 @@
         "titleBar.activeForeground": "#9DA5B4",
         "titleBar.inactiveBackground": "#21252B",
         "titleBar.inactiveForeground": "#6B717D",
+        "titleBar.border": "#181A1F",
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#282C34",
         "activityBar.foreground": "#D7DAE0",
+        "activityBar.activeBorder": "#568AF2",
         "sideBar.background": "#21252B",
+        "sideBar.border": "#181A1F",
         "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"
@@ -36,11 +39,14 @@
         "titleBar.activeForeground": "#9DA5B4",
         "titleBar.inactiveBackground": "#21252B",
         "titleBar.inactiveForeground": "#6B717D",
+        "titleBar.border": "#181A1F",
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#282C34",
         "activityBar.foreground": "#D7DAE0",
+        "activityBar.activeBorder": "#568AF2",
         "sideBar.background": "#21252B",
+        "sideBar.border": "#181A1F",
         "sideBarSectionHeader.background": "#282C34"
       },
       "type": "dark"

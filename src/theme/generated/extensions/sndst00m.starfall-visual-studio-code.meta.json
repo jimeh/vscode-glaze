@@ -4,7 +4,7 @@
   "publisherName": "sndst00m",
   "displayName": "Starfall",
   "version": "0.5.4",
-  "extractedAt": "2026-02-02T13:46:50.107Z",
+  "extractedAt": "2026-02-08T00:11:03.555Z",
   "installCount": 7846,
   "themes": [
     {
@@ -17,13 +17,18 @@
         "titleBar.activeForeground": "#D2D8E7",
         "titleBar.inactiveBackground": "#1B2636",
         "titleBar.inactiveForeground": "#6D88A7",
+        "titleBar.border": "#1B2636",
         "statusBar.background": "#1B2636",
         "statusBar.foreground": "#6D88A7",
+        "statusBar.border": "#1B2636",
         "activityBar.background": "#1B2636",
         "activityBar.foreground": "#CACDE2",
+        "activityBar.activeBorder": "#54BEF2",
         "sideBar.background": "#1B2636",
         "sideBar.foreground": "#6D88A7",
-        "sideBarSectionHeader.background": "#1B2636"
+        "sideBar.border": "#1B2636",
+        "sideBarSectionHeader.background": "#1B2636",
+        "sideBarSectionHeader.border": "#1B2636"
       },
       "type": "dark"
     },
@@ -37,13 +42,18 @@
         "titleBar.activeForeground": "#D2D8E7",
         "titleBar.inactiveBackground": "#212127",
         "titleBar.inactiveForeground": "#7E8995",
+        "titleBar.border": "#212127",
         "statusBar.background": "#212127",
         "statusBar.foreground": "#7E8995",
+        "statusBar.border": "#212127",
         "activityBar.background": "#212127",
         "activityBar.foreground": "#CACDE2",
+        "activityBar.activeBorder": "#54BEF2",
         "sideBar.background": "#212127",
         "sideBar.foreground": "#7E8995",
-        "sideBarSectionHeader.background": "#212127"
+        "sideBar.border": "#212127",
+        "sideBarSectionHeader.background": "#212127",
+        "sideBarSectionHeader.border": "#212127"
       },
       "type": "dark"
     },
@@ -57,13 +67,18 @@
         "titleBar.activeForeground": "#D2D8E7",
         "titleBar.inactiveBackground": "#0E131B",
         "titleBar.inactiveForeground": "#7E8995",
+        "titleBar.border": "#0E131B",
         "statusBar.background": "#0E131B",
         "statusBar.foreground": "#7E8995",
+        "statusBar.border": "#0E131B",
         "activityBar.background": "#0E131B",
         "activityBar.foreground": "#CACDE2",
+        "activityBar.activeBorder": "#54BEF2",
         "sideBar.background": "#0E131B",
         "sideBar.foreground": "#7E8995",
-        "sideBarSectionHeader.background": "#0E131B"
+        "sideBar.border": "#0E131B",
+        "sideBarSectionHeader.background": "#0E131B",
+        "sideBarSectionHeader.border": "#0E131B"
       },
       "type": "dark"
     },
@@ -77,13 +92,18 @@
         "titleBar.activeForeground": "#D2D8E7",
         "titleBar.inactiveBackground": "#202337",
         "titleBar.inactiveForeground": "#6D88A7",
+        "titleBar.border": "#202337",
         "statusBar.background": "#202337",
         "statusBar.foreground": "#6D88A7",
+        "statusBar.border": "#202337",
         "activityBar.background": "#202337",
         "activityBar.foreground": "#CACDE2",
+        "activityBar.activeBorder": "#54BEF2",
         "sideBar.background": "#202337",
         "sideBar.foreground": "#6D88A7",
-        "sideBarSectionHeader.background": "#202337"
+        "sideBar.border": "#202337",
+        "sideBarSectionHeader.background": "#202337",
+        "sideBarSectionHeader.border": "#202337"
       },
       "type": "dark"
     }

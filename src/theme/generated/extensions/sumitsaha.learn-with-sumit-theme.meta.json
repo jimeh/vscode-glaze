@@ -4,7 +4,7 @@
   "publisherName": "SumitSaha",
   "displayName": "Learn with Sumit Theme",
   "version": "12.1.0",
-  "extractedAt": "2026-02-02T13:46:35.733Z",
+  "extractedAt": "2026-02-08T00:10:48.574Z",
   "installCount": 155063,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#868D9C",
         "titleBar.inactiveBackground": "#0E0E12",
         "titleBar.inactiveForeground": "#868D9C",
+        "titleBar.border": "#0E0E12",
         "statusBar.background": "#11141F",
         "statusBar.foreground": "#00B3BD",
+        "statusBar.border": "#0E0E12",
         "activityBar.background": "#171C2A",
         "activityBar.foreground": "#989EB3",
         "sideBar.background": "#11141F",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#0E0E12",
         "sideBarSectionHeader.background": "#11141F",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#0E0E12"
       },
       "type": "dark"
     },
@@ -40,10 +44,14 @@
         "titleBar.inactiveForeground": "#305A84",
         "statusBar.background": "#101E2C",
         "statusBar.foreground": "#7BA5CF",
+        "statusBar.border": "#1B324A",
         "activityBar.background": "#101E2C",
         "activityBar.foreground": "#7BA5CF",
+        "activityBar.activeBackground": "#14283C",
+        "activityBar.activeBorder": "#00D991",
         "sideBar.background": "#101E2C",
         "sideBar.foreground": "#7BA5CF",
+        "sideBar.border": "#1B324A",
         "sideBarSectionHeader.background": "#14283C",
         "sideBarSectionHeader.foreground": "#7BA5CF"
       },
@@ -59,14 +67,18 @@
         "titleBar.activeForeground": "#868D9C",
         "titleBar.inactiveBackground": "#0E0E12",
         "titleBar.inactiveForeground": "#868D9C",
+        "titleBar.border": "#0E0E12",
         "statusBar.background": "#101C2C",
         "statusBar.foreground": "#00B3BD",
+        "statusBar.border": "#0E0E12",
         "activityBar.background": "#122033",
         "activityBar.foreground": "#989EB3",
         "sideBar.background": "#101C2C",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#0E0E12",
         "sideBarSectionHeader.background": "#101C2C",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#0E0E12"
       },
       "type": "dark"
     },
@@ -80,14 +92,18 @@
         "titleBar.activeForeground": "#8B99A7",
         "titleBar.inactiveBackground": "#D1DADC",
         "titleBar.inactiveForeground": "#8B99A7",
+        "titleBar.border": "#D1DADC",
         "statusBar.background": "#F3F6F6",
         "statusBar.foreground": "#455059",
+        "statusBar.border": "#D1DADC",
         "activityBar.background": "#171C2A",
         "activityBar.foreground": "#00B3BD",
         "sideBar.background": "#F3F6F6",
         "sideBar.foreground": "#455059",
+        "sideBar.border": "#D1DADC",
         "sideBarSectionHeader.background": "#F3F6F6",
-        "sideBarSectionHeader.foreground": "#455059"
+        "sideBarSectionHeader.foreground": "#455059",
+        "sideBarSectionHeader.border": "#D1DADC"
       },
       "type": "light"
     },
@@ -101,14 +117,18 @@
         "titleBar.activeForeground": "#868D9C",
         "titleBar.inactiveBackground": "#0E0E12",
         "titleBar.inactiveForeground": "#868D9C",
+        "titleBar.border": "#0E0E12",
         "statusBar.background": "#11141F",
         "statusBar.foreground": "#00B3BD",
+        "statusBar.border": "#0E0E12",
         "activityBar.background": "#171C2A",
         "activityBar.foreground": "#989EB3",
         "sideBar.background": "#11141F",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#0E0E12",
         "sideBarSectionHeader.background": "#11141F",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#0E0E12"
       },
       "type": "dark"
     },
@@ -122,14 +142,18 @@
         "titleBar.activeForeground": "#868D9C",
         "titleBar.inactiveBackground": "#0E0E12",
         "titleBar.inactiveForeground": "#868D9C",
+        "titleBar.border": "#0E0E12",
         "statusBar.background": "#101C2C",
         "statusBar.foreground": "#00B3BD",
+        "statusBar.border": "#0E0E12",
         "activityBar.background": "#122033",
         "activityBar.foreground": "#989EB3",
         "sideBar.background": "#101C2C",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#0E0E12",
         "sideBarSectionHeader.background": "#101C2C",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#0E0E12"
       },
       "type": "dark"
     },
@@ -143,14 +167,19 @@
         "titleBar.activeForeground": "#E1E4E8",
         "titleBar.inactiveBackground": "#1F2428",
         "titleBar.inactiveForeground": "#959DA5",
+        "titleBar.border": "#1B1F23",
         "statusBar.background": "#24292E",
         "statusBar.foreground": "#D1D5DA",
+        "statusBar.border": "#1B1F23",
         "activityBar.background": "#24292E",
         "activityBar.foreground": "#E1E4E8",
+        "activityBar.activeBorder": "#F9826C",
         "sideBar.background": "#1F2428",
         "sideBar.foreground": "#D1D5DA",
+        "sideBar.border": "#1B1F23",
         "sideBarSectionHeader.background": "#1F2428",
-        "sideBarSectionHeader.foreground": "#E1E4E8"
+        "sideBarSectionHeader.foreground": "#E1E4E8",
+        "sideBarSectionHeader.border": "#1B1F23"
       },
       "type": "dark"
     },
@@ -185,10 +214,13 @@
         "titleBar.activeForeground": "#ABB2BF",
         "statusBar.background": "#37404B",
         "statusBar.foreground": "#ABB2BF",
+        "statusBar.border": "#282C34",
         "activityBar.background": "#2D333D",
         "activityBar.foreground": "#ABB2BF",
+        "activityBar.activeBorder": "#3691FF",
         "sideBar.background": "#22252A",
         "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#181A1D",
         "sideBarSectionHeader.background": "#303842",
         "sideBarSectionHeader.foreground": "#ABB2BF"
       },
@@ -206,7 +238,8 @@
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#CCCCCC",
         "activityBar.background": "#FFFFFF",
-        "sideBar.background": "#242424"
+        "sideBar.background": "#242424",
+        "sideBar.border": "#FFFFFF"
       },
       "type": "dark"
     },
@@ -220,13 +253,17 @@
         "titleBar.activeForeground": "#C8D3F5",
         "titleBar.inactiveBackground": "#1A1B29",
         "titleBar.inactiveForeground": "#828BB8",
+        "titleBar.border": "#151624",
         "statusBar.background": "#1A1B29",
         "statusBar.foreground": "#828BB8",
+        "statusBar.border": "#151624",
         "activityBar.background": "#1A1B29",
         "activityBar.foreground": "#B4C2F0",
         "sideBar.background": "#1A1B29",
         "sideBar.foreground": "#828BB8",
-        "sideBarSectionHeader.background": "#1A1B29"
+        "sideBar.border": "#151624",
+        "sideBarSectionHeader.background": "#1A1B29",
+        "sideBarSectionHeader.border": "#2F334D"
       },
       "type": "dark"
     },

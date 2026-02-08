@@ -4,7 +4,7 @@
   "publisherName": "SpaceBox",
   "displayName": "Monospace IDX Theme",
   "version": "0.0.7",
-  "extractedAt": "2026-02-02T13:46:57.292Z",
+  "extractedAt": "2026-02-08T00:11:11.092Z",
   "installCount": 4477,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#333E4F",
         "titleBar.inactiveBackground": "#F4F7FD",
         "titleBar.inactiveForeground": "#5D6A7D",
+        "titleBar.border": "#D9DFE7",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#5D6A7D",
+        "statusBar.border": "#D9DFE7",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#333E4F",
+        "activityBar.activeBorder": "#A87FFB",
         "sideBar.background": "#F4F7FD",
         "sideBar.foreground": "#475365",
+        "sideBar.border": "#D9DFE7",
         "sideBarSectionHeader.background": "#F4F7FD",
-        "sideBarSectionHeader.foreground": "#333E4F"
+        "sideBarSectionHeader.foreground": "#333E4F",
+        "sideBarSectionHeader.border": "#D9DFE7"
       },
       "type": "light"
     },
@@ -38,14 +43,19 @@
         "titleBar.activeForeground": "#D9DFE7",
         "titleBar.inactiveBackground": "#10151D",
         "titleBar.inactiveForeground": "#738295",
+        "titleBar.border": "#333E4F",
         "statusBar.background": "#1F2939",
         "statusBar.foreground": "#A4AFBD",
+        "statusBar.border": "#333E4F",
         "activityBar.background": "#171F2B",
         "activityBar.foreground": "#D9DFE7",
+        "activityBar.activeBorder": "#A87FFB",
         "sideBar.background": "#10151D",
         "sideBar.foreground": "#D9DFE7",
+        "sideBar.border": "#333E4F",
         "sideBarSectionHeader.background": "#10151D",
-        "sideBarSectionHeader.foreground": "#D9DFE7"
+        "sideBarSectionHeader.foreground": "#D9DFE7",
+        "sideBarSectionHeader.border": "#333E4F"
       },
       "type": "dark"
     }

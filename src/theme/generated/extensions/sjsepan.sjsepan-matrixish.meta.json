@@ -4,7 +4,7 @@
   "publisherName": "sjsepan",
   "displayName": "sjsepan.matrixish",
   "version": "0.4.1",
-  "extractedAt": "2026-02-02T13:46:50.425Z",
+  "extractedAt": "2026-02-08T00:11:03.889Z",
   "installCount": 7730,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#0FCF24",
         "titleBar.inactiveBackground": "#031F05",
         "titleBar.inactiveForeground": "#0FCF24",
+        "titleBar.border": "#07641B",
         "statusBar.background": "#031F05",
         "statusBar.foreground": "#0FCF24",
+        "statusBar.border": "#07641B",
         "activityBar.background": "#031F05",
         "activityBar.foreground": "#0FCF24",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#0FCF24",
+        "sideBar.border": "#07641B",
         "sideBarSectionHeader.background": "#031F05",
-        "sideBarSectionHeader.foreground": "#0BEC24"
+        "sideBarSectionHeader.foreground": "#0BEC24",
+        "sideBarSectionHeader.border": "#07641B"
       },
       "type": "dark"
     },
@@ -38,14 +42,18 @@
         "titleBar.activeForeground": "#0FCF24",
         "titleBar.inactiveBackground": "#031F05",
         "titleBar.inactiveForeground": "#0FCF24",
+        "titleBar.border": "#07641B",
         "statusBar.background": "#031F05",
         "statusBar.foreground": "#0FCF24",
+        "statusBar.border": "#07641B",
         "activityBar.background": "#031F05",
         "activityBar.foreground": "#0FCF24",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#0FCF24",
+        "sideBar.border": "#07641B",
         "sideBarSectionHeader.background": "#031F05",
-        "sideBarSectionHeader.foreground": "#0BEC24"
+        "sideBarSectionHeader.foreground": "#0BEC24",
+        "sideBarSectionHeader.border": "#07641B"
       },
       "type": "dark"
     },
@@ -59,14 +67,18 @@
         "titleBar.activeForeground": "#0FCF24",
         "titleBar.inactiveBackground": "#031F05",
         "titleBar.inactiveForeground": "#0FCF24",
+        "titleBar.border": "#07641B",
         "statusBar.background": "#031F05",
         "statusBar.foreground": "#0FCF24",
+        "statusBar.border": "#07641B",
         "activityBar.background": "#031F05",
         "activityBar.foreground": "#0FCF24",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#0FCF24",
+        "sideBar.border": "#07641B",
         "sideBarSectionHeader.background": "#031F05",
-        "sideBarSectionHeader.foreground": "#0BEC24"
+        "sideBarSectionHeader.foreground": "#0BEC24",
+        "sideBarSectionHeader.border": "#07641B"
       },
       "type": "dark"
     },
@@ -80,14 +92,18 @@
         "titleBar.activeForeground": "#0FCF24",
         "titleBar.inactiveBackground": "#031F05",
         "titleBar.inactiveForeground": "#0FCF24",
+        "titleBar.border": "#07641B",
         "statusBar.background": "#031F05",
         "statusBar.foreground": "#0FCF24",
+        "statusBar.border": "#07641B",
         "activityBar.background": "#031F05",
         "activityBar.foreground": "#0FCF24",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#0FCF24",
+        "sideBar.border": "#07641B",
         "sideBarSectionHeader.background": "#031F05",
-        "sideBarSectionHeader.foreground": "#0BEC24"
+        "sideBarSectionHeader.foreground": "#0BEC24",
+        "sideBarSectionHeader.border": "#07641B"
       },
       "type": "dark"
     },
@@ -101,14 +117,18 @@
         "titleBar.activeForeground": "#0FCF24",
         "titleBar.inactiveBackground": "#031F05",
         "titleBar.inactiveForeground": "#0FCF24",
+        "titleBar.border": "#07641B",
         "statusBar.background": "#031F05",
         "statusBar.foreground": "#0FCF24",
+        "statusBar.border": "#07641B",
         "activityBar.background": "#031F05",
         "activityBar.foreground": "#0FCF24",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#0FCF24",
+        "sideBar.border": "#07641B",
         "sideBarSectionHeader.background": "#031F05",
-        "sideBarSectionHeader.foreground": "#0BEC24"
+        "sideBarSectionHeader.foreground": "#0BEC24",
+        "sideBarSectionHeader.border": "#07641B"
       },
       "type": "dark"
     },
@@ -122,14 +142,18 @@
         "titleBar.activeForeground": "#0FCF24",
         "titleBar.inactiveBackground": "#031F05",
         "titleBar.inactiveForeground": "#0FCF24",
+        "titleBar.border": "#07641B",
         "statusBar.background": "#031F05",
         "statusBar.foreground": "#0FCF24",
+        "statusBar.border": "#07641B",
         "activityBar.background": "#031F05",
         "activityBar.foreground": "#0FCF24",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#0FCF24",
+        "sideBar.border": "#07641B",
         "sideBarSectionHeader.background": "#031F05",
-        "sideBarSectionHeader.foreground": "#0BEC24"
+        "sideBarSectionHeader.foreground": "#0BEC24",
+        "sideBarSectionHeader.border": "#07641B"
       },
       "type": "dark"
     }

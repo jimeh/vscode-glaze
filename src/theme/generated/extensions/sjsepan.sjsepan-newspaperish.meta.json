@@ -4,7 +4,7 @@
   "publisherName": "sjsepan",
   "displayName": "sjsepan.newspaperish",
   "version": "0.3.5",
-  "extractedAt": "2026-02-02T13:46:59.877Z",
+  "extractedAt": "2026-02-08T00:11:13.801Z",
   "installCount": 3844,
   "themes": [
     {
@@ -17,12 +17,15 @@
         "titleBar.activeForeground": "#272727",
         "titleBar.inactiveBackground": "#C0C0C0",
         "titleBar.inactiveForeground": "#838383",
+        "titleBar.border": "#838383",
         "statusBar.background": "#C0C0C0",
         "statusBar.foreground": "#272727",
+        "statusBar.border": "#838383",
         "activityBar.background": "#C0C0C0",
         "activityBar.foreground": "#272727",
         "sideBar.background": "#D8D8D8",
         "sideBar.foreground": "#272727",
+        "sideBar.border": "#838383",
         "sideBarSectionHeader.background": "#C0C0C0",
         "sideBarSectionHeader.foreground": "#272727"
       },

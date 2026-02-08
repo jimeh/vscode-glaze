@@ -4,7 +4,7 @@
   "publisherName": "BenjaminBenais",
   "displayName": "Copilot Theme",
   "version": "1.1.0",
-  "extractedAt": "2026-02-02T13:46:22.046Z",
+  "extractedAt": "2026-02-08T00:10:34.532Z",
   "installCount": 559029,
   "themes": [
     {
@@ -16,12 +16,15 @@
         "titleBar.activeBackground": "#1A2023",
         "titleBar.activeForeground": "#939DA5",
         "titleBar.inactiveBackground": "#232A2F",
+        "titleBar.border": "#000000",
         "statusBar.background": "#1A2023",
         "statusBar.foreground": "#939DA5",
         "activityBar.background": "#1A2023",
         "activityBar.foreground": "#89DDFF",
+        "activityBar.activeBorder": "#89DDFF",
         "sideBar.background": "#1A2023",
         "sideBar.foreground": "#939DA5",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#232A2F"
       },
       "type": "dark"
@@ -35,12 +38,15 @@
         "titleBar.activeBackground": "#1A2023",
         "titleBar.activeForeground": "#939DA5",
         "titleBar.inactiveBackground": "#232A2F",
+        "titleBar.border": "#000000",
         "statusBar.background": "#1A2023",
         "statusBar.foreground": "#939DA5",
         "activityBar.background": "#1A2023",
         "activityBar.foreground": "#89DDFF",
+        "activityBar.activeBorder": "#89DDFF",
         "sideBar.background": "#1A2023",
         "sideBar.foreground": "#939DA5",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#232A2F"
       },
       "type": "dark"

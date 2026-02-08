@@ -4,7 +4,7 @@
   "publisherName": "Anan",
   "displayName": "JetBrains Darcula Theme",
   "version": "1.3.5",
-  "extractedAt": "2026-02-02T13:46:35.522Z",
+  "extractedAt": "2026-02-08T00:10:48.350Z",
   "installCount": 155681,
   "themes": [
     {
@@ -15,13 +15,17 @@
         "editor.foreground": "#A9B7C6",
         "titleBar.activeBackground": "#3C3F41",
         "titleBar.inactiveBackground": "#313335",
+        "titleBar.border": "#323232",
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
+        "statusBar.border": "#323232",
         "activityBar.background": "#3C3F41",
         "activityBar.foreground": "#F0F0F0",
         "sideBar.background": "#3C3F41",
         "sideBar.foreground": "#BBBBBB",
-        "sideBarSectionHeader.background": "#3B4754"
+        "sideBar.border": "#323232",
+        "sideBarSectionHeader.background": "#3B4754",
+        "sideBarSectionHeader.border": "#323232"
       },
       "type": "dark"
     }

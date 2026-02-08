@@ -4,7 +4,7 @@
   "publisherName": "Luxcium",
   "displayName": "Pop N' Lock Theme by Luxcium ✨",
   "version": "3.32.188",
-  "extractedAt": "2026-02-02T13:46:39.943Z",
+  "extractedAt": "2026-02-08T00:10:52.960Z",
   "installCount": 125749,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#D2C8BE",
         "titleBar.inactiveBackground": "#1C1C2E",
         "titleBar.inactiveForeground": "#D2C8BE",
+        "titleBar.border": "#1C1C2E",
         "statusBar.background": "#1D2547",
         "statusBar.foreground": "#D2C8BE",
+        "statusBar.border": "#661177",
         "activityBar.background": "#1C1C30",
         "activityBar.foreground": "#C4BDB5",
+        "activityBar.activeBackground": "#661177",
+        "activityBar.activeBorder": "#661177",
         "sideBar.background": "#1D1028",
         "sideBar.foreground": "#D2C8BE",
+        "sideBar.border": "#FFCC33",
         "sideBarSectionHeader.background": "#661177",
-        "sideBarSectionHeader.foreground": "#D2C8BE"
+        "sideBarSectionHeader.foreground": "#D2C8BE",
+        "sideBarSectionHeader.border": "#FFBBAA"
       },
       "type": "dark"
     },
@@ -38,14 +44,20 @@
         "titleBar.activeForeground": "#DDCCBB",
         "titleBar.inactiveBackground": "#181818",
         "titleBar.inactiveForeground": "#DDCCBB",
+        "titleBar.border": "#FFCC55",
         "statusBar.background": "#181818",
         "statusBar.foreground": "#DDCCBB",
+        "statusBar.border": "#FFCC55",
         "activityBar.background": "#181818",
         "activityBar.foreground": "#FFEECC",
+        "activityBar.activeBackground": "#771166",
+        "activityBar.activeBorder": "#771166",
         "sideBar.background": "#181818",
         "sideBar.foreground": "#DDCCBB",
+        "sideBar.border": "#FFCC55",
         "sideBarSectionHeader.background": "#202020",
-        "sideBarSectionHeader.foreground": "#DDCCBB"
+        "sideBarSectionHeader.foreground": "#DDCCBB",
+        "sideBarSectionHeader.border": "#FFCC55"
       },
       "type": "dark"
     },
@@ -59,14 +71,20 @@
         "titleBar.activeForeground": "#DDCCBB",
         "titleBar.inactiveBackground": "#181420",
         "titleBar.inactiveForeground": "#DDCCBB",
+        "titleBar.border": "#FFCC66",
         "statusBar.background": "#181420",
         "statusBar.foreground": "#DDCCBB",
+        "statusBar.border": "#FFCC66",
         "activityBar.background": "#181420",
         "activityBar.foreground": "#FFEECC",
+        "activityBar.activeBackground": "#771166",
+        "activityBar.activeBorder": "#771166",
         "sideBar.background": "#181420",
         "sideBar.foreground": "#DDCCBB",
+        "sideBar.border": "#FFCC66",
         "sideBarSectionHeader.background": "#181420",
-        "sideBarSectionHeader.foreground": "#DDCCBB"
+        "sideBarSectionHeader.foreground": "#DDCCBB",
+        "sideBarSectionHeader.border": "#771166"
       },
       "type": "dark"
     }

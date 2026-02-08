@@ -4,7 +4,7 @@
   "publisherName": "Hyzeta",
   "displayName": "Github Light Theme",
   "version": "7.14.2",
-  "extractedAt": "2026-02-02T13:46:25.378Z",
+  "extractedAt": "2026-02-08T00:10:37.929Z",
   "installCount": 351922,
   "themes": [
     {
@@ -17,12 +17,15 @@
         "titleBar.activeForeground": "#000000",
         "titleBar.inactiveBackground": "#FFFFFF",
         "titleBar.inactiveForeground": "#000000",
+        "titleBar.border": "#FFFFFF",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#FFFFFF",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#000000",
         "sideBar.background": "#FFFFFF",
         "sideBar.foreground": "#000000",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#FFFFFF"
       },
       "type": "light"
@@ -37,12 +40,15 @@
         "titleBar.activeForeground": "#000000",
         "titleBar.inactiveBackground": "#F0F0F0",
         "titleBar.inactiveForeground": "#000000",
+        "titleBar.border": "#F0F0F0",
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#F0F0F0",
         "activityBar.background": "#F0F0F0",
         "activityBar.foreground": "#000000",
         "sideBar.background": "#F0F0F0",
         "sideBar.foreground": "#000000",
+        "sideBar.border": "#F0F0F0",
         "sideBarSectionHeader.background": "#F0F0F0"
       },
       "type": "light"

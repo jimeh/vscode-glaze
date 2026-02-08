@@ -4,7 +4,7 @@
   "publisherName": "Jaakko",
   "displayName": "Black",
   "version": "0.15.0",
-  "extractedAt": "2026-02-02T13:46:30.516Z",
+  "extractedAt": "2026-02-08T00:10:43.164Z",
   "installCount": 213323,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#BFD4E1",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#BFD4E1",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#BFD4E1",
+        "statusBar.border": "#000000",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#BDBDBD",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#222222",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#BFD4E1",
+        "sideBar.border": "#222222",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#BFD4E1"
+        "sideBarSectionHeader.foreground": "#BFD4E1",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     },
@@ -38,14 +44,20 @@
         "titleBar.activeForeground": "#BFD4E1",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#BFD4E1",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#BFD4E1",
+        "statusBar.border": "#000000",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#BDBDBD",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#222222",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#BFD4E1",
+        "sideBar.border": "#222222",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#BFD4E1"
+        "sideBarSectionHeader.foreground": "#BFD4E1",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     }

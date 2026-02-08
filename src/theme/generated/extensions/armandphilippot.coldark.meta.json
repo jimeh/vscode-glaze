@@ -4,7 +4,7 @@
   "publisherName": "armandphilippot",
   "displayName": "Coldark",
   "version": "1.2.11",
-  "extractedAt": "2026-02-02T13:46:48.935Z",
+  "extractedAt": "2026-02-08T00:11:02.335Z",
   "installCount": 9119,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#213043",
         "titleBar.inactiveBackground": "#D0DAE7",
         "titleBar.inactiveForeground": "#213043",
+        "titleBar.border": "#8DA1B9",
         "statusBar.background": "#005A8E",
         "statusBar.foreground": "#E3EAF2",
+        "statusBar.border": "#8DA1B9",
         "activityBar.background": "#0B121B",
         "activityBar.foreground": "#D0DAE7",
+        "activityBar.activeBackground": "#0B121B",
+        "activityBar.activeBorder": "#D0DAE7",
         "sideBar.background": "#E3EAF2",
         "sideBar.foreground": "#111B27",
+        "sideBar.border": "#8DA1B9",
         "sideBarSectionHeader.background": "#8DA1B9",
-        "sideBarSectionHeader.foreground": "#213043"
+        "sideBarSectionHeader.foreground": "#213043",
+        "sideBarSectionHeader.border": "#8DA1B9"
       },
       "type": "light"
     },
@@ -38,14 +44,20 @@
         "titleBar.activeForeground": "#D0DAE7",
         "titleBar.inactiveBackground": "#0B121B",
         "titleBar.inactiveForeground": "#D0DAE7",
+        "titleBar.border": "#0B121B",
         "statusBar.background": "#6CB8E6",
         "statusBar.foreground": "#111B27",
+        "statusBar.border": "#0B121B",
         "activityBar.background": "#0B121B",
         "activityBar.foreground": "#D0DAE7",
+        "activityBar.activeBackground": "#0B121B",
+        "activityBar.activeBorder": "#D0DAE7",
         "sideBar.background": "#111B27",
         "sideBar.foreground": "#E3EAF2",
+        "sideBar.border": "#0B121B",
         "sideBarSectionHeader.background": "#0B121B",
-        "sideBarSectionHeader.foreground": "#D0DAE7"
+        "sideBarSectionHeader.foreground": "#D0DAE7",
+        "sideBarSectionHeader.border": "#0B121B"
       },
       "type": "dark"
     }

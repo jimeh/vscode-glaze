@@ -4,7 +4,7 @@
   "publisherName": "ryanolsonx",
   "displayName": "Solarized",
   "version": "3.0.0",
-  "extractedAt": "2026-02-02T13:46:32.485Z",
+  "extractedAt": "2026-02-08T00:10:45.218Z",
   "installCount": 180084,
   "themes": [
     {
@@ -17,6 +17,7 @@
         "titleBar.activeForeground": "#839496",
         "titleBar.inactiveBackground": "#001F26",
         "titleBar.inactiveForeground": "#839496",
+        "titleBar.border": "#000000",
         "statusBar.background": "#001B21",
         "statusBar.foreground": "#839496",
         "activityBar.background": "#001F26",
@@ -24,7 +25,8 @@
         "sideBar.background": "#001F26",
         "sideBar.foreground": "#839496",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#839496"
+        "sideBarSectionHeader.foreground": "#839496",
+        "sideBarSectionHeader.border": "#839496"
       },
       "type": "dark"
     },
@@ -38,6 +40,7 @@
         "titleBar.activeForeground": "#93A1A1",
         "titleBar.inactiveBackground": "#001F26",
         "titleBar.inactiveForeground": "#93A1A1",
+        "titleBar.border": "#000000",
         "statusBar.background": "#001B21",
         "statusBar.foreground": "#93A1A1",
         "activityBar.background": "#001F26",
@@ -45,7 +48,8 @@
         "sideBar.background": "#001F26",
         "sideBar.foreground": "#93A1A1",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#93A1A1"
+        "sideBarSectionHeader.foreground": "#93A1A1",
+        "sideBarSectionHeader.border": "#93A1A1"
       },
       "type": "dark"
     },

@@ -4,7 +4,7 @@
   "publisherName": "claudius",
   "displayName": "classic-terminal",
   "version": "0.0.6",
-  "extractedAt": "2026-02-02T13:46:48.510Z",
+  "extractedAt": "2026-02-08T00:11:01.886Z",
   "installCount": 9642,
   "themes": [
     {
@@ -17,9 +17,12 @@
         "statusBar.foreground": "#000000",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#7C7C7C",
+        "activityBar.activeBackground": "#444444",
+        "activityBar.activeBorder": "#444444",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#7C7C7C",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

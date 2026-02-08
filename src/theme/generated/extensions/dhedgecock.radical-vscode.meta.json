@@ -4,7 +4,7 @@
   "publisherName": "dhedgecock",
   "displayName": "Radical",
   "version": "3.3.1",
-  "extractedAt": "2026-02-02T13:46:36.156Z",
+  "extractedAt": "2026-02-08T00:10:49.030Z",
   "installCount": 147085,
   "themes": [
     {
@@ -15,14 +15,19 @@
         "editor.foreground": "#94B4C4",
         "titleBar.activeBackground": "#100F1A",
         "titleBar.activeForeground": "#F52277",
+        "titleBar.border": "#8C2C56",
         "statusBar.background": "#12111F",
         "statusBar.foreground": "#7C9C9E",
+        "statusBar.border": "#242560",
         "activityBar.background": "#100F1A",
         "activityBar.foreground": "#F52277",
+        "activityBar.activeBorder": "#F52277",
         "sideBar.background": "#12111F",
         "sideBar.foreground": "#90B0B3",
+        "sideBar.border": "#1D1E7D",
         "sideBarSectionHeader.background": "#12111F",
-        "sideBarSectionHeader.foreground": "#7C9C9E"
+        "sideBarSectionHeader.foreground": "#7C9C9E",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "smockle",
   "displayName": "Xcode Default Theme",
   "version": "2.0.24",
-  "extractedAt": "2026-02-02T13:46:38.695Z",
+  "extractedAt": "2026-02-08T00:10:51.681Z",
   "installCount": 131805,
   "themes": [
     {
@@ -14,9 +14,11 @@
         "editor.background": "#292A30",
         "statusBar.background": "#252629",
         "statusBar.foreground": "#A6A7A8",
+        "statusBar.border": "#16171A",
         "activityBar.background": "#1C1D20",
         "activityBar.foreground": "#DFDFE0",
         "sideBar.background": "#252629",
+        "sideBar.border": "#16171A",
         "sideBarSectionHeader.background": "#252629",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -29,9 +31,11 @@
         "editor.background": "#292A30",
         "statusBar.background": "#252629",
         "statusBar.foreground": "#A6A7A8",
+        "statusBar.border": "#16171A",
         "activityBar.background": "#1C1D20",
         "activityBar.foreground": "#DFDFE0",
         "sideBar.background": "#252629",
+        "sideBar.border": "#16171A",
         "sideBarSectionHeader.background": "#252629",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },

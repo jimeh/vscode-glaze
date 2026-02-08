@@ -4,7 +4,7 @@
   "publisherName": "Shopify",
   "displayName": "Ruby",
   "version": "0.1.13",
-  "extractedAt": "2026-02-02T13:46:21.085Z",
+  "extractedAt": "2026-02-08T00:10:33.514Z",
   "installCount": 679750,
   "themes": [
     {
@@ -13,8 +13,12 @@
       "colors": {
         "editor.background": "#2F2F2F",
         "editor.foreground": "#D1CCF1",
+        "titleBar.border": "#404040",
         "statusBar.background": "#333333",
-        "sideBar.background": "#282828"
+        "statusBar.border": "#404040",
+        "sideBar.background": "#282828",
+        "sideBar.border": "#404040",
+        "sideBarSectionHeader.border": "#404040"
       },
       "type": "dark"
     },
@@ -24,10 +28,16 @@
       "colors": {
         "editor.background": "#E3E2EC",
         "editor.foreground": "#595959",
+        "titleBar.border": "#ACABB3",
         "statusBar.background": "#98A4BD",
+        "statusBar.border": "#ACABB3",
         "activityBar.background": "#E3E2EC",
         "activityBar.foreground": "#595959",
-        "sideBar.background": "#E6E5EE"
+        "activityBar.activeBackground": "#D8D8DB",
+        "activityBar.activeBorder": "#ACABB3",
+        "sideBar.background": "#E6E5EE",
+        "sideBar.border": "#ACABB3",
+        "sideBarSectionHeader.border": "#ACABB3"
       },
       "type": "light"
     }

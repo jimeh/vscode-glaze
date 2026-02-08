@@ -4,7 +4,7 @@
   "publisherName": "antfu",
   "displayName": "Vitesse Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-02-02T13:46:42.455Z",
+  "extractedAt": "2026-02-08T00:10:55.648Z",
   "installCount": 106381,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#4E4F47",
         "titleBar.inactiveBackground": "#FFFFFF",
         "titleBar.inactiveForeground": "#6A737D",
+        "titleBar.border": "#F7F7F7",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#4E4F47",
+        "statusBar.border": "#F0F0F0",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#393A34",
+        "activityBar.activeBorder": "#1C6B48",
         "sideBar.background": "#FFFFFF",
         "sideBar.foreground": "#4E4F47",
+        "sideBar.border": "#F0F0F0",
         "sideBarSectionHeader.background": "#FFFFFF",
-        "sideBarSectionHeader.foreground": "#393A34"
+        "sideBarSectionHeader.foreground": "#393A34",
+        "sideBarSectionHeader.border": "#F0F0F0"
       },
       "type": "light"
     },
@@ -38,14 +43,19 @@
         "titleBar.activeForeground": "#BFBAAA",
         "titleBar.inactiveBackground": "#121212",
         "titleBar.inactiveForeground": "#959DA5",
+        "titleBar.border": "#181818",
         "statusBar.background": "#121212",
         "statusBar.foreground": "#BFBAAA",
+        "statusBar.border": "#191919",
         "activityBar.background": "#121212",
         "activityBar.foreground": "#DBD7CA",
+        "activityBar.activeBorder": "#4D9375",
         "sideBar.background": "#121212",
         "sideBar.foreground": "#BFBAAA",
+        "sideBar.border": "#191919",
         "sideBarSectionHeader.background": "#121212",
-        "sideBarSectionHeader.foreground": "#DBD7CA"
+        "sideBarSectionHeader.foreground": "#DBD7CA",
+        "sideBarSectionHeader.border": "#191919"
       },
       "type": "dark"
     },
@@ -59,14 +69,19 @@
         "titleBar.activeForeground": "#BFBAAA",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#959DA5",
+        "titleBar.border": "#121212",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#BFBAAA",
+        "statusBar.border": "#191919",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#DBD7CA",
+        "activityBar.activeBorder": "#4D9375",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#BFBAAA",
+        "sideBar.border": "#191919",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#DBD7CA"
+        "sideBarSectionHeader.foreground": "#DBD7CA",
+        "sideBarSectionHeader.border": "#191919"
       },
       "type": "dark"
     },
@@ -80,14 +95,19 @@
         "titleBar.activeForeground": "#4E4F47",
         "titleBar.inactiveBackground": "#F1F0E9",
         "titleBar.inactiveForeground": "#6A737D",
+        "titleBar.border": "#E7E5DB",
         "statusBar.background": "#F1F0E9",
         "statusBar.foreground": "#4E4F47",
+        "statusBar.border": "#E7E5DB",
         "activityBar.background": "#F1F0E9",
         "activityBar.foreground": "#393A34",
+        "activityBar.activeBorder": "#1C6B48",
         "sideBar.background": "#F1F0E9",
         "sideBar.foreground": "#4E4F47",
+        "sideBar.border": "#E7E5DB",
         "sideBarSectionHeader.background": "#F1F0E9",
-        "sideBarSectionHeader.foreground": "#393A34"
+        "sideBarSectionHeader.foreground": "#393A34",
+        "sideBarSectionHeader.border": "#E7E5DB"
       },
       "type": "light"
     },
@@ -101,14 +121,19 @@
         "titleBar.activeForeground": "#BFBAAA",
         "titleBar.inactiveBackground": "#222222",
         "titleBar.inactiveForeground": "#959DA5",
+        "titleBar.border": "#292929",
         "statusBar.background": "#222222",
         "statusBar.foreground": "#BFBAAA",
+        "statusBar.border": "#252525",
         "activityBar.background": "#222222",
         "activityBar.foreground": "#DBD7CA",
+        "activityBar.activeBorder": "#4D9375",
         "sideBar.background": "#222222",
         "sideBar.foreground": "#BFBAAA",
+        "sideBar.border": "#252525",
         "sideBarSectionHeader.background": "#222222",
-        "sideBarSectionHeader.foreground": "#DBD7CA"
+        "sideBarSectionHeader.foreground": "#DBD7CA",
+        "sideBarSectionHeader.border": "#252525"
       },
       "type": "dark"
     }

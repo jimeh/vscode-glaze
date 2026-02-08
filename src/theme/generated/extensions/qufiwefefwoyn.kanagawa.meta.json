@@ -4,7 +4,7 @@
   "publisherName": "qufiwefefwoyn",
   "displayName": "Kanagawa",
   "version": "1.5.1",
-  "extractedAt": "2026-02-02T13:46:28.649Z",
+  "extractedAt": "2026-02-08T00:10:41.360Z",
   "installCount": 242390,
   "themes": [
     {
@@ -23,6 +23,7 @@
         "activityBar.foreground": "#DCD7BA",
         "sideBar.background": "#1F1F28",
         "sideBar.foreground": "#DCD7BA",
+        "sideBar.border": "#16161D",
         "sideBarSectionHeader.background": "#363646",
         "sideBarSectionHeader.foreground": "#DCD7BA"
       },

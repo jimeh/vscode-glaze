@@ -4,7 +4,7 @@
   "publisherName": "nicolasdschmidt",
   "displayName": "Lunar Pink Theme",
   "version": "1.4.0",
-  "extractedAt": "2026-02-02T13:46:32.073Z",
+  "extractedAt": "2026-02-08T00:10:44.787Z",
   "installCount": 182650,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#DDDDDD",
         "titleBar.inactiveBackground": "#131313",
         "titleBar.inactiveForeground": "#DDDDDD",
+        "titleBar.border": "#131313",
         "statusBar.background": "#131313",
         "statusBar.foreground": "#E621AF",
+        "statusBar.border": "#131313",
         "activityBar.background": "#131313",
         "activityBar.foreground": "#E621AF",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#131313",
         "sideBar.foreground": "#DDDDDD",
+        "sideBar.border": "#131313",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     },
@@ -38,14 +43,19 @@
         "titleBar.activeForeground": "#DDDDDD",
         "titleBar.inactiveBackground": "#262626",
         "titleBar.inactiveForeground": "#DDDDDD",
+        "titleBar.border": "#262626",
         "statusBar.background": "#262626",
         "statusBar.foreground": "#E621AF",
+        "statusBar.border": "#262626",
         "activityBar.background": "#262626",
         "activityBar.foreground": "#E621AF",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#262626",
         "sideBar.foreground": "#DDDDDD",
+        "sideBar.border": "#262626",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     }

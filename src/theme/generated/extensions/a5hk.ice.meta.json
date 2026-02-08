@@ -4,7 +4,7 @@
   "publisherName": "a5hk",
   "displayName": "Ice",
   "version": "3.0.1",
-  "extractedAt": "2026-02-02T13:46:53.795Z",
+  "extractedAt": "2026-02-08T00:11:07.416Z",
   "installCount": 5737,
   "themes": [
     {
@@ -21,6 +21,7 @@
         "statusBar.foreground": "#DEE3E6",
         "activityBar.background": "#012841",
         "activityBar.foreground": "#AAB7C0",
+        "activityBar.activeBorder": "#186D75",
         "sideBar.background": "#012841",
         "sideBarSectionHeader.background": "#12364E"
       },
@@ -36,11 +37,14 @@
         "titleBar.activeForeground": "#AAB7C0",
         "titleBar.inactiveBackground": "#012841",
         "titleBar.inactiveForeground": "#99A9B3",
+        "titleBar.border": "#23455A",
         "statusBar.background": "#186D75",
         "statusBar.foreground": "#DEE3E6",
         "activityBar.background": "#012841",
         "activityBar.foreground": "#AAB7C0",
+        "activityBar.activeBorder": "#186D75",
         "sideBar.background": "#012237",
+        "sideBar.border": "#23455A",
         "sideBarSectionHeader.background": "#23455A"
       },
       "type": "dark"

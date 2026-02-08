@@ -4,7 +4,7 @@
   "publisherName": "sjsepan",
   "displayName": "sjsepan.redalertish",
   "version": "0.3.2",
-  "extractedAt": "2026-02-02T13:47:02.256Z",
+  "extractedAt": "2026-02-08T00:11:16.277Z",
   "installCount": 3355,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#FF9486",
         "titleBar.inactiveBackground": "#350A03",
         "titleBar.inactiveForeground": "#FF4027",
+        "titleBar.border": "#83250B",
         "statusBar.background": "#350A03",
         "statusBar.foreground": "#FF9486",
+        "statusBar.border": "#83250B",
         "activityBar.background": "#350A03",
         "activityBar.foreground": "#FF9486",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#FF9486",
+        "sideBar.border": "#83250B",
         "sideBarSectionHeader.background": "#350A03",
-        "sideBarSectionHeader.foreground": "#FF9486"
+        "sideBarSectionHeader.foreground": "#FF9486",
+        "sideBarSectionHeader.border": "#B83232"
       },
       "type": "dark"
     }

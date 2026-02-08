@@ -4,7 +4,7 @@
   "publisherName": "smlombardi",
   "displayName": "Slime Theme",
   "version": "3.2.1",
-  "extractedAt": "2026-02-02T13:46:39.315Z",
+  "extractedAt": "2026-02-08T00:10:52.321Z",
   "installCount": 129257,
   "themes": [
     {
@@ -15,12 +15,17 @@
         "editor.foreground": "#E0E0E0",
         "titleBar.activeBackground": "#282E2F",
         "titleBar.inactiveBackground": "#282E2F",
+        "titleBar.border": "#222222",
         "statusBar.background": "#282E2F",
         "statusBar.foreground": "#62706A",
+        "statusBar.border": "#222222",
         "activityBar.background": "#293030",
         "activityBar.foreground": "#878F8C",
+        "activityBar.activeBackground": "#1F2727",
+        "activityBar.activeBorder": "#FFBB00",
         "sideBar.background": "#1B2020",
         "sideBar.foreground": "#BCBEBE",
+        "sideBar.border": "#222222",
         "sideBarSectionHeader.background": "#1E2523"
       },
       "type": "dark"

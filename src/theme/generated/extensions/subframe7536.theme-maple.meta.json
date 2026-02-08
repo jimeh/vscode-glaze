@@ -4,7 +4,7 @@
   "publisherName": "subframe7536",
   "displayName": "Maple Theme",
   "version": "0.7.16",
-  "extractedAt": "2026-02-02T13:46:48.304Z",
+  "extractedAt": "2026-02-08T00:11:01.680Z",
   "installCount": 9989,
   "themes": [
     {
@@ -15,13 +15,18 @@
         "editor.foreground": "#CBD5E1",
         "titleBar.activeBackground": "#171718",
         "titleBar.activeForeground": "#CBD5E1",
+        "titleBar.border": "#44444B",
         "statusBar.background": "#171718",
         "statusBar.foreground": "#CBD5E1",
+        "statusBar.border": "#44444B",
         "activityBar.background": "#171718",
         "activityBar.foreground": "#CBD5E1",
+        "activityBar.activeBorder": "#6285A7",
         "sideBar.background": "#171718",
         "sideBar.foreground": "#CBD5E1",
-        "sideBarSectionHeader.background": "#171718"
+        "sideBar.border": "#44444B",
+        "sideBarSectionHeader.background": "#171718",
+        "sideBarSectionHeader.border": "#44444B"
       },
       "type": "dark"
     },
@@ -33,13 +38,18 @@
         "editor.foreground": "#475569",
         "titleBar.activeBackground": "#FAFAF9",
         "titleBar.activeForeground": "#475569",
+        "titleBar.border": "#8393AA",
         "statusBar.background": "#FAFAF9",
         "statusBar.foreground": "#475569",
+        "statusBar.border": "#8393AA",
         "activityBar.background": "#FAFAF9",
         "activityBar.foreground": "#475569",
+        "activityBar.activeBorder": "#D9DFD3",
         "sideBar.background": "#FAFAF9",
         "sideBar.foreground": "#475569",
-        "sideBarSectionHeader.background": "#FAFAF9"
+        "sideBar.border": "#8393AA",
+        "sideBarSectionHeader.background": "#FAFAF9",
+        "sideBarSectionHeader.border": "#8393AA"
       },
       "type": "light"
     }

@@ -4,7 +4,7 @@
   "publisherName": "ericgomez",
   "displayName": "PhpStorm Dark Theme",
   "version": "1.0.18",
-  "extractedAt": "2026-02-02T13:46:50.210Z",
+  "extractedAt": "2026-02-08T00:11:03.662Z",
   "installCount": 7846,
   "themes": [
     {
@@ -17,12 +17,18 @@
         "titleBar.inactiveBackground": "#2B2D30",
         "statusBar.background": "#2B2D30",
         "statusBar.foreground": "#9EA0A8",
+        "statusBar.border": "#1E1F22",
+        "statusBar.focusBorder": "#000000",
         "activityBar.background": "#2B2D30",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#4F5156",
+        "activityBar.activeBorder": "#4F5156",
         "sideBar.background": "#2B2D30",
         "sideBar.foreground": "#DFE1E5",
+        "sideBar.border": "#1E1F22",
         "sideBarSectionHeader.background": "#2B2D30",
-        "sideBarSectionHeader.foreground": "#DFE1E5"
+        "sideBarSectionHeader.foreground": "#DFE1E5",
+        "sideBarSectionHeader.border": "#1E1F22"
       },
       "type": "dark"
     },
@@ -36,12 +42,18 @@
         "titleBar.inactiveBackground": "#26282B",
         "statusBar.background": "#26282B",
         "statusBar.foreground": "#9EA0A8",
+        "statusBar.border": "#191A1C",
+        "statusBar.focusBorder": "#000000",
         "activityBar.background": "#26282B",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#4F5156",
+        "activityBar.activeBorder": "#4F5156",
         "sideBar.background": "#191A1C",
         "sideBar.foreground": "#DFE1E5",
+        "sideBar.border": "#26282B",
         "sideBarSectionHeader.background": "#191A1C",
-        "sideBarSectionHeader.foreground": "#DFE1E5"
+        "sideBarSectionHeader.foreground": "#DFE1E5",
+        "sideBarSectionHeader.border": "#26282B"
       },
       "type": "dark"
     }
