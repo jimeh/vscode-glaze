@@ -631,8 +631,10 @@ boxControls.forEach((ctrl) => {
 
   hSlider.addEventListener('input', (e) => {
     if (state.colorMode === 'custom') {
-      state.boxes[boxIndex].h =
-        parseInt((e.target as HTMLInputElement).value, 10);
+      state.boxes[boxIndex].h = parseInt(
+        (e.target as HTMLInputElement).value,
+        10
+      );
       render();
     }
   });
