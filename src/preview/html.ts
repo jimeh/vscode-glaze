@@ -47,29 +47,33 @@ const ALL_THEME_TYPES: ThemeType[] = ['dark', 'light', 'hcDark', 'hcLight'];
  * Each element has a title attribute showing the color name on hover.
  */
 function generateSwatch(colors: StylePreviewColors): string {
-  const { titleBar, activityBar, statusBar } = colors;
+  const { titleBar, activityBar, sideBar, statusBar } = colors;
 
   // Validate all hex values before interpolating into style attrs
   assertHex(titleBar.background);
   assertHex(titleBar.foreground);
   assertHex(activityBar.background);
   assertHex(activityBar.foreground);
+  assertHex(sideBar.background);
+  assertHex(sideBar.foreground);
   assertHex(statusBar.background);
   assertHex(statusBar.foreground);
 
   return `
     <div class="swatch">
       <div class="element" style="background: ${titleBar.background}; color: ${titleBar.foreground};" title="${escapeHtml(getColorName(titleBar.background))}">
-        <span class="label">TB</span>
-        <span class="sample">Aa</span>
+        <span class="name">Title</span>
       </div>
-      <div class="element" style="background: ${activityBar.background}; color: ${activityBar.foreground};" title="${escapeHtml(getColorName(activityBar.background))}">
-        <span class="label">AB</span>
-        <span class="sample">Aa</span>
+      <div class="element-row">
+        <div class="element half" style="background: ${activityBar.background}; color: ${activityBar.foreground};" title="${escapeHtml(getColorName(activityBar.background))}">
+          <span class="name">AB</span>
+        </div>
+        <div class="element half" style="background: ${sideBar.background}; color: ${sideBar.foreground};" title="${escapeHtml(getColorName(sideBar.background))}">
+          <span class="name">SB</span>
+        </div>
       </div>
       <div class="element" style="background: ${statusBar.background}; color: ${statusBar.foreground};" title="${escapeHtml(getColorName(statusBar.background))}">
-        <span class="label">SB</span>
-        <span class="sample">Aa</span>
+        <span class="name">Status</span>
       </div>
     </div>
   `;
@@ -512,22 +516,27 @@ const PREVIEW_CSS = `
     .element {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 2px 7px;
       min-width: 54px;
       font-size: 11px;
       line-height: 1.4;
     }
 
-    .element .label {
-      font-weight: 600;
-      opacity: 0.6;
-      font-size: 10px;
-      letter-spacing: 0.02em;
+    .element-row {
+      display: flex;
+      flex-direction: row;
     }
 
-    .element .sample {
+    .element.half {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .element .name {
       font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.02em;
     }
 
     .hue-cell {

@@ -6,6 +6,7 @@ const MOCK_HUE_COLORS = [
   {
     titleBar: { background: '#524052', foreground: '#e6dce6' },
     activityBar: { background: '#403340', foreground: '#d9ccd9' },
+    sideBar: { background: '#473a47', foreground: '#d9ccd9' },
     statusBar: { background: '#59475a', foreground: '#e6dce6' },
   },
 ];
@@ -24,6 +25,7 @@ function createMockState(overrides: Partial<PreviewState> = {}): PreviewState {
           {
             titleBar: { background: '#663366', foreground: '#f2e6f2' },
             activityBar: { background: '#4d264d', foreground: '#e6d9e6' },
+            sideBar: { background: '#5a2d5a', foreground: '#e6d9e6' },
             statusBar: { background: '#733d73', foreground: '#f2e6f2' },
           },
         ],
@@ -124,6 +126,7 @@ suite('generatePreviewHtml', () => {
         colors: {
           titleBar: { background: '#524052', foreground: '#e6dce6' },
           activityBar: { background: '#403340', foreground: '#d9ccd9' },
+          sideBar: { background: '#473a47', foreground: '#d9ccd9' },
           statusBar: { background: '#59475a', foreground: '#e6dce6' },
         },
         isBlended: false,
@@ -144,6 +147,7 @@ suite('generatePreviewHtml', () => {
         colors: {
           titleBar: { background: '#524052', foreground: '#e6dce6' },
           activityBar: { background: '#403340', foreground: '#d9ccd9' },
+          sideBar: { background: '#473a47', foreground: '#d9ccd9' },
           statusBar: { background: '#59475a', foreground: '#e6dce6' },
         },
         isBlended: false,
@@ -165,6 +169,7 @@ suite('generatePreviewHtml', () => {
         colors: {
           titleBar: { background: '#524052', foreground: '#e6dce6' },
           activityBar: { background: '#403340', foreground: '#d9ccd9' },
+          sideBar: { background: '#473a47', foreground: '#d9ccd9' },
           statusBar: { background: '#59475a', foreground: '#e6dce6' },
         },
         isBlended: true,
@@ -183,6 +188,7 @@ suite('generatePreviewHtml', () => {
         colors: {
           titleBar: { background: '#524052', foreground: '#e6dce6' },
           activityBar: { background: '#403340', foreground: '#d9ccd9' },
+          sideBar: { background: '#473a47', foreground: '#d9ccd9' },
           statusBar: { background: '#59475a', foreground: '#e6dce6' },
         },
         isBlended: false,
@@ -236,7 +242,7 @@ suite('generatePreviewHtml', () => {
     assert.ok(html.includes('color: #'), 'Should have foreground color styles');
   });
 
-  test('swatches show TB, AB, SB labels in correct order', () => {
+  test('swatches show element names in correct order', () => {
     const state = createMockState();
     const html = generatePreviewHtml(state, nonce, cspSource);
 
@@ -245,19 +251,22 @@ suite('generatePreviewHtml', () => {
 
     // Find the first swatch and check label order within it
     const swatchStart = html.indexOf('class="swatch"');
-    // Get a chunk of HTML after the swatch start (enough to capture all labels,
-    // including title attributes with color names)
-    const chunk = html.slice(swatchStart, swatchStart + 1000);
+    // Get a chunk of HTML after the swatch start (enough to capture all
+    // names, including title attributes with color names)
+    const chunk = html.slice(swatchStart, swatchStart + 1500);
 
-    const tbIndex = chunk.indexOf('>TB<');
+    const tbIndex = chunk.indexOf('>Title<');
     const abIndex = chunk.indexOf('>AB<');
-    const sbIndex = chunk.indexOf('>SB<');
+    const sideIndex = chunk.indexOf('>SB<');
+    const sbIndex = chunk.indexOf('>Status<');
 
-    assert.ok(tbIndex > 0, 'Should find TB label');
-    assert.ok(abIndex > 0, 'Should find AB label');
-    assert.ok(sbIndex > 0, 'Should find SB label');
-    assert.ok(tbIndex < abIndex, 'TB should come before AB');
-    assert.ok(abIndex < sbIndex, 'AB should come before SB');
+    assert.ok(tbIndex > 0, 'Should find Title name');
+    assert.ok(abIndex > 0, 'Should find AB name');
+    assert.ok(sideIndex > 0, 'Should find SB name');
+    assert.ok(sbIndex > 0, 'Should find Status name');
+    assert.ok(tbIndex < abIndex, 'Title should come before AB');
+    assert.ok(abIndex < sideIndex, 'AB should come before SB');
+    assert.ok(sideIndex < sbIndex, 'SB should come before Status');
   });
 
   test('includes hint text', () => {

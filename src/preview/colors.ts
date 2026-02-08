@@ -24,9 +24,13 @@ export const SAMPLE_HUES = [29, 55, 100, 145, 185, 235, 265, 305];
 
 /**
  * Preview targets — the elements shown in the preview panel.
- * Excludes sideBar since it's disabled by default and not shown.
  */
-const PREVIEW_TARGETS: TintTarget[] = ['titleBar', 'statusBar', 'activityBar'];
+const PREVIEW_TARGETS: TintTarget[] = [
+  'titleBar',
+  'statusBar',
+  'activityBar',
+  'sideBar',
+];
 
 /** Options for {@link generateColorsAtHue}. */
 interface GenerateColorsAtHueOptions {
