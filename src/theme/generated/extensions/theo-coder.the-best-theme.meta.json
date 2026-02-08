@@ -4,7 +4,7 @@
   "publisherName": "theo-coder",
   "displayName": "The Best Theme",
   "version": "2.1.3",
-  "extractedAt": "2026-02-02T13:46:52.750Z",
+  "extractedAt": "2026-02-08T00:11:06.309Z",
   "installCount": 6117,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#CCCCCC",
         "titleBar.inactiveBackground": "#171E24",
         "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#000000",
         "statusBar.background": "#0D1114",
         "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#000000",
         "activityBar.background": "#171E24",
         "activityBar.foreground": "#CCCCCC",
+        "activityBar.activeBackground": "#5599DD",
+        "activityBar.activeBorder": "#5599DD",
         "sideBar.background": "#151C21",
         "sideBar.foreground": "#CCCCCC",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#171E24",
-        "sideBarSectionHeader.foreground": "#CCCCCC"
+        "sideBarSectionHeader.foreground": "#CCCCCC",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     }

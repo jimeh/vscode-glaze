@@ -4,7 +4,7 @@
   "publisherName": "compassak",
   "displayName": "IntelliJ IDEA New UI",
   "version": "1.4.0",
-  "extractedAt": "2026-02-02T13:46:52.544Z",
+  "extractedAt": "2026-02-08T00:11:06.099Z",
   "installCount": 6436,
   "themes": [
     {
@@ -17,12 +17,17 @@
         "titleBar.inactiveBackground": "#2B2D30",
         "statusBar.background": "#2B2D30",
         "statusBar.foreground": "#9EA0A8",
+        "statusBar.border": "#1E1F22",
         "activityBar.background": "#2B2D30",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#4F5156",
+        "activityBar.activeBorder": "#4F5156",
         "sideBar.background": "#2B2D30",
         "sideBar.foreground": "#DFE1E5",
+        "sideBar.border": "#1E1F22",
         "sideBarSectionHeader.background": "#2B2D30",
-        "sideBarSectionHeader.foreground": "#DFE1E5"
+        "sideBarSectionHeader.foreground": "#DFE1E5",
+        "sideBarSectionHeader.border": "#1E1F22"
       },
       "type": "dark"
     },
@@ -35,13 +40,18 @@
         "titleBar.activeBackground": "#27282E",
         "titleBar.activeForeground": "#E7EBED",
         "titleBar.inactiveBackground": "#383A42",
+        "titleBar.border": "#27282E",
         "statusBar.background": "#F7F8FA",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#EBECF0",
         "activityBar.background": "#F7F8FA",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBorder": "#F7F8FA",
         "sideBar.background": "#F7F8FA",
         "sideBar.foreground": "#000000",
-        "sideBarSectionHeader.background": "#F7F8FA"
+        "sideBar.border": "#EBECF0",
+        "sideBarSectionHeader.background": "#F7F8FA",
+        "sideBarSectionHeader.border": "#EBECF0"
       },
       "type": "light"
     },
@@ -55,11 +65,15 @@
         "titleBar.inactiveBackground": "#F7F8FA",
         "statusBar.background": "#F7F8FA",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#EBECF0",
         "activityBar.background": "#F7F8FA",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBorder": "#F7F8FA",
         "sideBar.background": "#F7F8FA",
         "sideBar.foreground": "#000000",
-        "sideBarSectionHeader.background": "#F7F8FA"
+        "sideBar.border": "#EBECF0",
+        "sideBarSectionHeader.background": "#F7F8FA",
+        "sideBarSectionHeader.border": "#EBECF0"
       },
       "type": "light"
     }

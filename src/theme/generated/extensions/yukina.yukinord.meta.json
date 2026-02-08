@@ -4,7 +4,7 @@
   "publisherName": "Yukina",
   "displayName": "Yukinord",
   "version": "0.0.49",
-  "extractedAt": "2026-02-02T13:46:49.140Z",
+  "extractedAt": "2026-02-08T00:11:02.542Z",
   "installCount": 9078,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#ECEFF4",
         "titleBar.inactiveBackground": "#1D2129",
         "titleBar.inactiveForeground": "#D8DEE9",
+        "titleBar.border": "#3B4252",
         "statusBar.background": "#1D2129",
         "statusBar.foreground": "#D8DEE9",
+        "statusBar.border": "#3B4252",
         "activityBar.background": "#1D2129",
         "activityBar.foreground": "#ECEFF4",
+        "activityBar.activeBorder": "#88C0D0",
         "sideBar.background": "#14171D",
         "sideBar.foreground": "#D8DEE9",
+        "sideBar.border": "#3B4252",
         "sideBarSectionHeader.background": "#1D2129",
-        "sideBarSectionHeader.foreground": "#D8DEE9"
+        "sideBarSectionHeader.foreground": "#D8DEE9",
+        "sideBarSectionHeader.border": "#3B4252"
       },
       "type": "dark"
     }

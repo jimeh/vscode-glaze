@@ -4,7 +4,7 @@
   "publisherName": "kuscamara",
   "displayName": "Electron Color Theme",
   "version": "0.2.6",
-  "extractedAt": "2026-02-02T13:46:23.513Z",
+  "extractedAt": "2026-02-08T00:10:36.037Z",
   "installCount": 455999,
   "themes": [
     {
@@ -19,6 +19,7 @@
         "titleBar.inactiveForeground": "#818CA6",
         "statusBar.background": "#212836",
         "statusBar.foreground": "#818CA6",
+        "statusBar.border": "#1A1F2E",
         "activityBar.background": "#141820",
         "sideBar.background": "#1C212E",
         "sideBarSectionHeader.background": "#141820"

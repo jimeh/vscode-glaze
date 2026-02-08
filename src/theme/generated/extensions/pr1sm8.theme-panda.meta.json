@@ -4,7 +4,7 @@
   "publisherName": "pr1sm8",
   "displayName": "Panda Theme",
   "version": "1.2.0",
-  "extractedAt": "2026-02-02T13:47:03.081Z",
+  "extractedAt": "2026-02-08T00:11:17.166Z",
   "installCount": 3254,
   "themes": [
     {
@@ -22,7 +22,8 @@
         "activityBar.background": "#222223",
         "activityBar.foreground": "#E6E6E6",
         "sideBar.background": "#242526",
-        "sideBar.foreground": "#BBBBBB"
+        "sideBar.foreground": "#BBBBBB",
+        "sideBar.border": "#222223"
       },
       "type": "dark"
     }

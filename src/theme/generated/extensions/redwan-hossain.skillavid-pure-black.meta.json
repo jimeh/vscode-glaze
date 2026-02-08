@@ -4,7 +4,7 @@
   "publisherName": "redwan-hossain",
   "displayName": "SkillAvid Pure Black",
   "version": "5.0.0",
-  "extractedAt": "2026-02-02T13:46:53.271Z",
+  "extractedAt": "2026-02-08T00:11:06.873Z",
   "installCount": 5816,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     },
@@ -38,14 +42,18 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#000000",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#000000",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#000000",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#000000"
       },
       "type": "dark"
     },
@@ -59,14 +67,18 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#070113",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#060013",
         "statusBar.background": "#060013",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#060013",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#060013",
         "sideBar.background": "#060013",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#060013",
         "sideBarSectionHeader.background": "#060013",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#060013"
       },
       "type": "dark"
     },
@@ -80,14 +92,18 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#070113",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#060013",
         "statusBar.background": "#060013",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#060013",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#060013",
         "sideBar.background": "#060013",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#060013",
         "sideBarSectionHeader.background": "#060013",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#060013"
       },
       "type": "dark"
     }

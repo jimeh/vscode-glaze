@@ -39,7 +39,7 @@ suite('mergeColorCustomizations', () => {
   test('preserves non-Patina keys', () => {
     const existing = {
       'editor.background': '#aabbcc',
-      'sideBar.border': '#ddeeff',
+      'editor.lineHighlightBackground': '#ddeeff',
     };
     const patinaColors = {
       'titleBar.activeBackground': '#112233',
@@ -49,7 +49,7 @@ suite('mergeColorCustomizations', () => {
 
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
-      'sideBar.border': '#ddeeff',
+      'editor.lineHighlightBackground': '#ddeeff',
       'titleBar.activeBackground': '#112233',
       [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
     });
@@ -223,14 +223,14 @@ suite('removePatinaColors', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'editor.background': '#aabbcc',
-      'sideBar.border': '#ddeeff',
+      'editor.lineHighlightBackground': '#ddeeff',
     };
 
     const result = removePatinaColors(existing);
 
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
-      'sideBar.border': '#ddeeff',
+      'editor.lineHighlightBackground': '#ddeeff',
     });
   });
 
@@ -351,7 +351,7 @@ suite('hasPatinaColorsWithoutMarker', () => {
   test('returns false for non-Patina-only keys', () => {
     const existing = {
       'editor.background': '#aabbcc',
-      'sideBar.border': '#ddeeff',
+      'editor.lineHighlightBackground': '#ddeeff',
     };
     assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
   });

@@ -4,7 +4,7 @@
   "publisherName": "pawelgrzybek",
   "displayName": "Gatito Theme",
   "version": "0.2.3",
-  "extractedAt": "2026-02-02T13:46:37.312Z",
+  "extractedAt": "2026-02-08T00:10:50.249Z",
   "installCount": 138228,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#7F7F7F",
         "titleBar.inactiveBackground": "#242B2E",
         "titleBar.inactiveForeground": "#7F7F7F",
+        "titleBar.border": "#30373A",
         "statusBar.background": "#242B2E",
         "statusBar.foreground": "#7F7F7F",
+        "statusBar.border": "#30373A",
         "activityBar.background": "#242B2E",
         "activityBar.foreground": "#D4D4D4",
         "sideBar.background": "#1D2325",
         "sideBar.foreground": "#D4D4D4",
+        "sideBar.border": "#30373A",
         "sideBarSectionHeader.background": "#30373A",
-        "sideBarSectionHeader.foreground": "#D4D4D4"
+        "sideBarSectionHeader.foreground": "#D4D4D4",
+        "sideBarSectionHeader.border": "#1D2325"
       },
       "type": "dark"
     }

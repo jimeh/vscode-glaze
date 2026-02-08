@@ -4,7 +4,7 @@
   "publisherName": "MoBalic",
   "displayName": "JetBrains New Dark",
   "version": "0.0.1",
-  "extractedAt": "2026-02-02T13:46:49.452Z",
+  "extractedAt": "2026-02-08T00:11:02.867Z",
   "installCount": 8781,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#BCBEC4",
         "titleBar.inactiveBackground": "#1E1F22",
         "titleBar.inactiveForeground": "#8B949E",
+        "titleBar.border": "#FFFFFF",
         "statusBar.background": "#181818",
         "statusBar.foreground": "#BCBEC4",
+        "statusBar.border": "#FFFFFF",
+        "statusBar.focusBorder": "#0078D4",
         "activityBar.background": "#181818",
         "activityBar.foreground": "#D7D7D7",
+        "activityBar.activeBorder": "#0078D4",
         "sideBar.background": "#181818",
         "sideBar.foreground": "#BCBEC4",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#181818",
-        "sideBarSectionHeader.foreground": "#BCBEC4"
+        "sideBarSectionHeader.foreground": "#BCBEC4",
+        "sideBarSectionHeader.border": "#FFFFFF"
       },
       "type": "dark"
     }

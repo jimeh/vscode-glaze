@@ -4,7 +4,7 @@
   "publisherName": "olifink",
   "displayName": "Fedora GNOME light & dark themes",
   "version": "0.0.4",
-  "extractedAt": "2026-02-02T13:47:00.703Z",
+  "extractedAt": "2026-02-08T00:11:14.658Z",
   "installCount": 3675,
   "themes": [
     {
@@ -19,12 +19,16 @@
         "titleBar.inactiveForeground": "#9DA5B4",
         "statusBar.background": "#353535",
         "statusBar.foreground": "#D1D5DA",
+        "statusBar.border": "#1B1F23",
         "activityBar.background": "#323232",
         "activityBar.foreground": "#E1E4E8",
+        "activityBar.activeBorder": "#15539E",
         "sideBar.background": "#2D2D2D",
         "sideBar.foreground": "#D1D5DA",
+        "sideBar.border": "#1B1F23",
         "sideBarSectionHeader.background": "#353535",
-        "sideBarSectionHeader.foreground": "#E1E4E8"
+        "sideBarSectionHeader.foreground": "#E1E4E8",
+        "sideBarSectionHeader.border": "#1B1F23"
       },
       "type": "dark"
     },
@@ -40,12 +44,16 @@
         "titleBar.inactiveForeground": "#121417",
         "statusBar.background": "#EDECEA",
         "statusBar.foreground": "#586069",
+        "statusBar.border": "#E1E4E8",
         "activityBar.background": "#F6F5F4",
         "activityBar.foreground": "#2F363D",
+        "activityBar.activeBorder": "#3584E4",
         "sideBar.background": "#F6F5F4",
         "sideBar.foreground": "#586069",
+        "sideBar.border": "#E1E4E8",
         "sideBarSectionHeader.background": "#F1EFEE",
-        "sideBarSectionHeader.foreground": "#2F363D"
+        "sideBarSectionHeader.foreground": "#2F363D",
+        "sideBarSectionHeader.border": "#E1E4E8"
       },
       "type": "light"
     },
@@ -63,6 +71,7 @@
         "statusBar.foreground": "#9DA5B4",
         "activityBar.background": "#323232",
         "activityBar.foreground": "#D7DAE0",
+        "activityBar.activeBorder": "#15539E",
         "sideBar.background": "#2D2D2D",
         "sideBarSectionHeader.background": "#353535"
       },
@@ -82,6 +91,7 @@
         "statusBar.foreground": "#424243",
         "activityBar.background": "#F6F5F4",
         "activityBar.foreground": "#121417",
+        "activityBar.activeBorder": "#3584E4",
         "sideBar.background": "#F6F5F4",
         "sideBarSectionHeader.background": "#F1EFEE"
       },

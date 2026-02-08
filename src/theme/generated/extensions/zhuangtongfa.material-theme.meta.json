@@ -4,7 +4,7 @@
   "publisherName": "zhuangtongfa",
   "displayName": "One Dark Pro",
   "version": "3.19.0",
-  "extractedAt": "2026-02-02T13:46:16.604Z",
+  "extractedAt": "2026-02-08T00:10:28.850Z",
   "installCount": 11877114,
   "themes": [
     {
@@ -40,10 +40,12 @@
         "titleBar.inactiveForeground": "#6B717D",
         "statusBar.background": "#282C34",
         "statusBar.foreground": "#969AA4",
+        "statusBar.border": "#282C34",
         "activityBar.background": "#282C34",
         "activityBar.foreground": "#C7CCD6",
         "sideBar.background": "#282C34",
         "sideBar.foreground": "#969AA4",
+        "sideBar.border": "#23252C",
         "sideBarSectionHeader.background": "#282C34",
         "sideBarSectionHeader.foreground": "#ABB2BF"
       },
@@ -107,6 +109,7 @@
         "activityBar.foreground": "#D7DAE0",
         "sideBar.background": "#16191D",
         "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#37393D",
         "sideBarSectionHeader.background": "#16191D",
         "sideBarSectionHeader.foreground": "#ABB2BF"
       },

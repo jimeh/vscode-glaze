@@ -4,7 +4,7 @@
   "publisherName": "PawelBorkar",
   "displayName": "JellyFish Theme",
   "version": "0.0.4",
-  "extractedAt": "2026-02-02T13:46:20.526Z",
+  "extractedAt": "2026-02-08T00:10:32.935Z",
   "installCount": 838681,
   "themes": [
     {
@@ -20,6 +20,7 @@
         "statusBar.foreground": "#A1A1A1",
         "activityBar.background": "#000124",
         "activityBar.foreground": "#00FFFF",
+        "activityBar.activeBorder": "#FF0080",
         "sideBar.background": "#0A0025",
         "sideBar.foreground": "#9B9B9B",
         "sideBarSectionHeader.background": "#000000"

@@ -4,7 +4,7 @@
   "publisherName": "haudraufhaun",
   "displayName": "Hyper.is Theme",
   "version": "0.1.1",
-  "extractedAt": "2026-02-02T13:46:48.201Z",
+  "extractedAt": "2026-02-08T00:11:01.571Z",
   "installCount": 10033,
   "themes": [
     {
@@ -19,10 +19,12 @@
         "titleBar.inactiveForeground": "#686868",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#C7C7C7",
+        "statusBar.border": "#686868",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#686868",
         "sideBarSectionHeader.background": "#000000",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },
@@ -40,10 +42,12 @@
         "titleBar.inactiveForeground": "#686868",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#FFFF00",
+        "statusBar.border": "#FFFF00",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#686868",
         "sideBarSectionHeader.background": "#000000",
         "sideBarSectionHeader.foreground": "#FFFFFF"
       },

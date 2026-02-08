@@ -4,7 +4,7 @@
   "publisherName": "charcoal-mint-studio",
   "displayName": "Theme Charcoal Mint Co.",
   "version": "1.0.1",
-  "extractedAt": "2026-02-02T13:46:49.349Z",
+  "extractedAt": "2026-02-08T00:11:02.762Z",
   "installCount": 8906,
   "themes": [
     {
@@ -21,10 +21,13 @@
         "statusBar.foreground": "#C8D0C8",
         "activityBar.background": "#202220",
         "activityBar.foreground": "#F0F5F0",
+        "activityBar.activeBackground": "#98FB98",
+        "activityBar.activeBorder": "#98FB98",
         "sideBar.background": "#262826",
         "sideBar.foreground": "#C8D0C8",
         "sideBarSectionHeader.background": "#202220",
-        "sideBarSectionHeader.foreground": "#F0F5F0"
+        "sideBarSectionHeader.foreground": "#F0F5F0",
+        "sideBarSectionHeader.border": "#495057"
       },
       "type": "dark"
     },
@@ -42,10 +45,13 @@
         "statusBar.foreground": "#B8C8B8",
         "activityBar.background": "#1E201E",
         "activityBar.foreground": "#E8EDE8",
+        "activityBar.activeBackground": "#85E885",
+        "activityBar.activeBorder": "#85E885",
         "sideBar.background": "#242624",
         "sideBar.foreground": "#B8C8B8",
         "sideBarSectionHeader.background": "#1E201E",
-        "sideBarSectionHeader.foreground": "#E8EDE8"
+        "sideBarSectionHeader.foreground": "#E8EDE8",
+        "sideBarSectionHeader.border": "#424542"
       },
       "type": "dark"
     }

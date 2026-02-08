@@ -4,7 +4,7 @@
   "publisherName": "nadim-vscode",
   "displayName": "infinity dark theme",
   "version": "1.0.2",
-  "extractedAt": "2026-02-02T13:46:38.282Z",
+  "extractedAt": "2026-02-08T00:10:51.242Z",
   "installCount": 10794,
   "themes": [
     {
@@ -19,12 +19,15 @@
         "titleBar.inactiveForeground": "#FFFFFF",
         "statusBar.background": "#15232D",
         "statusBar.foreground": "#AAAAAA",
+        "statusBar.border": "#0D3A58",
         "activityBar.background": "#122738",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#15232D",
         "sideBar.foreground": "#AAAAAA",
+        "sideBar.border": "#0D3A58",
         "sideBarSectionHeader.background": "#193549",
-        "sideBarSectionHeader.foreground": "#AAAAAA"
+        "sideBarSectionHeader.foreground": "#AAAAAA",
+        "sideBarSectionHeader.border": "#FFFFFF"
       },
       "type": "dark"
     }

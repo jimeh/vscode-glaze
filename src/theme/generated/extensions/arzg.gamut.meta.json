@@ -4,7 +4,7 @@
   "publisherName": "arzg",
   "displayName": "Gamut",
   "version": "1.11.0",
-  "extractedAt": "2026-02-02T13:46:57.178Z",
+  "extractedAt": "2026-02-08T00:11:10.965Z",
   "installCount": 4482,
   "themes": [
     {
@@ -15,9 +15,11 @@
         "editor.foreground": "#DCDEE5",
         "statusBar.background": "#191A1F",
         "statusBar.foreground": "#8990B1",
+        "statusBar.border": "#030306",
         "activityBar.background": "#212227",
         "activityBar.foreground": "#DCDEE5",
-        "sideBar.background": "#212227"
+        "sideBar.background": "#212227",
+        "sideBar.border": "#030306"
       },
       "type": "dark"
     }

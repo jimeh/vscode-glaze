@@ -4,7 +4,7 @@
   "publisherName": "BisnetoInc",
   "displayName": "Excel Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-02-02T13:46:59.980Z",
+  "extractedAt": "2026-02-08T00:11:13.908Z",
   "installCount": 3813,
   "themes": [
     {
@@ -18,6 +18,8 @@
         "statusBar.background": "#197B43",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#33C481",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#33C481",
         "sideBar.background": "#141414"
       },
       "type": "dark"
@@ -35,6 +37,8 @@
         "statusBar.background": "#197B43",
         "activityBar.background": "#EBEBEB",
         "activityBar.foreground": "#197B43",
+        "activityBar.activeBackground": "#F5F5F5",
+        "activityBar.activeBorder": "#197B43",
         "sideBar.background": "#E3E3E3",
         "sideBar.foreground": "#000000"
       },

@@ -4,7 +4,7 @@
   "publisherName": "eserozvataf",
   "displayName": "One Dark Pro Monokai Darker Theme",
   "version": "1.1.0",
-  "extractedAt": "2026-02-02T13:46:25.883Z",
+  "extractedAt": "2026-02-08T00:10:38.457Z",
   "installCount": 334840,
   "themes": [
     {
@@ -21,6 +21,7 @@
         "activityBar.background": "#1D1F23",
         "activityBar.foreground": "#D7DAE0",
         "sideBar.background": "#181A1F",
+        "sideBar.border": "#1D1F23",
         "sideBarSectionHeader.background": "#181A1F"
       },
       "type": "dark"

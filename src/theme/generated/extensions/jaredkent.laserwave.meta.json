@@ -4,7 +4,7 @@
   "publisherName": "jaredkent",
   "displayName": "LaserWave",
   "version": "1.3.3",
-  "extractedAt": "2026-02-02T13:46:41.612Z",
+  "extractedAt": "2026-02-08T00:10:54.729Z",
   "installCount": 114320,
   "themes": [
     {
@@ -19,6 +19,7 @@
         "statusBar.foreground": "#27212E",
         "activityBar.background": "#27212E",
         "activityBar.foreground": "#DDDDDD",
+        "activityBar.activeBorder": "#EB64B9",
         "sideBar.background": "#27212E",
         "sideBar.foreground": "#DDDDDD",
         "sideBarSectionHeader.background": "#27212E"
@@ -37,6 +38,7 @@
         "statusBar.foreground": "#27212E",
         "activityBar.background": "#27212E",
         "activityBar.foreground": "#DDDDDD",
+        "activityBar.activeBorder": "#EB64B9",
         "sideBar.background": "#27212E",
         "sideBar.foreground": "#DDDDDD",
         "sideBarSectionHeader.background": "#27212E"
@@ -55,6 +57,7 @@
         "statusBar.foreground": "#27212E",
         "activityBar.background": "#27212E",
         "activityBar.foreground": "#DDDDDD",
+        "activityBar.activeBorder": "#EB64B9",
         "sideBar.background": "#27212E",
         "sideBar.foreground": "#DDDDDD",
         "sideBarSectionHeader.background": "#27212E"

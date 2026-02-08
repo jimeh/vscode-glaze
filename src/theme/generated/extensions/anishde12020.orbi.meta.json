@@ -4,7 +4,7 @@
   "publisherName": "AnishDe12020",
   "displayName": "Orbi",
   "version": "1.4.0",
-  "extractedAt": "2026-02-02T13:47:01.631Z",
+  "extractedAt": "2026-02-08T00:11:15.621Z",
   "installCount": 3493,
   "themes": [
     {
@@ -21,9 +21,11 @@
         "statusBar.foreground": "#575861",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#868690",
+        "activityBar.activeBorder": "#868690",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#575861",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#817C9C"
       },
       "type": "dark"
     },
@@ -41,9 +43,11 @@
         "statusBar.foreground": "#575861",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#868690",
+        "activityBar.activeBorder": "#868690",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#575861",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#817C9C"
       },
       "type": "dark"
     },
@@ -61,9 +65,11 @@
         "statusBar.foreground": "#575861",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#868690",
+        "activityBar.activeBorder": "#868690",
         "sideBar.background": "#000000",
         "sideBar.foreground": "#575861",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#817C9C"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "ssmi",
   "displayName": "After Dark",
   "version": "1.6.4",
-  "extractedAt": "2026-02-02T13:46:39.731Z",
+  "extractedAt": "2026-02-08T00:10:52.737Z",
   "installCount": 126085,
   "themes": [
     {
@@ -22,6 +22,7 @@
         "activityBar.background": "#0E131B",
         "sideBar.background": "#0E131B",
         "sideBar.foreground": "#6C8093",
+        "sideBar.border": "#1E293E",
         "sideBarSectionHeader.background": "#0E131B"
       },
       "type": "dark"
@@ -41,6 +42,7 @@
         "activityBar.background": "#0E131B",
         "sideBar.background": "#0E131B",
         "sideBar.foreground": "#6C8093",
+        "sideBar.border": "#1E293E",
         "sideBarSectionHeader.background": "#0E131B"
       },
       "type": "dark"

@@ -4,7 +4,7 @@
   "publisherName": "UstymUkhman",
   "displayName": "Matrix Theme",
   "version": "0.1.3",
-  "extractedAt": "2026-02-02T13:46:40.889Z",
+  "extractedAt": "2026-02-08T00:10:53.961Z",
   "installCount": 118027,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#00CC00",
         "titleBar.inactiveBackground": "#080808",
         "titleBar.inactiveForeground": "#008800",
+        "titleBar.border": "#00CC00",
         "statusBar.background": "#000000",
         "statusBar.foreground": "#00CC00",
+        "statusBar.border": "#00CC00",
         "activityBar.background": "#000000",
         "activityBar.foreground": "#00CC00",
+        "activityBar.activeBorder": "#00CC00",
         "sideBar.background": "#080808",
         "sideBar.foreground": "#00CC00",
+        "sideBar.border": "#00CC00",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#00CC00"
+        "sideBarSectionHeader.foreground": "#00CC00",
+        "sideBarSectionHeader.border": "#00CC00"
       },
       "type": "dark"
     }

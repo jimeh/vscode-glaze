@@ -4,7 +4,7 @@
   "publisherName": "foxhoundn",
   "displayName": "Synthax",
   "version": "0.1.13",
-  "extractedAt": "2026-02-02T13:46:46.629Z",
+  "extractedAt": "2026-02-08T00:10:59.922Z",
   "installCount": 13788,
   "themes": [
     {
@@ -17,6 +17,7 @@
         "titleBar.activeForeground": "#D0B7FF",
         "titleBar.inactiveBackground": "#0D0221",
         "titleBar.inactiveForeground": "#D0B7FF",
+        "titleBar.border": "#0D0221",
         "statusBar.background": "#0D0221",
         "statusBar.foreground": "#D0B7FF",
         "activityBar.background": "#0D0221",

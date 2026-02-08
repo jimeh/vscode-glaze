@@ -4,7 +4,7 @@
   "publisherName": "Qeenon",
   "displayName": "Hot Emo Theme",
   "version": "0.0.5",
-  "extractedAt": "2026-02-02T13:47:02.151Z",
+  "extractedAt": "2026-02-08T00:11:16.170Z",
   "installCount": 3368,
   "themes": [
     {
@@ -19,10 +19,12 @@
         "titleBar.inactiveForeground": "#F0EAED",
         "statusBar.background": "#171D23",
         "statusBar.foreground": "#F5EAF5",
+        "statusBar.border": "#1D252C",
         "activityBar.background": "#1D252C",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#171D23",
         "sideBar.foreground": "#EBE5E9",
+        "sideBar.border": "#1D252C",
         "sideBarSectionHeader.background": "#1D252C",
         "sideBarSectionHeader.foreground": "#F5EAF5"
       },

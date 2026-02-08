@@ -4,7 +4,7 @@
   "publisherName": "Codemos",
   "displayName": "Codemos Modern",
   "version": "3.0.9",
-  "extractedAt": "2026-02-02T13:46:46.841Z",
+  "extractedAt": "2026-02-08T00:11:00.140Z",
   "installCount": 12925,
   "themes": [
     {
@@ -17,14 +17,21 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#171717",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#FFFFFF",
         "statusBar.background": "#171717",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#FFFFFF",
+        "statusBar.focusBorder": "#757575",
         "activityBar.background": "#171717",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#FFFFFF",
+        "activityBar.activeBorder": "#CB8569",
         "sideBar.background": "#1C1C1C",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#FFFFFF",
-        "sideBarSectionHeader.foreground": "#FFFFFF"
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#757575"
       },
       "type": "dark"
     },
@@ -38,14 +45,21 @@
         "titleBar.activeForeground": "#000000",
         "titleBar.inactiveBackground": "#EDEDED",
         "titleBar.inactiveForeground": "#000000",
+        "titleBar.border": "#000000",
         "statusBar.background": "#EDEDED",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#000000",
+        "statusBar.focusBorder": "#757575",
         "activityBar.background": "#EDEDED",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#784F3F",
         "sideBar.background": "#F3F3F3",
         "sideBar.foreground": "#000000",
+        "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.foreground": "#000000"
+        "sideBarSectionHeader.foreground": "#000000",
+        "sideBarSectionHeader.border": "#757575"
       },
       "type": "light"
     }

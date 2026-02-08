@@ -4,7 +4,7 @@
   "publisherName": "vallyscode",
   "displayName": "Cloud Theme",
   "version": "0.0.12",
-  "extractedAt": "2026-02-02T13:46:56.633Z",
+  "extractedAt": "2026-02-08T00:11:10.367Z",
   "installCount": 4670,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#454545",
         "titleBar.inactiveBackground": "#F1F1F1",
         "titleBar.inactiveForeground": "#6A737D",
+        "titleBar.border": "#F1F1F1",
         "statusBar.background": "#F1F1F1",
         "statusBar.foreground": "#454545",
+        "statusBar.border": "#F1F1F1",
         "activityBar.background": "#F1F1F1",
         "activityBar.foreground": "#454545",
+        "activityBar.activeBorder": "#008ABD",
         "sideBar.background": "#F1F1F1",
         "sideBar.foreground": "#454545",
+        "sideBar.border": "#F1F1F1",
         "sideBarSectionHeader.background": "#F1F1F1",
-        "sideBarSectionHeader.foreground": "#454545"
+        "sideBarSectionHeader.foreground": "#454545",
+        "sideBarSectionHeader.border": "#F1F1F1"
       },
       "type": "light"
     }

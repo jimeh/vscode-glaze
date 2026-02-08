@@ -4,7 +4,7 @@
   "publisherName": "Rajeshwaran",
   "displayName": "Developer's theme",
   "version": "5.0.0",
-  "extractedAt": "2026-02-02T13:46:34.743Z",
+  "extractedAt": "2026-02-08T00:10:47.567Z",
   "installCount": 158281,
   "themes": [
     {
@@ -17,6 +17,7 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#261C25",
         "titleBar.inactiveForeground": "#685C66",
+        "titleBar.border": "#4F384A",
         "statusBar.background": "#3E9689",
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#261C25",
@@ -38,14 +39,18 @@
         "titleBar.activeForeground": "#F8F8F2",
         "titleBar.inactiveBackground": "#191A21",
         "titleBar.inactiveForeground": "#6272A4",
+        "titleBar.border": "#1F2430",
         "statusBar.background": "#191A21",
         "statusBar.foreground": "#F8F8F2",
+        "statusBar.border": "#1F2430",
         "activityBar.background": "#343746",
         "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#3D4A8C",
         "sideBar.background": "#2B2B52",
         "sideBar.foreground": "#B8B8B8",
         "sideBarSectionHeader.background": "#1F2430",
-        "sideBarSectionHeader.foreground": "#707A8C"
+        "sideBarSectionHeader.foreground": "#707A8C",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     },
@@ -59,14 +64,18 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#0C0C0D",
         "titleBar.inactiveForeground": "#B1B1B3",
+        "titleBar.border": "#3C3C3D",
         "statusBar.background": "#0C0C0D",
         "statusBar.foreground": "#B1B1B3",
+        "statusBar.border": "#3C3C3D",
         "activityBar.background": "#1B1B1D",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#1B1B1D",
         "sideBar.foreground": "#B1B1B3",
+        "sideBar.border": "#696D71",
         "sideBarSectionHeader.background": "#222225",
-        "sideBarSectionHeader.foreground": "#B1B1B3"
+        "sideBarSectionHeader.foreground": "#B1B1B3",
+        "sideBarSectionHeader.border": "#3C3C3D"
       },
       "type": "dark"
     },
@@ -80,14 +89,19 @@
         "titleBar.activeForeground": "#D6D9D6",
         "titleBar.inactiveBackground": "#2A3447",
         "titleBar.inactiveForeground": "#FFFFFF",
+        "titleBar.border": "#283F1F",
         "statusBar.background": "#191D11",
         "statusBar.foreground": "#BC9595",
+        "statusBar.border": "#283F1F",
         "activityBar.background": "#261D1D",
         "activityBar.foreground": "#74A160",
+        "activityBar.activeBackground": "#020200",
         "sideBar.background": "#0D0202",
         "sideBar.foreground": "#97A787",
+        "sideBar.border": "#473434",
         "sideBarSectionHeader.background": "#123620",
-        "sideBarSectionHeader.foreground": "#BEBABA"
+        "sideBarSectionHeader.foreground": "#BEBABA",
+        "sideBarSectionHeader.border": "#861269"
       },
       "type": "dark"
     },
@@ -101,14 +115,19 @@
         "titleBar.activeForeground": "#7564E8",
         "titleBar.inactiveBackground": "#3C3C3C",
         "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#121313",
         "statusBar.background": "#301075",
         "statusBar.foreground": "#FBFBFB",
+        "statusBar.border": "#000000",
         "activityBar.background": "#110D0D",
         "activityBar.foreground": "#2E76FF",
+        "activityBar.activeBackground": "#130E0E",
         "sideBar.background": "#00113B",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#009FFF",
         "sideBarSectionHeader.background": "#2F325E",
-        "sideBarSectionHeader.foreground": "#F9F9F9"
+        "sideBarSectionHeader.foreground": "#F9F9F9",
+        "sideBarSectionHeader.border": "#324A5C"
       },
       "type": "dark"
     },
@@ -140,10 +159,12 @@
         "titleBar.inactiveForeground": "#FFFFFF",
         "statusBar.background": "#171D23",
         "statusBar.foreground": "#B7C5D3",
+        "statusBar.border": "#1D252C",
         "activityBar.background": "#1D252C",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#171D23",
         "sideBar.foreground": "#B7C5D3",
+        "sideBar.border": "#1D252C",
         "sideBarSectionHeader.background": "#1D252C",
         "sideBarSectionHeader.foreground": "#B7C5D3"
       },

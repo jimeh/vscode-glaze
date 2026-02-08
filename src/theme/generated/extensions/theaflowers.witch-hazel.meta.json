@@ -4,7 +4,7 @@
   "publisherName": "TheaFlowers",
   "displayName": "Witch Hazel",
   "version": "2021.10.16",
-  "extractedAt": "2026-02-02T13:46:50.637Z",
+  "extractedAt": "2026-02-08T00:11:04.112Z",
   "installCount": 7309,
   "themes": [
     {
@@ -42,8 +42,10 @@
         "activityBar.background": "#131218",
         "sideBar.background": "#282634",
         "sideBar.foreground": "#F8F8F0",
+        "sideBar.border": "#131218",
         "sideBarSectionHeader.background": "#8864CB",
-        "sideBarSectionHeader.foreground": "#F8F8F0"
+        "sideBarSectionHeader.foreground": "#F8F8F0",
+        "sideBarSectionHeader.border": "#8864CB"
       },
       "type": "dark"
     }

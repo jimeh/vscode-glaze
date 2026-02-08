@@ -4,7 +4,7 @@
   "publisherName": "wicked-labs",
   "displayName": "Serendipity",
   "version": "0.101.0",
-  "extractedAt": "2026-02-02T13:47:01.842Z",
+  "extractedAt": "2026-02-08T00:11:15.851Z",
   "installCount": 3417,
   "themes": [
     {
@@ -21,9 +21,11 @@
         "statusBar.foreground": "#6B6D7C",
         "activityBar.background": "#202231",
         "activityBar.foreground": "#DEE0EF",
+        "activityBar.activeBorder": "#DEE0EF",
         "sideBar.background": "#202231",
         "sideBar.foreground": "#6B6D7C",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#6B6D7C"
       },
       "type": "dark"
     },
@@ -41,9 +43,11 @@
         "statusBar.foreground": "#5F6488",
         "activityBar.background": "#FDFDFE",
         "activityBar.foreground": "#4E5377",
+        "activityBar.activeBorder": "#4E5377",
         "sideBar.background": "#FDFDFE",
         "sideBar.foreground": "#5F6488",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#6E6A86"
       },
       "type": "light"
     },
@@ -61,9 +65,11 @@
         "statusBar.foreground": "#8D8F9E",
         "activityBar.background": "#151726",
         "activityBar.foreground": "#DEE0EF",
+        "activityBar.activeBorder": "#DEE0EF",
         "sideBar.background": "#151726",
         "sideBar.foreground": "#8D8F9E",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#6B6D7C"
       },
       "type": "dark"
     }

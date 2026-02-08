@@ -4,7 +4,7 @@
   "publisherName": "dsrkafuu",
   "displayName": "Aofuji Light Theme",
   "version": "0.3.6",
-  "extractedAt": "2026-02-02T13:47:01.528Z",
+  "extractedAt": "2026-02-08T00:11:15.514Z",
   "installCount": 3522,
   "themes": [
     {
@@ -19,6 +19,7 @@
         "statusBar.foreground": "#3F4551",
         "activityBar.background": "#F3F3F3",
         "activityBar.foreground": "#8AA2D3",
+        "activityBar.activeBorder": "#8AA2D3",
         "sideBar.background": "#FAFAFA",
         "sideBarSectionHeader.background": "#F3F3F3",
         "sideBarSectionHeader.foreground": "#3F4551"
@@ -37,6 +38,7 @@
         "statusBar.foreground": "#3F4551",
         "activityBar.background": "#F3F3F3",
         "activityBar.foreground": "#FF9940",
+        "activityBar.activeBorder": "#FF9940",
         "sideBar.background": "#FAFAFA",
         "sideBarSectionHeader.background": "#F3F3F3",
         "sideBarSectionHeader.foreground": "#3F4551"
@@ -55,6 +57,7 @@
         "statusBar.foreground": "#3F4551",
         "activityBar.background": "#F3F3F3",
         "activityBar.foreground": "#8AA2D3",
+        "activityBar.activeBorder": "#8AA2D3",
         "sideBar.background": "#FAFAFA",
         "sideBarSectionHeader.background": "#F3F3F3",
         "sideBarSectionHeader.foreground": "#3F4551"
@@ -73,6 +76,7 @@
         "statusBar.foreground": "#3F4551",
         "activityBar.background": "#F3F3F3",
         "activityBar.foreground": "#FF9940",
+        "activityBar.activeBorder": "#FF9940",
         "sideBar.background": "#FAFAFA",
         "sideBarSectionHeader.background": "#F3F3F3",
         "sideBarSectionHeader.foreground": "#3F4551"

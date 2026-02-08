@@ -4,12 +4,13 @@ import {
   applyHueOffset,
   computeBaseTintHex,
   computeTint,
+  tintResultToPalette,
   tintResultToStatusBarColors,
 } from '../../color/tint';
 import { hexToOklch } from '../../color/convert';
 import type { ColorHarmony, ColorStyle } from '../../config';
-import type { ThemeType } from '../../theme';
-import { PATINA_MANAGED_KEYS } from '../../theme';
+import type { ThemeColors, ThemeType } from '../../theme';
+import { PATINA_MANAGED_KEYS, EXCLUDE_WHEN_UNDEFINED_KEYS } from '../../theme';
 import { ALL_TARGETS } from '../helpers';
 
 // ============================================================================
@@ -153,13 +154,13 @@ suite('computeTint', () => {
     );
   });
 
-  test('computes all 12 keys regardless of targets', () => {
+  test('computes all 19 keys regardless of targets', () => {
     const result = computeTint({
       workspaceIdentifier: 'test',
       targets: ['titleBar'],
       themeType: 'dark',
     });
-    assert.strictEqual(result.keys.length, 12);
+    assert.strictEqual(result.keys.length, 19);
   });
 
   test('enabled flag matches targets', () => {
@@ -475,6 +476,195 @@ suite('computeTint', () => {
     for (const key of PATINA_MANAGED_KEYS) {
       assert.ok(resultKeys.includes(key), `Missing key: ${key}`);
     }
+  });
+});
+
+// ============================================================================
+// computeTint — excluded flag
+// ============================================================================
+
+suite('computeTint excluded flag', () => {
+  const excludedKeys = [...EXCLUDE_WHEN_UNDEFINED_KEYS];
+
+  test('excluded=false when theme defines the key directly', () => {
+    const themeColors: ThemeColors = {
+      'editor.background': '#282C34',
+      'titleBar.border': '#181A1F',
+      'statusBar.border': '#181A1F',
+      'statusBar.focusBorder': '#181A1F',
+      'activityBar.activeBackground': '#2C313A',
+      'activityBar.activeBorder': '#528BFF',
+      'sideBar.border': '#181A1F',
+      'sideBarSectionHeader.border': '#181A1F',
+    };
+
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      themeColors,
+    });
+
+    for (const detail of result.keys) {
+      if (EXCLUDE_WHEN_UNDEFINED_KEYS.has(detail.key)) {
+        assert.strictEqual(
+          detail.excluded,
+          false,
+          `${detail.key} should not be excluded when theme defines it`
+        );
+      }
+    }
+  });
+
+  test('excluded=true when theme does not define the key', () => {
+    // Only editor.background, no border/active keys
+    const themeColors: ThemeColors = {
+      'editor.background': '#282C34',
+    };
+
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      themeColors,
+    });
+
+    for (const detail of result.keys) {
+      if (EXCLUDE_WHEN_UNDEFINED_KEYS.has(detail.key)) {
+        assert.strictEqual(
+          detail.excluded,
+          true,
+          `${detail.key} should be excluded when theme omits it`
+        );
+      }
+    }
+  });
+
+  test('excluded=true for all 7 keys when themeColors is undefined', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+    });
+
+    const excludedDetails = result.keys.filter((d) => d.excluded);
+    assert.strictEqual(
+      excludedDetails.length,
+      excludedKeys.length,
+      `Expected ${excludedKeys.length} excluded keys`
+    );
+    for (const detail of excludedDetails) {
+      assert.ok(
+        EXCLUDE_WHEN_UNDEFINED_KEYS.has(detail.key),
+        `${detail.key} should be in EXCLUDE_WHEN_UNDEFINED_KEYS`
+      );
+    }
+  });
+
+  test('non-excluded keys are never excluded', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+    });
+
+    for (const detail of result.keys) {
+      if (!EXCLUDE_WHEN_UNDEFINED_KEYS.has(detail.key)) {
+        assert.strictEqual(
+          detail.excluded,
+          false,
+          `${detail.key} should never be excluded`
+        );
+      }
+    }
+  });
+});
+
+// ============================================================================
+// tintResultToPalette
+// ============================================================================
+
+suite('tintResultToPalette', () => {
+  test('includes enabled, non-excluded keys', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      themeColors: {
+        'editor.background': '#282C34',
+        'titleBar.border': '#181A1F',
+        'statusBar.border': '#181A1F',
+        'statusBar.focusBorder': '#181A1F',
+        'activityBar.activeBackground': '#2C313A',
+        'activityBar.activeBorder': '#528BFF',
+        'sideBar.border': '#181A1F',
+        'sideBarSectionHeader.border': '#181A1F',
+      },
+    });
+
+    const palette = tintResultToPalette(result);
+
+    // All managed keys except editor.* should be present
+    for (const key of PATINA_MANAGED_KEYS) {
+      assert.ok(
+        key in palette,
+        `${key} should be in palette when theme defines it`
+      );
+    }
+  });
+
+  test('excludes keys when theme does not define them', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      themeColors: { 'editor.background': '#282C34' },
+    });
+
+    const palette = tintResultToPalette(result);
+
+    for (const key of EXCLUDE_WHEN_UNDEFINED_KEYS) {
+      assert.ok(!(key in palette), `${key} should be excluded from palette`);
+    }
+
+    // Non-excluded keys should still be present
+    for (const key of PATINA_MANAGED_KEYS) {
+      if (!EXCLUDE_WHEN_UNDEFINED_KEYS.has(key)) {
+        assert.ok(key in palette, `${key} should still be in palette`);
+      }
+    }
+  });
+
+  test('excludes keys when themeColors is undefined', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+    });
+
+    const palette = tintResultToPalette(result);
+
+    for (const key of EXCLUDE_WHEN_UNDEFINED_KEYS) {
+      assert.ok(
+        !(key in palette),
+        `${key} should be excluded when theme unknown`
+      );
+    }
+  });
+
+  test('disabled keys are still excluded', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: [], // nothing enabled
+      themeType: 'dark',
+    });
+
+    const palette = tintResultToPalette(result);
+    assert.deepStrictEqual(
+      palette,
+      {},
+      'No keys should be in palette when all disabled'
+    );
   });
 });
 

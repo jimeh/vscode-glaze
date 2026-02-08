@@ -4,7 +4,7 @@
   "publisherName": "lohsebhipolg2s",
   "displayName": "Aurora Borealis Studio Theme",
   "version": "1.0.2",
-  "extractedAt": "2026-02-02T13:46:58.846Z",
+  "extractedAt": "2026-02-08T00:11:12.714Z",
   "installCount": 4014,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#E8F4FD",
         "activityBar.background": "#0F1B2E",
         "activityBar.foreground": "#64FFDA",
+        "activityBar.activeBackground": "#64FFDA",
+        "activityBar.activeBorder": "#64FFDA",
         "sideBar.background": "#0F1B2E",
-        "sideBarSectionHeader.background": "#1A2332"
+        "sideBarSectionHeader.background": "#1A2332",
+        "sideBarSectionHeader.border": "#37474F"
       },
       "type": "dark"
     },
@@ -40,8 +43,11 @@
         "statusBar.foreground": "#D1E7F0",
         "activityBar.background": "#1E2A38",
         "activityBar.foreground": "#81C784",
+        "activityBar.activeBackground": "#81C784",
+        "activityBar.activeBorder": "#81C784",
         "sideBar.background": "#1E2A38",
-        "sideBarSectionHeader.background": "#263238"
+        "sideBarSectionHeader.background": "#263238",
+        "sideBarSectionHeader.border": "#455A64"
       },
       "type": "dark"
     }

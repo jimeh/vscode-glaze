@@ -4,7 +4,7 @@
   "publisherName": "kuba-p",
   "displayName": "Pink Candy Theme",
   "version": "1.6.0",
-  "extractedAt": "2026-02-02T13:46:58.124Z",
+  "extractedAt": "2026-02-08T00:11:11.958Z",
   "installCount": 4305,
   "themes": [
     {
@@ -21,8 +21,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#FAFBFC",
         "activityBar.foreground": "#FF1277",
+        "activityBar.activeBorder": "#FF1277",
         "sideBar.background": "#F3F3F3",
         "sideBar.foreground": "#565869",
+        "sideBar.border": "#CECECE",
         "sideBarSectionHeader.background": "#E5E5E5",
         "sideBarSectionHeader.foreground": "#565869"
       },
@@ -42,8 +44,10 @@
         "statusBar.foreground": "#FFFFFF",
         "activityBar.background": "#22222A",
         "activityBar.foreground": "#FF1277",
+        "activityBar.activeBorder": "#FF1277",
         "sideBar.background": "#1E1D24",
         "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#3D434F",
         "sideBarSectionHeader.background": "#151419",
         "sideBarSectionHeader.foreground": "#ABB2BF"
       },
@@ -63,8 +67,10 @@
         "statusBar.foreground": "#FBF1C7",
         "activityBar.background": "#1D2021",
         "activityBar.foreground": "#FB3453",
+        "activityBar.activeBorder": "#FB3453",
         "sideBar.background": "#212526",
         "sideBar.foreground": "#BDAE93",
+        "sideBar.border": "#504945",
         "sideBarSectionHeader.background": "#1A1C1D",
         "sideBarSectionHeader.foreground": "#BDAE93"
       },

@@ -4,7 +4,7 @@
   "publisherName": "rocketseat",
   "displayName": "Omni Theme",
   "version": "1.0.12",
-  "extractedAt": "2026-02-02T13:46:20.108Z",
+  "extractedAt": "2026-02-08T00:10:32.512Z",
   "installCount": 957933,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#E1E1E6",
         "activityBar.background": "#201B2D",
         "activityBar.foreground": "#E1E1E6",
+        "activityBar.activeBackground": "#41414D",
+        "activityBar.activeBorder": "#FF79C6",
         "sideBar.background": "#13111B",
-        "sideBarSectionHeader.background": "#191622"
+        "sideBarSectionHeader.background": "#191622",
+        "sideBarSectionHeader.border": "#15121E"
       },
       "type": "dark"
     }

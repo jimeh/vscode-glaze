@@ -4,7 +4,7 @@
   "publisherName": "janw4ld",
   "displayName": "Lambda Black",
   "version": "0.2.20",
-  "extractedAt": "2026-02-02T13:46:51.593Z",
+  "extractedAt": "2026-02-08T00:11:05.088Z",
   "installCount": 6920,
   "themes": [
     {
@@ -16,7 +16,8 @@
         "titleBar.activeBackground": "#000000",
         "statusBar.background": "#000000",
         "activityBar.background": "#000000",
-        "sideBar.background": "#000000"
+        "sideBar.background": "#000000",
+        "sideBar.border": "#444444"
       },
       "type": "dark"
     },
@@ -30,14 +31,19 @@
         "titleBar.activeForeground": "#CCCCCC",
         "titleBar.inactiveBackground": "#1F1F1F",
         "titleBar.inactiveForeground": "#8B949E",
+        "titleBar.border": "#FFFFFF",
         "statusBar.background": "#181818",
         "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#FFFFFF",
         "activityBar.background": "#181818",
         "activityBar.foreground": "#D7D7D7",
+        "activityBar.activeBorder": "#0078D4",
         "sideBar.background": "#181818",
         "sideBar.foreground": "#CCCCCC",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#181818",
-        "sideBarSectionHeader.foreground": "#CCCCCC"
+        "sideBarSectionHeader.foreground": "#CCCCCC",
+        "sideBarSectionHeader.border": "#FFFFFF"
       },
       "type": "dark"
     }

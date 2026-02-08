@@ -4,7 +4,7 @@
   "publisherName": "dline",
   "displayName": "Cobalt Next",
   "version": "0.4.5",
-  "extractedAt": "2026-02-02T13:46:40.255Z",
+  "extractedAt": "2026-02-08T00:10:53.286Z",
   "installCount": 124778,
   "themes": [
     {
@@ -17,12 +17,17 @@
         "titleBar.activeForeground": "#D8DEE9",
         "titleBar.inactiveBackground": "#1B2B34",
         "titleBar.inactiveForeground": "#65737E",
+        "titleBar.border": "#1B2B34",
         "statusBar.background": "#1B2B34",
         "statusBar.foreground": "#D8DEE9",
+        "statusBar.border": "#343D46",
         "activityBar.background": "#1B2B34",
         "activityBar.foreground": "#D8DEE9",
+        "activityBar.activeBackground": "#343D46",
+        "activityBar.activeBorder": "#5FB3B3",
         "sideBar.background": "#0F1C23",
         "sideBar.foreground": "#65737E",
+        "sideBar.border": "#1B2B34",
         "sideBarSectionHeader.background": "#1B2B34",
         "sideBarSectionHeader.foreground": "#D8DEE9"
       },
@@ -38,14 +43,20 @@
         "titleBar.activeForeground": "#D8DEE9",
         "titleBar.inactiveBackground": "#1B2B34",
         "titleBar.inactiveForeground": "#65737E",
+        "titleBar.border": "#1B2B34",
         "statusBar.background": "#1B2B34",
         "statusBar.foreground": "#D8DEE9",
+        "statusBar.border": "#343D46",
         "activityBar.background": "#0F1C23",
         "activityBar.foreground": "#D8DEE9",
+        "activityBar.activeBackground": "#1B2B34",
+        "activityBar.activeBorder": "#5FB3B3",
         "sideBar.background": "#0F1C23",
         "sideBar.foreground": "#65737E",
+        "sideBar.border": "#5FB3B3",
         "sideBarSectionHeader.background": "#1B2B34",
-        "sideBarSectionHeader.foreground": "#D8DEE9"
+        "sideBarSectionHeader.foreground": "#D8DEE9",
+        "sideBarSectionHeader.border": "#5FB3B3"
       },
       "type": "dark"
     },
@@ -59,14 +70,20 @@
         "titleBar.activeForeground": "#D8DEE9",
         "titleBar.inactiveBackground": "#1B2B34",
         "titleBar.inactiveForeground": "#65737E",
+        "titleBar.border": "#1B2B34",
         "statusBar.background": "#0F1C23",
         "statusBar.foreground": "#D8DEE9",
+        "statusBar.border": "#5FB3B3",
         "activityBar.background": "#0F1C23",
         "activityBar.foreground": "#5FB3B3",
+        "activityBar.activeBackground": "#1B2B34",
+        "activityBar.activeBorder": "#5FB3B3",
         "sideBar.background": "#0F1C23",
         "sideBar.foreground": "#65737E",
+        "sideBar.border": "#5FB3B3",
         "sideBarSectionHeader.background": "#1B2B34",
-        "sideBarSectionHeader.foreground": "#D8DEE9"
+        "sideBarSectionHeader.foreground": "#D8DEE9",
+        "sideBarSectionHeader.border": "#5FB3B3"
       },
       "type": "dark"
     }

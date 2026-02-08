@@ -4,7 +4,7 @@
   "publisherName": "rafaelmardojai",
   "displayName": "GNOME theme",
   "version": "0.4.1",
-  "extractedAt": "2026-02-02T13:47:00.185Z",
+  "extractedAt": "2026-02-08T00:11:14.118Z",
   "installCount": 3789,
   "themes": [
     {
@@ -16,12 +16,15 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#242424",
         "titleBar.inactiveForeground": "#999999",
+        "titleBar.border": "#FFFFFF",
         "statusBar.background": "#242424",
         "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#FFFFFF",
         "activityBar.background": "#1E1E1E",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#1E1E1E",
         "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#242424"
       },
       "type": "dark"

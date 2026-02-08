@@ -4,7 +4,7 @@
   "publisherName": "alefragnani",
   "displayName": "Delphi Themes",
   "version": "1.5.0",
-  "extractedAt": "2026-02-02T13:46:43.596Z",
+  "extractedAt": "2026-02-08T00:10:56.768Z",
   "installCount": 100617,
   "themes": [
     {
@@ -14,11 +14,15 @@
         "editor.background": "#FFFFFF",
         "editor.foreground": "#000000",
         "titleBar.activeBackground": "#F0F0F0",
+        "titleBar.border": "#F0F0F0",
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#BBBBBB",
         "activityBar.background": "#F0F0F0",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBackground": "#FFFFFF",
         "sideBar.background": "#FFFFFF",
+        "sideBar.border": "#BBBBBB",
         "sideBarSectionHeader.background": "#F0F0F0"
       },
       "type": "light"

@@ -4,7 +4,7 @@
   "publisherName": "NguyenHoangLam",
   "displayName": "Beautiful Dracula",
   "version": "0.1.4",
-  "extractedAt": "2026-02-02T13:46:40.563Z",
+  "extractedAt": "2026-02-08T00:10:53.608Z",
   "installCount": 122625,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
         "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF6BCB",
         "sideBar.background": "#1E1F35",
-        "sideBarSectionHeader.background": "#1E1F35"
+        "sideBarSectionHeader.background": "#1E1F35",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     },
@@ -40,8 +43,11 @@
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
         "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF6BCB",
         "sideBar.background": "#1E1F35",
-        "sideBarSectionHeader.background": "#1E1F35"
+        "sideBarSectionHeader.background": "#1E1F35",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     },
@@ -59,8 +65,11 @@
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
         "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF6BCB",
         "sideBar.background": "#1E1F35",
-        "sideBarSectionHeader.background": "#1E1F35"
+        "sideBarSectionHeader.background": "#1E1F35",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     },
@@ -78,8 +87,11 @@
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#1E1F35",
         "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF6BCB",
         "sideBar.background": "#1E1F35",
-        "sideBarSectionHeader.background": "#1E1F35"
+        "sideBarSectionHeader.background": "#1E1F35",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     }

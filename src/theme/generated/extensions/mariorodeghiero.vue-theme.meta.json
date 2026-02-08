@@ -4,7 +4,7 @@
   "publisherName": "mariorodeghiero",
   "displayName": "Vue Theme",
   "version": "2.0.3",
-  "extractedAt": "2026-02-02T13:46:20.982Z",
+  "extractedAt": "2026-02-08T00:10:33.407Z",
   "installCount": 683700,
   "themes": [
     {
@@ -23,6 +23,7 @@
         "activityBar.foreground": "#19F9D8",
         "sideBar.background": "#002B36",
         "sideBar.foreground": "#AEB1B0",
+        "sideBar.border": "#404954",
         "sideBarSectionHeader.foreground": "#BCBDBD"
       },
       "type": "dark"

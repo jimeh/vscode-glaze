@@ -4,7 +4,7 @@
   "publisherName": "atomiks",
   "displayName": "Moonlight",
   "version": "0.11.1",
-  "extractedAt": "2026-02-02T13:46:27.177Z",
+  "extractedAt": "2026-02-08T00:10:39.841Z",
   "installCount": 295931,
   "themes": [
     {
@@ -17,13 +17,17 @@
         "titleBar.activeForeground": "#C8D3F5",
         "titleBar.inactiveBackground": "#1E2030",
         "titleBar.inactiveForeground": "#828BB8",
+        "titleBar.border": "#191A2A",
         "statusBar.background": "#1E2030",
         "statusBar.foreground": "#828BB8",
+        "statusBar.border": "#191A2A",
         "activityBar.background": "#1E2030",
         "activityBar.foreground": "#B4C2F0",
         "sideBar.background": "#1E2030",
         "sideBar.foreground": "#828BB8",
-        "sideBarSectionHeader.background": "#1E2030"
+        "sideBar.border": "#191A2A",
+        "sideBarSectionHeader.background": "#1E2030",
+        "sideBarSectionHeader.border": "#2F334D"
       },
       "type": "dark"
     },
@@ -37,13 +41,17 @@
         "titleBar.activeForeground": "#C8D3F5",
         "titleBar.inactiveBackground": "#1E2030",
         "titleBar.inactiveForeground": "#828BB8",
+        "titleBar.border": "#191A2A",
         "statusBar.background": "#1E2030",
         "statusBar.foreground": "#828BB8",
+        "statusBar.border": "#191A2A",
         "activityBar.background": "#1E2030",
         "activityBar.foreground": "#B4C2F0",
         "sideBar.background": "#1E2030",
         "sideBar.foreground": "#828BB8",
-        "sideBarSectionHeader.background": "#1E2030"
+        "sideBar.border": "#191A2A",
+        "sideBarSectionHeader.background": "#1E2030",
+        "sideBarSectionHeader.border": "#2F334D"
       },
       "type": "dark"
     },
@@ -57,13 +65,17 @@
         "titleBar.activeForeground": "#C8D3F5",
         "titleBar.inactiveBackground": "#1E2030",
         "titleBar.inactiveForeground": "#828BB8",
+        "titleBar.border": "#191A2A",
         "statusBar.background": "#1E2030",
         "statusBar.foreground": "#828BB8",
+        "statusBar.border": "#191A2A",
         "activityBar.background": "#1E2030",
         "activityBar.foreground": "#B4C2F0",
         "sideBar.background": "#1E2030",
         "sideBar.foreground": "#828BB8",
-        "sideBarSectionHeader.background": "#1E2030"
+        "sideBar.border": "#191A2A",
+        "sideBarSectionHeader.background": "#1E2030",
+        "sideBarSectionHeader.border": "#2F334D"
       },
       "type": "dark"
     },
@@ -77,13 +89,17 @@
         "titleBar.activeForeground": "#C8D3F5",
         "titleBar.inactiveBackground": "#1E2030",
         "titleBar.inactiveForeground": "#828BB8",
+        "titleBar.border": "#191A2A",
         "statusBar.background": "#1E2030",
         "statusBar.foreground": "#828BB8",
+        "statusBar.border": "#191A2A",
         "activityBar.background": "#1E2030",
         "activityBar.foreground": "#B4C2F0",
         "sideBar.background": "#1E2030",
         "sideBar.foreground": "#828BB8",
-        "sideBarSectionHeader.background": "#1E2030"
+        "sideBar.border": "#191A2A",
+        "sideBarSectionHeader.background": "#1E2030",
+        "sideBarSectionHeader.border": "#2F334D"
       },
       "type": "dark"
     }

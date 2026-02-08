@@ -4,7 +4,7 @@
   "publisherName": "uloco",
   "displayName": "Bluloco Dark Theme",
   "version": "3.7.6",
-  "extractedAt": "2026-02-02T13:46:22.846Z",
+  "extractedAt": "2026-02-08T00:10:35.338Z",
   "installCount": 505064,
   "themes": [
     {
@@ -19,10 +19,13 @@
         "titleBar.inactiveForeground": "#ABB2BF",
         "statusBar.background": "#37404B",
         "statusBar.foreground": "#ABB2BF",
+        "statusBar.border": "#3691FF",
         "activityBar.background": "#2D333D",
         "activityBar.foreground": "#ABB2BF",
+        "activityBar.activeBorder": "#3691FF",
         "sideBar.background": "#22252A",
         "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#181A1D",
         "sideBarSectionHeader.background": "#303842",
         "sideBarSectionHeader.foreground": "#ABB2BF"
       },
@@ -40,10 +43,13 @@
         "titleBar.inactiveForeground": "#ABB2BF",
         "statusBar.background": "#37404B",
         "statusBar.foreground": "#ABB2BF",
+        "statusBar.border": "#3691FF",
         "activityBar.background": "#2D333D",
         "activityBar.foreground": "#ABB2BF",
+        "activityBar.activeBorder": "#3691FF",
         "sideBar.background": "#22252A",
         "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#181A1D",
         "sideBarSectionHeader.background": "#303842",
         "sideBarSectionHeader.foreground": "#ABB2BF"
       },

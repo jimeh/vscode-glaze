@@ -4,7 +4,7 @@
   "publisherName": "raashida",
   "displayName": "Sea Green Theme",
   "version": "1.1.2",
-  "extractedAt": "2026-02-02T13:46:43.905Z",
+  "extractedAt": "2026-02-08T00:10:57.082Z",
   "installCount": 97247,
   "themes": [
     {
@@ -19,6 +19,7 @@
         "activityBar.foreground": "#25A2A6",
         "sideBar.background": "#0E131B",
         "sideBar.foreground": "#7F8792",
+        "sideBar.border": "#151B25",
         "sideBarSectionHeader.background": "#0A1018",
         "sideBarSectionHeader.foreground": "#64B1CE"
       },

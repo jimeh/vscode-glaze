@@ -4,7 +4,7 @@
   "publisherName": "arzg",
   "displayName": "Xcode Theme",
   "version": "0.7.15",
-  "extractedAt": "2026-02-02T13:46:52.223Z",
+  "extractedAt": "2026-02-08T00:11:05.766Z",
   "installCount": 6703,
   "themes": [
     {
@@ -17,12 +17,15 @@
         "titleBar.activeForeground": "#EBEBEB",
         "titleBar.inactiveBackground": "#27292C",
         "titleBar.inactiveForeground": "#686A6D",
+        "titleBar.border": "#000000",
         "statusBar.background": "#202124",
         "statusBar.foreground": "#9A9A9C",
         "activityBar.background": "#26282B",
         "activityBar.foreground": "#007AFF",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#26282B",
-        "sideBar.foreground": "#FFFFFF"
+        "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#000000"
       },
       "type": "dark"
     },
@@ -36,12 +39,15 @@
         "titleBar.activeForeground": "#4A4A4A",
         "titleBar.inactiveBackground": "#E8E8E8",
         "titleBar.inactiveForeground": "#A8A8A8",
+        "titleBar.border": "#DEDEDE",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#808080",
         "activityBar.background": "#E2E1E2",
         "activityBar.foreground": "#0070F5",
+        "activityBar.activeBorder": "#000000",
         "sideBar.background": "#E2E1E2",
-        "sideBar.foreground": "#363636"
+        "sideBar.foreground": "#363636",
+        "sideBar.border": "#DEDEDE"
       },
       "type": "light"
     }

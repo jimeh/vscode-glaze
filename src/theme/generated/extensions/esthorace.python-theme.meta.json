@@ -4,7 +4,7 @@
   "publisherName": "esthorace",
   "displayName": "Esmerald",
   "version": "2.7.5",
-  "extractedAt": "2026-02-02T13:46:51.182Z",
+  "extractedAt": "2026-02-08T00:11:04.664Z",
   "installCount": 6999,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#A4B1CD",
         "titleBar.inactiveBackground": "#121C2B",
         "titleBar.inactiveForeground": "#A4B1CD",
+        "titleBar.border": "#121C2B",
         "statusBar.background": "#1A2332",
         "statusBar.foreground": "#A4B1CD",
+        "statusBar.border": "#1A2332",
+        "statusBar.focusBorder": "#0078D4",
         "activityBar.background": "#121C2B",
         "activityBar.foreground": "#A4B1CD",
+        "activityBar.activeBorder": "#FFAF00",
         "sideBar.background": "#121C2B",
         "sideBar.foreground": "#A4B1CD",
+        "sideBar.border": "#121C2B",
         "sideBarSectionHeader.background": "#121C2B",
-        "sideBarSectionHeader.foreground": "#CCCCCC"
+        "sideBarSectionHeader.foreground": "#CCCCCC",
+        "sideBarSectionHeader.border": "#6E7681"
       },
       "type": "dark"
     },
@@ -38,14 +44,20 @@
         "titleBar.activeForeground": "#1F2939",
         "titleBar.inactiveBackground": "#CED4E2",
         "titleBar.inactiveForeground": "#F4F7FD",
+        "titleBar.border": "#CED4E2",
         "statusBar.background": "#F4F7FD",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#FFFFFF",
         "activityBar.background": "#FCFCFC",
         "activityBar.foreground": "#333E4F",
+        "activityBar.activeBackground": "#FCFCFC",
+        "activityBar.activeBorder": "#EFB810",
         "sideBar.background": "#FCFCFC",
         "sideBar.foreground": "#000000",
+        "sideBar.border": "#D9DFE7",
         "sideBarSectionHeader.background": "#F4F7FD",
-        "sideBarSectionHeader.foreground": "#333E4F"
+        "sideBarSectionHeader.foreground": "#333E4F",
+        "sideBarSectionHeader.border": "#D9DFE7"
       },
       "type": "light"
     }

@@ -4,7 +4,7 @@
   "publisherName": "dunstontc",
   "displayName": "dark-plus-syntax",
   "version": "0.2.11",
-  "extractedAt": "2026-02-02T13:46:28.024Z",
+  "extractedAt": "2026-02-08T00:10:40.715Z",
   "installCount": 270527,
   "themes": [
     {
@@ -36,7 +36,9 @@
       "colors": {
         "editor.background": "#000000",
         "editor.foreground": "#FFFFFF",
-        "statusBar.background": "#000000"
+        "statusBar.background": "#000000",
+        "statusBar.border": "#000000",
+        "sideBar.border": "#000000"
       },
       "type": "hcDark"
     },

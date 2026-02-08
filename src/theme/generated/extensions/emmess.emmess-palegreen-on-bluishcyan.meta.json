@@ -4,7 +4,7 @@
   "publisherName": "emmess",
   "displayName": "emmess_paleGreen_on_bluishCyan",
   "version": "1.0.0",
-  "extractedAt": "2026-02-02T13:46:57.606Z",
+  "extractedAt": "2026-02-08T00:11:11.424Z",
   "installCount": 4396,
   "themes": [
     {
@@ -17,14 +17,19 @@
         "titleBar.activeForeground": "#AAC0AA",
         "titleBar.inactiveBackground": "#0F3E43",
         "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#AAC0AA",
         "statusBar.background": "#071E21",
         "statusBar.foreground": "#AAC0AA",
+        "statusBar.border": "#FFFFFF",
         "activityBar.background": "#0F3E43",
         "activityBar.foreground": "#071E21",
+        "activityBar.activeBackground": "#AAC0BD",
         "sideBar.background": "#0F3E43",
         "sideBar.foreground": "#AAC0AA",
+        "sideBar.border": "#AAC0BB",
         "sideBarSectionHeader.background": "#AAC0BD",
-        "sideBarSectionHeader.foreground": "#AAC0AA"
+        "sideBarSectionHeader.foreground": "#AAC0AA",
+        "sideBarSectionHeader.border": "#FFFFFF"
       },
       "type": "dark"
     }

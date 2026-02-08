@@ -4,7 +4,7 @@
   "publisherName": "metaphore",
   "displayName": "Kanagawa Flavors",
   "version": "0.5.0",
-  "extractedAt": "2026-02-02T13:46:52.016Z",
+  "extractedAt": "2026-02-08T00:11:05.545Z",
   "installCount": 6809,
   "themes": [
     {
@@ -23,6 +23,7 @@
         "activityBar.foreground": "#DCD7BA",
         "sideBar.background": "#1F1F28",
         "sideBar.foreground": "#DCD7BA",
+        "sideBar.border": "#16161D",
         "sideBarSectionHeader.background": "#363646",
         "sideBarSectionHeader.foreground": "#DCD7BA"
       },
@@ -44,6 +45,7 @@
         "activityBar.foreground": "#C5C9C5",
         "sideBar.background": "#181616",
         "sideBar.foreground": "#C5C9C5",
+        "sideBar.border": "#0D0C0C",
         "sideBarSectionHeader.background": "#393836",
         "sideBarSectionHeader.foreground": "#C5C9C5"
       },
@@ -65,6 +67,7 @@
         "activityBar.foreground": "#545464",
         "sideBar.background": "#F2ECBC",
         "sideBar.foreground": "#545464",
+        "sideBar.border": "#D5CEA3",
         "sideBarSectionHeader.background": "#E4D794",
         "sideBarSectionHeader.foreground": "#545464"
       },

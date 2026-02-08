@@ -4,7 +4,7 @@
   "publisherName": "Heron",
   "displayName": "Firefox Theme",
   "version": "4.10.8",
-  "extractedAt": "2026-02-02T13:46:32.382Z",
+  "extractedAt": "2026-02-08T00:10:45.109Z",
   "installCount": 180811,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#FFFFFF",
         "titleBar.inactiveBackground": "#0C0C0D",
         "titleBar.inactiveForeground": "#B1B1B3",
+        "titleBar.border": "#3C3C3D",
         "statusBar.background": "#0C0C0D",
         "statusBar.foreground": "#B1B1B3",
+        "statusBar.border": "#3C3C3D",
         "activityBar.background": "#1B1B1D",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#1B1B1D",
         "sideBar.foreground": "#B1B1B3",
+        "sideBar.border": "#696D71",
         "sideBarSectionHeader.background": "#222225",
-        "sideBarSectionHeader.foreground": "#B1B1B3"
+        "sideBarSectionHeader.foreground": "#B1B1B3",
+        "sideBarSectionHeader.border": "#3C3C3D"
       },
       "type": "dark"
     },
@@ -36,6 +40,7 @@
         "editor.foreground": "#4A4A4F",
         "statusBar.background": "#F9F9FA",
         "statusBar.foreground": "#4A4A4F",
+        "statusBar.border": "#F9F9FA",
         "activityBar.background": "#F9F9FA",
         "activityBar.foreground": "#939393",
         "sideBar.background": "#F9F9FA",

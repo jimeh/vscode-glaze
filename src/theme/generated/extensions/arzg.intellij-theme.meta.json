@@ -4,7 +4,7 @@
   "publisherName": "arzg",
   "displayName": "IntelliJ Theme",
   "version": "1.11.0",
-  "extractedAt": "2026-02-02T13:46:44.422Z",
+  "extractedAt": "2026-02-08T00:10:57.604Z",
   "installCount": 95256,
   "themes": [
     {
@@ -17,10 +17,13 @@
         "titleBar.activeForeground": "#BCBCBC",
         "titleBar.inactiveBackground": "#3C3E40",
         "titleBar.inactiveForeground": "#BCBCBC",
+        "titleBar.border": "#313131",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
+        "statusBar.border": "#313131",
         "activityBar.background": "#3C3E40",
-        "sideBar.background": "#3C3E40"
+        "sideBar.background": "#3C3E40",
+        "sideBar.border": "#313131"
       },
       "type": "dark"
     },
@@ -34,10 +37,13 @@
         "titleBar.activeForeground": "#BCBCBC",
         "titleBar.inactiveBackground": "#3C3E40",
         "titleBar.inactiveForeground": "#BCBCBC",
+        "titleBar.border": "#313131",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
+        "statusBar.border": "#313131",
         "activityBar.background": "#3C3E40",
-        "sideBar.background": "#3C3E40"
+        "sideBar.background": "#3C3E40",
+        "sideBar.border": "#313131"
       },
       "type": "dark"
     },
@@ -51,10 +57,13 @@
         "titleBar.activeForeground": "#BCBCBC",
         "titleBar.inactiveBackground": "#3C3E40",
         "titleBar.inactiveForeground": "#BCBCBC",
+        "titleBar.border": "#313131",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
+        "statusBar.border": "#313131",
         "activityBar.background": "#3C3E40",
-        "sideBar.background": "#3C3E40"
+        "sideBar.background": "#3C3E40",
+        "sideBar.border": "#313131"
       },
       "type": "dark"
     },
@@ -68,10 +77,13 @@
         "titleBar.activeForeground": "#BCBCBC",
         "titleBar.inactiveBackground": "#3C3E40",
         "titleBar.inactiveForeground": "#BCBCBC",
+        "titleBar.border": "#313131",
         "statusBar.background": "#3C3E40",
         "statusBar.foreground": "#BCBCBC",
+        "statusBar.border": "#313131",
         "activityBar.background": "#3C3E40",
-        "sideBar.background": "#3C3E40"
+        "sideBar.background": "#3C3E40",
+        "sideBar.border": "#313131"
       },
       "type": "dark"
     },
@@ -85,10 +97,13 @@
         "titleBar.activeForeground": "#BCBCBC",
         "titleBar.inactiveBackground": "#3E3E3D",
         "titleBar.inactiveForeground": "#BCBCBC",
+        "titleBar.border": "#313131",
         "statusBar.background": "#3E3E3D",
         "statusBar.foreground": "#BCBCBC",
+        "statusBar.border": "#313131",
         "activityBar.background": "#3E3E3D",
-        "sideBar.background": "#3E3E3D"
+        "sideBar.background": "#3E3E3D",
+        "sideBar.border": "#313131"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "thomaspink",
   "displayName": "Github Theme",
   "version": "1.0.1",
-  "extractedAt": "2026-02-02T13:46:39.211Z",
+  "extractedAt": "2026-02-08T00:10:52.213Z",
   "installCount": 129999,
   "themes": [
     {
@@ -15,9 +15,11 @@
         "editor.foreground": "#24292E",
         "statusBar.background": "#FAFBFC",
         "statusBar.foreground": "#24292E",
+        "statusBar.border": "#DDDDDD",
         "activityBar.background": "#24292E",
         "sideBar.background": "#FAFBFC",
         "sideBar.foreground": "#586069",
+        "sideBar.border": "#DDDDDD",
         "sideBarSectionHeader.background": "#FAFBFC",
         "sideBarSectionHeader.foreground": "#24292E"
       },

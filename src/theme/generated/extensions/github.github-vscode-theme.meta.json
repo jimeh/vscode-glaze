@@ -4,7 +4,7 @@
   "publisherName": "GitHub",
   "displayName": "GitHub Theme",
   "version": "6.3.5",
-  "extractedAt": "2026-02-02T13:46:16.385Z",
+  "extractedAt": "2026-02-08T00:10:28.604Z",
   "installCount": 18118238,
   "themes": [
     {
@@ -17,14 +17,20 @@
         "titleBar.activeForeground": "#656D76",
         "titleBar.inactiveBackground": "#F6F8FA",
         "titleBar.inactiveForeground": "#656D76",
+        "titleBar.border": "#D0D7DE",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#656D76",
+        "statusBar.border": "#D0D7DE",
+        "statusBar.focusBorder": "#0969DA",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#1F2328",
+        "activityBar.activeBorder": "#FD8C73",
         "sideBar.background": "#F6F8FA",
         "sideBar.foreground": "#1F2328",
+        "sideBar.border": "#D0D7DE",
         "sideBarSectionHeader.background": "#F6F8FA",
-        "sideBarSectionHeader.foreground": "#1F2328"
+        "sideBarSectionHeader.foreground": "#1F2328",
+        "sideBarSectionHeader.border": "#D0D7DE"
       },
       "type": "light"
     },
@@ -38,16 +44,22 @@
         "titleBar.activeForeground": "#0E1116",
         "titleBar.inactiveBackground": "#FFFFFF",
         "titleBar.inactiveForeground": "#0E1116",
+        "titleBar.border": "#20252C",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#0E1116",
+        "statusBar.border": "#20252C",
+        "statusBar.focusBorder": "#0349B4",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#0E1116",
+        "activityBar.activeBorder": "#EF5B48",
         "sideBar.background": "#FFFFFF",
         "sideBar.foreground": "#0E1116",
+        "sideBar.border": "#20252C",
         "sideBarSectionHeader.background": "#FFFFFF",
-        "sideBarSectionHeader.foreground": "#0E1116"
+        "sideBarSectionHeader.foreground": "#0E1116",
+        "sideBarSectionHeader.border": "#20252C"
       },
-      "type": "light"
+      "type": "hcLight"
     },
     {
       "name": "GitHub Light Colorblind (Beta)",
@@ -59,14 +71,20 @@
         "titleBar.activeForeground": "#57606A",
         "titleBar.inactiveBackground": "#F6F8FA",
         "titleBar.inactiveForeground": "#57606A",
+        "titleBar.border": "#D0D7DE",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#57606A",
+        "statusBar.border": "#D0D7DE",
+        "statusBar.focusBorder": "#0969DA",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#24292F",
+        "activityBar.activeBorder": "#FD8C73",
         "sideBar.background": "#F6F8FA",
         "sideBar.foreground": "#24292F",
+        "sideBar.border": "#D0D7DE",
         "sideBarSectionHeader.background": "#F6F8FA",
-        "sideBarSectionHeader.foreground": "#24292F"
+        "sideBarSectionHeader.foreground": "#24292F",
+        "sideBarSectionHeader.border": "#D0D7DE"
       },
       "type": "light"
     },
@@ -80,14 +98,20 @@
         "titleBar.activeForeground": "#7D8590",
         "titleBar.inactiveBackground": "#010409",
         "titleBar.inactiveForeground": "#7D8590",
+        "titleBar.border": "#30363D",
         "statusBar.background": "#0D1117",
         "statusBar.foreground": "#7D8590",
+        "statusBar.border": "#30363D",
+        "statusBar.focusBorder": "#1F6FEB",
         "activityBar.background": "#0D1117",
         "activityBar.foreground": "#E6EDF3",
+        "activityBar.activeBorder": "#F78166",
         "sideBar.background": "#010409",
         "sideBar.foreground": "#E6EDF3",
+        "sideBar.border": "#30363D",
         "sideBarSectionHeader.background": "#010409",
-        "sideBarSectionHeader.foreground": "#E6EDF3"
+        "sideBarSectionHeader.foreground": "#E6EDF3",
+        "sideBarSectionHeader.border": "#30363D"
       },
       "type": "dark"
     },
@@ -101,14 +125,20 @@
         "titleBar.activeForeground": "#F0F3F6",
         "titleBar.inactiveBackground": "#010409",
         "titleBar.inactiveForeground": "#F0F3F6",
+        "titleBar.border": "#7A828E",
         "statusBar.background": "#0A0C10",
         "statusBar.foreground": "#F0F3F6",
+        "statusBar.border": "#7A828E",
+        "statusBar.focusBorder": "#409EFF",
         "activityBar.background": "#0A0C10",
         "activityBar.foreground": "#F0F3F6",
+        "activityBar.activeBorder": "#FF967D",
         "sideBar.background": "#010409",
         "sideBar.foreground": "#F0F3F6",
+        "sideBar.border": "#7A828E",
         "sideBarSectionHeader.background": "#010409",
-        "sideBarSectionHeader.foreground": "#F0F3F6"
+        "sideBarSectionHeader.foreground": "#F0F3F6",
+        "sideBarSectionHeader.border": "#7A828E"
       },
       "type": "hcDark"
     },
@@ -122,14 +152,20 @@
         "titleBar.activeForeground": "#8B949E",
         "titleBar.inactiveBackground": "#010409",
         "titleBar.inactiveForeground": "#8B949E",
+        "titleBar.border": "#30363D",
         "statusBar.background": "#0D1117",
         "statusBar.foreground": "#8B949E",
+        "statusBar.border": "#30363D",
+        "statusBar.focusBorder": "#1F6FEB",
         "activityBar.background": "#0D1117",
         "activityBar.foreground": "#C9D1D9",
+        "activityBar.activeBorder": "#F78166",
         "sideBar.background": "#010409",
         "sideBar.foreground": "#C9D1D9",
+        "sideBar.border": "#30363D",
         "sideBarSectionHeader.background": "#010409",
-        "sideBarSectionHeader.foreground": "#C9D1D9"
+        "sideBarSectionHeader.foreground": "#C9D1D9",
+        "sideBarSectionHeader.border": "#30363D"
       },
       "type": "dark"
     },
@@ -143,14 +179,20 @@
         "titleBar.activeForeground": "#768390",
         "titleBar.inactiveBackground": "#1C2128",
         "titleBar.inactiveForeground": "#768390",
+        "titleBar.border": "#444C56",
         "statusBar.background": "#22272E",
         "statusBar.foreground": "#768390",
+        "statusBar.border": "#444C56",
+        "statusBar.focusBorder": "#316DCA",
         "activityBar.background": "#22272E",
         "activityBar.foreground": "#ADBAC7",
+        "activityBar.activeBorder": "#EC775C",
         "sideBar.background": "#1C2128",
         "sideBar.foreground": "#ADBAC7",
+        "sideBar.border": "#444C56",
         "sideBarSectionHeader.background": "#1C2128",
-        "sideBarSectionHeader.foreground": "#ADBAC7"
+        "sideBarSectionHeader.foreground": "#ADBAC7",
+        "sideBarSectionHeader.border": "#444C56"
       },
       "type": "dark"
     },
@@ -164,14 +206,19 @@
         "titleBar.activeForeground": "#2F363D",
         "titleBar.inactiveBackground": "#F6F8FA",
         "titleBar.inactiveForeground": "#6A737D",
+        "titleBar.border": "#E1E4E8",
         "statusBar.background": "#FFFFFF",
         "statusBar.foreground": "#586069",
+        "statusBar.border": "#E1E4E8",
         "activityBar.background": "#FFFFFF",
         "activityBar.foreground": "#2F363D",
+        "activityBar.activeBorder": "#F9826C",
         "sideBar.background": "#F6F8FA",
         "sideBar.foreground": "#586069",
+        "sideBar.border": "#E1E4E8",
         "sideBarSectionHeader.background": "#F6F8FA",
-        "sideBarSectionHeader.foreground": "#2F363D"
+        "sideBarSectionHeader.foreground": "#2F363D",
+        "sideBarSectionHeader.border": "#E1E4E8"
       },
       "type": "light"
     },
@@ -185,14 +232,19 @@
         "titleBar.activeForeground": "#E1E4E8",
         "titleBar.inactiveBackground": "#1F2428",
         "titleBar.inactiveForeground": "#959DA5",
+        "titleBar.border": "#1B1F23",
         "statusBar.background": "#24292E",
         "statusBar.foreground": "#D1D5DA",
+        "statusBar.border": "#1B1F23",
         "activityBar.background": "#24292E",
         "activityBar.foreground": "#E1E4E8",
+        "activityBar.activeBorder": "#F9826C",
         "sideBar.background": "#1F2428",
         "sideBar.foreground": "#D1D5DA",
+        "sideBar.border": "#1B1F23",
         "sideBarSectionHeader.background": "#1F2428",
-        "sideBarSectionHeader.foreground": "#E1E4E8"
+        "sideBarSectionHeader.foreground": "#E1E4E8",
+        "sideBarSectionHeader.border": "#1B1F23"
       },
       "type": "dark"
     }

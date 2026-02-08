@@ -4,7 +4,7 @@
   "publisherName": "expo",
   "displayName": "Expo Theme",
   "version": "1.4.2",
-  "extractedAt": "2026-02-02T13:46:55.025Z",
+  "extractedAt": "2026-02-08T00:11:08.695Z",
   "installCount": 5245,
   "themes": [
     {
@@ -14,11 +14,16 @@
         "editor.background": "#111113",
         "titleBar.activeBackground": "#0C0D0E",
         "titleBar.inactiveBackground": "#0C0D0E",
+        "titleBar.border": "#111113",
         "statusBar.background": "#0C0D0E",
+        "statusBar.border": "#212225",
         "activityBar.background": "#0C0D0E",
         "activityBar.foreground": "#B0B4BA",
+        "activityBar.activeBackground": "#18191B",
         "sideBar.background": "#0C0D0E",
-        "sideBarSectionHeader.background": "#0C0D0E"
+        "sideBar.border": "#212225",
+        "sideBarSectionHeader.background": "#0C0D0E",
+        "sideBarSectionHeader.border": "#111113"
       },
       "type": "dark"
     },
@@ -29,13 +34,18 @@
         "editor.background": "#FFFFFF",
         "titleBar.activeBackground": "#F0F0F3",
         "titleBar.inactiveBackground": "#F0F0F3",
+        "titleBar.border": "#D9D9E0",
         "statusBar.background": "#FCFCFD",
         "statusBar.foreground": "#60646C",
+        "statusBar.border": "#CDCED6",
         "activityBar.background": "#F9F9FB",
         "activityBar.foreground": "#60646C",
+        "activityBar.activeBackground": "#E0E1E6",
         "sideBar.background": "#FCFCFD",
         "sideBar.foreground": "#60646C",
-        "sideBarSectionHeader.background": "#FCFCFD"
+        "sideBar.border": "#D9D9E0",
+        "sideBarSectionHeader.background": "#FCFCFD",
+        "sideBarSectionHeader.border": "#FFFFFF"
       },
       "type": "light"
     }

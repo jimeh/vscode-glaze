@@ -4,7 +4,7 @@
   "publisherName": "sdras",
   "displayName": "Night Owl",
   "version": "2.1.1",
-  "extractedAt": "2026-02-02T13:46:17.665Z",
+  "extractedAt": "2026-02-08T00:10:29.973Z",
   "installCount": 3394495,
   "themes": [
     {
@@ -18,10 +18,12 @@
         "titleBar.inactiveBackground": "#010E1A",
         "statusBar.background": "#011627",
         "statusBar.foreground": "#5F7E97",
+        "statusBar.border": "#262A39",
         "activityBar.background": "#011627",
         "activityBar.foreground": "#5F7E97",
         "sideBar.background": "#011627",
         "sideBar.foreground": "#89A4BB",
+        "sideBar.border": "#011627",
         "sideBarSectionHeader.background": "#011627",
         "sideBarSectionHeader.foreground": "#5F7E97"
       },
@@ -38,10 +40,12 @@
         "titleBar.inactiveBackground": "#010E1A",
         "statusBar.background": "#011627",
         "statusBar.foreground": "#5F7E97",
+        "statusBar.border": "#262A39",
         "activityBar.background": "#011627",
         "activityBar.foreground": "#5F7E97",
         "sideBar.background": "#011627",
         "sideBar.foreground": "#89A4BB",
+        "sideBar.border": "#011627",
         "sideBarSectionHeader.background": "#011627",
         "sideBarSectionHeader.foreground": "#5F7E97"
       },
@@ -56,10 +60,12 @@
         "titleBar.activeBackground": "#F0F0F0",
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#403F53",
+        "statusBar.border": "#F0F0F0",
         "activityBar.background": "#F0F0F0",
         "activityBar.foreground": "#403F53",
         "sideBar.background": "#F0F0F0",
-        "sideBar.foreground": "#403F53"
+        "sideBar.foreground": "#403F53",
+        "sideBar.border": "#F0F0F0"
       },
       "type": "light"
     },
@@ -72,10 +78,12 @@
         "titleBar.activeBackground": "#F0F0F0",
         "statusBar.background": "#F0F0F0",
         "statusBar.foreground": "#403F53",
+        "statusBar.border": "#F0F0F0",
         "activityBar.background": "#F0F0F0",
         "activityBar.foreground": "#403F53",
         "sideBar.background": "#F0F0F0",
-        "sideBar.foreground": "#403F53"
+        "sideBar.foreground": "#403F53",
+        "sideBar.border": "#F0F0F0"
       },
       "type": "light"
     }

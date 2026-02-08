@@ -4,7 +4,7 @@
   "publisherName": "zerodind",
   "displayName": "Familiar Java Themes",
   "version": "0.1.7",
-  "extractedAt": "2026-02-02T13:46:47.891Z",
+  "extractedAt": "2026-02-08T00:11:01.245Z",
   "installCount": 10666,
   "themes": [
     {
@@ -14,12 +14,16 @@
         "editor.background": "#FFFFFF",
         "editor.foreground": "#000000",
         "titleBar.activeBackground": "#E2E2E2",
+        "titleBar.border": "#A0A0A0",
         "statusBar.background": "#E2E2E2",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#A0A0A0",
         "activityBar.background": "#E2E2E2",
         "activityBar.foreground": "#000000",
         "sideBar.background": "#FFFFFF",
-        "sideBarSectionHeader.background": "#E2E2E2"
+        "sideBar.border": "#A0A0A0",
+        "sideBarSectionHeader.background": "#E2E2E2",
+        "sideBarSectionHeader.border": "#A0A0A0"
       },
       "type": "light"
     },
@@ -33,7 +37,9 @@
         "statusBar.background": "#515658",
         "activityBar.background": "#515658",
         "sideBar.background": "#2F2F2F",
-        "sideBarSectionHeader.background": "#292929"
+        "sideBar.border": "#515658",
+        "sideBarSectionHeader.background": "#292929",
+        "sideBarSectionHeader.border": "#515658"
       },
       "type": "dark"
     },
@@ -44,12 +50,18 @@
         "editor.background": "#FFFFFF",
         "editor.foreground": "#000000",
         "titleBar.activeBackground": "#F2F2F2",
+        "titleBar.border": "#D5D5D5",
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#D5D5D5",
         "activityBar.background": "#F2F2F2",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBackground": "#BDBDBD",
+        "activityBar.activeBorder": "#BDBDBD",
         "sideBar.background": "#FFFFFF",
-        "sideBarSectionHeader.background": "#F2F2F2"
+        "sideBar.border": "#D5D5D5",
+        "sideBarSectionHeader.background": "#F2F2F2",
+        "sideBarSectionHeader.border": "#D5D5D5"
       },
       "type": "light"
     },
@@ -60,12 +72,18 @@
         "editor.background": "#FFFFFF",
         "editor.foreground": "#000000",
         "titleBar.activeBackground": "#F2F2F2",
+        "titleBar.border": "#D5D5D5",
         "statusBar.background": "#F2F2F2",
         "statusBar.foreground": "#000000",
+        "statusBar.border": "#D5D5D5",
         "activityBar.background": "#F2F2F2",
         "activityBar.foreground": "#000000",
+        "activityBar.activeBackground": "#BDBDBD",
+        "activityBar.activeBorder": "#BDBDBD",
         "sideBar.background": "#FFFFFF",
-        "sideBarSectionHeader.background": "#F2F2F2"
+        "sideBar.border": "#D5D5D5",
+        "sideBarSectionHeader.background": "#F2F2F2",
+        "sideBarSectionHeader.border": "#D5D5D5"
       },
       "type": "light"
     },
@@ -77,12 +95,18 @@
         "editor.foreground": "#A9B7C6",
         "titleBar.activeBackground": "#3C3F41",
         "titleBar.inactiveBackground": "#3C3F41",
+        "titleBar.border": "#515151",
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
+        "statusBar.border": "#515151",
         "activityBar.background": "#3C3F41",
         "activityBar.foreground": "#BBBBBB",
+        "activityBar.activeBackground": "#2C2E2F",
+        "activityBar.activeBorder": "#2C2E2F",
         "sideBar.background": "#3C3F41",
-        "sideBarSectionHeader.background": "#3C3F41"
+        "sideBar.border": "#323232",
+        "sideBarSectionHeader.background": "#3C3F41",
+        "sideBarSectionHeader.border": "#323232"
       },
       "type": "dark"
     },
@@ -94,12 +118,18 @@
         "editor.foreground": "#A9B7C6",
         "titleBar.activeBackground": "#3C3F41",
         "titleBar.inactiveBackground": "#3C3F41",
+        "titleBar.border": "#515151",
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
+        "statusBar.border": "#515151",
         "activityBar.background": "#3C3F41",
         "activityBar.foreground": "#BBBBBB",
+        "activityBar.activeBackground": "#2C2E2F",
+        "activityBar.activeBorder": "#2C2E2F",
         "sideBar.background": "#3C3F41",
-        "sideBarSectionHeader.background": "#3C3F41"
+        "sideBar.border": "#323232",
+        "sideBarSectionHeader.background": "#3C3F41",
+        "sideBarSectionHeader.border": "#323232"
       },
       "type": "dark"
     }

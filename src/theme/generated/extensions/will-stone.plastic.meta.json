@@ -4,7 +4,7 @@
   "publisherName": "will-stone",
   "displayName": "Plastic",
   "version": "9.5.0",
-  "extractedAt": "2026-02-02T13:46:37.104Z",
+  "extractedAt": "2026-02-08T00:10:50.030Z",
   "installCount": 138690,
   "themes": [
     {
@@ -17,12 +17,17 @@
         "titleBar.activeForeground": "#C6CCD7",
         "titleBar.inactiveBackground": "#21252B",
         "titleBar.inactiveForeground": "#5F6672",
+        "titleBar.border": "#0D1117",
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#A9B2C3",
+        "statusBar.border": "#0D1117",
+        "statusBar.focusBorder": "#A9B2C3",
         "activityBar.background": "#21252B",
         "activityBar.foreground": "#C6CCD7",
+        "activityBar.activeBorder": "#1085FF",
         "sideBar.background": "#181A1F",
         "sideBar.foreground": "#C6CCD7",
+        "sideBar.border": "#0D1117",
         "sideBarSectionHeader.background": "#21252B"
       },
       "type": "dark"
@@ -37,12 +42,17 @@
         "titleBar.activeForeground": "#C6CCD7",
         "titleBar.inactiveBackground": "#21252B",
         "titleBar.inactiveForeground": "#5F6672",
+        "titleBar.border": "#0D1117",
         "statusBar.background": "#21252B",
         "statusBar.foreground": "#A9B2C3",
+        "statusBar.border": "#0D1117",
+        "statusBar.focusBorder": "#A9B2C3",
         "activityBar.background": "#21252B",
         "activityBar.foreground": "#C6CCD7",
+        "activityBar.activeBorder": "#1085FF",
         "sideBar.background": "#181A1F",
         "sideBar.foreground": "#C6CCD7",
+        "sideBar.border": "#0D1117",
         "sideBarSectionHeader.background": "#21252B"
       },
       "type": "dark"

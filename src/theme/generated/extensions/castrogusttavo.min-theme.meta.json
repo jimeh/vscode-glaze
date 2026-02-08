@@ -4,7 +4,7 @@
   "publisherName": "castrogusttavo",
   "displayName": "Min Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-02-02T13:47:01.945Z",
+  "extractedAt": "2026-02-08T00:11:15.959Z",
   "installCount": 3398,
   "themes": [
     {
@@ -13,6 +13,7 @@
       "colors": {
         "editor.background": "#1F1F1F",
         "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.border": "#1A1A1A",
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#7E7E7E",
         "activityBar.background": "#1A1A1A",
@@ -30,11 +31,14 @@
         "editor.foreground": "#212121",
         "titleBar.activeBackground": "#F6F6F6",
         "titleBar.inactiveBackground": "#F6F6F6",
+        "titleBar.border": "#F6F6F6",
         "statusBar.background": "#F6F6F6",
         "statusBar.foreground": "#7E7E7E",
+        "statusBar.border": "#F6F6F6",
         "activityBar.background": "#F6F6F6",
         "activityBar.foreground": "#9E9E9E",
         "sideBar.background": "#F6F6F6",
+        "sideBar.border": "#F6F6F6",
         "sideBarSectionHeader.background": "#EEEEEE"
       },
       "type": "light"

@@ -4,7 +4,7 @@
   "publisherName": "loilo",
   "displayName": "Snazzy Light",
   "version": "1.4.1",
-  "extractedAt": "2026-02-02T13:46:34.412Z",
+  "extractedAt": "2026-02-08T00:10:47.231Z",
   "installCount": 159924,
   "themes": [
     {
@@ -18,7 +18,9 @@
         "activityBar.background": "#E7E8E6",
         "activityBar.foreground": "#2DAE58",
         "sideBar.background": "#F3F4F5",
-        "sideBarSectionHeader.background": "#E9EAEB"
+        "sideBar.border": "#DEDFE0",
+        "sideBarSectionHeader.background": "#E9EAEB",
+        "sideBarSectionHeader.border": "#DEDFE0"
       },
       "type": "light"
     }

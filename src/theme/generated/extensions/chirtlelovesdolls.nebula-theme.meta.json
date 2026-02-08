@@ -4,7 +4,7 @@
   "publisherName": "ChirtleLovesDolls",
   "displayName": "Nebula Theme",
   "version": "1.3.3",
-  "extractedAt": "2026-02-02T13:46:36.468Z",
+  "extractedAt": "2026-02-08T00:10:49.359Z",
   "installCount": 143708,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#D7D6DF",
         "titleBar.inactiveBackground": "#1F2330",
         "titleBar.inactiveForeground": "#919CB9",
+        "titleBar.border": "#0F1320",
         "statusBar.background": "#1F2330",
         "statusBar.foreground": "#919CB9",
+        "statusBar.border": "#0F1320",
         "activityBar.background": "#1F2330",
         "activityBar.foreground": "#F6F0FF",
         "sideBar.background": "#27273A",
         "sideBar.foreground": "#919CB9",
+        "sideBar.border": "#0F1320",
         "sideBarSectionHeader.background": "#1F2330",
-        "sideBarSectionHeader.foreground": "#F6F0FF"
+        "sideBarSectionHeader.foreground": "#F6F0FF",
+        "sideBarSectionHeader.border": "#27273A"
       },
       "type": "dark"
     },
@@ -38,14 +42,18 @@
         "titleBar.activeForeground": "#D7D6DF",
         "titleBar.inactiveBackground": "#1F2330",
         "titleBar.inactiveForeground": "#919CB9",
+        "titleBar.border": "#0F1320",
         "statusBar.background": "#27273A",
         "statusBar.foreground": "#919CB9",
+        "statusBar.border": "#1F2330",
         "activityBar.background": "#F6F0FF",
         "activityBar.foreground": "#353551",
         "sideBar.background": "#27273A",
         "sideBar.foreground": "#919CB9",
+        "sideBar.border": "#0F1320",
         "sideBarSectionHeader.background": "#353551",
-        "sideBarSectionHeader.foreground": "#F6F0FF"
+        "sideBarSectionHeader.foreground": "#F6F0FF",
+        "sideBarSectionHeader.border": "#27273A"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "SamRC",
   "displayName": "Night Pink",
   "version": "0.5.0",
-  "extractedAt": "2026-02-02T13:46:41.508Z",
+  "extractedAt": "2026-02-08T00:10:54.623Z",
   "installCount": 114527,
   "themes": [
     {
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#FFC1EF",
         "titleBar.inactiveBackground": "#181818",
         "titleBar.inactiveForeground": "#442342",
+        "titleBar.border": "#181818",
         "statusBar.background": "#5E0166",
         "statusBar.foreground": "#EEEEEE",
+        "statusBar.border": "#181818",
         "activityBar.background": "#181818",
         "activityBar.foreground": "#FFC1EF",
         "sideBar.background": "#181818",
         "sideBar.foreground": "#E06196",
+        "sideBar.border": "#442342",
         "sideBarSectionHeader.background": "#181818",
-        "sideBarSectionHeader.foreground": "#E06196"
+        "sideBarSectionHeader.foreground": "#E06196",
+        "sideBarSectionHeader.border": "#181818"
       },
       "type": "dark"
     }

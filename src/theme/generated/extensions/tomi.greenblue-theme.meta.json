@@ -4,7 +4,7 @@
   "publisherName": "tomi",
   "displayName": "GreenBlue Theme",
   "version": "0.2.3",
-  "extractedAt": "2026-02-02T13:46:55.231Z",
+  "extractedAt": "2026-02-08T00:11:08.909Z",
   "installCount": 5157,
   "themes": [
     {
@@ -15,8 +15,10 @@
         "editor.foreground": "#B2D6D6",
         "activityBar.background": "#242929",
         "activityBar.foreground": "#40D313",
+        "activityBar.activeBackground": "#117C4A",
         "sideBar.background": "#090F0F",
-        "sideBar.foreground": "#379696"
+        "sideBar.foreground": "#379696",
+        "sideBar.border": "#40D313"
       },
       "type": "dark"
     }

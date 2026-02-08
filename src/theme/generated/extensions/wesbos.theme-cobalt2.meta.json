@@ -4,7 +4,7 @@
   "publisherName": "wesbos",
   "displayName": "Cobalt2 Theme Official",
   "version": "2.5.0",
-  "extractedAt": "2026-02-02T13:46:18.392Z",
+  "extractedAt": "2026-02-08T00:10:30.736Z",
   "installCount": 1823773,
   "themes": [
     {
@@ -19,10 +19,12 @@
         "titleBar.inactiveForeground": "#FFFFFF",
         "statusBar.background": "#15232D",
         "statusBar.foreground": "#AAAAAA",
+        "statusBar.border": "#0D3A58",
         "activityBar.background": "#122738",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#15232D",
         "sideBar.foreground": "#AAAAAA",
+        "sideBar.border": "#0D3A58",
         "sideBarSectionHeader.background": "#193549",
         "sideBarSectionHeader.foreground": "#AAAAAA"
       },

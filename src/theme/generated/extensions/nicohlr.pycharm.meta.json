@@ -4,7 +4,7 @@
   "publisherName": "nicohlr",
   "displayName": "PyCharm Theme",
   "version": "0.0.10",
-  "extractedAt": "2026-02-02T13:46:37.519Z",
+  "extractedAt": "2026-02-08T00:10:50.476Z",
   "installCount": 137673,
   "themes": [
     {
@@ -15,13 +15,17 @@
         "editor.foreground": "#A9B7C6",
         "titleBar.activeBackground": "#3C3F41",
         "titleBar.inactiveBackground": "#313335",
+        "titleBar.border": "#303030",
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BBBBBB",
+        "statusBar.border": "#464646",
         "activityBar.background": "#3C3F41",
         "activityBar.foreground": "#F0F0F0",
         "sideBar.background": "#3C3F41",
         "sideBar.foreground": "#BBBBBB",
-        "sideBarSectionHeader.background": "#3B4754"
+        "sideBar.border": "#323232",
+        "sideBarSectionHeader.background": "#3B4754",
+        "sideBarSectionHeader.border": "#323232"
       },
       "type": "dark"
     },
@@ -39,6 +43,7 @@
         "statusBar.foreground": "#7A8288",
         "activityBar.background": "#313437",
         "activityBar.foreground": "#F8F8F8",
+        "activityBar.activeBorder": "#FFFFFF",
         "sideBar.background": "#313437",
         "sideBarSectionHeader.background": "#000000",
         "sideBarSectionHeader.foreground": "#5C6166"
@@ -52,6 +57,7 @@
         "editor.background": "#1F1F1F",
         "editor.foreground": "#A9B7C6",
         "titleBar.activeBackground": "#1A1A1A",
+        "titleBar.border": "#000000",
         "statusBar.background": "#1A1A1A",
         "statusBar.foreground": "#7E7E7E",
         "activityBar.background": "#1A1A1A",
@@ -67,7 +73,8 @@
       "colors": {
         "editor.background": "#1E1E1E",
         "editor.foreground": "#A9B7C6",
-        "sideBarSectionHeader.background": "#000000"
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "mikaelkristiansson87",
   "displayName": "React Theme",
   "version": "2.0.0",
-  "extractedAt": "2026-02-02T13:46:42.661Z",
+  "extractedAt": "2026-02-08T00:10:55.867Z",
   "installCount": 104231,
   "themes": [
     {
@@ -33,14 +33,20 @@
         "titleBar.activeForeground": "#CCCCCC",
         "titleBar.inactiveBackground": "#1F1F1F",
         "titleBar.inactiveForeground": "#9D9D9D",
+        "titleBar.border": "#2B2B2B",
         "statusBar.background": "#181818",
         "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#2B2B2B",
+        "statusBar.focusBorder": "#58C4DC",
         "activityBar.background": "#181818",
         "activityBar.foreground": "#D7D7D7",
+        "activityBar.activeBorder": "#58C4DC",
         "sideBar.background": "#181818",
         "sideBar.foreground": "#CCCCCC",
+        "sideBar.border": "#2B2B2B",
         "sideBarSectionHeader.background": "#181818",
-        "sideBarSectionHeader.foreground": "#CCCCCC"
+        "sideBarSectionHeader.foreground": "#CCCCCC",
+        "sideBarSectionHeader.border": "#2B2B2B"
       },
       "type": "dark"
     },
@@ -54,14 +60,20 @@
         "titleBar.activeForeground": "#1E1E1E",
         "titleBar.inactiveBackground": "#F8F8F8",
         "titleBar.inactiveForeground": "#8B949E",
+        "titleBar.border": "#E5E5E5",
         "statusBar.background": "#F8F8F8",
         "statusBar.foreground": "#3B3B3B",
+        "statusBar.border": "#E5E5E5",
+        "statusBar.focusBorder": "#58C4DC",
         "activityBar.background": "#F8F8F8",
         "activityBar.foreground": "#1F1F1F",
+        "activityBar.activeBorder": "#58C4DC",
         "sideBar.background": "#F8F8F8",
         "sideBar.foreground": "#3B3B3B",
+        "sideBar.border": "#E5E5E5",
         "sideBarSectionHeader.background": "#F8F8F8",
-        "sideBarSectionHeader.foreground": "#3B3B3B"
+        "sideBarSectionHeader.foreground": "#3B3B3B",
+        "sideBarSectionHeader.border": "#E5E5E5"
       },
       "type": "light"
     }

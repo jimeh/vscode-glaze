@@ -4,7 +4,7 @@
   "publisherName": "production-sun-set",
   "displayName": "Sunset Gradient Theme",
   "version": "1.0.0",
-  "extractedAt": "2026-02-02T13:46:47.052Z",
+  "extractedAt": "2026-02-08T00:11:00.362Z",
   "installCount": 12878,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#FFF3E0",
         "activityBar.background": "#241530",
         "activityBar.foreground": "#FFF3E0",
+        "activityBar.activeBackground": "#FF6B6B",
+        "activityBar.activeBorder": "#FF6B6B",
         "sideBar.background": "#2A1A3A",
-        "sideBarSectionHeader.background": "#3D2A4D"
+        "sideBarSectionHeader.background": "#3D2A4D",
+        "sideBarSectionHeader.border": "#5A4070"
       },
       "type": "dark"
     },
@@ -40,8 +43,11 @@
         "statusBar.foreground": "#F5EDE0",
         "activityBar.background": "#221428",
         "activityBar.foreground": "#F5EDE0",
+        "activityBar.activeBackground": "#E85A5A",
+        "activityBar.activeBorder": "#E85A5A",
         "sideBar.background": "#271732",
-        "sideBarSectionHeader.background": "#3A2A47"
+        "sideBarSectionHeader.background": "#3A2A47",
+        "sideBarSectionHeader.border": "#553D60"
       },
       "type": "dark"
     }

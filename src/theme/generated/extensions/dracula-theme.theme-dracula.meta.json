@@ -4,7 +4,7 @@
   "publisherName": "dracula-theme",
   "displayName": "Dracula Theme Official",
   "version": "2.25.1",
-  "extractedAt": "2026-02-02T13:46:16.709Z",
+  "extractedAt": "2026-02-08T00:10:28.959Z",
   "installCount": 9979534,
   "themes": [
     {
@@ -21,8 +21,11 @@
         "statusBar.foreground": "#F8F8F2",
         "activityBar.background": "#343746",
         "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF79C6",
         "sideBar.background": "#21222C",
-        "sideBarSectionHeader.background": "#282A36"
+        "sideBarSectionHeader.background": "#282A36",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     },
@@ -40,8 +43,11 @@
         "statusBar.foreground": "#F6F6F4",
         "activityBar.background": "#343746",
         "activityBar.foreground": "#F6F6F4",
+        "activityBar.activeBackground": "#BD93F9",
+        "activityBar.activeBorder": "#FF79C6",
         "sideBar.background": "#262626",
-        "sideBarSectionHeader.background": "#282A36"
+        "sideBarSectionHeader.background": "#282A36",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     }

@@ -4,7 +4,7 @@
   "publisherName": "arzg",
   "displayName": "Noel",
   "version": "2.1.0",
-  "extractedAt": "2026-02-02T13:46:59.059Z",
+  "extractedAt": "2026-02-08T00:11:12.945Z",
   "installCount": 3967,
   "themes": [
     {
@@ -17,9 +17,11 @@
         "titleBar.inactiveBackground": "#252B2D",
         "statusBar.background": "#252B2D",
         "statusBar.foreground": "#B3DCE2",
+        "statusBar.border": "#B3DCE2",
         "activityBar.background": "#252B2D",
         "activityBar.foreground": "#DEEEF3",
         "sideBar.background": "#252B2D",
+        "sideBar.border": "#B3DCE2",
         "sideBarSectionHeader.background": "#B3DCE2"
       },
       "type": "dark"
@@ -34,9 +36,11 @@
         "titleBar.inactiveBackground": "#252121",
         "statusBar.background": "#252121",
         "statusBar.foreground": "#C4BAA9",
+        "statusBar.border": "#C4BAA9",
         "activityBar.background": "#252121",
         "activityBar.foreground": "#E1DBD1",
         "sideBar.background": "#252121",
+        "sideBar.border": "#C4BAA9",
         "sideBarSectionHeader.background": "#C4BAA9"
       },
       "type": "dark"

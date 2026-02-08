@@ -4,7 +4,7 @@
   "publisherName": "xr0master",
   "displayName": "Webstorm IntelliJ Darcula Theme",
   "version": "1.1.1",
-  "extractedAt": "2026-02-02T13:46:39.110Z",
+  "extractedAt": "2026-02-08T00:10:52.110Z",
   "installCount": 130101,
   "themes": [
     {
@@ -15,10 +15,12 @@
         "editor.foreground": "#A9B7C6",
         "statusBar.background": "#3C3F41",
         "statusBar.foreground": "#BABABA",
+        "statusBar.border": "#4B4B4B",
         "activityBar.background": "#3C3F41",
         "activityBar.foreground": "#FFFFFF",
         "sideBar.background": "#3C3F41",
         "sideBar.foreground": "#BABABA",
+        "sideBar.border": "#4B4B4B",
         "sideBarSectionHeader.foreground": "#BABABA"
       },
       "type": "dark"
