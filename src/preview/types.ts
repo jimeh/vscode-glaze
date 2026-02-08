@@ -17,6 +17,7 @@ export interface StylePreviewColors {
   titleBar: ElementColors;
   statusBar: ElementColors;
   activityBar: ElementColors;
+  sideBar: ElementColors;
 }
 
 /**

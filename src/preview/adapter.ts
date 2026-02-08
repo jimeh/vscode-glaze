@@ -2,8 +2,8 @@ import type { TintResult } from '../color/tint';
 import type { StylePreviewColors } from './types';
 
 /**
- * Extracts preview colors for titleBar, statusBar, activityBar
- * from a TintResult.
+ * Extracts preview colors for titleBar, statusBar, activityBar,
+ * and sideBar from a TintResult.
  *
  * Uses active titleBar keys (not inactive variants) to match
  * what the preview panel displays.
@@ -17,6 +17,8 @@ export function tintResultToPreviewColors(
   let statusBarFg = '';
   let activityBarBg = '';
   let activityBarFg = '';
+  let sideBarBg = '';
+  let sideBarFg = '';
 
   for (const detail of result.keys) {
     switch (detail.key) {
@@ -38,12 +40,22 @@ export function tintResultToPreviewColors(
       case 'activityBar.foreground':
         activityBarFg = detail.finalHex;
         break;
+      case 'sideBar.background':
+        sideBarBg = detail.finalHex;
+        break;
+      case 'sideBar.foreground':
+        sideBarFg = detail.finalHex;
+        break;
     }
   }
 
   return {
     titleBar: { background: titleBarBg, foreground: titleBarFg },
     statusBar: { background: statusBarBg, foreground: statusBarFg },
-    activityBar: { background: activityBarBg, foreground: activityBarFg },
+    activityBar: {
+      background: activityBarBg,
+      foreground: activityBarFg,
+    },
+    sideBar: { background: sideBarBg, foreground: sideBarFg },
   };
 }
