@@ -24,6 +24,13 @@ const ALL_PALETTE_KEYS = [
   'sideBar.foreground',
   'sideBarSectionHeader.background',
   'sideBarSectionHeader.foreground',
+  'sideBar.border',
+  'sideBarSectionHeader.border',
+  'statusBar.border',
+  'statusBar.focusBorder',
+  'titleBar.border',
+  'activityBar.activeBackground',
+  'activityBar.activeBorder',
 ] as const;
 
 /**
@@ -469,6 +476,13 @@ suite('adaptive style', () => {
       'sideBar.foreground': '#CCCCCC',
       'sideBarSectionHeader.background': '#333333',
       'sideBarSectionHeader.foreground': '#CCCCCC',
+      'sideBar.border': '#21252B',
+      'sideBarSectionHeader.border': '#333333',
+      'statusBar.border': '#007ACC',
+      'statusBar.focusBorder': '#007ACC',
+      'titleBar.border': '#3C3C3C',
+      'activityBar.activeBackground': '#333333',
+      'activityBar.activeBorder': '#333333',
     };
 
     for (const key of ALL_PALETTE_KEYS) {

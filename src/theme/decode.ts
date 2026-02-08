@@ -29,14 +29,21 @@ const COLOR_KEY_ORDER: readonly ThemeColorKey[] = [
   'titleBar.activeForeground',
   'titleBar.inactiveBackground',
   'titleBar.inactiveForeground',
+  'titleBar.border',
   'statusBar.background',
   'statusBar.foreground',
+  'statusBar.border',
+  'statusBar.focusBorder',
   'activityBar.background',
   'activityBar.foreground',
+  'activityBar.activeBackground',
+  'activityBar.activeBorder',
   'sideBar.background',
   'sideBar.foreground',
+  'sideBar.border',
   'sideBarSectionHeader.background',
   'sideBarSectionHeader.foreground',
+  'sideBarSectionHeader.border',
 ] as const;
 
 /**

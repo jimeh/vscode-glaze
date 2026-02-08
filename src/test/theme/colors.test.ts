@@ -562,4 +562,97 @@ suite('getColorForKey', () => {
       '#ABB2BF'
     );
   });
+
+  test('border keys fall back to element background', () => {
+    assert.strictEqual(getColorForKey('sideBar.border', fullColors), '#282C34');
+    assert.strictEqual(
+      getColorForKey('statusBar.border', fullColors),
+      '#3E4451'
+    );
+    assert.strictEqual(
+      getColorForKey('titleBar.border', fullColors),
+      '#21252B'
+    );
+  });
+
+  test('border keys fall back to editor.background when no element bg', () => {
+    assert.strictEqual(
+      getColorForKey('sideBar.border', editorOnlyColors),
+      '#282C34'
+    );
+    assert.strictEqual(
+      getColorForKey('statusBar.border', editorOnlyColors),
+      '#282C34'
+    );
+    assert.strictEqual(
+      getColorForKey('titleBar.border', editorOnlyColors),
+      '#282C34'
+    );
+  });
+
+  test('border keys return direct value when defined', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'sideBar.border': '#FF0000',
+      'statusBar.border': '#00FF00',
+      'titleBar.border': '#0000FF',
+    };
+    assert.strictEqual(getColorForKey('sideBar.border', colors), '#FF0000');
+    assert.strictEqual(getColorForKey('statusBar.border', colors), '#00FF00');
+    assert.strictEqual(getColorForKey('titleBar.border', colors), '#0000FF');
+  });
+
+  test('statusBar.focusBorder falls back to statusBar.background', () => {
+    assert.strictEqual(
+      getColorForKey('statusBar.focusBorder', fullColors),
+      '#3E4451'
+    );
+  });
+
+  test('sideBarSectionHeader.border falls back to sideBarSectionHeader.background', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'sideBarSectionHeader.background': '#1A1D23',
+    };
+    assert.strictEqual(
+      getColorForKey('sideBarSectionHeader.border', colors),
+      '#1A1D23'
+    );
+  });
+
+  test('activityBar.activeBackground falls back to activityBar.background', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'activityBar.background': '#2C313A',
+    };
+    assert.strictEqual(
+      getColorForKey('activityBar.activeBackground', colors),
+      '#2C313A'
+    );
+  });
+
+  test('activityBar.activeBorder falls back to activityBar.background', () => {
+    const colors: ThemeColors = {
+      'editor.background': '#282C34',
+      'activityBar.background': '#2C313A',
+    };
+    assert.strictEqual(
+      getColorForKey('activityBar.activeBorder', colors),
+      '#2C313A'
+    );
+  });
+
+  test('activityBar.activeBackground falls back to editor.background when no activityBar', () => {
+    assert.strictEqual(
+      getColorForKey('activityBar.activeBackground', editorOnlyColors),
+      '#282C34'
+    );
+  });
+
+  test('activityBar.activeBorder falls back to editor.background when no activityBar', () => {
+    assert.strictEqual(
+      getColorForKey('activityBar.activeBorder', editorOnlyColors),
+      '#282C34'
+    );
+  });
 });

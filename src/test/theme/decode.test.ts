@@ -108,8 +108,8 @@ suite('createThemeLookup', () => {
     assert.strictEqual(colors['editor.background'], '#1E1E1E');
     assert.strictEqual(colors['editor.foreground'], undefined);
     assert.strictEqual(colors['titleBar.activeBackground'], undefined);
-    // Index 6 = statusBar.background
-    assert.strictEqual(colors['statusBar.background'], '#21252B');
+    // Index 6 = titleBar.border
+    assert.strictEqual(colors['titleBar.border'], '#21252B');
   });
 
   test('handles empty compact data', () => {
@@ -118,32 +118,96 @@ suite('createThemeLookup', () => {
     assert.strictEqual(lookup['anything'], undefined);
   });
 
-  test('decodes sidebar colors at indices 10-13', () => {
-    const withSidebar: CompactThemeData = {
-      'Sidebar Theme': [
+  test('decodes all color keys in grouped order', () => {
+    const withAll: CompactThemeData = {
+      'Full Theme': [
         0,
         '1E1E1E', // 0: editor.background
         'D4D4D4', // 1: editor.foreground
         '323233', // 2: titleBar.activeBackground
         'CCC', // 3: titleBar.activeForeground
-        undefined, // 4: titleBar.inactiveBackground
-        undefined, // 5: titleBar.inactiveForeground
-        '007ACC', // 6: statusBar.background
-        'FFF', // 7: statusBar.foreground
-        '333', // 8: activityBar.background
-        'FFF', // 9: activityBar.foreground
-        '181818', // 10: sideBar.background
-        'CCC', // 11: sideBar.foreground
-        '252526', // 12: sideBarSectionHeader.background
-        'BBB', // 13: sideBarSectionHeader.foreground
+        '2D2D2D', // 4: titleBar.inactiveBackground
+        '999', // 5: titleBar.inactiveForeground
+        '3C3C3C', // 6: titleBar.border
+        '007ACC', // 7: statusBar.background
+        'FFF', // 8: statusBar.foreground
+        '007ACC', // 9: statusBar.border
+        '007ACC', // 10: statusBar.focusBorder
+        '333', // 11: activityBar.background
+        'FFF', // 12: activityBar.foreground
+        '444', // 13: activityBar.activeBackground
+        '555', // 14: activityBar.activeBorder
+        '181818', // 15: sideBar.background
+        'CCC', // 16: sideBar.foreground
+        '2A2A2A', // 17: sideBar.border
+        '252526', // 18: sideBarSectionHeader.background
+        'BBB', // 19: sideBarSectionHeader.foreground
+        '353535', // 20: sideBarSectionHeader.border
       ],
     };
-    const lookup = createThemeLookup(withSidebar);
-    const colors = lookup['Sidebar Theme']!.colors;
+    const lookup = createThemeLookup(withAll);
+    const colors = lookup['Full Theme']!.colors;
+    assert.strictEqual(colors['editor.background'], '#1E1E1E');
+    assert.strictEqual(colors['editor.foreground'], '#D4D4D4');
+    assert.strictEqual(colors['titleBar.activeBackground'], '#323233');
+    assert.strictEqual(colors['titleBar.activeForeground'], '#CCCCCC');
+    assert.strictEqual(colors['titleBar.inactiveBackground'], '#2D2D2D');
+    assert.strictEqual(colors['titleBar.inactiveForeground'], '#999999');
+    assert.strictEqual(colors['titleBar.border'], '#3C3C3C');
+    assert.strictEqual(colors['statusBar.background'], '#007ACC');
+    assert.strictEqual(colors['statusBar.foreground'], '#FFFFFF');
+    assert.strictEqual(colors['statusBar.border'], '#007ACC');
+    assert.strictEqual(colors['statusBar.focusBorder'], '#007ACC');
+    assert.strictEqual(colors['activityBar.background'], '#333333');
+    assert.strictEqual(colors['activityBar.foreground'], '#FFFFFF');
+    assert.strictEqual(colors['activityBar.activeBackground'], '#444444');
+    assert.strictEqual(colors['activityBar.activeBorder'], '#555555');
     assert.strictEqual(colors['sideBar.background'], '#181818');
     assert.strictEqual(colors['sideBar.foreground'], '#CCCCCC');
+    assert.strictEqual(colors['sideBar.border'], '#2A2A2A');
     assert.strictEqual(colors['sideBarSectionHeader.background'], '#252526');
     assert.strictEqual(colors['sideBarSectionHeader.foreground'], '#BBBBBB');
+    assert.strictEqual(colors['sideBarSectionHeader.border'], '#353535');
+  });
+
+  test('decodes sparse entries with only sidebar keys', () => {
+    const sidebarOnly: CompactThemeData = {
+      'Sidebar Only': [
+        0,
+        '1E1E1E', // 0: editor.background
+        undefined, // 1: editor.foreground
+        undefined, // 2: titleBar.activeBackground
+        undefined, // 3: titleBar.activeForeground
+        undefined, // 4: titleBar.inactiveBackground
+        undefined, // 5: titleBar.inactiveForeground
+        undefined, // 6: titleBar.border
+        undefined, // 7: statusBar.background
+        undefined, // 8: statusBar.foreground
+        undefined, // 9: statusBar.border
+        undefined, // 10: statusBar.focusBorder
+        undefined, // 11: activityBar.background
+        undefined, // 12: activityBar.foreground
+        undefined, // 13: activityBar.activeBackground
+        undefined, // 14: activityBar.activeBorder
+        'AAA', // 15: sideBar.background
+        'BBB', // 16: sideBar.foreground
+        'CCC', // 17: sideBar.border
+        'DDD', // 18: sideBarSectionHeader.background
+        'EEE', // 19: sideBarSectionHeader.foreground
+        'F0F0F0', // 20: sideBarSectionHeader.border
+      ],
+    };
+    const lookup = createThemeLookup(sidebarOnly);
+    const colors = lookup['Sidebar Only']!.colors;
+    assert.strictEqual(colors['editor.background'], '#1E1E1E');
+    assert.strictEqual(colors['editor.foreground'], undefined);
+    assert.strictEqual(colors['titleBar.border'], undefined);
+    assert.strictEqual(colors['sideBar.background'], '#AAAAAA');
+    assert.strictEqual(colors['sideBar.foreground'], '#BBBBBB');
+    assert.strictEqual(colors['sideBar.border'], '#CCCCCC');
+    assert.strictEqual(colors['sideBarSectionHeader.background'], '#DDDDDD');
+    assert.strictEqual(colors['sideBarSectionHeader.foreground'], '#EEEEEE');
+    assert.strictEqual(colors['sideBarSectionHeader.border'], '#F0F0F0');
   });
 
   test('decodes sparse sidebar (only sideBar.background)', () => {
@@ -151,16 +215,21 @@ suite('createThemeLookup', () => {
       'Sparse Sidebar': [
         0,
         '1E1E1E', // 0: editor.background
-        undefined, // 1-9: skipped
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        '252526', // 10: sideBar.background
+        undefined, // 1: editor.foreground
+        undefined, // 2: titleBar.activeBackground
+        undefined, // 3: titleBar.activeForeground
+        undefined, // 4: titleBar.inactiveBackground
+        undefined, // 5: titleBar.inactiveForeground
+        undefined, // 6: titleBar.border
+        undefined, // 7: statusBar.background
+        undefined, // 8: statusBar.foreground
+        undefined, // 9: statusBar.border
+        undefined, // 10: statusBar.focusBorder
+        undefined, // 11: activityBar.background
+        undefined, // 12: activityBar.foreground
+        undefined, // 13: activityBar.activeBackground
+        undefined, // 14: activityBar.activeBorder
+        '252526', // 15: sideBar.background
       ],
     };
     const lookup = createThemeLookup(sparseSidebar);

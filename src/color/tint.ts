@@ -8,7 +8,11 @@ import type {
   ColorType,
   PatinaColorPalette,
 } from '../theme';
-import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../theme';
+import {
+  COLOR_KEY_DEFINITIONS,
+  PATINA_MANAGED_KEYS,
+  EXCLUDE_WHEN_UNDEFINED_KEYS,
+} from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
 import { oklchToHex, maxChroma } from './convert';
@@ -44,6 +48,11 @@ export interface TintKeyDetail {
   readonly blendFactor: number;
   /** Whether the element's target is active */
   readonly enabled: boolean;
+  /**
+   * Whether this key should be excluded from colorCustomizations
+   * because the theme doesn't explicitly define it.
+   */
+  readonly excluded: boolean;
 }
 
 /**
@@ -245,6 +254,11 @@ export function computeTint(options: ComputeTintOptions): TintResult {
         finalHex = tintHex;
       }
 
+      // Exclude keys the theme doesn't explicitly define
+      const excluded =
+        EXCLUDE_WHEN_UNDEFINED_KEYS.has(key) &&
+        (!themeColors || themeColors[key] === undefined);
+
       return {
         key,
         element: def.element,
@@ -254,6 +268,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
         themeColor,
         blendFactor: effectiveBlend,
         enabled: targetSet.has(def.element),
+        excluded,
       };
     }
   );
@@ -296,7 +311,7 @@ export function tintResultToPalette(
 ): Partial<PatinaColorPalette> {
   const palette: Partial<PatinaColorPalette> = {};
   for (const detail of result.keys) {
-    if (detail.enabled) {
+    if (detail.enabled && !detail.excluded) {
       palette[detail.key] = detail.finalHex;
     }
   }

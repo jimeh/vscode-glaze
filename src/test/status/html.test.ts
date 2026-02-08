@@ -17,6 +17,7 @@ function createMockColors(): readonly TintKeyDetail[] {
       finalHex: '#3d3040',
       blendFactor: 0.35,
       enabled: true,
+      excluded: false,
     };
   });
 }
