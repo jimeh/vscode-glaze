@@ -7,6 +7,8 @@ import type { HarmonyConfig } from './types';
  * Each harmony maps element types to their hue offset from the
  * workspace's base hue. The "editor" element is always 0° since
  * it is not tinted.
+ *
+ * Ordered from least to most hue variation.
  */
 export const HARMONY_CONFIGS: Readonly<Record<ColorHarmony, HarmonyConfig>> = {
   /**
@@ -16,6 +18,50 @@ export const HARMONY_CONFIGS: Readonly<Record<ColorHarmony, HarmonyConfig>> = {
     editor: 0,
     titleBar: 0,
     statusBar: 0,
+    activityBar: 0,
+    sideBar: 0,
+  },
+
+  /**
+   * Accent — single element (activityBar) gets a 60° pop.
+   */
+  accent: {
+    editor: 0,
+    titleBar: 0,
+    statusBar: 0,
+    activityBar: 60,
+    sideBar: 0,
+  },
+
+  /**
+   * Gradient — progressive hue sweep across elements (±15°/±30°).
+   */
+  gradient: {
+    editor: 0,
+    titleBar: -30,
+    statusBar: 30,
+    activityBar: -15,
+    sideBar: 15,
+  },
+
+  /**
+   * Analogous — three adjacent hues (-25°, 0°, +25°).
+   */
+  analogous: {
+    editor: 0,
+    titleBar: -25,
+    statusBar: 25,
+    activityBar: 0,
+    sideBar: 0,
+  },
+
+  /**
+   * Undercurrent — complementary accent (180°) on status bar.
+   */
+  undercurrent: {
+    editor: 0,
+    titleBar: 0,
+    statusBar: 180,
     activityBar: 0,
     sideBar: 0,
   },
@@ -32,23 +78,12 @@ export const HARMONY_CONFIGS: Readonly<Record<ColorHarmony, HarmonyConfig>> = {
   },
 
   /**
-   * Undercurrent — complementary accent (180°) on status bar.
+   * Split-Complementary — two hues flanking the complement (±150°).
    */
-  undercurrent: {
+  'split-complementary': {
     editor: 0,
-    titleBar: 0,
-    statusBar: 180,
-    activityBar: 0,
-    sideBar: 0,
-  },
-
-  /**
-   * Analogous — three adjacent hues (-25°, 0°, +25°).
-   */
-  analogous: {
-    editor: 0,
-    titleBar: -25,
-    statusBar: 25,
+    titleBar: -150,
+    statusBar: 150,
     activityBar: 0,
     sideBar: 0,
   },
@@ -61,6 +96,17 @@ export const HARMONY_CONFIGS: Readonly<Record<ColorHarmony, HarmonyConfig>> = {
     titleBar: -120,
     statusBar: 120,
     activityBar: 0,
+    sideBar: 0,
+  },
+
+  /**
+   * Tetradic — four hues at 90° intervals.
+   */
+  tetradic: {
+    editor: 0,
+    titleBar: 90,
+    statusBar: 180,
+    activityBar: 270,
     sideBar: 0,
   },
 };

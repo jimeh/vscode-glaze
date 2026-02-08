@@ -1467,6 +1467,50 @@ suite('getColorHarmony', () => {
     assert.strictEqual(result, 'triadic');
   });
 
+  test('returns split-complementary when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'split-complementary',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'split-complementary');
+  });
+
+  test('returns tetradic when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'tetradic',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'tetradic');
+  });
+
+  test('returns gradient when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'gradient',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'gradient');
+  });
+
+  test('returns accent when configured', async () => {
+    const config = vscode.workspace.getConfiguration('patina');
+    await config.update(
+      'tint.colorHarmony',
+      'accent',
+      vscode.ConfigurationTarget.Global
+    );
+    const result = getColorHarmony();
+    assert.strictEqual(result, 'accent');
+  });
+
   test('falls back to uniform for invalid harmony', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(

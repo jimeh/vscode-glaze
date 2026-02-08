@@ -22,14 +22,14 @@ export const COLOR_HARMONY_DEFINITIONS = {
     description: 'Single hue across all elements',
     order: 0,
   },
-  duotone: {
-    label: 'Duotone',
-    description: 'Complementary accent on activity and side bar',
+  accent: {
+    label: 'Accent',
+    description: 'Single element gets a distinct pop',
     order: 1,
   },
-  undercurrent: {
-    label: 'Undercurrent',
-    description: 'Complementary accent on status bar',
+  gradient: {
+    label: 'Gradient',
+    description: 'Progressive hue sweep across elements',
     order: 2,
   },
   analogous: {
@@ -37,10 +37,30 @@ export const COLOR_HARMONY_DEFINITIONS = {
     description: 'Three adjacent hues spread across elements',
     order: 3,
   },
+  undercurrent: {
+    label: 'Undercurrent',
+    description: 'Complementary accent on status bar',
+    order: 4,
+  },
+  duotone: {
+    label: 'Duotone',
+    description: 'Complementary accent on activity and side bar',
+    order: 5,
+  },
+  'split-complementary': {
+    label: 'Split-Complementary',
+    description: 'Two hues flanking the complement',
+    order: 6,
+  },
   triadic: {
     label: 'Triadic',
     description: 'Three evenly-spaced hues for maximum variation',
-    order: 4,
+    order: 7,
+  },
+  tetradic: {
+    label: 'Tetradic',
+    description: 'Four hues at 90° intervals',
+    order: 8,
   },
 } as const satisfies Record<string, ColorHarmonyDefinition>;
 
