@@ -1082,7 +1082,7 @@ suite('getThemeConfig', () => {
     );
   });
 
-  test('defaults to 0.35 when not configured', async () => {
+  test('defaults to 0.5 when not configured', async () => {
     const config = vscode.workspace.getConfiguration('patina');
     await config.update(
       'theme.blendFactor',
@@ -1091,7 +1091,7 @@ suite('getThemeConfig', () => {
     );
 
     const result = getThemeConfig();
-    assert.strictEqual(result.blendFactor, 0.35);
+    assert.strictEqual(result.blendFactor, 0.5);
   });
 
   test('reads configured blendFactor value', async () => {
