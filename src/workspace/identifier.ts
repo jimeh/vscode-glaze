@@ -1,13 +1,23 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import type { WorkspaceIdentifierConfig } from '../config';
-import { HOME_DIR, normalizePath, expandTilde, getRelativePath } from './path';
+import {
+  HOME_DIR,
+  normalizePath,
+  expandTilde,
+  getRelativePath,
+  inferRemoteHome,
+} from './path';
 
 /**
  * Minimal workspace folder interface for testing.
  */
 export interface WorkspaceFolder {
-  readonly uri: { readonly fsPath: string };
+  readonly uri: {
+    readonly fsPath: string;
+    readonly authority?: string;
+    readonly scheme?: string;
+  };
   readonly name: string;
 }
 
@@ -16,6 +26,37 @@ export interface WorkspaceFolder {
  */
 export interface WorkspaceFileUri {
   readonly fsPath: string;
+  readonly authority?: string;
+  readonly scheme?: string;
+}
+
+/**
+ * Returns whether a URI represents a remote workspace.
+ */
+function isRemoteUri(uri: { scheme?: string; authority?: string }): boolean {
+  return !!uri.authority && uri.scheme !== 'file';
+}
+
+/**
+ * Resolves the effective home directory for path-relative-to-home.
+ * For local workspaces, uses os.homedir(). For remote workspaces,
+ * tries the configured remoteHomeDirectory, then heuristic
+ * inference from the path.
+ */
+function resolveHomeDir(
+  fsPath: string,
+  remote: boolean,
+  remoteHomeDirectory: string
+): string | undefined {
+  if (!remote) {
+    return HOME_DIR;
+  }
+  // Try explicit remote home directory setting first
+  if (remoteHomeDirectory) {
+    return remoteHomeDirectory;
+  }
+  // Fall back to heuristic inference
+  return inferRemoteHome(fsPath);
 }
 
 /**
@@ -24,15 +65,23 @@ export interface WorkspaceFileUri {
 function formatPath(
   fsPath: string,
   source: WorkspaceIdentifierConfig['source'],
-  customBasePath: string
+  customBasePath: string,
+  remote: boolean,
+  remoteHomeDirectory: string
 ): string {
   switch (source) {
     case 'name':
       return path.basename(fsPath);
 
     case 'pathRelativeToHome': {
-      const relative = getRelativePath(HOME_DIR, fsPath);
-      return relative ?? normalizePath(fsPath);
+      const homeDir = resolveHomeDir(fsPath, remote, remoteHomeDirectory);
+      if (homeDir) {
+        const relative = getRelativePath(homeDir, fsPath);
+        if (relative !== undefined) {
+          return relative;
+        }
+      }
+      return normalizePath(fsPath);
     }
 
     case 'pathAbsolute':
@@ -54,42 +103,87 @@ function formatPath(
 
 /**
  * Formats a folder based on the source configuration.
- * Special handling for 'name' source to use the folder's custom name if set.
+ * Special handling for 'name' source to use the folder's
+ * custom name if set.
  */
 function formatFolder(
   folder: WorkspaceFolder,
   source: WorkspaceIdentifierConfig['source'],
-  customBasePath: string
+  customBasePath: string,
+  remoteHomeDirectory: string
 ): string {
-  // For 'name' source, use the folder's name property (may be customized)
+  // For 'name' source, use the folder's name property
+  // (may be customized)
   if (source === 'name') {
     return folder.name;
   }
-  return formatPath(folder.uri.fsPath, source, customBasePath);
+  const remote = isRemoteUri(folder.uri);
+  return formatPath(
+    folder.uri.fsPath,
+    source,
+    customBasePath,
+    remote,
+    remoteHomeDirectory
+  );
 }
 
 /**
- * Formats all folders into a sorted, newline-joined identifier string.
+ * Formats all folders into a sorted, newline-joined identifier
+ * string.
  */
 function formatAllFolders(
   folders: readonly WorkspaceFolder[],
   source: WorkspaceIdentifierConfig['source'],
-  customBasePath: string
+  customBasePath: string,
+  remoteHomeDirectory: string
 ): string {
   return folders
-    .map((f) => formatFolder(f, source, customBasePath))
+    .map((f) => formatFolder(f, source, customBasePath, remoteHomeDirectory))
     .sort()
     .join('\n');
 }
 
 /**
- * Extracts a suitable identifier from the current workspace based on config.
+ * Extracts the authority prefix from the first remote folder.
+ * Returns empty string for local workspaces or when authority
+ * prefixing is disabled.
+ */
+function getAuthorityPrefix(
+  folders: readonly WorkspaceFolder[],
+  config: WorkspaceIdentifierConfig,
+  workspaceFile?: WorkspaceFileUri
+): string {
+  if (!config.includeRemoteAuthority) {
+    return '';
+  }
+
+  // For workspace files, check the workspace file URI first
+  if (workspaceFile?.authority && workspaceFile.scheme !== 'file') {
+    return workspaceFile.authority + ':';
+  }
+
+  // Check folder URIs for remote authority
+  for (const folder of folders) {
+    if (isRemoteUri(folder.uri) && folder.uri.authority) {
+      return folder.uri.authority + ':';
+    }
+  }
+
+  return '';
+}
+
+/**
+ * Extracts a suitable identifier from the current workspace
+ * based on config.
  *
- * @param config - Configuration specifying how to generate the identifier
- * @param folders - Optional workspace folders (defaults to vscode.workspace)
- * @param workspaceFile - Optional workspace file URI (defaults to
- *   vscode.workspace.workspaceFile)
- * @returns The workspace identifier, or undefined if no workspace is open
+ * @param config - Configuration specifying how to generate the
+ *   identifier
+ * @param folders - Optional workspace folders (defaults to
+ *   vscode.workspace)
+ * @param workspaceFile - Optional workspace file URI (defaults
+ *   to vscode.workspace.workspaceFile)
+ * @returns The workspace identifier, or undefined if no
+ *   workspace is open
  */
 export function getWorkspaceIdentifier(
   config: WorkspaceIdentifierConfig,
@@ -103,48 +197,75 @@ export function getWorkspaceIdentifier(
 
   const resolvedWorkspaceFile = workspaceFile ?? vscode.workspace.workspaceFile;
   const isMultiRoot = workspaceFolders.length > 1;
+  const { source, customBasePath, remoteHomeDirectory } = config;
 
-  // Single folder workspace: use existing behavior
+  let baseIdentifier: string;
+
+  // Single folder workspace
   if (!isMultiRoot) {
-    return formatFolder(
+    baseIdentifier = formatFolder(
       workspaceFolders[0],
-      config.source,
-      config.customBasePath
+      source,
+      customBasePath,
+      remoteHomeDirectory
     );
-  }
-
-  // Multi-root workspace: use multiRootSource to determine base
-  switch (config.multiRootSource) {
-    case 'workspaceFile': {
-      // Use workspace file if available
-      if (resolvedWorkspaceFile?.fsPath) {
-        return formatPath(
-          resolvedWorkspaceFile.fsPath,
-          config.source,
-          config.customBasePath
-        );
+  } else {
+    // Multi-root workspace: use multiRootSource to determine base
+    switch (config.multiRootSource) {
+      case 'workspaceFile': {
+        if (resolvedWorkspaceFile?.fsPath) {
+          const remote =
+            resolvedWorkspaceFile.scheme !== 'file' &&
+            !!resolvedWorkspaceFile.authority;
+          baseIdentifier = formatPath(
+            resolvedWorkspaceFile.fsPath,
+            source,
+            customBasePath,
+            remote,
+            remoteHomeDirectory
+          );
+        } else {
+          // Fall back to allFolders if workspace file unavailable
+          baseIdentifier = formatAllFolders(
+            workspaceFolders,
+            source,
+            customBasePath,
+            remoteHomeDirectory
+          );
+        }
+        break;
       }
-      // Fall back to allFolders if workspace file unavailable
-      return formatAllFolders(
-        workspaceFolders,
-        config.source,
-        config.customBasePath
-      );
+
+      case 'allFolders':
+        baseIdentifier = formatAllFolders(
+          workspaceFolders,
+          source,
+          customBasePath,
+          remoteHomeDirectory
+        );
+        break;
+
+      case 'firstFolder':
+      default:
+        baseIdentifier = formatFolder(
+          workspaceFolders[0],
+          source,
+          customBasePath,
+          remoteHomeDirectory
+        );
+        break;
     }
-
-    case 'allFolders':
-      return formatAllFolders(
-        workspaceFolders,
-        config.source,
-        config.customBasePath
-      );
-
-    case 'firstFolder':
-    default:
-      return formatFolder(
-        workspaceFolders[0],
-        config.source,
-        config.customBasePath
-      );
   }
+
+  // 'name' source is intentionally host-agnostic — no prefix
+  if (source === 'name') {
+    return baseIdentifier;
+  }
+
+  const prefix = getAuthorityPrefix(
+    workspaceFolders,
+    config,
+    resolvedWorkspaceFile
+  );
+  return prefix + baseIdentifier;
 }

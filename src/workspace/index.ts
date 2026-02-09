@@ -1,3 +1,8 @@
 export { getWorkspaceIdentifier } from './identifier';
 export type { WorkspaceFolder } from './identifier';
-export { normalizePath, expandTilde, getRelativePath } from './path';
+export {
+  normalizePath,
+  expandTilde,
+  getRelativePath,
+  inferRemoteHome,
+} from './path';

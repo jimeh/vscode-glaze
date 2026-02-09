@@ -160,6 +160,14 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
       VALID_MULTI_ROOT_SOURCES,
       'workspaceFile'
     ),
+    includeRemoteAuthority: config.get<boolean>(
+      'workspaceIdentifier.includeRemoteAuthority',
+      true
+    ),
+    remoteHomeDirectory: config.get<string>(
+      'workspaceIdentifier.remoteHomeDirectory',
+      ''
+    ),
   };
 }
 
