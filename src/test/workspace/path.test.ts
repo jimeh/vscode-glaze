@@ -5,6 +5,7 @@ import {
   normalizePath,
   expandTilde,
   getRelativePath,
+  inferRemoteHome,
 } from '../../workspace/path';
 
 suite('normalizePath', () => {
@@ -151,5 +152,80 @@ suite('getRelativePath', () => {
     const target = '/home/user/projects';
     const result = getRelativePath(base, target);
     assert.strictEqual(result, 'projects');
+  });
+});
+
+suite('inferRemoteHome', () => {
+  test('detects /home/<user> pattern', () => {
+    assert.strictEqual(
+      inferRemoteHome('/home/jimeh/projects/app'),
+      '/home/jimeh'
+    );
+  });
+
+  test('detects /home/<user> with nested path', () => {
+    assert.strictEqual(
+      inferRemoteHome('/home/deploy/apps/web/src'),
+      '/home/deploy'
+    );
+  });
+
+  test('detects /home/<user> at exact home dir', () => {
+    assert.strictEqual(inferRemoteHome('/home/jimeh'), '/home/jimeh');
+  });
+
+  test('detects /Users/<user> pattern (macOS remote)', () => {
+    assert.strictEqual(
+      inferRemoteHome('/Users/jimeh/Developer/project'),
+      '/Users/jimeh'
+    );
+  });
+
+  test('detects /Users/<user> at exact home dir', () => {
+    assert.strictEqual(inferRemoteHome('/Users/jimeh'), '/Users/jimeh');
+  });
+
+  test('detects /root with subpath', () => {
+    assert.strictEqual(inferRemoteHome('/root/projects/app'), '/root');
+  });
+
+  test('detects /root exactly', () => {
+    assert.strictEqual(inferRemoteHome('/root'), '/root');
+  });
+
+  test('returns undefined for /var paths', () => {
+    assert.strictEqual(inferRemoteHome('/var/www/html'), undefined);
+  });
+
+  test('returns undefined for /opt paths', () => {
+    assert.strictEqual(inferRemoteHome('/opt/app/data'), undefined);
+  });
+
+  test('returns undefined for /srv paths', () => {
+    assert.strictEqual(inferRemoteHome('/srv/myapp'), undefined);
+  });
+
+  test('returns undefined for bare /home', () => {
+    assert.strictEqual(inferRemoteHome('/home'), undefined);
+  });
+
+  test('returns undefined for bare /Users', () => {
+    assert.strictEqual(inferRemoteHome('/Users'), undefined);
+  });
+
+  test('returns undefined for empty string', () => {
+    assert.strictEqual(inferRemoteHome(''), undefined);
+  });
+
+  test('returns undefined for root path', () => {
+    assert.strictEqual(inferRemoteHome('/'), undefined);
+  });
+
+  test('does not match /home-like prefix', () => {
+    assert.strictEqual(inferRemoteHome('/homedata/user/app'), undefined);
+  });
+
+  test('handles /home/<user> with trailing slash', () => {
+    assert.strictEqual(inferRemoteHome('/home/user/'), '/home/user');
   });
 });

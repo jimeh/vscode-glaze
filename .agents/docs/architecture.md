@@ -7,7 +7,10 @@
 
 2. **workspace** — Derives workspace identifier from folder path/name based
    on user config (`name`, `pathRelativeToHome`, `pathAbsolute`, or
-   `pathRelativeToCustom`).
+   `pathRelativeToCustom`). Remote workspaces (SSH, WSL, Dev Containers)
+   are detected via `uri.authority`/`uri.scheme` and prefixed with the
+   remote authority for uniqueness. Remote home directory is inferred
+   heuristically (grep `inferRemoteHome`) or configured via setting.
 
 3. **config** — Reads Patina settings from VSCode configuration API
    (grep `config.get<` or `config.inspect<`). Six config groups:

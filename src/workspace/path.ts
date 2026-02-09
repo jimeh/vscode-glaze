@@ -26,6 +26,22 @@ export function expandTilde(p: string): string {
 }
 
 /**
+ * Infers the home directory from a remote filesystem path.
+ * Recognizes common patterns: /home/<user>, /Users/<user>, /root.
+ * Returns undefined if the path doesn't match any known pattern.
+ */
+export function inferRemoteHome(remotePath: string): string | undefined {
+  const match = remotePath.match(/^(\/(?:home|Users)\/[^/]+)/);
+  if (match) {
+    return match[1];
+  }
+  if (remotePath === '/root' || remotePath.startsWith('/root/')) {
+    return '/root';
+  }
+  return undefined;
+}
+
+/**
  * Computes the relative path from a base to a target.
  * Returns undefined if the target is not within the base path.
  */

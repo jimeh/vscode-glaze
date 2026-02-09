@@ -50,6 +50,20 @@ export interface WorkspaceIdentifierConfig {
    * - 'firstFolder': Use only the first folder (backward compatible)
    */
   multiRootSource: MultiRootIdentifierSource;
+
+  /**
+   * Whether to include the remote authority (e.g. hostname) in the
+   * workspace identifier. When true, the same path on different
+   * remote hosts produces different colors. Default is true.
+   */
+  includeRemoteAuthority: boolean;
+
+  /**
+   * Home directory override for remote workspaces. Used by
+   * 'pathRelativeToHome' when the automatic heuristic fails.
+   * Empty string means no override (use heuristic only).
+   */
+  remoteHomeDirectory: string;
 }
 
 /**
