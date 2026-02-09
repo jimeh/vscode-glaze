@@ -2,7 +2,7 @@
  * Default blend factor for theme color blending.
  * Used as fallback when no explicit blend factor is configured.
  */
-export const DEFAULT_BLEND_FACTOR = 0.5;
+export const DEFAULT_BLEND_FACTOR = 0.35;
 
 import type { BlendMethod } from '../color/blend';
 
@@ -104,7 +104,7 @@ export interface ThemeConfig {
   /**
    * How much to blend tint colors toward the theme's background color.
    * Value between 0 (no blending) and 1 (fully match theme).
-   * Default is 0.5.
+   * Default is 0.35.
    */
   blendFactor: number;
 
