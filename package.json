@@ -299,7 +299,7 @@
           "type": "number",
           "minimum": 0,
           "maximum": 1,
-          "default": 0.35,
+          "default": 0.5,
           "description": "How much to blend tint colors toward the theme's background. 0 = full tint (no blending), 1 = theme colors only (no tinting). Only applies to known themes.",
           "order": 12
         },
