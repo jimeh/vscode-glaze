@@ -1,178 +1,196 @@
+<div align="center">
+
+<img width="196px" src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/logo.png" alt="Logo">
+
 # Patina
 
-Subtle color tints for VS Code windows based on your workspace — visually
-distinguish between projects at a glance.
+**Subtle, automatic color tints for your VS Code windows.**
 
-## Features
+[![Latest Release](https://img.shields.io/github/release/jimeh/vscode-patina.svg)](https://github.com/jimeh/vscode-patina/releases)
+[![VSCode](https://img.shields.io/badge/Marketplace-blue.svg?logoColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtOTkuOTkgOS41NXY4My4zM3MtMjMuOCA5LjUxLTIzLjggOS41MWwtNDEuNjktNDAuNDYtMjUuMDIgMTkuMDUtOS40OC00Ljc1di01MHM5LjUzLTQuNzkgOS41My00Ljc5bDI1LjA0IDE5LjA2IDQxLjYtNDAuNSAyMy44MyA5LjU1em0tMjYuMjYgMjMuODgtMjMuOCAxNy43OSAyMy44MSAxNy45M3YtMzUuNzJ6bS02MS45NCA3LjA3djIxLjRzMTEuOS0xMC43NyAxMS45LTEwLjc3bC0xMS45MS0xMC42M3oiIGZpbGw9IiNmZmYiLz48L3N2Zz4=)][vscode-ext]
+[![OpenVSX](https://img.shields.io/badge/OpenVSX-purple.svg?logoColor=white&logo=data:image/svg%2bxml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTMxIDEzMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjZmZmIj48cGF0aCBkPSJtNDIuOCA0My4zNSAyMi42LTM5LjJoLTQ1LjN6bS0yNS40IDQ0LjNoNDUuM2wtMjIuNy0zOS4xem01MSAwIDIyLjYgMzkuMiAyMi42LTM5LjJ6Ii8+PHBhdGggZD0ibTY1LjQgNC4xNS0yMi42IDM5LjJoNDUuMnptLTI1LjQgNDQuNCAyMi43IDM5LjEgMjIuNi0zOS4xem01MSAwLTIyLjYgMzkuMWg0NS4yeiIvPjwvZz48L3N2Zz4=)][openvsx-ext]
+[![GitHub Issues](https://img.shields.io/github/issues/jimeh/vscode-patina.svg)](https://github.com/jimeh/vscode-patina/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/jimeh/vscode-patina.svg)](https://github.com/jimeh/vscode-patina/pulls)
+[![License](https://img.shields.io/github/license/jimeh/vscode-patina.svg)](https://github.com/jimeh/vscode-patina/blob/main/LICENSE)
 
-- **Automatic color generation** — Each workspace gets a unique color tint
-  derived from its directory path
-- **Theme-aware blending** — Colors adapt to your active VS Code theme,
-  working seamlessly with both light and dark themes
-- **Multiple color styles** — Choose from Pastel, Vibrant, Muted, or
-  Monochrome palettes
-- **Configurable UI elements** — Apply tints to title bar, status bar, sidebar,
-  and more
-- **Deterministic colors** — The same workspace path always produces the same
-  color, so your projects look consistent across sessions
+</div>
+
+[vscode-ext]: https://marketplace.visualstudio.com/items?itemName=jimeh.patina
+[openvsx-ext]: https://open-vsx.org/extension/jimeh/patina
+[workspace-config-plus]: https://marketplace.visualstudio.com/items?itemName=swellaby.workspace-config-plus
+
+Ever lost track of which VS Code window is which? Patina attempts to solve this
+by giving each workspace a unique color tint derived from its directory path.
+The colors blend naturally with your current theme, so your editor still looks
+great — just subtly different per project.
+
+![dark](https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/titlebar-dark.png)
+![light](https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/titlebar-light.png)
 
 ## How It Works
 
-### Color Generation
+Patina generates a stable color from a hash of your workspace's directory path,
+meaning the same project always gets the same tint. These colors are
+intelligently blended with your active VS Code theme's color, so they look
+natural with both light and dark themes in all manners of colors. When you
+switch themes, Patina automatically re-adapts.
 
-Patina generates colors using a stable hash of your workspace's directory path.
-This means:
+## Important: Workspace Settings
 
-- The same project always gets the same color
-- Different projects get visually distinct colors
-- Colors appear random but are completely reproducible
-- No configuration needed — it just works
+> [!CAUTION]
+>
+> **Patina modifies your project/workspace `.vscode/settings.json` file.**
 
-### Theme Blending
+To apply color tints, Patina writes to the `workbench.colorCustomizations`
+section of your workspace's `.vscode/settings.json`. This is the only mechanism
+VS Code provides for programmatic color customization.
 
-When applying tints, Patina detects your active VS Code color theme and blends
-the generated tint with the theme's background colors. This ensures:
+A few things to know:
 
-- Tints look natural with any theme
-- Text remains readable
-- The aesthetic quality of your theme is preserved
-- Automatic re-adaptation when you switch themes
+- **Non-destructive** — Patina only manages its own specific color keys.
+  Existing color customizations are left untouched.
+- **Disabled by default** — Because of the settings file modification, Patina
+  ships disabled. You must explicitly enable it after installation.
+- **Fully reversible** — Disabling Patina cleanly removes all of its color
+  entries from your workspace settings.
 
-### Implementation
+If your `.vscode/settings.json` is checked into version control, consider using
+the [Workspace Config+][workspace-config-plus] extension. It lets you split
+workspace settings into a `settings.shared.json` and `settings.local.json`
+files, which get automatically merged into `settings.json`. Then add both
+`settings.json` and `settings.local.json` to your `.gitignore`.
 
-Patina modifies `.vscode/settings.json` in your workspace, using VS Code's
-`workbench.colorCustomizations` to apply color overrides. This approach is:
+## Getting Started
 
-- Non-destructive — only patina-specific colors are added/updated
-- Workspace-scoped — your global settings remain untouched
+### 1. Install
 
-## Installation
+Search for **"Patina"** in the VS Code Extensions view (<kbd>Cmd+Shift+X</kbd> /
+<kbd>Ctrl+Shift+X</kbd>), install from the [VS Code Marketplace][vscode-ext] /
+[OpenVSX Registry][openvsx-ext], or via the command line:
 
-### From Marketplace
+```bash
+code --install-extension jimeh.patina
+```
 
-Search for "Patina" in the VS Code Extensions view (`Cmd+Shift+X` /
-`Ctrl+Shift+X`), or install directly from the
-[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jimeh.patina).
+### 2. Enable
 
-### Manual Installation
+Open the Command Palette (<kbd>Cmd+Shift+P</kbd> / <kbd>Ctrl+Shift+P</kbd>)
+and run one of:
 
-1. Download the `.vsix` file from the
-   [releases page](https://github.com/jimeh/vscode-patina/releases)
-2. Run `code --install-extension patina-x.x.x.vsix`
+- **`Patina: Enable Globally`**: Enables Patina for all workspaces.
+- **`Patina: Enable for This Workspace`**: Enables Patina only for the
+  current workspace.
+
+That's it, your title bar, activity bar, and status bar should all be color
+tinted. You can enabled/disable tinting of all elements individually.
+
+### 3. Explore
+
+The status bar shows Patina's current state. Click it to open the Quick Menu
+for toggling, previewing colors, and randomizing your tint seed.
 
 ## Configuration
 
-### Settings
+Patina has extensive configuration options covering color styles, color
+harmonies, UI element selection, theme blend modes, and workspace identifier
+sources. The easiest way to explore all available settings is through the
+VS Code Settings UI:
 
-| Setting             | Default        | Description                                                                              |
-| ------------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| `patina.enabled`    | `true`         | Enable or disable Patina                                                                 |
-| `patina.colorStyle` | `"pastel"`     | Color palette: `pastel`, `vibrant`, `muted`, `tinted`, `duotone`, `analogous`, or `neon` |
-| `patina.elements`   | `["titleBar"]` | UI elements to tint                                                                      |
-| `patina.intensity`  | `0.5`          | How strongly the tint is applied (0.0–1.0)                                               |
-| `patina.saturation` | `0.5`          | Color saturation level (0.0–1.0)                                                         |
+1. Open Settings (<kbd>Cmd+,</kbd> / <kbd>Ctrl+,</kbd>)
+2. Search for `@ext:jimeh.patina`
 
-### Color Styles
+All settings include descriptions and sensible defaults.
 
-- **Pastel** (default) — Soft, muted tones that blend gently with any theme
-- **Vibrant** — Higher saturation for bolder, more noticeable colors
-- **Muted** — Desaturated, subtle tones for minimal visual impact
-- **Tinted** — Very subtle color hints while retaining hue variation
-- **Duotone** — Base hue + complementary hue split across UI elements
-- **Analogous** — Three adjacent hues for harmonious color transitions
-- **Neon** — Maximum chroma with elevated lightness for vivid glow
+## Theme Color Matching
 
-## Supported UI Elements
+VS Code's extension API does not expose the active theme's resolved color
+values. To blend tints naturally with your theme, Patina needs to know the
+theme's background colors, so it ships with a precomputed lookup table mapping
+theme names to their colors.
 
-Configure which parts of the VS Code interface receive the tint:
+The lookup table is generated from:
 
-| Element            | Description                                     |
-| ------------------ | ----------------------------------------------- |
-| `titleBar`         | Window title bar (default, enabled)             |
-| `statusBar`        | Bottom status bar                               |
-| `activityBar`      | Left-side icon bar                              |
-| `sidebar`          | Explorer, search, and other side panels         |
-| `editorBackground` | Main editor area background                     |
-| `tabs`             | Editor tab bar                                  |
-| `commandPalette`   | Command palette dropdown                        |
-| `panel`            | Bottom panel (terminal, output, problems, etc.) |
+- **All built-in VS Code themes** extracted from the latest VS Code release.
+- **The top 250 most-installed theme extensions** from both the
+  [VS Code Marketplace](https://marketplace.visualstudio.com/) and the
+  [OpenVSX Registry](https://open-vsx.org/), merged and deduplicated.
 
-Example configuration to tint multiple elements:
+If your theme isn't in the lookup table, you can provide its colors manually via
+the `patina.theme.colors` setting. See the setting's description in the VS Code
+Settings UI for the expected format. You can also
+[open an issue](https://github.com/jimeh/vscode-patina/issues) to request that
+a specific theme be added to the built-in lookup table.
 
-```json
-{
-  "patina.elements": ["titleBar", "statusBar", "activityBar"]
-}
-```
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center" width="50%">Dark</td>
+    <td align="center" width="50%">Light</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/dark-themes.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/light-themes.png"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/statusbar-dark.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/statusbar-light.png"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/titlebarhalf-dark.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/titlebarhalf-light.png"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/colornames-dark.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/colornames-light.png"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center" width="50%">Color Styles</td>
+    <td align="center" width="50%">Color Harmonies</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/color-style.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-patina/raw/refs/heads/main/img/screenshots/color-harmony.png"></td>
+  </tr>
+</table>
 
 ## Commands
 
-Access these from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
+Access these from the Command Palette (<kbd>Cmd+Shift+P</kbd> /
+<kbd>Ctrl+Shift+P</kbd>):
 
-| Command           | Description                                    |
-| ----------------- | ---------------------------------------------- |
-| `Patina: Enable`  | Enable Patina for the current workspace        |
-| `Patina: Disable` | Disable Patina and remove color customizations |
-| `Patina: Refresh` | Regenerate colors (useful after theme changes) |
+| Command                              | Description                                     |
+| ------------------------------------ | ----------------------------------------------- |
+| `Patina: Enable Globally`            | Enable Patina for all workspaces                |
+| `Patina: Disable Globally`           | Disable Patina for all workspaces               |
+| `Patina: Enable for This Workspace`  | Enable Patina for the current workspace only    |
+| `Patina: Disable for This Workspace` | Disable Patina for the current workspace only   |
+| `Patina: Show Status`                | Display current Patina status and configuration |
+| `Patina: Show Color Palette Preview` | Preview the generated color palette             |
+| `Patina: Randomize Tint Seed`        | Randomize the seed to get a different color     |
+| `Patina: Reset Tint Seed`            | Reset the seed back to the default              |
 
 ## FAQ
 
-### Why does Patina modify my workspace settings?
+### Can I exclude Patina's changes from version control?
 
-VS Code's color customization API requires settings to be stored somewhere.
-Workspace-level settings ensure each project gets its own unique tint without
-affecting other projects or your global configuration.
+Use the [Workspace Config+][workspace-config-plus] extension to split shared
+settings into `settings.shared.json` (version controlled) while keeping
+`settings.json` and `settings.local.json` in your `.gitignore`.
 
-### Can I exclude the settings from version control?
+### How do I completely remove Patina's color changes?
 
-Yes. Add `.vscode/settings.json` to your `.gitignore`, or use the more
-selective approach of committing the file but having team members override
-locally.
+Run **`Patina: Disable Globally`** or **`Patina: Disable for This Workspace`**
+from the Command Palette. This removes all Patina-managed color entries from
+your workspace settings.
 
-### How do I completely remove Patina's changes?
+### Does it work with Remote Development?
 
-Run the `Patina: Disable` command, which removes all patina-related color
-customizations from your workspace settings.
-
-### Does Patina work with Remote Development?
-
-Yes. Patina runs in the VS Code window and applies tints based on the workspace
+Yes. Patina runs in the VS Code UI and applies tints based on the workspace
 path, regardless of whether the workspace is local or remote.
-
-## Roadmap
-
-Planned features and enhancements:
-
-- [ ] Custom color overrides per workspace
-- [ ] Color preview/picker command
-
-## Contributing
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/jimeh/vscode-patina.git
-cd vscode-patina
-
-# Install dependencies
-pnpm install
-
-# Compile and watch for changes
-pnpm run watch
-
-# Run tests
-pnpm run test
-
-# Package for distribution
-pnpm run package
-```
-
-### Running the Extension
-
-1. Open the project in VS Code
-2. Press `F5` to launch the Extension Development Host
-3. The extension will be active in the new window
 
 ## License
 
