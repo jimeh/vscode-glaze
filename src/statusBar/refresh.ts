@@ -35,7 +35,7 @@ export async function refreshStatusBar(
     baseHueOverride: tintConfig.baseHueOverride,
     hasActiveTargets: tintConfig.targets.length > 0,
     tintColors: cached.tintColors,
-    customizedOutsidePatina: cached.customizedOutsidePatina,
+    customizedOutsideGlaze: cached.customizedOutsideGlaze,
     lastError: cached.lastError,
   };
 

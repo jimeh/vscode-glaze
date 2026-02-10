@@ -16,7 +16,7 @@ suite('getCachedState', () => {
     const state = getCachedState();
     assert.strictEqual(state.workspaceIdentifier, undefined);
     assert.strictEqual(state.tintColors, undefined);
-    assert.strictEqual(state.customizedOutsidePatina, false);
+    assert.strictEqual(state.customizedOutsideGlaze, false);
     assert.strictEqual(state.lastError, undefined);
   });
 
@@ -36,7 +36,7 @@ suite('updateCachedState', () => {
     updateCachedState({ workspaceIdentifier: 'ws-1' });
     const state = getCachedState();
     assert.strictEqual(state.workspaceIdentifier, 'ws-1');
-    assert.strictEqual(state.customizedOutsidePatina, false);
+    assert.strictEqual(state.customizedOutsideGlaze, false);
   });
 
   test('merges partial tintColors update', () => {
@@ -50,10 +50,10 @@ suite('updateCachedState', () => {
     assert.strictEqual(state.workspaceIdentifier, undefined);
   });
 
-  test('merges partial customizedOutsidePatina update', () => {
-    updateCachedState({ customizedOutsidePatina: true });
+  test('merges partial customizedOutsideGlaze update', () => {
+    updateCachedState({ customizedOutsideGlaze: true });
     const state = getCachedState();
-    assert.strictEqual(state.customizedOutsidePatina, true);
+    assert.strictEqual(state.customizedOutsideGlaze, true);
   });
 
   test('merges partial lastError update', () => {
@@ -64,10 +64,10 @@ suite('updateCachedState', () => {
 
   test('preserves existing fields on partial update', () => {
     updateCachedState({ workspaceIdentifier: 'ws-1' });
-    updateCachedState({ customizedOutsidePatina: true });
+    updateCachedState({ customizedOutsideGlaze: true });
     const state = getCachedState();
     assert.strictEqual(state.workspaceIdentifier, 'ws-1');
-    assert.strictEqual(state.customizedOutsidePatina, true);
+    assert.strictEqual(state.customizedOutsideGlaze, true);
   });
 
   test('overwrites existing fields', () => {
@@ -87,12 +87,12 @@ suite('updateCachedState', () => {
   test('handles multiple fields in one update', () => {
     updateCachedState({
       workspaceIdentifier: 'ws-1',
-      customizedOutsidePatina: true,
+      customizedOutsideGlaze: true,
       lastError: 'err',
     });
     const state = getCachedState();
     assert.strictEqual(state.workspaceIdentifier, 'ws-1');
-    assert.strictEqual(state.customizedOutsidePatina, true);
+    assert.strictEqual(state.customizedOutsideGlaze, true);
     assert.strictEqual(state.lastError, 'err');
   });
 
@@ -116,7 +116,7 @@ suite('resetCachedState', () => {
         baseTint: '#ff0000',
         statusBar: '#cc0000',
       },
-      customizedOutsidePatina: true,
+      customizedOutsideGlaze: true,
       lastError: 'error',
     });
 
@@ -125,7 +125,7 @@ suite('resetCachedState', () => {
     const state = getCachedState();
     assert.strictEqual(state.workspaceIdentifier, undefined);
     assert.strictEqual(state.tintColors, undefined);
-    assert.strictEqual(state.customizedOutsidePatina, false);
+    assert.strictEqual(state.customizedOutsideGlaze, false);
     assert.strictEqual(state.lastError, undefined);
   });
 
@@ -181,14 +181,14 @@ suite('_resetAllState (test isolation)', () => {
   test('resets cached state to defaults', () => {
     updateCachedState({
       workspaceIdentifier: 'ws-1',
-      customizedOutsidePatina: true,
+      customizedOutsideGlaze: true,
     });
 
     _resetAllState();
 
     const state = getCachedState();
     assert.strictEqual(state.workspaceIdentifier, undefined);
-    assert.strictEqual(state.customizedOutsidePatina, false);
+    assert.strictEqual(state.customizedOutsideGlaze, false);
   });
 
   test('clears injected refreshStatusBar callback', async () => {

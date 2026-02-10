@@ -12,7 +12,7 @@ export function registerEventHandlers(
   return [
     vscode.workspace.onDidChangeConfiguration((e) => {
       // React to colorCustomizations changes. The equality
-      // check in writeColorConfig prevents loops — if Patina
+      // check in writeColorConfig prevents loops — if Glaze
       // just wrote these colors, the re-read will match and
       // skip the write.
       if (e.affectsConfiguration('workbench.colorCustomizations')) {
@@ -28,19 +28,19 @@ export function registerEventHandlers(
         requestReconcile();
         return;
       }
-      if (e.affectsConfiguration('patina.statusBar.enabled')) {
+      if (e.affectsConfiguration('glaze.statusBar.enabled')) {
         statusBar.updateVisibility();
         return;
       }
-      if (e.affectsConfiguration('patina.enabled')) {
+      if (e.affectsConfiguration('glaze.enabled')) {
         requestReconcile();
         return;
       }
       if (
-        e.affectsConfiguration('patina.workspaceIdentifier') ||
-        e.affectsConfiguration('patina.tint') ||
-        e.affectsConfiguration('patina.theme') ||
-        e.affectsConfiguration('patina.elements')
+        e.affectsConfiguration('glaze.workspaceIdentifier') ||
+        e.affectsConfiguration('glaze.tint') ||
+        e.affectsConfiguration('glaze.theme') ||
+        e.affectsConfiguration('glaze.elements')
       ) {
         requestReconcile();
       }

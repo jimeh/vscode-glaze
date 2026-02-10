@@ -23,20 +23,20 @@ import { BaseWebviewPanel } from '../webview/panel';
  * Configuration sections that trigger a preview panel re-render.
  */
 const CONFIG_SECTIONS = [
-  'patina.tint',
-  'patina.theme',
-  'patina.workspaceIdentifier',
+  'glaze.tint',
+  'glaze.theme',
+  'glaze.workspaceIdentifier',
 ] as const;
 
 /**
- * Determines the configuration target for a Patina setting.
+ * Determines the configuration target for a Glaze setting.
  *
  * Defaults to global so that preview changes apply user-wide. Only
  * targets workspace when the user has an explicit workspace-level
  * override for the setting.
  */
 function getSettingTarget(settingKey: string): vscode.ConfigurationTarget {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const inspection = config.inspect(settingKey);
 
   if (inspection?.workspaceValue !== undefined) {
@@ -49,7 +49,7 @@ function getSettingTarget(settingKey: string): vscode.ConfigurationTarget {
  * Manages the color palette preview webview panel.
  */
 export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
-  public static readonly viewType = 'patina.colorPreview';
+  public static readonly viewType = 'glaze.colorPreview';
 
   private static instance: PalettePreviewPanel | undefined;
 
@@ -70,7 +70,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
 
     const panel = vscode.window.createWebviewPanel(
       PalettePreviewPanel.viewType,
-      'Patina Color Preview',
+      'Glaze Color Preview',
       vscode.ViewColumn.Beside,
       {
         enableScripts: true,
@@ -145,7 +145,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
     switch (message.type) {
       case 'selectStyle': {
         const target = getSettingTarget('tint.colorStyle');
-        const config = vscode.workspace.getConfiguration('patina');
+        const config = vscode.workspace.getConfiguration('glaze');
         const value =
           target === vscode.ConfigurationTarget.Global &&
           message.style === DEFAULT_COLOR_STYLE
@@ -157,7 +157,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
       }
       case 'selectHarmony': {
         const target = getSettingTarget('tint.colorHarmony');
-        const config = vscode.workspace.getConfiguration('patina');
+        const config = vscode.workspace.getConfiguration('glaze');
         const value =
           target === vscode.ConfigurationTarget.Global &&
           message.harmony === DEFAULT_COLOR_HARMONY

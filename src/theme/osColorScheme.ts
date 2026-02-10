@@ -32,7 +32,7 @@ export async function detectOsColorScheme(): Promise<
         return undefined;
     }
   } catch (err) {
-    console.debug('[Patina] OS color scheme detection failed:', err);
+    console.debug('[Glaze] OS color scheme detection failed:', err);
     return undefined;
   }
 }
@@ -82,7 +82,7 @@ async function detectWindows(): Promise<'dark' | 'light' | undefined> {
     );
     return parseWindowsRegOutput(stdout);
   } catch (err) {
-    console.debug('[Patina] Windows color scheme detection failed:', err);
+    console.debug('[Glaze] Windows color scheme detection failed:', err);
     return undefined;
   }
 }
@@ -95,7 +95,7 @@ async function detectLinux(): Promise<'dark' | 'light' | undefined> {
     );
     return stdout.toLowerCase().includes('dark') ? 'dark' : 'light';
   } catch (err) {
-    console.debug('[Patina] Linux color scheme detection failed:', err);
+    console.debug('[Glaze] Linux color scheme detection failed:', err);
     return undefined;
   }
 }

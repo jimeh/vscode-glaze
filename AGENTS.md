@@ -1,4 +1,4 @@
-# Patina
+# Glaze
 
 VSCode extension that applies color tints to editor windows based on workspace.
 
@@ -30,6 +30,6 @@ oxfmt check that will fail on unformatted code.
 ## Conventions
 
 - Barrel exports per module — grep `index.ts` for re-exports
-- Use `PATINA_MANAGED_KEYS`, don't hardcode color keys
+- Use `GLAZE_MANAGED_KEYS`, don't hardcode color keys
 - Readonly/immutable patterns throughout
 - Don't edit `generated/` dirs — grep for `auto-generated` file headers

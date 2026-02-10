@@ -19,12 +19,12 @@ suite('isGloballyEnabled', () => {
   let originalEnabled: boolean | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalEnabled = config.get<boolean>('enabled');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       originalEnabled,
@@ -33,7 +33,7 @@ suite('isGloballyEnabled', () => {
   });
 
   test('returns false by default', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       undefined,
@@ -45,7 +45,7 @@ suite('isGloballyEnabled', () => {
   });
 
   test('returns configured value when set to false', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', false, vscode.ConfigurationTarget.Global);
 
     const result = isGloballyEnabled();
@@ -53,7 +53,7 @@ suite('isGloballyEnabled', () => {
   });
 
   test('returns configured value when set to true', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', true, vscode.ConfigurationTarget.Global);
 
     const result = isGloballyEnabled();
@@ -66,14 +66,14 @@ suite('isEnabledForWorkspace', () => {
   let originalWorkspaceEnabled: boolean | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     originalGlobalEnabled = inspection?.globalValue;
     originalWorkspaceEnabled = inspection?.workspaceValue;
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       originalGlobalEnabled,
@@ -90,7 +90,7 @@ suite('isEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', true, vscode.ConfigurationTarget.Global);
     await config.update(
       'enabled',
@@ -106,7 +106,7 @@ suite('isEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', false, vscode.ConfigurationTarget.Global);
     await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
 
@@ -118,7 +118,7 @@ suite('isEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', true, vscode.ConfigurationTarget.Global);
     await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
 
@@ -134,7 +134,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return;
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     originalWorkspaceEnabled = inspection?.workspaceValue;
   });
@@ -143,7 +143,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return;
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       originalWorkspaceEnabled,
@@ -155,7 +155,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       undefined,
@@ -170,7 +170,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
 
     const result = getWorkspaceEnabledOverride();
@@ -181,7 +181,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
 
     const result = getWorkspaceEnabledOverride();
@@ -196,7 +196,7 @@ suite('setEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return;
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     originalWorkspaceEnabled = inspection?.workspaceValue;
   });
@@ -205,7 +205,7 @@ suite('setEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return;
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       originalWorkspaceEnabled,
@@ -219,7 +219,7 @@ suite('setEnabledForWorkspace', () => {
     }
     await setEnabledForWorkspace(true);
 
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     assert.strictEqual(inspection?.workspaceValue, true);
   });
@@ -230,7 +230,7 @@ suite('setEnabledForWorkspace', () => {
     }
     await setEnabledForWorkspace(false);
 
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     assert.strictEqual(inspection?.workspaceValue, false);
   });
@@ -242,7 +242,7 @@ suite('setEnabledForWorkspace', () => {
     await setEnabledForWorkspace(true);
     await setEnabledForWorkspace(undefined);
 
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     assert.strictEqual(inspection?.workspaceValue, undefined);
   });
@@ -255,7 +255,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   let originalMultiRootSource: string | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalSource = config.get<string>('workspaceIdentifier.source');
     originalCustomBasePath = config.get<string>(
       'workspaceIdentifier.customBasePath'
@@ -266,7 +266,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.source',
       originalSource,
@@ -285,7 +285,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('returns default source as pathRelativeToHome when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.source',
       undefined,
@@ -297,7 +297,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads configured source value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.source',
       'pathAbsolute',
@@ -309,7 +309,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads customBasePath value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.customBasePath',
       '~/Projects',
@@ -321,7 +321,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('falls back to pathRelativeToHome for invalid source', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.source',
       'invalidValue',
@@ -333,7 +333,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('returns empty customBasePath when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.customBasePath',
       undefined,
@@ -345,7 +345,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads pathRelativeToHome source', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.source',
       'pathRelativeToHome',
@@ -357,7 +357,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads pathRelativeToCustom source', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.source',
       'pathRelativeToCustom',
@@ -369,7 +369,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('returns default multiRootSource as workspaceFile when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.multiRootSource',
       undefined,
@@ -381,7 +381,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads configured multiRootSource value (allFolders)', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.multiRootSource',
       'allFolders',
@@ -393,7 +393,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads configured multiRootSource value (firstFolder)', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.multiRootSource',
       'firstFolder',
@@ -405,7 +405,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('falls back to workspaceFile for invalid multiRootSource', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'workspaceIdentifier.multiRootSource',
       'invalidValue',
@@ -427,7 +427,7 @@ suite('getTintConfig', () => {
   let originalBaseHueOverride: number | null | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalTitleBar = config.get<boolean>('elements.titleBar');
     originalStatusBar = config.get<boolean>('elements.statusBar');
     originalActivityBar = config.get<boolean>('elements.activityBar');
@@ -438,7 +438,7 @@ suite('getTintConfig', () => {
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       originalTitleBar,
@@ -477,7 +477,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns default-enabled targets by default', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       undefined,
@@ -509,7 +509,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns empty targets when all elements disabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       false,
@@ -536,7 +536,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns only titleBar when only titleBar enabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       true,
@@ -558,7 +558,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns only statusBar when only statusBar enabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       false,
@@ -580,7 +580,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns only activityBar when only activityBar enabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       false,
@@ -602,7 +602,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns multiple targets when multiple enabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       true,
@@ -624,7 +624,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns all targets when all enabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       true,
@@ -656,7 +656,7 @@ suite('getTintConfig', () => {
   });
 
   test('sideBar target appears only when explicitly enabled', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'elements.titleBar',
       false,
@@ -683,7 +683,7 @@ suite('getTintConfig', () => {
   });
 
   test('defaults to auto mode when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.mode',
       undefined,
@@ -695,7 +695,7 @@ suite('getTintConfig', () => {
   });
 
   test('reads configured mode value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.mode',
       'light',
@@ -707,7 +707,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts dark mode', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('tint.mode', 'dark', vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
@@ -715,7 +715,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to auto for invalid mode', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.mode',
       'invalidValue',
@@ -727,7 +727,7 @@ suite('getTintConfig', () => {
   });
 
   test('defaults to seed 0 when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.seed',
       undefined,
@@ -739,7 +739,7 @@ suite('getTintConfig', () => {
   });
 
   test('reads configured seed value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('tint.seed', 42, vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
@@ -747,7 +747,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts negative seed values', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('tint.seed', -100, vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
@@ -755,7 +755,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts large seed values', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.seed',
       999999999,
@@ -767,7 +767,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to 0 for non-integer seed', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('tint.seed', 3.14, vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
@@ -775,7 +775,7 @@ suite('getTintConfig', () => {
   });
 
   test('defaults to null baseHueOverride when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       undefined,
@@ -787,7 +787,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns null baseHueOverride when set to null', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       null,
@@ -799,7 +799,7 @@ suite('getTintConfig', () => {
   });
 
   test('reads configured baseHueOverride value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       180,
@@ -811,7 +811,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts baseHueOverride of 0', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       0,
@@ -823,7 +823,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts baseHueOverride of 359', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       359,
@@ -835,7 +835,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to null for non-integer baseHueOverride', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       3.14,
@@ -847,7 +847,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to null for negative baseHueOverride', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       -1,
@@ -859,7 +859,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to null for baseHueOverride >= 360', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       360,
@@ -878,7 +878,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return;
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<number | null>('tint.baseHueOverride');
     originalValue = inspection?.workspaceValue;
   });
@@ -887,7 +887,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return;
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       originalValue,
@@ -899,7 +899,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       undefined,
@@ -914,7 +914,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       200,
@@ -929,7 +929,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       null,
@@ -944,7 +944,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.baseHueOverride',
       0,
@@ -960,12 +960,12 @@ suite('getBlendMethod', () => {
   let originalBlendMethod: string | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalBlendMethod = config.get<string>('theme.blendMethod');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       originalBlendMethod,
@@ -974,7 +974,7 @@ suite('getBlendMethod', () => {
   });
 
   test('returns overlay by default', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       undefined,
@@ -986,7 +986,7 @@ suite('getBlendMethod', () => {
   });
 
   test('returns hueShift when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       'hueShift',
@@ -998,7 +998,7 @@ suite('getBlendMethod', () => {
   });
 
   test('falls back to overlay for invalid value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       'bogus',
@@ -1010,7 +1010,7 @@ suite('getBlendMethod', () => {
   });
 
   test('falls back to overlay for prototype key', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       'toString',
@@ -1031,7 +1031,7 @@ suite('getThemeConfig', () => {
   let originalSideBarBlendFactor: number | null | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalBlendMethod = config.get<string>('theme.blendMethod');
     originalBlendFactor = config.get<number>('theme.blendFactor');
     originalTitleBarBlendFactor = config.get<number | null>(
@@ -1049,7 +1049,7 @@ suite('getThemeConfig', () => {
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       originalBlendMethod,
@@ -1083,7 +1083,7 @@ suite('getThemeConfig', () => {
   });
 
   test('defaults to 0.35 when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendFactor',
       undefined,
@@ -1095,7 +1095,7 @@ suite('getThemeConfig', () => {
   });
 
   test('reads configured blendFactor value', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendFactor',
       0.5,
@@ -1107,7 +1107,7 @@ suite('getThemeConfig', () => {
   });
 
   test('clamps blendFactor to minimum 0', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendFactor',
       -0.5,
@@ -1119,7 +1119,7 @@ suite('getThemeConfig', () => {
   });
 
   test('clamps blendFactor to maximum 1', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendFactor',
       1.5,
@@ -1131,7 +1131,7 @@ suite('getThemeConfig', () => {
   });
 
   test('accepts blendFactor of 0', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendFactor',
       0,
@@ -1143,7 +1143,7 @@ suite('getThemeConfig', () => {
   });
 
   test('accepts blendFactor of 1', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendFactor',
       1,
@@ -1155,7 +1155,7 @@ suite('getThemeConfig', () => {
   });
 
   test('returns empty targetBlendFactors when none set', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.titleBarBlendFactor',
       null,
@@ -1182,7 +1182,7 @@ suite('getThemeConfig', () => {
   });
 
   test('reads titleBarBlendFactor when set', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.titleBarBlendFactor',
       0.5,
@@ -1206,7 +1206,7 @@ suite('getThemeConfig', () => {
   });
 
   test('reads all target blend factors when set', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.titleBarBlendFactor',
       0.2,
@@ -1230,7 +1230,7 @@ suite('getThemeConfig', () => {
   });
 
   test('clamps target blend factors to [0,1]', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.titleBarBlendFactor',
       -0.5,
@@ -1253,7 +1253,7 @@ suite('getThemeConfig', () => {
   });
 
   test('blendMethod defaults to overlay', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       undefined,
@@ -1265,7 +1265,7 @@ suite('getThemeConfig', () => {
   });
 
   test('blendMethod reflects hueShift when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       'hueShift',
@@ -1277,7 +1277,7 @@ suite('getThemeConfig', () => {
   });
 
   test('blendMethod falls back for invalid values', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.blendMethod',
       'bogus',
@@ -1293,12 +1293,12 @@ suite('getColorStyle', () => {
   let originalColorStyle: string | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalColorStyle = config.get<string>('tint.colorStyle');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       originalColorStyle,
@@ -1307,7 +1307,7 @@ suite('getColorStyle', () => {
   });
 
   test('defaults to pastel when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       undefined,
@@ -1318,7 +1318,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns pastel when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       'pastel',
@@ -1329,7 +1329,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns vibrant when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       'vibrant',
@@ -1340,7 +1340,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns muted when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       'muted',
@@ -1351,7 +1351,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns tinted when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       'tinted',
@@ -1362,7 +1362,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns neon when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       'neon',
@@ -1373,7 +1373,7 @@ suite('getColorStyle', () => {
   });
 
   test('falls back to pastel for invalid style', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorStyle',
       'invalid',
@@ -1388,12 +1388,12 @@ suite('getColorHarmony', () => {
   let originalColorHarmony: string | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalColorHarmony = config.get<string>('tint.colorHarmony');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       originalColorHarmony,
@@ -1402,7 +1402,7 @@ suite('getColorHarmony', () => {
   });
 
   test('defaults to uniform when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       undefined,
@@ -1413,7 +1413,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns uniform when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'uniform',
@@ -1424,7 +1424,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns duotone when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'duotone',
@@ -1435,7 +1435,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns undercurrent when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'undercurrent',
@@ -1446,7 +1446,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns analogous when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'analogous',
@@ -1457,7 +1457,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns triadic when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'triadic',
@@ -1468,7 +1468,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns split-complementary when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'split-complementary',
@@ -1479,7 +1479,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns tetradic when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'tetradic',
@@ -1490,7 +1490,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns gradient when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'gradient',
@@ -1501,7 +1501,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns accent when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'accent',
@@ -1512,7 +1512,7 @@ suite('getColorHarmony', () => {
   });
 
   test('falls back to uniform for invalid harmony', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'tint.colorHarmony',
       'invalid',
@@ -1527,12 +1527,12 @@ suite('getStatusBarEnabled', () => {
   let originalValue: boolean | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalValue = config.get<boolean>('statusBar.enabled');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'statusBar.enabled',
       originalValue,
@@ -1541,7 +1541,7 @@ suite('getStatusBarEnabled', () => {
   });
 
   test('returns true by default', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'statusBar.enabled',
       undefined,
@@ -1552,7 +1552,7 @@ suite('getStatusBarEnabled', () => {
   });
 
   test('returns true when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'statusBar.enabled',
       true,
@@ -1563,7 +1563,7 @@ suite('getStatusBarEnabled', () => {
   });
 
   test('returns false when configured', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'statusBar.enabled',
       false,

@@ -6,11 +6,11 @@ import type {
   PaletteKey,
   ElementType,
   ColorType,
-  PatinaColorPalette,
+  GlazeColorPalette,
 } from '../theme';
 import {
   COLOR_KEY_DEFINITIONS,
-  PATINA_MANAGED_KEYS,
+  GLAZE_MANAGED_KEYS,
   EXCLUDE_WHEN_UNDEFINED_KEYS,
 } from '../theme';
 import { getColorForKey } from '../theme/colors';
@@ -210,7 +210,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
 
   const blend = getBlendFunction(blendMethod, { baseHue, themeColors });
 
-  const keys: TintKeyDetail[] = PATINA_MANAGED_KEYS.map(
+  const keys: TintKeyDetail[] = GLAZE_MANAGED_KEYS.map(
     (key: PaletteKey): TintKeyDetail => {
       const def = COLOR_KEY_DEFINITIONS[key];
       const element = def.element as TintTarget;
@@ -288,7 +288,7 @@ export function computeTint(options: ComputeTintOptions): TintResult {
 const STATUS_BAR_BG_KEYS: ReadonlySet<PaletteKey> = (() => {
   const seen = new Set<string>();
   const keys = new Set<PaletteKey>();
-  for (const key of PATINA_MANAGED_KEYS) {
+  for (const key of GLAZE_MANAGED_KEYS) {
     const def = COLOR_KEY_DEFINITIONS[key];
     if (def.colorType === 'background' && !seen.has(def.element)) {
       seen.add(def.element);
@@ -308,8 +308,8 @@ const STATUS_BAR_BG_KEYS: ReadonlySet<PaletteKey> = (() => {
  */
 export function tintResultToPalette(
   result: TintResult
-): Partial<PatinaColorPalette> {
-  const palette: Partial<PatinaColorPalette> = {};
+): Partial<GlazeColorPalette> {
+  const palette: Partial<GlazeColorPalette> = {};
   for (const detail of result.keys) {
     if (detail.enabled && !detail.excluded) {
       palette[detail.key] = detail.finalHex;

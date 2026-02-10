@@ -32,7 +32,7 @@ export function requestReconcile(options?: ReconcileOptions): void {
     pendingForce = false;
     reconcileChain = reconcileChain.then(() =>
       doReconcile({ force }).catch((err) =>
-        console.error('[Patina] reconcile error:', err)
+        console.error('[Glaze] reconcile error:', err)
       )
     );
   }, DEBOUNCE_MS);

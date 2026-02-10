@@ -157,12 +157,12 @@ suite('getThemeInfo with custom config', () => {
   let originalColors: unknown;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalColors = config.get('theme.colors');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       originalColors,
@@ -171,7 +171,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('custom config overrides extension theme', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -190,7 +190,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('custom config adds new theme', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -209,7 +209,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('falls back to extension when no custom config', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('theme.colors', {}, vscode.ConfigurationTarget.Global);
 
     const result = getThemeInfo('One Dark Pro');
@@ -219,7 +219,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('normalizes hex colors to uppercase', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -237,7 +237,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('skips entries with invalid hex colors', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -254,7 +254,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('skips entries with invalid type values', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -271,7 +271,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('custom config with all color keys', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -298,7 +298,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('supports hcDark and hcLight types', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -324,7 +324,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('skips non-object config entries', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -339,7 +339,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('skips entries with invalid hex in optional keys', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
@@ -359,7 +359,7 @@ suite('getThemeInfo with custom config', () => {
   });
 
   test('skips entries missing type field', async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'theme.colors',
       {
