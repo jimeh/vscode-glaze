@@ -45,3 +45,14 @@ export function cancelPendingReconcile(): void {
     debounceTimer = undefined;
   }
 }
+
+/**
+ * Reset all request module state. Cancels any pending debounce
+ * timer, clears the sticky force flag, and resets the promise
+ * chain. Intended for test isolation only.
+ */
+export function _resetRequestState(): void {
+  cancelPendingReconcile();
+  pendingForce = false;
+  reconcileChain = Promise.resolve();
+}

@@ -1,5 +1,6 @@
 export {
   GLAZE_ACTIVE_KEY,
+  themeScopeKey,
   mergeColorCustomizations,
   removeGlazeColors,
   hasGlazeColorsWithoutMarker,

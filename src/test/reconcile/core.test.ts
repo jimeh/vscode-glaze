@@ -1,10 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { doReconcile, _resetAllState, getCachedState } from '../../reconcile';
-import {
-  GLAZE_ACTIVE_KEY,
-  GLAZE_ACTIVE_VALUE,
-} from '../../settings/colorCustomizations';
+import { GLAZE_ACTIVE_KEY } from '../../settings/colorCustomizations';
 import { GLAZE_MANAGED_KEYS } from '../../theme';
 
 /**
@@ -29,6 +26,26 @@ async function setColorCustomizations(
       value,
       vscode.ConfigurationTarget.Workspace
     );
+}
+
+/**
+ * Find the Glaze-owned theme block in colorCustomizations.
+ * Uses the root `glaze.active` marker to identify which theme block
+ * Glaze owns.
+ */
+function findGlazeThemeBlock(
+  colors: Record<string, unknown>
+): { key: string; block: Record<string, unknown> } | undefined {
+  const marker = colors[GLAZE_ACTIVE_KEY];
+  if (typeof marker !== 'string' || marker.length === 0) {
+    return undefined;
+  }
+  const themeKey = `[${marker}]`;
+  const value = colors[themeKey];
+  if (typeof value === 'object' && value !== null) {
+    return { key: themeKey, block: value as Record<string, unknown> };
+  }
+  return undefined;
 }
 
 suite('doReconcile', () => {
@@ -85,7 +102,7 @@ suite('doReconcile', () => {
     await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
   }
 
-  test('produces color customizations when enabled', async function () {
+  test('produces color customizations in theme-scoped block', async function () {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
@@ -96,21 +113,48 @@ suite('doReconcile', () => {
     const colors = getColorCustomizations();
     assert.ok(colors, 'colorCustomizations should be set');
 
-    // Glaze active marker must be present.
-    assert.strictEqual(
-      colors[GLAZE_ACTIVE_KEY],
-      GLAZE_ACTIVE_VALUE,
-      'glaze.active marker should be present'
+    // Find the Glaze-owned theme block.
+    const found = findGlazeThemeBlock(colors);
+    assert.ok(found, 'a Glaze-owned theme block should exist');
+
+    // Key should be a theme-scoped key like [Theme Name].
+    assert.ok(
+      found.key.startsWith('[') && found.key.endsWith(']'),
+      'theme block key should be theme-scoped'
     );
 
-    // At least some managed keys should be written.
+    // Root-level marker should be a non-empty string (theme name).
+    const marker = colors[GLAZE_ACTIVE_KEY];
+    assert.ok(
+      typeof marker === 'string' && marker.length > 0,
+      'glaze.active root marker should be a non-empty string'
+    );
+
+    // Marker should NOT be inside the theme block.
+    assert.strictEqual(
+      found.block[GLAZE_ACTIVE_KEY],
+      undefined,
+      'glaze.active marker should NOT be inside the theme block'
+    );
+
+    // At least some managed keys should be inside the block.
     const managedSet = new Set<string>(GLAZE_MANAGED_KEYS);
-    const managedKeysPresent = Object.keys(colors).filter((k) =>
+    const managedKeysPresent = Object.keys(found.block).filter((k) =>
       managedSet.has(k)
     );
     assert.ok(
       managedKeysPresent.length > 0,
-      'at least one Glaze-managed key should be present'
+      'at least one Glaze-managed key should be in the theme block'
+    );
+
+    // No managed keys at root level.
+    const rootManagedKeys = Object.keys(colors).filter((k) =>
+      managedSet.has(k)
+    );
+    assert.strictEqual(
+      rootManagedKeys.length,
+      0,
+      'no Glaze-managed keys should be at root level'
     );
   });
 
@@ -126,15 +170,26 @@ suite('doReconcile', () => {
     // Verify they were written.
     const before = getColorCustomizations();
     assert.ok(before, 'colors should exist before disable');
+    assert.ok(
+      findGlazeThemeBlock(before),
+      'Glaze theme block should exist before disable'
+    );
 
     // Disable and reconcile again.
     await disableGlaze();
     await doReconcile({ force: true });
 
-    // Managed keys should be gone.
+    // Glaze theme block should be gone.
     const after = getColorCustomizations();
-    const managedSet = new Set<string>(GLAZE_MANAGED_KEYS);
     if (after) {
+      assert.strictEqual(
+        findGlazeThemeBlock(after),
+        undefined,
+        'no Glaze-owned theme block should remain after disable'
+      );
+
+      // No root-level managed keys or marker either.
+      const managedSet = new Set<string>(GLAZE_MANAGED_KEYS);
       const remaining = Object.keys(after).filter((k) => managedSet.has(k));
       assert.strictEqual(
         remaining.length,
@@ -222,12 +277,22 @@ suite('doReconcile', () => {
     assert.strictEqual(
       colors['editor.foreground'],
       '#abcdef',
-      'non-Glaze editor.foreground should be preserved'
+      'non-Glaze editor.foreground should be preserved at root'
     );
+
+    // Root marker should be a non-empty string (theme name).
+    const found = findGlazeThemeBlock(colors);
+    assert.ok(found, 'Glaze theme block should exist');
+    const marker = colors[GLAZE_ACTIVE_KEY];
+    assert.ok(
+      typeof marker === 'string' && marker.length > 0,
+      'glaze.active root marker should be a non-empty string'
+    );
+    // Marker should NOT be inside the theme block.
     assert.strictEqual(
-      colors[GLAZE_ACTIVE_KEY],
-      GLAZE_ACTIVE_VALUE,
-      'glaze.active marker should still be present'
+      found.block[GLAZE_ACTIVE_KEY],
+      undefined,
+      'glaze.active marker should NOT be inside the theme block'
     );
   });
 
