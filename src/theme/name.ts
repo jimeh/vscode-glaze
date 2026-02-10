@@ -15,8 +15,9 @@ import { detectOsColorScheme } from './osColorScheme';
  *    theme database. The one whose `ThemeInfo.type` matches
  *    `themeType` is the active theme.
  * 2. **OS fallback**: If the quick check is ambiguous (both match
- *    or neither match), shell out to detect OS dark/light mode and
- *    pick the corresponding preferred theme.
+ *    or neither match), or if either preferred theme is unknown to
+ *    the theme database, shell out to detect OS dark/light mode
+ *    and pick the corresponding preferred theme.
  *
  * When `autoDetectColorScheme` is disabled, simply returns the
  * `workbench.colorTheme` setting.
@@ -50,17 +51,22 @@ export async function getThemeName(
   }
 
   // Phase 1: Quick check via ThemeInfo.type matching
+  // Only trust this when all configured preferred themes are known
+  // in the database. If either is unknown, skip to Phase 2.
   const darkInfo = darkTheme ? getThemeInfo(darkTheme) : undefined;
   const lightInfo = lightTheme ? getThemeInfo(lightTheme) : undefined;
 
-  const darkMatches = darkInfo?.type === themeType;
-  const lightMatches = lightInfo?.type === themeType;
+  const bothKnown = (!darkTheme || darkInfo) && (!lightTheme || lightInfo);
+  if (bothKnown) {
+    const darkMatches = darkInfo?.type === themeType;
+    const lightMatches = lightInfo?.type === themeType;
 
-  if (darkMatches && !lightMatches) {
-    return darkTheme;
-  }
-  if (lightMatches && !darkMatches) {
-    return lightTheme;
+    if (darkMatches && !lightMatches) {
+      return darkTheme;
+    }
+    if (lightMatches && !darkMatches) {
+      return lightTheme;
+    }
   }
 
   // Phase 2: OS fallback (both matched or neither matched)

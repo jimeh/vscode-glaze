@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { getThemeName } from '../../theme/name';
+import { detectOsColorScheme } from '../../theme/osColorScheme';
 
 suite('getThemeName', () => {
   // Store original config values to restore after tests
@@ -194,6 +195,84 @@ suite('getThemeName', () => {
       assert.strictEqual(typeof lightResult, 'string');
       assert.strictEqual(typeof hcDarkResult, 'string');
       assert.strictEqual(typeof hcLightResult, 'string');
+    });
+
+    test('unknown dark preferred + known light → OS detection', async () => {
+      // "Mermaid Dark" is not in the theme DB; Phase 1 must be
+      // skipped so OS detection picks the right preferred theme.
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Mermaid Dark',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Mermaid Dark'
+          : osScheme === 'light'
+            ? 'Default Light Modern'
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('light'), expected);
+    });
+
+    test('unknown light preferred + known dark → OS detection', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Mermaid Light',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Default Dark Modern'
+          : osScheme === 'light'
+            ? 'Mermaid Light'
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('dark'), expected);
+    });
+
+    test('both preferred unknown → OS detection', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Mermaid Dark',
+        lightTheme: 'Mermaid Light',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Mermaid Dark'
+          : osScheme === 'light'
+            ? 'Mermaid Light'
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('dark'), expected);
+    });
+
+    test('unknown dark preferred + empty light → OS detection', async () => {
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Mermaid Dark',
+        lightTheme: '',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Mermaid Dark'
+          : osScheme === 'light'
+            ? 'Monokai' // empty lightTheme → falls back to colorTheme
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('dark'), expected);
     });
   });
 });
