@@ -10,7 +10,7 @@ import { getCachedState } from '../reconcile';
 
 // ── Types ──────────────────────────────────────────────────────
 
-interface MenuItem {
+export interface MenuItem {
   readonly label: string;
   readonly description: string;
   readonly command: string;
@@ -18,18 +18,19 @@ interface MenuItem {
   readonly when?: () => boolean;
 }
 
-interface MenuGroup {
+export interface MenuGroup {
   readonly separator: string;
   readonly items: readonly MenuItem[];
 }
 
-interface ActionableQuickPickItem extends vscode.QuickPickItem {
+export interface ActionableQuickPickItem extends vscode.QuickPickItem {
   readonly command?: string;
 }
 
 // ── Menu definition ────────────────────────────────────────────
 
-function buildMenuGroups(): readonly MenuGroup[] {
+/** Exported for testing only. */
+export function _buildMenuGroups(): readonly MenuGroup[] {
   const { seed } = getTintConfig();
   const baseHueOverride = getBaseHueOverride();
   const effectivelyEnabled = isEnabledForWorkspace();
@@ -135,7 +136,8 @@ function buildMenuGroups(): readonly MenuGroup[] {
 
 // ── QuickPick builder ──────────────────────────────────────────
 
-function buildQuickPickItems(
+/** Exported for testing only. */
+export function _buildQuickPickItems(
   groups: readonly MenuGroup[]
 ): ActionableQuickPickItem[] {
   const items: ActionableQuickPickItem[] = [];
@@ -167,12 +169,13 @@ function buildQuickPickItems(
 export function registerMenuCommands(): vscode.Disposable[] {
   return [
     vscode.commands.registerCommand('glaze.quickMenu', async () => {
-      const groups = buildMenuGroups();
-      const items = buildQuickPickItems(groups);
+      const groups = _buildMenuGroups();
+      const items = _buildQuickPickItems(groups);
 
-      const selected = await vscode.window.showQuickPick(items, {
-        placeHolder: 'Glaze',
-      });
+      const selected =
+        await vscode.window.showQuickPick<ActionableQuickPickItem>(items, {
+          placeHolder: 'Glaze',
+        });
       if (selected?.command) {
         await vscode.commands.executeCommand(selected.command);
       }
