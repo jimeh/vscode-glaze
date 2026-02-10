@@ -1,20 +1,20 @@
 {
-  "name": "patina",
+  "name": "glaze",
   "publisher": "jimeh",
-  "displayName": "Patina",
+  "displayName": "Glaze",
   "description": "Applies subtle color tints to your editor windows based on the open project, so you can easily tell your workspaces apart.",
   "version": "0.0.10",
   "license": "MIT",
   "author": {
     "name": "Jim Myhrberg"
   },
-  "homepage": "https://github.com/jimeh/vscode-patina",
+  "homepage": "https://github.com/jimeh/vscode-glaze",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jimeh/vscode-patina"
+    "url": "https://github.com/jimeh/vscode-glaze"
   },
   "bugs": {
-    "url": "https://github.com/jimeh/vscode-patina/issues"
+    "url": "https://github.com/jimeh/vscode-glaze/issues"
   },
   "qna": false,
   "icon": "img/icon.png",
@@ -40,7 +40,7 @@
     "color",
     "colorize",
     "customization",
-    "patina",
+    "glaze",
     "project",
     "theme",
     "tint",
@@ -66,74 +66,74 @@
   "contributes": {
     "commands": [
       {
-        "command": "patina.enableGlobally",
-        "title": "Patina: Enable Globally"
+        "command": "glaze.enableGlobally",
+        "title": "Glaze: Enable Globally"
       },
       {
-        "command": "patina.disableGlobally",
-        "title": "Patina: Disable Globally"
+        "command": "glaze.disableGlobally",
+        "title": "Glaze: Disable Globally"
       },
       {
-        "command": "patina.enableWorkspace",
-        "title": "Patina: Enable for This Workspace"
+        "command": "glaze.enableWorkspace",
+        "title": "Glaze: Enable for This Workspace"
       },
       {
-        "command": "patina.disableWorkspace",
-        "title": "Patina: Disable for This Workspace"
+        "command": "glaze.disableWorkspace",
+        "title": "Glaze: Disable for This Workspace"
       },
       {
-        "command": "patina.showColorPreview",
-        "title": "Patina: Show Color Palette Preview"
+        "command": "glaze.showColorPreview",
+        "title": "Glaze: Show Color Palette Preview"
       },
       {
-        "command": "patina.showStatus",
-        "title": "Patina: Show Status"
+        "command": "glaze.showStatus",
+        "title": "Glaze: Show Status"
       },
       {
-        "command": "patina.quickMenu",
-        "title": "Patina: Quick Menu"
+        "command": "glaze.quickMenu",
+        "title": "Glaze: Quick Menu"
       },
       {
-        "command": "patina.randomizeSeed",
-        "title": "Patina: Randomize Tint Seed"
+        "command": "glaze.randomizeSeed",
+        "title": "Glaze: Randomize Tint Seed"
       },
       {
-        "command": "patina.resetSeed",
-        "title": "Patina: Reset Tint Seed"
+        "command": "glaze.resetSeed",
+        "title": "Glaze: Reset Tint Seed"
       },
       {
-        "command": "patina.clearWorkspaceEnabled",
-        "title": "Patina: Clear Workspace Enabled Setting"
+        "command": "glaze.clearWorkspaceEnabled",
+        "title": "Glaze: Clear Workspace Enabled Setting"
       },
       {
-        "command": "patina.forceApply",
-        "title": "Patina: Force Apply Colors"
+        "command": "glaze.forceApply",
+        "title": "Glaze: Force Apply Colors"
       },
       {
-        "command": "patina.setBaseHueOverride",
-        "title": "Patina: Set Base Hue Override"
+        "command": "glaze.setBaseHueOverride",
+        "title": "Glaze: Set Base Hue Override"
       },
       {
-        "command": "patina.clearBaseHueOverride",
-        "title": "Patina: Clear Base Hue Override"
+        "command": "glaze.clearBaseHueOverride",
+        "title": "Glaze: Clear Base Hue Override"
       }
     ],
     "configuration": {
-      "title": "Patina",
+      "title": "Glaze",
       "properties": {
-        "patina.enabled": {
+        "glaze.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Enable or disable Patina color tinting.",
+          "description": "Enable or disable Glaze color tinting.",
           "order": 0
         },
-        "patina.statusBar.enabled": {
+        "glaze.statusBar.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Show Patina status in the status bar.",
+          "description": "Show Glaze status in the status bar.",
           "order": 1
         },
-        "patina.tint.colorStyle": {
+        "glaze.tint.colorStyle": {
           "type": "string",
           "enum": [
             "neon",
@@ -163,7 +163,7 @@
           "description": "Controls the intensity and style of tint colors. Combine with Color Harmony to vary hue distribution across elements.",
           "order": 2
         },
-        "patina.tint.colorHarmony": {
+        "glaze.tint.colorHarmony": {
           "type": "string",
           "enum": [
             "uniform",
@@ -202,7 +202,7 @@
           "description": "Controls how hues are distributed across UI elements. Uniform uses a single hue; other options spread hues across the color wheel.",
           "order": 3
         },
-        "patina.workspaceIdentifier.source": {
+        "glaze.workspaceIdentifier.source": {
           "type": "string",
           "enum": [
             "name",
@@ -226,7 +226,7 @@
           "description": "Determines what value is used to generate the workspace color.",
           "order": 4
         },
-        "patina.workspaceIdentifier.multiRootSource": {
+        "glaze.workspaceIdentifier.multiRootSource": {
           "type": "string",
           "enum": [
             "workspaceFile",
@@ -247,49 +247,49 @@
           "markdownDescription": "Determines the identifier base for multi-root workspaces. Combined with `source` to format the final identifier. Only applies when a `.code-workspace` file is open.",
           "order": 5
         },
-        "patina.workspaceIdentifier.customBasePath": {
+        "glaze.workspaceIdentifier.customBasePath": {
           "type": "string",
           "default": "",
           "description": "Base path for 'pathRelativeToCustom' source. Supports ~ and $HOME for home directory. Falls back to absolute path if workspace is outside this path.",
           "order": 6
         },
-        "patina.workspaceIdentifier.includeRemoteAuthority": {
+        "glaze.workspaceIdentifier.includeRemoteAuthority": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Include the remote host identity (e.g. SSH hostname, WSL distro) in the workspace identifier. When enabled, the same path on different remote hosts produces different colors. Disable to get the same color regardless of whether you connect locally or via SSH.",
           "order": 7
         },
-        "patina.workspaceIdentifier.remoteHomeDirectory": {
+        "glaze.workspaceIdentifier.remoteHomeDirectory": {
           "type": "string",
           "default": "",
           "markdownDescription": "Home directory override for remote workspaces. Used by `pathRelativeToHome` when the automatic detection fails. Example: `/home/myuser`. Leave empty to use automatic detection.",
           "order": 8
         },
-        "patina.elements.titleBar": {
+        "glaze.elements.titleBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the window title bar.",
           "order": 9
         },
-        "patina.elements.activityBar": {
+        "glaze.elements.activityBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the left side activity bar.",
           "order": 10
         },
-        "patina.elements.sideBar": {
+        "glaze.elements.sideBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the side bar.",
           "order": 11
         },
-        "patina.elements.statusBar": {
+        "glaze.elements.statusBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the bottom status bar.",
           "order": 12
         },
-        "patina.theme.blendMethod": {
+        "glaze.theme.blendMethod": {
           "type": "string",
           "enum": [
             "overlay",
@@ -307,7 +307,7 @@
           "description": "Blending algorithm for combining tint and theme colors. Overlay uses linear sRGB alpha compositing; Hue Shift uses OKLCH for uniform transitions.",
           "order": 13
         },
-        "patina.theme.blendFactor": {
+        "glaze.theme.blendFactor": {
           "type": "number",
           "minimum": 0,
           "maximum": 1,
@@ -315,7 +315,7 @@
           "description": "How much to blend tint colors toward the theme's background. 0 = full tint (no blending), 1 = theme colors only (no tinting). Only applies to known themes.",
           "order": 14
         },
-        "patina.theme.titleBarBlendFactor": {
+        "glaze.theme.titleBarBlendFactor": {
           "type": [
             "number",
             "null"
@@ -326,7 +326,7 @@
           "description": "Override blend factor for the title bar. When set, overrides the default blend factor for this element. null = use default.",
           "order": 15
         },
-        "patina.theme.activityBarBlendFactor": {
+        "glaze.theme.activityBarBlendFactor": {
           "type": [
             "number",
             "null"
@@ -337,7 +337,7 @@
           "description": "Override blend factor for the activity bar. When set, overrides the default blend factor for this element. null = use default.",
           "order": 16
         },
-        "patina.theme.sideBarBlendFactor": {
+        "glaze.theme.sideBarBlendFactor": {
           "type": [
             "number",
             "null"
@@ -348,7 +348,7 @@
           "description": "Override blend factor for the side bar. When set, overrides the default blend factor for this element. null = use default.",
           "order": 17
         },
-        "patina.theme.statusBarBlendFactor": {
+        "glaze.theme.statusBarBlendFactor": {
           "type": [
             "number",
             "null"
@@ -359,7 +359,7 @@
           "description": "Override blend factor for the status bar. When set, overrides the default blend factor for this element. null = use default.",
           "order": 18
         },
-        "patina.tint.mode": {
+        "glaze.tint.mode": {
           "type": "string",
           "enum": [
             "auto",
@@ -380,13 +380,13 @@
           "description": "Theme mode for color generation. Auto-detects from VSCode's current theme.",
           "order": 19
         },
-        "patina.tint.seed": {
+        "glaze.tint.seed": {
           "type": "integer",
           "default": 0,
           "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces.",
           "order": 20
         },
-        "patina.tint.baseHueOverride": {
+        "glaze.tint.baseHueOverride": {
           "type": [
             "integer",
             "null"
@@ -397,7 +397,7 @@
           "description": "Override the base hue (0-359) for this workspace. When set, bypasses the deterministic hue calculation. Intended for workspace-level configuration.",
           "order": 21
         },
-        "patina.theme.colors": {
+        "glaze.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",

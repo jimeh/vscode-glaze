@@ -87,11 +87,11 @@ function generateGeneralInfo(state: StatusState): string {
           <td class="info-label">Status</td>
           <td>${statusBadge}</td>
         </tr>${
-          g.customizedOutsidePatina
+          g.customizedOutsideGlaze
             ? `
         <tr>
           <td class="info-label"></td>
-          <td><span class="badge warning">Colors modified outside Patina</span></td>
+          <td><span class="badge warning">Colors modified outside Glaze</span></td>
         </tr>`
             : ''
         }
@@ -490,7 +490,7 @@ export function generateStatusHtml(
   const colorTable = generateColorTable(state.colors);
 
   return renderWebviewHtml({
-    title: 'Patina Status',
+    title: 'Glaze Status',
     nonce,
     cspSource,
     css: STATUS_CSS,

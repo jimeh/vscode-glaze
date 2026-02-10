@@ -3,10 +3,10 @@ import { generateStatusHtml } from '../../status/html';
 import type { StatusState } from '../../status/types';
 import type { TintKeyDetail } from '../../color/tint';
 import type { PaletteKey } from '../../theme';
-import { PATINA_MANAGED_KEYS, COLOR_KEY_DEFINITIONS } from '../../theme';
+import { GLAZE_MANAGED_KEYS, COLOR_KEY_DEFINITIONS } from '../../theme';
 
 function createMockColors(): readonly TintKeyDetail[] {
-  return PATINA_MANAGED_KEYS.map((key: PaletteKey): TintKeyDetail => {
+  return GLAZE_MANAGED_KEYS.map((key: PaletteKey): TintKeyDetail => {
     const def = COLOR_KEY_DEFINITIONS[key];
     return {
       key,
@@ -43,7 +43,7 @@ function createMockState(overrides: Partial<StatusState> = {}): StatusState {
       baseHueOverride: null,
       baseHue: 180,
       targets: ['titleBar', 'statusBar', 'activityBar'],
-      customizedOutsidePatina: false,
+      customizedOutsideGlaze: false,
     },
     colors: createMockColors(),
     ...overrides,
@@ -257,7 +257,7 @@ suite('generateStatusHtml', () => {
     const state = createMockState();
     const html = generateStatusHtml(state, nonce, cspSource);
 
-    for (const key of PATINA_MANAGED_KEYS) {
+    for (const key of GLAZE_MANAGED_KEYS) {
       assert.ok(html.includes(key), `Should contain managed key: ${key}`);
     }
   });
@@ -472,9 +472,9 @@ suite('generateStatusHtml', () => {
     );
   });
 
-  test('shows warning badge when customizedOutsidePatina is true', () => {
+  test('shows warning badge when customizedOutsideGlaze is true', () => {
     const state = createMockState();
-    state.general.customizedOutsidePatina = true;
+    state.general.customizedOutsideGlaze = true;
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(
@@ -482,14 +482,14 @@ suite('generateStatusHtml', () => {
       'Should have warning badge class'
     );
     assert.ok(
-      html.includes('Colors modified outside Patina'),
+      html.includes('Colors modified outside Glaze'),
       'Should show warning text'
     );
   });
 
-  test('no warning badge when customizedOutsidePatina is false', () => {
+  test('no warning badge when customizedOutsideGlaze is false', () => {
     const state = createMockState();
-    state.general.customizedOutsidePatina = false;
+    state.general.customizedOutsideGlaze = false;
     const html = generateStatusHtml(state, nonce, cspSource);
 
     assert.ok(

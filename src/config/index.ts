@@ -31,20 +31,20 @@ export type {
 } from './types';
 
 /**
- * Returns whether Patina is globally enabled.
+ * Returns whether Glaze is globally enabled.
  */
 export function isGloballyEnabled(): boolean {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const inspection = config.inspect<boolean>('enabled');
   return inspection?.globalValue ?? false;
 }
 
 /**
- * Returns whether Patina is enabled for the current workspace.
- * Workspace-level patina.enabled takes precedence over global.
+ * Returns whether Glaze is enabled for the current workspace.
+ * Workspace-level glaze.enabled takes precedence over global.
  */
 export function isEnabledForWorkspace(): boolean {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const inspection = config.inspect<boolean>('enabled');
   // Workspace value takes precedence if set
   if (inspection?.workspaceValue !== undefined) {
@@ -57,22 +57,22 @@ export function isEnabledForWorkspace(): boolean {
 /**
  * Returns the workspace-level enabled override.
  * - undefined: No workspace override (inherits global)
- * - true: Workspace override enables Patina
- * - false: Workspace override disables Patina
+ * - true: Workspace override enables Glaze
+ * - false: Workspace override disables Glaze
  */
 export function getWorkspaceEnabledOverride(): boolean | undefined {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const inspection = config.inspect<boolean>('enabled');
   return inspection?.workspaceValue;
 }
 
 /**
- * Sets patina.enabled at Workspace scope.
+ * Sets glaze.enabled at Workspace scope.
  */
 export async function setEnabledForWorkspace(
   value: boolean | undefined
 ): Promise<void> {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   await config.update('enabled', value, vscode.ConfigurationTarget.Workspace);
 }
 
@@ -111,7 +111,7 @@ const VALID_MULTI_ROOT_SOURCES: readonly MultiRootIdentifierSource[] = [
  * Returns the configured color style.
  */
 export function getColorStyle(): ColorStyle {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const style = config.get<string>('tint.colorStyle', DEFAULT_COLOR_STYLE);
   return isValidColorStyle(style) ? style : DEFAULT_COLOR_STYLE;
 }
@@ -120,7 +120,7 @@ export function getColorStyle(): ColorStyle {
  * Returns the configured blend method.
  */
 export function getBlendMethod(): BlendMethod {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const method = config.get<string>('theme.blendMethod', DEFAULT_BLEND_METHOD);
   return isValidBlendMethod(method) ? method : DEFAULT_BLEND_METHOD;
 }
@@ -129,7 +129,7 @@ export function getBlendMethod(): BlendMethod {
  * Returns the configured color harmony.
  */
 export function getColorHarmony(): ColorHarmony {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const harmony = config.get<string>(
     'tint.colorHarmony',
     DEFAULT_COLOR_HARMONY
@@ -141,7 +141,7 @@ export function getColorHarmony(): ColorHarmony {
  * Reads the workspace identifier configuration from VSCode settings.
  */
 export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
 
   return {
     source: getValidatedEnum(
@@ -175,7 +175,7 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
  * Reads the tint configuration from VSCode settings.
  */
 export function getTintConfig(): TintConfig {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
 
   const targets: TintTarget[] = [];
   if (config.get<boolean>('elements.titleBar', true)) {
@@ -225,7 +225,7 @@ const TARGET_BLEND_FACTOR_KEYS: Record<TintTarget, string> = {
  * Reads the theme configuration from VSCode settings.
  */
 export function getThemeConfig(): ThemeConfig {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
 
   const blendMethod = getBlendMethod();
 
@@ -254,7 +254,7 @@ export function getThemeConfig(): ThemeConfig {
  * null means no override is set at workspace scope.
  */
 export function getBaseHueOverride(): number | null {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const inspection = config.inspect<number | null>('tint.baseHueOverride');
   const value = inspection?.workspaceValue;
   if (
@@ -273,6 +273,6 @@ export function getBaseHueOverride(): number | null {
  * Returns whether the status bar item is enabled.
  */
 export function getStatusBarEnabled(): boolean {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   return config.get<boolean>('statusBar.enabled', true);
 }

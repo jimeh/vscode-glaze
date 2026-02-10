@@ -1,7 +1,7 @@
 # Logo Builder
 
 Interactive tool for picking a set of harmonious, complementary colors for the
-Patina logo. It uses the same color schemes that the VS Code extension itself
+Glaze logo. It uses the same color schemes that the VS Code extension itself
 uses (analogous, complementary, triadic, etc.), making it easy to quickly find
 combinations that look decent without manual color theory work. Built with
 [Astro](https://astro.build/).

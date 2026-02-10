@@ -1,97 +1,97 @@
 import * as assert from 'assert';
 import {
-  PATINA_ACTIVE_KEY,
-  PATINA_ACTIVE_VALUE,
+  GLAZE_ACTIVE_KEY,
+  GLAZE_ACTIVE_VALUE,
   type ColorCustomizations,
   mergeColorCustomizations,
-  removePatinaColors,
-  hasPatinaColorsWithoutMarker,
+  removeGlazeColors,
+  hasGlazeColorsWithoutMarker,
 } from '../../settings/colorCustomizations';
 
 suite('mergeColorCustomizations', () => {
-  test('returns Patina colors when existing is undefined', () => {
-    const patinaColors = {
+  test('returns Glaze colors when existing is undefined', () => {
+    const glazeColors = {
       'titleBar.activeBackground': '#112233',
       'statusBar.background': '#445566',
     };
 
-    const result = mergeColorCustomizations(undefined, patinaColors);
+    const result = mergeColorCustomizations(undefined, glazeColors);
 
     assert.deepStrictEqual(result, {
-      ...patinaColors,
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      ...glazeColors,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
     });
   });
 
-  test('returns Patina colors when existing is empty', () => {
-    const patinaColors = {
+  test('returns Glaze colors when existing is empty', () => {
+    const glazeColors = {
       'titleBar.activeBackground': '#112233',
     };
 
-    const result = mergeColorCustomizations({}, patinaColors);
+    const result = mergeColorCustomizations({}, glazeColors);
 
     assert.deepStrictEqual(result, {
-      ...patinaColors,
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      ...glazeColors,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
     });
   });
 
-  test('preserves non-Patina keys', () => {
+  test('preserves non-Glaze keys', () => {
     const existing = {
       'editor.background': '#aabbcc',
       'editor.lineHighlightBackground': '#ddeeff',
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#112233',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
       'editor.lineHighlightBackground': '#ddeeff',
       'titleBar.activeBackground': '#112233',
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
     });
   });
 
-  test('overwrites existing Patina keys', () => {
+  test('overwrites existing Glaze keys', () => {
     const existing = {
       'titleBar.activeBackground': '#old111',
       'editor.background': '#aabbcc',
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#new222',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     assert.strictEqual(result['titleBar.activeBackground'], '#new222');
     assert.strictEqual(result['editor.background'], '#aabbcc');
-    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
   });
 
-  test('removes old Patina keys not in new palette', () => {
+  test('removes old Glaze keys not in new palette', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'titleBar.activeForeground': '#222222',
       'statusBar.background': '#333333',
       'editor.background': '#aabbcc',
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#444444',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     assert.strictEqual(result['titleBar.activeBackground'], '#444444');
     assert.strictEqual(result['editor.background'], '#aabbcc');
     assert.strictEqual(result['titleBar.activeForeground'], undefined);
     assert.strictEqual(result['statusBar.background'], undefined);
-    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
   });
 
-  test('handles all Patina-managed keys', () => {
+  test('handles all Glaze-managed keys', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'titleBar.activeForeground': '#222222',
@@ -107,17 +107,17 @@ suite('mergeColorCustomizations', () => {
       'sideBarSectionHeader.foreground': '#cccccc',
       'editor.background': '#aabbcc',
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#newcolor',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
-    // 3 keys: titleBar.activeBackground, editor.background, patina.active
+    // 3 keys: titleBar.activeBackground, editor.background, glaze.active
     assert.strictEqual(Object.keys(result).length, 3);
     assert.strictEqual(result['titleBar.activeBackground'], '#newcolor');
     assert.strictEqual(result['editor.background'], '#aabbcc');
-    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
   });
 
   test('preserves theme-scoped block during merge', () => {
@@ -125,18 +125,18 @@ suite('mergeColorCustomizations', () => {
       '[Monokai]': { 'editor.background': '#1e1e1e' },
       'editor.background': '#aabbcc',
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#112233',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     assert.deepStrictEqual(result['[Monokai]'], {
       'editor.background': '#1e1e1e',
     });
     assert.strictEqual(result['editor.background'], '#aabbcc');
     assert.strictEqual(result['titleBar.activeBackground'], '#112233');
-    assert.strictEqual(result[PATINA_ACTIVE_KEY], PATINA_ACTIVE_VALUE);
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
   });
 
   test('preserves multiple theme-scoped blocks', () => {
@@ -144,11 +144,11 @@ suite('mergeColorCustomizations', () => {
       '[Monokai]': { 'editor.background': '#1e1e1e' },
       '[Solarized Dark]': { 'editor.foreground': '#abcdef' },
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#112233',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     assert.deepStrictEqual(result['[Monokai]'], {
       'editor.background': '#1e1e1e',
@@ -163,70 +163,70 @@ suite('mergeColorCustomizations', () => {
       'editor.background': '#aabbcc',
       someNonStringKey: 42,
     };
-    const patinaColors = {
+    const glazeColors = {
       'titleBar.activeBackground': '#112233',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     assert.strictEqual(result['someNonStringKey'], 42);
     assert.strictEqual(result['editor.background'], '#aabbcc');
   });
 
-  test('preserves theme-scoped block containing Patina key names', () => {
+  test('preserves theme-scoped block containing Glaze key names', () => {
     const existing: ColorCustomizations = {
       '[Monokai]': {
         'titleBar.activeBackground': '#mono111',
         'statusBar.background': '#mono222',
       },
     };
-    const patinaColors = {
-      'titleBar.activeBackground': '#patina111',
+    const glazeColors = {
+      'titleBar.activeBackground': '#glaze111',
     };
 
-    const result = mergeColorCustomizations(existing, patinaColors);
+    const result = mergeColorCustomizations(existing, glazeColors);
 
     // Theme-scoped block preserved intact — not stripped
     assert.deepStrictEqual(result['[Monokai]'], {
       'titleBar.activeBackground': '#mono111',
       'statusBar.background': '#mono222',
     });
-    assert.strictEqual(result['titleBar.activeBackground'], '#patina111');
+    assert.strictEqual(result['titleBar.activeBackground'], '#glaze111');
   });
 });
 
-suite('removePatinaColors', () => {
+suite('removeGlazeColors', () => {
   test('returns undefined when existing is undefined', () => {
-    const result = removePatinaColors(undefined);
+    const result = removeGlazeColors(undefined);
 
     assert.strictEqual(result, undefined);
   });
 
   test('returns undefined when existing is empty', () => {
-    const result = removePatinaColors({});
+    const result = removeGlazeColors({});
 
     assert.strictEqual(result, undefined);
   });
 
-  test('returns undefined when only Patina keys exist', () => {
+  test('returns undefined when only Glaze keys exist', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'statusBar.background': '#222222',
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.strictEqual(result, undefined);
   });
 
-  test('preserves non-Patina keys', () => {
+  test('preserves non-Glaze keys', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'editor.background': '#aabbcc',
       'editor.lineHighlightBackground': '#ddeeff',
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
@@ -234,7 +234,7 @@ suite('removePatinaColors', () => {
     });
   });
 
-  test('removes all Patina-managed keys', () => {
+  test('removes all Glaze-managed keys', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'titleBar.activeForeground': '#222222',
@@ -251,21 +251,21 @@ suite('removePatinaColors', () => {
       'editor.background': '#aabbcc',
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
     });
   });
 
-  test('removes patina.active marker key', () => {
+  test('removes glaze.active marker key', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       'editor.background': '#aabbcc',
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
@@ -275,29 +275,29 @@ suite('removePatinaColors', () => {
   test('returns undefined when only marker and managed keys exist', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.strictEqual(result, undefined);
   });
 
-  test('preserves theme-scoped block when Patina keys removed', () => {
+  test('preserves theme-scoped block when Glaze keys removed', () => {
     const existing: ColorCustomizations = {
       'titleBar.activeBackground': '#111111',
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       '[Monokai]': { 'editor.background': '#1e1e1e' },
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, {
       '[Monokai]': { 'editor.background': '#1e1e1e' },
     });
   });
 
-  test('preserves theme-scoped block with nested Patina key names', () => {
+  test('preserves theme-scoped block with nested Glaze key names', () => {
     const existing: ColorCustomizations = {
       'titleBar.activeBackground': '#111111',
       '[Monokai]': {
@@ -305,7 +305,7 @@ suite('removePatinaColors', () => {
       },
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, {
       '[Monokai]': { 'titleBar.activeBackground': '#mono111' },
@@ -318,7 +318,7 @@ suite('removePatinaColors', () => {
       someNonStringKey: 42,
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, { someNonStringKey: 42 });
   });
@@ -327,11 +327,11 @@ suite('removePatinaColors', () => {
     const existing: ColorCustomizations = {
       'titleBar.activeBackground': '#111111',
       'statusBar.background': '#222222',
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       '[Solarized Dark]': { 'editor.foreground': '#abcdef' },
     };
 
-    const result = removePatinaColors(existing);
+    const result = removeGlazeColors(existing);
 
     assert.deepStrictEqual(result, {
       '[Solarized Dark]': { 'editor.foreground': '#abcdef' },
@@ -339,30 +339,30 @@ suite('removePatinaColors', () => {
   });
 });
 
-suite('hasPatinaColorsWithoutMarker', () => {
+suite('hasGlazeColorsWithoutMarker', () => {
   test('returns false for undefined', () => {
-    assert.strictEqual(hasPatinaColorsWithoutMarker(undefined), false);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(undefined), false);
   });
 
   test('returns false for empty object', () => {
-    assert.strictEqual(hasPatinaColorsWithoutMarker({}), false);
+    assert.strictEqual(hasGlazeColorsWithoutMarker({}), false);
   });
 
-  test('returns false for non-Patina-only keys', () => {
+  test('returns false for non-Glaze-only keys', () => {
     const existing = {
       'editor.background': '#aabbcc',
       'editor.lineHighlightBackground': '#ddeeff',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), false);
   });
 
   test('returns false when marker present alongside managed keys', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'statusBar.background': '#222222',
-      [PATINA_ACTIVE_KEY]: PATINA_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), false);
   });
 
   test('returns true when managed keys present without marker', () => {
@@ -370,23 +370,23 @@ suite('hasPatinaColorsWithoutMarker', () => {
       'titleBar.activeBackground': '#111111',
       'statusBar.background': '#222222',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
   });
 
-  test('returns true when managed keys mixed with non-Patina keys without marker', () => {
+  test('returns true when managed keys mixed with non-Glaze keys without marker', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'editor.background': '#aabbcc',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
   });
 
   test('returns true when marker key exists with wrong value', () => {
     const existing = {
-      [PATINA_ACTIVE_KEY]: '#000000',
+      [GLAZE_ACTIVE_KEY]: '#000000',
       'titleBar.activeBackground': '#111111',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
   });
 
   test('returns false when managed keys only inside theme-scoped blocks', () => {
@@ -397,7 +397,7 @@ suite('hasPatinaColorsWithoutMarker', () => {
       },
       'editor.background': '#aabbcc',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), false);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), false);
   });
 
   test('returns true when top-level managed keys alongside theme-scoped blocks', () => {
@@ -407,14 +407,14 @@ suite('hasPatinaColorsWithoutMarker', () => {
       },
       'titleBar.activeBackground': '#111111',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
   });
 
   test('returns true when marker value is non-string', () => {
     const existing: ColorCustomizations = {
-      [PATINA_ACTIVE_KEY]: { nested: true },
+      [GLAZE_ACTIVE_KEY]: { nested: true },
       'titleBar.activeBackground': '#111111',
     };
-    assert.strictEqual(hasPatinaColorsWithoutMarker(existing), true);
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
   });
 });

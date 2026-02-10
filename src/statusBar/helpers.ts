@@ -4,7 +4,7 @@ import { assertHex, escapeHtml } from '../webview';
 import type { TintColors } from './types';
 
 /**
- * Determines if Patina is effectively enabled for the current workspace.
+ * Determines if Glaze is effectively enabled for the current workspace.
  * Workspace override takes precedence over global.
  */
 export function isEffectivelyEnabled(
@@ -18,7 +18,7 @@ export function isEffectivelyEnabled(
 }
 
 /**
- * Whether Patina is actively applying tint colors.
+ * Whether Glaze is actively applying tint colors.
  * True when enabled, a workspace identifier exists, and at least one
  * tint target element is enabled. This is the canonical active check
  * — keep all call sites in sync with doReconcile (extension.ts).
@@ -90,7 +90,7 @@ export function colorSwatch(hex: string): string {
 export function colorCopyLink(hex: string): string {
   assertHex(hex);
   const args = encodeURIComponent(JSON.stringify(hex));
-  return `[$(copy)](command:patina.copyColor?${args})`;
+  return `[$(copy)](command:glaze.copyColor?${args})`;
 }
 
 /**

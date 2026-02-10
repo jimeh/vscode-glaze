@@ -1,6 +1,6 @@
 import type { OKLCH } from '../types';
 import type { ThemeColors, PaletteKey } from '../../theme';
-import { COLOR_KEY_DEFINITIONS, PATINA_MANAGED_KEYS } from '../../theme';
+import { COLOR_KEY_DEFINITIONS, GLAZE_MANAGED_KEYS } from '../../theme';
 import { getColorForKey } from '../../theme/colors';
 import { hexToOklch, oklchToHex, clampToGamut } from '../convert';
 import type {
@@ -159,7 +159,7 @@ export function getMajorityHueDirection(
   let cwCount = 0;
   let total = 0;
 
-  for (const key of PATINA_MANAGED_KEYS) {
+  for (const key of GLAZE_MANAGED_KEYS) {
     const def = COLOR_KEY_DEFINITIONS[key as PaletteKey];
     if (def.colorType !== 'background') {
       continue;

@@ -93,7 +93,7 @@ function normalizeThemeInfo(value: ThemeInfo): ThemeInfo {
  * Gets custom theme colors from VSCode settings.
  */
 function getCustomThemeInfo(): Record<string, ThemeInfo> {
-  const config = vscode.workspace.getConfiguration('patina');
+  const config = vscode.workspace.getConfiguration('glaze');
   const themeColors = config.get<Record<string, unknown>>('theme.colors', {});
   const result: Record<string, ThemeInfo> = {};
 

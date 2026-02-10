@@ -8,18 +8,18 @@ import { BaseWebviewPanel } from '../webview/panel';
  * Configuration sections that trigger a status panel re-render.
  */
 const CONFIG_SECTIONS = [
-  'patina',
+  'glaze',
   'workbench.colorTheme',
   'workbench.preferredDarkColorTheme',
   'workbench.preferredLightColorTheme',
 ] as const;
 
 /**
- * Manages the Patina Status webview panel.
+ * Manages the Glaze Status webview panel.
  * Singleton pattern — only one status panel can be open at a time.
  */
 export class StatusPanel extends BaseWebviewPanel<StatusMessage> {
-  public static readonly viewType = 'patina.statusView';
+  public static readonly viewType = 'glaze.statusView';
 
   private static instance: StatusPanel | undefined;
 
@@ -38,7 +38,7 @@ export class StatusPanel extends BaseWebviewPanel<StatusMessage> {
 
     const panel = vscode.window.createWebviewPanel(
       StatusPanel.viewType,
-      'Patina Status',
+      'Glaze Status',
       vscode.ViewColumn.Beside,
       {
         enableScripts: true,

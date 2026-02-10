@@ -11,12 +11,12 @@ suite('StatusBarManager', () => {
   let originalStatusBarEnabled: boolean | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     originalStatusBarEnabled = config.get<boolean>('statusBar.enabled');
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'statusBar.enabled',
       originalStatusBarEnabled,
@@ -34,7 +34,7 @@ suite('StatusBarManager', () => {
 
   /** Enable the status bar item for test visibility. */
   async function enableStatusBar(): Promise<void> {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'statusBar.enabled',
       true,
@@ -78,7 +78,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -110,7 +110,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -154,7 +154,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -167,7 +167,7 @@ suite('StatusBarManager', () => {
       );
     });
 
-    test('shows "Patina" when active with no tint colors', async () => {
+    test('shows "Glaze" when active with no tint colors', async () => {
       await enableStatusBar();
 
       const state: StatusBarState = {
@@ -183,11 +183,11 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
-      assert.strictEqual(manager.item.text, `${ICON} Patina`);
+      assert.strictEqual(manager.item.text, `${ICON} Glaze`);
     });
 
     test('shows icon only with undefined workspace ID', async () => {
@@ -209,7 +209,7 @@ suite('StatusBarManager', () => {
           baseTint: '#00ff00',
           titleBar: '#00ff00',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -242,7 +242,7 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: false,
         tintColors: undefined,
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -282,7 +282,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -311,7 +311,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -327,7 +327,7 @@ suite('StatusBarManager', () => {
       );
     });
 
-    test('shows modified warning when customized outside Patina', async () => {
+    test('shows modified warning when customized outside Glaze', async () => {
       await enableStatusBar();
 
       const state: StatusBarState = {
@@ -343,7 +343,7 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
-        customizedOutsidePatina: true,
+        customizedOutsideGlaze: true,
       };
 
       manager.update(state);
@@ -351,7 +351,7 @@ suite('StatusBarManager', () => {
 
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('modified outside Patina'),
+        tip.includes('modified outside Glaze'),
         `tooltip should warn about external changes, got: ${tip}`
       );
     });
@@ -372,7 +372,7 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
-        customizedOutsidePatina: true,
+        customizedOutsideGlaze: true,
       };
 
       manager.update(state);
@@ -388,7 +388,7 @@ suite('StatusBarManager', () => {
         `tooltip should indicate inactive, got: ${tip}`
       );
       assert.ok(
-        !tip.includes('modified outside Patina'),
+        !tip.includes('modified outside Glaze'),
         `tooltip should not warn about external changes when inactive, got: ${tip}`
       );
     });
@@ -396,7 +396,7 @@ suite('StatusBarManager', () => {
 
   suite('updateVisibility', () => {
     test('does not throw when statusBar.enabled is true', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'statusBar.enabled',
         true,
@@ -407,7 +407,7 @@ suite('StatusBarManager', () => {
     });
 
     test('does not throw when statusBar.enabled is false', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'statusBar.enabled',
         false,
@@ -418,7 +418,7 @@ suite('StatusBarManager', () => {
     });
 
     test('responds to config changes', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
 
       // Toggle from false to true
       await config.update(
@@ -459,7 +459,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -496,7 +496,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -530,7 +530,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -570,7 +570,7 @@ suite('StatusBarManager', () => {
             baseTint: '#123456',
             titleBar: '#123456',
           },
-          customizedOutsidePatina: false,
+          customizedOutsideGlaze: false,
         };
 
         manager.update(state);
@@ -602,7 +602,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
         lastError: 'Unable to write settings',
       };
 
@@ -636,7 +636,7 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
-        customizedOutsidePatina: true,
+        customizedOutsideGlaze: true,
         lastError: 'Write failed',
       };
 
@@ -668,7 +668,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
         lastError: 'Some error',
       };
       manager.update(errorState);
@@ -711,7 +711,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
         lastError: '<img src=x onerror=alert(1)>',
       };
 
@@ -743,7 +743,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
         lastError: '[click](command:evil.run)',
       };
 
@@ -774,7 +774,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -808,7 +808,7 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
@@ -821,10 +821,10 @@ suite('StatusBarManager', () => {
         enabledCommands: string[];
       };
       assert.deepStrictEqual(trusted.enabledCommands, [
-        'patina.copyColor',
-        'patina.forceApply',
-        'patina.showStatus',
-        'patina.showColorPreview',
+        'glaze.copyColor',
+        'glaze.forceApply',
+        'glaze.showStatus',
+        'glaze.showColorPreview',
       ]);
     });
   });
@@ -849,13 +849,13 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('command:patina.showStatus'),
+        tip.includes('command:glaze.showStatus'),
         `tooltip should include showStatus link, got: ${tip}`
       );
     });
@@ -876,13 +876,13 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('command:patina.showStatus'),
+        tip.includes('command:glaze.showStatus'),
         `tooltip should include showStatus link even when inactive, got: ${tip}`
       );
     });
@@ -906,17 +906,17 @@ suite('StatusBarManager', () => {
           baseTint: '#ff0000',
           titleBar: '#ff0000',
         },
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
       const tip = tooltipValue();
       assert.ok(
-        tip.includes('command:patina.showColorPreview'),
+        tip.includes('command:glaze.showColorPreview'),
         `tooltip should include color preview link, got: ${tip}`
       );
       assert.ok(
-        tip.includes('[$(eye)](command:patina.showColorPreview)'),
+        tip.includes('[$(eye)](command:glaze.showColorPreview)'),
         `tooltip should include preview link icon, got: ${tip}`
       );
     });
@@ -937,13 +937,13 @@ suite('StatusBarManager', () => {
         baseHueOverride: null,
         hasActiveTargets: true,
         tintColors: undefined,
-        customizedOutsidePatina: false,
+        customizedOutsideGlaze: false,
       };
 
       manager.update(state);
       const tip = tooltipValue();
       assert.ok(
-        !tip.includes('command:patina.showColorPreview'),
+        !tip.includes('command:glaze.showColorPreview'),
         `tooltip should not include color preview link without tintColors, got: ${tip}`
       );
     });
@@ -974,7 +974,7 @@ suite('StatusBarManager', () => {
             baseTint: '#abcdef',
             titleBar: '#abcdef',
           },
-          customizedOutsidePatina: false,
+          customizedOutsideGlaze: false,
         };
 
         manager.update(state);

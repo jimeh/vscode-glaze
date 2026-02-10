@@ -34,7 +34,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
   const baseHueOverride = getBaseHueOverride();
   const effectivelyEnabled = isEnabledForWorkspace();
   const wsOverride = getWorkspaceEnabledOverride();
-  const { customizedOutsidePatina } = getCachedState();
+  const { customizedOutsideGlaze } = getCachedState();
 
   return [
     {
@@ -43,43 +43,43 @@ function buildMenuGroups(): readonly MenuGroup[] {
         {
           label: '$(warning) Force Apply',
           description: 'Reclaim ownership of color customizations',
-          command: 'patina.forceApply',
-          when: () => effectivelyEnabled && customizedOutsidePatina,
+          command: 'glaze.forceApply',
+          when: () => effectivelyEnabled && customizedOutsideGlaze,
         },
         {
           label: '$(check) Enable for Workspace',
-          description: 'Enable Patina for this workspace',
-          command: 'patina.enableWorkspace',
+          description: 'Enable Glaze for this workspace',
+          command: 'glaze.enableWorkspace',
           when: () => !effectivelyEnabled,
         },
         {
           label: '$(circle-slash) Disable for Workspace',
-          description: 'Disable Patina for this workspace',
-          command: 'patina.disableWorkspace',
+          description: 'Disable Glaze for this workspace',
+          command: 'glaze.disableWorkspace',
           when: () => effectivelyEnabled,
         },
         {
           label: '$(clear-all) Clear Workspace Setting',
           description: 'Remove workspace override, follow global',
-          command: 'patina.clearWorkspaceEnabled',
+          command: 'glaze.clearWorkspaceEnabled',
           when: () => wsOverride !== undefined,
         },
         {
           label: '$(refresh) Randomize Seed',
           description: 'Generate a new random seed',
-          command: 'patina.randomizeSeed',
+          command: 'glaze.randomizeSeed',
           when: () =>
             effectivelyEnabled &&
-            !customizedOutsidePatina &&
+            !customizedOutsideGlaze &&
             baseHueOverride === null,
         },
         {
           label: '$(discard) Reset Seed',
           description: 'Reset seed to default (0)',
-          command: 'patina.resetSeed',
+          command: 'glaze.resetSeed',
           when: () =>
             effectivelyEnabled &&
-            !customizedOutsidePatina &&
+            !customizedOutsideGlaze &&
             seed !== 0 &&
             baseHueOverride === null,
         },
@@ -89,16 +89,16 @@ function buildMenuGroups(): readonly MenuGroup[] {
             baseHueOverride !== null
               ? `Currently ${baseHueOverride}°`
               : 'Pin a specific hue for this workspace',
-          command: 'patina.setBaseHueOverride',
-          when: () => effectivelyEnabled && !customizedOutsidePatina,
+          command: 'glaze.setBaseHueOverride',
+          when: () => effectivelyEnabled && !customizedOutsideGlaze,
         },
         {
           label: '$(discard) Clear Base Hue Override',
           description: `Remove override (${baseHueOverride}°)`,
-          command: 'patina.clearBaseHueOverride',
+          command: 'glaze.clearBaseHueOverride',
           when: () =>
             effectivelyEnabled &&
-            !customizedOutsidePatina &&
+            !customizedOutsideGlaze &&
             baseHueOverride !== null,
         },
       ],
@@ -108,14 +108,14 @@ function buildMenuGroups(): readonly MenuGroup[] {
       items: [
         {
           label: '$(check) Enable Globally',
-          description: 'Enable Patina globally',
-          command: 'patina.enableGlobally',
+          description: 'Enable Glaze globally',
+          command: 'glaze.enableGlobally',
           when: () => !isGloballyEnabled(),
         },
         {
           label: '$(circle-slash) Disable Globally',
-          description: 'Disable Patina globally',
-          command: 'patina.disableGlobally',
+          description: 'Disable Glaze globally',
+          command: 'glaze.disableGlobally',
           when: () => isGloballyEnabled(),
         },
       ],
@@ -153,15 +153,15 @@ function buildQuickPickItems(
 
 // ── Command registration ───────────────────────────────────────
 
-/** Register the Patina quick-menu command. */
+/** Register the Glaze quick-menu command. */
 export function registerMenuCommands(): vscode.Disposable[] {
   return [
-    vscode.commands.registerCommand('patina.quickMenu', async () => {
+    vscode.commands.registerCommand('glaze.quickMenu', async () => {
       const groups = buildMenuGroups();
       const items = buildQuickPickItems(groups);
 
       const selected = await vscode.window.showQuickPick(items, {
-        placeHolder: 'Patina',
+        placeHolder: 'Glaze',
       });
       if (selected?.command) {
         await vscode.commands.executeCommand(selected.command);

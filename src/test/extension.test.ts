@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { PATINA_ACTIVE_KEY } from '../settings';
+import { GLAZE_ACTIVE_KEY } from '../settings';
 
 /**
  * Polls until a condition is met or timeout is reached.
@@ -30,11 +30,11 @@ function getColorCustomizations(): Record<string, string> | undefined {
 }
 
 /**
- * Checks if a key is a Patina-managed color key.
+ * Checks if a key is a Glaze-managed color key.
  */
-function isPatinaKey(key: string): boolean {
+function isGlazeKey(key: string): boolean {
   return (
-    key === PATINA_ACTIVE_KEY ||
+    key === GLAZE_ACTIVE_KEY ||
     key.startsWith('titleBar.') ||
     key.startsWith('statusBar.') ||
     key.startsWith('activityBar.') ||
@@ -112,9 +112,9 @@ async function waitForColorKeyAbsent(
 }
 
 /**
- * Waits for colorCustomizations to contain only non-Patina keys.
+ * Waits for colorCustomizations to contain only non-Glaze keys.
  */
-async function waitForPatinaColorsCleared(
+async function waitForGlazeColorsCleared(
   timeoutMs = 4000,
   intervalMs = 50
 ): Promise<void> {
@@ -124,9 +124,9 @@ async function waitForPatinaColorsCleared(
       if (!colors) {
         return true;
       }
-      return !Object.keys(colors).some(isPatinaKey);
+      return !Object.keys(colors).some(isGlazeKey);
     },
-    'Timeout waiting for Patina colors to be cleared',
+    'Timeout waiting for Glaze colors to be cleared',
     timeoutMs,
     intervalMs
   );
@@ -135,22 +135,22 @@ async function waitForPatinaColorsCleared(
 suite('Extension Test Suite', () => {
   suiteSetup(async () => {
     // Ensure extension is activated
-    const ext = vscode.extensions.getExtension('jimeh.patina');
-    assert.ok(ext, 'Patina extension (jimeh.patina) not found');
+    const ext = vscode.extensions.getExtension('jimeh.glaze');
+    assert.ok(ext, 'Glaze extension (jimeh.glaze) not found');
     if (!ext.isActive) {
       await ext.activate();
     }
   });
 
   suite('Command Registration', () => {
-    test('patina.enableGlobally command is registered', async () => {
+    test('glaze.enableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.enableGlobally'));
+      assert.ok(commands.includes('glaze.enableGlobally'));
     });
 
-    test('patina.disableGlobally command is registered', async () => {
+    test('glaze.disableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.disableGlobally'));
+      assert.ok(commands.includes('glaze.disableGlobally'));
     });
   });
 
@@ -160,8 +160,8 @@ suite('Extension Test Suite', () => {
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
@@ -173,13 +173,13 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
@@ -202,13 +202,13 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
@@ -217,7 +217,7 @@ suite('Extension Test Suite', () => {
       // Wait for the disable-triggered reconcile to fully settle before
       // seeding colorCustomizations, otherwise the debounced reconcile
       // can overwrite our seeded value.
-      await waitForPatinaColorsCleared();
+      await waitForGlazeColorsCleared();
       await new Promise((resolve) => setTimeout(resolve, 300));
 
       const seededColors = { 'editor.background': '#aabbcc' };
@@ -228,8 +228,8 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Workspace
       );
 
-      const ext = vscode.extensions.getExtension('jimeh.patina');
-      assert.ok(ext, 'Patina extension (jimeh.patina) not found');
+      const ext = vscode.extensions.getExtension('jimeh.glaze');
+      assert.ok(ext, 'Glaze extension (jimeh.glaze) not found');
       if (!ext.isActive) {
         await ext.activate();
       }
@@ -247,21 +247,21 @@ suite('Extension Test Suite', () => {
       if (inspection?.workspaceValue) {
         for (const key of Object.keys(inspection.workspaceValue)) {
           assert.ok(
-            !isPatinaKey(key),
-            `Patina key ${key} should not be present when disabled`
+            !isGlazeKey(key),
+            `Glaze key ${key} should not be present when disabled`
           );
         }
       }
     });
   });
 
-  suite('patina.enableGlobally', () => {
+  suite('glaze.enableGlobally', () => {
     let originalColorCustomizations: unknown;
     let originalEnabled: boolean | undefined;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -271,8 +271,8 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
@@ -289,21 +289,21 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets patina.enabled to true', async () => {
+    test('sets glaze.enabled to true', async () => {
       // First disable to ensure we're testing the change
-      let patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      let glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
 
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
 
       // Get fresh config after command
-      patinaConfig = vscode.workspace.getConfiguration('patina');
-      const enabled = patinaConfig.get<boolean>('enabled');
-      assert.strictEqual(enabled, true, 'patina.enabled should be true');
+      glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const enabled = glazeConfig.get<boolean>('enabled');
+      assert.strictEqual(enabled, true, 'glaze.enabled should be true');
     });
 
     test('sets workbench.colorCustomizations when workspace is open', async function () {
@@ -313,15 +313,15 @@ suite('Extension Test Suite', () => {
       }
 
       // Disable first so enableGlobally triggers a real config change
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
-      await waitForPatinaColorsCleared();
+      await waitForGlazeColorsCleared();
 
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
 
       // Wait for the specific key we assert on
       const colors = await waitForColorKey('titleBar.activeBackground');
@@ -339,15 +339,15 @@ suite('Extension Test Suite', () => {
       }
 
       // Disable first so enableGlobally triggers a real config change
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
-      await waitForPatinaColorsCleared();
+      await waitForGlazeColorsCleared();
 
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
 
       // Wait for the specific key we need for assertions
       const colors = await waitForColorKey('titleBar.activeBackground');
@@ -367,14 +367,14 @@ suite('Extension Test Suite', () => {
     });
   });
 
-  suite('patina.disableGlobally', () => {
+  suite('glaze.disableGlobally', () => {
     let originalColorCustomizations: unknown;
     let originalEnabledGlobal: boolean | undefined;
     let originalEnabledWorkspace: boolean | undefined;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
@@ -386,13 +386,13 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
@@ -409,24 +409,24 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets patina.enabled to false', async () => {
+    test('sets glaze.enabled to false', async () => {
       // First enable to ensure we're testing the change
-      let patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      let glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
       );
 
-      await vscode.commands.executeCommand('patina.disableGlobally');
+      await vscode.commands.executeCommand('glaze.disableGlobally');
 
       // Get fresh config after command
-      patinaConfig = vscode.workspace.getConfiguration('patina');
-      const enabled = patinaConfig.get<boolean>('enabled');
-      assert.strictEqual(enabled, false, 'patina.enabled should be false');
+      glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const enabled = glazeConfig.get<boolean>('enabled');
+      assert.strictEqual(enabled, false, 'glaze.enabled should be false');
     });
 
-    test('clears Patina colors from workbench.colorCustomizations', async function () {
+    test('clears Glaze colors from workbench.colorCustomizations', async function () {
       // Extend timeout for this test as it involves multiple async operations
       this.timeout(5000);
 
@@ -435,25 +435,25 @@ suite('Extension Test Suite', () => {
       }
 
       // First enable to set colors
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
 
       // Wait for colors to be set
       await waitForColorCustomizations();
 
       // Then disable
-      await vscode.commands.executeCommand('patina.disableGlobally');
+      await vscode.commands.executeCommand('glaze.disableGlobally');
 
-      // Wait for Patina colors to be cleared
-      await waitForPatinaColorsCleared();
+      // Wait for Glaze colors to be cleared
+      await waitForGlazeColorsCleared();
 
-      // Verify no Patina keys remain
+      // Verify no Glaze keys remain
       const config = vscode.workspace.getConfiguration();
       const colors = config.get<Record<string, string>>(
         'workbench.colorCustomizations'
       );
       if (colors) {
         for (const key of Object.keys(colors)) {
-          assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
+          assert.ok(!isGlazeKey(key), `Glaze key ${key} should be removed`);
         }
       }
     });
@@ -474,16 +474,16 @@ suite('Extension Test Suite', () => {
       );
 
       // Clear workspace override so global controls state
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
 
-      // Enable Patina via command and wait for colors
-      await vscode.commands.executeCommand('patina.enableGlobally');
-      await waitForColorKey(PATINA_ACTIVE_KEY);
+      // Enable Glaze via command and wait for colors
+      await vscode.commands.executeCommand('glaze.enableGlobally');
+      await waitForColorKey(GLAZE_ACTIVE_KEY);
 
       // Replace colorCustomizations with managed keys but NO
       // marker, simulating a user or another tool owning them.
@@ -499,7 +499,7 @@ suite('Extension Test Suite', () => {
       await new Promise((resolve) => setTimeout(resolve, 300));
 
       // Disable via command
-      await vscode.commands.executeCommand('patina.disableGlobally');
+      await vscode.commands.executeCommand('glaze.disableGlobally');
       await new Promise((resolve) => setTimeout(resolve, 400));
 
       const inspection = config.inspect<Record<string, string>>(
@@ -518,8 +518,8 @@ suite('Extension Test Suite', () => {
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalSource = patinaConfig.get<string>('workspaceIdentifier.source');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalSource = glazeConfig.get<string>('workspaceIdentifier.source');
 
       if (vscode.workspace.workspaceFolders?.length) {
         const config = vscode.workspace.getConfiguration();
@@ -530,8 +530,8 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'workspaceIdentifier.source',
         originalSource,
         vscode.ConfigurationTarget.Global
@@ -547,25 +547,25 @@ suite('Extension Test Suite', () => {
       }
     });
 
-    test('re-applies tint when patina config changes', async function () {
+    test('re-applies tint when glaze config changes', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
       // Disable first so enableGlobally triggers a fresh apply
-      await vscode.commands.executeCommand('patina.disableGlobally');
-      await waitForPatinaColorsCleared();
+      await vscode.commands.executeCommand('glaze.disableGlobally');
+      await waitForGlazeColorsCleared();
 
-      // Enable patina first
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      // Enable glaze first
+      await vscode.commands.executeCommand('glaze.enableGlobally');
 
       // Get initial colors (wait for them to be set)
       const initialColors = await waitForColorCustomizations();
 
       // Change the identifier source to pathAbsolute (different from default
       // 'name')
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'workspaceIdentifier.source',
         'pathAbsolute',
         vscode.ConfigurationTarget.Global
@@ -586,25 +586,25 @@ suite('Extension Test Suite', () => {
   });
 
   suite('Command Registration (menu)', () => {
-    test('patina.quickMenu command is registered', async () => {
+    test('glaze.quickMenu command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.quickMenu'));
+      assert.ok(commands.includes('glaze.quickMenu'));
     });
   });
 
   suite('Command Registration (seed)', () => {
-    test('patina.randomizeSeed command is registered', async () => {
+    test('glaze.randomizeSeed command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.randomizeSeed'));
+      assert.ok(commands.includes('glaze.randomizeSeed'));
     });
 
-    test('patina.resetSeed command is registered', async () => {
+    test('glaze.resetSeed command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.resetSeed'));
+      assert.ok(commands.includes('glaze.resetSeed'));
     });
   });
 
-  suite('patina.randomizeSeed', () => {
+  suite('glaze.randomizeSeed', () => {
     let originalSeedWorkspace: number | undefined;
     let originalColorCustomizations: unknown;
 
@@ -612,7 +612,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       const inspection = config.inspect<number>('tint.seed');
       originalSeedWorkspace = inspection?.workspaceValue;
 
@@ -626,7 +626,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
         originalSeedWorkspace,
@@ -647,14 +647,14 @@ suite('Extension Test Suite', () => {
       }
 
       // Clear workspace seed first
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
 
-      await vscode.commands.executeCommand('patina.randomizeSeed');
+      await vscode.commands.executeCommand('glaze.randomizeSeed');
 
       // Get fresh config
       const inspection = config.inspect<number>('tint.seed');
@@ -666,7 +666,7 @@ suite('Extension Test Suite', () => {
     });
   });
 
-  suite('patina.resetSeed', () => {
+  suite('glaze.resetSeed', () => {
     let originalSeedWorkspace: number | undefined;
     let originalColorCustomizations: unknown;
 
@@ -674,7 +674,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       const inspection = config.inspect<number>('tint.seed');
       originalSeedWorkspace = inspection?.workspaceValue;
 
@@ -688,7 +688,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
         originalSeedWorkspace,
@@ -709,14 +709,14 @@ suite('Extension Test Suite', () => {
       }
 
       // Set a workspace seed first
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
         42,
         vscode.ConfigurationTarget.Workspace
       );
 
-      await vscode.commands.executeCommand('patina.resetSeed');
+      await vscode.commands.executeCommand('glaze.resetSeed');
 
       // Get fresh config
       const inspection = config.inspect<number>('tint.seed');
@@ -729,29 +729,29 @@ suite('Extension Test Suite', () => {
   });
 
   suite('Command Registration (workspace)', () => {
-    test('patina.enableWorkspace command is registered', async () => {
+    test('glaze.enableWorkspace command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.enableWorkspace'));
+      assert.ok(commands.includes('glaze.enableWorkspace'));
     });
 
-    test('patina.disableWorkspace command is registered', async () => {
+    test('glaze.disableWorkspace command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.disableWorkspace'));
+      assert.ok(commands.includes('glaze.disableWorkspace'));
     });
 
-    test('patina.forceApply command is registered', async () => {
+    test('glaze.forceApply command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
-      assert.ok(commands.includes('patina.forceApply'));
+      assert.ok(commands.includes('glaze.forceApply'));
     });
   });
 
-  suite('patina.active marker', () => {
+  suite('glaze.active marker', () => {
     let originalColorCustomizations: unknown;
     let originalEnabled: boolean | undefined;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -761,8 +761,8 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
@@ -779,37 +779,37 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('patina.active exists after enable', async function () {
+    test('glaze.active exists after enable', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
       // Disable first so enableGlobally triggers a fresh apply
-      await vscode.commands.executeCommand('patina.disableGlobally');
-      await waitForPatinaColorsCleared();
+      await vscode.commands.executeCommand('glaze.disableGlobally');
+      await waitForGlazeColorsCleared();
 
-      await vscode.commands.executeCommand('patina.enableGlobally');
-      const colors = await waitForColorKey('patina.active');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
+      const colors = await waitForColorKey('glaze.active');
 
-      assert.ok('patina.active' in colors, 'should have patina.active marker');
+      assert.ok('glaze.active' in colors, 'should have glaze.active marker');
       assert.strictEqual(
-        colors['patina.active'],
+        colors['glaze.active'],
         '#ef5ec7',
         'marker should have expected value'
       );
     });
 
-    test('patina.active removed after disable', async function () {
+    test('glaze.active removed after disable', async function () {
       this.timeout(5000);
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
-      await vscode.commands.executeCommand('patina.disableGlobally');
-      await waitForPatinaColorsCleared();
+      await vscode.commands.executeCommand('glaze.disableGlobally');
+      await waitForGlazeColorsCleared();
 
       const config = vscode.workspace.getConfiguration();
       const colors = config.get<Record<string, string>>(
@@ -817,14 +817,14 @@ suite('Extension Test Suite', () => {
       );
       if (colors) {
         assert.ok(
-          !('patina.active' in colors),
-          'patina.active should be removed after disable'
+          !('glaze.active' in colors),
+          'glaze.active should be removed after disable'
         );
       }
     });
   });
 
-  suite('patina.enableWorkspace', () => {
+  suite('glaze.enableWorkspace', () => {
     let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
 
@@ -832,7 +832,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       const inspection = config.inspect<boolean>('enabled');
       originalEnabledWorkspace = inspection?.workspaceValue;
 
@@ -846,7 +846,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'enabled',
         originalEnabledWorkspace,
@@ -861,32 +861,32 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets patina.enabled at workspace scope to true', async function () {
+    test('sets glaze.enabled at workspace scope to true', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
       // First disable at workspace scope to ensure we're testing the change
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Workspace
       );
 
-      await vscode.commands.executeCommand('patina.enableWorkspace');
+      await vscode.commands.executeCommand('glaze.enableWorkspace');
 
       // Get fresh config after command
       const inspection = config.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         true,
-        'patina.enabled at workspace scope should be true'
+        'glaze.enabled at workspace scope should be true'
       );
     });
   });
 
-  suite('patina.disableWorkspace', () => {
+  suite('glaze.disableWorkspace', () => {
     let originalEnabledGlobal: boolean | undefined;
     let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
@@ -895,7 +895,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       const inspection = config.inspect<boolean>('enabled');
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
@@ -910,7 +910,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'enabled',
         originalEnabledGlobal,
@@ -930,27 +930,27 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('sets patina.enabled at workspace scope to false', async function () {
+    test('sets glaze.enabled at workspace scope to false', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
       // First enable at workspace scope to ensure we're testing the change
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Workspace
       );
 
-      await vscode.commands.executeCommand('patina.disableWorkspace');
+      await vscode.commands.executeCommand('glaze.disableWorkspace');
 
       // Get fresh config after command
       const inspection = config.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         false,
-        'patina.enabled at workspace scope should be false'
+        'glaze.enabled at workspace scope should be false'
       );
     });
 
@@ -970,14 +970,14 @@ suite('Extension Test Suite', () => {
       );
 
       // Enable via workspace override and wait for colors
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
       );
-      await vscode.commands.executeCommand('patina.enableWorkspace');
-      await waitForColorKey(PATINA_ACTIVE_KEY);
+      await vscode.commands.executeCommand('glaze.enableWorkspace');
+      await waitForColorKey(GLAZE_ACTIVE_KEY);
 
       // Replace colorCustomizations with managed keys but NO
       // marker, simulating a user or another tool owning them.
@@ -993,7 +993,7 @@ suite('Extension Test Suite', () => {
       await new Promise((resolve) => setTimeout(resolve, 300));
 
       // Disable via workspace command
-      await vscode.commands.executeCommand('patina.disableWorkspace');
+      await vscode.commands.executeCommand('glaze.disableWorkspace');
       await new Promise((resolve) => setTimeout(resolve, 400));
 
       const inspection = config.inspect<Record<string, string>>(
@@ -1016,8 +1016,8 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
@@ -1031,13 +1031,13 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
@@ -1058,26 +1058,26 @@ suite('Extension Test Suite', () => {
       }
 
       // Enable globally first
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
       // Set workspace override to false (simulates workspace disable)
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Workspace
       );
 
       // Wait for colors to be cleared
-      await waitForPatinaColorsCleared();
+      await waitForGlazeColorsCleared();
 
       // Verify workspace enabled override is false
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.workspaceValue,
         false,
-        'patina.enabled at workspace scope should be false'
+        'glaze.enabled at workspace scope should be false'
       );
     });
 
@@ -1088,13 +1088,13 @@ suite('Extension Test Suite', () => {
       }
 
       // Start with global disabled
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
@@ -1109,7 +1109,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Enable at workspace scope (overrides global disabled)
-      await vscode.commands.executeCommand('patina.enableWorkspace');
+      await vscode.commands.executeCommand('glaze.enableWorkspace');
 
       // Wait for colors to be applied
       const colors = await waitForColorCustomizations();
@@ -1122,7 +1122,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Verify global is still disabled
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       assert.strictEqual(
         inspection?.globalValue,
         false,
@@ -1136,7 +1136,7 @@ suite('Extension Test Suite', () => {
     });
   });
 
-  suite('patina.enabled config change listener', () => {
+  suite('glaze.enabled config change listener', () => {
     let originalEnabledGlobal: boolean | undefined;
     let originalEnabledWorkspace: boolean | undefined;
     let originalColorCustomizations: unknown;
@@ -1145,8 +1145,8 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
@@ -1160,13 +1160,13 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
@@ -1187,28 +1187,28 @@ suite('Extension Test Suite', () => {
       }
 
       // Enable via command first
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
       // Disable via config change (not command)
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
 
-      // Wait for Patina colors to be cleared
-      await waitForPatinaColorsCleared();
+      // Wait for Glaze colors to be cleared
+      await waitForGlazeColorsCleared();
 
-      // Verify no Patina keys remain
+      // Verify no Glaze keys remain
       const config = vscode.workspace.getConfiguration();
       const colors = config.get<Record<string, string>>(
         'workbench.colorCustomizations'
       );
       if (colors) {
         for (const key of Object.keys(colors)) {
-          assert.ok(!isPatinaKey(key), `Patina key ${key} should be removed`);
+          assert.ok(!isGlazeKey(key), `Glaze key ${key} should be removed`);
         }
       }
     });
@@ -1220,15 +1220,15 @@ suite('Extension Test Suite', () => {
       }
 
       // Start disabled
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
 
       // Clear any existing workspace enabled override
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
@@ -1243,7 +1243,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Enable via config change
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
@@ -1258,25 +1258,25 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('does not remove managed keys set without patina.active marker', async function () {
+    test('does not remove managed keys set without glaze.active marker', async function () {
       this.timeout(8000);
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
 
-      // Enable Patina and wait for it to apply colors
-      const patinaConfig2 = vscode.workspace.getConfiguration('patina');
-      await patinaConfig2.update(
+      // Enable Glaze and wait for it to apply colors
+      const glazeConfig2 = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig2.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig2.update(
+      await glazeConfig2.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
-      await waitForColorKey(PATINA_ACTIVE_KEY);
+      await waitForColorKey(GLAZE_ACTIVE_KEY);
 
       // Replace colorCustomizations with managed keys but NO
       // marker, simulating a user or another tool owning them.
@@ -1295,9 +1295,9 @@ suite('Extension Test Suite', () => {
       // tampered colors before we disable.
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      // Disable Patina — this triggers clearTintColors, which
+      // Disable Glaze — this triggers clearTintColors, which
       // must skip removal because it doesn't own the keys.
-      await patinaConfig2.update(
+      await glazeConfig2.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
@@ -1327,9 +1327,9 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
-      originalStatusBar = patinaConfig.get<boolean>('elements.statusBar');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalStatusBar = glazeConfig.get<boolean>('elements.statusBar');
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -1341,13 +1341,13 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'elements.statusBar',
         originalStatusBar,
         vscode.ConfigurationTarget.Global
@@ -1368,12 +1368,12 @@ suite('Extension Test Suite', () => {
       }
 
       // Disable first so enableGlobally triggers a fresh apply
-      await vscode.commands.executeCommand('patina.disableGlobally');
-      await waitForPatinaColorsCleared();
+      await vscode.commands.executeCommand('glaze.disableGlobally');
+      await waitForGlazeColorsCleared();
 
       // Start with statusBar disabled
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'elements.statusBar',
         false,
         vscode.ConfigurationTarget.Global
@@ -1381,7 +1381,7 @@ suite('Extension Test Suite', () => {
 
       // Enable globally — wait for colors WITHOUT statusBar keys,
       // since config event delivery order is not guaranteed.
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       let colors = await waitForColorKeyAbsent('statusBar.background');
 
       // Verify no statusBar keys
@@ -1391,7 +1391,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Enable statusBar element
-      await patinaConfig.update(
+      await glazeConfig.update(
         'elements.statusBar',
         true,
         vscode.ConfigurationTarget.Global
@@ -1420,9 +1420,9 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
-      originalSideBar = patinaConfig.get<boolean>('elements.sideBar');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalSideBar = glazeConfig.get<boolean>('elements.sideBar');
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -1434,13 +1434,13 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'elements.sideBar',
         originalSideBar,
         vscode.ConfigurationTarget.Global
@@ -1461,12 +1461,12 @@ suite('Extension Test Suite', () => {
       }
 
       // Disable first so enableGlobally triggers a fresh apply
-      await vscode.commands.executeCommand('patina.disableGlobally');
-      await waitForPatinaColorsCleared();
+      await vscode.commands.executeCommand('glaze.disableGlobally');
+      await waitForGlazeColorsCleared();
 
       // Start with sideBar disabled (default)
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'elements.sideBar',
         false,
         vscode.ConfigurationTarget.Global
@@ -1474,7 +1474,7 @@ suite('Extension Test Suite', () => {
 
       // Enable globally — wait for colors WITHOUT sideBar keys,
       // since config event delivery order is not guaranteed.
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       let colors = await waitForColorKeyAbsent('sideBar.background');
 
       // Verify no sideBar keys
@@ -1484,7 +1484,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Enable sideBar element
-      await patinaConfig.update(
+      await glazeConfig.update(
         'elements.sideBar',
         true,
         vscode.ConfigurationTarget.Global
@@ -1504,13 +1504,13 @@ suite('Extension Test Suite', () => {
     });
   });
 
-  suite('patina.forceApply', () => {
+  suite('glaze.forceApply', () => {
     let originalEnabled: boolean | undefined;
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -1520,8 +1520,8 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
@@ -1545,7 +1545,7 @@ suite('Extension Test Suite', () => {
       }
 
       // Enable and wait for colors
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
       // Simulate external modification: remove marker, keep managed keys
@@ -1555,7 +1555,7 @@ suite('Extension Test Suite', () => {
       );
       assert.ok(colors);
       const tampered = { ...colors };
-      delete tampered['patina.active'];
+      delete tampered['glaze.active'];
       await config.update(
         'workbench.colorCustomizations',
         tampered,
@@ -1563,11 +1563,11 @@ suite('Extension Test Suite', () => {
       );
 
       // Force apply should re-inject marker and re-apply
-      await vscode.commands.executeCommand('patina.forceApply');
-      const updated = await waitForColorKey('patina.active');
+      await vscode.commands.executeCommand('glaze.forceApply');
+      const updated = await waitForColorKey('glaze.active');
       assert.ok(updated);
       assert.strictEqual(
-        updated['patina.active'],
+        updated['glaze.active'],
         '#ef5ec7',
         'marker should be present after force apply'
       );
@@ -1584,17 +1584,17 @@ suite('Extension Test Suite', () => {
       }
 
       // Disable first so applyTint becomes a remove-tint no-op
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
 
-      // Wait for any debounced remove to clear Patina colors
-      await waitForPatinaColorsCleared();
+      // Wait for any debounced remove to clear Glaze colors
+      await waitForGlazeColorsCleared();
 
-      // Set colors to only non-Patina keys (empty would be
+      // Set colors to only non-Glaze keys (empty would be
       // overwritten by debounce races, so use a stable baseline)
       const config = vscode.workspace.getConfiguration();
       await config.update(
@@ -1603,7 +1603,7 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Workspace
       );
 
-      await vscode.commands.executeCommand('patina.forceApply');
+      await vscode.commands.executeCommand('glaze.forceApply');
 
       // Wait for debounced applyTint to settle
       await new Promise((r) => setTimeout(r, 500));
@@ -1612,14 +1612,11 @@ suite('Extension Test Suite', () => {
         'workbench.colorCustomizations'
       );
       // forceApply only injects marker into existing colors; since
-      // patina is disabled the debounced apply is a no-op. No Patina
+      // glaze is disabled the debounced apply is a no-op. No Glaze
       // keys should be present.
       if (colors) {
         for (const key of Object.keys(colors)) {
-          assert.ok(
-            !isPatinaKey(key),
-            `Patina key ${key} should not be present`
-          );
+          assert.ok(!isGlazeKey(key), `Glaze key ${key} should not be present`);
         }
       }
     });
@@ -1630,21 +1627,21 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
-      // Enable patina
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      // Enable glaze
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
       );
 
-      await vscode.commands.executeCommand('patina.forceApply');
+      await vscode.commands.executeCommand('glaze.forceApply');
 
-      const colors = await waitForColorKey(PATINA_ACTIVE_KEY);
+      const colors = await waitForColorKey(GLAZE_ACTIVE_KEY);
       assert.strictEqual(
-        colors[PATINA_ACTIVE_KEY],
+        colors[GLAZE_ACTIVE_KEY],
         '#ef5ec7',
-        'patina.active should have the correct marker value'
+        'glaze.active should have the correct marker value'
       );
     });
   });
@@ -1658,8 +1655,8 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      const inspection = patinaConfig.inspect<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      const inspection = glazeConfig.inspect<boolean>('enabled');
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
@@ -1673,13 +1670,13 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabledGlobal,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         originalEnabledWorkspace,
         vscode.ConfigurationTarget.Workspace
@@ -1700,31 +1697,31 @@ suite('Extension Test Suite', () => {
       }
 
       // Start from a clean disabled state
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
-      await waitForPatinaColorsCleared();
+      await waitForGlazeColorsCleared();
 
       // Rapid toggle: enable → disable → enable
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         false,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'enabled',
         true,
         vscode.ConfigurationTarget.Global
@@ -1737,10 +1734,7 @@ suite('Extension Test Suite', () => {
         'titleBar.activeBackground' in colors,
         'should have titleBar.activeBackground'
       );
-      assert.ok(
-        PATINA_ACTIVE_KEY in colors,
-        'should have patina.active marker'
-      );
+      assert.ok(GLAZE_ACTIVE_KEY in colors, 'should have glaze.active marker');
     });
   });
 
@@ -1749,8 +1743,8 @@ suite('Extension Test Suite', () => {
     let originalColorCustomizations: unknown;
 
     suiteSetup(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -1760,8 +1754,8 @@ suite('Extension Test Suite', () => {
     });
 
     suiteTeardown(async () => {
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
@@ -1785,7 +1779,7 @@ suite('Extension Test Suite', () => {
       }
 
       // Enable and wait for initial colors
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
       // Simulate external modification: remove marker
@@ -1795,7 +1789,7 @@ suite('Extension Test Suite', () => {
       );
       assert.ok(colors);
       const tampered = { ...colors };
-      delete tampered[PATINA_ACTIVE_KEY];
+      delete tampered[GLAZE_ACTIVE_KEY];
       await config.update(
         'workbench.colorCustomizations',
         tampered,
@@ -1804,12 +1798,12 @@ suite('Extension Test Suite', () => {
 
       // Immediately fire forceApply — should resolve correctly
       // even if a config-change-triggered reconcile is pending
-      await vscode.commands.executeCommand('patina.forceApply');
+      await vscode.commands.executeCommand('glaze.forceApply');
 
-      const updated = await waitForColorKey(PATINA_ACTIVE_KEY);
+      const updated = await waitForColorKey(GLAZE_ACTIVE_KEY);
       assert.ok(updated, 'colorCustomizations should be set');
       assert.ok(
-        PATINA_ACTIVE_KEY in updated,
+        GLAZE_ACTIVE_KEY in updated,
         'marker should be present after forceApply'
       );
       assert.ok(
@@ -1828,9 +1822,9 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      originalEnabled = patinaConfig.get<boolean>('enabled');
-      originalSeed = patinaConfig.get<number>('tint.seed');
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalSeed = glazeConfig.get<number>('tint.seed');
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -1842,13 +1836,13 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'enabled',
         originalEnabled,
         vscode.ConfigurationTarget.Global
       );
-      await patinaConfig.update(
+      await glazeConfig.update(
         'tint.seed',
         originalSeed,
         vscode.ConfigurationTarget.Global
@@ -1869,23 +1863,23 @@ suite('Extension Test Suite', () => {
       }
 
       // Disable first so enableGlobally triggers a fresh apply
-      await vscode.commands.executeCommand('patina.disableGlobally');
-      await waitForPatinaColorsCleared();
+      await vscode.commands.executeCommand('glaze.disableGlobally');
+      await waitForGlazeColorsCleared();
 
       // Set seed to 0 and enable
-      const patinaConfig = vscode.workspace.getConfiguration('patina');
-      await patinaConfig.update(
+      const glazeConfig = vscode.workspace.getConfiguration('glaze');
+      await glazeConfig.update(
         'tint.seed',
         0,
         vscode.ConfigurationTarget.Global
       );
-      await vscode.commands.executeCommand('patina.enableGlobally');
+      await vscode.commands.executeCommand('glaze.enableGlobally');
 
       const initialColors = await waitForColorCustomizations();
       const initialTitleBar = initialColors['titleBar.activeBackground'];
 
       // Change seed
-      await patinaConfig.update(
+      await glazeConfig.update(
         'tint.seed',
         42,
         vscode.ConfigurationTarget.Global

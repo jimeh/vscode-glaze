@@ -7,10 +7,10 @@ export function registerUiCommands(
   extensionUri: vscode.Uri
 ): vscode.Disposable[] {
   return [
-    vscode.commands.registerCommand('patina.showColorPreview', () => {
+    vscode.commands.registerCommand('glaze.showColorPreview', () => {
       PalettePreviewPanel.show(extensionUri);
     }),
-    vscode.commands.registerCommand('patina.showStatus', () => {
+    vscode.commands.registerCommand('glaze.showStatus', () => {
       StatusPanel.show(extensionUri);
     }),
   ];

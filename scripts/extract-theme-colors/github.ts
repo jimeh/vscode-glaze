@@ -27,7 +27,7 @@ export async function fetchLatestVSCodeRelease(): Promise<GitHubRelease> {
   const response = await fetch(url, {
     headers: {
       Accept: 'application/vnd.github.v3+json',
-      'User-Agent': 'vscode-patina-theme-extractor',
+      'User-Agent': 'vscode-glaze-theme-extractor',
     },
     signal: AbortSignal.timeout(CONFIG.requestTimeout),
   });
@@ -72,7 +72,7 @@ export async function downloadVSCodeSource(tag: string): Promise<Buffer> {
   const url = `https://github.com/${VSCODE_REPO}/archive/refs/tags/${tag}.zip`;
   const response = await fetch(url, {
     headers: {
-      'User-Agent': 'vscode-patina-theme-extractor',
+      'User-Agent': 'vscode-glaze-theme-extractor',
     },
     signal: AbortSignal.timeout(60000), // 60s timeout for large download
   });

@@ -4,7 +4,7 @@ import type { CachedTintState } from './types';
 const DEFAULT_STATE: Readonly<CachedTintState> = {
   workspaceIdentifier: undefined,
   tintColors: undefined,
-  customizedOutsidePatina: false,
+  customizedOutsideGlaze: false,
   lastError: undefined,
 };
 

@@ -11,6 +11,6 @@ export interface ReconcileOptions {
 export interface CachedTintState {
   workspaceIdentifier: string | undefined;
   tintColors: TintColors | undefined;
-  customizedOutsidePatina: boolean;
+  customizedOutsideGlaze: boolean;
   lastError?: string | undefined;
 }

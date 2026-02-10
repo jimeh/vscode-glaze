@@ -21,7 +21,7 @@ export interface TintColors {
  * State information for the status bar item.
  */
 export interface StatusBarState {
-  /** Whether Patina is globally enabled. */
+  /** Whether Glaze is globally enabled. */
   readonly globalEnabled: boolean;
 
   /** Workspace-level enabled override (undefined = inherits global). */
@@ -57,8 +57,8 @@ export interface StatusBarState {
   /** Tint colors for tooltip display. */
   readonly tintColors: TintColors | undefined;
 
-  /** Whether managed colors were modified outside of Patina. */
-  readonly customizedOutsidePatina: boolean;
+  /** Whether managed colors were modified outside of Glaze. */
+  readonly customizedOutsideGlaze: boolean;
 
   /** Error message from the last failed apply/remove operation. */
   readonly lastError?: string | undefined;

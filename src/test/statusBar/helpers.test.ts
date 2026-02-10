@@ -150,7 +150,7 @@ suite('colorCopyLink', () => {
   test('contains copy icon and command link', () => {
     const result = colorCopyLink('#ff0000');
     assert.ok(result.includes('[$(copy)]'));
-    assert.ok(result.includes('command:patina.copyColor'));
+    assert.ok(result.includes('command:glaze.copyColor'));
   });
 
   test('includes encoded hex in command args', () => {
@@ -181,7 +181,7 @@ suite('colorTableRow', () => {
   test('includes copy command link', () => {
     const result = colorTableRow('Base', '#ff0000');
     assert.ok(result.includes('[$(copy)]'));
-    assert.ok(result.includes('command:patina.copyColor'));
+    assert.ok(result.includes('command:glaze.copyColor'));
   });
 });
 

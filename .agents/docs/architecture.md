@@ -12,7 +12,7 @@
    remote authority for uniqueness. Remote home directory is inferred
    heuristically (grep `inferRemoteHome`) or configured via setting.
 
-3. **config** — Reads Patina settings from VSCode configuration API
+3. **config** — Reads Glaze settings from VSCode configuration API
    (grep `config.get<` or `config.inspect<`). Six config groups:
    workspace identifier, tint, elements, theme, status bar, enable/disable.
 
@@ -27,19 +27,19 @@
 5. **theme** — Theme detection and background color lookup:
    - Theme context: type (dark/light/hcDark/hcLight), name, colors
      (grep `ThemeContext`, `getThemeInfo`)
-   - Color key metadata: `COLOR_KEY_DEFINITIONS`, `PATINA_MANAGED_KEYS`
+   - Color key metadata: `COLOR_KEY_DEFINITIONS`, `GLAZE_MANAGED_KEYS`
      (single source of truth for all managed color keys)
    - `generated/` dirs contain auto-generated theme data (do not edit)
 
 6. **settings** — Writes color customizations to VSCode settings:
-   - Merges Patina colors with existing user customizations
+   - Merges Glaze colors with existing user customizations
      (grep `mergeColorCustomizations`)
-   - Ownership marker `patina.active` tracks whether Patina owns settings
-     (grep `PATINA_ACTIVE_KEY`)
+   - Ownership marker `glaze.active` tracks whether Glaze owns settings
+     (grep `GLAZE_ACTIVE_KEY`)
 
 7. **preview** — Palette preview webview (colors, style/harmony comparisons)
 
-8. **status** — Status info webview (current Patina state)
+8. **status** — Status info webview (current Glaze state)
 
 9. **statusBar** — Status bar item (paintcan icon, QuickPick menu)
 
@@ -63,19 +63,19 @@
   from the base hue to ensure all elements blend consistently
 - Colors are written to `.vscode/settings.json` via
   `workbench.colorCustomizations`
-- Ownership marker (`patina.active`) detects external modifications to
-  Patina-managed settings
+- Ownership marker (`glaze.active`) detects external modifications to
+  Glaze-managed settings
 
 ## Finding Things
 
 - Modules: barrel exports — grep for `index.ts` re-exports
 - Config reading: grep `config.get<` or `config.inspect<`
 - Color gen: grep `computeTint`, `computeBaseHue`, `blendDirectedOklch`
-- Color key metadata: grep `COLOR_KEY_DEFINITIONS`, `PATINA_MANAGED_KEYS`
+- Color key metadata: grep `COLOR_KEY_DEFINITIONS`, `GLAZE_MANAGED_KEYS`
 - Color styles: grep `COLOR_STYLE_DEFINITIONS`, `StyleConfig`,
   `StyleResolver`
 - Color harmonies: grep `COLOR_HARMONY_DEFINITIONS`, `HARMONY_CONFIGS`,
   `HarmonyConfig`
 - Theme lookup: grep `getThemeInfo`
 - Settings mutation: grep `mergeColorCustomizations`
-- Ownership marker: grep `PATINA_ACTIVE_KEY`
+- Ownership marker: grep `GLAZE_ACTIVE_KEY`

@@ -6,7 +6,7 @@ export {
   COLOR_KEY_DEFINITIONS,
   ALL_THEME_COLOR_KEYS,
   OPTIONAL_THEME_COLOR_KEYS,
-  PATINA_MANAGED_KEYS,
+  GLAZE_MANAGED_KEYS,
   FOREGROUND_KEYS,
   EXCLUDE_WHEN_UNDEFINED_KEYS,
   PALETTE_KEY_TO_COLOR_KEY,
@@ -16,6 +16,6 @@ export type {
   ColorType,
   ThemeColorKey,
   PaletteKey,
-  PatinaColorPalette,
+  GlazeColorPalette,
   ThemeColors,
 } from './colorKeys';
