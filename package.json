@@ -110,6 +110,10 @@
         "title": "Glaze: Force Apply Colors"
       },
       {
+        "command": "glaze.retryApply",
+        "title": "Glaze: Retry Apply Colors"
+      },
+      {
         "command": "glaze.setBaseHueOverride",
         "title": "Glaze: Set Base Hue Override"
       },

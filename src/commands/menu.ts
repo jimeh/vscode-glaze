@@ -10,7 +10,7 @@ import { getCachedState } from '../reconcile';
 
 // ── Types ──────────────────────────────────────────────────────
 
-interface MenuItem {
+export interface MenuItem {
   readonly label: string;
   readonly description: string;
   readonly command: string;
@@ -18,23 +18,24 @@ interface MenuItem {
   readonly when?: () => boolean;
 }
 
-interface MenuGroup {
+export interface MenuGroup {
   readonly separator: string;
   readonly items: readonly MenuItem[];
 }
 
-interface ActionableQuickPickItem extends vscode.QuickPickItem {
+export interface ActionableQuickPickItem extends vscode.QuickPickItem {
   readonly command?: string;
 }
 
 // ── Menu definition ────────────────────────────────────────────
 
-function buildMenuGroups(): readonly MenuGroup[] {
+/** Exported for testing only. */
+export function _buildMenuGroups(): readonly MenuGroup[] {
   const { seed } = getTintConfig();
   const baseHueOverride = getBaseHueOverride();
   const effectivelyEnabled = isEnabledForWorkspace();
   const wsOverride = getWorkspaceEnabledOverride();
-  const { customizedOutsideGlaze } = getCachedState();
+  const { customizedOutsideGlaze, lastError } = getCachedState();
 
   return [
     {
@@ -45,6 +46,12 @@ function buildMenuGroups(): readonly MenuGroup[] {
           description: 'Reclaim ownership of color customizations',
           command: 'glaze.forceApply',
           when: () => effectivelyEnabled && customizedOutsideGlaze,
+        },
+        {
+          label: '$(sync) Retry Apply',
+          description: 'Retry updating workspace color customizations',
+          command: 'glaze.retryApply',
+          when: () => lastError !== undefined,
         },
         {
           label: '$(check) Enable for Workspace',
@@ -71,6 +78,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () =>
             effectivelyEnabled &&
             !customizedOutsideGlaze &&
+            !lastError &&
             baseHueOverride === null,
         },
         {
@@ -80,6 +88,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () =>
             effectivelyEnabled &&
             !customizedOutsideGlaze &&
+            !lastError &&
             seed !== 0 &&
             baseHueOverride === null,
         },
@@ -90,7 +99,8 @@ function buildMenuGroups(): readonly MenuGroup[] {
               ? `Currently ${baseHueOverride}°`
               : 'Pin a specific hue for this workspace',
           command: 'glaze.setBaseHueOverride',
-          when: () => effectivelyEnabled && !customizedOutsideGlaze,
+          when: () =>
+            effectivelyEnabled && !customizedOutsideGlaze && !lastError,
         },
         {
           label: '$(discard) Clear Base Hue Override',
@@ -99,6 +109,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () =>
             effectivelyEnabled &&
             !customizedOutsideGlaze &&
+            !lastError &&
             baseHueOverride !== null,
         },
       ],
@@ -125,7 +136,8 @@ function buildMenuGroups(): readonly MenuGroup[] {
 
 // ── QuickPick builder ──────────────────────────────────────────
 
-function buildQuickPickItems(
+/** Exported for testing only. */
+export function _buildQuickPickItems(
   groups: readonly MenuGroup[]
 ): ActionableQuickPickItem[] {
   const items: ActionableQuickPickItem[] = [];
@@ -157,12 +169,13 @@ function buildQuickPickItems(
 export function registerMenuCommands(): vscode.Disposable[] {
   return [
     vscode.commands.registerCommand('glaze.quickMenu', async () => {
-      const groups = buildMenuGroups();
-      const items = buildQuickPickItems(groups);
+      const groups = _buildMenuGroups();
+      const items = _buildQuickPickItems(groups);
 
-      const selected = await vscode.window.showQuickPick(items, {
-        placeHolder: 'Glaze',
-      });
+      const selected =
+        await vscode.window.showQuickPick<ActionableQuickPickItem>(items, {
+          placeHolder: 'Glaze',
+        });
       if (selected?.command) {
         await vscode.commands.executeCommand(selected.command);
       }

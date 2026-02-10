@@ -618,6 +618,10 @@ suite('StatusBarManager', () => {
         tip.includes('Unable to write settings'),
         `tooltip should include error message, got: ${tip}`
       );
+      assert.ok(
+        tip.includes('command:glaze.retryApply'),
+        `tooltip should include retry link, got: ${tip}`
+      );
     });
 
     test('error takes priority over customized warning', async () => {
@@ -823,6 +827,7 @@ suite('StatusBarManager', () => {
       assert.deepStrictEqual(trusted.enabledCommands, [
         'glaze.copyColor',
         'glaze.forceApply',
+        'glaze.retryApply',
         'glaze.showStatus',
         'glaze.showColorPreview',
       ]);
@@ -945,6 +950,62 @@ suite('StatusBarManager', () => {
       assert.ok(
         !tip.includes('command:glaze.showColorPreview'),
         `tooltip should not include color preview link without tintColors, got: ${tip}`
+      );
+    });
+
+    test('includes retry link when lastError is set', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        baseHueOverride: null,
+        hasActiveTargets: true,
+        tintColors: undefined,
+        customizedOutsideGlaze: false,
+        lastError: 'Write failed',
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        tip.includes('command:glaze.retryApply'),
+        `tooltip should include retry link when error exists, got: ${tip}`
+      );
+    });
+
+    test('omits retry link when lastError is undefined', async () => {
+      await enableStatusBar();
+
+      const state: StatusBarState = {
+        globalEnabled: true,
+        workspaceEnabledOverride: undefined,
+        workspaceIdentifier: 'test-workspace',
+        themeName: 'One Dark Pro',
+        tintType: 'dark',
+        themeAutoDetected: true,
+        colorStyle: 'pastel',
+        colorHarmony: 'uniform',
+        seed: 0,
+        baseHueOverride: null,
+        hasActiveTargets: true,
+        tintColors: undefined,
+        customizedOutsideGlaze: false,
+        lastError: undefined,
+      };
+
+      manager.update(state);
+      const tip = tooltipValue();
+      assert.ok(
+        !tip.includes('command:glaze.retryApply'),
+        `tooltip should not include retry link without error, got: ${tip}`
       );
     });
   });

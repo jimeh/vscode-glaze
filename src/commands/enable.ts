@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { setEnabledForWorkspace } from '../config';
 import { requestReconcile } from '../reconcile';
 
-/** Register enable/disable and force-apply commands. */
+/** Register enable/disable and apply/retry commands. */
 export function registerEnableCommands(): vscode.Disposable[] {
   return [
     vscode.commands.registerCommand('glaze.enableGlobally', async () => {
@@ -28,6 +28,9 @@ export function registerEnableCommands(): vscode.Disposable[] {
     }),
     vscode.commands.registerCommand('glaze.forceApply', () => {
       requestReconcile({ force: true });
+    }),
+    vscode.commands.registerCommand('glaze.retryApply', () => {
+      requestReconcile();
     }),
   ];
 }
