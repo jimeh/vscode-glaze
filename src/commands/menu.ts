@@ -47,7 +47,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () => effectivelyEnabled && customizedOutsideGlaze,
         },
         {
-          label: '$(refresh) Retry Apply',
+          label: '$(sync) Retry Apply',
           description: 'Retry updating workspace color customizations',
           command: 'glaze.retryApply',
           when: () => lastError !== undefined,
@@ -77,6 +77,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () =>
             effectivelyEnabled &&
             !customizedOutsideGlaze &&
+            !lastError &&
             baseHueOverride === null,
         },
         {
@@ -86,6 +87,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () =>
             effectivelyEnabled &&
             !customizedOutsideGlaze &&
+            !lastError &&
             seed !== 0 &&
             baseHueOverride === null,
         },
@@ -96,7 +98,8 @@ function buildMenuGroups(): readonly MenuGroup[] {
               ? `Currently ${baseHueOverride}°`
               : 'Pin a specific hue for this workspace',
           command: 'glaze.setBaseHueOverride',
-          when: () => effectivelyEnabled && !customizedOutsideGlaze,
+          when: () =>
+            effectivelyEnabled && !customizedOutsideGlaze && !lastError,
         },
         {
           label: '$(discard) Clear Base Hue Override',
@@ -105,6 +108,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
           when: () =>
             effectivelyEnabled &&
             !customizedOutsideGlaze &&
+            !lastError &&
             baseHueOverride !== null,
         },
       ],
