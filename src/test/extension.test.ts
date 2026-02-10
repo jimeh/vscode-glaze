@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import { GLAZE_ACTIVE_KEY } from '../settings';
+import { GLAZE_ACTIVE_KEY, GLAZE_ACTIVE_VALUE } from '../settings';
 
 /**
  * Polls until a condition is met or timeout is reached.
@@ -24,15 +24,15 @@ async function pollUntil(
 /**
  * Gets current colorCustomizations from config.
  */
-function getColorCustomizations(): Record<string, string> | undefined {
+function getColorCustomizations(): Record<string, unknown> | undefined {
   const config = vscode.workspace.getConfiguration();
-  return config.get<Record<string, string>>('workbench.colorCustomizations');
+  return config.get<Record<string, unknown>>('workbench.colorCustomizations');
 }
 
 /**
- * Checks if a key is a Glaze-managed color key.
+ * Checks if a key is a Glaze-managed color key (root-level).
  */
-function isGlazeKey(key: string): boolean {
+function isRootGlazeKey(key: string): boolean {
   return (
     key === GLAZE_ACTIVE_KEY ||
     key.startsWith('titleBar.') ||
@@ -44,13 +44,37 @@ function isGlazeKey(key: string): boolean {
 }
 
 /**
+ * Find the Glaze-owned theme block in colorCustomizations.
+ * A Glaze-owned block is a `[Theme Name]` block containing
+ * the `glaze.active` marker.
+ */
+function findGlazeBlock(
+  colors: Record<string, unknown>
+): Record<string, string> | undefined {
+  for (const [key, value] of Object.entries(colors)) {
+    if (
+      key.startsWith('[') &&
+      key.endsWith(']') &&
+      typeof value === 'object' &&
+      value !== null
+    ) {
+      const block = value as Record<string, unknown>;
+      if (block[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE) {
+        return block as Record<string, string>;
+      }
+    }
+  }
+  return undefined;
+}
+
+/**
  * Waits for colorCustomizations to be set, polling with timeout.
  */
 async function waitForColorCustomizations(
   timeoutMs = 4000,
   intervalMs = 50
-): Promise<Record<string, string>> {
-  let colors: Record<string, string> | undefined;
+): Promise<Record<string, unknown>> {
+  let colors: Record<string, unknown> | undefined;
   await pollUntil(
     () => {
       colors = getColorCustomizations();
@@ -64,55 +88,63 @@ async function waitForColorCustomizations(
 }
 
 /**
- * Waits for a specific key to appear in colorCustomizations.
+ * Waits for a specific key to appear inside the Glaze-owned theme
+ * block in colorCustomizations.
  */
-async function waitForColorKey(
+async function waitForGlazeBlockKey(
   key: string,
   timeoutMs = 4000,
   intervalMs = 50
 ): Promise<Record<string, string>> {
-  let colors: Record<string, string> | undefined;
+  let block: Record<string, string> | undefined;
   await pollUntil(
     () => {
-      colors = getColorCustomizations();
-      return colors !== undefined && key in colors;
+      const colors = getColorCustomizations();
+      if (!colors) {
+        return false;
+      }
+      block = findGlazeBlock(colors);
+      return block !== undefined && key in block;
     },
-    `Timeout waiting for colorCustomizations key: ${key}`,
+    `Timeout waiting for Glaze theme block key: ${key}`,
     timeoutMs,
     intervalMs
   );
-  return colors!;
+  return block!;
 }
 
 /**
- * Waits for colorCustomizations to exist with at least one key,
- * but WITHOUT a specific key present. Useful for waiting until a
- * debounced reconcile has settled after disabling an element.
+ * Waits for the Glaze-owned theme block to exist with at least one
+ * key, but WITHOUT a specific key present. Useful for waiting until
+ * a debounced reconcile has settled after disabling an element.
  */
-async function waitForColorKeyAbsent(
+async function waitForGlazeBlockKeyAbsent(
   key: string,
   timeoutMs = 4000,
   intervalMs = 50
 ): Promise<Record<string, string>> {
-  let colors: Record<string, string> | undefined;
+  let block: Record<string, string> | undefined;
   await pollUntil(
     () => {
-      colors = getColorCustomizations();
+      const colors = getColorCustomizations();
+      if (!colors) {
+        return false;
+      }
+      block = findGlazeBlock(colors);
       return (
-        colors !== undefined &&
-        Object.keys(colors).length > 0 &&
-        !(key in colors)
+        block !== undefined && Object.keys(block).length > 0 && !(key in block)
       );
     },
-    `Timeout waiting for colorCustomizations without key: ${key}`,
+    `Timeout waiting for Glaze theme block without key: ${key}`,
     timeoutMs,
     intervalMs
   );
-  return colors!;
+  return block!;
 }
 
 /**
- * Waits for colorCustomizations to contain only non-Glaze keys.
+ * Waits for colorCustomizations to contain no Glaze-owned content:
+ * no root-level Glaze keys, and no Glaze-owned theme blocks.
  */
 async function waitForGlazeColorsCleared(
   timeoutMs = 4000,
@@ -124,7 +156,15 @@ async function waitForGlazeColorsCleared(
       if (!colors) {
         return true;
       }
-      return !Object.keys(colors).some(isGlazeKey);
+      // Check root-level Glaze keys
+      if (Object.keys(colors).some(isRootGlazeKey)) {
+        return false;
+      }
+      // Check for Glaze-owned theme blocks
+      if (findGlazeBlock(colors)) {
+        return false;
+      }
+      return true;
     },
     'Timeout waiting for Glaze colors to be cleared',
     timeoutMs,
@@ -247,7 +287,7 @@ suite('Extension Test Suite', () => {
       if (inspection?.workspaceValue) {
         for (const key of Object.keys(inspection.workspaceValue)) {
           assert.ok(
-            !isGlazeKey(key),
+            !isRootGlazeKey(key),
             `Glaze key ${key} should not be present when disabled`
           );
         }
@@ -323,12 +363,12 @@ suite('Extension Test Suite', () => {
 
       await vscode.commands.executeCommand('glaze.enableGlobally');
 
-      // Wait for the specific key we assert on
-      const colors = await waitForColorKey('titleBar.activeBackground');
+      // Wait for the specific key in the Glaze theme block
+      const block = await waitForGlazeBlockKey('titleBar.activeBackground');
 
-      assert.ok(colors, 'colorCustomizations should be set');
+      assert.ok(block, 'Glaze theme block should be set');
       assert.ok(
-        'titleBar.activeBackground' in colors,
+        'titleBar.activeBackground' in block,
         'should have titleBar.activeBackground'
       );
     });
@@ -349,11 +389,11 @@ suite('Extension Test Suite', () => {
 
       await vscode.commands.executeCommand('glaze.enableGlobally');
 
-      // Wait for the specific key we need for assertions
-      const colors = await waitForColorKey('titleBar.activeBackground');
+      // Wait for the Glaze theme block with managed keys
+      const block = await waitForGlazeBlockKey('titleBar.activeBackground');
 
       const hexPattern = /^#[0-9a-f]{6}$/i;
-      for (const [key, value] of Object.entries(colors ?? {})) {
+      for (const [key, value] of Object.entries(block ?? {})) {
         if (
           key.startsWith('titleBar.') ||
           key.startsWith('statusBar.') ||
@@ -446,15 +486,25 @@ suite('Extension Test Suite', () => {
       // Wait for Glaze colors to be cleared
       await waitForGlazeColorsCleared();
 
-      // Verify no Glaze keys remain
+      // Verify no Glaze content remains
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get<Record<string, string>>(
+      const colors = config.get<Record<string, unknown>>(
         'workbench.colorCustomizations'
       );
       if (colors) {
+        // No root-level Glaze keys
         for (const key of Object.keys(colors)) {
-          assert.ok(!isGlazeKey(key), `Glaze key ${key} should be removed`);
+          assert.ok(
+            !isRootGlazeKey(key),
+            `Root Glaze key ${key} should be removed`
+          );
         }
+        // No Glaze-owned theme blocks
+        assert.strictEqual(
+          findGlazeBlock(colors),
+          undefined,
+          'no Glaze-owned theme block should remain'
+        );
       }
     });
 
@@ -483,7 +533,7 @@ suite('Extension Test Suite', () => {
 
       // Enable Glaze via command and wait for colors
       await vscode.commands.executeCommand('glaze.enableGlobally');
-      await waitForColorKey(GLAZE_ACTIVE_KEY);
+      await waitForGlazeBlockKey(GLAZE_ACTIVE_KEY);
 
       // Replace colorCustomizations with managed keys but NO
       // marker, simulating a user or another tool owning them.
@@ -572,7 +622,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Poll until colors actually differ from initial state
-      let newColors: Record<string, string> | undefined;
+      let newColors: Record<string, unknown> | undefined;
       await pollUntil(() => {
         newColors = getColorCustomizations();
         return (
@@ -779,7 +829,7 @@ suite('Extension Test Suite', () => {
       );
     });
 
-    test('glaze.active exists after enable', async function () {
+    test('glaze.active exists in theme block after enable', async function () {
       if (!vscode.workspace.workspaceFolders?.length) {
         return this.skip();
       }
@@ -789,11 +839,14 @@ suite('Extension Test Suite', () => {
       await waitForGlazeColorsCleared();
 
       await vscode.commands.executeCommand('glaze.enableGlobally');
-      const colors = await waitForColorKey('glaze.active');
+      const block = await waitForGlazeBlockKey('glaze.active');
 
-      assert.ok('glaze.active' in colors, 'should have glaze.active marker');
+      assert.ok(
+        'glaze.active' in block,
+        'should have glaze.active marker in theme block'
+      );
       assert.strictEqual(
-        colors['glaze.active'],
+        block['glaze.active'],
         '#ef5ec7',
         'marker should have expected value'
       );
@@ -812,13 +865,20 @@ suite('Extension Test Suite', () => {
       await waitForGlazeColorsCleared();
 
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get<Record<string, string>>(
+      const colors = config.get<Record<string, unknown>>(
         'workbench.colorCustomizations'
       );
       if (colors) {
+        // No root-level marker
         assert.ok(
           !('glaze.active' in colors),
-          'glaze.active should be removed after disable'
+          'glaze.active should not be at root after disable'
+        );
+        // No Glaze-owned theme block
+        assert.strictEqual(
+          findGlazeBlock(colors),
+          undefined,
+          'no Glaze-owned theme block should remain after disable'
         );
       }
     });
@@ -977,7 +1037,7 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
       await vscode.commands.executeCommand('glaze.enableWorkspace');
-      await waitForColorKey(GLAZE_ACTIVE_KEY);
+      await waitForGlazeBlockKey(GLAZE_ACTIVE_KEY);
 
       // Replace colorCustomizations with managed keys but NO
       // marker, simulating a user or another tool owning them.
@@ -1111,14 +1171,14 @@ suite('Extension Test Suite', () => {
       // Enable at workspace scope (overrides global disabled)
       await vscode.commands.executeCommand('glaze.enableWorkspace');
 
-      // Wait for colors to be applied
-      const colors = await waitForColorCustomizations();
+      // Wait for Glaze theme block with colors
+      const block = await waitForGlazeBlockKey('titleBar.activeBackground');
 
-      // Verify colors were applied
-      assert.ok(colors, 'colorCustomizations should be set');
+      // Verify colors were applied inside theme block
+      assert.ok(block, 'Glaze theme block should be set');
       assert.ok(
-        'titleBar.activeBackground' in colors,
-        'should have titleBar.activeBackground'
+        'titleBar.activeBackground' in block,
+        'should have titleBar.activeBackground in theme block'
       );
 
       // Verify global is still disabled
@@ -1201,15 +1261,23 @@ suite('Extension Test Suite', () => {
       // Wait for Glaze colors to be cleared
       await waitForGlazeColorsCleared();
 
-      // Verify no Glaze keys remain
+      // Verify no Glaze content remains
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get<Record<string, string>>(
+      const colors = config.get<Record<string, unknown>>(
         'workbench.colorCustomizations'
       );
       if (colors) {
         for (const key of Object.keys(colors)) {
-          assert.ok(!isGlazeKey(key), `Glaze key ${key} should be removed`);
+          assert.ok(
+            !isRootGlazeKey(key),
+            `Root Glaze key ${key} should be removed`
+          );
         }
+        assert.strictEqual(
+          findGlazeBlock(colors),
+          undefined,
+          'no Glaze-owned theme block should remain'
+        );
       }
     });
 
@@ -1249,12 +1317,12 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Wait for colors to be applied
-      const colors = await waitForColorCustomizations();
-      assert.ok(colors, 'colorCustomizations should be set');
+      // Wait for Glaze theme block with colors
+      const block = await waitForGlazeBlockKey('titleBar.activeBackground');
+      assert.ok(block, 'Glaze theme block should be set');
       assert.ok(
-        'titleBar.activeBackground' in colors,
-        'should have titleBar.activeBackground'
+        'titleBar.activeBackground' in block,
+        'should have titleBar.activeBackground in theme block'
       );
     });
 
@@ -1276,7 +1344,7 @@ suite('Extension Test Suite', () => {
         undefined,
         vscode.ConfigurationTarget.Workspace
       );
-      await waitForColorKey(GLAZE_ACTIVE_KEY);
+      await waitForGlazeBlockKey(GLAZE_ACTIVE_KEY);
 
       // Replace colorCustomizations with managed keys but NO
       // marker, simulating a user or another tool owning them.
@@ -1379,14 +1447,14 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Enable globally — wait for colors WITHOUT statusBar keys,
+      // Enable globally — wait for Glaze block WITHOUT statusBar keys,
       // since config event delivery order is not guaranteed.
       await vscode.commands.executeCommand('glaze.enableGlobally');
-      let colors = await waitForColorKeyAbsent('statusBar.background');
+      let block = await waitForGlazeBlockKeyAbsent('statusBar.background');
 
       // Verify no statusBar keys
       assert.ok(
-        !('statusBar.background' in colors),
+        !('statusBar.background' in block),
         'should not have statusBar.background initially'
       );
 
@@ -1397,15 +1465,15 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Poll until statusBar keys appear
-      colors = await waitForColorKey('statusBar.background');
+      // Poll until statusBar keys appear in the Glaze block
+      block = await waitForGlazeBlockKey('statusBar.background');
 
       assert.ok(
-        'statusBar.background' in colors,
+        'statusBar.background' in block,
         'should have statusBar.background after enabling'
       );
       assert.ok(
-        'statusBar.foreground' in colors,
+        'statusBar.foreground' in block,
         'should have statusBar.foreground after enabling'
       );
     });
@@ -1472,14 +1540,14 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Enable globally — wait for colors WITHOUT sideBar keys,
+      // Enable globally — wait for Glaze block WITHOUT sideBar keys,
       // since config event delivery order is not guaranteed.
       await vscode.commands.executeCommand('glaze.enableGlobally');
-      let colors = await waitForColorKeyAbsent('sideBar.background');
+      let block = await waitForGlazeBlockKeyAbsent('sideBar.background');
 
       // Verify no sideBar keys
       assert.ok(
-        !('sideBar.background' in colors),
+        !('sideBar.background' in block),
         'should not have sideBar.background initially'
       );
 
@@ -1490,15 +1558,15 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Poll until sideBar keys appear
-      colors = await waitForColorKey('sideBar.background');
+      // Poll until sideBar keys appear in the Glaze block
+      block = await waitForGlazeBlockKey('sideBar.background');
 
       assert.ok(
-        'sideBar.background' in colors,
+        'sideBar.background' in block,
         'should have sideBar.background after enabling'
       );
       assert.ok(
-        'sideBar.foreground' in colors,
+        'sideBar.foreground' in block,
         'should have sideBar.foreground after enabling'
       );
     });
@@ -1548,14 +1616,28 @@ suite('Extension Test Suite', () => {
       await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
-      // Simulate external modification: remove marker, keep managed keys
+      // Simulate external modification: find the Glaze theme block,
+      // remove the marker, and write back.
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get<Record<string, string>>(
+      const colors = config.get<Record<string, unknown>>(
         'workbench.colorCustomizations'
       );
       assert.ok(colors);
       const tampered = { ...colors };
-      delete tampered['glaze.active'];
+      for (const [key, value] of Object.entries(tampered)) {
+        if (
+          key.startsWith('[') &&
+          key.endsWith(']') &&
+          typeof value === 'object' &&
+          value !== null
+        ) {
+          const block = { ...(value as Record<string, unknown>) };
+          if (block[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE) {
+            delete block[GLAZE_ACTIVE_KEY];
+            tampered[key] = block;
+          }
+        }
+      }
       await config.update(
         'workbench.colorCustomizations',
         tampered,
@@ -1564,16 +1646,16 @@ suite('Extension Test Suite', () => {
 
       // Force apply should re-inject marker and re-apply
       await vscode.commands.executeCommand('glaze.forceApply');
-      const updated = await waitForColorKey('glaze.active');
-      assert.ok(updated);
+      const block = await waitForGlazeBlockKey('glaze.active');
+      assert.ok(block);
       assert.strictEqual(
-        updated['glaze.active'],
+        block['glaze.active'],
         '#ef5ec7',
-        'marker should be present after force apply'
+        'marker should be present in theme block after force apply'
       );
       assert.ok(
-        'titleBar.activeBackground' in updated,
-        'managed keys should be present after force apply'
+        'titleBar.activeBackground' in block,
+        'managed keys should be present in theme block after force apply'
       );
     });
 
@@ -1608,16 +1690,24 @@ suite('Extension Test Suite', () => {
       // Wait for debounced applyTint to settle
       await new Promise((r) => setTimeout(r, 500));
 
-      const colors = config.get<Record<string, string>>(
+      const colors = config.get<Record<string, unknown>>(
         'workbench.colorCustomizations'
       );
       // forceApply only injects marker into existing colors; since
       // glaze is disabled the debounced apply is a no-op. No Glaze
-      // keys should be present.
+      // content should be present.
       if (colors) {
         for (const key of Object.keys(colors)) {
-          assert.ok(!isGlazeKey(key), `Glaze key ${key} should not be present`);
+          assert.ok(
+            !isRootGlazeKey(key),
+            `Root Glaze key ${key} should not be present`
+          );
         }
+        assert.strictEqual(
+          findGlazeBlock(colors),
+          undefined,
+          'no Glaze-owned theme block should be present'
+        );
       }
     });
 
@@ -1637,11 +1727,11 @@ suite('Extension Test Suite', () => {
 
       await vscode.commands.executeCommand('glaze.forceApply');
 
-      const colors = await waitForColorKey(GLAZE_ACTIVE_KEY);
+      const block = await waitForGlazeBlockKey(GLAZE_ACTIVE_KEY);
       assert.strictEqual(
-        colors[GLAZE_ACTIVE_KEY],
+        block[GLAZE_ACTIVE_KEY],
         '#ef5ec7',
-        'glaze.active should have the correct marker value'
+        'glaze.active should have the correct marker value in theme block'
       );
     });
   });
@@ -1727,14 +1817,17 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Final state should be enabled with colors applied
-      const colors = await waitForColorKey('titleBar.activeBackground');
-      assert.ok(colors, 'colorCustomizations should be set');
+      // Final state should be enabled with colors in a theme block
+      const block = await waitForGlazeBlockKey('titleBar.activeBackground');
+      assert.ok(block, 'Glaze theme block should be set');
       assert.ok(
-        'titleBar.activeBackground' in colors,
-        'should have titleBar.activeBackground'
+        'titleBar.activeBackground' in block,
+        'should have titleBar.activeBackground in theme block'
       );
-      assert.ok(GLAZE_ACTIVE_KEY in colors, 'should have glaze.active marker');
+      assert.ok(
+        GLAZE_ACTIVE_KEY in block,
+        'should have glaze.active marker in theme block'
+      );
     });
   });
 
@@ -1782,14 +1875,27 @@ suite('Extension Test Suite', () => {
       await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
 
-      // Simulate external modification: remove marker
+      // Simulate external modification: remove marker from theme block
       const config = vscode.workspace.getConfiguration();
-      const colors = config.get<Record<string, string>>(
+      const colors = config.get<Record<string, unknown>>(
         'workbench.colorCustomizations'
       );
       assert.ok(colors);
       const tampered = { ...colors };
-      delete tampered[GLAZE_ACTIVE_KEY];
+      for (const [key, value] of Object.entries(tampered)) {
+        if (
+          key.startsWith('[') &&
+          key.endsWith(']') &&
+          typeof value === 'object' &&
+          value !== null
+        ) {
+          const block = { ...(value as Record<string, unknown>) };
+          if (block[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE) {
+            delete block[GLAZE_ACTIVE_KEY];
+            tampered[key] = block;
+          }
+        }
+      }
       await config.update(
         'workbench.colorCustomizations',
         tampered,
@@ -1800,15 +1906,15 @@ suite('Extension Test Suite', () => {
       // even if a config-change-triggered reconcile is pending
       await vscode.commands.executeCommand('glaze.forceApply');
 
-      const updated = await waitForColorKey(GLAZE_ACTIVE_KEY);
-      assert.ok(updated, 'colorCustomizations should be set');
+      const block = await waitForGlazeBlockKey(GLAZE_ACTIVE_KEY);
+      assert.ok(block, 'Glaze theme block should be set');
       assert.ok(
-        GLAZE_ACTIVE_KEY in updated,
-        'marker should be present after forceApply'
+        GLAZE_ACTIVE_KEY in block,
+        'marker should be present in theme block after forceApply'
       );
       assert.ok(
-        'titleBar.activeBackground' in updated,
-        'managed keys should be present after forceApply'
+        'titleBar.activeBackground' in block,
+        'managed keys should be present in theme block after forceApply'
       );
     });
   });
@@ -1875,8 +1981,10 @@ suite('Extension Test Suite', () => {
       );
       await vscode.commands.executeCommand('glaze.enableGlobally');
 
-      const initialColors = await waitForColorCustomizations();
-      const initialTitleBar = initialColors['titleBar.activeBackground'];
+      const initialBlock = await waitForGlazeBlockKey(
+        'titleBar.activeBackground'
+      );
+      const initialTitleBar = initialBlock['titleBar.activeBackground'];
 
       // Change seed
       await glazeConfig.update(
@@ -1885,17 +1993,21 @@ suite('Extension Test Suite', () => {
         vscode.ConfigurationTarget.Global
       );
 
-      // Poll until titleBar color actually changes
-      let newColors: Record<string, string> | undefined;
+      // Poll until titleBar color actually changes in the theme block
+      let newBlock: Record<string, string> | undefined;
       await pollUntil(() => {
-        newColors = getColorCustomizations();
+        const colors = getColorCustomizations();
+        if (!colors) {
+          return false;
+        }
+        newBlock = findGlazeBlock(colors);
         return (
-          newColors !== undefined &&
-          newColors['titleBar.activeBackground'] !== initialTitleBar
+          newBlock !== undefined &&
+          newBlock['titleBar.activeBackground'] !== initialTitleBar
         );
       }, 'titleBar color should change when seed changes');
 
-      assert.ok(newColors, 'colorCustomizations should still be set');
+      assert.ok(newBlock, 'Glaze theme block should still be set');
     });
   });
 });

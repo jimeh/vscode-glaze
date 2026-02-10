@@ -65,7 +65,10 @@ export async function buildStatusState(): Promise<StatusState> {
   const existing = wbConfig.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
-  const customizedOutsideGlaze = hasGlazeColorsWithoutMarker(existing);
+  const customizedOutsideGlaze = hasGlazeColorsWithoutMarker(
+    existing,
+    themeContext.name
+  );
 
   const general: StatusGeneralInfo = {
     active: isActive,
