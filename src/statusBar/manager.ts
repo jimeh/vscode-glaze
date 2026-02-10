@@ -114,6 +114,7 @@ export class StatusBarManager implements vscode.Disposable {
       enabledCommands: [
         'glaze.copyColor',
         'glaze.forceApply',
+        'glaze.retryApply',
         'glaze.showStatus',
         'glaze.showColorPreview',
       ],
@@ -141,7 +142,8 @@ export class StatusBarManager implements vscode.Disposable {
     if (state.lastError) {
       md.appendMarkdown(
         `$(error) **Failed to apply colors:** ` +
-          `${escapeForMarkdown(state.lastError)}\n\n`
+          `${escapeForMarkdown(state.lastError)}\n\n` +
+          '[Retry Apply](command:glaze.retryApply)\n\n'
       );
     }
 

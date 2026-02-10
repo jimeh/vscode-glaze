@@ -815,6 +815,11 @@ suite('Extension Test Suite', () => {
       const commands = await vscode.commands.getCommands(true);
       assert.ok(commands.includes('glaze.forceApply'));
     });
+
+    test('glaze.retryApply command is registered', async () => {
+      const commands = await vscode.commands.getCommands(true);
+      assert.ok(commands.includes('glaze.retryApply'));
+    });
   });
 
   suite('glaze.active marker', () => {

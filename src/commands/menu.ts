@@ -34,7 +34,7 @@ function buildMenuGroups(): readonly MenuGroup[] {
   const baseHueOverride = getBaseHueOverride();
   const effectivelyEnabled = isEnabledForWorkspace();
   const wsOverride = getWorkspaceEnabledOverride();
-  const { customizedOutsideGlaze } = getCachedState();
+  const { customizedOutsideGlaze, lastError } = getCachedState();
 
   return [
     {
@@ -45,6 +45,12 @@ function buildMenuGroups(): readonly MenuGroup[] {
           description: 'Reclaim ownership of color customizations',
           command: 'glaze.forceApply',
           when: () => effectivelyEnabled && customizedOutsideGlaze,
+        },
+        {
+          label: '$(refresh) Retry Apply',
+          description: 'Retry updating workspace color customizations',
+          command: 'glaze.retryApply',
+          when: () => lastError !== undefined,
         },
         {
           label: '$(check) Enable for Workspace',
