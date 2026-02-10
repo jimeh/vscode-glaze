@@ -5,31 +5,28 @@ import { requestReconcile } from '../reconcile';
 /** Register enable/disable and force-apply commands. */
 export function registerEnableCommands(): vscode.Disposable[] {
   return [
-    vscode.commands.registerCommand('patina.enableGlobally', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+    vscode.commands.registerCommand('glaze.enableGlobally', async () => {
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update('enabled', true, vscode.ConfigurationTarget.Global);
     }),
-    vscode.commands.registerCommand('patina.disableGlobally', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+    vscode.commands.registerCommand('glaze.disableGlobally', async () => {
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'enabled',
         undefined,
         vscode.ConfigurationTarget.Global
       );
     }),
-    vscode.commands.registerCommand('patina.enableWorkspace', async () => {
+    vscode.commands.registerCommand('glaze.enableWorkspace', async () => {
       await setEnabledForWorkspace(true);
     }),
-    vscode.commands.registerCommand('patina.disableWorkspace', async () => {
+    vscode.commands.registerCommand('glaze.disableWorkspace', async () => {
       await setEnabledForWorkspace(false);
     }),
-    vscode.commands.registerCommand(
-      'patina.clearWorkspaceEnabled',
-      async () => {
-        await setEnabledForWorkspace(undefined);
-      }
-    ),
-    vscode.commands.registerCommand('patina.forceApply', () => {
+    vscode.commands.registerCommand('glaze.clearWorkspaceEnabled', async () => {
+      await setEnabledForWorkspace(undefined);
+    }),
+    vscode.commands.registerCommand('glaze.forceApply', () => {
       requestReconcile({ force: true });
     }),
   ];

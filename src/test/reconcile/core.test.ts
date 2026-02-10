@@ -2,10 +2,10 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { doReconcile, _resetAllState, getCachedState } from '../../reconcile';
 import {
-  PATINA_ACTIVE_KEY,
-  PATINA_ACTIVE_VALUE,
+  GLAZE_ACTIVE_KEY,
+  GLAZE_ACTIVE_VALUE,
 } from '../../settings/colorCustomizations';
-import { PATINA_MANAGED_KEYS } from '../../theme';
+import { GLAZE_MANAGED_KEYS } from '../../theme';
 
 /**
  * Read the current workspace-level colorCustomizations.
@@ -38,7 +38,7 @@ suite('doReconcile', () => {
   let originalColorCustomizations: Record<string, unknown> | undefined;
 
   suiteSetup(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<boolean>('enabled');
     originalGlobalEnabled = inspection?.globalValue;
     originalWorkspaceEnabled = inspection?.workspaceValue;
@@ -46,7 +46,7 @@ suite('doReconcile', () => {
   });
 
   suiteTeardown(async () => {
-    const config = vscode.workspace.getConfiguration('patina');
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update(
       'enabled',
       originalGlobalEnabled,
@@ -68,20 +68,20 @@ suite('doReconcile', () => {
   });
 
   /**
-   * Enable Patina globally and at workspace scope so
+   * Enable Glaze globally and at workspace scope so
    * doReconcile() proceeds to apply colors.
    */
-  async function enablePatina(): Promise<void> {
-    const config = vscode.workspace.getConfiguration('patina');
+  async function enableGlaze(): Promise<void> {
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', true, vscode.ConfigurationTarget.Global);
     await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
   }
 
   /**
-   * Disable Patina at workspace scope.
+   * Disable Glaze at workspace scope.
    */
-  async function disablePatina(): Promise<void> {
-    const config = vscode.workspace.getConfiguration('patina');
+  async function disableGlaze(): Promise<void> {
+    const config = vscode.workspace.getConfiguration('glaze');
     await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
   }
 
@@ -90,27 +90,27 @@ suite('doReconcile', () => {
       return this.skip();
     }
 
-    await enablePatina();
+    await enableGlaze();
     await doReconcile({ force: true });
 
     const colors = getColorCustomizations();
     assert.ok(colors, 'colorCustomizations should be set');
 
-    // Patina active marker must be present.
+    // Glaze active marker must be present.
     assert.strictEqual(
-      colors[PATINA_ACTIVE_KEY],
-      PATINA_ACTIVE_VALUE,
-      'patina.active marker should be present'
+      colors[GLAZE_ACTIVE_KEY],
+      GLAZE_ACTIVE_VALUE,
+      'glaze.active marker should be present'
     );
 
     // At least some managed keys should be written.
-    const managedSet = new Set<string>(PATINA_MANAGED_KEYS);
+    const managedSet = new Set<string>(GLAZE_MANAGED_KEYS);
     const managedKeysPresent = Object.keys(colors).filter((k) =>
       managedSet.has(k)
     );
     assert.ok(
       managedKeysPresent.length > 0,
-      'at least one Patina-managed key should be present'
+      'at least one Glaze-managed key should be present'
     );
   });
 
@@ -120,7 +120,7 @@ suite('doReconcile', () => {
     }
 
     // First apply colors.
-    await enablePatina();
+    await enableGlaze();
     await doReconcile({ force: true });
 
     // Verify they were written.
@@ -128,23 +128,23 @@ suite('doReconcile', () => {
     assert.ok(before, 'colors should exist before disable');
 
     // Disable and reconcile again.
-    await disablePatina();
+    await disableGlaze();
     await doReconcile({ force: true });
 
     // Managed keys should be gone.
     const after = getColorCustomizations();
-    const managedSet = new Set<string>(PATINA_MANAGED_KEYS);
+    const managedSet = new Set<string>(GLAZE_MANAGED_KEYS);
     if (after) {
       const remaining = Object.keys(after).filter((k) => managedSet.has(k));
       assert.strictEqual(
         remaining.length,
         0,
-        'no Patina-managed keys should remain after disable'
+        'no Glaze-managed keys should remain after disable'
       );
       assert.strictEqual(
-        after[PATINA_ACTIVE_KEY],
+        after[GLAZE_ACTIVE_KEY],
         undefined,
-        'patina.active marker should be removed'
+        'glaze.active marker should be removed'
       );
     }
   });
@@ -154,7 +154,7 @@ suite('doReconcile', () => {
       return this.skip();
     }
 
-    await enablePatina();
+    await enableGlaze();
     await doReconcile({ force: true });
 
     const state = getCachedState();
@@ -164,9 +164,9 @@ suite('doReconcile', () => {
     );
     assert.ok(state.tintColors, 'tintColors should be populated');
     assert.strictEqual(
-      state.customizedOutsidePatina,
+      state.customizedOutsideGlaze,
       false,
-      'customizedOutsidePatina should be false'
+      'customizedOutsideGlaze should be false'
     );
     assert.strictEqual(
       state.lastError,
@@ -180,7 +180,7 @@ suite('doReconcile', () => {
       return this.skip();
     }
 
-    await enablePatina();
+    await enableGlaze();
     await doReconcile({ force: true });
 
     const first = getColorCustomizations();
@@ -204,17 +204,17 @@ suite('doReconcile', () => {
     assert.ok(state.tintColors);
   });
 
-  test('preserves non-Patina customizations', async function () {
+  test('preserves non-Glaze customizations', async function () {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
 
-    // Set a custom non-Patina color first.
+    // Set a custom non-Glaze color first.
     await setColorCustomizations({
       'editor.foreground': '#abcdef',
     });
 
-    await enablePatina();
+    await enableGlaze();
     await doReconcile({ force: true });
 
     const colors = getColorCustomizations();
@@ -222,12 +222,12 @@ suite('doReconcile', () => {
     assert.strictEqual(
       colors['editor.foreground'],
       '#abcdef',
-      'non-Patina editor.foreground should be preserved'
+      'non-Glaze editor.foreground should be preserved'
     );
     assert.strictEqual(
-      colors[PATINA_ACTIVE_KEY],
-      PATINA_ACTIVE_VALUE,
-      'patina.active marker should still be present'
+      colors[GLAZE_ACTIVE_KEY],
+      GLAZE_ACTIVE_VALUE,
+      'glaze.active marker should still be present'
     );
   });
 
@@ -236,7 +236,7 @@ suite('doReconcile', () => {
       return this.skip();
     }
 
-    await enablePatina();
+    await enableGlaze();
     await doReconcile({ force: true });
 
     // Verify state is populated.
@@ -244,7 +244,7 @@ suite('doReconcile', () => {
     assert.ok(before.workspaceIdentifier);
 
     // Disable and reconcile.
-    await disablePatina();
+    await disableGlaze();
     await doReconcile({ force: true });
 
     const after = getCachedState();

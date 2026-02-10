@@ -3,10 +3,10 @@ import type { ThemeType } from '../theme';
 import type { TintKeyDetail } from '../color/tint';
 
 /**
- * General status information about the current Patina configuration.
+ * General status information about the current Glaze configuration.
  */
 export interface StatusGeneralInfo {
-  /** Whether Patina is actively applying tint colors (enabled + has identifier + has targets) */
+  /** Whether Glaze is actively applying tint colors (enabled + has identifier + has targets) */
   active: boolean;
   /** Global enabled setting */
   globalEnabled: boolean;
@@ -42,8 +42,8 @@ export interface StatusGeneralInfo {
   baseHue: number;
   /** Active tint targets */
   targets: TintTarget[];
-  /** Whether managed colors were modified outside of Patina. */
-  customizedOutsidePatina: boolean;
+  /** Whether managed colors were modified outside of Glaze. */
+  customizedOutsideGlaze: boolean;
 }
 
 /**

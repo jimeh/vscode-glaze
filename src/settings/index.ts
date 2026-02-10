@@ -1,7 +1,7 @@
 export {
-  PATINA_ACTIVE_KEY,
+  GLAZE_ACTIVE_KEY,
   mergeColorCustomizations,
-  removePatinaColors,
-  hasPatinaColorsWithoutMarker,
+  removeGlazeColors,
+  hasGlazeColorsWithoutMarker,
 } from './colorCustomizations';
 export type { ColorCustomizations } from './colorCustomizations';

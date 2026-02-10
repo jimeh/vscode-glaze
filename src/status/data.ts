@@ -11,7 +11,7 @@ import {
 } from '../config';
 import * as vscode from 'vscode';
 import {
-  hasPatinaColorsWithoutMarker,
+  hasGlazeColorsWithoutMarker,
   type ColorCustomizations,
 } from '../settings';
 import { isTintActive } from '../statusBar/helpers';
@@ -65,7 +65,7 @@ export async function buildStatusState(): Promise<StatusState> {
   const existing = wbConfig.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
-  const customizedOutsidePatina = hasPatinaColorsWithoutMarker(existing);
+  const customizedOutsideGlaze = hasGlazeColorsWithoutMarker(existing);
 
   const general: StatusGeneralInfo = {
     active: isActive,
@@ -86,7 +86,7 @@ export async function buildStatusState(): Promise<StatusState> {
     baseHueOverride: tintConfig.baseHueOverride,
     baseHue,
     targets: tintConfig.targets,
-    customizedOutsidePatina,
+    customizedOutsideGlaze,
   };
 
   return { general, colors: result.keys };

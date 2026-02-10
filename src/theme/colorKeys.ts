@@ -199,7 +199,7 @@ export type PaletteKey = {
 /**
  * Full color palette interface for all tintable UI elements.
  */
-export type PatinaColorPalette = Record<PaletteKey, string>;
+export type GlazeColorPalette = Record<PaletteKey, string>;
 
 /**
  * Theme colors using native VSCode keys.
@@ -230,7 +230,7 @@ export const OPTIONAL_THEME_COLOR_KEYS = ALL_THEME_COLOR_KEYS.filter(
 /**
  * All palette keys as an array (keys where inPalette is true).
  */
-export const PATINA_MANAGED_KEYS = ALL_THEME_COLOR_KEYS.filter(
+export const GLAZE_MANAGED_KEYS = ALL_THEME_COLOR_KEYS.filter(
   (key) => COLOR_KEY_DEFINITIONS[key].inPalette
 ) as PaletteKey[];
 
@@ -238,7 +238,7 @@ export const PATINA_MANAGED_KEYS = ALL_THEME_COLOR_KEYS.filter(
  * Set of foreground color keys (for fallback logic).
  */
 export const FOREGROUND_KEYS: ReadonlySet<PaletteKey> = new Set(
-  PATINA_MANAGED_KEYS.filter(
+  GLAZE_MANAGED_KEYS.filter(
     (key) => COLOR_KEY_DEFINITIONS[key].colorType === 'foreground'
   )
 );
@@ -247,7 +247,7 @@ export const FOREGROUND_KEYS: ReadonlySet<PaletteKey> = new Set(
  * Set of border color keys (for fallback logic).
  */
 export const BORDER_KEYS: ReadonlySet<PaletteKey> = new Set(
-  PATINA_MANAGED_KEYS.filter(
+  GLAZE_MANAGED_KEYS.filter(
     (key) => COLOR_KEY_DEFINITIONS[key].colorType === 'border'
   )
 );
@@ -258,7 +258,7 @@ export const BORDER_KEYS: ReadonlySet<PaletteKey> = new Set(
  * and highlights the theme never intended to exist).
  */
 export const EXCLUDE_WHEN_UNDEFINED_KEYS: ReadonlySet<PaletteKey> = new Set(
-  PATINA_MANAGED_KEYS.filter(
+  GLAZE_MANAGED_KEYS.filter(
     (key) =>
       (COLOR_KEY_DEFINITIONS[key] as ColorKeyDefinition).excludeWhenUndefined
   )
@@ -270,7 +270,7 @@ export const EXCLUDE_WHEN_UNDEFINED_KEYS: ReadonlySet<PaletteKey> = new Set(
  */
 export const PALETTE_KEY_TO_COLOR_KEY: Record<PaletteKey, ThemeColorKey> =
   Object.fromEntries(
-    PATINA_MANAGED_KEYS.map((key) => {
+    GLAZE_MANAGED_KEYS.map((key) => {
       // Inactive titleBar background falls back to active background
       if (key === 'titleBar.inactiveBackground') {
         return [key, 'titleBar.activeBackground'];

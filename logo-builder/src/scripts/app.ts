@@ -600,7 +600,7 @@ downloadSvgBtn.addEventListener('click', () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'patina-logo.svg';
+  a.download = 'glaze-logo.svg';
   a.click();
   URL.revokeObjectURL(url);
 });

@@ -10,7 +10,7 @@ export function registerHueOverrideCommands(
   statusBar: StatusBarManager
 ): vscode.Disposable[] {
   return [
-    vscode.commands.registerCommand('patina.setBaseHueOverride', async () => {
+    vscode.commands.registerCommand('glaze.setBaseHueOverride', async () => {
       const current = getBaseHueOverride();
       const input = await vscode.window.showInputBox({
         title: 'Base Hue Override',
@@ -32,7 +32,7 @@ export function registerHueOverrideCommands(
         return; // Cancelled
       }
       const hue = Number(input.trim());
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.baseHueOverride',
         hue,
@@ -40,8 +40,8 @@ export function registerHueOverrideCommands(
       );
       await refreshStatusBar(statusBar);
     }),
-    vscode.commands.registerCommand('patina.clearBaseHueOverride', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+    vscode.commands.registerCommand('glaze.clearBaseHueOverride', async () => {
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.baseHueOverride',
         undefined,

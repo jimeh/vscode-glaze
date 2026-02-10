@@ -8,9 +8,9 @@ export function registerSeedCommands(
   statusBar: StatusBarManager
 ): vscode.Disposable[] {
   return [
-    vscode.commands.registerCommand('patina.randomizeSeed', async () => {
+    vscode.commands.registerCommand('glaze.randomizeSeed', async () => {
       const seed = Math.floor(Math.random() * 2 ** 31);
-      const config = vscode.workspace.getConfiguration('patina');
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
         seed,
@@ -21,8 +21,8 @@ export function registerSeedCommands(
       // debounced config listener.
       await refreshStatusBar(statusBar);
     }),
-    vscode.commands.registerCommand('patina.resetSeed', async () => {
-      const config = vscode.workspace.getConfiguration('patina');
+    vscode.commands.registerCommand('glaze.resetSeed', async () => {
+      const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
         undefined,

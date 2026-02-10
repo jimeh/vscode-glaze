@@ -10,7 +10,7 @@ import {
 import { hexToOklch } from '../../color/convert';
 import type { ColorHarmony, ColorStyle } from '../../config';
 import type { ThemeColors, ThemeType } from '../../theme';
-import { PATINA_MANAGED_KEYS, EXCLUDE_WHEN_UNDEFINED_KEYS } from '../../theme';
+import { GLAZE_MANAGED_KEYS, EXCLUDE_WHEN_UNDEFINED_KEYS } from '../../theme';
 import { ALL_TARGETS } from '../helpers';
 
 // ============================================================================
@@ -470,14 +470,14 @@ suite('computeTint', () => {
     }
   });
 
-  test('all PATINA_MANAGED_KEYS are represented', () => {
+  test('all GLAZE_MANAGED_KEYS are represented', () => {
     const result = computeTint({
       workspaceIdentifier: 'test',
       targets: ALL_TARGETS,
       themeType: 'dark',
     });
     const resultKeys = result.keys.map((d) => d.key);
-    for (const key of PATINA_MANAGED_KEYS) {
+    for (const key of GLAZE_MANAGED_KEYS) {
       assert.ok(resultKeys.includes(key), `Missing key: ${key}`);
     }
   });
@@ -609,7 +609,7 @@ suite('tintResultToPalette', () => {
     const palette = tintResultToPalette(result);
 
     // All managed keys except editor.* should be present
-    for (const key of PATINA_MANAGED_KEYS) {
+    for (const key of GLAZE_MANAGED_KEYS) {
       assert.ok(
         key in palette,
         `${key} should be in palette when theme defines it`
@@ -632,7 +632,7 @@ suite('tintResultToPalette', () => {
     }
 
     // Non-excluded keys should still be present
-    for (const key of PATINA_MANAGED_KEYS) {
+    for (const key of GLAZE_MANAGED_KEYS) {
       if (!EXCLUDE_WHEN_UNDEFINED_KEYS.has(key)) {
         assert.ok(key in palette, `${key} should still be in palette`);
       }

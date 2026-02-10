@@ -16,8 +16,8 @@ import {
 import { getThemeContext } from '../theme';
 import {
   mergeColorCustomizations,
-  removePatinaColors,
-  hasPatinaColorsWithoutMarker,
+  removeGlazeColors,
+  hasGlazeColorsWithoutMarker,
   type ColorCustomizations,
 } from '../settings';
 import type { ReconcileOptions } from './types';
@@ -53,7 +53,7 @@ function shallowEqualRecords(
 /**
  * Write colorCustomizations with equality check and error
  * handling. The equality check prevents reconcile loops: after
- * Patina writes colors, the resulting config event triggers a
+ * Glaze writes colors, the resulting config event triggers a
  * re-read that matches what was just written, so the write is
  * skipped.
  * Returns true on success (or if no write was needed).
@@ -83,7 +83,7 @@ async function writeColorConfig(
       );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error('[Patina] Failed to write color customizations:', err);
+    console.error('[Glaze] Failed to write color customizations:', err);
     updateCachedState({ lastError: message });
     await refreshStatusBar();
     return false;
@@ -91,26 +91,26 @@ async function writeColorConfig(
   return true;
 }
 
-/** Strip Patina colors from config and reset cached state. */
+/** Strip Glaze colors from config and reset cached state. */
 async function clearTintColors(): Promise<void> {
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
   );
 
-  // Don't remove colors that Patina doesn't own.
-  if (hasPatinaColorsWithoutMarker(existing)) {
+  // Don't remove colors that Glaze doesn't own.
+  if (hasGlazeColorsWithoutMarker(existing)) {
     updateCachedState({
       workspaceIdentifier: undefined,
       tintColors: undefined,
-      customizedOutsidePatina: true,
+      customizedOutsideGlaze: true,
       lastError: undefined,
     });
     await refreshStatusBar();
     return;
   }
 
-  const remaining = removePatinaColors(existing);
+  const remaining = removeGlazeColors(existing);
   if (await writeColorConfig(remaining)) {
     await resetCachedState();
   }
@@ -152,10 +152,10 @@ async function applyTintColors(
   // Guard: if managed colors exist but marker is absent, an
   // external tool or user has modified settings — refuse to
   // overwrite (unless force).
-  if (!force && hasPatinaColorsWithoutMarker(existing)) {
+  if (!force && hasGlazeColorsWithoutMarker(existing)) {
     updateCachedState({
       workspaceIdentifier: identifier,
-      customizedOutsidePatina: true,
+      customizedOutsideGlaze: true,
     });
     await refreshStatusBar();
     return;
@@ -166,7 +166,7 @@ async function applyTintColors(
     updateCachedState({
       workspaceIdentifier: identifier,
       tintColors: tintResultToStatusBarColors(tintResult),
-      customizedOutsidePatina: false,
+      customizedOutsideGlaze: false,
       lastError: undefined,
     });
     await refreshStatusBar();

@@ -1,21 +1,21 @@
-import { PATINA_MANAGED_KEYS } from '../theme';
+import { GLAZE_MANAGED_KEYS } from '../theme';
 
-/** Set of all Patina-managed color keys for O(1) lookup. */
-const MANAGED_KEY_SET = new Set<string>(PATINA_MANAGED_KEYS);
+/** Set of all Glaze-managed color keys for O(1) lookup. */
+const MANAGED_KEY_SET = new Set<string>(GLAZE_MANAGED_KEYS);
 
 /**
  * Invisible marker key written into colorCustomizations to indicate
- * Patina owns the current set of managed colors. If managed keys are
+ * Glaze owns the current set of managed colors. If managed keys are
  * present but this marker is absent, an external tool or user has
- * modified the settings and Patina will refuse to overwrite them.
+ * modified the settings and Glaze will refuse to overwrite them.
  */
-export const PATINA_ACTIVE_KEY = 'patina.active';
+export const GLAZE_ACTIVE_KEY = 'glaze.active';
 
 /**
  * Fixed value written for the marker key.
  * VSCode ignores unknown keys, so this has no visual effect.
  */
-export const PATINA_ACTIVE_VALUE = '#ef5ec7';
+export const GLAZE_ACTIVE_VALUE = '#ef5ec7';
 
 /**
  * Type for VSCode's workbench.colorCustomizations setting.
@@ -23,50 +23,50 @@ export const PATINA_ACTIVE_VALUE = '#ef5ec7';
 export type ColorCustomizations = Record<string, unknown>;
 
 /**
- * Merges Patina colors with existing color customizations.
- * Removes any existing Patina-managed keys, then adds the new Patina colors.
- * Preserves all non-Patina user customizations.
+ * Merges Glaze colors with existing color customizations.
+ * Removes any existing Glaze-managed keys, then adds the new Glaze colors.
+ * Preserves all non-Glaze user customizations.
  *
  * @param existing - Current colorCustomizations value (may be undefined)
- * @param patinaColors - New Patina colors to apply
+ * @param glazeColors - New Glaze colors to apply
  * @returns Merged color customizations object
  */
 export function mergeColorCustomizations(
   existing: ColorCustomizations | undefined,
-  patinaColors: Record<string, string>
+  glazeColors: Record<string, string>
 ): ColorCustomizations {
   const result: ColorCustomizations = {};
 
-  // Copy existing non-Patina keys
+  // Copy existing non-Glaze keys
   if (existing) {
     for (const [key, value] of Object.entries(existing)) {
-      if (!isPatinaKey(key)) {
+      if (!isGlazeKey(key)) {
         result[key] = value;
       }
     }
   }
 
-  // Add new Patina colors
-  for (const [key, value] of Object.entries(patinaColors)) {
+  // Add new Glaze colors
+  for (const [key, value] of Object.entries(glazeColors)) {
     if (value !== undefined) {
       result[key] = value;
     }
   }
 
   // Inject ownership marker
-  result[PATINA_ACTIVE_KEY] = PATINA_ACTIVE_VALUE;
+  result[GLAZE_ACTIVE_KEY] = GLAZE_ACTIVE_VALUE;
 
   return result;
 }
 
 /**
- * Removes Patina-managed keys from color customizations.
- * Preserves all non-Patina user customizations.
+ * Removes Glaze-managed keys from color customizations.
+ * Preserves all non-Glaze user customizations.
  *
  * @param existing - Current colorCustomizations value (may be undefined)
  * @returns Remaining customizations, or undefined if result is empty
  */
-export function removePatinaColors(
+export function removeGlazeColors(
   existing: ColorCustomizations | undefined
 ): ColorCustomizations | undefined {
   if (!existing) {
@@ -76,7 +76,7 @@ export function removePatinaColors(
   const result: ColorCustomizations = {};
 
   for (const [key, value] of Object.entries(existing)) {
-    if (!isPatinaKey(key)) {
+    if (!isGlazeKey(key)) {
       result[key] = value;
     }
   }
@@ -85,27 +85,27 @@ export function removePatinaColors(
 }
 
 /**
- * Checks if a key is managed by Patina (including the marker key).
+ * Checks if a key is managed by Glaze (including the marker key).
  */
-function isPatinaKey(key: string): boolean {
-  return key === PATINA_ACTIVE_KEY || MANAGED_KEY_SET.has(key);
+function isGlazeKey(key: string): boolean {
+  return key === GLAZE_ACTIVE_KEY || MANAGED_KEY_SET.has(key);
 }
 
 /**
- * Detects external modification: returns true when Patina-managed color
+ * Detects external modification: returns true when Glaze-managed color
  * keys exist in the customizations but the ownership marker is absent.
  *
  * @param existing - Current colorCustomizations value (may be undefined)
  * @returns true if managed keys are present without the marker
  */
-export function hasPatinaColorsWithoutMarker(
+export function hasGlazeColorsWithoutMarker(
   existing: ColorCustomizations | undefined
 ): boolean {
   if (!existing) {
     return false;
   }
 
-  const hasMarker = existing[PATINA_ACTIVE_KEY] === PATINA_ACTIVE_VALUE;
+  const hasMarker = existing[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE;
   if (hasMarker) {
     return false;
   }

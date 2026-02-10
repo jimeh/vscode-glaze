@@ -14,7 +14,7 @@ import {
 import type { StatusBarState } from './types';
 
 /**
- * Manages the Patina status bar item.
+ * Manages the Glaze status bar item.
  */
 export class StatusBarManager implements vscode.Disposable {
   readonly item: vscode.StatusBarItem;
@@ -25,7 +25,7 @@ export class StatusBarManager implements vscode.Disposable {
       vscode.StatusBarAlignment.Right,
       100
     );
-    this.item.command = 'patina.quickMenu';
+    this.item.command = 'glaze.quickMenu';
     this.updateVisibility();
   }
 
@@ -51,7 +51,7 @@ export class StatusBarManager implements vscode.Disposable {
 
   private render(): void {
     const isActive = this.isActive();
-    const customized = this.state?.customizedOutsidePatina ?? false;
+    const customized = this.state?.customizedOutsideGlaze ?? false;
     const lastError = this.state?.lastError;
 
     // Set icon and text
@@ -73,7 +73,7 @@ export class StatusBarManager implements vscode.Disposable {
   private getActiveColorName(): string {
     const tintColors = this.state?.tintColors;
     if (!tintColors) {
-      return 'Patina';
+      return 'Glaze';
     }
 
     // Check elements in priority order
@@ -87,7 +87,7 @@ export class StatusBarManager implements vscode.Disposable {
       return getColorName(activeColor);
     }
 
-    return 'Patina';
+    return 'Glaze';
   }
 
   private isActive(): boolean {
@@ -112,10 +112,10 @@ export class StatusBarManager implements vscode.Disposable {
     const md = new vscode.MarkdownString();
     md.isTrusted = {
       enabledCommands: [
-        'patina.copyColor',
-        'patina.forceApply',
-        'patina.showStatus',
-        'patina.showColorPreview',
+        'glaze.copyColor',
+        'glaze.forceApply',
+        'glaze.showStatus',
+        'glaze.showColorPreview',
       ],
     };
     md.supportThemeIcons = true;
@@ -123,7 +123,7 @@ export class StatusBarManager implements vscode.Disposable {
 
     if (!this.state) {
       const icon = isActive ? '$(check)' : '$(x)';
-      md.appendMarkdown(`**Patina** ${icon}\n\n`);
+      md.appendMarkdown(`**Glaze** ${icon}\n\n`);
       return md;
     }
     const state = this.state;
@@ -133,8 +133,8 @@ export class StatusBarManager implements vscode.Disposable {
     const statusIcon = isActive ? '$(check)' : '$(x)';
     const statusText = getStatusText(globalEnabled, workspaceEnabledOverride);
     md.appendMarkdown(
-      `**Patina** ${statusIcon} ${statusText} ` +
-        `[$(info)](command:patina.showStatus)\n\n`
+      `**Glaze** ${statusIcon} ${statusText} ` +
+        `[$(info)](command:glaze.showStatus)\n\n`
     );
 
     // Error from last apply/remove attempt
@@ -145,12 +145,12 @@ export class StatusBarManager implements vscode.Disposable {
       );
     }
 
-    // Warning when colors were modified outside Patina
-    if (isActive && state.customizedOutsidePatina) {
+    // Warning when colors were modified outside Glaze
+    if (isActive && state.customizedOutsideGlaze) {
       md.appendMarkdown(
-        '$(warning) **Colors modified outside Patina.** ' +
-          'Patina will not overwrite external changes.\n\n' +
-          '[Force Apply](command:patina.forceApply) ' +
+        '$(warning) **Colors modified outside Glaze.** ' +
+          'Glaze will not overwrite external changes.\n\n' +
+          '[Force Apply](command:glaze.forceApply) ' +
           'to reclaim ownership.\n\n'
       );
     }
@@ -196,7 +196,7 @@ export class StatusBarManager implements vscode.Disposable {
       if (tintColors) {
         md.appendMarkdown('---\n\n');
         md.appendMarkdown(
-          '**Colors** ' + '[$(eye)](command:patina.showColorPreview)\n\n'
+          '**Colors** ' + '[$(eye)](command:glaze.showColorPreview)\n\n'
         );
         md.appendMarkdown(buildColorTable(tintColors) + '\n\n');
       }

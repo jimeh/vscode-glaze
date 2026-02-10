@@ -597,7 +597,7 @@ export function generatePreviewHtml(
   const harmoniesTable = generateHarmoniesTable(state);
 
   return renderWebviewHtml({
-    title: 'Patina Color Preview',
+    title: 'Glaze Color Preview',
     nonce,
     cspSource,
     css: PREVIEW_CSS,
