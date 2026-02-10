@@ -1,0 +1,34 @@
+{
+  "extensionId": "b7b3f8c2-0526-4262-9e55-045c954adac4",
+  "extensionName": "vscode-mermaid-preview",
+  "publisherName": "vstirbu",
+  "displayName": "Mermaid Preview",
+  "version": "2.1.2",
+  "extractedAt": "2026-02-10T19:01:23.496Z",
+  "installCount": 532813,
+  "themes": [
+    {
+      "name": "Mermaid Dark",
+      "label": "Mermaid Dark",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Mermaid Light",
+      "label": "Mermaid Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#A22889",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#616161"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "marketplace"
+}

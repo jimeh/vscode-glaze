@@ -3,9 +3,9 @@
   "extensionName": "phpstorm-theme",
   "publisherName": "ericgomez",
   "displayName": "PhpStorm Dark Theme",
-  "version": "1.0.18",
-  "extractedAt": "2026-02-08T00:11:03.662Z",
-  "installCount": 7846,
+  "version": "1.0.19",
+  "extractedAt": "2026-02-10T19:01:21.860Z",
+  "installCount": 9086,
   "themes": [
     {
       "name": "PhpStorm Dark",
