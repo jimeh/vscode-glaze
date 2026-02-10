@@ -21,8 +21,8 @@
 
 Ever lost track of which VS Code window is which? Glaze attempts to solve this
 by giving each workspace a unique color tint derived from its directory path.
-The colors blend naturally with your current theme, so your editor still looks
-great — just subtly different per project.
+The colors blend with your current theme's colors, so your editor still looks
+great, just subtly different per project.
 
 ![dark](https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/titlebar-dark.png)
 ![light](https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/titlebar-light.png)
