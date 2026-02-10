@@ -104,6 +104,15 @@ export interface TintConfig {
 }
 
 /**
+ * Where Glaze writes workbench.colorCustomizations.
+ * - 'auto': Use settings.local.json when Workspace Config+ is active,
+ *           otherwise settings.json.
+ * - 'workspaceSettings': Always use .vscode/settings.json.
+ * - 'localSettings': Always use .vscode/settings.local.json.
+ */
+export type SettingsTarget = 'auto' | 'workspaceSettings' | 'localSettings';
+
+/**
  * Configuration for theme-related settings.
  */
 export interface ThemeConfig {

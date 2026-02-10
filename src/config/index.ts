@@ -5,6 +5,7 @@ import type {
   ColorHarmony,
   ColorStyle,
   MultiRootIdentifierSource,
+  SettingsTarget,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -22,6 +23,7 @@ export type {
   ColorHarmony,
   ColorStyle,
   MultiRootIdentifierSource,
+  SettingsTarget,
   ThemeConfig,
   ThemeMode,
   TintConfig,
@@ -275,4 +277,23 @@ export function getBaseHueOverride(): number | null {
 export function getStatusBarEnabled(): boolean {
   const config = vscode.workspace.getConfiguration('glaze');
   return config.get<boolean>('statusBar.enabled', true);
+}
+
+const VALID_SETTINGS_TARGETS: readonly SettingsTarget[] = [
+  'auto',
+  'workspaceSettings',
+  'localSettings',
+];
+
+/**
+ * Returns the configured settings target.
+ */
+export function getSettingsTarget(): SettingsTarget {
+  const config = vscode.workspace.getConfiguration('glaze');
+  return getValidatedEnum(
+    config,
+    'settingsTarget',
+    VALID_SETTINGS_TARGETS,
+    'auto'
+  );
 }

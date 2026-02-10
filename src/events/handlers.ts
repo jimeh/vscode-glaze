@@ -37,6 +37,7 @@ export function registerEventHandlers(
         return;
       }
       if (
+        e.affectsConfiguration('glaze.settingsTarget') ||
         e.affectsConfiguration('glaze.workspaceIdentifier') ||
         e.affectsConfiguration('glaze.tint') ||
         e.affectsConfiguration('glaze.theme') ||

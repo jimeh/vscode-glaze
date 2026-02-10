@@ -18,6 +18,9 @@ import {
   mergeColorCustomizations,
   removeGlazeColors,
   hasGlazeColorsWithoutMarker,
+  readLocalColorCustomizations,
+  writeLocalColorCustomizations,
+  shouldUseLocalSettings,
   type ColorCustomizations,
 } from '../settings';
 import type { ReconcileOptions } from './types';
@@ -78,14 +81,12 @@ function deepEqualRecords(
 }
 
 /**
- * Write colorCustomizations with equality check and error
- * handling. The equality check prevents reconcile loops: after
- * Glaze writes colors, the resulting config event triggers a
- * re-read that matches what was just written, so the write is
- * skipped.
+ * Write colorCustomizations via the VS Code configuration API
+ * (targets .vscode/settings.json). Includes an equality check to
+ * prevent reconcile loops.
  * Returns true on success (or if no write was needed).
  */
-async function writeColorConfig(
+async function writeColorConfigVscode(
   value: ColorCustomizations | undefined
 ): Promise<boolean> {
   // Re-read config to skip redundant writes. Normalize empty
@@ -118,12 +119,52 @@ async function writeColorConfig(
   return true;
 }
 
+// ── Settings-target–aware read/write helpers ──────────────
+
+/**
+ * Read the current colorCustomizations from the active settings
+ * target. When using settings.local.json, reads from the local
+ * file; otherwise reads from the VS Code config API.
+ */
+async function readExistingColors(
+  useLocal: boolean
+): Promise<ColorCustomizations | undefined> {
+  if (useLocal) {
+    return readLocalColorCustomizations();
+  }
+  const raw = vscode.workspace
+    .getConfiguration()
+    .get<ColorCustomizations>('workbench.colorCustomizations');
+  return raw && Object.keys(raw).length > 0 ? raw : undefined;
+}
+
+/**
+ * Write colorCustomizations to the active settings target.
+ * Both paths include equality checks to prevent reconcile loops.
+ */
+async function writeColors(
+  useLocal: boolean,
+  value: ColorCustomizations | undefined
+): Promise<boolean> {
+  if (useLocal) {
+    const ok = await writeLocalColorCustomizations(value);
+    if (!ok) {
+      updateCachedState({
+        lastError: 'Failed to write settings.local.json',
+      });
+      await refreshStatusBar();
+    }
+    return ok;
+  }
+  return writeColorConfigVscode(value);
+}
+
+// ── Core reconcile logic ──────────────────────────────────
+
 /** Strip Glaze colors from config and reset cached state. */
 async function clearTintColors(): Promise<void> {
-  const config = vscode.workspace.getConfiguration();
-  const existing = config.get<ColorCustomizations>(
-    'workbench.colorCustomizations'
-  );
+  const useLocal = shouldUseLocalSettings();
+  const existing = await readExistingColors(useLocal);
 
   // Don't remove colors that Glaze doesn't own.
   if (hasGlazeColorsWithoutMarker(existing)) {
@@ -138,7 +179,7 @@ async function clearTintColors(): Promise<void> {
   }
 
   const remaining = removeGlazeColors(existing);
-  if (await writeColorConfig(remaining)) {
+  if (await writeColors(useLocal, remaining)) {
     await resetCachedState();
   }
 }
@@ -171,10 +212,8 @@ async function applyTintColors(
   });
   const colors = tintResultToPalette(tintResult);
 
-  const config = vscode.workspace.getConfiguration();
-  const existing = config.get<ColorCustomizations>(
-    'workbench.colorCustomizations'
-  );
+  const useLocal = shouldUseLocalSettings();
+  const existing = await readExistingColors(useLocal);
 
   const themeName = themeContext.name;
 
@@ -201,7 +240,7 @@ async function applyTintColors(
   }
 
   const merged = mergeColorCustomizations(existing, colors, themeName);
-  if (await writeColorConfig(merged)) {
+  if (await writeColors(useLocal, merged)) {
     updateCachedState({
       workspaceIdentifier: identifier,
       tintColors: tintResultToStatusBarColors(tintResult),
