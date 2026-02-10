@@ -198,11 +198,11 @@ suite('getThemeName', () => {
     });
 
     test('unknown dark preferred + known light → OS detection', async () => {
-      // "Mermaid Dark" is not in the theme DB; Phase 1 must be
-      // skipped so OS detection picks the right preferred theme.
+      // "Unknown Dark Theme" is not in the theme DB; Phase 1 must
+      // be skipped so OS detection picks the right preferred theme.
       await setConfig({
         autoDetect: true,
-        darkTheme: 'Mermaid Dark',
+        darkTheme: 'Unknown Dark Theme',
         lightTheme: 'Default Light Modern',
         colorTheme: 'Monokai',
       });
@@ -210,7 +210,7 @@ suite('getThemeName', () => {
       const osScheme = await detectOsColorScheme();
       const expected =
         osScheme === 'dark'
-          ? 'Mermaid Dark'
+          ? 'Unknown Dark Theme'
           : osScheme === 'light'
             ? 'Default Light Modern'
             : 'Monokai';
@@ -222,7 +222,7 @@ suite('getThemeName', () => {
       await setConfig({
         autoDetect: true,
         darkTheme: 'Default Dark Modern',
-        lightTheme: 'Mermaid Light',
+        lightTheme: 'Unknown Light Theme',
         colorTheme: 'Monokai',
       });
 
@@ -231,7 +231,7 @@ suite('getThemeName', () => {
         osScheme === 'dark'
           ? 'Default Dark Modern'
           : osScheme === 'light'
-            ? 'Mermaid Light'
+            ? 'Unknown Light Theme'
             : 'Monokai';
 
       assert.strictEqual(await getThemeName('dark'), expected);
@@ -240,17 +240,17 @@ suite('getThemeName', () => {
     test('both preferred unknown → OS detection', async () => {
       await setConfig({
         autoDetect: true,
-        darkTheme: 'Mermaid Dark',
-        lightTheme: 'Mermaid Light',
+        darkTheme: 'Unknown Dark Theme',
+        lightTheme: 'Unknown Light Theme',
         colorTheme: 'Monokai',
       });
 
       const osScheme = await detectOsColorScheme();
       const expected =
         osScheme === 'dark'
-          ? 'Mermaid Dark'
+          ? 'Unknown Dark Theme'
           : osScheme === 'light'
-            ? 'Mermaid Light'
+            ? 'Unknown Light Theme'
             : 'Monokai';
 
       assert.strictEqual(await getThemeName('dark'), expected);
@@ -259,7 +259,7 @@ suite('getThemeName', () => {
     test('unknown dark preferred + empty light → OS detection', async () => {
       await setConfig({
         autoDetect: true,
-        darkTheme: 'Mermaid Dark',
+        darkTheme: 'Unknown Dark Theme',
         lightTheme: '',
         colorTheme: 'Monokai',
       });
@@ -267,7 +267,7 @@ suite('getThemeName', () => {
       const osScheme = await detectOsColorScheme();
       const expected =
         osScheme === 'dark'
-          ? 'Mermaid Dark'
+          ? 'Unknown Dark Theme'
           : osScheme === 'light'
             ? 'Monokai' // empty lightTheme → falls back to colorTheme
             : 'Monokai';
