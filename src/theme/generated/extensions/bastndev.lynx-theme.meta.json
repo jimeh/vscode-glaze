@@ -2,14 +2,14 @@
   "extensionId": "8b8a7a10-52d8-4144-8fb5-36992ad8820c",
   "extensionName": "lynx-theme",
   "publisherName": "bastndev",
-  "displayName": "Lynx Icon Theme Pro | 2026",
-  "version": "3.8.0",
-  "extractedAt": "2026-02-08T00:10:59.818Z",
-  "installCount": 14699,
+  "displayName": "Lynx Theme + Icons",
+  "version": "4.0.0",
+  "extractedAt": "2026-02-10T19:01:20.366Z",
+  "installCount": 16531,
   "themes": [
     {
-      "name": "1. DARK (Lynx Theme Pro)",
-      "label": "1. DARK (Lynx Theme Pro)",
+      "name": "1. DARKㅤㅤ(Lynx Theme)",
+      "label": "1. DARKㅤㅤ(Lynx Theme)",
       "colors": {
         "editor.background": "#0E0F0E",
         "editor.foreground": "#FFFFFF",
@@ -35,8 +35,8 @@
       "type": "dark"
     },
     {
-      "name": "2. LIGHT (Lynx Theme Pro)",
-      "label": "2. LIGHT (Lynx Theme Pro)",
+      "name": "2. LIGHT ㅤ (Lynx Theme)",
+      "label": "2. LIGHT ㅤ (Lynx Theme)",
       "colors": {
         "editor.background": "#F4F4F4",
         "editor.foreground": "#2D2D2D",
@@ -62,8 +62,8 @@
       "type": "light"
     },
     {
-      "name": "3. NIGHT (Lynx Theme Pro)",
-      "label": "3. NIGHT (Lynx Theme Pro)",
+      "name": "3. NIGHT ㅤ(Lynx Theme)",
+      "label": "3. NIGHT ㅤ(Lynx Theme)",
       "colors": {
         "editor.background": "#172025",
         "editor.foreground": "#FFFFFF",
@@ -89,8 +89,8 @@
       "type": "dark"
     },
     {
-      "name": "4. GHIBLI (Lynx Theme Pro)",
-      "label": "4. GHIBLI (Lynx Theme Pro)",
+      "name": "4. GHIBLI ㅤ(Lynx Theme)",
+      "label": "4. GHIBLI ㅤ(Lynx Theme)",
       "colors": {
         "editor.background": "#F5EAD6",
         "editor.foreground": "#4A3F35",
@@ -116,8 +116,8 @@
       "type": "light"
     },
     {
-      "name": "5. COFFEE (Lynx Theme Pro)",
-      "label": "5. COFFEE (Lynx Theme Pro)",
+      "name": "5. COFFEE (Lynx Theme)",
+      "label": "5. COFFEE (Lynx Theme)",
       "colors": {
         "editor.background": "#241615",
         "editor.foreground": "#FFD0BB",
@@ -143,8 +143,8 @@
       "type": "dark"
     },
     {
-      "name": "6. KIRO (Lynx Theme Pro)",
-      "label": "6. KIRO (Lynx Theme Pro)",
+      "name": "6. KIROㅤㅤ(Lynx Theme)",
+      "label": "6. KIROㅤㅤ(Lynx Theme)",
       "colors": {
         "editor.background": "#19161E",
         "editor.foreground": "#FFFFFF",
@@ -170,8 +170,8 @@
       "type": "dark"
     },
     {
-      "name": "7. NVIM (Lynx Theme Pro)",
-      "label": "7. NVIM (Lynx Theme Pro)",
+      "name": "7. NVIMㅤㅤ(Lynx Theme)",
+      "label": "7. NVIMㅤㅤ(Lynx Theme)",
       "colors": {
         "editor.background": "#181B1F",
         "editor.foreground": "#F1F5F9",
@@ -197,8 +197,8 @@
       "type": "dark"
     },
     {
-      "name": "8. TEST (Lynx Theme Pro)",
-      "label": "8. TEST (Lynx Theme Pro)",
+      "name": "8. TESTㅤㅤ(Lynx Theme)",
+      "label": "8. TESTㅤㅤ(Lynx Theme)",
       "colors": {
         "editor.background": "#111113",
         "editor.foreground": "#EDEEF0",
@@ -206,17 +206,17 @@
         "titleBar.activeForeground": "#B0B4BA",
         "titleBar.inactiveBackground": "#0C0D0E",
         "titleBar.inactiveForeground": "#777B84",
-        "titleBar.border": "#111113",
+        "titleBar.border": "#000000",
         "statusBar.background": "#0C0D0E",
         "statusBar.foreground": "#777B84",
-        "statusBar.border": "#212225",
+        "statusBar.border": "#FFFFFF",
         "activityBar.background": "#0C0D0E",
         "activityBar.foreground": "#B0B4BA",
         "activityBar.activeBackground": "#0090FF",
         "activityBar.activeBorder": "#0090FF",
         "sideBar.background": "#0C0D0E",
         "sideBar.foreground": "#B0B4BA",
-        "sideBar.border": "#212225",
+        "sideBar.border": "#FFFFFF",
         "sideBarSectionHeader.background": "#0C0D0E",
         "sideBarSectionHeader.foreground": "#0090FF",
         "sideBarSectionHeader.border": "#111113"
