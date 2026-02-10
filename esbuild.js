@@ -34,7 +34,11 @@ async function main() {
     sourcemap: !production,
     sourcesContent: false,
     platform: 'node',
-    mainFields: ['module', 'main'],
+    alias: {
+      // jsonc-parser's UMD entry performs runtime requires to ./impl/*
+      // that aren't bundled, so force the ESM entry for deterministic builds.
+      'jsonc-parser': 'jsonc-parser/lib/esm/main.js',
+    },
     outfile: 'dist/extension.js',
     external: ['vscode'],
     logLevel: 'silent',
