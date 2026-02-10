@@ -6,3 +6,4 @@ export {
   hasGlazeColorsWithoutMarker,
 } from './colorCustomizations';
 export type { ColorCustomizations } from './colorCustomizations';
+export { repairWorkspaceSettings } from './repair';

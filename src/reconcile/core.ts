@@ -18,6 +18,7 @@ import {
   mergeColorCustomizations,
   removeGlazeColors,
   hasGlazeColorsWithoutMarker,
+  repairWorkspaceSettings,
   type ColorCustomizations,
 } from '../settings';
 import type { ReconcileOptions } from './types';
@@ -139,6 +140,12 @@ async function clearTintColors(): Promise<void> {
 
   const remaining = removeGlazeColors(existing);
   if (await writeColorConfig(remaining)) {
+    // When the entire colorCustomizations key is removed, VS Code's
+    // settings API can leave the file with stray commas (e.g. "{ , }")
+    // if the file already had trailing commas. Repair if needed.
+    if (!remaining) {
+      await repairWorkspaceSettings();
+    }
     await resetCachedState();
   }
 }
