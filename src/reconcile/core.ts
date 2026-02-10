@@ -138,7 +138,12 @@ async function clearTintColors(): Promise<void> {
   }
 
   const remaining = removeGlazeColors(existing);
-  if (await writeColorConfig(remaining)) {
+  // Use empty object instead of undefined when all Glaze colors are
+  // removed. Passing undefined to config.update() removes the key
+  // entirely, which can leave the file with stray commas (e.g.
+  // "{ , }") when the file had trailing commas. Writing {} updates
+  // the value in-place, avoiding the VS Code JSONC serialization bug.
+  if (await writeColorConfig(remaining ?? {})) {
     await resetCachedState();
   }
 }
