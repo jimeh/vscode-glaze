@@ -4,18 +4,13 @@ import { GLAZE_MANAGED_KEYS } from '../theme';
 const MANAGED_KEY_SET = new Set<string>(GLAZE_MANAGED_KEYS);
 
 /**
- * Invisible marker key written into colorCustomizations to indicate
- * Glaze owns the current set of managed colors. If managed keys are
- * present but this marker is absent, an external tool or user has
- * modified the settings and Glaze will refuse to overwrite them.
+ * Marker key written at the root of colorCustomizations. Its value
+ * is the theme name that Glaze currently owns (e.g. `"Monokai"`).
+ * Stored at root level because VSCode silently ignores unknown
+ * root keys, whereas unknown keys inside theme-scoped blocks
+ * produce diagnostics.
  */
 export const GLAZE_ACTIVE_KEY = 'glaze.active';
-
-/**
- * Fixed value written for the marker key.
- * VSCode ignores unknown keys, so this has no visual effect.
- */
-export const GLAZE_ACTIVE_VALUE = '#ef5ec7';
 
 /**
  * Type for VSCode's workbench.colorCustomizations setting.
@@ -46,24 +41,24 @@ export function themeScopeKey(themeName: string): string {
 }
 
 /**
- * Returns true if a theme-scoped block is owned by Glaze,
- * i.e. it contains the `glaze.active` marker with the correct value.
+ * Returns true if value is a valid Glaze ownership marker:
+ * a non-empty string representing the owned theme name.
  */
-function isGlazeOwnedBlock(block: Record<string, unknown>): boolean {
-  return block[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE;
+function isGlazeMarker(value: unknown): value is string {
+  return typeof value === 'string' && value.length > 0;
 }
 
 /**
  * Merges Glaze colors with existing color customizations, writing
  * into a theme-scoped block for the given theme.
  *
- * - Removes all Glaze-owned theme blocks (those containing the
- *   `glaze.active` marker) — this cleans up colors from previously
- *   active themes.
+ * - Reads the root `glaze.active` marker to identify the previously
+ *   owned theme and strips Glaze keys from that block on theme change.
  * - Removes any root-level Glaze keys (migration from old format).
  * - Preserves all non-Glaze user customizations, both at root level
  *   and inside theme-scoped blocks.
- * - Writes new Glaze colors + marker into `[themeName]`.
+ * - Writes new Glaze colors into `[themeName]` (no marker inside).
+ * - Writes `glaze.active = themeName` at root level.
  *
  * @param existing - Current colorCustomizations value (may be undefined)
  * @param glazeColors - New Glaze colors to apply
@@ -78,6 +73,12 @@ export function mergeColorCustomizations(
   const result: ColorCustomizations = {};
   const targetKey = themeScopeKey(themeName);
 
+  // Identify previously owned theme from root marker.
+  const prevOwned = existing?.[GLAZE_ACTIVE_KEY];
+  const prevOwnedKey = isGlazeMarker(prevOwned)
+    ? themeScopeKey(prevOwned)
+    : undefined;
+
   // Collect user keys from the target theme's existing block (if any)
   // so we can preserve them in the new block.
   let userKeysInTargetBlock: ThemeScopedBlock | undefined;
@@ -90,8 +91,8 @@ export function mergeColorCustomizations(
           if (key === targetKey) {
             // Extract non-Glaze user keys from the current theme block
             userKeysInTargetBlock = extractNonGlazeKeys(block);
-          } else if (isGlazeOwnedBlock(block)) {
-            // Strip Glaze keys from other-theme blocks, keep user keys
+          } else if (prevOwnedKey && key === prevOwnedKey) {
+            // Strip Glaze keys from previously owned block, keep user keys
             const remaining = extractNonGlazeKeys(block);
             if (remaining) {
               result[key] = remaining;
@@ -128,23 +129,22 @@ export function mergeColorCustomizations(
     }
   }
 
-  // Inject ownership marker
-  themeBlock[GLAZE_ACTIVE_KEY] = GLAZE_ACTIVE_VALUE;
-
+  // Root-level ownership marker with theme name as value
+  result[GLAZE_ACTIVE_KEY] = themeName;
   result[targetKey] = themeBlock;
 
   return result;
 }
 
 /**
- * Removes Glaze-managed keys and Glaze-owned theme blocks from
- * color customizations. Preserves all non-Glaze user customizations.
+ * Removes Glaze-managed keys from color customizations.
+ * Preserves all non-Glaze user customizations.
  *
+ * - Reads the root `glaze.active` marker to find the owned theme block.
+ * - Strips Glaze keys from that block, keeps any user keys. If the
+ *   block becomes empty, removes it entirely.
  * - Removes root-level Glaze keys (including the marker).
- * - For Glaze-owned theme blocks (containing `glaze.active` marker):
- *   removes Glaze keys and keeps any user keys. If the block becomes
- *   empty, removes the block entirely.
- * - Preserves user-owned theme blocks (no marker) untouched.
+ * - Preserves user-owned theme blocks untouched.
  *
  * @param existing - Current colorCustomizations value (may be undefined)
  * @returns Remaining customizations, or undefined if result is empty
@@ -158,10 +158,16 @@ export function removeGlazeColors(
 
   const result: ColorCustomizations = {};
 
+  // Identify the owned theme block from root marker.
+  const ownedTheme = existing[GLAZE_ACTIVE_KEY];
+  const ownedKey = isGlazeMarker(ownedTheme)
+    ? themeScopeKey(ownedTheme)
+    : undefined;
+
   for (const [key, value] of Object.entries(existing)) {
     if (isThemeScopedKey(key)) {
       const block = value as Record<string, unknown> | undefined;
-      if (block && typeof block === 'object' && isGlazeOwnedBlock(block)) {
+      if (block && typeof block === 'object' && ownedKey === key) {
         // Glaze-owned block — strip Glaze keys, keep user keys
         const remaining = extractNonGlazeKeys(block);
         if (remaining && Object.keys(remaining).length > 0) {
@@ -213,7 +219,8 @@ function extractNonGlazeKeys(
  *
  * Checks two locations:
  * 1. Root-level keys (legacy / migration from pre-theme-scoped format)
- * 2. The current theme's scoped block (if `themeName` is provided)
+ * 2. The current theme's scoped block (if `themeName` is provided):
+ *    managed keys present AND root marker does not point to this theme.
  *
  * @param existing - Current colorCustomizations value (may be undefined)
  * @param themeName - Name of the currently active theme (optional)
@@ -228,7 +235,7 @@ export function hasGlazeColorsWithoutMarker(
   }
 
   // Check root-level keys (legacy format)
-  const hasRootMarker = existing[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE;
+  const hasRootMarker = isGlazeMarker(existing[GLAZE_ACTIVE_KEY]);
   if (!hasRootMarker) {
     const hasRootManagedKeys = Object.keys(existing).some((key) =>
       MANAGED_KEY_SET.has(key)
@@ -244,9 +251,9 @@ export function hasGlazeColorsWithoutMarker(
     const block = existing[themeKey];
     if (block && typeof block === 'object') {
       const themeBlock = block as Record<string, unknown>;
-      const hasBlockMarker =
-        themeBlock[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE;
-      if (!hasBlockMarker) {
+      // Root marker must point to this theme for it to be Glaze-owned
+      const markerPointsHere = existing[GLAZE_ACTIVE_KEY] === themeName;
+      if (!markerPointsHere) {
         return Object.keys(themeBlock).some((key) => MANAGED_KEY_SET.has(key));
       }
     }

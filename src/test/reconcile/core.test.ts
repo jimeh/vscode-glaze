@@ -1,10 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { doReconcile, _resetAllState, getCachedState } from '../../reconcile';
-import {
-  GLAZE_ACTIVE_KEY,
-  GLAZE_ACTIVE_VALUE,
-} from '../../settings/colorCustomizations';
+import { GLAZE_ACTIVE_KEY } from '../../settings/colorCustomizations';
 import { GLAZE_MANAGED_KEYS } from '../../theme';
 
 /**
@@ -33,23 +30,20 @@ async function setColorCustomizations(
 
 /**
  * Find the Glaze-owned theme block in colorCustomizations.
- * Returns the block contents and its key, or undefined if none found.
+ * Uses the root `glaze.active` marker to identify which theme block
+ * Glaze owns.
  */
 function findGlazeThemeBlock(
   colors: Record<string, unknown>
 ): { key: string; block: Record<string, unknown> } | undefined {
-  for (const [key, value] of Object.entries(colors)) {
-    if (
-      key.startsWith('[') &&
-      key.endsWith(']') &&
-      typeof value === 'object' &&
-      value !== null
-    ) {
-      const block = value as Record<string, unknown>;
-      if (block[GLAZE_ACTIVE_KEY] === GLAZE_ACTIVE_VALUE) {
-        return { key, block };
-      }
-    }
+  const marker = colors[GLAZE_ACTIVE_KEY];
+  if (typeof marker !== 'string' || marker.length === 0) {
+    return undefined;
+  }
+  const themeKey = `[${marker}]`;
+  const value = colors[themeKey];
+  if (typeof value === 'object' && value !== null) {
+    return { key: themeKey, block: value as Record<string, unknown> };
   }
   return undefined;
 }
@@ -129,18 +123,18 @@ suite('doReconcile', () => {
       'theme block key should be theme-scoped'
     );
 
-    // Marker must be present inside the block.
-    assert.strictEqual(
-      found.block[GLAZE_ACTIVE_KEY],
-      GLAZE_ACTIVE_VALUE,
-      'glaze.active marker should be inside the theme block'
+    // Root-level marker should be a non-empty string (theme name).
+    const marker = colors[GLAZE_ACTIVE_KEY];
+    assert.ok(
+      typeof marker === 'string' && marker.length > 0,
+      'glaze.active root marker should be a non-empty string'
     );
 
-    // No root-level marker.
+    // Marker should NOT be inside the theme block.
     assert.strictEqual(
-      colors[GLAZE_ACTIVE_KEY],
+      found.block[GLAZE_ACTIVE_KEY],
       undefined,
-      'glaze.active marker should NOT be at root level'
+      'glaze.active marker should NOT be inside the theme block'
     );
 
     // At least some managed keys should be inside the block.
@@ -286,18 +280,19 @@ suite('doReconcile', () => {
       'non-Glaze editor.foreground should be preserved at root'
     );
 
-    // Marker should be inside the theme block, not at root.
+    // Root marker should be a non-empty string (theme name).
     const found = findGlazeThemeBlock(colors);
     assert.ok(found, 'Glaze theme block should exist');
+    const marker = colors[GLAZE_ACTIVE_KEY];
+    assert.ok(
+      typeof marker === 'string' && marker.length > 0,
+      'glaze.active root marker should be a non-empty string'
+    );
+    // Marker should NOT be inside the theme block.
     assert.strictEqual(
       found.block[GLAZE_ACTIVE_KEY],
-      GLAZE_ACTIVE_VALUE,
-      'glaze.active marker should be in theme block'
-    );
-    assert.strictEqual(
-      colors[GLAZE_ACTIVE_KEY],
       undefined,
-      'glaze.active marker should NOT be at root'
+      'glaze.active marker should NOT be inside the theme block'
     );
   });
 

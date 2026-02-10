@@ -1,7 +1,6 @@
 import * as assert from 'assert';
 import {
   GLAZE_ACTIVE_KEY,
-  GLAZE_ACTIVE_VALUE,
   type ColorCustomizations,
   mergeColorCustomizations,
   removeGlazeColors,
@@ -23,9 +22,9 @@ suite('mergeColorCustomizations', () => {
     const result = mergeColorCustomizations(undefined, glazeColors, THEME);
 
     assert.deepStrictEqual(result, {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         ...glazeColors,
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     });
   });
@@ -38,9 +37,9 @@ suite('mergeColorCustomizations', () => {
     const result = mergeColorCustomizations({}, glazeColors, THEME);
 
     assert.deepStrictEqual(result, {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         ...glazeColors,
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     });
   });
@@ -59,9 +58,9 @@ suite('mergeColorCustomizations', () => {
     assert.deepStrictEqual(result, {
       'editor.background': '#aabbcc',
       'editor.lineHighlightBackground': '#ddeeff',
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#112233',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     });
   });
@@ -70,7 +69,7 @@ suite('mergeColorCustomizations', () => {
     const existing = {
       'titleBar.activeBackground': '#old111',
       'editor.background': '#aabbcc',
-      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: '#ef5ec7', // old fixed-value marker
     };
     const glazeColors = {
       'titleBar.activeBackground': '#new222',
@@ -78,22 +77,23 @@ suite('mergeColorCustomizations', () => {
 
     const result = mergeColorCustomizations(existing, glazeColors, THEME);
 
-    // Root-level Glaze keys should be stripped
+    // Root-level managed keys should be stripped
     assert.strictEqual(result['titleBar.activeBackground'], undefined);
-    assert.strictEqual(result[GLAZE_ACTIVE_KEY], undefined);
+    // Root marker should now be theme name
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], THEME);
     // Root non-Glaze preserved
     assert.strictEqual(result['editor.background'], '#aabbcc');
-    // Theme block has new colors
+    // Theme block has new colors, no marker inside
     const block = result[THEME_KEY] as Record<string, string>;
     assert.strictEqual(block['titleBar.activeBackground'], '#new222');
-    assert.strictEqual(block[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
+    assert.strictEqual(block[GLAZE_ACTIVE_KEY], undefined);
   });
 
   test('overwrites existing Glaze keys in theme block', () => {
     const existing = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#old111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
     const glazeColors = {
@@ -104,16 +104,17 @@ suite('mergeColorCustomizations', () => {
 
     const block = result[THEME_KEY] as Record<string, string>;
     assert.strictEqual(block['titleBar.activeBackground'], '#new222');
-    assert.strictEqual(block[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
+    assert.strictEqual(block[GLAZE_ACTIVE_KEY], undefined);
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], THEME);
   });
 
   test('removes old Glaze keys not in new palette from theme block', () => {
     const existing = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#111111',
         'titleBar.activeForeground': '#222222',
         'statusBar.background': '#333333',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
     const glazeColors = {
@@ -126,15 +127,15 @@ suite('mergeColorCustomizations', () => {
     assert.strictEqual(block['titleBar.activeBackground'], '#444444');
     assert.strictEqual(block['titleBar.activeForeground'], undefined);
     assert.strictEqual(block['statusBar.background'], undefined);
-    assert.strictEqual(block[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
+    assert.strictEqual(block[GLAZE_ACTIVE_KEY], undefined);
   });
 
   test('preserves user keys inside current theme block', () => {
     const existing = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'editor.background': '#usercolor',
         'titleBar.activeBackground': '#old111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
     const glazeColors = {
@@ -146,7 +147,7 @@ suite('mergeColorCustomizations', () => {
     const block = result[THEME_KEY] as Record<string, string>;
     assert.strictEqual(block['editor.background'], '#usercolor');
     assert.strictEqual(block['titleBar.activeBackground'], '#new222');
-    assert.strictEqual(block[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
+    assert.strictEqual(block[GLAZE_ACTIVE_KEY], undefined);
   });
 
   test('preserves user-owned theme blocks for other themes', () => {
@@ -169,10 +170,10 @@ suite('mergeColorCustomizations', () => {
   test('strips Glaze keys from other theme blocks on theme change', () => {
     // Simulates: was on OTHER_THEME (Glaze-owned), now switching to THEME.
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: OTHER_THEME,
       [OTHER_THEME_KEY]: {
         'titleBar.activeBackground': '#mono111',
         'statusBar.background': '#mono222',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
     const glazeColors = {
@@ -183,18 +184,20 @@ suite('mergeColorCustomizations', () => {
 
     // Old theme's Glaze keys should be removed, block empty → dropped
     assert.strictEqual(result[OTHER_THEME_KEY], undefined);
+    // Root marker updated to new theme
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], THEME);
     // New theme block created
     const block = result[THEME_KEY] as Record<string, string>;
     assert.strictEqual(block['titleBar.activeBackground'], '#glaze111');
-    assert.strictEqual(block[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
+    assert.strictEqual(block[GLAZE_ACTIVE_KEY], undefined);
   });
 
   test('preserves user keys in other Glaze-owned theme block on theme change', () => {
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: OTHER_THEME,
       [OTHER_THEME_KEY]: {
         'editor.background': '#usercolor',
         'titleBar.activeBackground': '#mono111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
     const glazeColors = {
@@ -248,6 +251,7 @@ suite('mergeColorCustomizations', () => {
 
   test('handles all Glaze-managed keys being replaced', () => {
     const existing = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#111111',
         'titleBar.activeForeground': '#222222',
@@ -261,7 +265,6 @@ suite('mergeColorCustomizations', () => {
         'sideBar.foreground': '#aaaaaa',
         'sideBarSectionHeader.background': '#bbbbbb',
         'sideBarSectionHeader.foreground': '#cccccc',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
       'editor.background': '#aabbcc',
     };
@@ -273,11 +276,12 @@ suite('mergeColorCustomizations', () => {
 
     // Root non-Glaze key preserved
     assert.strictEqual(result['editor.background'], '#aabbcc');
-    // Theme block only has new color + marker
+    // Root marker present
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], THEME);
+    // Theme block only has new color (no marker inside)
     const block = result[THEME_KEY] as Record<string, string>;
-    assert.strictEqual(Object.keys(block).length, 2);
+    assert.strictEqual(Object.keys(block).length, 1);
     assert.strictEqual(block['titleBar.activeBackground'], '#newcolor');
-    assert.strictEqual(block[GLAZE_ACTIVE_KEY], GLAZE_ACTIVE_VALUE);
   });
 });
 
@@ -347,7 +351,7 @@ suite('removeGlazeColors', () => {
   test('removes root-level glaze.active marker key', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
-      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: THEME,
       'editor.background': '#aabbcc',
     };
 
@@ -360,10 +364,10 @@ suite('removeGlazeColors', () => {
 
   test('removes Glaze-owned theme block entirely when no user keys', () => {
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#111111',
         'statusBar.background': '#222222',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
 
@@ -374,10 +378,10 @@ suite('removeGlazeColors', () => {
 
   test('preserves user keys in Glaze-owned theme block', () => {
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'editor.background': '#usercolor',
         'titleBar.activeBackground': '#111111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
 
@@ -390,9 +394,9 @@ suite('removeGlazeColors', () => {
 
   test('preserves user-owned theme blocks untouched', () => {
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#111111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
       [OTHER_THEME_KEY]: { 'editor.background': '#1e1e1e' },
     };
@@ -405,6 +409,7 @@ suite('removeGlazeColors', () => {
   });
 
   test('preserves user-owned block with Glaze key names', () => {
+    // No root marker → block is not identified as Glaze-owned.
     const existing: ColorCustomizations = {
       [OTHER_THEME_KEY]: {
         'titleBar.activeBackground': '#mono111',
@@ -418,21 +423,24 @@ suite('removeGlazeColors', () => {
     });
   });
 
-  test('removes multiple Glaze-owned theme blocks', () => {
+  test('only removes the Glaze-owned block indicated by root marker', () => {
+    // Root marker points to THEME, so only that block is cleaned up.
+    // OTHER_THEME block is preserved even though it has managed keys.
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#111111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
       [OTHER_THEME_KEY]: {
         'statusBar.background': '#222222',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
 
     const result = removeGlazeColors(existing);
 
-    assert.strictEqual(result, undefined);
+    assert.deepStrictEqual(result, {
+      [OTHER_THEME_KEY]: { 'statusBar.background': '#222222' },
+    });
   });
 
   test('preserves non-string root values during remove', () => {
@@ -449,7 +457,7 @@ suite('removeGlazeColors', () => {
   test('returns undefined when only marker and managed keys exist in root', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
-      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: THEME,
     };
 
     const result = removeGlazeColors(existing);
@@ -479,7 +487,7 @@ suite('hasGlazeColorsWithoutMarker', () => {
     const existing = {
       'titleBar.activeBackground': '#111111',
       'statusBar.background': '#222222',
-      [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
+      [GLAZE_ACTIVE_KEY]: THEME,
     };
     assert.strictEqual(hasGlazeColorsWithoutMarker(existing), false);
   });
@@ -500,9 +508,9 @@ suite('hasGlazeColorsWithoutMarker', () => {
     assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
   });
 
-  test('returns true when root marker key exists with wrong value', () => {
+  test('returns true when root marker key exists with empty string value', () => {
     const existing = {
-      [GLAZE_ACTIVE_KEY]: '#000000',
+      [GLAZE_ACTIVE_KEY]: '',
       'titleBar.activeBackground': '#111111',
     };
     assert.strictEqual(hasGlazeColorsWithoutMarker(existing), true);
@@ -540,9 +548,9 @@ suite('hasGlazeColorsWithoutMarker', () => {
   // Theme-scoped block detection (with themeName)
   test('returns false for Glaze-owned current theme block', () => {
     const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: THEME,
       [THEME_KEY]: {
         'titleBar.activeBackground': '#111111',
-        [GLAZE_ACTIVE_KEY]: GLAZE_ACTIVE_VALUE,
       },
     };
     assert.strictEqual(hasGlazeColorsWithoutMarker(existing, THEME), false);
@@ -585,5 +593,17 @@ suite('hasGlazeColorsWithoutMarker', () => {
       },
     };
     assert.strictEqual(hasGlazeColorsWithoutMarker(existing, THEME), false);
+  });
+
+  test('returns true when root marker points to different theme', () => {
+    // Root marker says Glaze owns OTHER_THEME, but THEME block
+    // has managed keys — someone else wrote them.
+    const existing: ColorCustomizations = {
+      [GLAZE_ACTIVE_KEY]: OTHER_THEME,
+      [THEME_KEY]: {
+        'titleBar.activeBackground': '#111111',
+      },
+    };
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing, THEME), true);
   });
 });
