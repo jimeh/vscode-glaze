@@ -158,7 +158,7 @@ suite('getThemeInfo with custom config', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalColors = config.get('theme.colors');
+    originalColors = config.inspect('theme.colors')?.globalValue;
   });
 
   suiteTeardown(async () => {

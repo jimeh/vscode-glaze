@@ -76,7 +76,11 @@ suite('doReconcile', () => {
     const inspection = config.inspect<boolean>('enabled');
     originalGlobalEnabled = inspection?.globalValue;
     originalWorkspaceEnabled = inspection?.workspaceValue;
-    originalColorCustomizations = getColorCustomizations();
+    originalColorCustomizations = vscode.workspace
+      .getConfiguration()
+      .inspect<Record<string, unknown>>(
+        'workbench.colorCustomizations'
+      )?.workspaceValue;
   });
 
   suiteTeardown(async () => {
@@ -91,7 +95,16 @@ suite('doReconcile', () => {
       originalWorkspaceEnabled,
       vscode.ConfigurationTarget.Workspace
     );
-    await setColorCustomizations(originalColorCustomizations);
+    // Use raw config.update() instead of setColorCustomizations() —
+    // teardown only restores values with no assertions after, so we
+    // don't need to wait for onDidChangeConfiguration.
+    await vscode.workspace
+      .getConfiguration()
+      .update(
+        'workbench.colorCustomizations',
+        originalColorCustomizations,
+        vscode.ConfigurationTarget.Workspace
+      );
     _resetAllState();
   });
 

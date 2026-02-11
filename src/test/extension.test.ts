@@ -328,7 +328,7 @@ suite('Extension Test Suite', () => {
 
     suiteSetup(async () => {
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -501,6 +501,16 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Clear stale colorCustomizations that another test in this
+      // suite may have left (e.g. "preserves unowned managed keys"
+      // seeds root-level managed keys without a glaze.active marker).
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
       // First enable to set colors
       await vscode.commands.executeCommand('glaze.enableGlobally');
 
@@ -596,7 +606,9 @@ suite('Extension Test Suite', () => {
 
     suiteSetup(async () => {
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalSource = glazeConfig.get<string>('workspaceIdentifier.source');
+      originalSource = glazeConfig.inspect<string>(
+        'workspaceIdentifier.source'
+      )?.globalValue;
 
       if (vscode.workspace.workspaceFolders?.length) {
         const config = vscode.workspace.getConfiguration();
@@ -833,7 +845,7 @@ suite('Extension Test Suite', () => {
 
     suiteSetup(async () => {
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -1282,6 +1294,16 @@ suite('Extension Test Suite', () => {
         return this.skip();
       }
 
+      // Clear stale colorCustomizations that another test in this
+      // suite may have left (e.g. "does not remove managed keys…"
+      // seeds root-level managed keys without a glaze.active marker).
+      const wbConfig = vscode.workspace.getConfiguration();
+      await wbConfig.update(
+        'workbench.colorCustomizations',
+        undefined,
+        vscode.ConfigurationTarget.Workspace
+      );
+
       // Enable via command first
       await vscode.commands.executeCommand('glaze.enableGlobally');
       await waitForColorCustomizations();
@@ -1432,8 +1454,9 @@ suite('Extension Test Suite', () => {
         return;
       }
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
-      originalStatusBar = glazeConfig.get<boolean>('elements.statusBar');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
+      originalStatusBar =
+        glazeConfig.inspect<boolean>('elements.statusBar')?.globalValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -1525,8 +1548,9 @@ suite('Extension Test Suite', () => {
         return;
       }
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
-      originalSideBar = glazeConfig.get<boolean>('elements.sideBar');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
+      originalSideBar =
+        glazeConfig.inspect<boolean>('elements.sideBar')?.globalValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(
@@ -1614,7 +1638,7 @@ suite('Extension Test Suite', () => {
 
     suiteSetup(async () => {
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -1853,7 +1877,7 @@ suite('Extension Test Suite', () => {
 
     suiteSetup(async () => {
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
 
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
@@ -1929,8 +1953,8 @@ suite('Extension Test Suite', () => {
         return;
       }
       const glazeConfig = vscode.workspace.getConfiguration('glaze');
-      originalEnabled = glazeConfig.get<boolean>('enabled');
-      originalSeed = glazeConfig.get<number>('tint.seed');
+      originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
+      originalSeed = glazeConfig.inspect<number>('tint.seed')?.globalValue;
 
       const wbConfig = vscode.workspace.getConfiguration();
       originalColorCustomizations = wbConfig.get(

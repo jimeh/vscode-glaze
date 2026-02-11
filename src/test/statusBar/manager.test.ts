@@ -12,7 +12,8 @@ suite('StatusBarManager', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalStatusBarEnabled = config.get<boolean>('statusBar.enabled');
+    originalStatusBarEnabled =
+      config.inspect<boolean>('statusBar.enabled')?.globalValue;
   });
 
   suiteTeardown(async () => {

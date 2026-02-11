@@ -591,6 +591,42 @@ suite('createHueShiftBlend', () => {
     assert.strictEqual(result, tintHex);
   });
 
+  test('returns color close to theme when factor is 1', () => {
+    const fn = createHueShiftBlend();
+    const result = fn(tint, tintHex, themeHex, 1, false);
+    const resultOklch = hexToOklch(result);
+    const themeOklch = hexToOklch(themeHex);
+
+    // At factor=1, full blend should match theme's L and C
+    assert.ok(
+      Math.abs(resultOklch.l - themeOklch.l) < 0.01,
+      `Lightness should match theme: ${resultOklch.l} vs ${themeOklch.l}`
+    );
+    assert.ok(
+      Math.abs(resultOklch.c - themeOklch.c) < 0.01,
+      `Chroma should match theme: ${resultOklch.c} vs ${themeOklch.c}`
+    );
+  });
+
+  test('hue-only at factor=1 preserves L/C, shifts hue to theme', () => {
+    const fn = createHueShiftBlend();
+    const coloredTheme = '#FF5733'; // orange-red, has distinct hue
+    const result = fn(tint, tintHex, coloredTheme, 1, true);
+    const resultOklch = hexToOklch(result);
+    const themeOklch = hexToOklch(coloredTheme);
+
+    // L should stay close to tint
+    assert.ok(
+      Math.abs(resultOklch.l - tint.l) < 0.01,
+      `L should match tint: ${resultOklch.l} vs ${tint.l}`
+    );
+    // Hue should match theme
+    assert.ok(
+      Math.abs(resultOklch.h - themeOklch.h) < 1,
+      `Hue should match theme: ${resultOklch.h} vs ${themeOklch.h}`
+    );
+  });
+
   test('produces valid hex output', () => {
     const fn = createHueShiftBlend();
     const result = fn(tint, tintHex, themeHex, 0.35, false);

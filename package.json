@@ -553,6 +553,7 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
     "adm-zip": "^0.5.16",
+    "choma": "^1.2.1",
     "color-name-list": "^14.29.0",
     "esbuild": "^0.27.2",
     "jsonc-parser": "^3.3.1",

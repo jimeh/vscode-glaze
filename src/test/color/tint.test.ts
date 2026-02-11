@@ -267,6 +267,41 @@ suite('computeTint', () => {
     );
   });
 
+  test('blendFactor=1 produces finalHex close to theme color', () => {
+    const themeColors = {
+      'editor.background': '#282C34',
+      'titleBar.activeBackground': '#21252B',
+      'statusBar.background': '#21252B',
+      'activityBar.background': '#21252B',
+      'sideBar.background': '#21252B',
+    };
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      themeColors,
+      themeBlendFactor: 1,
+    });
+    for (const detail of result.keys) {
+      if (!detail.themeColor) {
+        continue;
+      }
+      // At factor=1 the finalHex should equal the theme color
+      // (overlay blending interpolates linearly in sRGB).
+      assert.strictEqual(
+        detail.finalHex.toLowerCase(),
+        detail.themeColor!.toLowerCase(),
+        `${detail.key}: finalHex should match theme at blend=1`
+      );
+      // Verify it actually differs from the tint
+      assert.notStrictEqual(
+        detail.finalHex,
+        detail.tintHex,
+        `${detail.key}: finalHex should differ from tintHex at blend=1`
+      );
+    }
+  });
+
   test('blendFactor=0 produces tintHex === finalHex', () => {
     const result = computeTint({
       workspaceIdentifier: 'test',
@@ -480,6 +515,57 @@ suite('computeTint', () => {
     for (const key of GLAZE_MANAGED_KEYS) {
       assert.ok(resultKeys.includes(key), `Missing key: ${key}`);
     }
+  });
+});
+
+// ============================================================================
+// computeTint — snapshot regression tests
+// ============================================================================
+
+suite('computeTint snapshots', () => {
+  test('dark pastel defaults for workspace "test" seed=0', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      seed: 0,
+    });
+
+    // Pin baseHue so any hash algorithm change is caught
+    assert.strictEqual(result.baseHue, 105);
+
+    // Pin a few key tintHex values
+    const tb = result.keys.find((k) => k.key === 'titleBar.activeBackground')!;
+    assert.strictEqual(
+      tb.tintHex,
+      '#514f2e',
+      'titleBar.activeBackground tintHex changed'
+    );
+
+    const sb = result.keys.find((k) => k.key === 'statusBar.background')!;
+    assert.strictEqual(
+      sb.tintHex,
+      '#5a5730',
+      'statusBar.background tintHex changed'
+    );
+  });
+
+  test('light pastel defaults for workspace "test" seed=0', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'light',
+      seed: 0,
+    });
+
+    assert.strictEqual(result.baseHue, 105);
+
+    const tb = result.keys.find((k) => k.key === 'titleBar.activeBackground')!;
+    assert.strictEqual(
+      tb.tintHex,
+      '#b9b571',
+      'titleBar.activeBackground tintHex changed (light)'
+    );
   });
 });
 

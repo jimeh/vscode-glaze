@@ -13,14 +13,17 @@ suite('getThemeName', () => {
   suiteSetup(async () => {
     const windowConfig = vscode.workspace.getConfiguration('window');
     const workbenchConfig = vscode.workspace.getConfiguration('workbench');
-    originalAutoDetect = windowConfig.get<boolean>('autoDetectColorScheme');
-    originalPreferredDark = workbenchConfig.get<string>(
+    originalAutoDetect = windowConfig.inspect<boolean>(
+      'autoDetectColorScheme'
+    )?.globalValue;
+    originalPreferredDark = workbenchConfig.inspect<string>(
       'preferredDarkColorTheme'
-    );
-    originalPreferredLight = workbenchConfig.get<string>(
+    )?.globalValue;
+    originalPreferredLight = workbenchConfig.inspect<string>(
       'preferredLightColorTheme'
-    );
-    originalColorTheme = workbenchConfig.get<string>('colorTheme');
+    )?.globalValue;
+    originalColorTheme =
+      workbenchConfig.inspect<string>('colorTheme')?.globalValue;
   });
 
   suiteTeardown(async () => {
