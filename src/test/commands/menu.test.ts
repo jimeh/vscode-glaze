@@ -65,8 +65,10 @@ suite('Quick Menu visibility', () => {
     const enabledInsp = config.inspect<boolean>('enabled');
     origGlobalEnabled = enabledInsp?.globalValue;
     origWorkspaceEnabled = enabledInsp?.workspaceValue;
-    origSeed = config.get<number>('tint.seed');
-    origBaseHueOverride = config.get<number | null>('tint.baseHueOverride');
+    const seedInsp = config.inspect<number>('tint.seed');
+    origSeed = seedInsp?.workspaceValue;
+    const hueInsp = config.inspect<number | null>('tint.baseHueOverride');
+    origBaseHueOverride = hueInsp?.workspaceValue;
   });
 
   suiteTeardown(async () => {
