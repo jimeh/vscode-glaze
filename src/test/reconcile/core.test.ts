@@ -6,6 +6,7 @@ import {
   LEGACY_ACTIVE_KEYS,
 } from '../../settings/colorCustomizations';
 import { GLAZE_MANAGED_KEYS } from '../../theme';
+import { updateConfig } from '../helpers';
 
 /**
  * Read the current workspace-level colorCustomizations.
@@ -17,18 +18,31 @@ function getColorCustomizations(): Record<string, unknown> | undefined {
 }
 
 /**
- * Write workspace-level colorCustomizations.
+ * Write workspace-level colorCustomizations and wait for propagation.
  */
 async function setColorCustomizations(
   value: Record<string, unknown> | undefined
 ): Promise<void> {
-  await vscode.workspace
-    .getConfiguration()
-    .update(
-      'workbench.colorCustomizations',
-      value,
-      vscode.ConfigurationTarget.Workspace
-    );
+  const config = vscode.workspace.getConfiguration();
+  const section = 'workbench.colorCustomizations';
+
+  // If value is undefined (clearing) and already unset, skip.
+  const inspection = config.inspect(section);
+  if (inspection?.workspaceValue === undefined && value === undefined) {
+    return;
+  }
+
+  const changed = new Promise<void>((resolve) => {
+    const disposable = vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration(section)) {
+        disposable.dispose();
+        resolve();
+      }
+    });
+  });
+
+  await config.update(section, value, vscode.ConfigurationTarget.Workspace);
+  await changed;
 }
 
 /**
@@ -92,17 +106,15 @@ suite('doReconcile', () => {
    * doReconcile() proceeds to apply colors.
    */
   async function enableGlaze(): Promise<void> {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', true, vscode.ConfigurationTarget.Global);
-    await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Global);
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Workspace);
   }
 
   /**
    * Disable Glaze at workspace scope.
    */
   async function disableGlaze(): Promise<void> {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
+    await updateConfig('enabled', false, vscode.ConfigurationTarget.Workspace);
   }
 
   test('produces color customizations in theme-scoped block', async function () {
