@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { GLAZE_ACTIVE_KEY } from '../settings';
+import { _setGuardEnabled } from '../reconcile/guard';
 
 /**
  * Polls until a condition is met or timeout is reached.
@@ -202,6 +203,10 @@ suite('Extension Test Suite', () => {
     if (!ext.isActive) {
       await ext.activate();
     }
+    // Disable the reconcile guard for integration tests. The
+    // guard detects runaway config-write loops, but rapid
+    // test-driven reconciles would trip it.
+    _setGuardEnabled(false);
   });
 
   suite('Command Registration', () => {

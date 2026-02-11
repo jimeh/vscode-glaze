@@ -3,6 +3,7 @@ import { registerAllCommands } from './commands';
 import { registerEventHandlers } from './events';
 import {
   cancelPendingReconcile,
+  enableReconcileGuard,
   requestReconcile,
   setRefreshStatusBar,
 } from './reconcile';
@@ -15,6 +16,10 @@ export async function activate(context: vscode.ExtensionContext) {
   // Wire up the status bar refresh callback so the reconcile
   // module can trigger refreshes without a circular import.
   setRefreshStatusBar(() => refreshStatusBar(statusBar));
+
+  // Enable the reconcile guard to detect runaway config-write
+  // loops between extensions.
+  enableReconcileGuard();
 
   // Apply tint on activation
   requestReconcile();
