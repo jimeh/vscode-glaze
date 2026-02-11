@@ -21,7 +21,7 @@ suite('isGloballyEnabled', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalEnabled = config.get<boolean>('enabled');
+    originalEnabled = config.inspect<boolean>('enabled')?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -244,13 +244,15 @@ suite('getWorkspaceIdentifierConfig', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalSource = config.get<string>('workspaceIdentifier.source');
-    originalCustomBasePath = config.get<string>(
+    originalSource = config.inspect<string>(
+      'workspaceIdentifier.source'
+    )?.globalValue;
+    originalCustomBasePath = config.inspect<string>(
       'workspaceIdentifier.customBasePath'
-    );
-    originalMultiRootSource = config.get<string>(
+    )?.globalValue;
+    originalMultiRootSource = config.inspect<string>(
       'workspaceIdentifier.multiRootSource'
-    );
+    )?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -405,13 +407,19 @@ suite('getTintConfig', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalTitleBar = config.get<boolean>('elements.titleBar');
-    originalStatusBar = config.get<boolean>('elements.statusBar');
-    originalActivityBar = config.get<boolean>('elements.activityBar');
-    originalSideBar = config.get<boolean>('elements.sideBar');
-    originalMode = config.get<string>('tint.mode');
-    originalSeed = config.get<number>('tint.seed');
-    originalBaseHueOverride = config.get<number | null>('tint.baseHueOverride');
+    originalTitleBar =
+      config.inspect<boolean>('elements.titleBar')?.globalValue;
+    originalStatusBar =
+      config.inspect<boolean>('elements.statusBar')?.globalValue;
+    originalActivityBar = config.inspect<boolean>(
+      'elements.activityBar'
+    )?.globalValue;
+    originalSideBar = config.inspect<boolean>('elements.sideBar')?.globalValue;
+    originalMode = config.inspect<string>('tint.mode')?.globalValue;
+    originalSeed = config.inspect<number>('tint.seed')?.globalValue;
+    originalBaseHueOverride = config.inspect<number | null>(
+      'tint.baseHueOverride'
+    )?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -526,6 +534,11 @@ suite('getTintConfig', () => {
       false,
       vscode.ConfigurationTarget.Global
     );
+    await updateConfig(
+      'elements.sideBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
 
     const result = getTintConfig();
     assert.deepStrictEqual(result.targets, ['titleBar']);
@@ -544,6 +557,11 @@ suite('getTintConfig', () => {
     );
     await updateConfig(
       'elements.activityBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    await updateConfig(
+      'elements.sideBar',
       false,
       vscode.ConfigurationTarget.Global
     );
@@ -568,6 +586,11 @@ suite('getTintConfig', () => {
       true,
       vscode.ConfigurationTarget.Global
     );
+    await updateConfig(
+      'elements.sideBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
 
     const result = getTintConfig();
     assert.deepStrictEqual(result.targets, ['activityBar']);
@@ -586,6 +609,11 @@ suite('getTintConfig', () => {
     );
     await updateConfig(
       'elements.activityBar',
+      false,
+      vscode.ConfigurationTarget.Global
+    );
+    await updateConfig(
+      'elements.sideBar',
       false,
       vscode.ConfigurationTarget.Global
     );
@@ -905,7 +933,8 @@ suite('getBlendMethod', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalBlendMethod = config.get<string>('theme.blendMethod');
+    originalBlendMethod =
+      config.inspect<string>('theme.blendMethod')?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -972,20 +1001,22 @@ suite('getThemeConfig', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalBlendMethod = config.get<string>('theme.blendMethod');
-    originalBlendFactor = config.get<number>('theme.blendFactor');
-    originalTitleBarBlendFactor = config.get<number | null>(
+    originalBlendMethod =
+      config.inspect<string>('theme.blendMethod')?.globalValue;
+    originalBlendFactor =
+      config.inspect<number>('theme.blendFactor')?.globalValue;
+    originalTitleBarBlendFactor = config.inspect<number | null>(
       'theme.titleBarBlendFactor'
-    );
-    originalActivityBarBlendFactor = config.get<number | null>(
+    )?.globalValue;
+    originalActivityBarBlendFactor = config.inspect<number | null>(
       'theme.activityBarBlendFactor'
-    );
-    originalStatusBarBlendFactor = config.get<number | null>(
+    )?.globalValue;
+    originalStatusBarBlendFactor = config.inspect<number | null>(
       'theme.statusBarBlendFactor'
-    );
-    originalSideBarBlendFactor = config.get<number | null>(
+    )?.globalValue;
+    originalSideBarBlendFactor = config.inspect<number | null>(
       'theme.sideBarBlendFactor'
-    );
+    )?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -1221,7 +1252,7 @@ suite('getColorStyle', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalColorStyle = config.get<string>('tint.colorStyle');
+    originalColorStyle = config.inspect<string>('tint.colorStyle')?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -1309,7 +1340,8 @@ suite('getColorHarmony', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalColorHarmony = config.get<string>('tint.colorHarmony');
+    originalColorHarmony =
+      config.inspect<string>('tint.colorHarmony')?.globalValue;
   });
 
   suiteTeardown(async () => {
@@ -1437,7 +1469,7 @@ suite('getStatusBarEnabled', () => {
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
-    originalValue = config.get<boolean>('statusBar.enabled');
+    originalValue = config.inspect<boolean>('statusBar.enabled')?.globalValue;
   });
 
   suiteTeardown(async () => {

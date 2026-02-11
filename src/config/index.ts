@@ -15,6 +15,14 @@ import type {
 import { DEFAULT_BLEND_METHOD, isValidBlendMethod } from '../color/blend';
 import { DEFAULT_COLOR_STYLE, isValidColorStyle } from '../color/styles';
 import { DEFAULT_COLOR_HARMONY, isValidColorHarmony } from '../color/harmony';
+import {
+  _buildTargets,
+  _validateSeed,
+  _validateBaseHueOverride,
+  _clampBlendFactor,
+  _buildTargetBlendFactors,
+  _validateEnum,
+} from './validate';
 
 export { DEFAULT_BLEND_FACTOR } from './types';
 export type {
@@ -29,6 +37,15 @@ export type {
   WorkspaceIdentifierConfig,
   WorkspaceIdentifierSource,
 } from './types';
+export {
+  _buildTargets,
+  _validateSeed,
+  _validateBaseHueOverride,
+  _clampBlendFactor,
+  _buildTargetBlendFactors,
+  _validateEnum,
+} from './validate';
+export type { ElementFlags } from './validate';
 
 /**
  * Returns whether Glaze is globally enabled.
@@ -77,8 +94,9 @@ export async function setEnabledForWorkspace(
 }
 
 /**
- * Reads a string config value and validates it against allowed values.
- * Returns the default if the value is not in the allowed set.
+ * Reads a string config value and validates it against allowed
+ * values. Returns the default if the value is not in the allowed
+ * set.
  */
 function getValidatedEnum<T extends string>(
   config: vscode.WorkspaceConfiguration,
@@ -87,9 +105,7 @@ function getValidatedEnum<T extends string>(
   defaultValue: T
 ): T {
   const value = config.get<string>(key, defaultValue);
-  return (validValues as readonly string[]).includes(value)
-    ? (value as T)
-    : defaultValue;
+  return _validateEnum(value, validValues, defaultValue);
 }
 
 const VALID_THEME_MODES: readonly ThemeMode[] = ['auto', 'light', 'dark'];
@@ -177,36 +193,20 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
 export function getTintConfig(): TintConfig {
   const config = vscode.workspace.getConfiguration('glaze');
 
-  const targets: TintTarget[] = [];
-  if (config.get<boolean>('elements.titleBar', true)) {
-    targets.push('titleBar');
-  }
-  if (config.get<boolean>('elements.statusBar', true)) {
-    targets.push('statusBar');
-  }
-  if (config.get<boolean>('elements.activityBar', true)) {
-    targets.push('activityBar');
-  }
-  if (config.get<boolean>('elements.sideBar', false)) {
-    targets.push('sideBar');
-  }
+  const targets = _buildTargets({
+    titleBar: config.get<boolean>('elements.titleBar', true),
+    statusBar: config.get<boolean>('elements.statusBar', true),
+    activityBar: config.get<boolean>('elements.activityBar', true),
+    sideBar: config.get<boolean>('elements.sideBar', false),
+  });
 
   const mode = getValidatedEnum(config, 'tint.mode', VALID_THEME_MODES, 'auto');
 
-  const seedValue = config.get<number>('tint.seed', 0);
-  const seed = Number.isInteger(seedValue) ? seedValue : 0;
+  const seed = _validateSeed(config.get<number>('tint.seed', 0));
 
-  const rawHueOverride = config.get<number | null>(
-    'tint.baseHueOverride',
-    null
+  const baseHueOverride = _validateBaseHueOverride(
+    config.get<number | null>('tint.baseHueOverride', null)
   );
-  const baseHueOverride =
-    rawHueOverride !== null &&
-    Number.isInteger(rawHueOverride) &&
-    rawHueOverride >= 0 &&
-    rawHueOverride <= 359
-      ? rawHueOverride
-      : null;
 
   return { targets, mode, seed, baseHueOverride };
 }
@@ -229,22 +229,18 @@ export function getThemeConfig(): ThemeConfig {
 
   const blendMethod = getBlendMethod();
 
-  const blendFactorValue = config.get<number>(
-    'theme.blendFactor',
-    DEFAULT_BLEND_FACTOR
+  const blendFactor = _clampBlendFactor(
+    config.get<number>('theme.blendFactor', DEFAULT_BLEND_FACTOR)
   );
-  // Clamp to valid range
-  const blendFactor = Math.max(0, Math.min(1, blendFactorValue));
 
-  const targetBlendFactors: Partial<Record<TintTarget, number>> = {};
-  const targets = Object.keys(TARGET_BLEND_FACTOR_KEYS) as TintTarget[];
-  for (const target of targets) {
-    const key = TARGET_BLEND_FACTOR_KEYS[target];
-    const value = config.get<number | null>(key, null);
-    if (value !== null && typeof value === 'number') {
-      targetBlendFactors[target] = Math.max(0, Math.min(1, value));
-    }
-  }
+  const entries = (Object.keys(TARGET_BLEND_FACTOR_KEYS) as TintTarget[]).map(
+    (target) =>
+      [
+        target,
+        config.get<number | null>(TARGET_BLEND_FACTOR_KEYS[target], null),
+      ] as const
+  );
+  const targetBlendFactors = _buildTargetBlendFactors(entries);
 
   return { blendMethod, blendFactor, targetBlendFactors };
 }

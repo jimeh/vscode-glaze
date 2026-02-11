@@ -24,6 +24,33 @@ pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
 
 The `--grep` pattern matches against suite/test names.
 
+## Test Ordering
+
+[Choma](https://www.npmjs.com/package/choma) randomizes suite and test
+execution order on every run to surface leaky tests early. Set `CHOMA_SEED`
+to reproduce a specific ordering:
+
+```bash
+CHOMA_SEED=s0pxg40XgN pnpm run test
+```
+
+## Config State Isolation
+
+**Capture with `inspect()`, not `get()`**: `suiteSetup` blocks must capture
+original config values via `config.inspect<T>(key)?.globalValue` (or
+`?.workspaceValue` for workspace-scoped teardowns). Using `config.get()`
+captures the effective/merged value across all scopes, which includes
+contamination from other suites and permanently writes it back on teardown.
+
+**Reset all config you touch**: If a test sets a subset of related config
+keys (e.g. only `elements.titleBar`), other keys (e.g. `elements.sideBar`)
+may still hold stale values from a prior randomly-ordered test. Either reset
+all related keys or explicitly set every key your test depends on.
+
+**Clear shared state before asserting**: Tests that assert on
+`workbench.colorCustomizations` being clean should clear it at the start,
+since a prior test in the same suite may have seeded root-level keys.
+
 ## Config Propagation in Tests
 
 VS Code's `config.update()` resolves when the write is persisted, but the
