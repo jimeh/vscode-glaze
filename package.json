@@ -3,7 +3,7 @@
   "publisher": "jimeh",
   "displayName": "Glaze",
   "description": "Subtle, automatic color tints for your VS Code windows.",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "license": "MIT",
   "author": {
     "name": "Jim Myhrberg"
