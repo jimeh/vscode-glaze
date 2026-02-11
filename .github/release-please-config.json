@@ -1,6 +1,5 @@
 {
-  "initial-version": "0.1.0",
-  "bootstrap-sha": "fdfdc1b519869789cc26affb51fc8f0876110228",
+  "bootstrap-sha": "8bd0a9829b5ce710c6848cd53e3834983ddec195",
   "always-update": true,
   "packages": {
     ".": {
