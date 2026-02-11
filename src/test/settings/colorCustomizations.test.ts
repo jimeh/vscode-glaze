@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import {
   GLAZE_ACTIVE_KEY,
+  LEGACY_ACTIVE_KEYS,
   type ColorCustomizations,
   mergeColorCustomizations,
   removeGlazeColors,
@@ -11,6 +12,7 @@ const THEME = 'Default Dark Modern';
 const THEME_KEY = `[${THEME}]`;
 const OTHER_THEME = 'Monokai';
 const OTHER_THEME_KEY = `[${OTHER_THEME}]`;
+const LEGACY_KEY = LEGACY_ACTIVE_KEYS[0];
 
 suite('mergeColorCustomizations', () => {
   test('returns theme-scoped block when existing is undefined', () => {
@@ -232,6 +234,51 @@ suite('mergeColorCustomizations', () => {
     assert.deepStrictEqual(result['[Solarized Dark]'], {
       'editor.foreground': '#abcdef',
     });
+  });
+
+  test('recognizes legacy patina.active marker and upgrades to glaze.active', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: OTHER_THEME,
+      [OTHER_THEME_KEY]: {
+        'titleBar.activeBackground': '#old111',
+      },
+    };
+    const glazeColors = {
+      'titleBar.activeBackground': '#new222',
+    };
+
+    const result = mergeColorCustomizations(existing, glazeColors, THEME);
+
+    // Legacy marker key should be stripped
+    assert.strictEqual(result[LEGACY_KEY], undefined);
+    // Root marker should now be glaze.active
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], THEME);
+    // Old theme block should be cleaned (only had Glaze keys)
+    assert.strictEqual(result[OTHER_THEME_KEY], undefined);
+    // New theme block created
+    const block = result[THEME_KEY] as Record<string, string>;
+    assert.strictEqual(block['titleBar.activeBackground'], '#new222');
+  });
+
+  test('strips legacy patina.active during merge even on same theme', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: THEME,
+      [THEME_KEY]: {
+        'titleBar.activeBackground': '#old111',
+        'editor.background': '#usercolor',
+      },
+    };
+    const glazeColors = {
+      'titleBar.activeBackground': '#new222',
+    };
+
+    const result = mergeColorCustomizations(existing, glazeColors, THEME);
+
+    assert.strictEqual(result[LEGACY_KEY], undefined);
+    assert.strictEqual(result[GLAZE_ACTIVE_KEY], THEME);
+    const block = result[THEME_KEY] as Record<string, string>;
+    assert.strictEqual(block['titleBar.activeBackground'], '#new222');
+    assert.strictEqual(block['editor.background'], '#usercolor');
   });
 
   test('preserves non-string root-level values', () => {
@@ -464,6 +511,50 @@ suite('removeGlazeColors', () => {
 
     assert.strictEqual(result, undefined);
   });
+
+  test('recognizes legacy patina.active marker and removes owned block', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: THEME,
+      [THEME_KEY]: {
+        'titleBar.activeBackground': '#111111',
+        'statusBar.background': '#222222',
+      },
+    };
+
+    const result = removeGlazeColors(existing);
+
+    // Everything owned by Glaze should be gone
+    assert.strictEqual(result, undefined);
+  });
+
+  test('preserves user keys when removing with legacy patina.active marker', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: THEME,
+      [THEME_KEY]: {
+        'editor.background': '#usercolor',
+        'titleBar.activeBackground': '#111111',
+      },
+    };
+
+    const result = removeGlazeColors(existing);
+
+    assert.deepStrictEqual(result, {
+      [THEME_KEY]: { 'editor.background': '#usercolor' },
+    });
+  });
+
+  test('strips legacy patina.active key from root during remove', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: THEME,
+      'editor.background': '#aabbcc',
+    };
+
+    const result = removeGlazeColors(existing);
+
+    assert.deepStrictEqual(result, {
+      'editor.background': '#aabbcc',
+    });
+  });
 });
 
 suite('hasGlazeColorsWithoutMarker', () => {
@@ -605,5 +696,23 @@ suite('hasGlazeColorsWithoutMarker', () => {
       },
     };
     assert.strictEqual(hasGlazeColorsWithoutMarker(existing, THEME), true);
+  });
+
+  test('returns false when legacy patina.active marker is present', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: THEME,
+      'titleBar.activeBackground': '#111111',
+    };
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing), false);
+  });
+
+  test('returns false when legacy patina.active points to current theme', () => {
+    const existing: ColorCustomizations = {
+      [LEGACY_KEY]: THEME,
+      [THEME_KEY]: {
+        'titleBar.activeBackground': '#111111',
+      },
+    };
+    assert.strictEqual(hasGlazeColorsWithoutMarker(existing, THEME), false);
   });
 });

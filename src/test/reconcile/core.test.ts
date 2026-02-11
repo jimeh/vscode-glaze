@@ -1,7 +1,10 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { doReconcile, _resetAllState, getCachedState } from '../../reconcile';
-import { GLAZE_ACTIVE_KEY } from '../../settings/colorCustomizations';
+import {
+  GLAZE_ACTIVE_KEY,
+  LEGACY_ACTIVE_KEYS,
+} from '../../settings/colorCustomizations';
 import { GLAZE_MANAGED_KEYS } from '../../theme';
 
 /**
@@ -293,6 +296,74 @@ suite('doReconcile', () => {
       found.block[GLAZE_ACTIVE_KEY],
       undefined,
       'glaze.active marker should NOT be inside the theme block'
+    );
+  });
+
+  test('upgrades legacy patina.active marker to glaze.active', async function () {
+    if (!vscode.workspace.workspaceFolders?.length) {
+      return this.skip();
+    }
+
+    // Determine the current theme name so we can seed the legacy marker.
+    await enableGlaze();
+    await doReconcile({ force: true });
+    const initial = getColorCustomizations();
+    assert.ok(initial, 'initial reconcile should produce colors');
+    const themeName = initial[GLAZE_ACTIVE_KEY] as string;
+    assert.ok(themeName, 'should have a theme name from initial reconcile');
+    const themeKey = `[${themeName}]`;
+
+    // Replace glaze.active with legacy patina.active marker.
+    const legacyKey = LEGACY_ACTIVE_KEYS[0];
+    const legacyColors: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(initial)) {
+      if (key === GLAZE_ACTIVE_KEY) {
+        legacyColors[legacyKey] = value;
+      } else {
+        legacyColors[key] = value;
+      }
+    }
+    await setColorCustomizations(legacyColors);
+
+    // Verify the legacy marker is in place.
+    const pre = getColorCustomizations();
+    assert.ok(pre, 'pre-reconcile colors should exist');
+    assert.ok(pre[legacyKey], 'legacy marker should be set');
+    assert.strictEqual(
+      pre[GLAZE_ACTIVE_KEY],
+      undefined,
+      'glaze.active should not exist before reconcile'
+    );
+
+    // Reset state so reconcile does a full write.
+    _resetAllState();
+    await doReconcile({ force: true });
+
+    const after = getColorCustomizations();
+    assert.ok(after, 'post-reconcile colors should exist');
+
+    // Legacy marker should be gone, replaced by glaze.active.
+    assert.strictEqual(
+      after[legacyKey],
+      undefined,
+      'legacy marker should be removed after reconcile'
+    );
+    assert.strictEqual(
+      after[GLAZE_ACTIVE_KEY],
+      themeName,
+      'glaze.active should be set to the theme name'
+    );
+
+    // Theme block should still contain managed keys.
+    const block = after[themeKey] as Record<string, unknown> | undefined;
+    assert.ok(block, 'theme block should exist');
+    const managedSet = new Set<string>(GLAZE_MANAGED_KEYS);
+    const managedKeysPresent = Object.keys(block).filter((k) =>
+      managedSet.has(k)
+    );
+    assert.ok(
+      managedKeysPresent.length > 0,
+      'managed keys should be present in theme block'
     );
   });
 

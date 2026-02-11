@@ -13,6 +13,44 @@ const MANAGED_KEY_SET = new Set<string>(GLAZE_MANAGED_KEYS);
 export const GLAZE_ACTIVE_KEY = 'glaze.active';
 
 /**
+ * Legacy marker keys from previous versions of the extension
+ * (when it was called "Patina"). Workspaces with these keys are
+ * recognized as Glaze-managed and seamlessly upgraded on next write.
+ */
+export const LEGACY_ACTIVE_KEYS: readonly string[] = ['patina.active'];
+
+const LEGACY_KEY_SET = new Set<string>(LEGACY_ACTIVE_KEYS);
+
+/**
+ * Reads the active ownership marker from colorCustomizations,
+ * checking the current `glaze.active` key first, then falling
+ * back through legacy keys.
+ *
+ * @returns The marker value (theme name string) or `undefined`
+ */
+export function readActiveMarker(
+  existing: ColorCustomizations | undefined
+): string | undefined {
+  if (!existing) {
+    return undefined;
+  }
+
+  const current = existing[GLAZE_ACTIVE_KEY];
+  if (isGlazeMarker(current)) {
+    return current;
+  }
+
+  for (const key of LEGACY_ACTIVE_KEYS) {
+    const value = existing[key];
+    if (isGlazeMarker(value)) {
+      return value;
+    }
+  }
+
+  return undefined;
+}
+
+/**
  * Type for VSCode's workbench.colorCustomizations setting.
  * Top-level values may be strings (color keys) or objects
  * (theme-scoped blocks like `[Theme Name]`).
@@ -74,10 +112,8 @@ export function mergeColorCustomizations(
   const targetKey = themeScopeKey(themeName);
 
   // Identify previously owned theme from root marker.
-  const prevOwned = existing?.[GLAZE_ACTIVE_KEY];
-  const prevOwnedKey = isGlazeMarker(prevOwned)
-    ? themeScopeKey(prevOwned)
-    : undefined;
+  const prevOwned = readActiveMarker(existing);
+  const prevOwnedKey = prevOwned ? themeScopeKey(prevOwned) : undefined;
 
   // Collect user keys from the target theme's existing block (if any)
   // so we can preserve them in the new block.
@@ -159,10 +195,8 @@ export function removeGlazeColors(
   const result: ColorCustomizations = {};
 
   // Identify the owned theme block from root marker.
-  const ownedTheme = existing[GLAZE_ACTIVE_KEY];
-  const ownedKey = isGlazeMarker(ownedTheme)
-    ? themeScopeKey(ownedTheme)
-    : undefined;
+  const ownedTheme = readActiveMarker(existing);
+  const ownedKey = ownedTheme ? themeScopeKey(ownedTheme) : undefined;
 
   for (const [key, value] of Object.entries(existing)) {
     if (isThemeScopedKey(key)) {
@@ -190,7 +224,11 @@ export function removeGlazeColors(
  * Checks if a key is managed by Glaze (including the marker key).
  */
 function isGlazeKey(key: string): boolean {
-  return key === GLAZE_ACTIVE_KEY || MANAGED_KEY_SET.has(key);
+  return (
+    key === GLAZE_ACTIVE_KEY ||
+    LEGACY_KEY_SET.has(key) ||
+    MANAGED_KEY_SET.has(key)
+  );
 }
 
 /**
@@ -235,8 +273,8 @@ export function hasGlazeColorsWithoutMarker(
   }
 
   // Check root-level keys (legacy format)
-  const hasRootMarker = isGlazeMarker(existing[GLAZE_ACTIVE_KEY]);
-  if (!hasRootMarker) {
+  const activeMarker = readActiveMarker(existing);
+  if (!activeMarker) {
     const hasRootManagedKeys = Object.keys(existing).some((key) =>
       MANAGED_KEY_SET.has(key)
     );
@@ -252,7 +290,7 @@ export function hasGlazeColorsWithoutMarker(
     if (block && typeof block === 'object') {
       const themeBlock = block as Record<string, unknown>;
       // Root marker must point to this theme for it to be Glaze-owned
-      const markerPointsHere = existing[GLAZE_ACTIVE_KEY] === themeName;
+      const markerPointsHere = activeMarker === themeName;
       if (!markerPointsHere) {
         return Object.keys(themeBlock).some((key) => MANAGED_KEY_SET.has(key));
       }
