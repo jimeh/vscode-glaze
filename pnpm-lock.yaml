@@ -25,8 +25,8 @@ importers:
         specifier: ^0.4.1
         version: 0.4.1
       '@types/node':
-        specifier: 22.x
-        version: 22.19.7
+        specifier: ^20.18.0
+        version: 20.19.33
       '@types/plist':
         specifier: ^3.0.5
         version: 3.0.5
@@ -34,7 +34,7 @@ importers:
         specifier: ^7.7.1
         version: 7.7.1
       '@types/vscode':
-        specifier: ^1.102.0
+        specifier: ^1.95.0
         version: 1.108.1
       '@vscode/test-cli':
         specifier: ^0.0.12
@@ -694,8 +694,8 @@ packages:
   '@types/nearest-color@0.4.1':
     resolution: {integrity: sha512-nxe9cdPrS0Gh3FRxDSHyB6Ep3OCCKqqBAYTj0EyT21aInkNESV9Vm0IS+ibeqkycSjadlAHmworjBgqz266S3w==}
 
-  '@types/node@22.19.7':
-    resolution: {integrity: sha512-MciR4AKGHWl7xwxkBa6xUGxQJ4VBOmPTF7sL+iGzuahOFaO0jHCsuEfS80pan1ef4gWId1oWOweIhrDEYLuaOw==}
+  '@types/node@20.19.33':
+    resolution: {integrity: sha512-Rs1bVAIdBs5gbTIKza/tgpMuG1k3U/UMJLWecIMxNdJFDMzcM5LOiLVRYh3PilWEYDIeUDv7bpiHPLPsbydGcw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2706,7 +2706,7 @@ snapshots:
 
   '@types/adm-zip@0.5.7':
     dependencies:
-      '@types/node': 22.19.7
+      '@types/node': 20.19.33
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -2714,7 +2714,7 @@ snapshots:
 
   '@types/nearest-color@0.4.1': {}
 
-  '@types/node@22.19.7':
+  '@types/node@20.19.33':
     dependencies:
       undici-types: 6.21.0
 
@@ -2722,7 +2722,7 @@ snapshots:
 
   '@types/plist@3.0.5':
     dependencies:
-      '@types/node': 22.19.7
+      '@types/node': 20.19.33
       xmlbuilder: 15.1.1
 
   '@types/sarif@2.1.7': {}
