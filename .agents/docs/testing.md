@@ -24,6 +24,14 @@ pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
 
 The `--grep` pattern matches against suite/test names.
 
+`pnpm run test` is preferred because it runs `pretest`, which clears fixture
+workspace settings before the test host starts. If you run `vscode-test`
+directly, clear the fixture settings first:
+
+```bash
+rm -f src/test/fixtures/test-workspace/.vscode/settings.json
+```
+
 ## Test Ordering
 
 [Choma](https://www.npmjs.com/package/choma) randomizes suite and test
@@ -70,6 +78,35 @@ raw `config.update()` safely.
 Extension tests run with `GLAZE_DISABLE_RECONCILE_GUARD=1`, which keeps the
 reconcile guard disabled by default and avoids random-order guard trips.
 Guard-specific tests explicitly enable it in their own setup.
+
+## Reconcile Runtime Isolation
+
+Config changes and Glaze commands can enqueue debounced reconcile work
+(`requestReconcile`) that outlives a test and leaks into the next one.
+
+For suites that mutate any of the following, add per-test full-state resets:
+
+- `glaze.*` settings
+- `workbench.colorCustomizations`
+- `workbench.colorTheme` / `workbench.preferred*ColorTheme`
+- `vscode.commands.executeCommand('glaze.*')`
+
+Pattern:
+
+```ts
+import { _resetAllState } from '../../reconcile';
+
+setup(() => {
+  _resetAllState();
+});
+
+teardown(() => {
+  _resetAllState();
+});
+```
+
+Pure unit tests that do not touch extension runtime/config mutation paths do
+not need this.
 
 ## Test Coverage
 
