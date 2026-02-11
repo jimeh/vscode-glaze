@@ -20,19 +20,19 @@
 [workspace-config-plus]: https://marketplace.visualstudio.com/items?itemName=swellaby.workspace-config-plus
 
 Ever lost track of which VS Code window is which? Glaze attempts to solve this
-by giving each workspace a unique color tint derived from its directory path.
-The colors blend with your current theme's colors, so your editor still looks
-great, just subtly different per project.
+by giving each workspace a unique color tint/glaze derived from its directory
+path. The colors blend with your current theme's colors, so your editor still
+looks great, just subtly different per project.
 
 ![dark](https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/titlebar-dark.png)
 ![light](https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/titlebar-light.png)
 
 ## How It Works
 
-Glaze generates a stable color from a hash of your workspace's directory path,
-meaning the same project always gets the same tint. These colors are
-intelligently blended with your active VS Code theme's color, so they look
-natural with both light and dark themes in all manners of colors. When you
+Glaze generates a deterministic color from a hash of your workspace's directory
+path, meaning the same project always gets the same color tint. These colors are
+intelligently blended with your active VS Code theme's colors, so they look
+natural and fit well with most themes regardless of color palette. And when you
 switch themes, Glaze automatically re-adapts.
 
 ## Important: Workspace Settings
@@ -47,18 +47,19 @@ VS Code provides for programmatic color customization.
 
 A few things to know:
 
-- **Non-destructive** — Glaze only manages its own specific color keys.
-  Existing color customizations are left untouched.
-- **Disabled by default** — Because of the settings file modification, Glaze
+- **Non-destructive:** Glaze only manages its own specific color keys. Existing
+  color customizations are left untouched.
+- **Disabled by default:** Because of the settings file modification, Glaze
   ships disabled. You must explicitly enable it after installation.
-- **Fully reversible** — Disabling Glaze cleanly removes all of its color
-  entries from your workspace settings.
+- **Fully reversible:** Disabling Glaze cleanly removes all of its color entries
+  from your workspace settings.
 
 If your `.vscode/settings.json` is checked into version control, consider using
 the [Workspace Config+][workspace-config-plus] extension. It lets you split
-workspace settings into a `settings.shared.json` and `settings.local.json`
-files, which get automatically merged into `settings.json`. Then add both
-`settings.json` and `settings.local.json` to your `.gitignore`.
+workspace settings into `settings.shared.json` and `settings.local.json` files,
+which get automatically merged into `settings.json`. Add both `settings.json`
+and `settings.local.json` to your `.gitignore`, and only the shared settings get
+committed.
 
 ## Getting Started
 
@@ -74,27 +75,28 @@ code --install-extension jimeh.glaze
 
 ### 2. Enable
 
-Open the Command Palette (<kbd>Cmd+Shift+P</kbd> / <kbd>Ctrl+Shift+P</kbd>)
-and run one of:
+Open the Command Palette (<kbd>Cmd+Shift+P</kbd> / <kbd>Ctrl+Shift+P</kbd>) and
+run one of:
 
 - **`Glaze: Enable Globally`**: Enables Glaze for all workspaces.
-- **`Glaze: Enable for This Workspace`**: Enables Glaze only for the
-  current workspace.
+- **`Glaze: Enable for This Workspace`**: Enables Glaze only for the current
+  workspace.
 
-That's it, your title bar, activity bar, and status bar should all be color
-tinted. You can enabled/disable tinting of all elements individually.
+That's it, your title bar, activity bar, and status bar should all be tinted.
+You can turn tinting of each element on and off individually in settings.
 
 ### 3. Explore
 
-The status bar shows Glaze's current state. Click it to open the Quick Menu
-for toggling, previewing colors, and randomizing your tint seed.
+The status bar shows Glaze's current state. Click it to open the Quick Menu for
+toggling, previewing colors, randomizing your tint seed, or manually setting a
+base tint hue override if you like.
 
-## Configuration
+## Features & Configuration
 
-Glaze has extensive configuration options covering color styles, color
-harmonies, UI element selection, theme blend modes, and workspace identifier
-sources. The easiest way to explore all available settings is through the
-VS Code Settings UI:
+Glaze is highly configurable — color styles, harmonies, UI element selection,
+theme blend modes, and workspace identifier sources can all be tuned. The
+easiest way to explore all available settings is through the VS Code Settings
+UI:
 
 1. Open Settings (<kbd>Cmd+,</kbd> / <kbd>Ctrl+,</kbd>)
 2. Search for `@ext:jimeh.glaze`
@@ -103,41 +105,34 @@ All settings include descriptions and sensible defaults.
 
 ## Theme Color Matching
 
-VS Code's extension API does not expose the active theme's resolved color
-values. To blend tints naturally with your theme, Glaze needs to know the
-theme's background colors, so it ships with a precomputed lookup table mapping
-theme names to their colors.
+One of Glaze's key features is its ability to produce tints that fit naturally
+with your current theme's colors.
+
+It does this by blending the tint color with the theme's background colors to
+produce the final applied tint. VS Code's extension API, however, does not
+expose the active theme's resolved color values. To get around this limitation,
+Glaze ships with a precomputed lookup table mapping theme names to their color
+values.
 
 The lookup table is generated from:
 
 - **All built-in VS Code themes** extracted from the latest VS Code release.
-- **The top 250 most-installed theme extensions** from both the
-  [VS Code Marketplace](https://marketplace.visualstudio.com/) and the
-  [OpenVSX Registry](https://open-vsx.org/), merged and deduplicated.
+- **The top 250 most-installed theme extensions** from both the [VS Code
+  Marketplace](https://marketplace.visualstudio.com/) and the [OpenVSX
+  Registry](https://open-vsx.org/), merged and deduplicated.
 
 If your theme isn't in the lookup table, you can provide its colors manually via
 the `glaze.theme.colors` setting. See the setting's description in the VS Code
-Settings UI for the expected format. You can also
-[open an issue](https://github.com/jimeh/vscode-glaze/issues) to request that
-a specific theme be added to the built-in lookup table.
+Settings UI for the expected format.
 
-## Commands
-
-Access these from the Command Palette (<kbd>Cmd+Shift+P</kbd> /
-<kbd>Ctrl+Shift+P</kbd>):
-
-| Command                             | Description                                    |
-| ----------------------------------- | ---------------------------------------------- |
-| `Glaze: Enable Globally`            | Enable Glaze for all workspaces                |
-| `Glaze: Disable Globally`           | Disable Glaze for all workspaces               |
-| `Glaze: Enable for This Workspace`  | Enable Glaze for the current workspace only    |
-| `Glaze: Disable for This Workspace` | Disable Glaze for the current workspace only   |
-| `Glaze: Show Status`                | Display current Glaze status and configuration |
-| `Glaze: Show Color Palette Preview` | Preview the generated color palette            |
-| `Glaze: Randomize Tint Seed`        | Randomize the seed to get a different color    |
-| `Glaze: Reset Tint Seed`            | Reset the seed back to the default             |
+You can also [open an issue](https://github.com/jimeh/vscode-glaze/issues) to
+request that a specific theme be added to the built-in lookup table.
 
 ## Screenshots
+
+The screenshots below cover a small selection of what Glaze can look like.
+Between color styles, color harmonies, and theme blend factor, it is quite
+customizable.
 
 <table>
   <tr>
@@ -206,24 +201,38 @@ Access these from the Command Palette (<kbd>Cmd+Shift+P</kbd> /
   </tr>
 </table>
 
+## Commands
+
+Access these from the Command Palette (<kbd>Cmd+Shift+P</kbd> /
+<kbd>Ctrl+Shift+P</kbd>):
+
+| Command                             | Description                                    |
+| ----------------------------------- | ---------------------------------------------- |
+| `Glaze: Enable Globally`            | Enable Glaze for all workspaces                |
+| `Glaze: Disable Globally`           | Disable Glaze for all workspaces               |
+| `Glaze: Enable for This Workspace`  | Enable Glaze for the current workspace only    |
+| `Glaze: Disable for This Workspace` | Disable Glaze for the current workspace only   |
+| `Glaze: Show Status`                | Display current Glaze status and configuration |
+| `Glaze: Show Color Palette Preview` | Preview the generated color palette            |
+| `Glaze: Randomize Tint Seed`        | Randomize the seed to get a different color    |
+| `Glaze: Reset Tint Seed`            | Reset the seed back to the default             |
+
 ## FAQ
 
 ### Can I exclude Glaze's changes from version control?
 
-Use the [Workspace Config+][workspace-config-plus] extension to split shared
-settings into `settings.shared.json` (version controlled) while keeping
-`settings.json` and `settings.local.json` in your `.gitignore`.
+See [Important: Workspace Settings](#important-workspace-settings) above.
 
 ### How do I completely remove Glaze's color changes?
 
 Run **`Glaze: Disable Globally`** or **`Glaze: Disable for This Workspace`**
-from the Command Palette. This removes all Glaze-managed color entries from
-your workspace settings.
+from the Command Palette. This removes all Glaze-managed color entries from your
+workspace settings.
 
 ### Does it work with Remote Development?
 
-Yes. Glaze runs in the VS Code UI and applies tints based on the workspace
-path, regardless of whether the workspace is local or remote.
+Yes. Glaze runs in the VS Code UI and applies tints based on the workspace path,
+regardless of whether the workspace is local or remote.
 
 ## License
 
