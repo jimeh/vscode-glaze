@@ -10,6 +10,7 @@ export default defineConfig({
       files: 'out/test/**/*.test.js',
       extensionDevelopmentPath: resolve(__dirname, 'out'),
       workspaceFolder: resolve(__dirname, 'src/test/fixtures/test-workspace'),
+      version: process.env.VSCODE_TEST_VERSION || 'stable',
       mocha: { timeout: 5000 },
     },
   ],
