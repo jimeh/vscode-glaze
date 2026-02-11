@@ -6,6 +6,7 @@ import { BUILTIN_THEME_COLORS } from '../../theme/generated/builtins';
 import { EXTENSION_THEME_COLORS } from '../../theme/generated/extensions';
 import { _resetAllState } from '../../reconcile';
 
+// File-level hooks: reset reconcile state for every test in this file.
 setup(() => {
   _resetAllState();
 });

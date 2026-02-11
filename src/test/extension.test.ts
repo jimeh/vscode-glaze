@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
+import { isDeepStrictEqual } from 'util';
 import { GLAZE_ACTIVE_KEY } from '../settings';
 import { _resetAllState } from '../reconcile';
 import { updateConfig } from './helpers';
@@ -49,12 +50,7 @@ function recordsEqual(
   a: Record<string, unknown> | undefined,
   b: Record<string, unknown> | undefined
 ): boolean {
-  try {
-    assert.deepStrictEqual(a, b);
-    return true;
-  } catch {
-    return false;
-  }
+  return isDeepStrictEqual(a, b);
 }
 
 /**
@@ -284,6 +280,8 @@ async function resetWorkspaceColorCustomizations(): Promise<void> {
 
 /**
  * Reset glaze config to a deterministic baseline for each integration test.
+ * Values must match package.json schema defaults — see the
+ * "resetGlazeConfigBaseline matches package.json defaults" test.
  */
 async function resetGlazeConfigBaseline(): Promise<void> {
   await updateConfig('enabled', false, vscode.ConfigurationTarget.Global);
@@ -345,6 +343,30 @@ suite('Extension Test Suite', () => {
     test('glaze.disableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
       assert.ok(commands.includes('glaze.disableGlobally'));
+    });
+  });
+
+  suite('resetGlazeConfigBaseline matches package.json defaults', () => {
+    test('baseline values match schema defaults', () => {
+      const config = vscode.workspace.getConfiguration('glaze');
+
+      const cases: [string, unknown][] = [
+        ['enabled', false],
+        ['elements.titleBar', true],
+        ['elements.statusBar', true],
+        ['elements.activityBar', true],
+        ['elements.sideBar', false],
+      ];
+
+      for (const [key, expected] of cases) {
+        const defaultValue = config.inspect(key)?.defaultValue;
+        assert.strictEqual(
+          defaultValue,
+          expected,
+          `glaze.${key} schema default (${defaultValue})` +
+            ` does not match baseline (${expected})`
+        );
+      }
     });
   });
 

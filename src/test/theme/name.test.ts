@@ -4,6 +4,7 @@ import { getThemeName } from '../../theme/name';
 import { detectOsColorScheme } from '../../theme/osColorScheme';
 import { _resetAllState } from '../../reconcile';
 
+// File-level hooks: reset reconcile state for every test in this file.
 setup(() => {
   _resetAllState();
 });
