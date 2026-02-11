@@ -138,6 +138,8 @@ jobs:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
       - if: matrix.target == 'github-release'
         name: Upload VSIX to GitHub Release
-        run: gh release upload ${{ github.ref_name }} *.vsix
+        run: >-
+          gh release upload ${{ github.ref_name }} *.vsix
+          --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ github.token }}
