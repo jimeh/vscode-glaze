@@ -16,6 +16,7 @@
     "logo-builder/",
     "node_modules/",
     "out/",
+    "CHANGELOG.md",
     "package.json",
     "pnpm-lock.yaml",
     "src/theme/generated/"
