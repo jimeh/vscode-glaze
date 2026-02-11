@@ -22,6 +22,7 @@ import {
 } from '../settings';
 import type { ReconcileOptions } from './types';
 import { resetCachedState, updateCachedState, refreshStatusBar } from './state';
+import { reconcileGuardCheck, reconcileGuardRecordWrite } from './guard';
 
 /**
  * Deep-compare two optional records, recursing one level into
@@ -115,6 +116,7 @@ async function writeColorConfig(
     await refreshStatusBar();
     return false;
   }
+  reconcileGuardRecordWrite();
   return true;
 }
 
@@ -223,6 +225,14 @@ async function applyTintColors(
  */
 export async function doReconcile(options?: ReconcileOptions): Promise<void> {
   const force = options?.force ?? false;
+
+  // Rate-limit guard: bail if the reconcile loop is running
+  // too frequently (e.g. another extension is ping-ponging
+  // config writes). Force-flagged runs always bypass.
+  if (!(await reconcileGuardCheck(force))) {
+    return;
+  }
+
   const tintConfig = getTintConfig();
 
   if (!isEnabledForWorkspace() || tintConfig.targets.length === 0) {
