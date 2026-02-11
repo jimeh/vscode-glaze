@@ -2,7 +2,7 @@
   "name": "glaze",
   "publisher": "jimeh",
   "displayName": "Glaze",
-  "description": "Applies subtle color tints to your editor windows based on the open project, so you can easily tell your workspaces apart.",
+  "description": "Subtle, automatic color tints for your VS Code windows.",
   "version": "0.0.12",
   "license": "MIT",
   "author": {
@@ -19,7 +19,8 @@
   "qna": false,
   "icon": "img/icon.png",
   "categories": [
-    "Other"
+    "Other",
+    "Themes"
   ],
   "extensionKind": [
     "ui"
@@ -61,7 +62,7 @@
   ],
   "main": "./dist/extension.js",
   "engines": {
-    "vscode": "^1.102.0"
+    "vscode": "^1.95.0"
   },
   "contributes": {
     "commands": [
@@ -544,10 +545,10 @@
     "@types/adm-zip": "^0.5.7",
     "@types/mocha": "^10.0.10",
     "@types/nearest-color": "^0.4.1",
-    "@types/node": "22.x",
+    "@types/node": "^20.18.0",
     "@types/plist": "^3.0.5",
     "@types/semver": "^7.7.1",
-    "@types/vscode": "^1.102.0",
+    "@types/vscode": "^1.95.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
