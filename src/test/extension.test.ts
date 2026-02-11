@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { GLAZE_ACTIVE_KEY } from '../settings';
+import { updateConfig } from './helpers';
 
 /**
  * Polls until a condition is met or timeout is reached.
@@ -261,6 +262,57 @@ async function waitForWorkspaceColorsWithoutGlazeKeys(
   );
 }
 
+/**
+ * Clear workspace-scoped colorCustomizations and wait until cleared.
+ * This keeps extension integration tests isolated under random order.
+ */
+async function resetWorkspaceColorCustomizations(): Promise<void> {
+  if (!vscode.workspace.workspaceFolders?.length) {
+    return;
+  }
+
+  await vscode.workspace
+    .getConfiguration()
+    .update(
+      'workbench.colorCustomizations',
+      undefined,
+      vscode.ConfigurationTarget.Workspace
+    );
+  await waitForWorkspaceColorsEqual(undefined);
+}
+
+/**
+ * Reset glaze config to a deterministic baseline for each integration test.
+ */
+async function resetGlazeConfigBaseline(): Promise<void> {
+  await updateConfig('enabled', false, vscode.ConfigurationTarget.Global);
+  await updateConfig(
+    'enabled',
+    undefined,
+    vscode.ConfigurationTarget.Workspace
+  );
+  await updateConfig(
+    'elements.titleBar',
+    true,
+    vscode.ConfigurationTarget.Global
+  );
+  await updateConfig(
+    'elements.statusBar',
+    true,
+    vscode.ConfigurationTarget.Global
+  );
+  await updateConfig(
+    'elements.activityBar',
+    true,
+    vscode.ConfigurationTarget.Global
+  );
+  await updateConfig(
+    'elements.sideBar',
+    false,
+    vscode.ConfigurationTarget.Global
+  );
+}
+
 suite('Extension Test Suite', () => {
   suiteSetup(async () => {
     // Ensure extension is activated
@@ -269,6 +321,11 @@ suite('Extension Test Suite', () => {
     if (!ext.isActive) {
       await ext.activate();
     }
+  });
+
+  setup(async () => {
+    await resetGlazeConfigBaseline();
+    await resetWorkspaceColorCustomizations();
   });
 
   suite('Command Registration', () => {
