@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { updateConfig } from '../helpers';
+import { _resetAllState } from '../../reconcile';
 
 suite('hueOverride commands', () => {
   // Snapshot config to restore after all tests.
@@ -10,6 +11,14 @@ suite('hueOverride commands', () => {
     const config = vscode.workspace.getConfiguration('glaze');
     const inspection = config.inspect<number | null>('tint.baseHueOverride');
     originalBaseHueOverride = inspection?.workspaceValue;
+  });
+
+  setup(() => {
+    _resetAllState();
+  });
+
+  teardown(() => {
+    _resetAllState();
   });
 
   suiteTeardown(async () => {

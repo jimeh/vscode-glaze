@@ -3,7 +3,10 @@
 ## Data Flow
 
 1. **extension** — Entry point, registers commands and event listeners.
-   Calls `applyTint()` on activation and configuration/theme changes.
+   Calls `requestReconcile()` on activation and configuration/theme changes.
+   Reconcile requests are debounced and flow into `doReconcile()`.
+   Runtime enables the reconcile guard by default; tests can disable it via
+   `GLAZE_DISABLE_RECONCILE_GUARD=1`.
 
 2. **workspace** — Derives workspace identifier from folder path/name based
    on user config (`name`, `pathRelativeToHome`, `pathAbsolute`, or

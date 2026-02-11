@@ -1,7 +1,9 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
+import { isDeepStrictEqual } from 'util';
 import { GLAZE_ACTIVE_KEY } from '../settings';
-import { _setGuardEnabled } from '../reconcile/guard';
+import { _resetAllState } from '../reconcile';
+import { updateConfig } from './helpers';
 
 /**
  * Polls until a condition is met or timeout is reached.
@@ -23,11 +25,32 @@ async function pollUntil(
 }
 
 /**
+ * Gets workspace-scoped colorCustomizations from config.
+ */
+function getWorkspaceScopedColorCustomizations():
+  | Record<string, unknown>
+  | undefined {
+  return vscode.workspace
+    .getConfiguration()
+    .inspect<Record<string, unknown>>('workbench.colorCustomizations')
+    ?.workspaceValue;
+}
+
+/**
  * Gets current colorCustomizations from config.
  */
 function getColorCustomizations(): Record<string, unknown> | undefined {
-  const config = vscode.workspace.getConfiguration();
-  return config.get<Record<string, unknown>>('workbench.colorCustomizations');
+  return getWorkspaceScopedColorCustomizations();
+}
+
+/**
+ * Deep-compare two optional records.
+ */
+function recordsEqual(
+  a: Record<string, unknown> | undefined,
+  b: Record<string, unknown> | undefined
+): boolean {
+  return isDeepStrictEqual(a, b);
 }
 
 /**
@@ -195,6 +218,100 @@ async function waitForGlazeColorsCleared(
   );
 }
 
+/**
+ * Waits until workspace-scoped colorCustomizations equals expected.
+ */
+async function waitForWorkspaceColorsEqual(
+  expected: Record<string, unknown> | undefined,
+  timeoutMs = 4000,
+  intervalMs = 50
+): Promise<void> {
+  await pollUntil(
+    () => recordsEqual(getWorkspaceScopedColorCustomizations(), expected),
+    'Timeout waiting for workspace colorCustomizations to match expected',
+    timeoutMs,
+    intervalMs
+  );
+}
+
+/**
+ * Waits for workspace-scoped colorCustomizations to contain no
+ * Glaze-owned content.
+ */
+async function waitForWorkspaceColorsWithoutGlazeKeys(
+  timeoutMs = 4000,
+  intervalMs = 50
+): Promise<void> {
+  await pollUntil(
+    () => {
+      const colors = getWorkspaceScopedColorCustomizations();
+      if (!colors) {
+        return true;
+      }
+      if (Object.keys(colors).some(isRootGlazeKey)) {
+        return false;
+      }
+      return findGlazeBlock(colors) === undefined;
+    },
+    'Timeout waiting for workspace colorCustomizations without Glaze keys',
+    timeoutMs,
+    intervalMs
+  );
+}
+
+/**
+ * Clear workspace-scoped colorCustomizations and wait until cleared.
+ * This keeps extension integration tests isolated under random order.
+ */
+async function resetWorkspaceColorCustomizations(): Promise<void> {
+  if (!vscode.workspace.workspaceFolders?.length) {
+    return;
+  }
+
+  await vscode.workspace
+    .getConfiguration()
+    .update(
+      'workbench.colorCustomizations',
+      undefined,
+      vscode.ConfigurationTarget.Workspace
+    );
+  await waitForWorkspaceColorsEqual(undefined);
+}
+
+/**
+ * Reset glaze config to a deterministic baseline for each integration test.
+ * Values must match package.json schema defaults — see the
+ * "resetGlazeConfigBaseline matches package.json defaults" test.
+ */
+async function resetGlazeConfigBaseline(): Promise<void> {
+  await updateConfig('enabled', false, vscode.ConfigurationTarget.Global);
+  await updateConfig(
+    'enabled',
+    undefined,
+    vscode.ConfigurationTarget.Workspace
+  );
+  await updateConfig(
+    'elements.titleBar',
+    true,
+    vscode.ConfigurationTarget.Global
+  );
+  await updateConfig(
+    'elements.statusBar',
+    true,
+    vscode.ConfigurationTarget.Global
+  );
+  await updateConfig(
+    'elements.activityBar',
+    true,
+    vscode.ConfigurationTarget.Global
+  );
+  await updateConfig(
+    'elements.sideBar',
+    false,
+    vscode.ConfigurationTarget.Global
+  );
+}
+
 suite('Extension Test Suite', () => {
   suiteSetup(async () => {
     // Ensure extension is activated
@@ -203,10 +320,18 @@ suite('Extension Test Suite', () => {
     if (!ext.isActive) {
       await ext.activate();
     }
-    // Disable the reconcile guard for integration tests. The
-    // guard detects runaway config-write loops, but rapid
-    // test-driven reconciles would trip it.
-    _setGuardEnabled(false);
+  });
+
+  setup(async () => {
+    // Reset reconcile internals first so prior tests cannot leave
+    // pending debounced work that races this baseline setup.
+    _resetAllState();
+    await resetGlazeConfigBaseline();
+    await resetWorkspaceColorCustomizations();
+
+    // Baseline writes above emit config change events; clear any
+    // newly queued reconcile work so each test starts from idle.
+    _resetAllState();
   });
 
   suite('Command Registration', () => {
@@ -218,6 +343,30 @@ suite('Extension Test Suite', () => {
     test('glaze.disableGlobally command is registered', async () => {
       const commands = await vscode.commands.getCommands(true);
       assert.ok(commands.includes('glaze.disableGlobally'));
+    });
+  });
+
+  suite('resetGlazeConfigBaseline matches package.json defaults', () => {
+    test('baseline values match schema defaults', () => {
+      const config = vscode.workspace.getConfiguration('glaze');
+
+      const cases: [string, unknown][] = [
+        ['enabled', false],
+        ['elements.titleBar', true],
+        ['elements.statusBar', true],
+        ['elements.activityBar', true],
+        ['elements.sideBar', false],
+      ];
+
+      for (const [key, expected] of cases) {
+        const defaultValue = config.inspect(key)?.defaultValue;
+        assert.strictEqual(
+          defaultValue,
+          expected,
+          `glaze.${key} schema default (${defaultValue})` +
+            ` does not match baseline (${expected})`
+        );
+      }
     });
   });
 
@@ -235,8 +384,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration();
-      originalColorCustomizations = config.get('workbench.colorCustomizations');
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -285,7 +433,7 @@ suite('Extension Test Suite', () => {
       // seeding colorCustomizations, otherwise the debounced reconcile
       // can overwrite our seeded value.
       await waitForGlazeColorsCleared();
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await waitForWorkspaceColorsWithoutGlazeKeys();
 
       const seededColors = { 'editor.background': '#aabbcc' };
       const config = vscode.workspace.getConfiguration();
@@ -300,8 +448,7 @@ suite('Extension Test Suite', () => {
       if (!ext.isActive) {
         await ext.activate();
       }
-
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       const inspection = vscode.workspace
         .getConfiguration()
@@ -333,8 +480,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration();
-      originalColorCustomizations = config.get('workbench.colorCustomizations');
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -448,8 +594,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration();
-      originalColorCustomizations = config.get('workbench.colorCustomizations');
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -583,11 +728,11 @@ suite('Extension Test Suite', () => {
         seededColors,
         vscode.ConfigurationTarget.Workspace
       );
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       // Disable via command
       await vscode.commands.executeCommand('glaze.disableGlobally');
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       const inspection = config.inspect<Record<string, string>>(
         'workbench.colorCustomizations'
@@ -611,10 +756,7 @@ suite('Extension Test Suite', () => {
       )?.globalValue;
 
       if (vscode.workspace.workspaceFolders?.length) {
-        const config = vscode.workspace.getConfiguration();
-        originalColorCustomizations = config.get(
-          'workbench.colorCustomizations'
-        );
+        originalColorCustomizations = getWorkspaceScopedColorCustomizations();
       }
     });
 
@@ -705,10 +847,7 @@ suite('Extension Test Suite', () => {
       const inspection = config.inspect<number>('tint.seed');
       originalSeedWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -767,10 +906,7 @@ suite('Extension Test Suite', () => {
       const inspection = config.inspect<number>('tint.seed');
       originalSeedWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -850,8 +986,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration();
-      originalColorCustomizations = config.get('workbench.colorCustomizations');
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -944,10 +1079,7 @@ suite('Extension Test Suite', () => {
       const inspection = config.inspect<boolean>('enabled');
       originalEnabledWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1008,10 +1140,7 @@ suite('Extension Test Suite', () => {
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1098,11 +1227,11 @@ suite('Extension Test Suite', () => {
         seededColors,
         vscode.ConfigurationTarget.Workspace
       );
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       // Disable via workspace command
       await vscode.commands.executeCommand('glaze.disableWorkspace');
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       const inspection = config.inspect<Record<string, string>>(
         'workbench.colorCustomizations'
@@ -1129,10 +1258,7 @@ suite('Extension Test Suite', () => {
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1258,10 +1384,7 @@ suite('Extension Test Suite', () => {
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1419,7 +1542,7 @@ suite('Extension Test Suite', () => {
 
       // Wait for the config-change reconcile to notice the
       // tampered colors before we disable.
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       // Disable Glaze — this triggers clearTintColors, which
       // must skip removal because it doesn't own the keys.
@@ -1430,7 +1553,7 @@ suite('Extension Test Suite', () => {
       );
 
       // Wait for the disable-triggered reconcile to settle
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await waitForWorkspaceColorsEqual(seededColors);
 
       // Verify the managed keys are still present and unchanged
       const inspection = config.inspect<Record<string, string>>(
@@ -1458,10 +1581,7 @@ suite('Extension Test Suite', () => {
       originalStatusBar =
         glazeConfig.inspect<boolean>('elements.statusBar')?.globalValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1552,10 +1672,7 @@ suite('Extension Test Suite', () => {
       originalSideBar =
         glazeConfig.inspect<boolean>('elements.sideBar')?.globalValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1643,8 +1760,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration();
-      originalColorCustomizations = config.get('workbench.colorCustomizations');
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1730,11 +1846,9 @@ suite('Extension Test Suite', () => {
       await vscode.commands.executeCommand('glaze.forceApply');
 
       // Wait for debounced applyTint to settle
-      await new Promise((r) => setTimeout(r, 500));
+      await waitForWorkspaceColorsWithoutGlazeKeys();
 
-      const colors = config.get<Record<string, unknown>>(
-        'workbench.colorCustomizations'
-      );
+      const colors = getWorkspaceScopedColorCustomizations();
       // forceApply only injects marker into existing colors; since
       // glaze is disabled the debounced apply is a no-op. No Glaze
       // content should be present.
@@ -1792,10 +1906,7 @@ suite('Extension Test Suite', () => {
       originalEnabledGlobal = inspection?.globalValue;
       originalEnabledWorkspace = inspection?.workspaceValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1882,8 +1993,7 @@ suite('Extension Test Suite', () => {
       if (!vscode.workspace.workspaceFolders?.length) {
         return;
       }
-      const config = vscode.workspace.getConfiguration();
-      originalColorCustomizations = config.get('workbench.colorCustomizations');
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {
@@ -1956,10 +2066,7 @@ suite('Extension Test Suite', () => {
       originalEnabled = glazeConfig.inspect<boolean>('enabled')?.globalValue;
       originalSeed = glazeConfig.inspect<number>('tint.seed')?.globalValue;
 
-      const wbConfig = vscode.workspace.getConfiguration();
-      originalColorCustomizations = wbConfig.get(
-        'workbench.colorCustomizations'
-      );
+      originalColorCustomizations = getWorkspaceScopedColorCustomizations();
     });
 
     suiteTeardown(async () => {

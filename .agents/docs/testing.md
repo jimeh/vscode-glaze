@@ -24,6 +24,14 @@ pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
 
 The `--grep` pattern matches against suite/test names.
 
+`pnpm run test` is preferred because it runs `pretest`, which clears fixture
+workspace settings before the test host starts. If you run `vscode-test`
+directly, clear the fixture settings first:
+
+```bash
+rm -f src/test/fixtures/test-workspace/.vscode/settings.json
+```
+
 ## Test Ordering
 
 [Choma](https://www.npmjs.com/package/choma) randomizes suite and test
@@ -42,6 +50,11 @@ original config values via `config.inspect<T>(key)?.globalValue` (or
 captures the effective/merged value across all scopes, which includes
 contamination from other suites and permanently writes it back on teardown.
 
+**Scope must match restore target**: if teardown restores to global scope, the
+snapshot must come from `?.globalValue`; if teardown restores to workspace
+scope, the snapshot must come from `?.workspaceValue`. Never snapshot teardown
+state with `config.get()`.
+
 **Reset all config you touch**: If a test sets a subset of related config
 keys (e.g. only `elements.titleBar`), other keys (e.g. `elements.sideBar`)
 may still hold stale values from a prior randomly-ordered test. Either reset
@@ -59,6 +72,41 @@ in-memory configuration cache may not have refreshed yet. Use
 in test bodies to wait for `onDidChangeConfiguration` before reading back
 values. Teardown hooks that only restore values (no assertions after) can use
 raw `config.update()` safely.
+
+## Reconcile Guard in Tests
+
+Extension tests run with `GLAZE_DISABLE_RECONCILE_GUARD=1`, which keeps the
+reconcile guard disabled by default and avoids random-order guard trips.
+Guard-specific tests explicitly enable it in their own setup.
+
+## Reconcile Runtime Isolation
+
+Config changes and Glaze commands can enqueue debounced reconcile work
+(`requestReconcile`) that outlives a test and leaks into the next one.
+
+For suites that mutate any of the following, add per-test full-state resets:
+
+- `glaze.*` settings
+- `workbench.colorCustomizations`
+- `workbench.colorTheme` / `workbench.preferred*ColorTheme`
+- `vscode.commands.executeCommand('glaze.*')`
+
+Pattern:
+
+```ts
+import { _resetAllState } from '../../reconcile';
+
+setup(() => {
+  _resetAllState();
+});
+
+teardown(() => {
+  _resetAllState();
+});
+```
+
+Pure unit tests that do not touch extension runtime/config mutation paths do
+not need this.
 
 ## Test Coverage
 

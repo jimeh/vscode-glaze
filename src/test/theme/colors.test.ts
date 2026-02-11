@@ -4,6 +4,16 @@ import { getThemeInfo, getColorForKey } from '../../theme/colors';
 import type { ThemeColors } from '../../theme';
 import { BUILTIN_THEME_COLORS } from '../../theme/generated/builtins';
 import { EXTENSION_THEME_COLORS } from '../../theme/generated/extensions';
+import { _resetAllState } from '../../reconcile';
+
+// File-level hooks: reset reconcile state for every test in this file.
+setup(() => {
+  _resetAllState();
+});
+
+teardown(() => {
+  _resetAllState();
+});
 
 suite('BUILTIN_THEME_COLORS', () => {
   test('contains VS Code built-in themes', () => {

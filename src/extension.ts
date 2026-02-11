@@ -17,9 +17,11 @@ export async function activate(context: vscode.ExtensionContext) {
   // module can trigger refreshes without a circular import.
   setRefreshStatusBar(() => refreshStatusBar(statusBar));
 
-  // Enable the reconcile guard to detect runaway config-write
-  // loops between extensions.
-  enableReconcileGuard();
+  // Enable the reconcile guard in normal runtime. Tests disable it
+  // via GLAZE_DISABLE_RECONCILE_GUARD for deterministic behavior.
+  if (process.env.GLAZE_DISABLE_RECONCILE_GUARD !== '1') {
+    enableReconcileGuard();
+  }
 
   // Apply tint on activation
   requestReconcile();

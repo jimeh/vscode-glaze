@@ -2,6 +2,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { _buildMenuGroups, _buildQuickPickItems } from '../../commands/menu';
 import { _resetAllState, updateCachedState } from '../../reconcile';
+import { updateConfig } from '../helpers';
 import type { ActionableQuickPickItem } from '../../commands/menu';
 
 // ── Helpers ───────────────────────────────────────────────────
@@ -24,12 +25,8 @@ function visibleCommands(
 const glazeConfig = () => vscode.workspace.getConfiguration('glaze');
 
 async function setEnabled(global: boolean, workspace?: boolean): Promise<void> {
-  await glazeConfig().update(
-    'enabled',
-    global,
-    vscode.ConfigurationTarget.Global
-  );
-  await glazeConfig().update(
+  await updateConfig('enabled', global, vscode.ConfigurationTarget.Global);
+  await updateConfig(
     'enabled',
     workspace,
     vscode.ConfigurationTarget.Workspace
@@ -37,15 +34,11 @@ async function setEnabled(global: boolean, workspace?: boolean): Promise<void> {
 }
 
 async function setSeed(value: number): Promise<void> {
-  await glazeConfig().update(
-    'tint.seed',
-    value,
-    vscode.ConfigurationTarget.Workspace
-  );
+  await updateConfig('tint.seed', value, vscode.ConfigurationTarget.Workspace);
 }
 
 async function setBaseHueOverride(value: number | null): Promise<void> {
-  await glazeConfig().update(
+  await updateConfig(
     'tint.baseHueOverride',
     value === null ? undefined : value,
     vscode.ConfigurationTarget.Workspace
@@ -98,6 +91,7 @@ suite('Quick Menu visibility', () => {
 
   setup(async () => {
     _resetAllState();
+    await setEnabled(true);
     await setSeed(0);
     await setBaseHueOverride(null);
   });
@@ -341,11 +335,7 @@ suite('Quick Menu visibility', () => {
 
   suite('Enable/Disable Globally', () => {
     test('shows enable globally when globally disabled', async () => {
-      await glazeConfig().update(
-        'enabled',
-        false,
-        vscode.ConfigurationTarget.Global
-      );
+      await updateConfig('enabled', false, vscode.ConfigurationTarget.Global);
 
       const cmds = visibleCommands(_buildMenuGroups());
       assert.ok(cmds.includes('glaze.enableGlobally'));
@@ -353,11 +343,7 @@ suite('Quick Menu visibility', () => {
     });
 
     test('shows disable globally when globally enabled', async () => {
-      await glazeConfig().update(
-        'enabled',
-        true,
-        vscode.ConfigurationTarget.Global
-      );
+      await updateConfig('enabled', true, vscode.ConfigurationTarget.Global);
 
       const cmds = visibleCommands(_buildMenuGroups());
       assert.ok(!cmds.includes('glaze.enableGlobally'));
