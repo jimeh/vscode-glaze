@@ -24,6 +24,15 @@ pnpm run compile-tests && pnpm exec vscode-test --grep "hash"
 
 The `--grep` pattern matches against suite/test names.
 
+## Config Propagation in Tests
+
+VS Code's `config.update()` resolves when the write is persisted, but the
+in-memory configuration cache may not have refreshed yet. Use
+`updateConfig()` from `src/test/helpers.ts` instead of raw `config.update()`
+in test bodies to wait for `onDidChangeConfiguration` before reading back
+values. Teardown hooks that only restore values (no assertions after) can use
+raw `config.update()` safely.
+
 ## Test Coverage
 
 ```bash

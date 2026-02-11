@@ -14,6 +14,7 @@ import {
   getWorkspaceEnabledOverride,
   setEnabledForWorkspace,
 } from '../../config';
+import { updateConfig } from '../helpers';
 
 suite('isGloballyEnabled', () => {
   let originalEnabled: boolean | undefined;
@@ -33,28 +34,21 @@ suite('isGloballyEnabled', () => {
   });
 
   test('returns false by default', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
-      'enabled',
-      undefined,
-      vscode.ConfigurationTarget.Global
-    );
+    await updateConfig('enabled', undefined, vscode.ConfigurationTarget.Global);
 
     const result = isGloballyEnabled();
     assert.strictEqual(result, false);
   });
 
   test('returns configured value when set to false', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', false, vscode.ConfigurationTarget.Global);
+    await updateConfig('enabled', false, vscode.ConfigurationTarget.Global);
 
     const result = isGloballyEnabled();
     assert.strictEqual(result, false);
   });
 
   test('returns configured value when set to true', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', true, vscode.ConfigurationTarget.Global);
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Global);
 
     const result = isGloballyEnabled();
     assert.strictEqual(result, true);
@@ -90,9 +84,8 @@ suite('isEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', true, vscode.ConfigurationTarget.Global);
-    await config.update(
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Global);
+    await updateConfig(
       'enabled',
       undefined,
       vscode.ConfigurationTarget.Workspace
@@ -106,9 +99,8 @@ suite('isEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', false, vscode.ConfigurationTarget.Global);
-    await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
+    await updateConfig('enabled', false, vscode.ConfigurationTarget.Global);
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Workspace);
 
     const result = isEnabledForWorkspace();
     assert.strictEqual(result, true);
@@ -118,9 +110,8 @@ suite('isEnabledForWorkspace', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', true, vscode.ConfigurationTarget.Global);
-    await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Global);
+    await updateConfig('enabled', false, vscode.ConfigurationTarget.Workspace);
 
     const result = isEnabledForWorkspace();
     assert.strictEqual(result, false);
@@ -155,8 +146,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'enabled',
       undefined,
       vscode.ConfigurationTarget.Workspace
@@ -170,8 +160,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
+    await updateConfig('enabled', true, vscode.ConfigurationTarget.Workspace);
 
     const result = getWorkspaceEnabledOverride();
     assert.strictEqual(result, true);
@@ -181,8 +170,7 @@ suite('getWorkspaceEnabledOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('enabled', false, vscode.ConfigurationTarget.Workspace);
+    await updateConfig('enabled', false, vscode.ConfigurationTarget.Workspace);
 
     const result = getWorkspaceEnabledOverride();
     assert.strictEqual(result, false);
@@ -285,8 +273,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('returns default source as pathRelativeToHome when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.source',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -297,8 +284,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads configured source value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.source',
       'pathAbsolute',
       vscode.ConfigurationTarget.Global
@@ -309,8 +295,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads customBasePath value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.customBasePath',
       '~/Projects',
       vscode.ConfigurationTarget.Global
@@ -321,8 +306,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('falls back to pathRelativeToHome for invalid source', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.source',
       'invalidValue',
       vscode.ConfigurationTarget.Global
@@ -333,8 +317,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('returns empty customBasePath when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.customBasePath',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -345,8 +328,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads pathRelativeToHome source', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.source',
       'pathRelativeToHome',
       vscode.ConfigurationTarget.Global
@@ -357,8 +339,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads pathRelativeToCustom source', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.source',
       'pathRelativeToCustom',
       vscode.ConfigurationTarget.Global
@@ -369,8 +350,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('returns default multiRootSource as workspaceFile when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.multiRootSource',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -381,8 +361,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads configured multiRootSource value (allFolders)', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.multiRootSource',
       'allFolders',
       vscode.ConfigurationTarget.Global
@@ -393,8 +372,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('reads configured multiRootSource value (firstFolder)', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.multiRootSource',
       'firstFolder',
       vscode.ConfigurationTarget.Global
@@ -405,8 +383,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   });
 
   test('falls back to workspaceFile for invalid multiRootSource', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'workspaceIdentifier.multiRootSource',
       'invalidValue',
       vscode.ConfigurationTarget.Global
@@ -477,23 +454,22 @@ suite('getTintConfig', () => {
   });
 
   test('returns default-enabled targets by default', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       undefined,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       undefined,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       undefined,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.sideBar',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -509,23 +485,22 @@ suite('getTintConfig', () => {
   });
 
   test('returns empty targets when all elements disabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.sideBar',
       false,
       vscode.ConfigurationTarget.Global
@@ -536,18 +511,17 @@ suite('getTintConfig', () => {
   });
 
   test('returns only titleBar when only titleBar enabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       false,
       vscode.ConfigurationTarget.Global
@@ -558,18 +532,17 @@ suite('getTintConfig', () => {
   });
 
   test('returns only statusBar when only statusBar enabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       false,
       vscode.ConfigurationTarget.Global
@@ -580,18 +553,17 @@ suite('getTintConfig', () => {
   });
 
   test('returns only activityBar when only activityBar enabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       true,
       vscode.ConfigurationTarget.Global
@@ -602,18 +574,17 @@ suite('getTintConfig', () => {
   });
 
   test('returns multiple targets when multiple enabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       false,
       vscode.ConfigurationTarget.Global
@@ -624,23 +595,22 @@ suite('getTintConfig', () => {
   });
 
   test('returns all targets when all enabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       true,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.sideBar',
       true,
       vscode.ConfigurationTarget.Global
@@ -656,23 +626,22 @@ suite('getTintConfig', () => {
   });
 
   test('sideBar target appears only when explicitly enabled', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'elements.titleBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.statusBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.activityBar',
       false,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'elements.sideBar',
       true,
       vscode.ConfigurationTarget.Global
@@ -683,8 +652,7 @@ suite('getTintConfig', () => {
   });
 
   test('defaults to auto mode when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.mode',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -695,28 +663,21 @@ suite('getTintConfig', () => {
   });
 
   test('reads configured mode value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
-      'tint.mode',
-      'light',
-      vscode.ConfigurationTarget.Global
-    );
+    await updateConfig('tint.mode', 'light', vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
     assert.strictEqual(result.mode, 'light');
   });
 
   test('accepts dark mode', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('tint.mode', 'dark', vscode.ConfigurationTarget.Global);
+    await updateConfig('tint.mode', 'dark', vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
     assert.strictEqual(result.mode, 'dark');
   });
 
   test('falls back to auto for invalid mode', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.mode',
       'invalidValue',
       vscode.ConfigurationTarget.Global
@@ -727,8 +688,7 @@ suite('getTintConfig', () => {
   });
 
   test('defaults to seed 0 when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.seed',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -739,24 +699,21 @@ suite('getTintConfig', () => {
   });
 
   test('reads configured seed value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('tint.seed', 42, vscode.ConfigurationTarget.Global);
+    await updateConfig('tint.seed', 42, vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
     assert.strictEqual(result.seed, 42);
   });
 
   test('accepts negative seed values', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('tint.seed', -100, vscode.ConfigurationTarget.Global);
+    await updateConfig('tint.seed', -100, vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
     assert.strictEqual(result.seed, -100);
   });
 
   test('accepts large seed values', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.seed',
       999999999,
       vscode.ConfigurationTarget.Global
@@ -767,16 +724,14 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to 0 for non-integer seed', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update('tint.seed', 3.14, vscode.ConfigurationTarget.Global);
+    await updateConfig('tint.seed', 3.14, vscode.ConfigurationTarget.Global);
 
     const result = getTintConfig();
     assert.strictEqual(result.seed, 0);
   });
 
   test('defaults to null baseHueOverride when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -787,8 +742,7 @@ suite('getTintConfig', () => {
   });
 
   test('returns null baseHueOverride when set to null', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       null,
       vscode.ConfigurationTarget.Global
@@ -799,8 +753,7 @@ suite('getTintConfig', () => {
   });
 
   test('reads configured baseHueOverride value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       180,
       vscode.ConfigurationTarget.Global
@@ -811,8 +764,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts baseHueOverride of 0', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       0,
       vscode.ConfigurationTarget.Global
@@ -823,8 +775,7 @@ suite('getTintConfig', () => {
   });
 
   test('accepts baseHueOverride of 359', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       359,
       vscode.ConfigurationTarget.Global
@@ -835,8 +786,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to null for non-integer baseHueOverride', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       3.14,
       vscode.ConfigurationTarget.Global
@@ -847,8 +797,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to null for negative baseHueOverride', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       -1,
       vscode.ConfigurationTarget.Global
@@ -859,8 +808,7 @@ suite('getTintConfig', () => {
   });
 
   test('falls back to null for baseHueOverride >= 360', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       360,
       vscode.ConfigurationTarget.Global
@@ -899,8 +847,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       undefined,
       vscode.ConfigurationTarget.Workspace
@@ -914,8 +861,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       200,
       vscode.ConfigurationTarget.Workspace
@@ -929,8 +875,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       null,
       vscode.ConfigurationTarget.Workspace
@@ -944,8 +889,7 @@ suite('getBaseHueOverride', () => {
     if (!vscode.workspace.workspaceFolders?.length) {
       return this.skip();
     }
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.baseHueOverride',
       0,
       vscode.ConfigurationTarget.Workspace
@@ -974,8 +918,7 @@ suite('getBlendMethod', () => {
   });
 
   test('returns overlay by default', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -986,8 +929,7 @@ suite('getBlendMethod', () => {
   });
 
   test('returns hueShift when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       'hueShift',
       vscode.ConfigurationTarget.Global
@@ -998,8 +940,7 @@ suite('getBlendMethod', () => {
   });
 
   test('falls back to overlay for invalid value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       'bogus',
       vscode.ConfigurationTarget.Global
@@ -1010,8 +951,7 @@ suite('getBlendMethod', () => {
   });
 
   test('falls back to overlay for prototype key', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       'toString',
       vscode.ConfigurationTarget.Global
@@ -1083,8 +1023,7 @@ suite('getThemeConfig', () => {
   });
 
   test('defaults to 0.35 when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendFactor',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -1095,8 +1034,7 @@ suite('getThemeConfig', () => {
   });
 
   test('reads configured blendFactor value', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendFactor',
       0.5,
       vscode.ConfigurationTarget.Global
@@ -1107,8 +1045,7 @@ suite('getThemeConfig', () => {
   });
 
   test('clamps blendFactor to minimum 0', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendFactor',
       -0.5,
       vscode.ConfigurationTarget.Global
@@ -1119,8 +1056,7 @@ suite('getThemeConfig', () => {
   });
 
   test('clamps blendFactor to maximum 1', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendFactor',
       1.5,
       vscode.ConfigurationTarget.Global
@@ -1131,8 +1067,7 @@ suite('getThemeConfig', () => {
   });
 
   test('accepts blendFactor of 0', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendFactor',
       0,
       vscode.ConfigurationTarget.Global
@@ -1143,8 +1078,7 @@ suite('getThemeConfig', () => {
   });
 
   test('accepts blendFactor of 1', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendFactor',
       1,
       vscode.ConfigurationTarget.Global
@@ -1155,23 +1089,22 @@ suite('getThemeConfig', () => {
   });
 
   test('returns empty targetBlendFactors when none set', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.titleBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.activityBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.statusBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.sideBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
@@ -1182,18 +1115,17 @@ suite('getThemeConfig', () => {
   });
 
   test('reads titleBarBlendFactor when set', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.titleBarBlendFactor',
       0.5,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.activityBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.statusBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
@@ -1206,18 +1138,17 @@ suite('getThemeConfig', () => {
   });
 
   test('reads all target blend factors when set', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.titleBarBlendFactor',
       0.2,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.activityBarBlendFactor',
       0.5,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.statusBarBlendFactor',
       0.8,
       vscode.ConfigurationTarget.Global
@@ -1230,18 +1161,17 @@ suite('getThemeConfig', () => {
   });
 
   test('clamps target blend factors to [0,1]', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.titleBarBlendFactor',
       -0.5,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.statusBarBlendFactor',
       1.5,
       vscode.ConfigurationTarget.Global
     );
-    await config.update(
+    await updateConfig(
       'theme.activityBarBlendFactor',
       null,
       vscode.ConfigurationTarget.Global
@@ -1253,8 +1183,7 @@ suite('getThemeConfig', () => {
   });
 
   test('blendMethod defaults to overlay', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -1265,8 +1194,7 @@ suite('getThemeConfig', () => {
   });
 
   test('blendMethod reflects hueShift when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       'hueShift',
       vscode.ConfigurationTarget.Global
@@ -1277,8 +1205,7 @@ suite('getThemeConfig', () => {
   });
 
   test('blendMethod falls back for invalid values', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'theme.blendMethod',
       'bogus',
       vscode.ConfigurationTarget.Global
@@ -1307,8 +1234,7 @@ suite('getColorStyle', () => {
   });
 
   test('defaults to pastel when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -1318,8 +1244,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns pastel when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       'pastel',
       vscode.ConfigurationTarget.Global
@@ -1329,8 +1254,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns vibrant when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       'vibrant',
       vscode.ConfigurationTarget.Global
@@ -1340,8 +1264,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns muted when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       'muted',
       vscode.ConfigurationTarget.Global
@@ -1351,8 +1274,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns tinted when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       'tinted',
       vscode.ConfigurationTarget.Global
@@ -1362,8 +1284,7 @@ suite('getColorStyle', () => {
   });
 
   test('returns neon when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       'neon',
       vscode.ConfigurationTarget.Global
@@ -1373,8 +1294,7 @@ suite('getColorStyle', () => {
   });
 
   test('falls back to pastel for invalid style', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorStyle',
       'invalid',
       vscode.ConfigurationTarget.Global
@@ -1402,8 +1322,7 @@ suite('getColorHarmony', () => {
   });
 
   test('defaults to uniform when not configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -1413,8 +1332,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns uniform when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'uniform',
       vscode.ConfigurationTarget.Global
@@ -1424,8 +1342,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns duotone when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'duotone',
       vscode.ConfigurationTarget.Global
@@ -1435,8 +1352,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns undercurrent when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'undercurrent',
       vscode.ConfigurationTarget.Global
@@ -1446,8 +1362,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns analogous when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'analogous',
       vscode.ConfigurationTarget.Global
@@ -1457,8 +1372,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns triadic when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'triadic',
       vscode.ConfigurationTarget.Global
@@ -1468,8 +1382,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns split-complementary when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'split-complementary',
       vscode.ConfigurationTarget.Global
@@ -1479,8 +1392,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns tetradic when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'tetradic',
       vscode.ConfigurationTarget.Global
@@ -1490,8 +1402,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns gradient when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'gradient',
       vscode.ConfigurationTarget.Global
@@ -1501,8 +1412,7 @@ suite('getColorHarmony', () => {
   });
 
   test('returns accent when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'accent',
       vscode.ConfigurationTarget.Global
@@ -1512,8 +1422,7 @@ suite('getColorHarmony', () => {
   });
 
   test('falls back to uniform for invalid harmony', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'tint.colorHarmony',
       'invalid',
       vscode.ConfigurationTarget.Global
@@ -1541,8 +1450,7 @@ suite('getStatusBarEnabled', () => {
   });
 
   test('returns true by default', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'statusBar.enabled',
       undefined,
       vscode.ConfigurationTarget.Global
@@ -1552,8 +1460,7 @@ suite('getStatusBarEnabled', () => {
   });
 
   test('returns true when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'statusBar.enabled',
       true,
       vscode.ConfigurationTarget.Global
@@ -1563,8 +1470,7 @@ suite('getStatusBarEnabled', () => {
   });
 
   test('returns false when configured', async () => {
-    const config = vscode.workspace.getConfiguration('glaze');
-    await config.update(
+    await updateConfig(
       'statusBar.enabled',
       false,
       vscode.ConfigurationTarget.Global
