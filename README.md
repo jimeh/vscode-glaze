@@ -121,12 +121,28 @@ Settings UI for the expected format. You can also
 [open an issue](https://github.com/jimeh/vscode-glaze/issues) to request that
 a specific theme be added to the built-in lookup table.
 
+## Commands
+
+Access these from the Command Palette (<kbd>Cmd+Shift+P</kbd> /
+<kbd>Ctrl+Shift+P</kbd>):
+
+| Command                             | Description                                    |
+| ----------------------------------- | ---------------------------------------------- |
+| `Glaze: Enable Globally`            | Enable Glaze for all workspaces                |
+| `Glaze: Disable Globally`           | Disable Glaze for all workspaces               |
+| `Glaze: Enable for This Workspace`  | Enable Glaze for the current workspace only    |
+| `Glaze: Disable for This Workspace` | Disable Glaze for the current workspace only   |
+| `Glaze: Show Status`                | Display current Glaze status and configuration |
+| `Glaze: Show Color Palette Preview` | Preview the generated color palette            |
+| `Glaze: Randomize Tint Seed`        | Randomize the seed to get a different color    |
+| `Glaze: Reset Tint Seed`            | Reset the seed back to the default             |
+
 ## Screenshots
 
 <table>
   <tr>
-    <td align="center" width="50%">Dark</td>
-    <td align="center" width="50%">Light</td>
+    <th align="center" width="50%">Dark</th>
+    <th align="center" width="50%">Light</th>
   </tr>
   <tr>
     <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/dark-themes.png"></td>
@@ -148,30 +164,47 @@ a specific theme be added to the built-in lookup table.
 
 <table>
   <tr>
-    <td align="center" width="50%">Color Styles</td>
-    <td align="center" width="50%">Color Harmonies</td>
+    <th align="center" width="50%">High Contrast Dark</th>
+    <th align="center" width="50%">High Contrast Light</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/hc-dark-themes.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/hc-light-themes.png"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th align="center" width="50%">Style: Vibrant</th>
+    <th align="center" width="50%">Style: Neon</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/vibrant-themes.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/neon-themes.png"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th align="center" width="50%">Harmony: Analogous</th>
+    <th align="center" width="50%">Harmony: Accent</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/analogous-themes.png"></td>
+    <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/accent-themes.png"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th align="center" width="50%">Color Styles</th>
+    <th align="center" width="50%">Color Harmonies</th>
   </tr>
   <tr>
     <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/color-style.png"></td>
     <td><img src="https://github.com/jimeh/vscode-glaze/raw/refs/heads/main/img/screenshots/color-harmony.png"></td>
   </tr>
 </table>
-
-## Commands
-
-Access these from the Command Palette (<kbd>Cmd+Shift+P</kbd> /
-<kbd>Ctrl+Shift+P</kbd>):
-
-| Command                             | Description                                    |
-| ----------------------------------- | ---------------------------------------------- |
-| `Glaze: Enable Globally`            | Enable Glaze for all workspaces                |
-| `Glaze: Disable Globally`           | Disable Glaze for all workspaces               |
-| `Glaze: Enable for This Workspace`  | Enable Glaze for the current workspace only    |
-| `Glaze: Disable for This Workspace` | Disable Glaze for the current workspace only   |
-| `Glaze: Show Status`                | Display current Glaze status and configuration |
-| `Glaze: Show Color Palette Preview` | Preview the generated color palette            |
-| `Glaze: Randomize Tint Seed`        | Randomize the seed to get a different color    |
-| `Glaze: Reset Tint Seed`            | Reset the seed back to the default             |
 
 ## FAQ
 
