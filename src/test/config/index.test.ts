@@ -14,7 +14,16 @@ import {
   getWorkspaceEnabledOverride,
   setEnabledForWorkspace,
 } from '../../config';
+import { _resetAllState } from '../../reconcile';
 import { updateConfig } from '../helpers';
+
+setup(() => {
+  _resetAllState();
+});
+
+teardown(() => {
+  _resetAllState();
+});
 
 suite('isGloballyEnabled', () => {
   let originalEnabled: boolean | undefined;

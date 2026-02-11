@@ -2,6 +2,15 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { getThemeName } from '../../theme/name';
 import { detectOsColorScheme } from '../../theme/osColorScheme';
+import { _resetAllState } from '../../reconcile';
+
+setup(() => {
+  _resetAllState();
+});
+
+teardown(() => {
+  _resetAllState();
+});
 
 suite('getThemeName', () => {
   // Store original config values to restore after tests
