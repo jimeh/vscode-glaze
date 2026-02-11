@@ -274,5 +274,68 @@ suite('getThemeName', () => {
 
       assert.strictEqual(await getThemeName('dark'), expected);
     });
+
+    test('both preferred themes are same type → OS fallback', async () => {
+      // Both "Default Dark Modern" and "Default Dark+" are known dark
+      // themes. For themeType 'dark', both match → quick check is
+      // ambiguous → falls through to OS detection.
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Dark+',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Default Dark Modern'
+          : osScheme === 'light'
+            ? 'Default Dark+'
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('dark'), expected);
+    });
+
+    test('hcDark themeType with standard preferred themes → OS fallback', async () => {
+      // Standard dark/light themes don't match hcDark type, so both
+      // darkMatches and lightMatches are false → falls to OS fallback.
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Default Dark Modern'
+          : osScheme === 'light'
+            ? 'Default Light Modern'
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('hcDark'), expected);
+    });
+
+    test('hcLight themeType with standard preferred themes → OS fallback', async () => {
+      // Standard dark/light themes don't match hcLight type either.
+      await setConfig({
+        autoDetect: true,
+        darkTheme: 'Default Dark Modern',
+        lightTheme: 'Default Light Modern',
+        colorTheme: 'Monokai',
+      });
+
+      const osScheme = await detectOsColorScheme();
+      const expected =
+        osScheme === 'dark'
+          ? 'Default Dark Modern'
+          : osScheme === 'light'
+            ? 'Default Light Modern'
+            : 'Monokai';
+
+      assert.strictEqual(await getThemeName('hcLight'), expected);
+    });
   });
 });
