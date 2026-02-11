@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { GLAZE_ACTIVE_KEY } from '../settings';
+import { _resetAllState } from '../reconcile';
 import { updateConfig } from './helpers';
 
 /**
@@ -324,8 +325,15 @@ suite('Extension Test Suite', () => {
   });
 
   setup(async () => {
+    // Reset reconcile internals first so prior tests cannot leave
+    // pending debounced work that races this baseline setup.
+    _resetAllState();
     await resetGlazeConfigBaseline();
     await resetWorkspaceColorCustomizations();
+
+    // Baseline writes above emit config change events; clear any
+    // newly queued reconcile work so each test starts from idle.
+    _resetAllState();
   });
 
   suite('Command Registration', () => {
