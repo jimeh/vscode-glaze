@@ -30,8 +30,7 @@ suite('getColorName', () => {
     assert.ok(
       name.toLowerCase().includes('red') ||
         name.toLowerCase().includes('scarlet') ||
-        name.toLowerCase().includes('crimson') ||
-        name.length > 0,
+        name.toLowerCase().includes('crimson'),
       `Expected red-ish name, got "${name}"`
     );
   });
@@ -42,6 +41,13 @@ suite('getColorName', () => {
       name !== 'Unknown',
       `Expected a real name for blue, got "${name}"`
     );
+    assert.ok(
+      name.toLowerCase().includes('blue') ||
+        name.toLowerCase().includes('navy') ||
+        name.toLowerCase().includes('cobalt') ||
+        name.toLowerCase().includes('azure'),
+      `Expected blue-ish name, got "${name}"`
+    );
   });
 
   test('returns reasonable name for green', () => {
@@ -49,6 +55,13 @@ suite('getColorName', () => {
     assert.ok(
       name !== 'Unknown',
       `Expected a real name for green, got "${name}"`
+    );
+    assert.ok(
+      name.toLowerCase().includes('green') ||
+        name.toLowerCase().includes('lime') ||
+        name.toLowerCase().includes('emerald') ||
+        name.toLowerCase().includes('chartreuse'),
+      `Expected green-ish name, got "${name}"`
     );
   });
 
