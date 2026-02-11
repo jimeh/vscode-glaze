@@ -11,6 +11,10 @@ export default defineConfig({
       extensionDevelopmentPath: resolve(__dirname, 'out'),
       workspaceFolder: resolve(__dirname, 'src/test/fixtures/test-workspace'),
       version: process.env.VSCODE_TEST_VERSION || 'stable',
+      env: {
+        ...process.env,
+        GLAZE_DISABLE_RECONCILE_GUARD: '1',
+      },
       mocha: { timeout: 5000, require: ['choma'] },
     },
   ],

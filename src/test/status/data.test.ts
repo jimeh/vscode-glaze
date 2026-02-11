@@ -26,13 +26,18 @@ suite('buildStatusState', () => {
     const hueInspection = config.inspect<number | null>('tint.baseHueOverride');
     originalBaseHueOverride = hueInspection?.workspaceValue;
 
-    originalSeed = config.get<number>('tint.seed');
-    originalColorStyle = config.get<string>('tint.colorStyle');
-    originalColorHarmony = config.get<string>('tint.colorHarmony');
-    originalTitleBar = config.get<boolean>('elements.titleBar');
-    originalStatusBar = config.get<boolean>('elements.statusBar');
-    originalActivityBar = config.get<boolean>('elements.activityBar');
-    originalSideBar = config.get<boolean>('elements.sideBar');
+    originalSeed = config.inspect<number>('tint.seed')?.globalValue;
+    originalColorStyle = config.inspect<string>('tint.colorStyle')?.globalValue;
+    originalColorHarmony =
+      config.inspect<string>('tint.colorHarmony')?.globalValue;
+    originalTitleBar =
+      config.inspect<boolean>('elements.titleBar')?.globalValue;
+    originalStatusBar =
+      config.inspect<boolean>('elements.statusBar')?.globalValue;
+    originalActivityBar = config.inspect<boolean>(
+      'elements.activityBar'
+    )?.globalValue;
+    originalSideBar = config.inspect<boolean>('elements.sideBar')?.globalValue;
   });
 
   suiteTeardown(async () => {

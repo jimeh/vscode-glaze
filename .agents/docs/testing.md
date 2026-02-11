@@ -42,6 +42,11 @@ original config values via `config.inspect<T>(key)?.globalValue` (or
 captures the effective/merged value across all scopes, which includes
 contamination from other suites and permanently writes it back on teardown.
 
+**Scope must match restore target**: if teardown restores to global scope, the
+snapshot must come from `?.globalValue`; if teardown restores to workspace
+scope, the snapshot must come from `?.workspaceValue`. Never snapshot teardown
+state with `config.get()`.
+
 **Reset all config you touch**: If a test sets a subset of related config
 keys (e.g. only `elements.titleBar`), other keys (e.g. `elements.sideBar`)
 may still hold stale values from a prior randomly-ordered test. Either reset
@@ -59,6 +64,12 @@ in-memory configuration cache may not have refreshed yet. Use
 in test bodies to wait for `onDidChangeConfiguration` before reading back
 values. Teardown hooks that only restore values (no assertions after) can use
 raw `config.update()` safely.
+
+## Reconcile Guard in Tests
+
+Extension tests run with `GLAZE_DISABLE_RECONCILE_GUARD=1`, which keeps the
+reconcile guard disabled by default and avoids random-order guard trips.
+Guard-specific tests explicitly enable it in their own setup.
 
 ## Test Coverage
 
