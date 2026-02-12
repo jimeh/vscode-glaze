@@ -104,10 +104,18 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run package
+      - name: Generate SHA-256 checksum
+        run: |
+          set -o pipefail
+          for f in *.vsix; do
+            sha256sum "$f" | tee "${f}.sha256"
+          done
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: vsix
-          path: "*.vsix"
+          path: |
+            *.vsix
+            *.vsix.sha256
 
   publish:
     runs-on: ubuntu-latest
@@ -139,7 +147,8 @@ jobs:
       - if: matrix.target == 'github-release'
         name: Upload VSIX to GitHub Release
         run: >-
-          gh release upload ${{ github.ref_name }} *.vsix
+          gh release upload ${{ github.ref_name }}
+          *.vsix *.vsix.sha256
           --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ github.token }}
