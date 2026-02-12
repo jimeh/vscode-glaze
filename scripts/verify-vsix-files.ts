@@ -37,8 +37,8 @@ if (!existsSync(distPath)) {
 
 // Get file list from vsce.
 const output = execFileSync(
-  'pnpm',
-  ['exec', 'vsce', 'ls', '--no-dependencies'],
+  'npx',
+  ['-y', '@vscode/vsce', 'ls', '--no-dependencies'],
   {
     cwd: ROOT,
     encoding: 'utf-8',
