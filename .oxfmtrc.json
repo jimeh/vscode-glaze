@@ -19,6 +19,7 @@
     "CHANGELOG.md",
     "package.json",
     "pnpm-lock.yaml",
+    "src/color/generated/",
     "src/theme/generated/"
   ]
 }
