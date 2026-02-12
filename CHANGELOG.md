@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/jimeh/vscode-glaze/compare/v0.1.1...v0.1.2) (2026-02-12)
+
+
+### Bug Fixes
+
+* **themes:** update extracted theme colors ([#107](https://github.com/jimeh/vscode-glaze/issues/107)) ([5110272](https://github.com/jimeh/vscode-glaze/commit/5110272ca4744463d08c4d38397c4dfa1f179bc5))
+
 ## [0.1.1](https://github.com/jimeh/vscode-glaze/compare/v0.1.0...v0.1.1) (2026-02-11)
 
 
