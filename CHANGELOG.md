@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/jimeh/vscode-glaze/compare/v0.1.2...v0.1.3) (2026-02-12)
+
+
+### Bug Fixes
+
+* **ci:** add SHA-256 checksum to VSIX release assets ([#110](https://github.com/jimeh/vscode-glaze/issues/110)) ([5bd5f24](https://github.com/jimeh/vscode-glaze/commit/5bd5f24d7277a06c0f469bc4c48722a048a7e0d5))
+
 ## [0.1.2](https://github.com/jimeh/vscode-glaze/compare/v0.1.1...v0.1.2) (2026-02-12)
 
 
