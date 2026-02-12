@@ -1,4 +1,4 @@
-name: Extract Themes
+name: Extract Theme Colors
 on:
   schedule:
     - cron: "0 6 * * 1" # Monday 06:00 UTC
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  extract-themes:
+  extract-theme-colors:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -33,7 +33,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           sign-commits: true
           commit-message: "fix(themes): update extracted theme colors"
-          branch: fix/extract-themes
+          branch: fix/extract-theme-colors
           title: "fix(themes): update extracted theme colors"
           body: |
             Automated weekly update of extracted theme colors from
