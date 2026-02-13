@@ -57,9 +57,11 @@
     "LICENSE",
     "README.md",
     "dist/extension.js",
+    "dist/web/extension.js",
     "img/icon.png",
     "package.json"
   ],
+  "browser": "./dist/web/extension.js",
   "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.95.0"
@@ -559,6 +561,7 @@
     "npm-run-all2": "^8.0.4",
     "oxfmt": "^0.32.0",
     "oxlint": "^1.47.0",
+    "path-browserify": "^1.0.1",
     "plist": "^3.1.0",
     "semver": "^7.7.4",
     "tsx": "^4.21.0",

@@ -19,7 +19,10 @@ export async function activate(context: vscode.ExtensionContext) {
 
   // Enable the reconcile guard in normal runtime. Tests disable it
   // via GLAZE_DISABLE_RECONCILE_GUARD for deterministic behavior.
-  if (process.env.GLAZE_DISABLE_RECONCILE_GUARD !== '1') {
+  if (
+    typeof process === 'undefined' ||
+    process.env.GLAZE_DISABLE_RECONCILE_GUARD !== '1'
+  ) {
     enableReconcileGuard();
   }
 

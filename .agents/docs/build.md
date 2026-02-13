@@ -2,9 +2,19 @@
 
 ## Extension Bundle
 
-**esbuild** bundles `src/extension.ts` → `dist/extension.js` (CommonJS)
+**esbuild** produces two bundles from `src/extension.ts` (CommonJS):
+
+- `dist/extension.js` — Node build (`platform: 'node'`)
+- `dist/web/extension.js` — Web build (`platform: 'browser'`)
 
 The `vscode` module is externalized (provided by VSCode at runtime).
+
+### Web build
+
+The web build uses esbuild aliases to swap Node built-ins for browser-safe shims
+(`src/shims/`) and `path-browserify`. Platform-specific code lives in
+`src/platform/` with `.web.ts` variants; the `webPlatformPlugin` in `esbuild.js`
+redirects imports to the web variant at bundle time.
 
 ## Commands
 

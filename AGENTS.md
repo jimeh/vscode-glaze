@@ -33,6 +33,8 @@ oxfmt check that will fail on unformatted code.
 - Use `GLAZE_MANAGED_KEYS`, don't hardcode color keys
 - Readonly/immutable patterns throughout
 - Don't edit `generated/` dirs — grep for `auto-generated` file headers
+- Platform-specific code goes in `src/platform/` with `.web.ts` variants;
+  `src/shims/` contains degraded stubs for Node built-ins on web
 - For test changes, follow `.agents/docs/testing.md` isolation rules:
   `inspect().<scope>Value` snapshots, `updateConfig()` for asserted writes, and
   `_resetAllState()` setup/teardown in config/command-driven suites.

@@ -1,4 +1,5 @@
 const esbuild = require('esbuild');
+const path = require('path');
 
 const production = process.argv.includes('--production');
 const watch = process.argv.includes('--watch');
@@ -25,28 +26,61 @@ const esbuildProblemMatcherPlugin = {
   },
 };
 
+/**
+ * Redirects platform/ module imports to their .web.ts variants.
+ * Applied only in the web build so that browser bundles get
+ * pure-JS implementations while Node bundles use native modules.
+ *
+ * @type {import('esbuild').Plugin}
+ */
+const webPlatformPlugin = {
+  name: 'web-platform',
+
+  setup(build) {
+    build.onResolve({ filter: /\/platform\/sha256$/ }, () => ({
+      path: path.resolve('src/platform/sha256.web.ts'),
+    }));
+  },
+};
+
+/** @type {import('esbuild').BuildOptions} */
+const baseConfig = {
+  entryPoints: ['src/extension.ts'],
+  bundle: true,
+  format: 'cjs',
+  minify: production,
+  sourcemap: !production,
+  sourcesContent: false,
+  external: ['vscode'],
+  logLevel: 'silent',
+};
+
 async function main() {
-  const ctx = await esbuild.context({
-    entryPoints: ['src/extension.ts'],
-    bundle: true,
-    format: 'cjs',
-    minify: production,
-    sourcemap: !production,
-    sourcesContent: false,
+  const nodeCtx = await esbuild.context({
+    ...baseConfig,
     platform: 'node',
     outfile: 'dist/extension.js',
-    external: ['vscode'],
-    logLevel: 'silent',
-    plugins: [
-      /* add to the end of plugins array */
-      esbuildProblemMatcherPlugin,
-    ],
+    plugins: [esbuildProblemMatcherPlugin],
   });
+
+  const webCtx = await esbuild.context({
+    ...baseConfig,
+    platform: 'browser',
+    outfile: 'dist/web/extension.js',
+    plugins: [esbuildProblemMatcherPlugin, webPlatformPlugin],
+    alias: {
+      os: path.resolve('src/shims/os.ts'),
+      path: 'path-browserify',
+      child_process: path.resolve('src/shims/child_process.ts'),
+      util: path.resolve('src/shims/util.ts'),
+    },
+  });
+
   if (watch) {
-    await ctx.watch();
+    await Promise.all([nodeCtx.watch(), webCtx.watch()]);
   } else {
-    await ctx.rebuild();
-    await ctx.dispose();
+    await Promise.all([nodeCtx.rebuild(), webCtx.rebuild()]);
+    await Promise.all([nodeCtx.dispose(), webCtx.dispose()]);
   }
 }
 
