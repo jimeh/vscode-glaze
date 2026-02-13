@@ -3,8 +3,9 @@
   // for the documentation about the extensions.json format
   "recommendations": [
     "connor4312.esbuild-problem-matchers",
-    "oxc.oxc-vscode",
+    "esbenp.prettier-vscode",
     "ms-vscode.extension-test-runner",
+    "oxc.oxc-vscode",
     "swellaby.workspace-config-plus"
   ]
 }
