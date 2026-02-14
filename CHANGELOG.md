@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/jimeh/vscode-glaze/compare/v0.1.3...v0.1.4) (2026-02-14)
+
+
+### Features
+
+* add web extension support (vscode.dev / github.dev) ([#118](https://github.com/jimeh/vscode-glaze/issues/118)) ([6fcd81c](https://github.com/jimeh/vscode-glaze/commit/6fcd81cfbffe9abd610e842b8f64dbcfca2f78bd))
+
 ## [0.1.3](https://github.com/jimeh/vscode-glaze/compare/v0.1.2...v0.1.3) (2026-02-12)
 
 
