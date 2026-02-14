@@ -7,9 +7,10 @@
 // in testing.md.
 //
 // The `mocha` import resolves to mocha/mocha.js (pre-bundled browser
-// UMD) via the esbuild alias in esbuild.test-web.js. That build
-// exports a pre-constructed Mocha instance; we grab the constructor
-// from it to create our own.
+// UMD) via the esbuild alias in esbuild.test-web.js. That UMD build
+// exports a pre-constructed Mocha instance rather than the class
+// itself, so we access the constructor from it to create a fresh
+// instance with our own config.
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const mochaInstance = require('mocha');

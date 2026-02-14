@@ -24,6 +24,9 @@ function rotr(x: number, n: number): number {
  * Pure JavaScript implementation — no Node.js `crypto` dependency.
  * Produces byte-identical output to Node's
  * `createHash('sha256').update(str).digest()`.
+ *
+ * SubtleCrypto.digest() would be simpler but is async — keeping a
+ * sync API avoids cascading changes through hashString and callers.
  */
 function sha256(input: string): Uint8Array {
   const data = new TextEncoder().encode(input);

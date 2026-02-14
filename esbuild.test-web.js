@@ -1,11 +1,12 @@
 const esbuild = require('esbuild');
+const fs = require('fs');
 const path = require('path');
 
 /**
- * Redirects platform/ module imports to their .web.ts variants.
- * Same plugin as in esbuild.js — duplicated here because the
- * 5-line plugin is simpler to duplicate than to extract a shared
- * module that both configs import.
+ * Redirects platform/ module imports to their .web.ts variants
+ * when one exists. Same plugin as in esbuild.js — duplicated here
+ * because the plugin is simpler to duplicate than to extract a
+ * shared module that both configs import.
  *
  * @type {import('esbuild').Plugin}
  */
@@ -13,9 +14,13 @@ const webPlatformPlugin = {
   name: 'web-platform',
 
   setup(build) {
-    build.onResolve({ filter: /\/platform\/sha256$/ }, () => ({
-      path: path.resolve('src/platform/sha256.web.ts'),
-    }));
+    build.onResolve({ filter: /\/platform\/[^/]+$/ }, (args) => {
+      const resolved = path.resolve(args.resolveDir, args.path);
+      const webVariant = resolved + '.web.ts';
+      if (fs.existsSync(webVariant)) {
+        return { path: webVariant };
+      }
+    });
   },
 };
 

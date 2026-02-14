@@ -1,4 +1,5 @@
 const esbuild = require('esbuild');
+const fs = require('fs');
 const path = require('path');
 
 const production = process.argv.includes('--production');
@@ -27,9 +28,10 @@ const esbuildProblemMatcherPlugin = {
 };
 
 /**
- * Redirects platform/ module imports to their .web.ts variants.
- * Applied only in the web build so that browser bundles get
- * pure-JS implementations while Node bundles use native modules.
+ * Redirects platform/ module imports to their .web.ts variants
+ * when one exists. Applied only in the web build so that browser
+ * bundles get pure-JS implementations while Node bundles use
+ * native modules.
  *
  * @type {import('esbuild').Plugin}
  */
@@ -37,9 +39,13 @@ const webPlatformPlugin = {
   name: 'web-platform',
 
   setup(build) {
-    build.onResolve({ filter: /\/platform\/sha256$/ }, () => ({
-      path: path.resolve('src/platform/sha256.web.ts'),
-    }));
+    build.onResolve({ filter: /\/platform\/[^/]+$/ }, (args) => {
+      const resolved = path.resolve(args.resolveDir, args.path);
+      const webVariant = resolved + '.web.ts';
+      if (fs.existsSync(webVariant)) {
+        return { path: webVariant };
+      }
+    });
   },
 };
 
