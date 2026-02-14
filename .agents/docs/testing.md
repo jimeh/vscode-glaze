@@ -108,6 +108,52 @@ teardown(() => {
 Pure unit tests that do not touch extension runtime/config mutation paths do
 not need this.
 
+## Web Extension Tests
+
+`@vscode/test-web` runs the extension in a browser-based VS Code host (headless
+Chromium via Playwright) to verify the web bundle works correctly.
+
+```bash
+pnpm run test:web
+```
+
+The `pretest:web` script compiles the extension and builds the web test bundle
+(`dist/web/test/index.js`) via `esbuild.test-web.js`.
+
+### Architecture
+
+Web tests reuse the same `*.test.ts` files as the Electron tests but are
+bundled by esbuild (not compiled by tsc) because the browser has no filesystem
+for Mocha to glob. The entry point at `src/test/web/index.ts` statically
+imports each test file and runs Mocha's browser build.
+
+The esbuild config (`esbuild.test-web.js`) aliases Node built-ins to browser
+polyfills (`assert`, `util`, `process`, `path-browserify`) and uses the same
+`webPlatformPlugin` as the main web build to redirect `platform/sha256` to its
+`.web.ts` variant.
+
+### Included Tests (Phase 1)
+
+Only pure unit tests with no Node API dependencies beyond `assert`:
+`color/blend/*`, `color/convert`, `color/naming`, `color/styles`, `color/tint`,
+`config/validate`, `preview/*`, `status/*`, `theme/colors`, `theme/decode`,
+`theme/detect`, `theme/name`, `webview/*`.
+
+### Excluded Tests
+
+- `color/hash` — `crypto.randomBytes`
+- `extension` — `util.isDeepStrictEqual`
+- `workspace/path`, `workspace/identifier` — `os.homedir()` expectations
+- `theme/osColorScheme` — OS color scheme detection
+- Integration tests (`config/index`, `commands/*`, `reconcile/*`, `settings/*`,
+  `statusBar/*`) — need reconcile guard and `_resetAllState()` investigation
+
+### Adding Web Tests
+
+To include a new test file in the web runner, add an `await import()` call in
+`src/test/web/index.ts`. The file is excluded from tsc via `tsconfig.json`
+(only esbuild processes it).
+
 ## Test Coverage
 
 ```bash
