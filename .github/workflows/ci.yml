@@ -154,19 +154,19 @@ jobs:
           name: vsix
       - if: matrix.target == 'vscode-marketplace'
         name: Publish to VS Code Marketplace
-        run: npx -y vsce publish --packagePath *.vsix
+        run: npx -y vsce publish --packagePath ./*.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
       - if: matrix.target == 'open-vsx'
         name: Publish to OpenVSX
-        run: npx -y ovsx publish *.vsix
+        run: npx -y ovsx publish ./*.vsix
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
       - if: matrix.target == 'github-release'
         name: Upload VSIX to GitHub Release
         run: >-
           gh release upload ${{ github.ref_name }}
-          *.vsix *.vsix.sha256
+          ./*.vsix ./*.vsix.sha256
           --repo ${{ github.repository }}
         env:
           GH_TOKEN: ${{ github.token }}
