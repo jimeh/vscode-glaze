@@ -1,5 +1,8 @@
 import * as assert from 'assert';
+import { randomBytes } from 'crypto';
 import { hashString } from '../../color/hash';
+import { sha256Uint32BE } from '../../platform/sha256';
+import { sha256Uint32BE as sha256Uint32BEWeb } from '../../platform/sha256.web';
 
 suite('hashString', () => {
   test('returns consistent hash for same input', () => {
@@ -140,5 +143,32 @@ suite('hashString', () => {
     const max = Math.max(...hashes);
     // Should have at least one value using upper bits (> 2^24)
     assert.ok(max > 0x1000000, 'Hash values should span upper bits');
+  });
+});
+
+suite('SHA-256 platform parity', () => {
+  test('Node and web implementations match on known vectors', () => {
+    assert.strictEqual(sha256Uint32BE(''), sha256Uint32BEWeb(''));
+    assert.strictEqual(sha256Uint32BE('test'), sha256Uint32BEWeb('test'));
+    assert.strictEqual(
+      sha256Uint32BE('hello world'),
+      sha256Uint32BEWeb('hello world')
+    );
+    assert.strictEqual(
+      sha256Uint32BE('项目名称'),
+      sha256Uint32BEWeb('项目名称')
+    );
+  });
+
+  test('Node and web implementations match on randomized inputs', () => {
+    for (let i = 0; i < 1000; i++) {
+      const len = Math.floor(Math.random() * 200);
+      const input = randomBytes(len).toString('base64');
+      assert.strictEqual(
+        sha256Uint32BE(input),
+        sha256Uint32BEWeb(input),
+        `Mismatch for randomized input of byte-length ${len}`
+      );
+    }
   });
 });

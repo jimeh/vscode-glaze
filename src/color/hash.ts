@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import { sha256Uint32BE } from '../platform/sha256';
 
 /**
  * Generates a deterministic numeric hash from a string using SHA-256.
@@ -10,7 +10,5 @@ import { createHash } from 'crypto';
  * @returns A positive 32-bit integer hash value
  */
 export function hashString(str: string): number {
-  const hash = createHash('sha256').update(str).digest();
-  // Take first 4 bytes as unsigned 32-bit integer
-  return hash.readUInt32BE(0);
+  return sha256Uint32BE(str);
 }

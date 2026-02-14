@@ -20,14 +20,16 @@ const EXPECTED_FILES = [
   'LICENSE',
   'README.md',
   'dist/extension.js',
+  'dist/web/extension.js',
   'img/icon.png',
   'package.json',
 ];
 
-// Build if dist/extension.js doesn't exist yet.
+// Build if dist bundles don't exist yet.
 const distPath = path.join(ROOT, 'dist', 'extension.js');
-if (!existsSync(distPath)) {
-  console.log('dist/extension.js not found, building...');
+const distWebPath = path.join(ROOT, 'dist', 'web', 'extension.js');
+if (!existsSync(distPath) || !existsSync(distWebPath)) {
+  console.log('dist bundle(s) not found, building...');
   execFileSync('pnpm', ['run', 'vscode:prepublish'], {
     cwd: ROOT,
     encoding: 'utf-8',

@@ -1,8 +1,8 @@
-import * as os from 'os';
 import * as path from 'path';
+import { homedir } from '../platform/os';
 
 /** Cached home directory — never changes during a session. */
-export const HOME_DIR = os.homedir();
+export const HOME_DIR = homedir();
 
 /**
  * Normalizes a path by converting backslashes to forward slashes.

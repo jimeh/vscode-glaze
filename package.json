@@ -57,9 +57,11 @@
     "LICENSE",
     "README.md",
     "dist/extension.js",
+    "dist/web/extension.js",
     "img/icon.png",
     "package.json"
   ],
+  "browser": "./dist/web/extension.js",
   "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.95.0"
@@ -531,6 +533,9 @@
     "lint:fix": "oxlint src --fix && oxfmt --write .",
     "format": "oxfmt --write .",
     "test": "vscode-test --fail-zero",
+    "compile-tests:web": "node esbuild.test-web.js",
+    "pretest:web": "pnpm run compile && pnpm run compile-tests:web",
+    "test:web": "vscode-test-web --browserType=chromium --headless --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/index.js",
     "test:scripts": "node --import tsx --test --test-reporter spec $(find scripts/extract-theme-colors/__tests__ -name '*.test.ts')",
     "test:coverage": "pnpm run pretest && vscode-test --coverage --fail-zero",
     "test:coverage:html": "pnpm run pretest && vscode-test --coverage --coverage-reporter=html --coverage-reporter=lcov --coverage-output=coverage --fail-zero",
@@ -551,18 +556,31 @@
     "@types/vscode": "^1.95.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/test-web": "^0.0.79",
     "adm-zip": "^0.5.16",
+    "assert": "^2.1.0",
     "choma": "^1.2.1",
     "color-name-list": "^14.31.0",
     "esbuild": "^0.27.3",
     "jsonc-parser": "^3.3.1",
+    "mocha": "^11.7.5",
     "npm-run-all2": "^8.0.4",
     "oxfmt": "^0.32.0",
     "oxlint": "^1.47.0",
+    "path-browserify": "^1.0.1",
     "plist": "^3.1.0",
+    "process": "^0.11.10",
     "semver": "^7.7.4",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "util": "^0.12.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@playwright/browser-chromium",
+      "@resvg/resvg-js",
+      "esbuild"
+    ]
   },
   "dependencies": {
     "nearest-color": "^0.4.4"

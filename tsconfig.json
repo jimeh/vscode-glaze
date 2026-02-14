@@ -13,5 +13,5 @@
     "noUnusedParameters": true,
     "exactOptionalPropertyTypes": true
   },
-  "exclude": ["scripts", "logo-builder"]
+  "exclude": ["scripts", "logo-builder", "src/test/web"]
 }
