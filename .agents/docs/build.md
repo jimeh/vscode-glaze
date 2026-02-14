@@ -11,10 +11,9 @@ The `vscode` module is externalized (provided by VSCode at runtime).
 
 ### Web build
 
-The web build uses esbuild aliases to swap Node built-ins for browser-safe shims
-(`src/shims/`) and `path-browserify`. Platform-specific code lives in
-`src/platform/` with `.web.ts` variants; the `webPlatformPlugin` in `esbuild.js`
-redirects imports to the web variant at bundle time.
+The web build uses `path-browserify` for path operations. Platform-specific code
+lives in `src/platform/` with `.web.ts` variants; the `webPlatformPlugin` in
+`esbuild.js` redirects imports to the web variant at bundle time.
 
 ## Commands
 

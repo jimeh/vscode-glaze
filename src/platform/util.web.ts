@@ -1,9 +1,9 @@
 /**
- * Web stub for Node's `util` module.
+ * Web implementation of the `util` platform wrapper.
  *
  * Minimal `promisify` that wraps a Node-style callback function
  * into a Promise-returning function. Only used to promisify the
- * `child_process.exec` shim.
+ * `child_process.exec` web stub.
  */
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export function promisify(

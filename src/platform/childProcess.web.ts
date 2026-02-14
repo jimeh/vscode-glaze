@@ -1,5 +1,5 @@
 /**
- * Web stub for Node's `child_process` module.
+ * Web implementation of the `child_process` platform wrapper.
  *
  * `exec` immediately invokes the callback with an error so that
  * `promisify(exec)(...)` rejects. `osColorScheme.ts` catches this

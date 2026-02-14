@@ -34,7 +34,7 @@ oxfmt check that will fail on unformatted code.
 - Readonly/immutable patterns throughout
 - Don't edit `generated/` dirs — grep for `auto-generated` file headers
 - Platform-specific code goes in `src/platform/` with `.web.ts` variants;
-  `src/shims/` contains degraded stubs for Node built-ins on web
+  web builds swap to `.web.ts` variants via `webPlatformPlugin`
 - For test changes, follow `.agents/docs/testing.md` isolation rules:
   `inspect().<scope>Value` snapshots, `updateConfig()` for asserted writes, and
   `_resetAllState()` setup/teardown in config/command-driven suites.

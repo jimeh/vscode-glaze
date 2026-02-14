@@ -36,11 +36,9 @@ esbuild
     inject: ['src/test/web/process-shim.js'],
     plugins: [webPlatformPlugin],
     alias: {
-      os: path.resolve('src/shims/os.ts'),
       path: 'path-browserify',
-      child_process: path.resolve('src/shims/child_process.ts'),
       // Use the full browserify util polyfill (not the extension's
-      // minimal shim) because the `assert` package needs
+      // minimal implementation) because the `assert` package needs
       // util.inspect.custom.
       util: require.resolve('util/'),
       assert: 'assert',

@@ -1,5 +1,5 @@
 /**
- * Web stub for Node's `os` module.
+ * Web implementation of the `os` platform wrapper.
  *
  * When `homedir()` returns `''`, callers like `expandTilde` and
  * `pathRelativeToHome` fall back to the absolute path, which is

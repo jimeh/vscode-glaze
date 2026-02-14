@@ -75,10 +75,7 @@ async function main() {
     outfile: 'dist/web/extension.js',
     plugins: [esbuildProblemMatcherPlugin, webPlatformPlugin],
     alias: {
-      os: path.resolve('src/shims/os.ts'),
       path: 'path-browserify',
-      child_process: path.resolve('src/shims/child_process.ts'),
-      util: path.resolve('src/shims/util.ts'),
     },
   });
 

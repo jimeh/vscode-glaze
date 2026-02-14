@@ -1,5 +1,5 @@
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { exec } from '../platform/childProcess';
+import { promisify } from '../platform/util';
 
 const execAsync = promisify(exec);
 
