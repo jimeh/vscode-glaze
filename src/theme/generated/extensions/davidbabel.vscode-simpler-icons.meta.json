@@ -2,10 +2,10 @@
   "extensionId": "8bfd87ec-2032-4a0e-a630-71eed81a027e",
   "extensionName": "vscode-simpler-icons",
   "publisherName": "davidbabel",
-  "displayName": "VSCode simpler Icons with Angular",
-  "version": "1.6.7",
-  "extractedAt": "2026-02-08T00:10:35.818Z",
-  "installCount": 459662,
+  "displayName": "[Deprecated] VSCode simpler Icons with Angular",
+  "version": "1.6.14",
+  "extractedAt": "2026-02-16T06:26:50.983Z",
+  "installCount": 460427,
   "themes": [],
   "source": "marketplace"
 }
