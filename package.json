@@ -276,31 +276,31 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Resolve workspace folders to their git repository root before generating identifiers. When enabled, linked git worktrees from the same repository share the same color. Falls back to normal path-based behavior when no git repository is found.",
-          "order": 8.5
+          "order": 9
         },
         "glaze.elements.titleBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the window title bar.",
-          "order": 9
+          "order": 10
         },
         "glaze.elements.activityBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the left side activity bar.",
-          "order": 10
+          "order": 11
         },
         "glaze.elements.sideBar": {
           "type": "boolean",
           "default": false,
           "description": "Apply color tint to the side bar.",
-          "order": 11
+          "order": 12
         },
         "glaze.elements.statusBar": {
           "type": "boolean",
           "default": true,
           "description": "Apply color tint to the bottom status bar.",
-          "order": 12
+          "order": 13
         },
         "glaze.theme.blendMethod": {
           "type": "string",
@@ -318,7 +318,7 @@
           ],
           "default": "overlay",
           "description": "Blending algorithm for combining tint and theme colors. Overlay uses linear sRGB alpha compositing; Hue Shift uses OKLCH for uniform transitions.",
-          "order": 13
+          "order": 14
         },
         "glaze.theme.blendFactor": {
           "type": "number",
@@ -326,7 +326,7 @@
           "maximum": 1,
           "default": 0.35,
           "description": "How much to blend tint colors toward the theme's background. 0 = full tint (no blending), 1 = theme colors only (no tinting). Only applies to known themes.",
-          "order": 14
+          "order": 15
         },
         "glaze.theme.titleBarBlendFactor": {
           "type": [
@@ -337,7 +337,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the title bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 15
+          "order": 16
         },
         "glaze.theme.activityBarBlendFactor": {
           "type": [
@@ -348,7 +348,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the activity bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 16
+          "order": 17
         },
         "glaze.theme.sideBarBlendFactor": {
           "type": [
@@ -359,7 +359,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the side bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 17
+          "order": 18
         },
         "glaze.theme.statusBarBlendFactor": {
           "type": [
@@ -370,7 +370,7 @@
           "maximum": 1,
           "default": null,
           "description": "Override blend factor for the status bar. When set, overrides the default blend factor for this element. null = use default.",
-          "order": 18
+          "order": 19
         },
         "glaze.tint.mode": {
           "type": "string",
@@ -391,13 +391,13 @@
           ],
           "default": "auto",
           "description": "Theme mode for color generation. Auto-detects from VSCode's current theme.",
-          "order": 19
+          "order": 20
         },
         "glaze.tint.seed": {
           "type": "integer",
           "default": 0,
           "description": "Seed value used to shift the base color tint calculation. Changing this value will produce completely different colors for all workspaces.",
-          "order": 20
+          "order": 21
         },
         "glaze.tint.baseHueOverride": {
           "type": [
@@ -408,13 +408,13 @@
           "maximum": 359,
           "default": null,
           "description": "Override the base hue (0-359) for this workspace. When set, bypasses the deterministic hue calculation. Intended for workspace-level configuration.",
-          "order": 21
+          "order": 22
         },
         "glaze.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 22,
+          "order": 23,
           "additionalProperties": {
             "type": "object",
             "required": [

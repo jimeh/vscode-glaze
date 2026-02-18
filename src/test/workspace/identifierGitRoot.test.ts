@@ -147,7 +147,38 @@ suite('getWorkspaceIdentifier (git root mode)', () => {
       resolver
     );
 
-    assert.strictEqual(result, '/repos/shared\n/repos/shared');
+    assert.strictEqual(result, '/repos/shared');
+  });
+
+  test('allFolders mode keeps distinct resolved roots sorted', async () => {
+    const config: WorkspaceIdentifierConfig = {
+      source: 'pathAbsolute',
+      customBasePath: '',
+      multiRootSource: 'allFolders',
+      includeRemoteAuthority: true,
+      remoteHomeDirectory: '',
+      useGitRepoRoot: true,
+    };
+
+    const folders = [
+      mockFolder('/worktrees/app-feature-a'),
+      mockFolder('/worktrees/app-feature-b'),
+    ];
+
+    const resolver: GitRepoRootResolver = async (folder) => {
+      return folder.uri.fsPath.includes('feature-a')
+        ? '/repos/alpha'
+        : '/repos/beta';
+    };
+
+    const result = await getWorkspaceIdentifier(
+      config,
+      folders,
+      undefined,
+      resolver
+    );
+
+    assert.strictEqual(result, '/repos/alpha\n/repos/beta');
   });
 
   test('workspaceFile mode remains path-based when workspace file exists', async () => {
@@ -208,6 +239,76 @@ suite('getWorkspaceIdentifier (git root mode)', () => {
       resolver
     );
 
-    assert.strictEqual(result, 'shared\nshared');
+    assert.strictEqual(result, 'shared');
+  });
+
+  test('path-based outputs match non-git mode when resolver falls back', async () => {
+    const baseConfig: WorkspaceIdentifierConfig = {
+      source: 'pathAbsolute',
+      customBasePath: '',
+      multiRootSource: 'allFolders',
+      includeRemoteAuthority: true,
+      remoteHomeDirectory: '',
+      useGitRepoRoot: false,
+    };
+
+    const folders = [
+      mockFolder('/worktrees/app-feature-a'),
+      mockFolder('/worktrees/app-feature-b'),
+    ];
+
+    const gitRootConfig: WorkspaceIdentifierConfig = {
+      ...baseConfig,
+      useGitRepoRoot: true,
+    };
+
+    const resolver: GitRepoRootResolver = async () => undefined;
+
+    const regular = await getWorkspaceIdentifier(baseConfig, folders);
+    const viaGitFallback = await getWorkspaceIdentifier(
+      gitRootConfig,
+      folders,
+      undefined,
+      resolver
+    );
+
+    assert.strictEqual(viaGitFallback, regular);
+  });
+
+  test('remote authority prefix is preserved in git fallback mode', async () => {
+    const baseConfig: WorkspaceIdentifierConfig = {
+      source: 'pathAbsolute',
+      customBasePath: '',
+      multiRootSource: 'firstFolder',
+      includeRemoteAuthority: true,
+      remoteHomeDirectory: '',
+      useGitRepoRoot: false,
+    };
+
+    const folder: WorkspaceFolder = {
+      uri: {
+        fsPath: '/home/user/project',
+        authority: 'ssh-remote+myhost',
+        scheme: 'vscode-remote',
+      },
+      name: 'project',
+    };
+
+    const gitRootConfig: WorkspaceIdentifierConfig = {
+      ...baseConfig,
+      useGitRepoRoot: true,
+    };
+
+    const resolver: GitRepoRootResolver = async () => undefined;
+
+    const regular = await getWorkspaceIdentifier(baseConfig, [folder]);
+    const viaGitFallback = await getWorkspaceIdentifier(
+      gitRootConfig,
+      [folder],
+      undefined,
+      resolver
+    );
+
+    assert.strictEqual(viaGitFallback, regular);
   });
 });

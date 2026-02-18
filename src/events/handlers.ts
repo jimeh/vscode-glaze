@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { requestReconcile } from '../reconcile';
 import type { StatusBarManager } from '../statusBar';
+import { clearGitRepoRootCache } from '../workspace/gitRoot';
 
 /**
  * Register configuration and theme change event handlers.
@@ -36,14 +37,22 @@ export function registerEventHandlers(
         requestReconcile();
         return;
       }
+      if (e.affectsConfiguration('glaze.workspaceIdentifier')) {
+        clearGitRepoRootCache();
+        requestReconcile();
+        return;
+      }
       if (
-        e.affectsConfiguration('glaze.workspaceIdentifier') ||
         e.affectsConfiguration('glaze.tint') ||
         e.affectsConfiguration('glaze.theme') ||
         e.affectsConfiguration('glaze.elements')
       ) {
         requestReconcile();
       }
+    }),
+    vscode.workspace.onDidChangeWorkspaceFolders(() => {
+      clearGitRepoRootCache();
+      requestReconcile();
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
       requestReconcile();

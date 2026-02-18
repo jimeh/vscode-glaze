@@ -45,3 +45,9 @@ oxfmt check that will fail on unformatted code.
   shimmed commands (`pnpm`, `rg`, etc.) fail with a trust error. Use explicit
   binary paths (for example `~/.local/share/mise/installs/pnpm/.../pnpm`) or a
   `PATH` override that bypasses shims during CI-like agent runs.
+- In extension integration tests, calling
+  `vscode.workspace.updateWorkspaceFolders(...)` from a single-folder window
+  can switch to an untitled multi-root workspace and make later config writes
+  flaky (`File Modified Since` / unsaved settings errors). Only run
+  workspace-folder mutation tests when `vscode.workspace.workspaceFile` exists,
+  and keep cleanup best-effort.

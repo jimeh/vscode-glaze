@@ -88,7 +88,10 @@ function parseGitDirPointer(content: string): string | undefined {
       continue;
     }
     const match = /^gitdir:\s*(.+)\s*$/i.exec(trimmed);
-    return match?.[1]?.trim();
+    if (!match) {
+      continue;
+    }
+    return match[1].trim();
   }
   return undefined;
 }
@@ -250,15 +253,34 @@ export async function resolveGitRepoRoot(
     return cached;
   }
 
-  const pending = resolveGitRepoRootInner(folderUri, fs).catch(() => undefined);
+  const pending = resolveGitRepoRootInner(folderUri, fs)
+    .then((result) => {
+      // Keep successful resolutions cached, but allow unresolved
+      // paths to be re-checked on subsequent calls.
+      if (!result) {
+        cache.delete(cacheKey);
+      }
+      return result;
+    })
+    .catch(() => {
+      cache.delete(cacheKey);
+      return undefined;
+    });
 
   cache.set(cacheKey, pending);
   return pending;
 }
 
 /**
- * Clears the default git root cache. Intended for tests.
+ * Clears the default git root cache.
+ */
+export function clearGitRepoRootCache(): void {
+  DEFAULT_GIT_ROOT_CACHE.clear();
+}
+
+/**
+ * Test-only alias for backwards compatibility with existing imports.
  */
 export function _clearGitRepoRootCache(): void {
-  DEFAULT_GIT_ROOT_CACHE.clear();
+  clearGitRepoRootCache();
 }

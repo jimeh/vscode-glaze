@@ -175,48 +175,14 @@ function formatPath(
   }
 }
 
-/**
- * Formats a folder based on the source configuration.
- * Special handling for 'name' source to use the folder's
- * custom name if set.
- */
-function formatFolderSync(
-  folder: WorkspaceFolder,
-  source: WorkspaceIdentifierConfig['source'],
-  customBasePath: string,
-  remoteHomeDirectory: string
-): string {
-  // For 'name' source, use the folder's name property
-  // (may be customized)
-  if (source === 'name') {
-    return folder.name;
-  }
+type IdentifierPathResolver = (folder: WorkspaceFolder) => Promise<string>;
 
-  const remote = isRemoteUri(folder.uri);
-  return formatPath(
-    folder.uri.fsPath,
-    source,
-    customBasePath,
-    remote,
-    remoteHomeDirectory
-  );
+interface FormatFolderOptions {
+  readonly useFolderNameForNameSource: boolean;
 }
 
-/**
- * Formats all folders into a sorted, newline-joined identifier string.
- */
-function formatAllFoldersSync(
-  folders: readonly WorkspaceFolder[],
-  source: WorkspaceIdentifierConfig['source'],
-  customBasePath: string,
-  remoteHomeDirectory: string
-): string {
-  return folders
-    .map((f) =>
-      formatFolderSync(f, source, customBasePath, remoteHomeDirectory)
-    )
-    .sort()
-    .join('\n');
+function passthroughIdentifierPath(folder: WorkspaceFolder): Promise<string> {
+  return Promise.resolve(folder.uri.fsPath);
 }
 
 /**
@@ -235,15 +201,20 @@ async function resolveIdentifierPath(
 }
 
 /**
- * Formats a folder using git-root-based path resolution.
+ * Formats a folder using a pluggable identifier-path resolver.
  */
-async function formatFolderWithGitRoot(
+async function formatFolder(
   folder: WorkspaceFolder,
   config: WorkspaceIdentifierConfig,
-  gitRootResolver: GitRepoRootResolver
+  resolvePath: IdentifierPathResolver,
+  options: FormatFolderOptions
 ): Promise<string> {
   const { source, customBasePath, remoteHomeDirectory } = config;
-  const resolvedPath = await resolveIdentifierPath(folder, gitRootResolver);
+  if (source === 'name' && options.useFolderNameForNameSource) {
+    return folder.name;
+  }
+
+  const resolvedPath = await resolvePath(folder);
 
   const remote = isRemoteUri(folder.uri);
   return formatPath(
@@ -258,18 +229,19 @@ async function formatFolderWithGitRoot(
 /**
  * Formats all folders into a sorted, newline-joined identifier string.
  */
-async function formatAllFoldersWithGitRoot(
+async function formatAllFolders(
   folders: readonly WorkspaceFolder[],
   config: WorkspaceIdentifierConfig,
-  gitRootResolver: GitRepoRootResolver
+  resolvePath: IdentifierPathResolver,
+  options: FormatFolderOptions,
+  dedupe = false
 ): Promise<string> {
   const formatted = await Promise.all(
-    folders.map((folder) =>
-      formatFolderWithGitRoot(folder, config, gitRootResolver)
-    )
+    folders.map((folder) => formatFolder(folder, config, resolvePath, options))
   );
 
-  return formatted.sort().join('\n');
+  const output = dedupe ? [...new Set(formatted)] : formatted;
+  return output.sort().join('\n');
 }
 
 /**
@@ -301,87 +273,20 @@ function getAuthorityPrefix(
   return '';
 }
 
-/**
- * Synchronous identifier path for default (non-git-root) mode.
- */
-function buildIdentifierSync(
-  config: WorkspaceIdentifierConfig,
-  workspaceFolders: readonly WorkspaceFolder[],
-  workspaceFile?: WorkspaceFileUri
-): string {
-  const isMultiRoot = workspaceFolders.length > 1;
-  const { source, customBasePath, remoteHomeDirectory } = config;
-
-  let baseIdentifier: string;
-
-  if (!isMultiRoot) {
-    baseIdentifier = formatFolderSync(
-      workspaceFolders[0],
-      source,
-      customBasePath,
-      remoteHomeDirectory
-    );
-  } else {
-    switch (config.multiRootSource) {
-      case 'workspaceFile': {
-        if (workspaceFile?.fsPath) {
-          const remote =
-            workspaceFile.scheme !== 'file' && !!workspaceFile.authority;
-          baseIdentifier = formatPath(
-            workspaceFile.fsPath,
-            source,
-            customBasePath,
-            remote,
-            remoteHomeDirectory
-          );
-        } else {
-          baseIdentifier = formatAllFoldersSync(
-            workspaceFolders,
-            source,
-            customBasePath,
-            remoteHomeDirectory
-          );
-        }
-        break;
-      }
-
-      case 'allFolders':
-        baseIdentifier = formatAllFoldersSync(
-          workspaceFolders,
-          source,
-          customBasePath,
-          remoteHomeDirectory
-        );
-        break;
-
-      case 'firstFolder':
-      default:
-        baseIdentifier = formatFolderSync(
-          workspaceFolders[0],
-          source,
-          customBasePath,
-          remoteHomeDirectory
-        );
-        break;
-    }
-  }
-
-  if (source === 'name') {
-    return baseIdentifier;
-  }
-
-  const prefix = getAuthorityPrefix(workspaceFolders, config, workspaceFile);
-  return prefix + baseIdentifier;
+interface BuildIdentifierOptions {
+  readonly resolvePath: IdentifierPathResolver;
+  readonly useFolderNameForNameSource: boolean;
+  readonly dedupeAllFolders: boolean;
 }
 
 /**
- * Async identifier path for git-root mode.
+ * Builds identifier path using a pluggable path resolver.
  */
-async function buildIdentifierWithGitRoot(
+async function buildIdentifier(
   config: WorkspaceIdentifierConfig,
   workspaceFolders: readonly WorkspaceFolder[],
   workspaceFile: WorkspaceFileUri | undefined,
-  gitRootResolver: GitRepoRootResolver
+  options: BuildIdentifierOptions
 ): Promise<string> {
   const isMultiRoot = workspaceFolders.length > 1;
   const { source, customBasePath, remoteHomeDirectory } = config;
@@ -389,10 +294,13 @@ async function buildIdentifierWithGitRoot(
   let baseIdentifier: string;
 
   if (!isMultiRoot) {
-    baseIdentifier = await formatFolderWithGitRoot(
+    baseIdentifier = await formatFolder(
       workspaceFolders[0],
       config,
-      gitRootResolver
+      options.resolvePath,
+      {
+        useFolderNameForNameSource: options.useFolderNameForNameSource,
+      }
     );
   } else {
     switch (config.multiRootSource) {
@@ -408,29 +316,40 @@ async function buildIdentifierWithGitRoot(
             remoteHomeDirectory
           );
         } else {
-          baseIdentifier = await formatAllFoldersWithGitRoot(
+          baseIdentifier = await formatAllFolders(
             workspaceFolders,
             config,
-            gitRootResolver
+            options.resolvePath,
+            {
+              useFolderNameForNameSource: options.useFolderNameForNameSource,
+            },
+            options.dedupeAllFolders
           );
         }
         break;
       }
 
       case 'allFolders':
-        baseIdentifier = await formatAllFoldersWithGitRoot(
+        baseIdentifier = await formatAllFolders(
           workspaceFolders,
           config,
-          gitRootResolver
+          options.resolvePath,
+          {
+            useFolderNameForNameSource: options.useFolderNameForNameSource,
+          },
+          options.dedupeAllFolders
         );
         break;
 
       case 'firstFolder':
       default:
-        baseIdentifier = await formatFolderWithGitRoot(
+        baseIdentifier = await formatFolder(
           workspaceFolders[0],
           config,
-          gitRootResolver
+          options.resolvePath,
+          {
+            useFolderNameForNameSource: options.useFolderNameForNameSource,
+          }
         );
         break;
     }
@@ -460,16 +379,15 @@ export function getWorkspaceIdentifier(
 
   const resolvedWorkspaceFile = workspaceFile ?? vscode.workspace.workspaceFile;
 
-  if (config.useGitRepoRoot !== true) {
-    return Promise.resolve(
-      buildIdentifierSync(config, workspaceFolders, resolvedWorkspaceFile)
-    );
-  }
+  const resolvePath =
+    config.useGitRepoRoot === true
+      ? (folder: WorkspaceFolder) =>
+          resolveIdentifierPath(folder, gitRootResolver)
+      : passthroughIdentifierPath;
 
-  return buildIdentifierWithGitRoot(
-    config,
-    workspaceFolders,
-    resolvedWorkspaceFile,
-    gitRootResolver
-  );
+  return buildIdentifier(config, workspaceFolders, resolvedWorkspaceFile, {
+    resolvePath,
+    useFolderNameForNameSource: config.useGitRepoRoot !== true,
+    dedupeAllFolders: config.useGitRepoRoot === true,
+  });
 }
