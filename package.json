@@ -272,6 +272,12 @@
           "markdownDescription": "Home directory override for remote workspaces. Used by `pathRelativeToHome` when the automatic detection fails. Example: `/home/myuser`. Leave empty to use automatic detection.",
           "order": 8
         },
+        "glaze.workspaceIdentifier.useGitRepoRoot": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Resolve workspace folders to their git repository root before generating identifiers. When enabled, linked git worktrees from the same repository share the same color. Falls back to normal path-based behavior when no git repository is found.",
+          "order": 8.5
+        },
         "glaze.elements.titleBar": {
           "type": "boolean",
           "default": true,

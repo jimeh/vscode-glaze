@@ -38,3 +38,10 @@ oxfmt check that will fail on unformatted code.
 - For test changes, follow `.agents/docs/testing.md` isolation rules:
   `inspect().<scope>Value` snapshots, `updateConfig()` for asserted writes, and
   `_resetAllState()` setup/teardown in config/command-driven suites.
+
+## Discoveries
+
+- `mise` shims are first in `PATH` for this repo. In untrusted worktrees,
+  shimmed commands (`pnpm`, `rg`, etc.) fail with a trust error. Use explicit
+  binary paths (for example `~/.local/share/mise/installs/pnpm/.../pnpm`) or a
+  `PATH` override that bypasses shims during CI-like agent runs.

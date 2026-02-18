@@ -241,7 +241,7 @@ export async function doReconcile(options?: ReconcileOptions): Promise<void> {
   }
 
   const identifierConfig = getWorkspaceIdentifierConfig();
-  const identifier = getWorkspaceIdentifier(identifierConfig);
+  const identifier = await getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
     await resetCachedState();
     return;

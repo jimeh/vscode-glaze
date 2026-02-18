@@ -251,6 +251,7 @@ suite('getWorkspaceIdentifierConfig', () => {
   let originalSource: string | undefined;
   let originalCustomBasePath: string | undefined;
   let originalMultiRootSource: string | undefined;
+  let originalUseGitRepoRoot: boolean | undefined;
 
   suiteSetup(async () => {
     const config = vscode.workspace.getConfiguration('glaze');
@@ -262,6 +263,9 @@ suite('getWorkspaceIdentifierConfig', () => {
     )?.globalValue;
     originalMultiRootSource = config.inspect<string>(
       'workspaceIdentifier.multiRootSource'
+    )?.globalValue;
+    originalUseGitRepoRoot = config.inspect<boolean>(
+      'workspaceIdentifier.useGitRepoRoot'
     )?.globalValue;
   });
 
@@ -280,6 +284,11 @@ suite('getWorkspaceIdentifierConfig', () => {
     await config.update(
       'workspaceIdentifier.multiRootSource',
       originalMultiRootSource,
+      vscode.ConfigurationTarget.Global
+    );
+    await config.update(
+      'workspaceIdentifier.useGitRepoRoot',
+      originalUseGitRepoRoot,
       vscode.ConfigurationTarget.Global
     );
   });
@@ -403,6 +412,28 @@ suite('getWorkspaceIdentifierConfig', () => {
 
     const result = getWorkspaceIdentifierConfig();
     assert.strictEqual(result.multiRootSource, 'workspaceFile');
+  });
+
+  test('returns useGitRepoRoot as false when not configured', async () => {
+    await updateConfig(
+      'workspaceIdentifier.useGitRepoRoot',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getWorkspaceIdentifierConfig();
+    assert.strictEqual(result.useGitRepoRoot, false);
+  });
+
+  test('reads configured useGitRepoRoot value', async () => {
+    await updateConfig(
+      'workspaceIdentifier.useGitRepoRoot',
+      true,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getWorkspaceIdentifierConfig();
+    assert.strictEqual(result.useGitRepoRoot, true);
   });
 });
 

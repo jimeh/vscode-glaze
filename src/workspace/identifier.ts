@@ -8,33 +8,107 @@ import {
   getRelativePath,
   inferRemoteHome,
 } from './path';
-
-/**
- * Minimal workspace folder interface for testing.
- */
-export interface WorkspaceFolder {
-  readonly uri: {
-    readonly fsPath: string;
-    readonly authority?: string;
-    readonly scheme?: string;
-  };
-  readonly name: string;
-}
+import { resolveGitRepoRoot } from './gitRoot';
 
 /**
  * Minimal URI interface for testing.
  */
 export interface WorkspaceFileUri {
+  /**
+   * Filesystem-like path used by existing identifier formatting
+   * logic (`name`, path-relative/absolute modes).
+   */
   readonly fsPath: string;
+  /**
+   * URI path segment used when reconstructing a `vscode.Uri`
+   * for git-root resolution across non-file schemes.
+   */
+  readonly path?: string;
+  /**
+   * Remote authority/host identity (for example `ssh-remote+host`)
+   * used to detect remote folders and optionally prefix identifiers.
+   */
   readonly authority?: string;
+  /**
+   * URI scheme (for example `file` or `vscode-remote`) used to
+   * distinguish local vs remote behavior.
+   */
   readonly scheme?: string;
 }
+
+/**
+ * Minimal workspace folder interface for testing.
+ */
+export interface WorkspaceFolder {
+  /**
+   * URI metadata for the workspace folder.
+   */
+  readonly uri: WorkspaceFileUri;
+  /**
+   * Display folder name from VS Code. Used directly when identifier
+   * source is `name` (unless git-root mode is enabled).
+   */
+  readonly name: string;
+}
+
+/**
+ * Resolves git repository root for a workspace folder.
+ */
+export type GitRepoRootResolver = (
+  folder: WorkspaceFolder
+) => Promise<string | undefined>;
 
 /**
  * Returns whether a URI represents a remote workspace.
  */
 function isRemoteUri(uri: { scheme?: string; authority?: string }): boolean {
   return !!uri.authority && uri.scheme !== 'file';
+}
+
+/**
+ * Converts a lightweight URI object to a VS Code URI.
+ */
+function toVscodeUri(uri: WorkspaceFolder['uri']): vscode.Uri {
+  const maybeUri = uri as unknown as Partial<vscode.Uri>;
+  if (
+    typeof maybeUri.with === 'function' &&
+    typeof maybeUri.scheme === 'string' &&
+    typeof maybeUri.path === 'string'
+  ) {
+    return uri as unknown as vscode.Uri;
+  }
+
+  const scheme = uri.scheme ?? (uri.authority ? 'vscode-remote' : 'file');
+  const authority = uri.authority ?? '';
+
+  const fromPath = uri.path;
+  const fromFsPath = normalizePath(uri.fsPath);
+  const normalizedPath = (fromPath ?? fromFsPath).startsWith('/')
+    ? (fromPath ?? fromFsPath)
+    : `/${fromPath ?? fromFsPath}`;
+
+  return vscode.Uri.from({
+    scheme,
+    authority,
+    path: normalizedPath,
+  });
+}
+
+/**
+ * Default git root resolver used in runtime.
+ */
+async function defaultResolveGitRepoRoot(
+  folder: WorkspaceFolder
+): Promise<string | undefined> {
+  const folderUri = toVscodeUri(folder.uri);
+  const gitRoot = await resolveGitRepoRoot(folderUri);
+  if (!gitRoot) {
+    return undefined;
+  }
+
+  return folder.uri.scheme === 'file' || !folder.uri.scheme
+    ? gitRoot.fsPath
+    : gitRoot.path;
 }
 
 /**
@@ -106,7 +180,7 @@ function formatPath(
  * Special handling for 'name' source to use the folder's
  * custom name if set.
  */
-function formatFolder(
+function formatFolderSync(
   folder: WorkspaceFolder,
   source: WorkspaceIdentifierConfig['source'],
   customBasePath: string,
@@ -117,6 +191,7 @@ function formatFolder(
   if (source === 'name') {
     return folder.name;
   }
+
   const remote = isRemoteUri(folder.uri);
   return formatPath(
     folder.uri.fsPath,
@@ -128,19 +203,73 @@ function formatFolder(
 }
 
 /**
- * Formats all folders into a sorted, newline-joined identifier
- * string.
+ * Formats all folders into a sorted, newline-joined identifier string.
  */
-function formatAllFolders(
+function formatAllFoldersSync(
   folders: readonly WorkspaceFolder[],
   source: WorkspaceIdentifierConfig['source'],
   customBasePath: string,
   remoteHomeDirectory: string
 ): string {
   return folders
-    .map((f) => formatFolder(f, source, customBasePath, remoteHomeDirectory))
+    .map((f) =>
+      formatFolderSync(f, source, customBasePath, remoteHomeDirectory)
+    )
     .sort()
     .join('\n');
+}
+
+/**
+ * Resolves the path used as identifier input for a folder.
+ */
+async function resolveIdentifierPath(
+  folder: WorkspaceFolder,
+  gitRootResolver: GitRepoRootResolver
+): Promise<string> {
+  try {
+    const gitRoot = await gitRootResolver(folder);
+    return gitRoot ?? folder.uri.fsPath;
+  } catch {
+    return folder.uri.fsPath;
+  }
+}
+
+/**
+ * Formats a folder using git-root-based path resolution.
+ */
+async function formatFolderWithGitRoot(
+  folder: WorkspaceFolder,
+  config: WorkspaceIdentifierConfig,
+  gitRootResolver: GitRepoRootResolver
+): Promise<string> {
+  const { source, customBasePath, remoteHomeDirectory } = config;
+  const resolvedPath = await resolveIdentifierPath(folder, gitRootResolver);
+
+  const remote = isRemoteUri(folder.uri);
+  return formatPath(
+    resolvedPath,
+    source,
+    customBasePath,
+    remote,
+    remoteHomeDirectory
+  );
+}
+
+/**
+ * Formats all folders into a sorted, newline-joined identifier string.
+ */
+async function formatAllFoldersWithGitRoot(
+  folders: readonly WorkspaceFolder[],
+  config: WorkspaceIdentifierConfig,
+  gitRootResolver: GitRepoRootResolver
+): Promise<string> {
+  const formatted = await Promise.all(
+    folders.map((folder) =>
+      formatFolderWithGitRoot(folder, config, gitRootResolver)
+    )
+  );
+
+  return formatted.sort().join('\n');
 }
 
 /**
@@ -173,60 +302,40 @@ function getAuthorityPrefix(
 }
 
 /**
- * Extracts a suitable identifier from the current workspace
- * based on config.
- *
- * @param config - Configuration specifying how to generate the
- *   identifier
- * @param folders - Optional workspace folders (defaults to
- *   vscode.workspace)
- * @param workspaceFile - Optional workspace file URI (defaults
- *   to vscode.workspace.workspaceFile)
- * @returns The workspace identifier, or undefined if no
- *   workspace is open
+ * Synchronous identifier path for default (non-git-root) mode.
  */
-export function getWorkspaceIdentifier(
+function buildIdentifierSync(
   config: WorkspaceIdentifierConfig,
-  folders?: readonly WorkspaceFolder[],
+  workspaceFolders: readonly WorkspaceFolder[],
   workspaceFile?: WorkspaceFileUri
-): string | undefined {
-  const workspaceFolders = folders ?? vscode.workspace.workspaceFolders;
-  if (!workspaceFolders || workspaceFolders.length === 0) {
-    return undefined;
-  }
-
-  const resolvedWorkspaceFile = workspaceFile ?? vscode.workspace.workspaceFile;
+): string {
   const isMultiRoot = workspaceFolders.length > 1;
   const { source, customBasePath, remoteHomeDirectory } = config;
 
   let baseIdentifier: string;
 
-  // Single folder workspace
   if (!isMultiRoot) {
-    baseIdentifier = formatFolder(
+    baseIdentifier = formatFolderSync(
       workspaceFolders[0],
       source,
       customBasePath,
       remoteHomeDirectory
     );
   } else {
-    // Multi-root workspace: use multiRootSource to determine base
     switch (config.multiRootSource) {
       case 'workspaceFile': {
-        if (resolvedWorkspaceFile?.fsPath) {
+        if (workspaceFile?.fsPath) {
           const remote =
-            resolvedWorkspaceFile.scheme !== 'file' &&
-            !!resolvedWorkspaceFile.authority;
+            workspaceFile.scheme !== 'file' && !!workspaceFile.authority;
           baseIdentifier = formatPath(
-            resolvedWorkspaceFile.fsPath,
+            workspaceFile.fsPath,
             source,
             customBasePath,
             remote,
             remoteHomeDirectory
           );
         } else {
-          // Fall back to allFolders if workspace file unavailable
-          baseIdentifier = formatAllFolders(
+          baseIdentifier = formatAllFoldersSync(
             workspaceFolders,
             source,
             customBasePath,
@@ -237,7 +346,7 @@ export function getWorkspaceIdentifier(
       }
 
       case 'allFolders':
-        baseIdentifier = formatAllFolders(
+        baseIdentifier = formatAllFoldersSync(
           workspaceFolders,
           source,
           customBasePath,
@@ -247,7 +356,7 @@ export function getWorkspaceIdentifier(
 
       case 'firstFolder':
       default:
-        baseIdentifier = formatFolder(
+        baseIdentifier = formatFolderSync(
           workspaceFolders[0],
           source,
           customBasePath,
@@ -257,15 +366,110 @@ export function getWorkspaceIdentifier(
     }
   }
 
-  // 'name' source is intentionally host-agnostic — no prefix
   if (source === 'name') {
     return baseIdentifier;
   }
 
-  const prefix = getAuthorityPrefix(
-    workspaceFolders,
-    config,
-    resolvedWorkspaceFile
-  );
+  const prefix = getAuthorityPrefix(workspaceFolders, config, workspaceFile);
   return prefix + baseIdentifier;
+}
+
+/**
+ * Async identifier path for git-root mode.
+ */
+async function buildIdentifierWithGitRoot(
+  config: WorkspaceIdentifierConfig,
+  workspaceFolders: readonly WorkspaceFolder[],
+  workspaceFile: WorkspaceFileUri | undefined,
+  gitRootResolver: GitRepoRootResolver
+): Promise<string> {
+  const isMultiRoot = workspaceFolders.length > 1;
+  const { source, customBasePath, remoteHomeDirectory } = config;
+
+  let baseIdentifier: string;
+
+  if (!isMultiRoot) {
+    baseIdentifier = await formatFolderWithGitRoot(
+      workspaceFolders[0],
+      config,
+      gitRootResolver
+    );
+  } else {
+    switch (config.multiRootSource) {
+      case 'workspaceFile': {
+        if (workspaceFile?.fsPath) {
+          const remote =
+            workspaceFile.scheme !== 'file' && !!workspaceFile.authority;
+          baseIdentifier = formatPath(
+            workspaceFile.fsPath,
+            source,
+            customBasePath,
+            remote,
+            remoteHomeDirectory
+          );
+        } else {
+          baseIdentifier = await formatAllFoldersWithGitRoot(
+            workspaceFolders,
+            config,
+            gitRootResolver
+          );
+        }
+        break;
+      }
+
+      case 'allFolders':
+        baseIdentifier = await formatAllFoldersWithGitRoot(
+          workspaceFolders,
+          config,
+          gitRootResolver
+        );
+        break;
+
+      case 'firstFolder':
+      default:
+        baseIdentifier = await formatFolderWithGitRoot(
+          workspaceFolders[0],
+          config,
+          gitRootResolver
+        );
+        break;
+    }
+  }
+
+  if (source === 'name') {
+    return baseIdentifier;
+  }
+
+  const prefix = getAuthorityPrefix(workspaceFolders, config, workspaceFile);
+  return prefix + baseIdentifier;
+}
+
+/**
+ * Extracts a suitable identifier from the current workspace based on config.
+ */
+export function getWorkspaceIdentifier(
+  config: WorkspaceIdentifierConfig,
+  folders?: readonly WorkspaceFolder[],
+  workspaceFile?: WorkspaceFileUri,
+  gitRootResolver: GitRepoRootResolver = defaultResolveGitRepoRoot
+): Promise<string | undefined> {
+  const workspaceFolders = folders ?? vscode.workspace.workspaceFolders;
+  if (!workspaceFolders || workspaceFolders.length === 0) {
+    return Promise.resolve(undefined);
+  }
+
+  const resolvedWorkspaceFile = workspaceFile ?? vscode.workspace.workspaceFile;
+
+  if (config.useGitRepoRoot !== true) {
+    return Promise.resolve(
+      buildIdentifierSync(config, workspaceFolders, resolvedWorkspaceFile)
+    );
+  }
+
+  return buildIdentifierWithGitRoot(
+    config,
+    workspaceFolders,
+    resolvedWorkspaceFile,
+    gitRootResolver
+  );
 }
