@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.5](https://github.com/jimeh/vscode-glaze/compare/v0.1.4...v0.1.5) (2026-02-18)
+
+
+### Features
+
+* **menu:** reorganize menu groups and add panels section ([#125](https://github.com/jimeh/vscode-glaze/issues/125)) ([0e31a12](https://github.com/jimeh/vscode-glaze/commit/0e31a125f99337d303379a0b30435070e58e9627))
+* **workspace:** add optional git-repo-root workspace identifier mode ([#123](https://github.com/jimeh/vscode-glaze/issues/123)) ([91ea68d](https://github.com/jimeh/vscode-glaze/commit/91ea68d20df332e824cda18b1482fb7a57a64568))
+
+
+### Bug Fixes
+
+* **themes:** update extracted theme colors ([#122](https://github.com/jimeh/vscode-glaze/issues/122)) ([24c5403](https://github.com/jimeh/vscode-glaze/commit/24c5403f6ef83dca85845bfb4ed1bb7dac2ff134))
+
 ## [0.1.4](https://github.com/jimeh/vscode-glaze/compare/v0.1.3...v0.1.4) (2026-02-14)
 
 
