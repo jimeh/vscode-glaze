@@ -109,7 +109,7 @@ export class PalettePreviewPanel extends BaseWebviewPanel<PreviewMessage> {
 
     // Generate workspace preview if available
     const identifierConfig = getWorkspaceIdentifierConfig();
-    const identifier = getWorkspaceIdentifier(identifierConfig);
+    const identifier = await getWorkspaceIdentifier(identifierConfig);
 
     const workspacePreview = identifier
       ? generateWorkspacePreview({

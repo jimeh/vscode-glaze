@@ -64,6 +64,15 @@ export interface WorkspaceIdentifierConfig {
    * Empty string means no override (use heuristic only).
    */
   remoteHomeDirectory: string;
+
+  /**
+   * Whether to resolve each workspace folder to its git repository
+   * root before formatting the identifier. When enabled, linked git
+   * worktrees from the same repository produce the same identifier.
+   * Falls back to the original folder path when git root resolution
+   * fails or the folder is not part of a git repository.
+   */
+  useGitRepoRoot?: boolean;
 }
 
 /**

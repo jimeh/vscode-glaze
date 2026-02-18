@@ -47,6 +47,10 @@ export async function run(): Promise<void> {
   await import('../status/data.test');
   await import('../status/html.test');
 
+  // workspace
+  await import('../workspace/gitRoot.test');
+  await import('../workspace/identifierGitRoot.test');
+
   // theme
   await import('../theme/colors.test');
   await import('../theme/decode.test');

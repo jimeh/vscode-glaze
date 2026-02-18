@@ -1,22 +1,28 @@
 import * as assert from 'assert';
+import * as os from 'os';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { isDeepStrictEqual } from 'util';
 import { GLAZE_ACTIVE_KEY } from '../settings';
 import { _resetAllState } from '../reconcile';
+import {
+  clearGitRepoRootCache,
+  resolveGitRepoRoot,
+} from '../workspace/gitRoot';
 import { updateConfig } from './helpers';
 
 /**
  * Polls until a condition is met or timeout is reached.
  */
 async function pollUntil(
-  condition: () => boolean,
+  condition: () => boolean | Promise<boolean>,
   errorMessage: string,
   timeoutMs = 4000,
   intervalMs = 50
 ): Promise<void> {
   const start = Date.now();
   while (Date.now() - start < timeoutMs) {
-    if (condition()) {
+    if (await condition()) {
       return;
     }
     await new Promise((resolve) => setTimeout(resolve, intervalMs));
@@ -257,6 +263,37 @@ async function waitForWorkspaceColorsWithoutGlazeKeys(
     timeoutMs,
     intervalMs
   );
+}
+
+async function tryDelete(uri: vscode.Uri): Promise<void> {
+  try {
+    await vscode.workspace.fs.delete(uri, {
+      recursive: true,
+      useTrash: false,
+    });
+  } catch {
+    // Best-effort test cleanup.
+  }
+}
+
+async function createTempProbeFolder(prefix: string): Promise<vscode.Uri> {
+  const suffix = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  const folderPath = path.join(os.tmpdir(), `${prefix}-${suffix}`);
+  const folder = vscode.Uri.file(folderPath);
+  await vscode.workspace.fs.createDirectory(folder);
+  return folder;
+}
+
+async function waitForGitRootResult(
+  probeFolder: vscode.Uri,
+  expectedPath: string | undefined
+): Promise<void> {
+  await pollUntil(async () => {
+    const resolved = await resolveGitRepoRoot(probeFolder);
+    return expectedPath === undefined
+      ? resolved === undefined
+      : resolved?.path === expectedPath;
+  }, 'Timeout waiting for expected git root result');
 }
 
 /**
@@ -813,6 +850,112 @@ suite('Extension Test Suite', () => {
       }, 'colors should change when identifier source changes');
 
       assert.ok(newColors, 'colorCustomizations should still be set');
+    });
+
+    test('workspaceIdentifier change clears git root cache', async function () {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+
+      const probeFolder = await createTempProbeFolder(
+        'glaze-git-cache-probe-config'
+      );
+      const gitDir = vscode.Uri.joinPath(probeFolder, '.git');
+      const config = vscode.workspace.getConfiguration('glaze');
+      const originalSource =
+        config.get<string>('workspaceIdentifier.source') ??
+        'pathRelativeToHome';
+      const changedSource = originalSource === 'name' ? 'pathAbsolute' : 'name';
+
+      try {
+        clearGitRepoRootCache();
+        await vscode.workspace.fs.createDirectory(gitDir);
+
+        const first = await resolveGitRepoRoot(probeFolder);
+        assert.ok(first);
+        assert.strictEqual(first?.path, probeFolder.path);
+
+        await vscode.workspace.fs.delete(gitDir, {
+          recursive: true,
+          useTrash: false,
+        });
+
+        const stale = await resolveGitRepoRoot(probeFolder);
+        assert.ok(stale);
+        assert.strictEqual(stale?.path, probeFolder.path);
+
+        await updateConfig(
+          'workspaceIdentifier.source',
+          changedSource,
+          vscode.ConfigurationTarget.Global
+        );
+
+        await waitForGitRootResult(probeFolder, undefined);
+      } finally {
+        await updateConfig(
+          'workspaceIdentifier.source',
+          originalSource,
+          vscode.ConfigurationTarget.Global
+        );
+        clearGitRepoRootCache();
+        await tryDelete(probeFolder);
+      }
+    });
+
+    test('workspace folder change clears git root cache', async function () {
+      if (!vscode.workspace.workspaceFolders?.length) {
+        return this.skip();
+      }
+      if (!vscode.workspace.workspaceFile) {
+        return this.skip();
+      }
+
+      const probeFolder = await createTempProbeFolder(
+        'glaze-git-cache-probe-folders'
+      );
+      const gitDir = vscode.Uri.joinPath(probeFolder, '.git');
+      const extraFolder = await createTempProbeFolder(
+        'glaze-workspace-folder-probe'
+      );
+
+      try {
+        clearGitRepoRootCache();
+        await vscode.workspace.fs.createDirectory(gitDir);
+
+        const first = await resolveGitRepoRoot(probeFolder);
+        assert.ok(first);
+        assert.strictEqual(first?.path, probeFolder.path);
+
+        await vscode.workspace.fs.delete(gitDir, {
+          recursive: true,
+          useTrash: false,
+        });
+
+        const stale = await resolveGitRepoRoot(probeFolder);
+        assert.ok(stale);
+        assert.strictEqual(stale?.path, probeFolder.path);
+
+        const insertAt = vscode.workspace.workspaceFolders.length;
+        const added = vscode.workspace.updateWorkspaceFolders(insertAt, 0, {
+          uri: extraFolder,
+          name: 'glaze-workspace-folder-probe',
+        });
+        if (!added) {
+          return this.skip();
+        }
+        await waitForGitRootResult(probeFolder, undefined);
+      } finally {
+        clearGitRepoRootCache();
+        const folders = vscode.workspace.workspaceFolders ?? [];
+        const extraIndex = folders.findIndex(
+          (folder) => folder.uri.toString() === extraFolder.toString()
+        );
+        if (extraIndex >= 0) {
+          vscode.workspace.updateWorkspaceFolders(extraIndex, 1);
+        }
+        await tryDelete(extraFolder);
+        await tryDelete(probeFolder);
+      }
     });
   });
 

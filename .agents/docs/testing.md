@@ -136,14 +136,16 @@ polyfills (`assert`, `util`, `process`, `path-browserify`) and uses the same
 
 Only pure unit tests with no Node API dependencies beyond `assert`:
 `color/blend/*`, `color/convert`, `color/naming`, `color/styles`, `color/tint`,
-`config/validate`, `preview/*`, `status/*`, `theme/colors`, `theme/decode`,
-`theme/detect`, `theme/name`, `webview/*`.
+`config/validate`, `preview/*`, `status/*`, `workspace/gitRoot`,
+`workspace/identifierGitRoot`, `theme/colors`, `theme/decode`, `theme/detect`,
+`theme/name`, `webview/*`.
 
 ### Excluded Tests
 
 - `color/hash` — `crypto.randomBytes`
 - `extension` — `util.isDeepStrictEqual`
-- `workspace/path`, `workspace/identifier` — `os.homedir()` expectations
+- `workspace/path`, legacy `workspace/identifier` —
+  `os.homedir()` expectations
 - `theme/osColorScheme` — OS color scheme detection
 - Integration tests (`config/index`, `commands/*`, `reconcile/*`, `settings/*`,
   `statusBar/*`) — need reconcile guard and `_resetAllState()` investigation

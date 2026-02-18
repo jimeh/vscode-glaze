@@ -184,6 +184,10 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
       'workspaceIdentifier.remoteHomeDirectory',
       ''
     ),
+    useGitRepoRoot: config.get<boolean>(
+      'workspaceIdentifier.useGitRepoRoot',
+      false
+    ),
   };
 }
 

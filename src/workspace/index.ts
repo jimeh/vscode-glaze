@@ -6,3 +6,4 @@ export {
   getRelativePath,
   inferRemoteHome,
 } from './path';
+export { resolveGitRepoRoot } from './gitRoot';

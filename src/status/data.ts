@@ -34,7 +34,7 @@ export async function buildStatusState(): Promise<StatusState> {
   const colorStyle = getColorStyle();
   const colorHarmony = getColorHarmony();
   const identifierConfig = getWorkspaceIdentifierConfig();
-  const identifier = getWorkspaceIdentifier(identifierConfig);
+  const identifier = await getWorkspaceIdentifier(identifierConfig);
 
   const isActive = isTintActive(
     globalEnabled,

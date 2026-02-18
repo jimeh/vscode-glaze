@@ -14,6 +14,10 @@
    are detected via `uri.authority`/`uri.scheme` and prefixed with the
    remote authority for uniqueness. Remote home directory is inferred
    heuristically (grep `inferRemoteHome`) or configured via setting.
+   Optional `workspaceIdentifier.useGitRepoRoot` resolves folders to the
+   canonical git repository root (including linked worktrees via `.git`
+   pointer + `commondir`) before formatting; if resolution fails or no repo
+   exists, identifier generation falls back to the original folder path.
 
 3. **config** — Reads Glaze settings from VSCode configuration API
    (grep `config.get<` or `config.inspect<`). Six config groups:

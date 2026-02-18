@@ -12,6 +12,7 @@ import type { WorkspaceIdentifierConfig } from '../../config';
 const LOCAL_DEFAULTS = {
   includeRemoteAuthority: true,
   remoteHomeDirectory: '',
+  useGitRepoRoot: false,
 } as const;
 
 /**
@@ -66,36 +67,36 @@ suite('getWorkspaceIdentifier', () => {
       ...LOCAL_DEFAULTS,
     };
 
-    test('returns folder name', () => {
+    test('returns folder name', async () => {
       const folders = [mockFolder('/home/user/projects/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'my-app');
     });
 
-    test('returns custom folder name if set', () => {
+    test('returns custom folder name if set', async () => {
       const folders = [mockFolder('/home/user/projects/my-app', 'Custom Name')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'Custom Name');
     });
 
-    test('returns undefined when no folders', () => {
-      const result = getWorkspaceIdentifier(config, []);
+    test('returns undefined when no folders', async () => {
+      const result = await getWorkspaceIdentifier(config, []);
       assert.strictEqual(result, undefined);
     });
 
-    test('returns undefined when folders is undefined', () => {
-      const result = getWorkspaceIdentifier(config, undefined);
+    test('returns undefined when folders is undefined', async () => {
+      const result = await getWorkspaceIdentifier(config, undefined);
       // When undefined, it falls back to vscode.workspace
       // which might have folders in the test environment
       assert.ok(result === undefined || typeof result === 'string');
     });
 
-    test('uses first folder when multiple folders present', () => {
+    test('uses first folder when multiple folders present', async () => {
       const folders = [
         mockFolder('/home/user/projects/first'),
         mockFolder('/home/user/projects/second'),
       ];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'first');
     });
   });
@@ -108,24 +109,24 @@ suite('getWorkspaceIdentifier', () => {
       ...LOCAL_DEFAULTS,
     };
 
-    test('returns relative path from home directory', () => {
+    test('returns relative path from home directory', async () => {
       const homedir = os.homedir();
       const folders = [mockFolder(path.join(homedir, 'projects', 'my-app'))];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'projects/my-app');
     });
 
-    test('returns normalized absolute path when outside home', () => {
+    test('returns normalized absolute path when outside home', async () => {
       const folders = [mockFolder('/var/www/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       // Should fall back to absolute path
       assert.strictEqual(result, '/var/www/my-app');
     });
 
-    test('returns dot when folder is home directory', () => {
+    test('returns dot when folder is home directory', async () => {
       const homedir = os.homedir();
       const folders = [mockFolder(homedir, 'home')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, '.');
     });
   });
@@ -138,13 +139,13 @@ suite('getWorkspaceIdentifier', () => {
       ...LOCAL_DEFAULTS,
     };
 
-    test('returns normalized absolute path', () => {
+    test('returns normalized absolute path', async () => {
       const folders = [mockFolder('/home/user/projects/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, '/home/user/projects/my-app');
     });
 
-    test('normalizes backslashes to forward slashes', () => {
+    test('normalizes backslashes to forward slashes', async () => {
       // Simulate a Windows-style path
       const folders = [
         {
@@ -154,13 +155,13 @@ suite('getWorkspaceIdentifier', () => {
           name: 'my-app',
         },
       ];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'C:/Users/name/projects/my-app');
     });
   });
 
   suite('with source: pathRelativeToCustom', () => {
-    test('returns relative path when within custom base', () => {
+    test('returns relative path when within custom base', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
         customBasePath: '/home/user/projects',
@@ -168,11 +169,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/home/user/projects/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'my-app');
     });
 
-    test('falls back to absolute path when outside custom base', () => {
+    test('falls back to absolute path when outside custom base', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
         customBasePath: '/home/user/projects',
@@ -180,11 +181,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/var/www/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, '/var/www/my-app');
     });
 
-    test('falls back to absolute path when customBasePath is empty', () => {
+    test('falls back to absolute path when customBasePath is empty', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
         customBasePath: '',
@@ -192,11 +193,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/home/user/projects/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, '/home/user/projects/my-app');
     });
 
-    test('expands tilde in customBasePath', () => {
+    test('expands tilde in customBasePath', async () => {
       const homedir = os.homedir();
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
@@ -205,11 +206,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder(path.join(homedir, 'projects', 'my-app'))];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'my-app');
     });
 
-    test('expands $HOME in customBasePath', () => {
+    test('expands $HOME in customBasePath', async () => {
       const homedir = os.homedir();
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
@@ -218,11 +219,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder(path.join(homedir, 'projects', 'my-app'))];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'my-app');
     });
 
-    test('returns nested relative path', () => {
+    test('returns nested relative path', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
         customBasePath: '/home/user',
@@ -230,11 +231,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/home/user/projects/work/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'projects/work/my-app');
     });
 
-    test('returns dot when folder equals custom base', () => {
+    test('returns dot when folder equals custom base', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'pathRelativeToCustom',
         customBasePath: '/home/user/projects',
@@ -242,13 +243,13 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/home/user/projects', 'projects')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, '.');
     });
   });
 
   suite('edge cases', () => {
-    test('handles folder with special characters in name', () => {
+    test('handles folder with special characters in name', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'name',
         customBasePath: '',
@@ -258,11 +259,11 @@ suite('getWorkspaceIdentifier', () => {
       const folders = [
         mockFolder('/home/user/projects/my-app (1)', 'my-app (1)'),
       ];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'my-app (1)');
     });
 
-    test('handles folder with unicode characters', () => {
+    test('handles folder with unicode characters', async () => {
       const config: WorkspaceIdentifierConfig = {
         source: 'name',
         customBasePath: '',
@@ -270,11 +271,11 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/home/user/projects/项目', '项目')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, '项目');
     });
 
-    test('defaults to name for unknown source', () => {
+    test('defaults to name for unknown source', async () => {
       const config = {
         source: 'unknownSource' as 'name',
         customBasePath: '',
@@ -282,7 +283,7 @@ suite('getWorkspaceIdentifier', () => {
         ...LOCAL_DEFAULTS,
       };
       const folders = [mockFolder('/home/user/projects/my-app')];
-      const result = getWorkspaceIdentifier(config, folders);
+      const result = await getWorkspaceIdentifier(config, folders);
       assert.strictEqual(result, 'my-app');
     });
   });
@@ -297,14 +298,14 @@ suite('getWorkspaceIdentifier', () => {
     );
 
     suite('with multiRootSource: workspaceFile', () => {
-      test('uses workspace file path with source: name', () => {
+      test('uses workspace file path with source: name', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'workspaceFile',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -312,14 +313,14 @@ suite('getWorkspaceIdentifier', () => {
         assert.strictEqual(result, 'my-project.code-workspace');
       });
 
-      test('uses workspace file path with source: pathAbsolute', () => {
+      test('uses workspace file path with source: pathAbsolute', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'workspaceFile',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -330,7 +331,7 @@ suite('getWorkspaceIdentifier', () => {
         );
       });
 
-      test('uses workspace file path with source: pathRelativeToHome', () => {
+      test('uses workspace file path with source: pathRelativeToHome', async () => {
         const homedir = os.homedir();
         const wsFile = mockWorkspaceFile(
           path.join(homedir, 'workspaces', 'my-project.code-workspace')
@@ -341,18 +342,22 @@ suite('getWorkspaceIdentifier', () => {
           multiRootSource: 'workspaceFile',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(config, multiFolders, wsFile);
+        const result = await getWorkspaceIdentifier(
+          config,
+          multiFolders,
+          wsFile
+        );
         assert.strictEqual(result, 'workspaces/my-project.code-workspace');
       });
 
-      test('uses workspace file path with source: pathRelativeToCustom', () => {
+      test('uses workspace file path with source: pathRelativeToCustom', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToCustom',
           customBasePath: '/home/user',
           multiRootSource: 'workspaceFile',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -360,28 +365,32 @@ suite('getWorkspaceIdentifier', () => {
         assert.strictEqual(result, 'workspaces/my-project.code-workspace');
       });
 
-      test('falls back to allFolders when workspaceFile unavailable', () => {
+      test('falls back to allFolders when workspaceFile unavailable', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'workspaceFile',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(config, multiFolders, undefined);
+        const result = await getWorkspaceIdentifier(
+          config,
+          multiFolders,
+          undefined
+        );
         // Should fall back to allFolders, sorted alphabetically
         assert.strictEqual(result, 'backend\nfrontend');
       });
     });
 
     suite('with multiRootSource: allFolders', () => {
-      test('combines all folder names sorted alphabetically', () => {
+      test('combines all folder names sorted alphabetically', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'allFolders',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -389,14 +398,14 @@ suite('getWorkspaceIdentifier', () => {
         assert.strictEqual(result, 'backend\nfrontend');
       });
 
-      test('combines all absolute paths sorted alphabetically', () => {
+      test('combines all absolute paths sorted alphabetically', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'allFolders',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -407,7 +416,7 @@ suite('getWorkspaceIdentifier', () => {
         );
       });
 
-      test('combines all relative paths sorted alphabetically', () => {
+      test('combines all relative paths sorted alphabetically', async () => {
         const homedir = os.homedir();
         const folders = [
           mockFolder(path.join(homedir, 'projects', 'frontend'), 'frontend'),
@@ -419,11 +428,15 @@ suite('getWorkspaceIdentifier', () => {
           multiRootSource: 'allFolders',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(config, folders, workspaceFile);
+        const result = await getWorkspaceIdentifier(
+          config,
+          folders,
+          workspaceFile
+        );
         assert.strictEqual(result, 'projects/backend\nprojects/frontend');
       });
 
-      test('uses custom folder names when set', () => {
+      test('uses custom folder names when set', async () => {
         const folders = [
           mockFolder('/home/user/projects/app', 'My Frontend App'),
           mockFolder('/home/user/projects/api', 'My Backend API'),
@@ -434,20 +447,24 @@ suite('getWorkspaceIdentifier', () => {
           multiRootSource: 'allFolders',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(config, folders, workspaceFile);
+        const result = await getWorkspaceIdentifier(
+          config,
+          folders,
+          workspaceFile
+        );
         assert.strictEqual(result, 'My Backend API\nMy Frontend App');
       });
     });
 
     suite('with multiRootSource: firstFolder', () => {
-      test('uses only first folder name (backward compatible)', () => {
+      test('uses only first folder name (backward compatible)', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -455,14 +472,14 @@ suite('getWorkspaceIdentifier', () => {
         assert.strictEqual(result, 'frontend');
       });
 
-      test('uses only first folder absolute path', () => {
+      test('uses only first folder absolute path', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -470,14 +487,14 @@ suite('getWorkspaceIdentifier', () => {
         assert.strictEqual(result, '/home/user/projects/frontend');
       });
 
-      test('ignores workspace file', () => {
+      test('ignores workspace file', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           multiFolders,
           workspaceFile
@@ -488,7 +505,7 @@ suite('getWorkspaceIdentifier', () => {
     });
 
     suite('single folder workspace', () => {
-      test('uses folder regardless of multiRootSource setting', () => {
+      test('uses folder regardless of multiRootSource setting', async () => {
         const singleFolder = [mockFolder('/home/user/projects/my-app')];
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
@@ -498,7 +515,7 @@ suite('getWorkspaceIdentifier', () => {
         };
         // Even with workspaceFile setting, single folder
         // should use folder
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           singleFolder,
           workspaceFile
@@ -506,7 +523,7 @@ suite('getWorkspaceIdentifier', () => {
         assert.strictEqual(result, 'my-app');
       });
 
-      test('ignores multiRootSource: allFolders for single folder', () => {
+      test('ignores multiRootSource: allFolders for single folder', async () => {
         const singleFolder = [mockFolder('/home/user/projects/my-app')];
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
@@ -514,7 +531,7 @@ suite('getWorkspaceIdentifier', () => {
           multiRootSource: 'allFolders',
           ...LOCAL_DEFAULTS,
         };
-        const result = getWorkspaceIdentifier(
+        const result = await getWorkspaceIdentifier(
           config,
           singleFolder,
           workspaceFile
@@ -526,69 +543,74 @@ suite('getWorkspaceIdentifier', () => {
 
   suite('remote workspaces', () => {
     suite('authority prefix', () => {
-      test('prefixes SSH remote with authority for pathAbsolute', () => {
+      test('prefixes SSH remote with authority for pathAbsolute', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/jimeh/compose', 'ssh-remote+myhost'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'ssh-remote+myhost:/home/jimeh/compose');
       });
 
-      test('prefixes WSL remote with authority', () => {
+      test('prefixes WSL remote with authority', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [mockRemoteFolder('/home/jimeh/project', 'wsl+Ubuntu')];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'wsl+Ubuntu:/home/jimeh/project');
       });
 
-      test('prefixes dev container remote with authority', () => {
+      test('prefixes dev container remote with authority', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/workspaces/myapp', 'dev-container+abc123'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'dev-container+abc123:/workspaces/myapp');
       });
 
-      test('no prefix for local folders', () => {
+      test('no prefix for local folders', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [mockFolder('/home/user/projects/my-app')];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, '/home/user/projects/my-app');
       });
 
-      test('no prefix for file:// scheme even with authority', () => {
+      test('no prefix for file:// scheme even with authority', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder(
@@ -598,17 +620,18 @@ suite('getWorkspaceIdentifier', () => {
             'file'
           ),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, '/home/user/project');
       });
 
-      test('name source never gets authority prefix', () => {
+      test('name source never gets authority prefix', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder(
@@ -617,98 +640,104 @@ suite('getWorkspaceIdentifier', () => {
             'compose'
           ),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'compose');
       });
 
-      test('pathRelativeToHome gets authority prefix', () => {
+      test('pathRelativeToHome gets authority prefix', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/jimeh/projects/app', 'ssh-remote+myhost'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'ssh-remote+myhost:projects/app');
       });
 
-      test('pathRelativeToCustom gets authority prefix', () => {
+      test('pathRelativeToCustom gets authority prefix', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToCustom',
           customBasePath: '/home/jimeh',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/jimeh/projects/app', 'ssh-remote+myhost'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'ssh-remote+myhost:projects/app');
       });
     });
 
     suite('includeRemoteAuthority: false', () => {
-      test('omits authority prefix when disabled', () => {
+      test('omits authority prefix when disabled', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/jimeh/compose', 'ssh-remote+myhost'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, '/home/jimeh/compose');
       });
 
-      test('same path local and remote produce same identifier', () => {
+      test('same path local and remote produce same identifier', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const localFolders = [mockFolder('/home/jimeh/compose')];
         const remoteFolders = [
           mockRemoteFolder('/home/jimeh/compose', 'ssh-remote+myhost'),
         ];
-        const local = getWorkspaceIdentifier(config, localFolders);
-        const remote = getWorkspaceIdentifier(config, remoteFolders);
+        const local = await getWorkspaceIdentifier(config, localFolders);
+        const remote = await getWorkspaceIdentifier(config, remoteFolders);
         assert.strictEqual(local, remote);
       });
     });
 
     suite('remote home directory detection', () => {
-      test('infers /home/<user> for pathRelativeToHome', () => {
+      test('infers /home/<user> for pathRelativeToHome', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/jimeh/projects/app', 'ssh-remote+myhost'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'projects/app');
       });
 
-      test('infers /Users/<user> for macOS remote', () => {
+      test('infers /Users/<user> for macOS remote', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder(
@@ -716,83 +745,88 @@ suite('getWorkspaceIdentifier', () => {
             'ssh-remote+machost'
           ),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'Developer/project');
       });
 
-      test('infers /root for root user remote', () => {
+      test('infers /root for root user remote', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/root/projects/app', 'ssh-remote+server'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'projects/app');
       });
 
-      test('falls back to absolute when home cannot be inferred', () => {
+      test('falls back to absolute when home cannot be inferred', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/opt/services/myapp', 'ssh-remote+server'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, '/opt/services/myapp');
       });
 
-      test('uses remoteHomeDirectory setting over heuristic', () => {
+      test('uses remoteHomeDirectory setting over heuristic', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '/custom/home',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/custom/home/projects/app', 'ssh-remote+server'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'projects/app');
       });
 
-      test('remoteHomeDirectory fallback when path is outside', () => {
+      test('remoteHomeDirectory fallback when path is outside', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: false,
           remoteHomeDirectory: '/custom/home',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/opt/data/app', 'ssh-remote+server'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         // Falls back to absolute since /opt/data/app is
         // outside /custom/home
         assert.strictEqual(result, '/opt/data/app');
       });
 
-      test('does not use remote home detection for local folders', () => {
+      test('does not use remote home detection for local folders', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '/some/remote/home',
+          useGitRepoRoot: false,
         };
         // Local folder outside the local home dir
         const folders = [mockFolder('/var/www/app')];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         // Should use os.homedir(), not remote home
         // /var/www/app is outside local home → absolute path
         assert.strictEqual(result, '/var/www/app');
@@ -800,32 +834,34 @@ suite('getWorkspaceIdentifier', () => {
     });
 
     suite('multi-root with remote', () => {
-      test('authority from first remote folder', () => {
+      test('authority from first remote folder', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'allFolders',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/user/frontend', 'ssh-remote+myhost'),
           mockRemoteFolder('/home/user/backend', 'ssh-remote+myhost'),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(
           result,
           'ssh-remote+myhost:/home/user/backend\n' + '/home/user/frontend'
         );
       });
 
-      test('workspace file authority used for multi-root', () => {
+      test('workspace file authority used for multi-root', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'workspaceFile',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder('/home/user/frontend', 'ssh-remote+myhost'),
@@ -835,20 +871,21 @@ suite('getWorkspaceIdentifier', () => {
           '/home/user/my.code-workspace',
           'ssh-remote+myhost'
         );
-        const result = getWorkspaceIdentifier(config, folders, wsFile);
+        const result = await getWorkspaceIdentifier(config, folders, wsFile);
         assert.strictEqual(
           result,
           'ssh-remote+myhost:/home/user/my.code-workspace'
         );
       });
 
-      test('name source multi-root no prefix even with remote', () => {
+      test('name source multi-root no prefix even with remote', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'name',
           customBasePath: '',
           multiRootSource: 'allFolders',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const folders = [
           mockRemoteFolder(
@@ -862,19 +899,20 @@ suite('getWorkspaceIdentifier', () => {
             'backend'
           ),
         ];
-        const result = getWorkspaceIdentifier(config, folders);
+        const result = await getWorkspaceIdentifier(config, folders);
         assert.strictEqual(result, 'backend\nfrontend');
       });
     });
 
     suite('different remotes produce different identifiers', () => {
-      test('same path on different SSH hosts', () => {
+      test('same path on different SSH hosts', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathAbsolute',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const hostA = [
           mockRemoteFolder('/home/jimeh/compose', 'ssh-remote+host-a'),
@@ -882,27 +920,28 @@ suite('getWorkspaceIdentifier', () => {
         const hostB = [
           mockRemoteFolder('/home/jimeh/compose', 'ssh-remote+host-b'),
         ];
-        const resultA = getWorkspaceIdentifier(config, hostA);
-        const resultB = getWorkspaceIdentifier(config, hostB);
+        const resultA = await getWorkspaceIdentifier(config, hostA);
+        const resultB = await getWorkspaceIdentifier(config, hostB);
         assert.notStrictEqual(resultA, resultB);
         assert.strictEqual(resultA, 'ssh-remote+host-a:/home/jimeh/compose');
         assert.strictEqual(resultB, 'ssh-remote+host-b:/home/jimeh/compose');
       });
 
-      test('SSH vs WSL with same path', () => {
+      test('SSH vs WSL with same path', async () => {
         const config: WorkspaceIdentifierConfig = {
           source: 'pathRelativeToHome',
           customBasePath: '',
           multiRootSource: 'firstFolder',
           includeRemoteAuthority: true,
           remoteHomeDirectory: '',
+          useGitRepoRoot: false,
         };
         const ssh = [
           mockRemoteFolder('/home/jimeh/project', 'ssh-remote+server'),
         ];
         const wsl = [mockRemoteFolder('/home/jimeh/project', 'wsl+Ubuntu')];
-        const resultSSH = getWorkspaceIdentifier(config, ssh);
-        const resultWSL = getWorkspaceIdentifier(config, wsl);
+        const resultSSH = await getWorkspaceIdentifier(config, ssh);
+        const resultWSL = await getWorkspaceIdentifier(config, wsl);
         assert.notStrictEqual(resultSSH, resultWSL);
       });
     });
