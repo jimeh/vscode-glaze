@@ -39,6 +39,23 @@ export function _buildMenuGroups(): readonly MenuGroup[] {
 
   return [
     {
+      separator: 'Global',
+      items: [
+        {
+          label: '$(check) Enable Globally',
+          description: 'Enable Glaze globally',
+          command: 'glaze.enableGlobally',
+          when: () => !isGloballyEnabled(),
+        },
+        {
+          label: '$(circle-slash) Disable Globally',
+          description: 'Disable Glaze globally',
+          command: 'glaze.disableGlobally',
+          when: () => isGloballyEnabled(),
+        },
+      ],
+    },
+    {
       separator: 'Workspace',
       items: [
         {
@@ -115,19 +132,17 @@ export function _buildMenuGroups(): readonly MenuGroup[] {
       ],
     },
     {
-      separator: 'Global',
+      separator: 'Panels',
       items: [
         {
-          label: '$(check) Enable Globally',
-          description: 'Enable Glaze globally',
-          command: 'glaze.enableGlobally',
-          when: () => !isGloballyEnabled(),
+          label: '$(eye) Show Color Preview',
+          description: 'Open generated color palette preview panel',
+          command: 'glaze.showColorPreview',
         },
         {
-          label: '$(circle-slash) Disable Globally',
-          description: 'Disable Glaze globally',
-          command: 'glaze.disableGlobally',
-          when: () => isGloballyEnabled(),
+          label: '$(info) Show Status',
+          description: 'Open detailed status and configuration panel',
+          command: 'glaze.showStatus',
         },
       ],
     },

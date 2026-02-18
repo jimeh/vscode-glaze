@@ -96,6 +96,83 @@ suite('Quick Menu visibility', () => {
     await setBaseHueOverride(null);
   });
 
+  suite('Panel Commands', () => {
+    test('show status is always visible', async () => {
+      await setEnabled(true);
+      let cmds = visibleCommands(_buildMenuGroups());
+      assert.ok(cmds.includes('glaze.showStatus'));
+
+      await setEnabled(false);
+      cmds = visibleCommands(_buildMenuGroups());
+      assert.ok(cmds.includes('glaze.showStatus'));
+    });
+
+    test('show color preview is always visible', async () => {
+      await setEnabled(true);
+      let cmds = visibleCommands(_buildMenuGroups());
+      assert.ok(cmds.includes('glaze.showColorPreview'));
+
+      await setEnabled(false);
+      cmds = visibleCommands(_buildMenuGroups());
+      assert.ok(cmds.includes('glaze.showColorPreview'));
+    });
+
+    test('panels separator appears after global separator', async () => {
+      const items = _buildQuickPickItems(_buildMenuGroups());
+      const globalIndex = items.findIndex(
+        (item) =>
+          item.kind === vscode.QuickPickItemKind.Separator &&
+          item.label === 'Global'
+      );
+      const panelsIndex = items.findIndex(
+        (item) =>
+          item.kind === vscode.QuickPickItemKind.Separator &&
+          item.label === 'Panels'
+      );
+
+      assert.ok(globalIndex >= 0, 'Global separator should exist');
+      assert.ok(panelsIndex >= 0, 'Panels separator should exist');
+      assert.ok(
+        panelsIndex > globalIndex,
+        'Panels separator should appear after Global separator'
+      );
+    });
+
+    test('global separator appears first', async () => {
+      const items = _buildQuickPickItems(_buildMenuGroups());
+      const separatorLabels = items
+        .filter((item) => item.kind === vscode.QuickPickItemKind.Separator)
+        .map((item) => item.label);
+
+      assert.ok(
+        separatorLabels.length > 0,
+        'At least one separator should exist'
+      );
+      assert.strictEqual(
+        separatorLabels[0],
+        'Global',
+        'Global separator should appear first'
+      );
+    });
+
+    test('show color preview appears before show status', async () => {
+      const items = _buildQuickPickItems(_buildMenuGroups());
+      const previewIndex = items.findIndex(
+        (item) => item.command === 'glaze.showColorPreview'
+      );
+      const statusIndex = items.findIndex(
+        (item) => item.command === 'glaze.showStatus'
+      );
+
+      assert.ok(previewIndex >= 0, 'showColorPreview should exist');
+      assert.ok(statusIndex >= 0, 'showStatus should exist');
+      assert.ok(
+        previewIndex < statusIndex,
+        'showColorPreview should appear before showStatus'
+      );
+    });
+  });
+
   // ── Force Apply ───────────────────────────────────────────
 
   suite('Force Apply', () => {
