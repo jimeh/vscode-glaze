@@ -1,0 +1,32 @@
+{
+  "extensionId": "3497b9b8-654e-4339-82c8-53d72aa275b0",
+  "extensionName": "black-plus-material",
+  "publisherName": "Stephen-Hamilton-C",
+  "displayName": "Black+ Material",
+  "version": "1.0.2",
+  "extractedAt": "2026-02-23T06:27:27.262Z",
+  "installCount": 3474,
+  "themes": [
+    {
+      "name": "Black+ Material",
+      "label": "Black+ Material",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#9E9E9E",
+        "titleBar.activeBackground": "#424242",
+        "titleBar.activeForeground": "#BDBDBD",
+        "titleBar.inactiveBackground": "#424242",
+        "titleBar.inactiveForeground": "#BDBDBD",
+        "statusBar.background": "#0A70C2",
+        "statusBar.foreground": "#E0E0E0",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#101010",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#BDBDBD"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
