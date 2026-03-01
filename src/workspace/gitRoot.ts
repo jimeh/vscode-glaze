@@ -268,8 +268,7 @@ export async function resolveGitRepoRoot(
       return result;
     })
     .catch((err) => {
-      const message = err instanceof Error ? err.message : String(err);
-      log.error('Git root resolution failed:', cacheKey, message);
+      log.error('Git root resolution failed:', cacheKey, err);
       cache.delete(cacheKey);
       return undefined;
     });

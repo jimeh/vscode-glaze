@@ -90,7 +90,7 @@ export async function getThemeName(
   }
 
   // Unable to determine — fall back to colorTheme
-  log.warn(
+  log.debug(
     'OS color scheme detection indeterminate;',
     'falling back to colorTheme:',
     colorTheme

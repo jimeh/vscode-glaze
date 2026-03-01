@@ -51,3 +51,6 @@ oxfmt check that will fail on unformatted code.
   flaky (`File Modified Since` / unsaved settings errors). Only run
   workspace-folder mutation tests when `vscode.workspace.workspaceFile` exists,
   and keep cleanup best-effort.
+- `LogOutputChannel` instances cannot be recreated after `dispose()` — VS Code
+  throws "Channel has been closed". Never call `disposeLogger()` in test
+  teardown; only call it during extension deactivation.

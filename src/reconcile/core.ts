@@ -114,7 +114,7 @@ async function writeColorConfig(
       );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    log.error('Failed to write color customizations:', message);
+    log.error('Failed to write color customizations:', err);
     updateCachedState({ lastError: message });
     await refreshStatusBar();
     return false;

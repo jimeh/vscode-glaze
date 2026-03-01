@@ -34,8 +34,7 @@ export function requestReconcile(options?: ReconcileOptions): void {
     pendingForce = false;
     reconcileChain = reconcileChain.then(() =>
       doReconcile({ force }).catch((err) => {
-        const message = err instanceof Error ? err.message : String(err);
-        log.error('Reconcile error:', message);
+        log.error('Reconcile error:', err);
       })
     );
   }, DEBOUNCE_MS);
