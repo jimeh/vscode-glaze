@@ -1,23 +1,29 @@
 import * as assert from 'assert';
-import { _resetLoggerState } from '../log';
-import { _resetAllState } from '../reconcile';
+import { disposeLogger, log } from '../log';
 
-// File-level hooks: reset reconcile state for every test.
-setup(() => {
-  _resetAllState();
-});
-
-teardown(() => {
-  _resetAllState();
-});
-
-suite('_resetLoggerState', () => {
-  test('resets without throwing', () => {
-    assert.doesNotThrow(() => _resetLoggerState());
+suite('log', () => {
+  teardown(() => {
+    disposeLogger();
   });
 
-  test('successive resets are idempotent', () => {
-    _resetLoggerState();
-    assert.doesNotThrow(() => _resetLoggerState());
+  test('all log methods are callable', () => {
+    assert.doesNotThrow(() => {
+      log.trace('trace test');
+      log.debug('debug test');
+      log.info('info test');
+      log.warn('warn test');
+      log.error('error test');
+    });
+  });
+
+  test('log methods work after disposeLogger()', () => {
+    log.info('before dispose');
+    disposeLogger();
+    assert.doesNotThrow(() => log.info('after dispose'));
+  });
+
+  test('disposeLogger() is idempotent', () => {
+    disposeLogger();
+    assert.doesNotThrow(() => disposeLogger());
   });
 });

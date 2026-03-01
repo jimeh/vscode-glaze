@@ -46,17 +46,8 @@ export const log = {
   },
   error(message: string, ...args: any[]): void {
     getOutputChannel().error(message, ...args);
+    // Mirror to devtools console so errors surface even when
+    // the Glaze output channel isn't open.
     console.error('[Glaze]', message, ...args);
   },
 };
-
-/**
- * Reset logger state. Test isolation only.
- * Does not dispose the output channel — VS Code reuses
- * channel instances by name, and disposing makes the
- * shared instance unusable for subsequent tests.
- */
-export function _resetLoggerState(): void {
-  // No internal state to reset — LogOutputChannel manages
-  // its own level filtering.
-}

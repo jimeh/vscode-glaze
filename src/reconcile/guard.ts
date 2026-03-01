@@ -102,6 +102,7 @@ export async function reconcileGuardCheck(force: boolean): Promise<boolean> {
   }
 
   if (timestamps.length >= maxWrites) {
+    const count = timestamps.length;
     cooldownUntil = now + cooldownMs;
     timestamps = [];
     const secs = Math.ceil(cooldownMs / 1_000);
@@ -113,12 +114,8 @@ export async function reconcileGuardCheck(force: boolean): Promise<boolean> {
     });
     await refreshStatusBar();
     log.warn(
-      'Rate-limit tripped:',
-      timestamps.length,
-      'writes in',
-      windowMs + 'ms.',
-      'Pausing reconcile for',
-      secs + 's.'
+      `Rate-limit tripped: ${count} writes in ` +
+        `${windowMs}ms. Pausing reconcile for ${secs}s.`
     );
     void vscode.window.showWarningMessage(
       'Glaze: Runaway reconcile loop detected — ' +
