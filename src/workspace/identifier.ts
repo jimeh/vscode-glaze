@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { log } from '../log';
 import type { WorkspaceIdentifierConfig } from '../config';
 import {
   HOME_DIR,
@@ -215,6 +216,7 @@ async function formatFolder(
   }
 
   const resolvedPath = await resolvePath(folder);
+  log.trace('formatFolder: resolved path:', resolvedPath);
 
   const remote = isRemoteUri(folder.uri);
   return formatPath(
@@ -366,7 +368,7 @@ async function buildIdentifier(
 /**
  * Extracts a suitable identifier from the current workspace based on config.
  */
-export function getWorkspaceIdentifier(
+export async function getWorkspaceIdentifier(
   config: WorkspaceIdentifierConfig,
   folders?: readonly WorkspaceFolder[],
   workspaceFile?: WorkspaceFileUri,
@@ -374,7 +376,7 @@ export function getWorkspaceIdentifier(
 ): Promise<string | undefined> {
   const workspaceFolders = folders ?? vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
-    return Promise.resolve(undefined);
+    return undefined;
   }
 
   const resolvedWorkspaceFile = workspaceFile ?? vscode.workspace.workspaceFile;
@@ -385,9 +387,16 @@ export function getWorkspaceIdentifier(
           resolveIdentifierPath(folder, gitRootResolver)
       : passthroughIdentifierPath;
 
-  return buildIdentifier(config, workspaceFolders, resolvedWorkspaceFile, {
-    resolvePath,
-    useFolderNameForNameSource: config.useGitRepoRoot !== true,
-    dedupeAllFolders: config.useGitRepoRoot === true,
-  });
+  const result = await buildIdentifier(
+    config,
+    workspaceFolders,
+    resolvedWorkspaceFile,
+    {
+      resolvePath,
+      useFolderNameForNameSource: config.useGitRepoRoot !== true,
+      dedupeAllFolders: config.useGitRepoRoot === true,
+    }
+  );
+  log.trace('Resolved workspace identifier:', result);
+  return result;
 }

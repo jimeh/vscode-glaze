@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import { DEFAULT_BLEND_FACTOR } from './types';
 import type {
   BlendMethod,
@@ -129,7 +130,9 @@ const VALID_MULTI_ROOT_SOURCES: readonly MultiRootIdentifierSource[] = [
 export function getColorStyle(): ColorStyle {
   const config = vscode.workspace.getConfiguration('glaze');
   const style = config.get<string>('tint.colorStyle', DEFAULT_COLOR_STYLE);
-  return isValidColorStyle(style) ? style : DEFAULT_COLOR_STYLE;
+  const result = isValidColorStyle(style) ? style : DEFAULT_COLOR_STYLE;
+  log.trace('getColorStyle:', { raw: style, validated: result });
+  return result;
 }
 
 /**
@@ -138,7 +141,9 @@ export function getColorStyle(): ColorStyle {
 export function getBlendMethod(): BlendMethod {
   const config = vscode.workspace.getConfiguration('glaze');
   const method = config.get<string>('theme.blendMethod', DEFAULT_BLEND_METHOD);
-  return isValidBlendMethod(method) ? method : DEFAULT_BLEND_METHOD;
+  const result = isValidBlendMethod(method) ? method : DEFAULT_BLEND_METHOD;
+  log.trace('getBlendMethod:', { raw: method, validated: result });
+  return result;
 }
 
 /**
@@ -150,7 +155,9 @@ export function getColorHarmony(): ColorHarmony {
     'tint.colorHarmony',
     DEFAULT_COLOR_HARMONY
   );
-  return isValidColorHarmony(harmony) ? harmony : DEFAULT_COLOR_HARMONY;
+  const result = isValidColorHarmony(harmony) ? harmony : DEFAULT_COLOR_HARMONY;
+  log.trace('getColorHarmony:', { raw: harmony, validated: result });
+  return result;
 }
 
 /**
@@ -159,7 +166,7 @@ export function getColorHarmony(): ColorHarmony {
 export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
   const config = vscode.workspace.getConfiguration('glaze');
 
-  return {
+  const result = {
     source: getValidatedEnum(
       config,
       'workspaceIdentifier.source',
@@ -189,6 +196,8 @@ export function getWorkspaceIdentifierConfig(): WorkspaceIdentifierConfig {
       false
     ),
   };
+  log.trace('getWorkspaceIdentifierConfig:', result);
+  return result;
 }
 
 /**
@@ -212,7 +221,9 @@ export function getTintConfig(): TintConfig {
     config.get<number | null>('tint.baseHueOverride', null)
   );
 
-  return { targets, mode, seed, baseHueOverride };
+  const tintConfig = { targets, mode, seed, baseHueOverride };
+  log.trace('getTintConfig:', tintConfig);
+  return tintConfig;
 }
 
 /**
@@ -246,7 +257,9 @@ export function getThemeConfig(): ThemeConfig {
   );
   const targetBlendFactors = _buildTargetBlendFactors(entries);
 
-  return { blendMethod, blendFactor, targetBlendFactors };
+  const themeConfig = { blendMethod, blendFactor, targetBlendFactors };
+  log.trace('getThemeConfig:', themeConfig);
+  return themeConfig;
 }
 
 /**

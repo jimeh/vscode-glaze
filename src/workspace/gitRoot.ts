@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import { log } from '../log';
 import { normalizePath } from './path';
 
 /**
@@ -250,8 +251,10 @@ export async function resolveGitRepoRoot(
 
   const cached = cache.get(cacheKey);
   if (cached) {
+    log.trace('Git root cache hit:', cacheKey);
     return cached;
   }
+  log.trace('Git root cache miss:', cacheKey);
 
   const pending = resolveGitRepoRootInner(folderUri, fs)
     .then((result) => {
@@ -259,10 +262,14 @@ export async function resolveGitRepoRoot(
       // paths to be re-checked on subsequent calls.
       if (!result) {
         cache.delete(cacheKey);
+      } else {
+        log.trace('Git root resolved:', cacheKey, '→', result.toString());
       }
       return result;
     })
-    .catch(() => {
+    .catch((err) => {
+      const message = err instanceof Error ? err.message : String(err);
+      log.error('Git root resolution failed:', cacheKey, message);
       cache.delete(cacheKey);
       return undefined;
     });

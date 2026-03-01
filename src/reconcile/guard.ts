@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import { updateCachedState, refreshStatusBar } from './state';
 
 /**
@@ -85,6 +86,7 @@ export async function reconcileGuardCheck(force: boolean): Promise<boolean> {
 
   // Cooldown just expired — reset and allow this execution.
   if (cooldownUntil > 0) {
+    log.debug('Guard cooldown expired, resuming reconcile');
     cooldownUntil = 0;
     timestamps = [];
     updateCachedState({ lastError: undefined });
@@ -110,6 +112,14 @@ export async function reconcileGuardCheck(force: boolean): Promise<boolean> {
         'Use "Force Apply" to override.',
     });
     await refreshStatusBar();
+    log.warn(
+      'Rate-limit tripped:',
+      timestamps.length,
+      'writes in',
+      windowMs + 'ms.',
+      'Pausing reconcile for',
+      secs + 's.'
+    );
     void vscode.window.showWarningMessage(
       'Glaze: Runaway reconcile loop detected — ' +
         `pausing for ${secs} seconds. ` +
@@ -138,6 +148,7 @@ export function reconcileGuardRecordWrite(): void {
     return;
   }
   timestamps.push(Date.now());
+  log.trace('Guard: writes in window:', timestamps.length, '/', maxWrites);
 }
 
 // ── Test helpers (prefixed with underscore) ───────────────

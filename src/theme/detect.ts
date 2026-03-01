@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import type { ThemeType, ThemeMode, ThemeContext } from './types';
 import { getThemeName } from './name';
 import { getThemeInfo } from './colors';
@@ -39,6 +40,7 @@ export async function getThemeContext(
   const vsCodeKind = getThemeTypeFromColorThemeKind(
     vscode.window.activeColorTheme.kind
   );
+  log.trace('getThemeContext:', { vsCodeKind, themeMode });
 
   if (themeMode === 'auto') {
     tintType = vsCodeKind;
@@ -51,6 +53,10 @@ export async function getThemeContext(
   // Get the theme name, then look up its colors
   const name = await getThemeName(vsCodeKind);
   const themeInfo = name ? getThemeInfo(name) : undefined;
+  log.trace('getThemeContext: resolved', {
+    tintType,
+    themeInfo: themeInfo ? 'found' : 'not found',
+  });
 
   return {
     type: themeInfo?.type,

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import { requestReconcile } from '../reconcile';
 import type { StatusBarManager } from '../statusBar';
 import { clearGitRepoRootCache } from '../workspace/gitRoot';
@@ -17,6 +18,7 @@ export function registerEventHandlers(
       // just wrote these colors, the re-read will match and
       // skip the write.
       if (e.affectsConfiguration('workbench.colorCustomizations')) {
+        log.debug('Config changed: workbench.colorCustomizations');
         requestReconcile();
         return;
       }
@@ -26,18 +28,22 @@ export function registerEventHandlers(
         e.affectsConfiguration('workbench.preferredDarkColorTheme') ||
         e.affectsConfiguration('workbench.preferredLightColorTheme')
       ) {
+        log.debug('Config changed: color theme setting');
         requestReconcile();
         return;
       }
       if (e.affectsConfiguration('glaze.statusBar.enabled')) {
+        log.debug('Config changed: glaze.statusBar.enabled');
         statusBar.updateVisibility();
         return;
       }
       if (e.affectsConfiguration('glaze.enabled')) {
+        log.debug('Config changed: glaze.enabled');
         requestReconcile();
         return;
       }
       if (e.affectsConfiguration('glaze.workspaceIdentifier')) {
+        log.debug('Config changed: glaze.workspaceIdentifier');
         clearGitRepoRootCache();
         requestReconcile();
         return;
@@ -47,14 +53,17 @@ export function registerEventHandlers(
         e.affectsConfiguration('glaze.theme') ||
         e.affectsConfiguration('glaze.elements')
       ) {
+        log.debug('Config changed: glaze tint/theme/elements');
         requestReconcile();
       }
     }),
     vscode.workspace.onDidChangeWorkspaceFolders(() => {
+      log.debug('Workspace folders changed');
       clearGitRepoRootCache();
       requestReconcile();
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
+      log.debug('Active color theme changed');
       requestReconcile();
     }),
   ];

@@ -1,3 +1,4 @@
+import { log } from '../log';
 import type { ReconcileOptions } from './types';
 import { doReconcile } from './core';
 
@@ -23,6 +24,7 @@ export function requestReconcile(options?: ReconcileOptions): void {
   if (options?.force) {
     pendingForce = true;
   }
+  log.debug('Reconcile queued', { force: pendingForce });
   if (debounceTimer !== undefined) {
     clearTimeout(debounceTimer);
   }
@@ -31,9 +33,10 @@ export function requestReconcile(options?: ReconcileOptions): void {
     const force = pendingForce;
     pendingForce = false;
     reconcileChain = reconcileChain.then(() =>
-      doReconcile({ force }).catch((err) =>
-        console.error('[Glaze] reconcile error:', err)
-      )
+      doReconcile({ force }).catch((err) => {
+        const message = err instanceof Error ? err.message : String(err);
+        log.error('Reconcile error:', message);
+      })
     );
   }, DEBOUNCE_MS);
 }

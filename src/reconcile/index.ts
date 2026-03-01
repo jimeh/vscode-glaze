@@ -1,3 +1,4 @@
+import { _resetLoggerState } from '../log';
 import { _resetAllState as _resetCachedState } from './state';
 import { _resetRequestState } from './request';
 import { _resetGuardState } from './guard';
@@ -22,4 +23,5 @@ export function _resetAllState(): void {
   _resetRequestState();
   _resetCachedState();
   _resetGuardState();
+  _resetLoggerState();
 }

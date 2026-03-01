@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import { refreshStatusBar, StatusBarManager } from '../statusBar';
 
 /**
@@ -10,6 +11,7 @@ export function registerSeedCommands(
   return [
     vscode.commands.registerCommand('glaze.randomizeSeed', async () => {
       const seed = Math.floor(Math.random() * 2 ** 31);
+      log.debug('Command: randomizeSeed', { seed });
       const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',
@@ -22,6 +24,7 @@ export function registerSeedCommands(
       await refreshStatusBar(statusBar);
     }),
     vscode.commands.registerCommand('glaze.resetSeed', async () => {
+      log.debug('Command: resetSeed');
       const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.seed',

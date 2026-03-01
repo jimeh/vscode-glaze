@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { registerAllCommands } from './commands';
 import { registerEventHandlers } from './events';
+import { disposeLogger, log } from './log';
 import {
   cancelPendingReconcile,
   enableReconcileGuard,
@@ -10,6 +11,7 @@ import {
 import { refreshStatusBar, StatusBarManager } from './statusBar';
 
 export async function activate(context: vscode.ExtensionContext) {
+  log.info('Extension activating');
   const statusBar = new StatusBarManager();
   context.subscriptions.push(statusBar);
 
@@ -36,5 +38,7 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
+  log.info('Extension deactivating');
   cancelPendingReconcile();
+  disposeLogger();
 }

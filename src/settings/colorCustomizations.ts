@@ -1,3 +1,4 @@
+import { log } from '../log';
 import { GLAZE_MANAGED_KEYS } from '../theme';
 
 /** Set of all Glaze-managed color keys for O(1) lookup. */
@@ -169,6 +170,11 @@ export function mergeColorCustomizations(
   result[GLAZE_ACTIVE_KEY] = themeName;
   result[targetKey] = themeBlock;
 
+  log.trace('mergeColorCustomizations:', {
+    scope: targetKey,
+    glazeKeys: Object.keys(glazeColors).length,
+    resultKeys: Object.keys(result).length,
+  });
   return result;
 }
 
