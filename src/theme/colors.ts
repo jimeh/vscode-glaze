@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import { BUILTIN_THEME_COLORS } from './generated/builtins';
 import { EXTENSION_THEME_COLORS } from './generated/extensions';
 import type { ThemeType } from './types';
@@ -120,14 +121,22 @@ export function getThemeInfo(themeName: string): ThemeInfo | undefined {
   // User config takes highest precedence
   const custom = getCustomThemeInfo();
   if (custom[themeName]) {
+    log.trace('getThemeInfo:', themeName, '(source=custom)');
     return custom[themeName];
   }
   // VS Code built-in themes
   if (BUILTIN_THEME_COLORS[themeName]) {
+    log.trace('getThemeInfo:', themeName, '(source=builtin)');
     return BUILTIN_THEME_COLORS[themeName];
   }
   // Marketplace extension themes as fallback
-  return EXTENSION_THEME_COLORS[themeName];
+  const ext = EXTENSION_THEME_COLORS[themeName];
+  if (ext) {
+    log.trace('getThemeInfo:', themeName, '(source=extension)');
+  } else {
+    log.trace('getThemeInfo:', themeName, 'not found');
+  }
+  return ext;
 }
 
 /**

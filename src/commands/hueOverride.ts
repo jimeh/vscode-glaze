@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { getBaseHueOverride } from '../config';
+import { log } from '../log';
 import { refreshStatusBar, StatusBarManager } from '../statusBar';
 
 /**
@@ -32,6 +33,7 @@ export function registerHueOverrideCommands(
         return; // Cancelled
       }
       const hue = Number(input.trim());
+      log.debug('Command: setBaseHueOverride', { hue });
       const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.baseHueOverride',
@@ -41,6 +43,7 @@ export function registerHueOverrideCommands(
       await refreshStatusBar(statusBar);
     }),
     vscode.commands.registerCommand('glaze.clearBaseHueOverride', async () => {
+      log.debug('Command: clearBaseHueOverride');
       const config = vscode.workspace.getConfiguration('glaze');
       await config.update(
         'tint.baseHueOverride',

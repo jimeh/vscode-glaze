@@ -4,6 +4,7 @@ import {
   tintResultToPalette,
   tintResultToStatusBarColors,
 } from '../color';
+import { log } from '../log';
 import { getWorkspaceIdentifier } from '../workspace';
 import {
   getColorHarmony,
@@ -98,9 +99,11 @@ async function writeColorConfig(
   const current = raw && Object.keys(raw).length > 0 ? raw : undefined;
   const normalized = value && Object.keys(value).length > 0 ? value : undefined;
   if (deepEqualRecords(current, normalized)) {
+    log.debug('Write skipped: colorCustomizations unchanged');
     return true;
   }
 
+  log.trace('Writing colorCustomizations:', value);
   try {
     await vscode.workspace
       .getConfiguration()
@@ -111,17 +114,19 @@ async function writeColorConfig(
       );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error('[Glaze] Failed to write color customizations:', err);
+    log.error('Failed to write color customizations:', err);
     updateCachedState({ lastError: message });
     await refreshStatusBar();
     return false;
   }
   reconcileGuardRecordWrite();
+  log.info('Colors written to workspace settings');
   return true;
 }
 
 /** Strip Glaze colors from config and reset cached state. */
 async function clearTintColors(): Promise<void> {
+  log.debug('Clearing tint colors');
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
     'workbench.colorCustomizations'
@@ -157,9 +162,21 @@ async function applyTintColors(
   force: boolean
 ): Promise<void> {
   const themeConfig = getThemeConfig();
+  log.trace('themeConfig:', themeConfig);
   const themeContext = await getThemeContext(tintConfig.mode);
+  log.trace('themeContext:', {
+    name: themeContext.name,
+    type: themeContext.type,
+    tintType: themeContext.tintType,
+    isAutoDetected: themeContext.isAutoDetected,
+  });
   const colorStyle = getColorStyle();
   const colorHarmony = getColorHarmony();
+  log.trace('Tint params:', {
+    colorStyle,
+    colorHarmony,
+    blendMethod: themeConfig.blendMethod,
+  });
   const tintResult = computeTint({
     baseHue:
       tintConfig.baseHueOverride !== null
@@ -177,6 +194,8 @@ async function applyTintColors(
     seed: tintConfig.seed,
   });
   const colors = tintResultToPalette(tintResult);
+  log.trace('Computed baseHue:', tintResult.baseHue);
+  log.trace('Generated palette:', colors);
 
   const config = vscode.workspace.getConfiguration();
   const existing = config.get<ColorCustomizations>(
@@ -189,6 +208,7 @@ async function applyTintColors(
   // external tool or user has modified settings — refuse to
   // overwrite (unless force).
   if (!force && hasGlazeColorsWithoutMarker(existing, themeName)) {
+    log.debug('Colors modified outside Glaze; skipping overwrite');
     updateCachedState({
       workspaceIdentifier: identifier,
       customizedOutsideGlaze: true,
@@ -201,9 +221,7 @@ async function applyTintColors(
   // determined (extremely unlikely), skip rather than writing
   // unscoped colors.
   if (!themeName) {
-    console.warn(
-      '[Glaze] Unable to determine active theme name; skipping color write.'
-    );
+    log.warn('Unable to determine active theme name; skipping color write.');
     return;
   }
 
@@ -225,24 +243,30 @@ async function applyTintColors(
  */
 export async function doReconcile(options?: ReconcileOptions): Promise<void> {
   const force = options?.force ?? false;
+  log.debug('Reconcile started', { force });
 
   // Rate-limit guard: bail if the reconcile loop is running
   // too frequently (e.g. another extension is ping-ponging
   // config writes). Force-flagged runs always bypass.
   if (!(await reconcileGuardCheck(force))) {
+    log.debug('Reconcile blocked by rate-limit guard');
     return;
   }
 
   const tintConfig = getTintConfig();
+  log.trace('tintConfig:', tintConfig);
 
   if (!isEnabledForWorkspace() || tintConfig.targets.length === 0) {
+    log.debug('Glaze disabled or no targets; clearing colors');
     await clearTintColors();
     return;
   }
 
   const identifierConfig = getWorkspaceIdentifierConfig();
+  log.trace('identifierConfig:', identifierConfig);
   const identifier = await getWorkspaceIdentifier(identifierConfig);
   if (!identifier) {
+    log.debug('No workspace identifier found');
     await resetCachedState();
     return;
   }

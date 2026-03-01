@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { log } from '../log';
 import type { ThemeType } from './types';
 import { getThemeInfo } from './colors';
 import { detectOsColorScheme } from './osColorScheme';
@@ -36,6 +37,7 @@ export async function getThemeName(
   const colorTheme = workbenchConfig.get<string>('colorTheme');
 
   if (!autoDetect) {
+    log.trace('getThemeName: autoDetect=false, using:', colorTheme);
     return colorTheme;
   }
 
@@ -44,6 +46,11 @@ export async function getThemeName(
     workbenchConfig.get<string>('preferredDarkColorTheme') || '';
   const lightTheme =
     workbenchConfig.get<string>('preferredLightColorTheme') || '';
+  log.trace('getThemeName: autoDetect=true', {
+    dark: darkTheme,
+    light: lightTheme,
+    themeType,
+  });
 
   // If neither preferred theme is configured, fall back
   if (!darkTheme && !lightTheme) {
@@ -60,6 +67,7 @@ export async function getThemeName(
   if (bothKnown) {
     const darkMatches = darkInfo?.type === themeType;
     const lightMatches = lightInfo?.type === themeType;
+    log.trace('getThemeName: phase 1:', { darkMatches, lightMatches });
 
     if (darkMatches && !lightMatches) {
       return darkTheme;
@@ -67,10 +75,13 @@ export async function getThemeName(
     if (lightMatches && !darkMatches) {
       return lightTheme;
     }
+  } else {
+    log.trace('getThemeName: phase 1 skipped (unknown theme)');
   }
 
   // Phase 2: OS fallback (both matched or neither matched)
   const osScheme = await detectOsColorScheme();
+  log.trace('getThemeName: phase 2: osScheme:', osScheme);
   if (osScheme === 'dark') {
     return darkTheme || colorTheme;
   }
@@ -79,5 +90,10 @@ export async function getThemeName(
   }
 
   // Unable to determine — fall back to colorTheme
+  log.debug(
+    'OS color scheme detection indeterminate;',
+    'falling back to colorTheme:',
+    colorTheme
+  );
   return colorTheme;
 }

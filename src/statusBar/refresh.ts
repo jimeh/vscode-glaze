@@ -5,6 +5,7 @@ import {
   getWorkspaceEnabledOverride,
   isGloballyEnabled,
 } from '../config';
+import { log } from '../log';
 import { getCachedState } from '../reconcile';
 import { getThemeContext } from '../theme';
 import type { StatusBarManager } from './manager';
@@ -39,5 +40,6 @@ export async function refreshStatusBar(
     lastError: cached.lastError,
   };
 
+  log.trace('refreshStatusBar:', state);
   statusBar.update(state);
 }
