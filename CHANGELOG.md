@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.6](https://github.com/jimeh/vscode-glaze/compare/v0.1.5...v0.1.6) (2026-03-02)
+
+
+### Features
+
+* add structured logging via LogOutputChannel ([#129](https://github.com/jimeh/vscode-glaze/issues/129)) ([5e27fe5](https://github.com/jimeh/vscode-glaze/commit/5e27fe5f7ba41cc65a423cda02212f39b6b1d4cd))
+
+
+### Bug Fixes
+
+* **themes:** update extracted theme colors ([#127](https://github.com/jimeh/vscode-glaze/issues/127)) ([048b602](https://github.com/jimeh/vscode-glaze/commit/048b6022a40df7d477617d2f7e16325c2c0da60f))
+
 ## [0.1.5](https://github.com/jimeh/vscode-glaze/compare/v0.1.4...v0.1.5) (2026-02-18)
 
 
