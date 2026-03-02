@@ -1,0 +1,60 @@
+{
+  "extensionId": "2d3724af-3c3f-4c4e-abb8-c5cdb95f3677",
+  "extensionName": "cursor-dark",
+  "publisherName": "cedricverlinden",
+  "displayName": "Cursor Dark",
+  "version": "2.2.0",
+  "extractedAt": "2026-03-02T06:22:15.179Z",
+  "installCount": 3559,
+  "themes": [
+    {
+      "name": "cursor-dark",
+      "label": "Cursor Dark",
+      "colors": {
+        "editor.background": "#1A1A1A",
+        "editor.foreground": "#D8DEE9",
+        "titleBar.activeBackground": "#141414",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#141414",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#FFFFFF",
+        "statusBar.background": "#141414",
+        "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#FFFFFF",
+        "activityBar.background": "#141414",
+        "activityBar.foreground": "#CCCCCC",
+        "sideBar.background": "#141414",
+        "sideBar.foreground": "#CCCCCC",
+        "sideBar.border": "#FFFFFF",
+        "sideBarSectionHeader.background": "#141414",
+        "sideBarSectionHeader.foreground": "#505050"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "cursor-less-dark",
+      "label": "Cursor Less Dark",
+      "colors": {
+        "editor.background": "#242424",
+        "editor.foreground": "#D8DEE9",
+        "titleBar.activeBackground": "#1E1E1E",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#1E1E1E",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#FFFFFF",
+        "statusBar.background": "#1E1E1E",
+        "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#FFFFFF",
+        "activityBar.background": "#1E1E1E",
+        "activityBar.foreground": "#CCCCCC",
+        "sideBar.background": "#1E1E1E",
+        "sideBar.foreground": "#CCCCCC",
+        "sideBar.border": "#FFFFFF",
+        "sideBarSectionHeader.background": "#1E1E1E",
+        "sideBarSectionHeader.foreground": "#505050"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

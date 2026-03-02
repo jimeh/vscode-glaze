@@ -1,0 +1,37 @@
+{
+  "extensionId": "75efcedf-77ab-422e-a9ee-bb50939c5d3e",
+  "extensionName": "daniel-material-palenight-theme",
+  "publisherName": "daniel-duc",
+  "displayName": "Material Palenight Theme",
+  "version": "1.3.0",
+  "extractedAt": "2026-03-02T06:22:14.793Z",
+  "installCount": 3800,
+  "themes": [
+    {
+      "name": "Material Palenight Theme",
+      "label": "Material Palenight Theme",
+      "colors": {
+        "editor.background": "#292D3E",
+        "editor.foreground": "#BABED8",
+        "titleBar.activeBackground": "#1B1E2B",
+        "titleBar.activeForeground": "#BABED8",
+        "titleBar.inactiveBackground": "#1B1E2B",
+        "titleBar.inactiveForeground": "#757CA1",
+        "titleBar.border": "#424A6C",
+        "statusBar.background": "#1B1E2B",
+        "statusBar.foreground": "#676E95",
+        "statusBar.border": "#424A6C",
+        "activityBar.background": "#1B1E2B",
+        "activityBar.foreground": "#BABED8",
+        "activityBar.activeBorder": "#80CBC4",
+        "sideBar.background": "#1B1E2B",
+        "sideBar.foreground": "#757CA1",
+        "sideBar.border": "#424A6C",
+        "sideBarSectionHeader.background": "#1B1E2B",
+        "sideBarSectionHeader.border": "#424A6C"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
