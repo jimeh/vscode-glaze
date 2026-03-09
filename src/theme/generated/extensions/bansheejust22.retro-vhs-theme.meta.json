@@ -1,0 +1,100 @@
+{
+  "extensionId": "67c8b453-8515-463f-a798-e37ce602079f",
+  "extensionName": "retro-vhs-theme",
+  "publisherName": "bansheejust22",
+  "displayName": "Retro VHS Theme",
+  "version": "1.0.0",
+  "extractedAt": "2026-03-09T06:24:47.012Z",
+  "installCount": 8604,
+  "themes": [
+    {
+      "name": "Retro VHS",
+      "label": "Retro VHS",
+      "colors": {
+        "editor.background": "#151012",
+        "editor.foreground": "#F0E6DC",
+        "titleBar.activeBackground": "#0E090C",
+        "titleBar.activeForeground": "#F0E6DC",
+        "titleBar.inactiveBackground": "#090508",
+        "titleBar.inactiveForeground": "#6A5E56",
+        "statusBar.background": "#0E090C",
+        "statusBar.foreground": "#F0E6DC",
+        "activityBar.background": "#100B0E",
+        "activityBar.foreground": "#FF7AA2",
+        "activityBar.activeBackground": "#FF7AA2",
+        "activityBar.activeBorder": "#FF7AA2",
+        "sideBar.background": "#100B0E",
+        "sideBarSectionHeader.background": "#0E090C",
+        "sideBarSectionHeader.border": "#342830"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Retro VHS Dawn",
+      "label": "Retro VHS Dawn",
+      "colors": {
+        "editor.background": "#1C151A",
+        "editor.foreground": "#F0E6DC",
+        "titleBar.activeBackground": "#131118",
+        "titleBar.activeForeground": "#F0E6DC",
+        "titleBar.inactiveBackground": "#0E090C",
+        "titleBar.inactiveForeground": "#6A5E56",
+        "statusBar.background": "#131118",
+        "statusBar.foreground": "#F0E6DC",
+        "activityBar.background": "#151012",
+        "activityBar.foreground": "#FF7AA2",
+        "activityBar.activeBackground": "#FF7AA2",
+        "activityBar.activeBorder": "#FF7AA2",
+        "sideBar.background": "#151012",
+        "sideBarSectionHeader.background": "#131118",
+        "sideBarSectionHeader.border": "#3A2D36"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Retro VHS Dusk",
+      "label": "Retro VHS Dusk",
+      "colors": {
+        "editor.background": "#0E090C",
+        "editor.foreground": "#F0E6DC",
+        "titleBar.activeBackground": "#0A0607",
+        "titleBar.activeForeground": "#F0E6DC",
+        "titleBar.inactiveBackground": "#070405",
+        "titleBar.inactiveForeground": "#6A5E56",
+        "statusBar.background": "#0A0607",
+        "statusBar.foreground": "#F0E6DC",
+        "activityBar.background": "#0C080A",
+        "activityBar.foreground": "#FF7AA2",
+        "activityBar.activeBackground": "#FF7AA2",
+        "activityBar.activeBorder": "#FF7AA2",
+        "sideBar.background": "#0C080A",
+        "sideBarSectionHeader.background": "#0A0607",
+        "sideBarSectionHeader.border": "#2E222A"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Retro VHS Midnight",
+      "label": "Retro VHS Midnight",
+      "colors": {
+        "editor.background": "#040204",
+        "editor.foreground": "#F0E6DC",
+        "titleBar.activeBackground": "#010002",
+        "titleBar.activeForeground": "#F0E6DC",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#6A5E56",
+        "statusBar.background": "#010002",
+        "statusBar.foreground": "#F0E6DC",
+        "activityBar.background": "#020103",
+        "activityBar.foreground": "#FF7AA2",
+        "activityBar.activeBackground": "#FF7AA2",
+        "activityBar.activeBorder": "#FF7AA2",
+        "sideBar.background": "#020103",
+        "sideBarSectionHeader.background": "#010002",
+        "sideBarSectionHeader.border": "#241B20"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
