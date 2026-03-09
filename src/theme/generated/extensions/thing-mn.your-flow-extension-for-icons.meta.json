@@ -1,0 +1,11 @@
+{
+  "extensionId": "2850d014-ae40-4b9e-a755-7e90291fad69",
+  "extensionName": "your-flow-extension-for-icons",
+  "publisherName": "thing-mn",
+  "displayName": "Flowe Icon Pack for VS Code",
+  "version": "1.3.1",
+  "extractedAt": "2026-03-09T06:24:55.652Z",
+  "installCount": 6385,
+  "themes": [],
+  "source": "openvsx"
+}
