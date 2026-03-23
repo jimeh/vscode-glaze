@@ -3,9 +3,9 @@
   "extensionName": "vsc-vira-theme",
   "publisherName": "vira",
   "displayName": "Vira Theme",
-  "version": "2026.2.2",
-  "extractedAt": "2026-03-02T06:21:37.582Z",
-  "installCount": 365558,
+  "version": "2026.3.1",
+  "extractedAt": "2026-03-23T06:28:57.726Z",
+  "installCount": 381936,
   "themes": [
     {
       "name": "Vira Teal",

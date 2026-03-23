@@ -3,9 +3,9 @@
   "extensionName": "parse-tree",
   "publisherName": "pokey",
   "displayName": "Parse tree",
-  "version": "0.48.0",
-  "extractedAt": "2026-02-08T00:10:59.001Z",
-  "installCount": 18102,
+  "version": "0.52.0",
+  "extractedAt": "2026-03-23T06:29:00.289Z",
+  "installCount": 22069,
   "themes": [],
   "source": "openvsx"
 }
