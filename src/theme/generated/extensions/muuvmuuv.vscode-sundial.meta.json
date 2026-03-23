@@ -1,0 +1,11 @@
+{
+  "extensionId": "06c45f72-79b0-400c-a701-c420fa7d0a99",
+  "extensionName": "vscode-sundial",
+  "publisherName": "muuvmuuv",
+  "displayName": "Sundial – Automatic night mode and settings switch",
+  "version": "3.10.1",
+  "extractedAt": "2026-03-23T06:29:08.903Z",
+  "installCount": 5409,
+  "themes": [],
+  "source": "openvsx"
+}
