@@ -1,0 +1,104 @@
+{
+  "extensionId": "9616d574-94d8-48a6-999f-d65a74bf9f3f",
+  "extensionName": "synesthesia-theme",
+  "publisherName": "stackmason1",
+  "displayName": "Synesthesia Synthwave",
+  "version": "1.0.0",
+  "extractedAt": "2026-03-30T06:40:53.719Z",
+  "installCount": 12278,
+  "themes": [
+    {
+      "name": "Synesthesia Synthwave",
+      "label": "Synesthesia Synthwave",
+      "colors": {
+        "editor.background": "#0F0E17",
+        "editor.foreground": "#E4F0FB",
+        "titleBar.activeBackground": "#0A0912",
+        "titleBar.activeForeground": "#E4F0FB",
+        "titleBar.inactiveBackground": "#0A0912",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#0A0912",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#0F0E17",
+        "activityBar.foreground": "#FF6AC1",
+        "activityBar.activeBackground": "#FF6AC1",
+        "activityBar.activeBorder": "#FF6AC1",
+        "sideBar.background": "#0A0912",
+        "sideBar.foreground": "#A6ACCD",
+        "sideBarSectionHeader.background": "#1A1826",
+        "sideBarSectionHeader.border": "#2D2B3D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Synesthesia Synthwave Dawn",
+      "label": "Synesthesia Synthwave Dawn",
+      "colors": {
+        "editor.background": "#1A1826",
+        "editor.foreground": "#E4F0FB",
+        "titleBar.activeBackground": "#141018",
+        "titleBar.activeForeground": "#E4F0FB",
+        "titleBar.inactiveBackground": "#141018",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#141018",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#1A1826",
+        "activityBar.foreground": "#FF6AC1",
+        "activityBar.activeBackground": "#FF6AC1",
+        "activityBar.activeBorder": "#FF6AC1",
+        "sideBar.background": "#141018",
+        "sideBar.foreground": "#A6ACCD",
+        "sideBarSectionHeader.background": "#1A1826",
+        "sideBarSectionHeader.border": "#2D2B3D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Synesthesia Synthwave Dusk",
+      "label": "Synesthesia Synthwave Dusk",
+      "colors": {
+        "editor.background": "#0C0B12",
+        "editor.foreground": "#E4F0FB",
+        "titleBar.activeBackground": "#080710",
+        "titleBar.activeForeground": "#E4F0FB",
+        "titleBar.inactiveBackground": "#080710",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#080710",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#0C0B12",
+        "activityBar.foreground": "#FF6AC1",
+        "activityBar.activeBackground": "#FF6AC1",
+        "activityBar.activeBorder": "#FF6AC1",
+        "sideBar.background": "#080710",
+        "sideBar.foreground": "#A6ACCD",
+        "sideBarSectionHeader.background": "#1A1826",
+        "sideBarSectionHeader.border": "#2D2B3D"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Synesthesia Synthwave Midnight",
+      "label": "Synesthesia Synthwave Midnight",
+      "colors": {
+        "editor.background": "#0B0A10",
+        "editor.foreground": "#E4F0FB",
+        "titleBar.activeBackground": "#07060A",
+        "titleBar.activeForeground": "#E4F0FB",
+        "titleBar.inactiveBackground": "#07060A",
+        "titleBar.inactiveForeground": "#676E95",
+        "statusBar.background": "#07060A",
+        "statusBar.foreground": "#A6ACCD",
+        "activityBar.background": "#0B0A10",
+        "activityBar.foreground": "#FF6AC1",
+        "activityBar.activeBackground": "#FF6AC1",
+        "activityBar.activeBorder": "#FF6AC1",
+        "sideBar.background": "#07060A",
+        "sideBar.foreground": "#A6ACCD",
+        "sideBarSectionHeader.background": "#1A1826",
+        "sideBarSectionHeader.border": "#2D2B3D"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
