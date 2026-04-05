@@ -328,6 +328,51 @@ suite('computeTint', () => {
     );
   });
 
+  test('customBaseColors keeps selected hex unchanged for uniform harmony', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'uniform-custom-workspace',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorHarmony: 'uniform',
+      customBaseColors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+    const expectedHex = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )?.tintHex;
+    assert.ok(expectedHex !== undefined);
+    assert.ok(
+      ['#ff0000', '#00ff00', '#0000ff'].includes(expectedHex),
+      `Expected custom color, got ${expectedHex}`
+    );
+
+    for (const key of result.keys) {
+      assert.strictEqual(
+        key.tintHex,
+        expectedHex,
+        `${key.key} should keep selected custom color in uniform harmony`
+      );
+    }
+  });
+
+  test('customBaseColors sets baseHue from selected custom color hue', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'hue-source-workspace',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customBaseColors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+
+    const selectedHex = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )?.tintHex;
+    assert.ok(selectedHex !== undefined);
+    const selectedHue = hexToOklch(selectedHex!).h;
+    assert.ok(
+      Math.abs(result.baseHue - selectedHue) < 0.01,
+      `baseHue ${result.baseHue} should match selected hue ${selectedHue}`
+    );
+  });
+
   test('blendFactor=1 produces finalHex close to theme color', () => {
     const themeColors = {
       'editor.background': '#282C34',

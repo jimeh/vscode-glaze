@@ -204,10 +204,29 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const hasCustomBaseColors =
     normalizedCustomBaseColors !== undefined &&
     normalizedCustomBaseColors.length > 0;
+  const selectedCustomBase =
+    hasCustomBaseColors && options.workspaceIdentifier !== undefined
+      ? normalizedCustomBaseColors[
+          computeBaseHue(options.workspaceIdentifier, seed) %
+            normalizedCustomBaseColors.length
+        ]
+      : hasCustomBaseColors && options.baseHue !== undefined
+        ? normalizedCustomBaseColors[
+            ((Math.floor(options.baseHue) % normalizedCustomBaseColors.length) +
+              normalizedCustomBaseColors.length) %
+              normalizedCustomBaseColors.length
+          ]
+        : undefined;
+  const customBaseOklch =
+    selectedCustomBase !== undefined
+      ? hexToOklch(selectedCustomBase)
+      : undefined;
 
   // Resolve base hue
   let baseHue: number;
-  if (options.baseHue !== undefined) {
+  if (customBaseOklch !== undefined) {
+    baseHue = customBaseOklch.h;
+  } else if (options.baseHue !== undefined) {
     baseHue = options.baseHue;
   } else if (options.workspaceIdentifier !== undefined) {
     const computedHue = computeBaseHue(options.workspaceIdentifier, seed);
@@ -233,17 +252,6 @@ export function computeTint(options: ComputeTintOptions): TintResult {
   const targetSet = new Set<string>(targets);
   const resolver = getStyleResolver(colorStyle);
   const harmonyConfig = HARMONY_CONFIGS[colorHarmony];
-  const selectedCustomBase =
-    hasCustomBaseColors && options.workspaceIdentifier !== undefined
-      ? normalizedCustomBaseColors[
-          computeBaseHue(options.workspaceIdentifier, seed) %
-            normalizedCustomBaseColors.length
-        ]
-      : undefined;
-  const customBaseOklch =
-    selectedCustomBase !== undefined
-      ? hexToOklch(selectedCustomBase)
-      : undefined;
 
   const blend = getBlendFunction(blendMethod, { baseHue, themeColors });
 
