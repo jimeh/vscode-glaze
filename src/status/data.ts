@@ -1,5 +1,5 @@
 import type { StatusGeneralInfo, StatusState } from './types';
-import { computeBaseHue, computeTint } from '../color/tint';
+import { computeTint } from '../color/tint';
 import {
   getColorHarmony,
   getColorStyle,
@@ -42,15 +42,17 @@ export async function buildStatusState(): Promise<StatusState> {
     identifier,
     tintConfig.targets.length > 0
   );
-  const baseHue =
-    tintConfig.baseHueOverride !== null
-      ? tintConfig.baseHueOverride
-      : identifier
-        ? computeBaseHue(identifier, tintConfig.seed)
-        : 0;
-
   const result = computeTint({
-    baseHue,
+    baseHue:
+      tintConfig.baseHueOverride !== null
+        ? tintConfig.baseHueOverride
+        : identifier
+          ? undefined
+          : 0,
+    workspaceIdentifier: identifier ?? undefined,
+    seed: tintConfig.seed,
+    allowedBaseHues: tintConfig.allowedBaseHues,
+    customBaseColors: tintConfig.customBaseColors,
     targets: tintConfig.targets,
     themeType: themeContext.tintType,
     colorStyle,
@@ -60,6 +62,7 @@ export async function buildStatusState(): Promise<StatusState> {
     themeBlendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
   });
+  const baseHue = result.baseHue;
 
   const wbConfig = vscode.workspace.getConfiguration();
   const existing = wbConfig.get<ColorCustomizations>(

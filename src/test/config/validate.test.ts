@@ -3,6 +3,8 @@ import {
   _buildTargets,
   _validateSeed,
   _validateBaseHueOverride,
+  _validateAllowedBaseHues,
+  _validateCustomBaseColors,
   _clampBlendFactor,
   _buildTargetBlendFactors,
   _validateEnum,
@@ -175,6 +177,46 @@ suite('_validateBaseHueOverride', () => {
 
   test('returns null for NaN', () => {
     assert.strictEqual(_validateBaseHueOverride(NaN), null);
+  });
+});
+
+suite('_validateAllowedBaseHues', () => {
+  test('returns empty array for non-array input', () => {
+    assert.deepStrictEqual(_validateAllowedBaseHues(null), []);
+  });
+
+  test('keeps valid unique hues in order', () => {
+    assert.deepStrictEqual(
+      _validateAllowedBaseHues([120, 10, 120, 359, 0]),
+      [120, 10, 359, 0]
+    );
+  });
+
+  test('filters invalid values', () => {
+    assert.deepStrictEqual(
+      _validateAllowedBaseHues([-1, 360, 10.5, '100', 42]),
+      [42]
+    );
+  });
+});
+
+suite('_validateCustomBaseColors', () => {
+  test('returns empty array for non-array input', () => {
+    assert.deepStrictEqual(_validateCustomBaseColors(undefined), []);
+  });
+
+  test('keeps valid unique colors and normalizes casing', () => {
+    assert.deepStrictEqual(
+      _validateCustomBaseColors(['#ABCDEF', '#abcdef', '#112233']),
+      ['#abcdef', '#112233']
+    );
+  });
+
+  test('filters invalid values', () => {
+    assert.deepStrictEqual(
+      _validateCustomBaseColors(['#fff', '112233', '#12zz99', 42, '#654321']),
+      ['#654321']
+    );
   });
 });
 

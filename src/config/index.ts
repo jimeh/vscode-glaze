@@ -20,6 +20,8 @@ import {
   _buildTargets,
   _validateSeed,
   _validateBaseHueOverride,
+  _validateAllowedBaseHues,
+  _validateCustomBaseColors,
   _clampBlendFactor,
   _buildTargetBlendFactors,
   _validateEnum,
@@ -42,6 +44,8 @@ export {
   _buildTargets,
   _validateSeed,
   _validateBaseHueOverride,
+  _validateAllowedBaseHues,
+  _validateCustomBaseColors,
   _clampBlendFactor,
   _buildTargetBlendFactors,
   _validateEnum,
@@ -221,7 +225,21 @@ export function getTintConfig(): TintConfig {
     config.get<number | null>('tint.baseHueOverride', null)
   );
 
-  const tintConfig = { targets, mode, seed, baseHueOverride };
+  const allowedBaseHues = _validateAllowedBaseHues(
+    config.get<unknown>('tint.allowedBaseHues', [])
+  );
+  const customBaseColors = _validateCustomBaseColors(
+    config.get<unknown>('tint.customBaseColors', [])
+  );
+
+  const tintConfig = {
+    targets,
+    mode,
+    seed,
+    baseHueOverride,
+    allowedBaseHues,
+    customBaseColors,
+  };
   log.trace('getTintConfig:', tintConfig);
   return tintConfig;
 }

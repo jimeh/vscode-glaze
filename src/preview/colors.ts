@@ -148,6 +148,10 @@ export interface WorkspacePreviewOptions {
   seed?: number | undefined;
   /** When set, overrides computed hue from identifier. */
   baseHueOverride?: number | null | undefined;
+  /** Restrict deterministic hue selection to this list. */
+  allowedBaseHues?: readonly number[] | undefined;
+  /** Bypass style generation with deterministic custom colors. */
+  customBaseColors?: readonly string[] | undefined;
   themeColors?: ThemeColors | undefined;
   blendMethod?: BlendMethod | undefined;
   blendFactor?: number | undefined;
@@ -167,6 +171,8 @@ export function generateWorkspacePreview(
     themeType,
     seed = 0,
     baseHueOverride,
+    allowedBaseHues,
+    customBaseColors,
     themeColors,
     blendMethod = 'overlay',
     blendFactor = DEFAULT_BLEND_FACTOR,
@@ -186,6 +192,8 @@ export function generateWorkspacePreview(
         : undefined,
     workspaceIdentifier: identifier,
     seed,
+    allowedBaseHues,
+    customBaseColors,
     targets: PREVIEW_TARGETS,
     themeType,
     colorStyle: style,

@@ -410,11 +410,32 @@
           "description": "Override the base hue (0-359) for this workspace. When set, bypasses the deterministic hue calculation. Intended for workspace-level configuration.",
           "order": 22
         },
+        "glaze.tint.allowedBaseHues": {
+          "type": "array",
+          "default": [],
+          "description": "Optional list of allowed base hue values (0-359). When provided, Glaze deterministically picks one of these hues per workspace. JSON settings only.",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 359
+          },
+          "order": 23
+        },
+        "glaze.tint.customBaseColors": {
+          "type": "array",
+          "default": [],
+          "description": "Optional list of full hex colors (for example #7a5cff). When provided, Glaze deterministically picks one color per workspace and bypasses color style generation while still applying harmony and theme blending. JSON settings only.",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "order": 24
+        },
         "glaze.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 23,
+          "order": 25,
           "additionalProperties": {
             "type": "object",
             "required": [

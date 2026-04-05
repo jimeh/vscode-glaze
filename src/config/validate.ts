@@ -52,6 +52,54 @@ export function _validateBaseHueOverride(value: number | null): number | null {
 }
 
 /**
+ * Validates an allowed-base-hues array. Keeps only unique integers
+ * in [0, 359]. Returns an empty array when unset or invalid.
+ */
+export function _validateAllowedBaseHues(value: unknown): number[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const seen = new Set<number>();
+  const result: number[] = [];
+  for (const item of value) {
+    if (
+      typeof item === 'number' &&
+      Number.isInteger(item) &&
+      item >= 0 &&
+      item <= 359 &&
+      !seen.has(item)
+    ) {
+      seen.add(item);
+      result.push(item);
+    }
+  }
+  return result;
+}
+
+/**
+ * Validates a custom-base-colors array. Keeps only unique 6-digit
+ * hex colors and normalizes to lowercase.
+ */
+export function _validateCustomBaseColors(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const item of value) {
+    if (typeof item !== 'string') {
+      continue;
+    }
+    const normalized = item.trim().toLowerCase();
+    if (/^#[0-9a-f]{6}$/.test(normalized) && !seen.has(normalized)) {
+      seen.add(normalized);
+      result.push(normalized);
+    }
+  }
+  return result;
+}
+
+/**
  * Clamps a blend factor to the valid range [0, 1].
  */
 export function _clampBlendFactor(value: number): number {
