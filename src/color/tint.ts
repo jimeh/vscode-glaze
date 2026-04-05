@@ -15,7 +15,8 @@ import {
 } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
-import { oklchToHex, maxChroma } from './convert';
+import { oklchToHex, hexToOklch, maxChroma } from './convert';
+import type { OKLCH } from './types';
 import { getBlendFunction } from './blend';
 import type { BlendMethod } from './blend';
 import { getStyleResolver } from './styles';
@@ -97,6 +98,10 @@ export interface ComputeTintOptions {
   targetBlendFactors?: Partial<Record<TintTarget, number>> | undefined;
   /** Seed for hue calculation, default 0 */
   seed?: number | undefined;
+  /** Allowed hue values. Empty = no restriction. */
+  allowedHues?: readonly number[] | undefined;
+  /** Custom hex colors for deterministic selection. Empty = normal pipeline. */
+  customColors?: readonly string[] | undefined;
 }
 
 // ============================================================================
@@ -155,6 +160,63 @@ export function computeBaseTintHex(
 }
 
 // ============================================================================
+// Allowed-hue and custom-color helpers
+// ============================================================================
+
+/**
+ * Circular distance between two hue angles on the 0-360 wheel.
+ */
+function circularDistance(a: number, b: number): number {
+  const diff = Math.abs(a - b);
+  return Math.min(diff, 360 - diff);
+}
+
+/**
+ * Snaps a hue to the nearest value in the allowed list using
+ * circular distance. Ties are broken by picking the lower hue.
+ *
+ * @param hue - Computed hue angle (0-359)
+ * @param allowed - Non-empty array of allowed hue values
+ * @returns The closest allowed hue
+ */
+export function snapToAllowedHue(
+  hue: number,
+  allowed: readonly number[]
+): number {
+  let bestHue = allowed[0];
+  let bestDist = circularDistance(hue, allowed[0]);
+  for (let i = 1; i < allowed.length; i++) {
+    const dist = circularDistance(hue, allowed[i]);
+    if (dist < bestDist || (dist === bestDist && allowed[i] < bestHue)) {
+      bestDist = dist;
+      bestHue = allowed[i];
+    }
+  }
+  return bestHue;
+}
+
+/**
+ * Deterministically selects a custom color from an array based
+ * on the workspace identifier and seed. Uses the full 32-bit
+ * hash for good distribution across small arrays.
+ *
+ * @param identifier - The workspace identifier string
+ * @param seed - Seed value (0 = no shift)
+ * @param colors - Non-empty array of hex color strings
+ * @returns OKLCH representation of the selected color
+ */
+export function selectCustomColor(
+  identifier: string,
+  seed: number,
+  colors: readonly string[]
+): OKLCH {
+  const workspaceHash = hashString(identifier);
+  const seedHash = seed !== 0 ? hashString(seed.toString()) : 0;
+  const index = ((workspaceHash ^ seedHash) >>> 0) % colors.length;
+  return hexToOklch(colors[index]);
+}
+
+// ============================================================================
 // Main computation
 // ============================================================================
 
@@ -189,14 +251,33 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     themeBlendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
     seed = 0,
+    allowedHues = [],
+    customColors = [],
   } = options;
 
-  // Resolve base hue
+  // Resolve base hue (and optional custom base color)
   let baseHue: number;
+  let customBaseOklch: OKLCH | undefined;
+
   if (options.baseHue !== undefined) {
+    // baseHueOverride takes absolute precedence
     baseHue = options.baseHue;
+  } else if (
+    customColors.length > 0 &&
+    options.workspaceIdentifier !== undefined
+  ) {
+    // Custom colors: select deterministically, extract hue
+    customBaseOklch = selectCustomColor(
+      options.workspaceIdentifier,
+      seed,
+      customColors
+    );
+    baseHue = customBaseOklch.h;
   } else if (options.workspaceIdentifier !== undefined) {
     baseHue = computeBaseHue(options.workspaceIdentifier, seed);
+    if (allowedHues.length > 0) {
+      baseHue = snapToAllowedHue(baseHue, allowedHues);
+    }
   } else {
     throw new Error(
       'computeTint requires either baseHue or workspaceIdentifier'
@@ -218,18 +299,31 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       // Pre-apply harmony hue offset for this element
       const elementHue = applyHueOffset(baseHue, harmonyConfig[def.element]);
 
-      // Build per-key resolve context with offset-adjusted hue
-      const resolveContext: StyleResolveContext = {
-        themeColors,
-        elementHue,
-      };
+      // Resolve tint color: custom color mode or style resolver
+      let tintOklch: OKLCH;
+      let hueOnlyBlend: boolean;
 
-      // Resolve tint color via style resolver
-      const { tintOklch, hueOnlyBlend } = resolver(
-        themeType,
-        key,
-        resolveContext
-      );
+      if (customBaseOklch) {
+        // Custom color: keep L/C from selected color, apply harmony hue
+        tintOklch = {
+          l: customBaseOklch.l,
+          c: customBaseOklch.c,
+          h: elementHue,
+        };
+        hueOnlyBlend = false;
+      } else {
+        // Normal style resolver path
+        const resolveContext: StyleResolveContext = {
+          themeColors,
+          elementHue,
+        };
+        ({ tintOklch, hueOnlyBlend } = resolver(
+          themeType,
+          key,
+          resolveContext
+        ));
+      }
+
       const tintHex = oklchToHex(tintOklch);
 
       // Look up theme color

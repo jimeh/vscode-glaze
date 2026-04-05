@@ -4,6 +4,8 @@ import {
   applyHueOffset,
   computeBaseTintHex,
   computeTint,
+  snapToAllowedHue,
+  selectCustomColor,
   tintResultToPalette,
   tintResultToStatusBarColors,
 } from '../../color/tint';
@@ -515,6 +517,273 @@ suite('computeTint', () => {
     for (const key of GLAZE_MANAGED_KEYS) {
       assert.ok(resultKeys.includes(key), `Missing key: ${key}`);
     }
+  });
+});
+
+// ============================================================================
+// snapToAllowedHue
+// ============================================================================
+
+suite('snapToAllowedHue', () => {
+  test('snaps to nearest hue', () => {
+    assert.strictEqual(snapToAllowedHue(50, [0, 120, 240]), 0);
+  });
+
+  test('snaps to exact match', () => {
+    assert.strictEqual(snapToAllowedHue(120, [0, 120, 240]), 120);
+  });
+
+  test('single element always returned', () => {
+    assert.strictEqual(snapToAllowedHue(300, [42]), 42);
+  });
+
+  test('wraps around 360 boundary', () => {
+    // hue=5: dist to 350 = 15, dist to 20 = 15 — tie, pick lower (20)
+    assert.strictEqual(snapToAllowedHue(5, [350, 20]), 20);
+  });
+
+  test('wraps around picking closer across boundary', () => {
+    // hue=355: dist to 350 = 5, dist to 20 = 25
+    assert.strictEqual(snapToAllowedHue(355, [350, 20]), 350);
+  });
+
+  test('tie-break picks lower hue value', () => {
+    // hue=180: dist to 90 = 90, dist to 270 = 90 — tie, pick 90
+    assert.strictEqual(snapToAllowedHue(180, [90, 270]), 90);
+  });
+
+  test('works with unsorted input', () => {
+    assert.strictEqual(snapToAllowedHue(100, [240, 0, 120]), 120);
+  });
+});
+
+// ============================================================================
+// selectCustomColor
+// ============================================================================
+
+suite('selectCustomColor', () => {
+  test('returns deterministic result for same inputs', () => {
+    const a = selectCustomColor('my-project', 0, ['#ff0000', '#00ff00']);
+    const b = selectCustomColor('my-project', 0, ['#ff0000', '#00ff00']);
+    assert.deepStrictEqual(a, b);
+  });
+
+  test('returns valid OKLCH values', () => {
+    const result = selectCustomColor('test', 0, ['#ff0000']);
+    assert.ok(result.l >= 0 && result.l <= 1, 'lightness in range');
+    assert.ok(result.c >= 0, 'chroma non-negative');
+    assert.ok(result.h >= 0 && result.h <= 360, 'hue in range');
+  });
+
+  test('seed changes selection', () => {
+    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00'];
+    const a = selectCustomColor('test', 0, colors);
+    const b = selectCustomColor('test', 42, colors);
+    // With 4 colors and different seeds, results are likely different
+    // (not guaranteed but extremely likely with SHA-256)
+    assert.notDeepStrictEqual(a, b);
+  });
+
+  test('single color always selects that color', () => {
+    const result = selectCustomColor('anything', 99, ['#abcdef']);
+    const expected = hexToOklch('#abcdef');
+    assert.strictEqual(result.l, expected.l);
+    assert.strictEqual(result.c, expected.c);
+    assert.strictEqual(result.h, expected.h);
+  });
+});
+
+// ============================================================================
+// computeTint — allowedHues and customColors
+// ============================================================================
+
+suite('computeTint allowedHues', () => {
+  test('snaps computed hue to nearest allowed value', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedHues: [0, 120, 240],
+    });
+
+    // Result hue should be one of the allowed values
+    assert.ok(
+      [0, 120, 240].includes(result.baseHue),
+      `baseHue ${result.baseHue} should be one of the allowed values`
+    );
+  });
+
+  test('empty allowedHues has no effect', () => {
+    const without = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+    });
+    const withEmpty = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedHues: [],
+    });
+    assert.strictEqual(without.baseHue, withEmpty.baseHue);
+  });
+
+  test('ignored when baseHue override is provided', () => {
+    const result = computeTint({
+      baseHue: 200,
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedHues: [0, 120],
+    });
+    assert.strictEqual(result.baseHue, 200);
+  });
+
+  test('deterministic for same inputs', () => {
+    const a = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedHues: [0, 60, 120, 180, 240, 300],
+    });
+    const b = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedHues: [0, 60, 120, 180, 240, 300],
+    });
+    assert.deepStrictEqual(a, b);
+  });
+});
+
+suite('computeTint customColors', () => {
+  test('selects a color deterministically', () => {
+    const colors = ['#e06c75', '#98c379', '#61afef', '#c678dd'];
+    const a = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: colors,
+    });
+    const b = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: colors,
+    });
+    assert.deepStrictEqual(a, b);
+  });
+
+  test('produces valid hex colors', () => {
+    const hexPattern = /^#[0-9a-f]{6}$/i;
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: ['#ff0000', '#00ff00'],
+    });
+    for (const detail of result.keys) {
+      assert.match(
+        detail.tintHex,
+        hexPattern,
+        `Invalid tintHex for ${detail.key}`
+      );
+      assert.match(
+        detail.finalHex,
+        hexPattern,
+        `Invalid finalHex for ${detail.key}`
+      );
+    }
+  });
+
+  test('harmony offsets still shift hue', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: ['#ff0000'],
+      colorHarmony: 'duotone',
+    });
+
+    const titleBarBg = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )!;
+    const activityBarBg = result.keys.find(
+      (k) => k.key === 'activityBar.background'
+    )!;
+
+    // Duotone: titleBar=0, activityBar=180 — hues should differ
+    const titleBarHue = hexToOklch(titleBarBg.tintHex).h;
+    const activityBarHue = hexToOklch(activityBarBg.tintHex).h;
+    assert.notStrictEqual(
+      Math.round(titleBarHue),
+      Math.round(activityBarHue),
+      'Harmony offsets should shift hue in custom color mode'
+    );
+  });
+
+  test('theme blending still applies', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: ['#ff0000'],
+      themeColors: { 'editor.background': '#282C34' },
+      themeBlendFactor: 0.5,
+    });
+
+    const diffCount = result.keys.filter(
+      (d) => d.tintHex !== d.finalHex
+    ).length;
+    assert.ok(
+      diffCount > 0,
+      'Theme blending should produce different tint vs final'
+    );
+  });
+
+  test('ignored when baseHue override is provided', () => {
+    const result = computeTint({
+      baseHue: 200,
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: ['#ff0000'],
+    });
+    assert.strictEqual(result.baseHue, 200);
+  });
+
+  test('takes precedence over allowedHues', () => {
+    const withCustom = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: ['#ff0000'],
+      allowedHues: [0],
+    });
+
+    const withAllowed = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedHues: [0],
+    });
+
+    // customColors should produce a different result than allowedHues alone
+    assert.notStrictEqual(withCustom.baseHue, withAllowed.baseHue);
+  });
+
+  test('empty customColors has no effect', () => {
+    const without = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+    });
+    const withEmpty = computeTint({
+      workspaceIdentifier: 'test',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customColors: [],
+    });
+    assert.deepStrictEqual(without, withEmpty);
   });
 });
 

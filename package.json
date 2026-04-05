@@ -410,11 +410,33 @@
           "description": "Override the base hue (0-359) for this workspace. When set, bypasses the deterministic hue calculation. Intended for workspace-level configuration.",
           "order": 22
         },
+        "glaze.tint.allowedHues": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 359
+          },
+          "default": [],
+          "uniqueItems": true,
+          "markdownDescription": "Restrict computed hues to this set of allowed values (0–359). The deterministic hash selects the closest hue from this list. Empty array means no restriction. Ignored when `#glaze.tint.baseHueOverride#` is set.\n\n**Example:**\n```json\n[0, 60, 120, 180, 240, 300]\n```",
+          "order": 23
+        },
+        "glaze.tint.customColors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "default": [],
+          "markdownDescription": "Array of hex colors to use instead of generated tints. When non-empty, bypasses hue generation and color style — a color is selected deterministically based on the workspace identifier. Color harmony and theme blending still apply. Takes precedence over `#glaze.tint.allowedHues#`.\n\n**Example:**\n```json\n[\"#e06c75\", \"#98c379\", \"#61afef\", \"#c678dd\"]\n```",
+          "order": 24
+        },
         "glaze.theme.colors": {
           "type": "object",
           "default": {},
           "markdownDescription": "Custom theme colors for themes not in the built-in list or to override built-in values. Uses native VSCode color keys.\n\n**Example:**\n```json\n{\n  \"My Theme\": {\n    \"colors\": {\n      \"editor.background\": \"#282C34\",\n      \"titleBar.activeBackground\": \"#21252B\",\n      \"statusBar.background\": \"#21252B\",\n      \"activityBar.background\": \"#21252B\"\n    },\n    \"type\": \"dark\"\n  }\n}\n```",
-          "order": 23,
+          "order": 25,
           "additionalProperties": {
             "type": "object",
             "required": [

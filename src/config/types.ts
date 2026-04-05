@@ -110,6 +110,18 @@ export interface TintConfig {
    * deterministic hue calculation. null = no override.
    */
   baseHueOverride: number | null;
+
+  /**
+   * Restrict computed hues to these values (0-359).
+   * Empty array means no restriction.
+   */
+  allowedHues: readonly number[];
+
+  /**
+   * Custom hex colors for deterministic selection.
+   * Empty array means use normal hue pipeline.
+   */
+  customColors: readonly string[];
 }
 
 /**
