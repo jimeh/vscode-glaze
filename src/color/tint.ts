@@ -15,7 +15,7 @@ import {
 } from '../theme';
 import { getColorForKey } from '../theme/colors';
 import { hashString } from './hash';
-import { oklchToHex, maxChroma } from './convert';
+import { oklchToHex, maxChroma, hexToOklch } from './convert';
 import { getBlendFunction } from './blend';
 import type { BlendMethod } from './blend';
 import { getStyleResolver } from './styles';
@@ -23,6 +23,7 @@ import type { StyleResolveContext } from './styles';
 import { HARMONY_CONFIGS } from './harmony';
 import { applyHueOffset } from './hue';
 import type { TintColors } from '../statusBar/types';
+import type { OKLCH } from './types';
 
 // ============================================================================
 // Types
@@ -97,6 +98,10 @@ export interface ComputeTintOptions {
   targetBlendFactors?: Partial<Record<TintTarget, number>> | undefined;
   /** Seed for hue calculation, default 0 */
   seed?: number | undefined;
+  /** Restrict deterministic base hue to this set when provided */
+  allowedBaseHues?: readonly number[] | undefined;
+  /** Use deterministic selection from these hex colors, bypassing style */
+  customBaseColors?: readonly string[] | undefined;
 }
 
 // ============================================================================
@@ -189,14 +194,54 @@ export function computeTint(options: ComputeTintOptions): TintResult {
     themeBlendFactor = DEFAULT_BLEND_FACTOR,
     targetBlendFactors,
     seed = 0,
+    allowedBaseHues,
+    customBaseColors,
   } = options;
+
+  const normalizedCustomBaseColors = customBaseColors?.filter((hex) =>
+    /^#[0-9a-f]{6}$/i.test(hex)
+  );
+  const hasCustomBaseColors =
+    normalizedCustomBaseColors !== undefined &&
+    normalizedCustomBaseColors.length > 0;
+  const selectedCustomBase =
+    hasCustomBaseColors && options.workspaceIdentifier !== undefined
+      ? normalizedCustomBaseColors[
+          computeBaseHue(options.workspaceIdentifier, seed) %
+            normalizedCustomBaseColors.length
+        ]
+      : hasCustomBaseColors && options.baseHue !== undefined
+        ? normalizedCustomBaseColors[
+            ((Math.floor(options.baseHue) % normalizedCustomBaseColors.length) +
+              normalizedCustomBaseColors.length) %
+              normalizedCustomBaseColors.length
+          ]
+        : undefined;
+  const customBaseOklch =
+    selectedCustomBase !== undefined
+      ? hexToOklch(selectedCustomBase)
+      : undefined;
 
   // Resolve base hue
   let baseHue: number;
-  if (options.baseHue !== undefined) {
+  if (customBaseOklch !== undefined) {
+    baseHue = customBaseOklch.h;
+  } else if (options.baseHue !== undefined) {
     baseHue = options.baseHue;
   } else if (options.workspaceIdentifier !== undefined) {
-    baseHue = computeBaseHue(options.workspaceIdentifier, seed);
+    const computedHue = computeBaseHue(options.workspaceIdentifier, seed);
+    if (allowedBaseHues !== undefined && allowedBaseHues.length > 0) {
+      const clampedHues = allowedBaseHues.filter(
+        (h) => Number.isInteger(h) && h >= 0 && h <= 359
+      );
+      if (clampedHues.length > 0) {
+        baseHue = clampedHues[computedHue % clampedHues.length];
+      } else {
+        baseHue = computedHue;
+      }
+    } else {
+      baseHue = computedHue;
+    }
   } else {
     throw new Error(
       'computeTint requires either baseHue or workspaceIdentifier'
@@ -218,18 +263,28 @@ export function computeTint(options: ComputeTintOptions): TintResult {
       // Pre-apply harmony hue offset for this element
       const elementHue = applyHueOffset(baseHue, harmonyConfig[def.element]);
 
-      // Build per-key resolve context with offset-adjusted hue
-      const resolveContext: StyleResolveContext = {
-        themeColors,
-        elementHue,
-      };
+      let tintOklch: OKLCH;
+      let hueOnlyBlend: boolean;
+      if (customBaseOklch !== undefined) {
+        tintOklch = {
+          ...customBaseOklch,
+          h: elementHue,
+        };
+        hueOnlyBlend = false;
+      } else {
+        // Build per-key resolve context with offset-adjusted hue
+        const resolveContext: StyleResolveContext = {
+          themeColors,
+          elementHue,
+        };
 
-      // Resolve tint color via style resolver
-      const { tintOklch, hueOnlyBlend } = resolver(
-        themeType,
-        key,
-        resolveContext
-      );
+        // Resolve tint color via style resolver
+        ({ tintOklch, hueOnlyBlend } = resolver(
+          themeType,
+          key,
+          resolveContext
+        ));
+      }
       const tintHex = oklchToHex(tintOklch);
 
       // Look up theme color

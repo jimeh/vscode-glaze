@@ -110,6 +110,19 @@ export interface TintConfig {
    * deterministic hue calculation. null = no override.
    */
   baseHueOverride: number | null;
+
+  /**
+   * Optional list of allowed base hues (0-359). When set, the
+   * deterministic hue is clamped to one of these values.
+   */
+  allowedBaseHues: number[];
+
+  /**
+   * Optional list of fully custom base tint colors.
+   * When set, Glaze picks one color deterministically per workspace
+   * and bypasses color style generation.
+   */
+  customBaseColors: string[];
 }
 
 /**

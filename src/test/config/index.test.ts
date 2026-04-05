@@ -886,6 +886,50 @@ suite('getTintConfig', () => {
     const result = getTintConfig();
     assert.strictEqual(result.baseHueOverride, null);
   });
+
+  test('defaults to empty allowedBaseHues when not configured', async () => {
+    await updateConfig(
+      'tint.allowedBaseHues',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.deepStrictEqual(result.allowedBaseHues, []);
+  });
+
+  test('reads and validates allowedBaseHues', async () => {
+    await updateConfig(
+      'tint.allowedBaseHues',
+      [0, 120, 120, 240, 361, -1],
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.deepStrictEqual(result.allowedBaseHues, [0, 120, 240]);
+  });
+
+  test('defaults to empty customBaseColors when not configured', async () => {
+    await updateConfig(
+      'tint.customBaseColors',
+      undefined,
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.deepStrictEqual(result.customBaseColors, []);
+  });
+
+  test('reads and validates customBaseColors', async () => {
+    await updateConfig(
+      'tint.customBaseColors',
+      ['#ABCDEF', '#abcdef', '#123456', '#zzz999'],
+      vscode.ConfigurationTarget.Global
+    );
+
+    const result = getTintConfig();
+    assert.deepStrictEqual(result.customBaseColors, ['#abcdef', '#123456']);
+  });
 });
 
 suite('getBaseHueOverride', () => {

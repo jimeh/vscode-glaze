@@ -56,6 +56,35 @@ suite('computeBaseHue', () => {
     assert.notStrictEqual(a, b);
   });
 
+  test('allowedBaseHues clamps deterministic hue to configured values', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedBaseHues: [15, 120, 300],
+    });
+    assert.ok(
+      [15, 120, 300].includes(result.baseHue),
+      `Expected clamped hue, got ${result.baseHue}`
+    );
+  });
+
+  test('same workspace deterministically picks same allowed hue', () => {
+    const a = computeTint({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedBaseHues: [15, 120, 300],
+    });
+    const b = computeTint({
+      workspaceIdentifier: 'my-project',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      allowedBaseHues: [15, 120, 300],
+    });
+    assert.strictEqual(a.baseHue, b.baseHue);
+  });
+
   test('seed=0 produces same as no XOR (seedHash=0)', () => {
     const a = computeBaseHue('test', 0);
     const b = computeBaseHue('test', 0);
@@ -264,6 +293,83 @@ suite('computeTint', () => {
     assert.ok(
       diffCount > 0,
       'Some keys should have different tint vs final with blending'
+    );
+  });
+
+  test('customBaseColors bypasses style and uses deterministic palette color', () => {
+    const result1 = computeTint({
+      workspaceIdentifier: 'custom-workspace',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'vibrant',
+      customBaseColors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+    const result2 = computeTint({
+      workspaceIdentifier: 'custom-workspace',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorStyle: 'adaptive',
+      customBaseColors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+
+    const titleBar1 = result1.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    );
+    const titleBar2 = result2.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    );
+
+    assert.ok(titleBar1 !== undefined);
+    assert.ok(titleBar2 !== undefined);
+    assert.strictEqual(titleBar1.tintHex, titleBar2.tintHex);
+    assert.ok(
+      ['#ff0000', '#00ff00', '#0000ff'].includes(titleBar1.tintHex),
+      `Expected custom color, got ${titleBar1.tintHex}`
+    );
+  });
+
+  test('customBaseColors keeps selected hex unchanged for uniform harmony', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'uniform-custom-workspace',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      colorHarmony: 'uniform',
+      customBaseColors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+    const expectedHex = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )?.tintHex;
+    assert.ok(expectedHex !== undefined);
+    assert.ok(
+      ['#ff0000', '#00ff00', '#0000ff'].includes(expectedHex),
+      `Expected custom color, got ${expectedHex}`
+    );
+
+    for (const key of result.keys) {
+      assert.strictEqual(
+        key.tintHex,
+        expectedHex,
+        `${key.key} should keep selected custom color in uniform harmony`
+      );
+    }
+  });
+
+  test('customBaseColors sets baseHue from selected custom color hue', () => {
+    const result = computeTint({
+      workspaceIdentifier: 'hue-source-workspace',
+      targets: ALL_TARGETS,
+      themeType: 'dark',
+      customBaseColors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+
+    const selectedHex = result.keys.find(
+      (k) => k.key === 'titleBar.activeBackground'
+    )?.tintHex;
+    assert.ok(selectedHex !== undefined);
+    const selectedHue = hexToOklch(selectedHex!).h;
+    assert.ok(
+      Math.abs(result.baseHue - selectedHue) < 0.01,
+      `baseHue ${result.baseHue} should match selected hue ${selectedHue}`
     );
   });
 
