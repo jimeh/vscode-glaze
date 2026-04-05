@@ -3,6 +3,8 @@ import {
   _buildTargets,
   _validateSeed,
   _validateBaseHueOverride,
+  _validateAllowedHues,
+  _validateCustomColors,
   _clampBlendFactor,
   _buildTargetBlendFactors,
   _validateEnum,
@@ -175,6 +177,90 @@ suite('_validateBaseHueOverride', () => {
 
   test('returns null for NaN', () => {
     assert.strictEqual(_validateBaseHueOverride(NaN), null);
+  });
+});
+
+suite('_validateAllowedHues', () => {
+  test('returns empty array for empty input', () => {
+    assert.deepStrictEqual(_validateAllowedHues([]), []);
+  });
+
+  test('preserves valid integers in [0, 359]', () => {
+    assert.deepStrictEqual(
+      _validateAllowedHues([0, 120, 240, 359]),
+      [0, 120, 240, 359]
+    );
+  });
+
+  test('filters out floats', () => {
+    assert.deepStrictEqual(_validateAllowedHues([3.14, 100]), [100]);
+  });
+
+  test('filters out negatives', () => {
+    assert.deepStrictEqual(_validateAllowedHues([-1, 50]), [50]);
+  });
+
+  test('filters out values >= 360', () => {
+    assert.deepStrictEqual(_validateAllowedHues([360, 400, 180]), [180]);
+  });
+
+  test('filters out non-numbers', () => {
+    assert.deepStrictEqual(
+      _validateAllowedHues(['hello', true, null, undefined, 90]),
+      [90]
+    );
+  });
+
+  test('deduplicates keeping first occurrence', () => {
+    assert.deepStrictEqual(
+      _validateAllowedHues([10, 20, 10, 30, 20]),
+      [10, 20, 30]
+    );
+  });
+
+  test('mixed valid and invalid input', () => {
+    assert.deepStrictEqual(
+      _validateAllowedHues([0, 'bad', 3.5, 400, 180, -1, 180]),
+      [0, 180]
+    );
+  });
+});
+
+suite('_validateCustomColors', () => {
+  test('returns empty array for empty input', () => {
+    assert.deepStrictEqual(_validateCustomColors([]), []);
+  });
+
+  test('preserves valid hex colors and lowercases', () => {
+    assert.deepStrictEqual(
+      _validateCustomColors(['#FF0000', '#00ff00', '#0000FF']),
+      ['#ff0000', '#00ff00', '#0000ff']
+    );
+  });
+
+  test('filters out invalid hex (wrong length)', () => {
+    assert.deepStrictEqual(
+      _validateCustomColors(['#fff', '#12345', '#ff0000']),
+      ['#ff0000']
+    );
+  });
+
+  test('filters out missing hash', () => {
+    assert.deepStrictEqual(_validateCustomColors(['ff0000', '#00ff00']), [
+      '#00ff00',
+    ]);
+  });
+
+  test('filters out non-hex chars', () => {
+    assert.deepStrictEqual(_validateCustomColors(['#gggggg', '#abcdef']), [
+      '#abcdef',
+    ]);
+  });
+
+  test('filters out non-strings', () => {
+    assert.deepStrictEqual(_validateCustomColors([42, true, null, '#aabbcc']), [
+      '#aabbcc',
+    ]);
   });
 });
 

@@ -192,6 +192,8 @@ async function applyTintColors(
     themeBlendFactor: themeConfig.blendFactor,
     targetBlendFactors: themeConfig.targetBlendFactors,
     seed: tintConfig.seed,
+    allowedHues: tintConfig.allowedHues,
+    customColors: tintConfig.customColors,
   });
   const colors = tintResultToPalette(tintResult);
   log.trace('Computed baseHue:', tintResult.baseHue);

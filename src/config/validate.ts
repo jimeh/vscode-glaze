@@ -76,6 +76,44 @@ export function _buildTargetBlendFactors(
 }
 
 /**
+ * Validates an array of allowed hue values. Filters to
+ * integers in [0, 359] and deduplicates.
+ */
+export function _validateAllowedHues(value: unknown[]): number[] {
+  const seen = new Set<number>();
+  const result: number[] = [];
+  for (const v of value) {
+    if (
+      typeof v === 'number' &&
+      Number.isInteger(v) &&
+      v >= 0 &&
+      v <= 359 &&
+      !seen.has(v)
+    ) {
+      seen.add(v);
+      result.push(v);
+    }
+  }
+  return result;
+}
+
+const HEX_COLOR_RE = /^#[0-9a-fA-F]{6}$/;
+
+/**
+ * Validates an array of custom hex colors. Filters to valid
+ * 6-digit hex strings and normalizes to lowercase.
+ */
+export function _validateCustomColors(value: unknown[]): string[] {
+  const result: string[] = [];
+  for (const v of value) {
+    if (typeof v === 'string' && HEX_COLOR_RE.test(v)) {
+      result.push(v.toLowerCase());
+    }
+  }
+  return result;
+}
+
+/**
  * Validates a string value against an allowed set. Returns
  * the value if it is included, otherwise falls back to the
  * default.
