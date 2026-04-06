@@ -1,0 +1,90 @@
+{
+  "extensionId": "f3677f6e-30fe-4d7f-b7d3-21d3f3e71d7b",
+  "extensionName": "ultra-instinct-theme",
+  "publisherName": "JuanLias",
+  "displayName": "Ultra Instinct Theme",
+  "version": "0.1.4",
+  "extractedAt": "2026-04-06T06:41:06.319Z",
+  "installCount": 4863,
+  "themes": [
+    {
+      "name": "Ultra Instinct Sign",
+      "label": "Ultra Instinct Sign",
+      "colors": {
+        "editor.background": "#0D1017",
+        "editor.foreground": "#B0B5C0",
+        "titleBar.activeBackground": "#0D1017",
+        "titleBar.activeForeground": "#A0B0E0",
+        "titleBar.inactiveBackground": "#0D1017",
+        "titleBar.inactiveForeground": "#505370",
+        "titleBar.border": "#3D5AFE",
+        "statusBar.background": "#0D1017",
+        "statusBar.foreground": "#DCE0E5",
+        "statusBar.border": "#3D5AFE",
+        "activityBar.background": "#0A0D12",
+        "activityBar.foreground": "#3D5AFE",
+        "activityBar.activeBackground": "#3D5AFE",
+        "activityBar.activeBorder": "#3D5AFE",
+        "sideBar.background": "#0A0D12",
+        "sideBar.foreground": "#B0B0D0",
+        "sideBar.border": "#3D5AFE",
+        "sideBarSectionHeader.background": "#101020",
+        "sideBarSectionHeader.foreground": "#DCE0E5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ultra Instinct Mastered",
+      "label": "Ultra Instinct Mastered",
+      "colors": {
+        "editor.background": "#141118",
+        "editor.foreground": "#B0B5C0",
+        "titleBar.activeBackground": "#141118",
+        "titleBar.activeForeground": "#C0A0E0",
+        "titleBar.inactiveBackground": "#141118",
+        "titleBar.inactiveForeground": "#6B5070",
+        "titleBar.border": "#7B42FF",
+        "statusBar.background": "#141118",
+        "statusBar.foreground": "#DCE0E5",
+        "statusBar.border": "#7B42FF",
+        "activityBar.background": "#0F0D14",
+        "activityBar.foreground": "#7B42FF",
+        "activityBar.activeBackground": "#7B42FF",
+        "activityBar.activeBorder": "#7B42FF",
+        "sideBar.background": "#0F0D14",
+        "sideBar.foreground": "#B0B0D0",
+        "sideBar.border": "#7B42FF",
+        "sideBarSectionHeader.background": "#1A1525",
+        "sideBarSectionHeader.foreground": "#DCE0E5"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Ultra Instinct Mastered (Light)",
+      "label": "Ultra Instinct Mastered (Light)",
+      "colors": {
+        "editor.background": "#F8FAFC",
+        "editor.foreground": "#334155",
+        "titleBar.activeBackground": "#F8FAFC",
+        "titleBar.activeForeground": "#A855F7",
+        "titleBar.inactiveBackground": "#F1F5F9",
+        "titleBar.inactiveForeground": "#94A3B8",
+        "titleBar.border": "#9333EA",
+        "statusBar.background": "#F8FAFC",
+        "statusBar.foreground": "#1E293B",
+        "statusBar.border": "#9333EA",
+        "activityBar.background": "#F1F5F9",
+        "activityBar.foreground": "#9333EA",
+        "activityBar.activeBackground": "#9333EA",
+        "activityBar.activeBorder": "#9333EA",
+        "sideBar.background": "#F1F5F9",
+        "sideBar.foreground": "#475569",
+        "sideBar.border": "#E2E8F0",
+        "sideBarSectionHeader.background": "#E2E8F0",
+        "sideBarSectionHeader.foreground": "#1E293B"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

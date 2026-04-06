@@ -3,9 +3,9 @@
   "extensionName": "xscriptor-themes",
   "publisherName": "xscriptor",
   "displayName": "Xscriptor Themes",
-  "version": "1.0.8",
-  "extractedAt": "2026-02-08T00:10:58.264Z",
-  "installCount": 26604,
+  "version": "1.1.0",
+  "extractedAt": "2026-04-06T06:40:53.011Z",
+  "installCount": 30923,
   "themes": [
     {
       "name": "X",
@@ -138,7 +138,7 @@
         "titleBar.border": "#222327",
         "statusBar.background": "#181A1F",
         "statusBar.foreground": "#9DA5B4",
-        "statusBar.border": "#222327",
+        "statusBar.border": "#E05561",
         "activityBar.background": "#181A1F",
         "activityBar.foreground": "#D7DAE0",
         "activityBar.activeBorder": "#76CCE0",

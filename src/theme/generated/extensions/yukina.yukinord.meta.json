@@ -3,9 +3,9 @@
   "extensionName": "yukinord",
   "publisherName": "Yukina",
   "displayName": "Yukinord",
-  "version": "0.0.64",
-  "extractedAt": "2026-03-02T06:21:42.754Z",
-  "installCount": 15724,
+  "version": "0.0.66",
+  "extractedAt": "2026-04-06T06:40:57.351Z",
+  "installCount": 18702,
   "themes": [
     {
       "name": "Yukinord",
@@ -16,7 +16,7 @@
         "titleBar.activeBackground": "#1D2129",
         "titleBar.activeForeground": "#ECEFF4",
         "titleBar.inactiveBackground": "#1D2129",
-        "titleBar.inactiveForeground": "#D8DEE9",
+        "titleBar.inactiveForeground": "#ECEFF4",
         "titleBar.border": "#3B4252",
         "statusBar.background": "#1D2129",
         "statusBar.foreground": "#D8DEE9",
