@@ -1,0 +1,150 @@
+{
+  "extensionId": "79d144de-0810-49d1-bfc0-6f4919d4c24c",
+  "extensionName": "geode-amethyst-theme",
+  "publisherName": "tettetrouse0t",
+  "displayName": "Geode Amethyst",
+  "version": "1.0.0",
+  "extractedAt": "2026-04-06T06:41:04.093Z",
+  "installCount": 11136,
+  "themes": [
+    {
+      "name": "Geode Amethyst",
+      "label": "Geode Amethyst",
+      "colors": {
+        "editor.background": "#1A1B26",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#13141C",
+        "titleBar.activeForeground": "#C0CAF5",
+        "titleBar.inactiveBackground": "#13141C",
+        "titleBar.inactiveForeground": "#565F89",
+        "statusBar.background": "#13141C",
+        "statusBar.foreground": "#9AA5CE",
+        "activityBar.background": "#13141C",
+        "activityBar.foreground": "#9D7CD8",
+        "activityBar.activeBackground": "#9D7CD8",
+        "activityBar.activeBorder": "#9D7CD8",
+        "sideBar.background": "#13141C",
+        "sideBar.foreground": "#9AA5CE",
+        "sideBarSectionHeader.background": "#1A1B26",
+        "sideBarSectionHeader.border": "#3D3F5C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Geode Amethyst Dawn",
+      "label": "Geode Amethyst Dawn",
+      "colors": {
+        "editor.background": "#1F2030",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#181922",
+        "titleBar.activeForeground": "#C0CAF5",
+        "titleBar.inactiveBackground": "#181922",
+        "titleBar.inactiveForeground": "#6B7394",
+        "statusBar.background": "#181922",
+        "statusBar.foreground": "#A4ADCE",
+        "activityBar.background": "#181922",
+        "activityBar.foreground": "#9D7CD8",
+        "activityBar.activeBackground": "#9D7CD8",
+        "activityBar.activeBorder": "#9D7CD8",
+        "sideBar.background": "#181922",
+        "sideBar.foreground": "#A4ADCE",
+        "sideBarSectionHeader.background": "#1F2030",
+        "sideBarSectionHeader.border": "#454766"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Geode Amethyst Dusk",
+      "label": "Geode Amethyst Dusk",
+      "colors": {
+        "editor.background": "#16171F",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#101118",
+        "titleBar.activeForeground": "#C0CAF5",
+        "titleBar.inactiveBackground": "#101118",
+        "titleBar.inactiveForeground": "#505370",
+        "statusBar.background": "#101118",
+        "statusBar.foreground": "#8A90B0",
+        "activityBar.background": "#101118",
+        "activityBar.foreground": "#9D7CD8",
+        "activityBar.activeBackground": "#9D7CD8",
+        "activityBar.activeBorder": "#9D7CD8",
+        "sideBar.background": "#101118",
+        "sideBar.foreground": "#8A90B0",
+        "sideBarSectionHeader.background": "#16171F",
+        "sideBarSectionHeader.border": "#353850"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Geode Amethyst Midnight",
+      "label": "Geode Amethyst Midnight",
+      "colors": {
+        "editor.background": "#0F1016",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#0A0B0F",
+        "titleBar.activeForeground": "#C0CAF5",
+        "titleBar.inactiveBackground": "#0A0B0F",
+        "titleBar.inactiveForeground": "#464860",
+        "statusBar.background": "#0A0B0F",
+        "statusBar.foreground": "#7880A0",
+        "activityBar.background": "#0A0B0F",
+        "activityBar.foreground": "#9D7CD8",
+        "activityBar.activeBackground": "#9D7CD8",
+        "activityBar.activeBorder": "#9D7CD8",
+        "sideBar.background": "#0A0B0F",
+        "sideBar.foreground": "#7880A0",
+        "sideBarSectionHeader.background": "#0F1016",
+        "sideBarSectionHeader.border": "#2A2D40"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Geode Amethyst Crystal",
+      "label": "Geode Amethyst Crystal",
+      "colors": {
+        "editor.background": "#1C1D2A",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#14151E",
+        "titleBar.activeForeground": "#C0CAF5",
+        "titleBar.inactiveBackground": "#14151E",
+        "titleBar.inactiveForeground": "#5C6085",
+        "statusBar.background": "#14151E",
+        "statusBar.foreground": "#9AA0C5",
+        "activityBar.background": "#14151E",
+        "activityBar.foreground": "#A78BDB",
+        "activityBar.activeBackground": "#A78BDB",
+        "activityBar.activeBorder": "#A78BDB",
+        "sideBar.background": "#14151E",
+        "sideBar.foreground": "#9AA0C5",
+        "sideBarSectionHeader.background": "#1C1D2A",
+        "sideBarSectionHeader.border": "#404260"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Geode Amethyst Cave",
+      "label": "Geode Amethyst Cave",
+      "colors": {
+        "editor.background": "#0D0E14",
+        "editor.foreground": "#C0CAF5",
+        "titleBar.activeBackground": "#08090C",
+        "titleBar.activeForeground": "#C0CAF5",
+        "titleBar.inactiveBackground": "#08090C",
+        "titleBar.inactiveForeground": "#3C405A",
+        "statusBar.background": "#08090C",
+        "statusBar.foreground": "#6A7095",
+        "activityBar.background": "#08090C",
+        "activityBar.foreground": "#9D7CD8",
+        "activityBar.activeBackground": "#9D7CD8",
+        "activityBar.activeBorder": "#9D7CD8",
+        "sideBar.background": "#08090C",
+        "sideBar.foreground": "#6A7095",
+        "sideBarSectionHeader.background": "#0D0E14",
+        "sideBarSectionHeader.border": "#222538"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

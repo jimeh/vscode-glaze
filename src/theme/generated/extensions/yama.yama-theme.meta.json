@@ -1,0 +1,39 @@
+{
+  "extensionId": "506b5f05-8958-4551-b6cb-483a8fa48b38",
+  "extensionName": "yama-theme",
+  "publisherName": "yama",
+  "displayName": "YaMa Theme",
+  "version": "0.0.1",
+  "extractedAt": "2026-04-06T06:41:05.918Z",
+  "installCount": 4908,
+  "themes": [
+    {
+      "name": "YaMa",
+      "label": "YaMa",
+      "colors": {
+        "editor.background": "#F9FAFB",
+        "editor.foreground": "#0F172A",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#656D76",
+        "titleBar.inactiveBackground": "#F6F8FA",
+        "titleBar.inactiveForeground": "#656D76",
+        "titleBar.border": "#D0D7DE",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#656D76",
+        "statusBar.border": "#D0D7DE",
+        "statusBar.focusBorder": "#0284C7",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#0F172A",
+        "activityBar.activeBorder": "#0284C7",
+        "sideBar.background": "#F6F8FA",
+        "sideBar.foreground": "#0F172A",
+        "sideBar.border": "#D0D7DE",
+        "sideBarSectionHeader.background": "#F6F8FA",
+        "sideBarSectionHeader.foreground": "#0F172A",
+        "sideBarSectionHeader.border": "#D0D7DE"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}
