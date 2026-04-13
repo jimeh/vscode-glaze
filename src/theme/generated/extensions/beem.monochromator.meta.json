@@ -3,9 +3,9 @@
   "extensionName": "monochromator",
   "publisherName": "beem",
   "displayName": "Monochromator",
-  "version": "0.31.1",
-  "extractedAt": "2026-03-02T06:21:42.391Z",
-  "installCount": 18148,
+  "version": "0.31.2",
+  "extractedAt": "2026-04-13T06:47:12.120Z",
+  "installCount": 25260,
   "themes": [
     {
       "name": "Monochromator Dark",

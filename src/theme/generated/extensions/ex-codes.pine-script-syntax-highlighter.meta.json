@@ -1,0 +1,11 @@
+{
+  "extensionId": "3890a034-fd6e-41f7-a689-4bfb8c250edd",
+  "extensionName": "pine-script-syntax-highlighter",
+  "publisherName": "ex-codes",
+  "displayName": "Pine Script Syntax Highlighter",
+  "version": "1.0.5",
+  "extractedAt": "2026-04-13T06:47:26.656Z",
+  "installCount": 4348,
+  "themes": [],
+  "source": "openvsx"
+}
