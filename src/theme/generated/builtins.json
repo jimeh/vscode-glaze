@@ -1,61 +1,7 @@
 {
-  "tag": "1.109.5",
-  "extractedAt": "2026-03-02T06:21:31.035Z",
+  "tag": "1.115.0",
+  "extractedAt": "2026-04-13T06:47:00.510Z",
   "themes": [
-    {
-      "name": "Experimental Light",
-      "label": "VS Code Light",
-      "colors": {
-        "editor.background": "#FFFFFF",
-        "editor.foreground": "#202020",
-        "titleBar.activeBackground": "#FAFAFD",
-        "titleBar.activeForeground": "#424242",
-        "titleBar.inactiveBackground": "#FAFAFD",
-        "titleBar.inactiveForeground": "#666666",
-        "titleBar.border": "#F2F3F4",
-        "statusBar.background": "#FAFAFD",
-        "statusBar.foreground": "#666666",
-        "statusBar.border": "#F2F3F4",
-        "statusBar.focusBorder": "#0069CC",
-        "activityBar.background": "#FAFAFD",
-        "activityBar.foreground": "#202020",
-        "activityBar.activeBorder": "#000000",
-        "sideBar.background": "#FAFAFD",
-        "sideBar.foreground": "#202020",
-        "sideBar.border": "#F2F3F4",
-        "sideBarSectionHeader.background": "#FAFAFD",
-        "sideBarSectionHeader.foreground": "#202020",
-        "sideBarSectionHeader.border": "#F2F3F4"
-      },
-      "type": "light"
-    },
-    {
-      "name": "Experimental Dark",
-      "label": "VS Code Dark",
-      "colors": {
-        "editor.background": "#121314",
-        "editor.foreground": "#BBBEBF",
-        "titleBar.activeBackground": "#191A1B",
-        "titleBar.activeForeground": "#BFBFBF",
-        "titleBar.inactiveBackground": "#191A1B",
-        "titleBar.inactiveForeground": "#888888",
-        "titleBar.border": "#2A2B2C",
-        "statusBar.background": "#191A1B",
-        "statusBar.foreground": "#888888",
-        "statusBar.border": "#2A2B2C",
-        "statusBar.focusBorder": "#3994BC",
-        "activityBar.background": "#191A1B",
-        "activityBar.foreground": "#BFBFBF",
-        "activityBar.activeBorder": "#BFBFBF",
-        "sideBar.background": "#191A1B",
-        "sideBar.foreground": "#BFBFBF",
-        "sideBar.border": "#2A2B2C",
-        "sideBarSectionHeader.background": "#191A1B",
-        "sideBarSectionHeader.foreground": "#BFBFBF",
-        "sideBarSectionHeader.border": "#2A2B2C"
-      },
-      "type": "dark"
-    },
     {
       "name": "Abyss",
       "label": "Abyss",
@@ -71,7 +17,61 @@
       "type": "dark"
     },
     {
-      "name": "Default Dark+",
+      "name": "Light 2026",
+      "label": "Light 2026",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#202020",
+        "titleBar.activeBackground": "#FAFAFD",
+        "titleBar.activeForeground": "#606060",
+        "titleBar.inactiveBackground": "#FAFAFD",
+        "titleBar.inactiveForeground": "#606060",
+        "titleBar.border": "#F0F1F2",
+        "statusBar.background": "#FAFAFD",
+        "statusBar.foreground": "#606060",
+        "statusBar.border": "#F0F1F2",
+        "statusBar.focusBorder": "#0069CC",
+        "activityBar.background": "#FAFAFD",
+        "activityBar.foreground": "#202020",
+        "activityBar.activeBorder": "#000000",
+        "sideBar.background": "#FAFAFD",
+        "sideBar.foreground": "#202020",
+        "sideBar.border": "#F0F1F2",
+        "sideBarSectionHeader.background": "#FAFAFD",
+        "sideBarSectionHeader.foreground": "#202020",
+        "sideBarSectionHeader.border": "#F0F1F2"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Dark 2026",
+      "label": "Dark 2026",
+      "colors": {
+        "editor.background": "#121314",
+        "editor.foreground": "#BBBEBF",
+        "titleBar.activeBackground": "#191A1B",
+        "titleBar.activeForeground": "#8C8C8C",
+        "titleBar.inactiveBackground": "#191A1B",
+        "titleBar.inactiveForeground": "#8C8C8C",
+        "titleBar.border": "#2A2B2C",
+        "statusBar.background": "#191A1B",
+        "statusBar.foreground": "#8C8C8C",
+        "statusBar.border": "#2A2B2C",
+        "statusBar.focusBorder": "#3994BC",
+        "activityBar.background": "#191A1B",
+        "activityBar.foreground": "#BFBFBF",
+        "activityBar.activeBorder": "#BFBFBF",
+        "sideBar.background": "#191A1B",
+        "sideBar.foreground": "#BFBFBF",
+        "sideBar.border": "#2A2B2C",
+        "sideBarSectionHeader.background": "#191A1B",
+        "sideBarSectionHeader.foreground": "#BFBFBF",
+        "sideBarSectionHeader.border": "#2A2B2C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Dark+",
       "label": "Dark+",
       "colors": {
         "editor.background": "#1E1E1E",
@@ -82,7 +82,7 @@
       "type": "dark"
     },
     {
-      "name": "Default Dark Modern",
+      "name": "Dark Modern",
       "label": "Dark Modern",
       "colors": {
         "editor.background": "#1F1F1F",
@@ -109,7 +109,7 @@
       "type": "dark"
     },
     {
-      "name": "Default Light+",
+      "name": "Light+",
       "label": "Light+",
       "colors": {
         "editor.background": "#FFFFFF",
@@ -120,7 +120,7 @@
       "type": "light"
     },
     {
-      "name": "Default Light Modern",
+      "name": "Light Modern",
       "label": "Light Modern",
       "colors": {
         "editor.background": "#FFFFFF",

@@ -3,28 +3,10 @@
   "extensionName": "dark-minus-theme",
   "publisherName": "theNestruo",
   "displayName": "Dark-",
-  "version": "2.6.0",
-  "extractedAt": "2026-03-02T06:22:14.441Z",
-  "installCount": 4140,
+  "version": "2.8.0",
+  "extractedAt": "2026-04-13T06:47:23.701Z",
+  "installCount": 6918,
   "themes": [
-    {
-      "name": "Dark- custom",
-      "label": "Dark- custom",
-      "colors": {
-        "editor.background": "#181818",
-        "editor.foreground": "#D4D4D4",
-        "titleBar.activeBackground": "#1E1E1E",
-        "titleBar.inactiveBackground": "#1E1E1E",
-        "statusBar.background": "#0E639C",
-        "statusBar.foreground": "#FFFFFF",
-        "statusBar.focusBorder": "#000000",
-        "activityBar.background": "#1E1E1E",
-        "sideBar.background": "#1E1E1E",
-        "sideBarSectionHeader.background": "#000000",
-        "sideBarSectionHeader.border": "#454545"
-      },
-      "type": "dark"
-    },
     {
       "name": "Dark- Modern",
       "label": "Dark- Modern",

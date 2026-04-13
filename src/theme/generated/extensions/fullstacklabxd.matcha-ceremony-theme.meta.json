@@ -1,0 +1,150 @@
+{
+  "extensionId": "89520652-b38c-4c96-ac18-e40b3500e5e2",
+  "extensionName": "matcha-ceremony-theme",
+  "publisherName": "fullstacklabXD",
+  "displayName": "Matcha Ceremony",
+  "version": "1.0.0",
+  "extractedAt": "2026-04-13T06:47:20.906Z",
+  "installCount": 18053,
+  "themes": [
+    {
+      "name": "Matcha Ceremony",
+      "label": "Matcha Ceremony",
+      "colors": {
+        "editor.background": "#1D1F1B",
+        "editor.foreground": "#EDE8DC",
+        "titleBar.activeBackground": "#161814",
+        "titleBar.activeForeground": "#EDE8DC",
+        "titleBar.inactiveBackground": "#161814",
+        "titleBar.inactiveForeground": "#A89F8B",
+        "statusBar.background": "#161814",
+        "statusBar.foreground": "#C9C4B8",
+        "activityBar.background": "#1D1F1B",
+        "activityBar.foreground": "#7D9B76",
+        "activityBar.activeBackground": "#7D9B76",
+        "activityBar.activeBorder": "#7D9B76",
+        "sideBar.background": "#161814",
+        "sideBar.foreground": "#C9C4B8",
+        "sideBarSectionHeader.background": "#282B25",
+        "sideBarSectionHeader.border": "#3A3D36"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matcha Ceremony Dawn",
+      "label": "Matcha Ceremony Dawn",
+      "colors": {
+        "editor.background": "#242721",
+        "editor.foreground": "#EDE8DC",
+        "titleBar.activeBackground": "#1D201A",
+        "titleBar.activeForeground": "#EDE8DC",
+        "titleBar.inactiveBackground": "#1D201A",
+        "titleBar.inactiveForeground": "#A89F8B",
+        "statusBar.background": "#1D201A",
+        "statusBar.foreground": "#C9C4B8",
+        "activityBar.background": "#242721",
+        "activityBar.foreground": "#7D9B76",
+        "activityBar.activeBackground": "#7D9B76",
+        "activityBar.activeBorder": "#7D9B76",
+        "sideBar.background": "#1D201A",
+        "sideBar.foreground": "#C9C4B8",
+        "sideBarSectionHeader.background": "#2E312A",
+        "sideBarSectionHeader.border": "#3F423B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matcha Ceremony Dusk",
+      "label": "Matcha Ceremony Dusk",
+      "colors": {
+        "editor.background": "#141613",
+        "editor.foreground": "#EDE8DC",
+        "titleBar.activeBackground": "#0F110E",
+        "titleBar.activeForeground": "#EDE8DC",
+        "titleBar.inactiveBackground": "#0F110E",
+        "titleBar.inactiveForeground": "#A89F8B",
+        "statusBar.background": "#0F110E",
+        "statusBar.foreground": "#C9C4B8",
+        "activityBar.background": "#141613",
+        "activityBar.foreground": "#7D9B76",
+        "activityBar.activeBackground": "#7D9B76",
+        "activityBar.activeBorder": "#7D9B76",
+        "sideBar.background": "#0F110E",
+        "sideBar.foreground": "#C9C4B8",
+        "sideBarSectionHeader.background": "#1E211C",
+        "sideBarSectionHeader.border": "#2A2D27"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matcha Ceremony Midnight",
+      "label": "Matcha Ceremony Midnight",
+      "colors": {
+        "editor.background": "#0A0B09",
+        "editor.foreground": "#EDE8DC",
+        "titleBar.activeBackground": "#060706",
+        "titleBar.activeForeground": "#EDE8DC",
+        "titleBar.inactiveBackground": "#060706",
+        "titleBar.inactiveForeground": "#A89F8B",
+        "statusBar.background": "#060706",
+        "statusBar.foreground": "#C9C4B8",
+        "activityBar.background": "#0A0B09",
+        "activityBar.foreground": "#7D9B76",
+        "activityBar.activeBackground": "#7D9B76",
+        "activityBar.activeBorder": "#7D9B76",
+        "sideBar.background": "#060706",
+        "sideBar.foreground": "#C9C4B8",
+        "sideBarSectionHeader.background": "#14150F",
+        "sideBarSectionHeader.border": "#1A1C18"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matcha Ceremony Zen",
+      "label": "Matcha Ceremony Zen",
+      "colors": {
+        "editor.background": "#181A17",
+        "editor.foreground": "#D5D0C5",
+        "titleBar.activeBackground": "#141512",
+        "titleBar.activeForeground": "#D5D0C5",
+        "titleBar.inactiveBackground": "#141512",
+        "titleBar.inactiveForeground": "#8A8579",
+        "statusBar.background": "#141512",
+        "statusBar.foreground": "#B5B0A5",
+        "activityBar.background": "#181A17",
+        "activityBar.foreground": "#6D8A66",
+        "activityBar.activeBackground": "#6D8A66",
+        "activityBar.activeBorder": "#6D8A66",
+        "sideBar.background": "#141512",
+        "sideBar.foreground": "#B5B0A5",
+        "sideBarSectionHeader.background": "#222420",
+        "sideBarSectionHeader.border": "#2A2C28"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Matcha Ceremony Sakura",
+      "label": "Matcha Ceremony Sakura",
+      "colors": {
+        "editor.background": "#1D1F1B",
+        "editor.foreground": "#EDE8DC",
+        "titleBar.activeBackground": "#161814",
+        "titleBar.activeForeground": "#EDE8DC",
+        "titleBar.inactiveBackground": "#161814",
+        "titleBar.inactiveForeground": "#A89F8B",
+        "statusBar.background": "#161814",
+        "statusBar.foreground": "#C9C4B8",
+        "activityBar.background": "#1D1F1B",
+        "activityBar.foreground": "#C9A0A0",
+        "activityBar.activeBackground": "#C9A0A0",
+        "activityBar.activeBorder": "#C9A0A0",
+        "sideBar.background": "#161814",
+        "sideBar.foreground": "#C9C4B8",
+        "sideBarSectionHeader.background": "#282B25",
+        "sideBarSectionHeader.border": "#3A3D36"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

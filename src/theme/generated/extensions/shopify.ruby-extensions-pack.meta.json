@@ -3,9 +3,9 @@
   "extensionName": "ruby-extensions-pack",
   "publisherName": "Shopify",
   "displayName": "Ruby",
-  "version": "0.1.13",
-  "extractedAt": "2026-02-08T00:10:33.514Z",
-  "installCount": 679750,
+  "version": "0.1.14",
+  "extractedAt": "2026-04-13T06:47:08.320Z",
+  "installCount": 694257,
   "themes": [
     {
       "name": "Spinel",
