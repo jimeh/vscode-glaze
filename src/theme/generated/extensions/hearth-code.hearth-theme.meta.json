@@ -1,0 +1,112 @@
+{
+  "extensionId": "c5828087-2294-4343-a232-c72d61ccb8d0",
+  "extensionName": "hearth-theme",
+  "publisherName": "hearth-code",
+  "displayName": "HearthCode Theme",
+  "version": "3.7.7",
+  "extractedAt": "2026-09-07T11:34:18.436Z",
+  "installCount": 23052,
+  "themes": [
+    {
+      "name": "HearthCode Moss Dark",
+      "label": "HearthCode Moss Dark",
+      "colors": {
+        "editor.background": "#1B1D1A",
+        "editor.foreground": "#D2BEA2",
+        "titleBar.activeBackground": "#191815",
+        "titleBar.activeForeground": "#D2BEA2",
+        "titleBar.inactiveBackground": "#191815",
+        "titleBar.inactiveForeground": "#847867",
+        "titleBar.border": "#3C3A32",
+        "statusBar.background": "#B37F16",
+        "statusBar.foreground": "#191815",
+        "statusBar.border": "#3C3A32",
+        "activityBar.background": "#191815",
+        "activityBar.foreground": "#D2BEA2",
+        "sideBar.background": "#191815",
+        "sideBar.foreground": "#A99983",
+        "sideBar.border": "#3C3A32",
+        "sideBarSectionHeader.background": "#282521",
+        "sideBarSectionHeader.foreground": "#847867",
+        "sideBarSectionHeader.border": "#3C3A32"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "HearthCode Moss Light",
+      "label": "HearthCode Moss Light",
+      "colors": {
+        "editor.background": "#E7E5D8",
+        "editor.foreground": "#342D28",
+        "titleBar.activeBackground": "#D4D1C4",
+        "titleBar.activeForeground": "#342D28",
+        "titleBar.inactiveBackground": "#D4D1C4",
+        "titleBar.inactiveForeground": "#645E57",
+        "titleBar.border": "#C3C0B5",
+        "statusBar.background": "#BB7C12",
+        "statusBar.foreground": "#191815",
+        "statusBar.border": "#C3C0B5",
+        "activityBar.background": "#D4D1C4",
+        "activityBar.foreground": "#342D28",
+        "sideBar.background": "#D4D1C4",
+        "sideBar.foreground": "#47413B",
+        "sideBar.border": "#C3C0B5",
+        "sideBarSectionHeader.background": "#C7C4B8",
+        "sideBarSectionHeader.foreground": "#645E57",
+        "sideBarSectionHeader.border": "#C3C0B5"
+      },
+      "type": "light"
+    },
+    {
+      "name": "HearthCode Ember Dark",
+      "label": "HearthCode Ember Dark",
+      "colors": {
+        "editor.background": "#1F1A17",
+        "editor.foreground": "#D3C9B8",
+        "titleBar.activeBackground": "#16120F",
+        "titleBar.activeForeground": "#D3C9B8",
+        "titleBar.inactiveBackground": "#16120F",
+        "titleBar.inactiveForeground": "#7D766B",
+        "titleBar.border": "#332D29",
+        "statusBar.background": "#9A5426",
+        "statusBar.foreground": "#F5EAD8",
+        "statusBar.border": "#332D29",
+        "activityBar.background": "#16120F",
+        "activityBar.foreground": "#D3C9B8",
+        "sideBar.background": "#16120F",
+        "sideBar.foreground": "#989083",
+        "sideBar.border": "#332D29",
+        "sideBarSectionHeader.background": "#2C241F",
+        "sideBarSectionHeader.foreground": "#7D766B",
+        "sideBarSectionHeader.border": "#332D29"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "HearthCode Ember Light",
+      "label": "HearthCode Ember Light",
+      "colors": {
+        "editor.background": "#ECDFCD",
+        "editor.foreground": "#30261B",
+        "titleBar.activeBackground": "#E1D6C7",
+        "titleBar.activeForeground": "#352B21",
+        "titleBar.inactiveBackground": "#E1D6C7",
+        "titleBar.inactiveForeground": "#80766A",
+        "titleBar.border": "#D0C4B3",
+        "statusBar.background": "#A85120",
+        "statusBar.foreground": "#F7EFE6",
+        "statusBar.border": "#D0C4B3",
+        "activityBar.background": "#E1D6C7",
+        "activityBar.foreground": "#352B21",
+        "sideBar.background": "#E1D6C7",
+        "sideBar.foreground": "#5A5045",
+        "sideBar.border": "#D0C4B3",
+        "sideBarSectionHeader.background": "#E5DACD",
+        "sideBarSectionHeader.foreground": "#80766A",
+        "sideBarSectionHeader.border": "#D0C4B3"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

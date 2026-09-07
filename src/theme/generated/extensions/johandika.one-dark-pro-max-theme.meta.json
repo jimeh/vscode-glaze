@@ -1,0 +1,54 @@
+{
+  "extensionId": "e7043c08-ff70-48f5-b527-9c197a2684cd",
+  "extensionName": "one-dark-pro-max-theme",
+  "publisherName": "johandika",
+  "displayName": "One Dark Pro Max Theme",
+  "version": "1.0.2",
+  "extractedAt": "2026-09-07T11:34:59.731Z",
+  "installCount": 6718,
+  "themes": [
+    {
+      "name": "One Dark Pro Max",
+      "label": "One Dark Pro Max",
+      "colors": {
+        "editor.background": "#080909",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#080909",
+        "titleBar.inactiveBackground": "#080909",
+        "statusBar.background": "#080909",
+        "statusBar.foreground": "#ABB2BF",
+        "activityBar.background": "#0E1010",
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#0E1010",
+        "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#212121",
+        "sideBarSectionHeader.background": "#0E1010",
+        "sideBarSectionHeader.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "One Dark Pro Max 2",
+      "label": "One Dark Pro Max 2",
+      "colors": {
+        "editor.background": "#080909",
+        "editor.foreground": "#ABB2BF",
+        "titleBar.activeBackground": "#080909",
+        "titleBar.activeForeground": "#9DA5B4",
+        "titleBar.inactiveBackground": "#080909",
+        "titleBar.inactiveForeground": "#6B717D",
+        "statusBar.background": "#080909",
+        "statusBar.foreground": "#9DA5B4",
+        "activityBar.background": "#0E1010",
+        "activityBar.foreground": "#D7DAE0",
+        "sideBar.background": "#0E1010",
+        "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#212121",
+        "sideBarSectionHeader.background": "#0E1010",
+        "sideBarSectionHeader.foreground": "#ABB2BF"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

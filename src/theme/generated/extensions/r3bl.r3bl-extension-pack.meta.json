@@ -1,0 +1,11 @@
+{
+  "extensionId": "3c473246-011b-4be4-86bf-efe48da210f0",
+  "extensionName": "r3bl-extension-pack",
+  "publisherName": "R3BL",
+  "displayName": "R3BL Development Pack",
+  "version": "1.3.29",
+  "extractedAt": "2026-09-07T11:34:43.577Z",
+  "installCount": 9453,
+  "themes": [],
+  "source": "openvsx"
+}

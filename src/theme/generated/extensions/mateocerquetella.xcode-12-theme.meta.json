@@ -3,9 +3,9 @@
   "extensionName": "xcode-12-theme",
   "publisherName": "MateoCERQUETELLA",
   "displayName": "Xcode Theme",
-  "version": "5.0.1",
-  "extractedAt": "2026-02-08T00:10:46.904Z",
-  "installCount": 165268,
+  "version": "5.2.0",
+  "extractedAt": "2026-09-07T11:33:49.947Z",
+  "installCount": 181952,
   "themes": [
     {
       "name": "Xcode Classic (Dark)",
@@ -82,6 +82,26 @@
         "activityBar.background": "#2A2C2F",
         "activityBar.foreground": "#DFDFDF",
         "sideBar.background": "#2A2C2F",
+        "sideBar.border": "#000000",
+        "sideBarSectionHeader.background": "#000000"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Xcode Midnight (Dark)",
+      "label": "Xcode Midnight (Dark)",
+      "colors": {
+        "editor.background": "#10131A",
+        "editor.foreground": "#E8E9F0",
+        "titleBar.activeBackground": "#1A1F2A",
+        "titleBar.activeForeground": "#E8E9F0",
+        "titleBar.border": "#161A22",
+        "statusBar.background": "#0A0D14",
+        "statusBar.foreground": "#A8ADBF",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#0A0D14",
+        "activityBar.foreground": "#E8E9F0",
+        "sideBar.background": "#0A0D14",
         "sideBar.border": "#000000",
         "sideBarSectionHeader.background": "#000000"
       },

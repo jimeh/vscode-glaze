@@ -1,0 +1,38 @@
+{
+  "extensionId": "095d4178-cd64-4e6e-8eca-fa604eb9aeb2",
+  "extensionName": "jellyfish-dark",
+  "publisherName": "nerudevs",
+  "displayName": "Jellyfish",
+  "version": "1.0.5",
+  "extractedAt": "2026-09-07T11:33:52.480Z",
+  "installCount": 102622,
+  "themes": [
+    {
+      "name": "Jellyfish",
+      "label": "Jellyfish",
+      "colors": {
+        "editor.background": "#151517",
+        "editor.foreground": "#CCCCCC",
+        "titleBar.activeBackground": "#151517",
+        "titleBar.activeForeground": "#E6E6E6",
+        "titleBar.inactiveBackground": "#151517",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#151517",
+        "statusBar.foreground": "#E6E6E6",
+        "statusBar.border": "#151517",
+        "activityBar.background": "#151517",
+        "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#151517",
+        "sideBar.background": "#151517",
+        "sideBar.foreground": "#E6E6E6",
+        "sideBar.border": "#151517",
+        "sideBarSectionHeader.background": "#151517",
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#151517"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "marketplace"
+}

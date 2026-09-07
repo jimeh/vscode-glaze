@@ -1,0 +1,33 @@
+{
+  "extensionId": "6a83c274-c79e-4510-815d-3de5253acb06",
+  "extensionName": "transparent-color-theme",
+  "publisherName": "alexowl",
+  "displayName": "Transparent Color Theme",
+  "version": "1.1.0",
+  "extractedAt": "2026-09-07T11:33:52.139Z",
+  "installCount": 105606,
+  "themes": [
+    {
+      "name": "Transparent Color Theme",
+      "label": "Transparent Color Theme",
+      "colors": {
+        "editor.background": "#000000",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#000000",
+        "statusBar.border": "#000000",
+        "statusBar.focusBorder": "#000000",
+        "activityBar.background": "#000000",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#FFFFFF",
+        "sideBar.background": "#000000",
+        "sideBar.border": "#000000",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#000000"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "marketplace"
+}

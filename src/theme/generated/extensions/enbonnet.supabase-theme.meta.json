@@ -1,0 +1,56 @@
+{
+  "extensionId": "7632cd1d-ed37-4839-8241-cd453584420f",
+  "extensionName": "supabase-theme",
+  "publisherName": "enBonnet",
+  "displayName": "Supabase Theme",
+  "version": "1.0.4",
+  "extractedAt": "2026-09-07T11:34:54.501Z",
+  "installCount": 7065,
+  "themes": [
+    {
+      "name": "Supabase Theme",
+      "label": "Supabase Theme",
+      "colors": {
+        "editor.background": "#0D1F17",
+        "editor.foreground": "#F0F5F1",
+        "titleBar.activeBackground": "#0A1812",
+        "titleBar.activeForeground": "#F0F5F1",
+        "titleBar.inactiveBackground": "#06110C",
+        "titleBar.inactiveForeground": "#5A8F70",
+        "statusBar.background": "#06110C",
+        "statusBar.foreground": "#F0F5F1",
+        "activityBar.background": "#142C22",
+        "activityBar.foreground": "#F0F5F1",
+        "activityBar.activeBackground": "#9B8AE0",
+        "activityBar.activeBorder": "#CF6B8E",
+        "sideBar.background": "#0A1812",
+        "sideBarSectionHeader.background": "#0D1F17",
+        "sideBarSectionHeader.border": "#06110C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Supabase Theme Soft",
+      "label": "Supabase Theme Soft",
+      "colors": {
+        "editor.background": "#0D1F17",
+        "editor.foreground": "#F2F2F2",
+        "titleBar.activeBackground": "#0D1511",
+        "titleBar.activeForeground": "#F2F2F2",
+        "titleBar.inactiveBackground": "#06110C",
+        "titleBar.inactiveForeground": "#717874",
+        "statusBar.background": "#06110C",
+        "statusBar.foreground": "#F2F2F2",
+        "activityBar.background": "#142C22",
+        "activityBar.foreground": "#F2F2F2",
+        "activityBar.activeBackground": "#9B8AE0",
+        "activityBar.activeBorder": "#CF6B8E",
+        "sideBar.background": "#0D1511",
+        "sideBarSectionHeader.background": "#0D1F17",
+        "sideBarSectionHeader.border": "#06110C"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

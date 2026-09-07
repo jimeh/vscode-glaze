@@ -1,0 +1,35 @@
+{
+  "extensionId": "41367896-b107-437e-9944-a2743ba76fb1",
+  "extensionName": "matteblack",
+  "publisherName": "TahaYVR",
+  "displayName": "MatteBlack",
+  "version": "1.0.3",
+  "extractedAt": "2026-09-07T11:34:52.495Z",
+  "installCount": 7687,
+  "themes": [
+    {
+      "name": "Matte Black",
+      "label": "Matte Black",
+      "colors": {
+        "editor.background": "#121212",
+        "editor.foreground": "#EAEAEA",
+        "titleBar.activeBackground": "#121212",
+        "titleBar.activeForeground": "#EAEAEA",
+        "titleBar.inactiveBackground": "#121212",
+        "titleBar.inactiveForeground": "#8A8A8D",
+        "titleBar.border": "#333333",
+        "statusBar.background": "#121212",
+        "statusBar.foreground": "#EAEAEA",
+        "statusBar.border": "#333333",
+        "activityBar.background": "#121212",
+        "activityBar.foreground": "#EAEAEA",
+        "sideBar.background": "#121212",
+        "sideBar.foreground": "#EAEAEA",
+        "sideBar.border": "#333333",
+        "sideBarSectionHeader.background": "#121212"
+      },
+      "type": "hcDark"
+    }
+  ],
+  "source": "openvsx"
+}

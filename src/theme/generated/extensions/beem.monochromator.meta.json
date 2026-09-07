@@ -3,15 +3,15 @@
   "extensionName": "monochromator",
   "publisherName": "beem",
   "displayName": "Monochromator",
-  "version": "0.31.1",
-  "extractedAt": "2026-03-02T06:21:42.391Z",
-  "installCount": 18148,
+  "version": "0.33.1",
+  "extractedAt": "2026-09-07T11:33:59.889Z",
+  "installCount": 53996,
   "themes": [
     {
       "name": "Monochromator Dark",
       "label": "Monochromator Dark",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -35,7 +35,7 @@
       "name": "Monochromator Dark Amber",
       "label": "Monochromator Dark Amber",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -59,7 +59,7 @@
       "name": "Monochromator Dark Amethyst",
       "label": "Monochromator Dark Amethyst",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -83,7 +83,7 @@
       "name": "Monochromator Dark Aquamarine",
       "label": "Monochromator Dark Aquamarine",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -107,7 +107,7 @@
       "name": "Monochromator Dark Emerald",
       "label": "Monochromator Dark Emerald",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -131,7 +131,7 @@
       "name": "Monochromator Dark Plain",
       "label": "Monochromator Dark Plain",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -155,7 +155,7 @@
       "name": "Monochromator Dark Ruby",
       "label": "Monochromator Dark Ruby",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",
@@ -179,7 +179,7 @@
       "name": "Monochromator Dark Sulfur",
       "label": "Monochromator Dark Sulfur",
       "colors": {
-        "editor.background": "#0F0F12",
+        "editor.background": "#08080A",
         "editor.foreground": "#E7E7E7",
         "titleBar.activeBackground": "#202024",
         "titleBar.activeForeground": "#D0D0D2",

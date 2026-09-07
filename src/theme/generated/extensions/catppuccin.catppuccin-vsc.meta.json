@@ -3,9 +3,9 @@
   "extensionName": "catppuccin-vsc",
   "publisherName": "Catppuccin",
   "displayName": "Catppuccin for VSCode",
-  "version": "3.18.1",
-  "extractedAt": "2026-02-08T00:10:32.173Z",
-  "installCount": 1047978,
+  "version": "3.19.0",
+  "extractedAt": "2026-09-07T11:33:43.220Z",
+  "installCount": 1392316,
   "themes": [
     {
       "name": "Catppuccin Mocha",

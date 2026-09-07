@@ -1,0 +1,27 @@
+{
+  "extensionId": "07c7ee02-08df-414a-acd2-a2cafbeec786",
+  "extensionName": "google-colab-theme",
+  "publisherName": "renxzen",
+  "displayName": "Google Colab Dark Theme",
+  "version": "0.0.3",
+  "extractedAt": "2026-09-07T11:33:51.651Z",
+  "installCount": 108283,
+  "themes": [
+    {
+      "name": "Google Colab Dark Theme",
+      "label": "Google Colab Dark Theme",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#383838",
+        "statusBar.background": "#313131",
+        "activityBar.background": "#1E1E1E",
+        "activityBar.foreground": "#D4D4D4",
+        "sideBar.background": "#383838",
+        "sideBarSectionHeader.background": "#1E1E1E"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "marketplace"
+}

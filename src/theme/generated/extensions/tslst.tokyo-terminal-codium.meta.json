@@ -1,0 +1,36 @@
+{
+  "extensionId": "f31cae18-75f9-4221-9b7d-8f0b9930187a",
+  "extensionName": "tokyo-terminal-codium",
+  "publisherName": "TSLST",
+  "displayName": "Tokyo Terminal",
+  "version": "1.3.1",
+  "extractedAt": "2026-09-07T11:34:51.875Z",
+  "installCount": 7814,
+  "themes": [
+    {
+      "name": "Tokyo Terminal",
+      "label": "Tokyo Terminal",
+      "colors": {
+        "editor.background": "#060507",
+        "editor.foreground": "#34E2E2",
+        "titleBar.activeBackground": "#2A2436",
+        "titleBar.activeForeground": "#34E2E2",
+        "titleBar.inactiveBackground": "#2A2436",
+        "titleBar.inactiveForeground": "#34E2E2",
+        "titleBar.border": "#34E2E2",
+        "statusBar.background": "#060507",
+        "statusBar.foreground": "#FE8019",
+        "statusBar.border": "#060507",
+        "activityBar.background": "#2A2436",
+        "activityBar.foreground": "#FC5698",
+        "sideBar.background": "#060507",
+        "sideBar.foreground": "#34E2E2",
+        "sideBar.border": "#34E2E2",
+        "sideBarSectionHeader.background": "#2A2436",
+        "sideBarSectionHeader.foreground": "#FC5698"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

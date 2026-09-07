@@ -1,0 +1,11 @@
+{
+  "extensionId": "dcae0744-529c-4ae5-8fd9-07cb7504af91",
+  "extensionName": "jetbrains-product-icon-theme",
+  "publisherName": "fogio",
+  "displayName": "JetBrains New UI Product Icon Theme",
+  "version": "1.2.1",
+  "extractedAt": "2026-09-07T11:34:40.449Z",
+  "installCount": 11266,
+  "themes": [],
+  "source": "openvsx"
+}

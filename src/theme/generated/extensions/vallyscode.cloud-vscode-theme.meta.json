@@ -3,13 +3,13 @@
   "extensionName": "cloud-vscode-theme",
   "publisherName": "vallyscode",
   "displayName": "Cloud Theme",
-  "version": "0.0.12",
-  "extractedAt": "2026-02-08T00:11:10.367Z",
-  "installCount": 4670,
+  "version": "0.0.15",
+  "extractedAt": "2026-09-07T11:34:51.264Z",
+  "installCount": 8011,
   "themes": [
     {
-      "name": "Cloud",
-      "label": "Cloud",
+      "name": "Cloud Light",
+      "label": "Cloud Light",
       "colors": {
         "editor.background": "#F1F1F1",
         "editor.foreground": "#454545",
@@ -26,12 +26,34 @@
         "activityBar.activeBorder": "#008ABD",
         "sideBar.background": "#F1F1F1",
         "sideBar.foreground": "#454545",
-        "sideBar.border": "#F1F1F1",
         "sideBarSectionHeader.background": "#F1F1F1",
-        "sideBarSectionHeader.foreground": "#454545",
-        "sideBarSectionHeader.border": "#F1F1F1"
+        "sideBarSectionHeader.foreground": "#454545"
       },
       "type": "light"
+    },
+    {
+      "name": "Cloud Dark",
+      "label": "Cloud Dark",
+      "colors": {
+        "editor.background": "#292828",
+        "editor.foreground": "#D4BE98",
+        "titleBar.activeBackground": "#292828",
+        "titleBar.activeForeground": "#A89984",
+        "titleBar.inactiveBackground": "#292828",
+        "titleBar.inactiveForeground": "#7C6F64",
+        "titleBar.border": "#292828",
+        "statusBar.background": "#292828",
+        "statusBar.foreground": "#A89984",
+        "statusBar.border": "#292828",
+        "activityBar.background": "#292828",
+        "activityBar.foreground": "#A89984",
+        "activityBar.activeBorder": "#928374",
+        "sideBar.background": "#292828",
+        "sideBar.foreground": "#928374",
+        "sideBarSectionHeader.background": "#292828",
+        "sideBarSectionHeader.foreground": "#A89984"
+      },
+      "type": "dark"
     }
   ],
   "source": "openvsx"
