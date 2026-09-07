@@ -3,9 +3,9 @@
   "extensionName": "atom-material-theme",
   "publisherName": "tobiasalthoff",
   "displayName": "Atom Material Theme",
-  "version": "1.10.9",
-  "extractedAt": "2026-02-08T00:10:34.742Z",
-  "installCount": 535338,
+  "version": "1.10.10",
+  "extractedAt": "2026-09-07T11:33:44.686Z",
+  "installCount": 559777,
   "themes": [
     {
       "name": "Atom Material Theme",

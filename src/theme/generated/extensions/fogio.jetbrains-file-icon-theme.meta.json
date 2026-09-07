@@ -1,0 +1,11 @@
+{
+  "extensionId": "b2ac82e4-cfb2-4a28-9e18-333bfa1c8763",
+  "extensionName": "jetbrains-file-icon-theme",
+  "publisherName": "fogio",
+  "displayName": "JetBrains New UI File Icon Theme Extended",
+  "version": "1.7.0",
+  "extractedAt": "2026-09-07T11:34:30.062Z",
+  "installCount": 15353,
+  "themes": [],
+  "source": "openvsx"
+}

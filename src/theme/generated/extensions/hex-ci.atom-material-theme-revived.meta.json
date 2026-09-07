@@ -1,0 +1,33 @@
+{
+  "extensionId": "3135d511-f756-4163-95ce-965a1a595c4d",
+  "extensionName": "atom-material-theme-revived",
+  "publisherName": "hex-ci",
+  "displayName": "Material Theme Revived (Atom Fork)",
+  "version": "2.0.4",
+  "extractedAt": "2026-09-07T11:34:53.461Z",
+  "installCount": 7214,
+  "themes": [
+    {
+      "name": "Material Theme Revived (Atom Fork)",
+      "label": "Material Theme Revived (Atom Fork)",
+      "colors": {
+        "editor.background": "#263238",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#222D32",
+        "titleBar.inactiveBackground": "#222D32",
+        "statusBar.background": "#232E33",
+        "statusBar.foreground": "#A7B6B8",
+        "activityBar.background": "#20292E",
+        "activityBar.foreground": "#A7B6B8",
+        "activityBar.activeBorder": "#009688",
+        "sideBar.background": "#232E33",
+        "sideBar.foreground": "#A7B6B8",
+        "sideBarSectionHeader.background": "#20292E",
+        "sideBarSectionHeader.foreground": "#A7B6B8",
+        "sideBarSectionHeader.border": "#232E33"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

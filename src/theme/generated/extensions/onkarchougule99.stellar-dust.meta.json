@@ -1,0 +1,58 @@
+{
+  "extensionId": "fcb10b78-6110-4bc2-b67b-1afdf5e23b57",
+  "extensionName": "stellar-dust",
+  "publisherName": "OnkarChougule99",
+  "displayName": "Stellar Dust",
+  "version": "2.1.7",
+  "extractedAt": "2026-09-07T11:34:36.088Z",
+  "installCount": 12644,
+  "themes": [
+    {
+      "name": "Stellar Dust",
+      "label": "Stellar Dust",
+      "colors": {
+        "editor.background": "#07273B",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#214462",
+        "titleBar.activeForeground": "#D5CED9",
+        "titleBar.inactiveBackground": "#07273B",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#3D5569",
+        "statusBar.background": "#214462",
+        "statusBar.foreground": "#D5CED9",
+        "statusBar.border": "#3D5569",
+        "activityBar.background": "#07273B",
+        "activityBar.foreground": "#E8C44A",
+        "activityBar.activeBackground": "#07273B",
+        "sideBar.background": "#1A3751",
+        "sideBar.foreground": "#D5CED9",
+        "sideBar.border": "#3D5569",
+        "sideBarSectionHeader.background": "#214462",
+        "sideBarSectionHeader.foreground": "#D5CED9",
+        "sideBarSectionHeader.border": "#3D5569"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stellar Dust Modern",
+      "label": "Stellar Dust Modern",
+      "colors": {
+        "editor.background": "#202124",
+        "editor.foreground": "#BDBDBD",
+        "titleBar.activeBackground": "#1F2020",
+        "titleBar.inactiveBackground": "#202124",
+        "titleBar.border": "#3C4043",
+        "statusBar.background": "#202124",
+        "statusBar.foreground": "#F0F0F0",
+        "statusBar.border": "#3C4043",
+        "activityBar.background": "#1F2020",
+        "activityBar.foreground": "#F0F0F0",
+        "sideBar.background": "#202124",
+        "sideBar.border": "#3C4043",
+        "sideBarSectionHeader.background": "#2C2F32"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

@@ -1,0 +1,30 @@
+{
+  "extensionId": "3c7de71c-8d28-4d21-b378-dc02865af99a",
+  "extensionName": "cotion-theme",
+  "publisherName": "cotion-theme-v2",
+  "displayName": "Cotion Theme",
+  "version": "0.0.2",
+  "extractedAt": "2026-09-07T11:34:42.540Z",
+  "installCount": 9695,
+  "themes": [
+    {
+      "name": "Cotion Theme",
+      "label": "Cotion Theme",
+      "colors": {
+        "editor.background": "#202020",
+        "editor.foreground": "#C3C3C3",
+        "titleBar.activeBackground": "#2A2A2A",
+        "titleBar.inactiveBackground": "#2A2A2A",
+        "statusBar.foreground": "#C3C3C3",
+        "activityBar.background": "#202020",
+        "activityBar.foreground": "#C3C3C3",
+        "activityBar.activeBorder": "#2EAADC",
+        "sideBar.background": "#202020",
+        "sideBar.border": "#2F2F2F",
+        "sideBarSectionHeader.background": "#343434"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

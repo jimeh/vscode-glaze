@@ -1,0 +1,38 @@
+{
+  "extensionId": "2e7a519f-3bce-4586-9315-daeb39d3b064",
+  "extensionName": "theme-dracula-midnight",
+  "publisherName": "realeinar",
+  "displayName": "Dracula Midnight",
+  "version": "1.0.0",
+  "extractedAt": "2026-09-07T11:34:50.314Z",
+  "installCount": 8064,
+  "themes": [
+    {
+      "name": "Dracula Midnight",
+      "label": "Dracula Midnight",
+      "colors": {
+        "editor.background": "#242530",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#242530",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#242530",
+        "titleBar.inactiveForeground": "#6272A4",
+        "titleBar.border": "#20212B",
+        "statusBar.background": "#242530",
+        "statusBar.foreground": "#6272A4",
+        "statusBar.border": "#20212B",
+        "activityBar.background": "#242530",
+        "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBorder": "#FF79C6",
+        "sideBar.background": "#242530",
+        "sideBar.foreground": "#F8F8F2",
+        "sideBar.border": "#20212B",
+        "sideBarSectionHeader.background": "#242530",
+        "sideBarSectionHeader.foreground": "#F8F8F2",
+        "sideBarSectionHeader.border": "#20212B"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

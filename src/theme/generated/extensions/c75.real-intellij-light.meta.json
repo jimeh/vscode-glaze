@@ -1,0 +1,32 @@
+{
+  "extensionId": "707e9c98-8c16-41cf-bd20-4918537d8543",
+  "extensionName": "real-intellij-light",
+  "publisherName": "c75",
+  "displayName": "Real Intellij Light",
+  "version": "0.0.5",
+  "extractedAt": "2026-09-07T11:35:00.367Z",
+  "installCount": 6693,
+  "themes": [
+    {
+      "name": "Real IntelliJ Light",
+      "label": "Real IntelliJ Light",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#F3F3F3",
+        "statusBar.foreground": "#000000",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#F3F3F3",
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#000000",
+        "sideBar.border": "#000000",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#616161"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}

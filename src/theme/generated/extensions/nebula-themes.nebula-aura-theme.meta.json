@@ -1,0 +1,112 @@
+{
+  "extensionId": "ca10cc59-450d-4f67-a154-f6c2f337e2bb",
+  "extensionName": "nebula-aura-theme",
+  "publisherName": "nebula-themes",
+  "displayName": "Nebula Aura Theme",
+  "version": "0.0.8",
+  "extractedAt": "2026-09-07T11:34:15.776Z",
+  "installCount": 27728,
+  "themes": [
+    {
+      "name": "Nebula Aura Light",
+      "label": "Nebula Aura Light",
+      "colors": {
+        "editor.background": "#F2F1F8",
+        "editor.foreground": "#2E2D3A",
+        "titleBar.activeBackground": "#E2E0ED",
+        "titleBar.activeForeground": "#2E2D3A",
+        "titleBar.inactiveBackground": "#D8D5E6",
+        "titleBar.inactiveForeground": "#696381",
+        "statusBar.background": "#D8D5E6",
+        "statusBar.foreground": "#2E2D3A",
+        "activityBar.background": "#EAE8F3",
+        "activityBar.foreground": "#2E2D3A",
+        "activityBar.activeBackground": "#D4D0EA",
+        "activityBar.activeBorder": "#9B59B6",
+        "sideBar.background": "#E2E0ED",
+        "sideBar.foreground": "#2E2D3A",
+        "sideBar.border": "#D8D5E6",
+        "sideBarSectionHeader.background": "#F2F1F8",
+        "sideBarSectionHeader.foreground": "#2E2D3A",
+        "sideBarSectionHeader.border": "#D8D5E6"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Nebula Aura Dark",
+      "label": "Nebula Aura Dark",
+      "colors": {
+        "editor.background": "#1A1B26",
+        "editor.foreground": "#D5D8E8",
+        "titleBar.activeBackground": "#151621",
+        "titleBar.activeForeground": "#D5D8E8",
+        "titleBar.inactiveBackground": "#12131C",
+        "titleBar.inactiveForeground": "#878CB0",
+        "statusBar.background": "#12131C",
+        "statusBar.foreground": "#D5D8E8",
+        "activityBar.background": "#222433",
+        "activityBar.foreground": "#D5D8E8",
+        "activityBar.activeBackground": "#3A3F5C",
+        "activityBar.activeBorder": "#D48CB8",
+        "sideBar.background": "#151621",
+        "sideBar.foreground": "#D5D8E8",
+        "sideBar.border": "#12131C",
+        "sideBarSectionHeader.background": "#1A1B26",
+        "sideBarSectionHeader.foreground": "#D5D8E8",
+        "sideBarSectionHeader.border": "#12131C"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula Aura Violet",
+      "label": "Nebula Aura Violet",
+      "colors": {
+        "editor.background": "#171320",
+        "editor.foreground": "#E8E4F0",
+        "titleBar.activeBackground": "#12101C",
+        "titleBar.activeForeground": "#E8E4F0",
+        "titleBar.inactiveBackground": "#0E0C16",
+        "titleBar.inactiveForeground": "#9282B5",
+        "statusBar.background": "#0E0C16",
+        "statusBar.foreground": "#E8E4F0",
+        "activityBar.background": "#1F1A2E",
+        "activityBar.foreground": "#E8E4F0",
+        "activityBar.activeBackground": "#3D3558",
+        "activityBar.activeBorder": "#E06BAA",
+        "sideBar.background": "#12101C",
+        "sideBar.foreground": "#E8E4F0",
+        "sideBar.border": "#0E0C16",
+        "sideBarSectionHeader.background": "#171320",
+        "sideBarSectionHeader.foreground": "#E8E4F0",
+        "sideBarSectionHeader.border": "#0E0C16"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Nebula Aura Midnight",
+      "label": "Nebula Aura Midnight",
+      "colors": {
+        "editor.background": "#0B1020",
+        "editor.foreground": "#DDE7F3",
+        "titleBar.activeBackground": "#080D1A",
+        "titleBar.activeForeground": "#DDE7F3",
+        "titleBar.inactiveBackground": "#050810",
+        "titleBar.inactiveForeground": "#74849D",
+        "statusBar.background": "#050810",
+        "statusBar.foreground": "#DDE7F3",
+        "activityBar.background": "#070B16",
+        "activityBar.foreground": "#DDE7F3",
+        "activityBar.activeBackground": "#253457",
+        "activityBar.activeBorder": "#C084FC",
+        "sideBar.background": "#080D1A",
+        "sideBar.foreground": "#DDE7F3",
+        "sideBar.border": "#050810",
+        "sideBarSectionHeader.background": "#0B1020",
+        "sideBarSectionHeader.foreground": "#DDE7F3",
+        "sideBarSectionHeader.border": "#050810"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

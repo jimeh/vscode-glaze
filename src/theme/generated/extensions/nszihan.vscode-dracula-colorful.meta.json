@@ -1,0 +1,38 @@
+{
+  "extensionId": "3dd8e92a-d718-48cc-9c06-e640ac8b1521",
+  "extensionName": "vscode-dracula-colorful",
+  "publisherName": "nszihan",
+  "displayName": "Dracula Colorful",
+  "version": "2.1.1",
+  "extractedAt": "2026-09-07T11:34:55.491Z",
+  "installCount": 7062,
+  "themes": [
+    {
+      "name": "Dracula Colorful",
+      "label": "Dracula Colorful",
+      "colors": {
+        "editor.background": "#282A36",
+        "editor.foreground": "#F8F8F2",
+        "titleBar.activeBackground": "#21222C",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#21222C",
+        "titleBar.inactiveForeground": "#B9BCD1",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#21222C",
+        "statusBar.foreground": "#F8F8F2",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#21222C",
+        "activityBar.foreground": "#F8F8F2",
+        "activityBar.activeBackground": "#564775",
+        "sideBar.background": "#21222C",
+        "sideBar.foreground": "#F8F8F2",
+        "sideBar.border": "#343746",
+        "sideBarSectionHeader.background": "#21222C",
+        "sideBarSectionHeader.foreground": "#F8F8F2",
+        "sideBarSectionHeader.border": "#343746"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

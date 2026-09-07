@@ -1,0 +1,62 @@
+{
+  "extensionId": "4c829a74-224d-47f7-9517-5564b38dcca9",
+  "extensionName": "vibe-black",
+  "publisherName": "mhdstk",
+  "displayName": "Vibe Black",
+  "version": "0.0.10",
+  "extractedAt": "2026-09-07T11:35:01.798Z",
+  "installCount": 6662,
+  "themes": [
+    {
+      "name": "Vibe Black",
+      "label": "Vibe Black",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#C0C0C0",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#C0C0C0",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#C0C0C0",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#C0C0C0",
+        "statusBar.border": "#2B2B2B",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#C0C0C0",
+        "sideBar.border": "#2B2B2B",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#BBBBBB",
+        "sideBarSectionHeader.border": "#2B2B2B"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Vibe Black Lite",
+      "label": "Vibe Black Lite",
+      "colors": {
+        "editor.background": "#141414",
+        "editor.foreground": "#CECECE",
+        "titleBar.activeBackground": "#0A0A0A",
+        "titleBar.activeForeground": "#CCCCCC",
+        "titleBar.inactiveBackground": "#0A0A0A",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#0A0A0A",
+        "statusBar.foreground": "#CCCCCC",
+        "statusBar.border": "#252525",
+        "activityBar.background": "#0E0E0E",
+        "activityBar.foreground": "#EEEEEE",
+        "sideBar.background": "#0E0E0E",
+        "sideBar.foreground": "#CACACA",
+        "sideBar.border": "#252525",
+        "sideBarSectionHeader.background": "#0E0E0E",
+        "sideBarSectionHeader.foreground": "#AAAAAA",
+        "sideBarSectionHeader.border": "#252525"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

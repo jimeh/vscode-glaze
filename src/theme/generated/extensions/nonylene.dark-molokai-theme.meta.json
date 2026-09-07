@@ -1,0 +1,23 @@
+{
+  "extensionId": "72172258-40a8-40e0-82b8-e332a677ae16",
+  "extensionName": "dark-molokai-theme",
+  "publisherName": "nonylene",
+  "displayName": "Dark Molokai Theme",
+  "version": "1.0.10",
+  "extractedAt": "2026-09-07T11:34:45.360Z",
+  "installCount": 8427,
+  "themes": [
+    {
+      "name": "Dark (Molokai)",
+      "label": "Dark (Molokai)",
+      "colors": {
+        "editor.background": "#1B1D1E",
+        "editor.foreground": "#F8F8F2",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#CCCCCC"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

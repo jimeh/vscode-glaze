@@ -3,15 +3,15 @@
   "extensionName": "synthwave-x-fluoromachine",
   "publisherName": "webrender",
   "displayName": "Synthwave x Fluoromachine",
-  "version": "0.0.14",
-  "extractedAt": "2026-02-08T00:10:43.816Z",
-  "installCount": 198323,
+  "version": "0.0.15",
+  "extractedAt": "2026-09-07T11:33:48.962Z",
+  "installCount": 205561,
   "themes": [
     {
       "name": "Synthwave x Fluoromachine",
       "label": "Synthwave x Fluoromachine",
       "colors": {
-        "editor.background": "#262335",
+        "editor.background": "#200933",
         "titleBar.activeBackground": "#241B2F",
         "titleBar.inactiveBackground": "#241B2F",
         "statusBar.background": "#241B2F",
