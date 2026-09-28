@@ -1,0 +1,38 @@
+{
+  "extensionId": "cf61cc4b-5618-4aab-b868-7b4964ee0727",
+  "extensionName": "claude-theme",
+  "publisherName": "crsk",
+  "displayName": "claude-theme",
+  "version": "0.0.12",
+  "extractedAt": "2026-09-28T12:54:27.190Z",
+  "installCount": 7235,
+  "themes": [
+    {
+      "name": "Claude Theme",
+      "label": "Claude Theme",
+      "colors": {
+        "editor.background": "#121212",
+        "editor.foreground": "#CCCED7",
+        "titleBar.activeBackground": "#121212",
+        "titleBar.activeForeground": "#6B6B6B",
+        "titleBar.inactiveBackground": "#121212",
+        "titleBar.inactiveForeground": "#6F6F6F",
+        "titleBar.border": "#121212",
+        "statusBar.background": "#121212",
+        "statusBar.foreground": "#646464",
+        "statusBar.border": "#121212",
+        "activityBar.background": "#0F0F0F",
+        "activityBar.foreground": "#CDCDCD",
+        "activityBar.activeBackground": "#121212",
+        "sideBar.background": "#121212",
+        "sideBar.foreground": "#717171",
+        "sideBar.border": "#121212",
+        "sideBarSectionHeader.background": "#121212",
+        "sideBarSectionHeader.foreground": "#949494",
+        "sideBarSectionHeader.border": "#121212"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
