@@ -1,0 +1,90 @@
+{
+  "extensionId": "b09c0231-79a0-4349-b8e6-a277ec7460bf",
+  "extensionName": "roveliese-vsc",
+  "publisherName": "Roveliese",
+  "displayName": "Roveliese for VS Code",
+  "version": "3.8.1",
+  "extractedAt": "2026-09-28T12:54:25.123Z",
+  "installCount": 7460,
+  "themes": [
+    {
+      "name": "Roveliese Dark",
+      "label": "Roveliese Dark",
+      "colors": {
+        "editor.background": "#14141C",
+        "editor.foreground": "#CDD6F4",
+        "titleBar.activeBackground": "#101016",
+        "titleBar.activeForeground": "#CDD6F4",
+        "titleBar.inactiveBackground": "#101016",
+        "titleBar.inactiveForeground": "#CDD6F4",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#101016",
+        "statusBar.foreground": "#7F849C",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#101016",
+        "activityBar.foreground": "#D6B6B8",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#000000",
+        "sideBar.background": "#101016",
+        "sideBar.foreground": "#A6ADC8",
+        "sideBar.border": "#30304A",
+        "sideBarSectionHeader.background": "#101016",
+        "sideBarSectionHeader.foreground": "#CDD6F4"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Roveliese Light",
+      "label": "Roveliese Light",
+      "colors": {
+        "editor.background": "#E2DAD8",
+        "editor.foreground": "#242024",
+        "titleBar.activeBackground": "#D8CECF",
+        "titleBar.activeForeground": "#242024",
+        "titleBar.inactiveBackground": "#D8CECF",
+        "titleBar.inactiveForeground": "#141414",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#D8CECF",
+        "statusBar.foreground": "#4E484C",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#D8CECF",
+        "activityBar.foreground": "#864B5A",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#8F5E6E",
+        "sideBar.background": "#D8CECF",
+        "sideBar.foreground": "#4A4448",
+        "sideBar.border": "#C1B5B9",
+        "sideBarSectionHeader.background": "#D8CECF",
+        "sideBarSectionHeader.foreground": "#242024"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Roveliese Storm",
+      "label": "Roveliese Storm",
+      "colors": {
+        "editor.background": "#161B28",
+        "editor.foreground": "#C6D2F0",
+        "titleBar.activeBackground": "#111520",
+        "titleBar.activeForeground": "#C6D2F0",
+        "titleBar.inactiveBackground": "#111520",
+        "titleBar.inactiveForeground": "#C6D2F0",
+        "titleBar.border": "#000000",
+        "statusBar.background": "#111520",
+        "statusBar.foreground": "#7A88A8",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#111520",
+        "activityBar.foreground": "#D4A8C0",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#000000",
+        "sideBar.background": "#111520",
+        "sideBar.foreground": "#9298C2",
+        "sideBar.border": "#273A6C",
+        "sideBarSectionHeader.background": "#111520",
+        "sideBarSectionHeader.foreground": "#C6D2F0"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

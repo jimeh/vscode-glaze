@@ -1,0 +1,64 @@
+{
+  "extensionId": "fcb10b78-6110-4bc2-b67b-1afdf5e23b57",
+  "extensionName": "stellar-dust",
+  "publisherName": "OnkarChougule99",
+  "displayName": "Stellar Dust",
+  "version": "2.1.8",
+  "extractedAt": "2026-09-28T12:53:43.934Z",
+  "installCount": 13604,
+  "themes": [
+    {
+      "name": "Stellar Dust",
+      "label": "Stellar Dust",
+      "colors": {
+        "editor.background": "#122A40",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#214462",
+        "titleBar.activeForeground": "#D5CED9",
+        "titleBar.inactiveBackground": "#122A40",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#3D5569",
+        "statusBar.background": "#214462",
+        "statusBar.foreground": "#D5CED9",
+        "statusBar.border": "#3D5569",
+        "activityBar.background": "#122A40",
+        "activityBar.foreground": "#E8C44A",
+        "activityBar.activeBackground": "#122A40",
+        "sideBar.background": "#1A3751",
+        "sideBar.foreground": "#D5CED9",
+        "sideBar.border": "#3D5569",
+        "sideBarSectionHeader.background": "#214462",
+        "sideBarSectionHeader.foreground": "#D5CED9",
+        "sideBarSectionHeader.border": "#3D5569"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Stellar Dust Italic",
+      "label": "Stellar Dust Italic",
+      "colors": {
+        "editor.background": "#122A40",
+        "editor.foreground": "#D5CED9",
+        "titleBar.activeBackground": "#214462",
+        "titleBar.activeForeground": "#D5CED9",
+        "titleBar.inactiveBackground": "#122A40",
+        "titleBar.inactiveForeground": "#CCCCCC",
+        "titleBar.border": "#3D5569",
+        "statusBar.background": "#214462",
+        "statusBar.foreground": "#D5CED9",
+        "statusBar.border": "#3D5569",
+        "activityBar.background": "#122A40",
+        "activityBar.foreground": "#E8C44A",
+        "activityBar.activeBackground": "#122A40",
+        "sideBar.background": "#1A3751",
+        "sideBar.foreground": "#D5CED9",
+        "sideBar.border": "#3D5569",
+        "sideBarSectionHeader.background": "#214462",
+        "sideBarSectionHeader.foreground": "#D5CED9",
+        "sideBarSectionHeader.border": "#3D5569"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}

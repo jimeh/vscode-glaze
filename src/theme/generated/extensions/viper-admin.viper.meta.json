@@ -3,9 +3,9 @@
   "extensionName": "viper",
   "publisherName": "viper-admin",
   "displayName": "Viper",
-  "version": "5.3.2",
-  "extractedAt": "2026-03-02T06:22:13.936Z",
-  "installCount": 5405,
+  "version": "5.4.1",
+  "extractedAt": "2026-09-28T12:54:18.508Z",
+  "installCount": 9075,
   "themes": [],
   "source": "openvsx"
 }
