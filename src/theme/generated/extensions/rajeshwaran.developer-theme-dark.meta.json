@@ -3,9 +3,9 @@
   "extensionName": "developer-theme-dark",
   "publisherName": "Rajeshwaran",
   "displayName": "Developer's theme",
-  "version": "5.0.0",
-  "extractedAt": "2026-02-08T00:10:47.567Z",
-  "installCount": 158281,
+  "version": "6.0.0",
+  "extractedAt": "2026-10-05T13:34:43.256Z",
+  "installCount": 177204,
   "themes": [
     {
       "name": "Developers Theme - Aubergine",
@@ -167,6 +167,31 @@
         "sideBar.border": "#1D252C",
         "sideBarSectionHeader.background": "#1D252C",
         "sideBarSectionHeader.foreground": "#B7C5D3"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Developers Theme - dark alt",
+      "label": "Developers Theme - dark alt",
+      "colors": {
+        "editor.background": "#24292E",
+        "editor.foreground": "#D4D4D4",
+        "titleBar.activeBackground": "#24292E",
+        "titleBar.activeForeground": "#F8F8F2",
+        "titleBar.inactiveBackground": "#191A21",
+        "titleBar.inactiveForeground": "#6272A4",
+        "titleBar.border": "#1F2430",
+        "statusBar.background": "#191A21",
+        "statusBar.foreground": "#F8F8F2",
+        "statusBar.border": "#1F2430",
+        "activityBar.background": "#343746",
+        "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBackground": "#3D4660",
+        "sideBar.background": "#2B2B3D",
+        "sideBar.foreground": "#B8B8B8",
+        "sideBarSectionHeader.background": "#1F2430",
+        "sideBarSectionHeader.foreground": "#707A8C",
+        "sideBarSectionHeader.border": "#191A21"
       },
       "type": "dark"
     }

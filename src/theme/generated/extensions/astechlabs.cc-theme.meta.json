@@ -1,0 +1,106 @@
+{
+  "extensionId": "49ca0153-ba73-47a3-95d6-ae68db3b8684",
+  "extensionName": "cc-theme",
+  "publisherName": "astechlabs",
+  "displayName": "Clay Terminal",
+  "version": "0.7.14",
+  "extractedAt": "2026-10-05T13:35:10.319Z",
+  "installCount": 13317,
+  "themes": [
+    {
+      "name": "Clay Terminal",
+      "label": "Clay Terminal",
+      "colors": {
+        "editor.background": "#1A1A19",
+        "editor.foreground": "#E4E3DD",
+        "titleBar.activeBackground": "#0D0D0D",
+        "titleBar.activeForeground": "#E4E3DD",
+        "titleBar.inactiveBackground": "#0D0D0D",
+        "titleBar.inactiveForeground": "#5C5A52",
+        "titleBar.border": "#20201F",
+        "statusBar.background": "#0D0D0D",
+        "statusBar.foreground": "#898781",
+        "statusBar.border": "#20201F",
+        "activityBar.background": "#0D0D0D",
+        "activityBar.foreground": "#D97757",
+        "sideBar.background": "#0D0D0D",
+        "sideBar.foreground": "#C3C2B7",
+        "sideBar.border": "#20201F",
+        "sideBarSectionHeader.background": "#1A1A19"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Clay Terminal Light",
+      "label": "Clay Terminal Light",
+      "colors": {
+        "editor.background": "#FCFCFB",
+        "editor.foreground": "#0B0B0B",
+        "titleBar.activeBackground": "#F9F9F7",
+        "titleBar.activeForeground": "#0B0B0B",
+        "titleBar.inactiveBackground": "#F9F9F7",
+        "titleBar.inactiveForeground": "#A5A49A",
+        "titleBar.border": "#E1E0D9",
+        "statusBar.background": "#F9F9F7",
+        "statusBar.foreground": "#52514E",
+        "statusBar.border": "#E1E0D9",
+        "activityBar.background": "#F9F9F7",
+        "activityBar.foreground": "#C6613F",
+        "sideBar.background": "#F9F9F7",
+        "sideBar.foreground": "#20201F",
+        "sideBar.border": "#E1E0D9",
+        "sideBarSectionHeader.background": "#FCFCFB"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Clay Terminal High Contrast",
+      "label": "Clay Terminal High Contrast",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#FFFFFF",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#000000",
+        "titleBar.inactiveForeground": "#E4E3DD",
+        "titleBar.border": "#F0B48C",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#FFFFFF",
+        "statusBar.border": "#F0B48C",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#D97757",
+        "sideBar.background": "#000000",
+        "sideBar.foreground": "#FFFFFF",
+        "sideBar.border": "#F0B48C",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.border": "#F0B48C"
+      },
+      "type": "hcDark"
+    },
+    {
+      "name": "Clay Terminal Light High Contrast",
+      "label": "Clay Terminal Light High Contrast",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#FFFFFF",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#FFFFFF",
+        "titleBar.inactiveForeground": "#20201F",
+        "titleBar.border": "#9A4A28",
+        "statusBar.background": "#FFFFFF",
+        "statusBar.foreground": "#000000",
+        "statusBar.border": "#9A4A28",
+        "activityBar.background": "#FFFFFF",
+        "activityBar.foreground": "#A94F31",
+        "sideBar.background": "#FFFFFF",
+        "sideBar.foreground": "#000000",
+        "sideBar.border": "#9A4A28",
+        "sideBarSectionHeader.background": "#FFFFFF",
+        "sideBarSectionHeader.border": "#9A4A28"
+      },
+      "type": "hcLight"
+    }
+  ],
+  "source": "openvsx"
+}

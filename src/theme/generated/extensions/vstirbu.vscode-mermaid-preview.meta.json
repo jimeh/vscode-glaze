@@ -3,9 +3,9 @@
   "extensionName": "vscode-mermaid-preview",
   "publisherName": "vstirbu",
   "displayName": "Mermaid Preview",
-  "version": "2.1.2",
-  "extractedAt": "2026-02-10T19:01:23.496Z",
-  "installCount": 532813,
+  "version": "2.2.0",
+  "extractedAt": "2026-10-05T13:35:57.296Z",
+  "installCount": 882127,
   "themes": [
     {
       "name": "Mermaid Dark",
