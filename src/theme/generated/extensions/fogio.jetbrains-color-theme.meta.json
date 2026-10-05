@@ -3,9 +3,9 @@
   "extensionName": "jetbrains-color-theme",
   "publisherName": "fogio",
   "displayName": "JetBrains New UI Color Theme Extended",
-  "version": "0.6.0",
-  "extractedAt": "2026-02-08T00:11:02.224Z",
-  "installCount": 9343,
+  "version": "1.0.3",
+  "extractedAt": "2026-10-05T13:34:50.991Z",
+  "installCount": 41579,
   "themes": [
     {
       "name": "dark-jetbrains-color-theme",

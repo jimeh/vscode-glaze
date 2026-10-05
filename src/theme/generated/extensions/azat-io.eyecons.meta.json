@@ -3,9 +3,9 @@
   "extensionName": "eyecons",
   "publisherName": "azat-io",
   "displayName": "Eyecons",
-  "version": "1.15.0",
-  "extractedAt": "2026-03-02T06:21:43.834Z",
-  "installCount": 7119,
+  "version": "1.17.0",
+  "extractedAt": "2026-10-05T13:35:04.429Z",
+  "installCount": 18889,
   "themes": [],
   "source": "openvsx"
 }

@@ -1,0 +1,21 @@
+{
+  "extensionId": "552992ce-0fe6-47cd-b29c-a3cfc68136fa",
+  "extensionName": "boo-NGOM-editor",
+  "publisherName": "boo1213",
+  "displayName": "BOO UI编辑器",
+  "version": "4.3.9",
+  "extractedAt": "2026-10-05T13:35:55.205Z",
+  "installCount": 7707,
+  "themes": [
+    {
+      "name": "BOO Dark",
+      "label": "BOO Dark",
+      "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
