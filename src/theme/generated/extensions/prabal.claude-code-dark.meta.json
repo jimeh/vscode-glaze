@@ -1,0 +1,39 @@
+{
+  "extensionId": "432e314e-a2d1-481f-89bd-64d69214e945",
+  "extensionName": "claude-code-dark",
+  "publisherName": "prabal",
+  "displayName": "Claude Clay Dark",
+  "version": "1.4.1",
+  "extractedAt": "2026-10-12T14:26:32.762Z",
+  "installCount": 7426,
+  "themes": [
+    {
+      "name": "Claude Clay Dark",
+      "label": "Claude Clay Dark",
+      "colors": {
+        "editor.background": "#1F1F1F",
+        "editor.foreground": "#DED8CE",
+        "titleBar.activeBackground": "#171716",
+        "titleBar.activeForeground": "#C3C2B7",
+        "titleBar.inactiveBackground": "#171716",
+        "titleBar.inactiveForeground": "#999999",
+        "titleBar.border": "#2A2A29",
+        "statusBar.background": "#171716",
+        "statusBar.foreground": "#999999",
+        "statusBar.border": "#2A2A29",
+        "activityBar.background": "#1F1F1F",
+        "activityBar.foreground": "#A0917D",
+        "activityBar.activeBackground": "#35322E",
+        "activityBar.activeBorder": "#C3C2B7",
+        "sideBar.background": "#171716",
+        "sideBar.foreground": "#C3C2B7",
+        "sideBar.border": "#2A2A29",
+        "sideBarSectionHeader.background": "#171716",
+        "sideBarSectionHeader.foreground": "#C3C2B7",
+        "sideBarSectionHeader.border": "#2A2A29"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
