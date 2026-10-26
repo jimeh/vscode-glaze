@@ -1,0 +1,11 @@
+{
+  "extensionId": "451cb1fd-f48b-4464-a90a-a72df9c1db86",
+  "extensionName": "themeeditor",
+  "publisherName": "soyreneon",
+  "displayName": "ThemeTuner (Real-Time Theme Editor)",
+  "version": "1.25.2",
+  "extractedAt": "2026-10-26T12:16:53.142Z",
+  "installCount": 8389,
+  "themes": [],
+  "source": "openvsx"
+}

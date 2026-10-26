@@ -1,0 +1,189 @@
+{
+  "extensionId": "a005461e-cd06-469b-8481-876725e343e8",
+  "extensionName": "claude-theme",
+  "publisherName": "h1dr0n",
+  "displayName": "Claude Theme",
+  "version": "0.1.6",
+  "extractedAt": "2026-10-26T12:16:58.026Z",
+  "installCount": 7820,
+  "themes": [
+    {
+      "name": "Claude Classic Light",
+      "label": "Claude Classic Light",
+      "colors": {
+        "editor.background": "#F1EFE7",
+        "editor.foreground": "#141413",
+        "titleBar.activeBackground": "#ECEAE0",
+        "titleBar.activeForeground": "#141413",
+        "titleBar.inactiveBackground": "#F1EFE7",
+        "titleBar.inactiveForeground": "#87867F",
+        "titleBar.border": "#E4E2D8",
+        "statusBar.background": "#E4E2D8",
+        "statusBar.foreground": "#4D4C48",
+        "statusBar.border": "#E4E2D8",
+        "activityBar.background": "#E4E2D8",
+        "activityBar.foreground": "#141413",
+        "activityBar.activeBackground": "#D1CFC5",
+        "activityBar.activeBorder": "#C96442",
+        "sideBar.background": "#ECEAE0",
+        "sideBar.foreground": "#5E5D59",
+        "sideBar.border": "#E4E2D8",
+        "sideBarSectionHeader.background": "#ECEAE0",
+        "sideBarSectionHeader.foreground": "#141413",
+        "sideBarSectionHeader.border": "#E4E2D8"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Claude Classic Dark",
+      "label": "Claude Classic Dark",
+      "colors": {
+        "editor.background": "#1B1B1A",
+        "editor.foreground": "#E8E6DC",
+        "titleBar.activeBackground": "#21211F",
+        "titleBar.activeForeground": "#FAF9F5",
+        "titleBar.inactiveBackground": "#1B1B1A",
+        "titleBar.inactiveForeground": "#87867F",
+        "titleBar.border": "#30302E",
+        "statusBar.background": "#1B1B1A",
+        "statusBar.foreground": "#B0AEA5",
+        "statusBar.border": "#30302E",
+        "activityBar.background": "#21211F",
+        "activityBar.foreground": "#FAF9F5",
+        "activityBar.activeBackground": "#30302E",
+        "activityBar.activeBorder": "#D97757",
+        "sideBar.background": "#21211F",
+        "sideBar.foreground": "#B0AEA5",
+        "sideBar.border": "#30302E",
+        "sideBarSectionHeader.background": "#21211F",
+        "sideBarSectionHeader.foreground": "#FAF9F5",
+        "sideBarSectionHeader.border": "#30302E"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Claude Dusk (Deep Slate)",
+      "label": "Claude Dusk (Deep Slate)",
+      "colors": {
+        "editor.background": "#1A1D23",
+        "editor.foreground": "#D1D7E0",
+        "titleBar.activeBackground": "#16181D",
+        "titleBar.activeForeground": "#D1D7E0",
+        "titleBar.border": "#16181D",
+        "statusBar.background": "#16181D",
+        "statusBar.foreground": "#D1D7E0",
+        "statusBar.border": "#16181D",
+        "activityBar.background": "#16181D",
+        "activityBar.foreground": "#D1D7E0",
+        "activityBar.activeBorder": "#DA7756",
+        "sideBar.background": "#16181D",
+        "sideBar.foreground": "#D1D7E0",
+        "sideBar.border": "#16181D",
+        "sideBarSectionHeader.background": "#16181D",
+        "sideBarSectionHeader.foreground": "#D1D7E0",
+        "sideBarSectionHeader.border": "#2A2D35"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Claude Dusk Light (Sunset Slate)",
+      "label": "Claude Dusk Light (Sunset Slate)",
+      "colors": {
+        "editor.background": "#F8FAFC",
+        "editor.foreground": "#334155",
+        "titleBar.activeBackground": "#F1F5F9",
+        "titleBar.activeForeground": "#0F172A",
+        "statusBar.background": "#F1F5F9",
+        "statusBar.foreground": "#334155",
+        "statusBar.border": "#E2E8F0",
+        "activityBar.background": "#F1F5F9",
+        "activityBar.foreground": "#0F172A",
+        "sideBar.background": "#F1F5F9",
+        "sideBar.foreground": "#334155",
+        "sideBar.border": "#E2E8F0"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Claude Midnight (OLED Black)",
+      "label": "Claude Midnight (OLED Black)",
+      "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#E0E0E0",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.border": "#1A1A1A",
+        "statusBar.background": "#000000",
+        "statusBar.foreground": "#E0E0E0",
+        "statusBar.border": "#1A1A1A",
+        "activityBar.background": "#000000",
+        "activityBar.foreground": "#FFFFFF",
+        "activityBar.activeBorder": "#DA7756",
+        "sideBar.background": "#050505",
+        "sideBar.foreground": "#E0E0E0",
+        "sideBar.border": "#000000",
+        "sideBarSectionHeader.background": "#050505",
+        "sideBarSectionHeader.foreground": "#FFFFFF",
+        "sideBarSectionHeader.border": "#1A1A1A"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Claude Midnight Light (Pure High-Contrast)",
+      "label": "Claude Midnight Light (Pure High-Contrast)",
+      "colors": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "titleBar.activeBackground": "#F8F8F8",
+        "statusBar.background": "#F8F8F8",
+        "statusBar.foreground": "#000000",
+        "activityBar.background": "#F8F8F8",
+        "activityBar.foreground": "#000000",
+        "sideBar.background": "#FAFAFA",
+        "sideBar.border": "#EEEEEE"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Claude Forest (Muted Moss)",
+      "label": "Claude Forest (Muted Moss)",
+      "colors": {
+        "editor.background": "#171C19",
+        "editor.foreground": "#D1D7D3",
+        "titleBar.activeBackground": "#141815",
+        "titleBar.activeForeground": "#D1D7D3",
+        "titleBar.border": "#141815",
+        "statusBar.background": "#141815",
+        "statusBar.foreground": "#D1D7D3",
+        "statusBar.border": "#141815",
+        "activityBar.background": "#141815",
+        "activityBar.foreground": "#D1D7D3",
+        "activityBar.activeBorder": "#788C5D",
+        "sideBar.background": "#141815",
+        "sideBar.foreground": "#D1D7D3",
+        "sideBar.border": "#141815",
+        "sideBarSectionHeader.background": "#141815",
+        "sideBarSectionHeader.foreground": "#D1D7D3",
+        "sideBarSectionHeader.border": "#242B26"
+      },
+      "type": "dark"
+    },
+    {
+      "name": "Claude Forest Light (Spring Meadow)",
+      "label": "Claude Forest Light (Spring Meadow)",
+      "colors": {
+        "editor.background": "#F0F4F0",
+        "editor.foreground": "#2D332D",
+        "titleBar.activeBackground": "#E1E8E1",
+        "statusBar.background": "#E1E8E1",
+        "statusBar.foreground": "#2D332D",
+        "activityBar.background": "#E1E8E1",
+        "activityBar.foreground": "#1E241E",
+        "sideBar.background": "#E6EDE6",
+        "sideBar.border": "#E1E8E1"
+      },
+      "type": "light"
+    }
+  ],
+  "source": "openvsx"
+}
