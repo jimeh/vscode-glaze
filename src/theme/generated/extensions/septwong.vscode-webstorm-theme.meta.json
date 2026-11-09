@@ -3,9 +3,9 @@
   "extensionName": "vscode-webstorm-theme",
   "publisherName": "SeptWong",
   "displayName": "WebStorm New Theme",
-  "version": "1.0.5",
-  "extractedAt": "2026-02-12T09:30:16.910Z",
-  "installCount": 3808,
+  "version": "1.1.3",
+  "extractedAt": "2026-11-09T15:08:45.261Z",
+  "installCount": 26443,
   "themes": [
     {
       "name": "WebStorm Darker",
@@ -17,14 +17,18 @@
         "titleBar.activeForeground": "#9DA5B4",
         "titleBar.inactiveBackground": "#23272E",
         "titleBar.inactiveForeground": "#6B717D",
+        "titleBar.border": "#23272E",
         "statusBar.background": "#1E2227",
         "statusBar.foreground": "#9DA5B4",
+        "statusBar.border": "#23272E",
         "activityBar.background": "#23272E",
         "activityBar.foreground": "#D7DAE0",
         "sideBar.background": "#1E2227",
         "sideBar.foreground": "#ABB2BF",
+        "sideBar.border": "#23272E",
         "sideBarSectionHeader.background": "#23272E",
-        "sideBarSectionHeader.foreground": "#ABB2BF"
+        "sideBarSectionHeader.foreground": "#ABB2BF",
+        "sideBarSectionHeader.border": "#23272E"
       },
       "type": "dark"
     },

@@ -1,0 +1,62 @@
+{
+  "extensionId": "05f5a221-5c52-4bd1-bcc3-a43903498294",
+  "extensionName": "evergruv",
+  "publisherName": "georglauterbach",
+  "displayName": "Evergruv",
+  "version": "0.7.1",
+  "extractedAt": "2026-11-09T15:09:44.636Z",
+  "installCount": 8244,
+  "themes": [
+    {
+      "name": "Evergruv (Everforest) Light",
+      "label": "Evergruv (Everforest) Light",
+      "colors": {
+        "editor.background": "#F5F5F2",
+        "editor.foreground": "#505D65",
+        "titleBar.activeBackground": "#F5F5F2",
+        "titleBar.activeForeground": "#505D65",
+        "titleBar.inactiveBackground": "#F5F5F2",
+        "titleBar.inactiveForeground": "#505D65",
+        "statusBar.background": "#EBEBE4",
+        "statusBar.foreground": "#505D65",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#F5F5F2",
+        "activityBar.foreground": "#505D65",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#000000",
+        "sideBar.background": "#EBEBE4",
+        "sideBar.foreground": "#505D65",
+        "sideBar.border": "#D5D6D6",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#505D65"
+      },
+      "type": "light"
+    },
+    {
+      "name": "Evergruv (Gruvbox Material) Dark",
+      "label": "Evergruv (Gruvbox Material) Dark",
+      "colors": {
+        "editor.background": "#1D2021",
+        "editor.foreground": "#DDC7A1",
+        "titleBar.activeBackground": "#1D2021",
+        "titleBar.activeForeground": "#DDC7A1",
+        "titleBar.inactiveBackground": "#1D2021",
+        "titleBar.inactiveForeground": "#DDC7A1",
+        "statusBar.background": "#141617",
+        "statusBar.foreground": "#DDC7A1",
+        "statusBar.border": "#000000",
+        "activityBar.background": "#1D2021",
+        "activityBar.foreground": "#DDC7A1",
+        "activityBar.activeBackground": "#000000",
+        "activityBar.activeBorder": "#000000",
+        "sideBar.background": "#141617",
+        "sideBar.foreground": "#DDC7A1",
+        "sideBar.border": "#000000",
+        "sideBarSectionHeader.background": "#000000",
+        "sideBarSectionHeader.foreground": "#DDC7A1"
+      },
+      "type": "dark"
+    }
+  ],
+  "source": "openvsx"
+}
