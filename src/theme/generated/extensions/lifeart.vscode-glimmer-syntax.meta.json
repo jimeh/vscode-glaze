@@ -3,9 +3,9 @@
   "extensionName": "vscode-glimmer-syntax",
   "publisherName": "lifeart",
   "displayName": "Glimmer Templates Syntax for VS Code",
-  "version": "1.0.47",
-  "extractedAt": "2026-02-08T00:11:02.649Z",
-  "installCount": 8966,
+  "version": "1.0.52",
+  "extractedAt": "2026-11-16T14:46:01.735Z",
+  "installCount": 14533,
   "themes": [],
   "source": "openvsx"
 }
