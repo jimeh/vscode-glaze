@@ -3,9 +3,9 @@
   "extensionName": "vscode-webstorm-theme",
   "publisherName": "SeptWong",
   "displayName": "WebStorm New Theme",
-  "version": "1.0.5",
-  "extractedAt": "2026-02-12T09:30:16.910Z",
-  "installCount": 3808,
+  "version": "1.1.4",
+  "extractedAt": "2026-11-16T14:45:47.425Z",
+  "installCount": 28645,
   "themes": [
     {
       "name": "WebStorm Darker",
